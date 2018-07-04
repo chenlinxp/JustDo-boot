@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.dicttype.dao.DictTypeDao">
+
+	<select id="get" resultType="com.justdo.system.dicttype.domain.DictTypeDO">
+		select
+		`did`,`dname`,`dcode`,`remark`
+		from sys_dict where did = #{did}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.dicttype.domain.DictTypeDO">
+		select
+		`did`,`dname`,`dcode`,`remark`
+		from sys_dict
+		<where>
+			<if test="dname != null and dname != ''"> and dname = #{dname} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.justdo.system.dicttype.domain.DictTypeDO">
+		<selectKey keyProperty="did" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as did from dual
+		</selectKey>
+		insert into sys_dict
+		(
+		`did`,
+		`dname`,
+		`dcode`,
+		`remark`
+		)
+		values
+		(
+		#{did},
+		#{dname},
+		#{dcode},
+		#{remark}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.justdo.system.dicttype.domain.DictTypeDO">
+		update sys_dict
+		<set>
+			<if test="dname != null">`dname` = #{dname}, </if>
+			<if test="dcode != null">`dcode` = #{dcode}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+		</set>
+		where did = #{did}
+	</update>
+
+	<delete id="remove">
+		delete from sys_dict where did = #{did}
+	</delete>
+
+
+</mapper>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">正则的名称：</label>
+								<div class="col-sm-8">
+									<input id="rname" name="rname" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">正则的代码：</label>
+								<div class="col-sm-8">
+									<input id="rcode" name="rcode" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">正则的内容：</label>
+								<div class="col-sm-8">
+									<textarea id="rcontent" name="rcontent" class="form-control" ></textarea>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">备注信息：</label>
+								<div class="col-sm-8">
+									<textarea id="rmarks" name="rmarks" class="form-control"></textarea>
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">是否有效：</label>
+								<div class="col-sm-8">
+									<label class="radio-inline">
+										<input type="radio" name="rvalid" value="1" checked="checked" /> 正常
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="rvalid" value="0" /> 禁用
+								</label>
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/regexp/add.js">
+	</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<!--<div class="col-sm-3">-->
+
+					<!--<div class="ibox ibox-body">-->
+						<!--<div class="ibox-title">-->
+							<!--<h5>数据字典类型</h5>-->
+						<!--</div>-->
+						<!--<div class="ibox-title">-->
+							<!--<h5>过滤：</h5><input id="searchDName" type="text" class="form-control"-->
+											   <!--placeholder="请输入关键字">-->
+						<!--</div>-->
+						<!--<div class="ibox-title">-->
+							<!--<button type="button" class="btn  btn-primary" onclick="addDict()" id="addDict">-->
+								<!--<i class="fa fa-plus "  aria-hidden="true"></i>增加-->
+							<!--</button>-->
+							<!--<button type="button" class="btn btn-warning" onclick="updateDict()" id="updateDict">-->
+								<!--<i class="fa fa-edit "  aria-hidden="true"></i>修改-->
+							<!--</button>-->
+							<!--<button type="button" class="btn btn-danger" onclick="delDict()" id="delDict">-->
+								<!--<i class="fa fa-remove " aria-hidden="true"></i>删除-->
+							<!--</button>-->
+						<!--</div>-->
+						<!--<div class="ibox-content">-->
+							<!--<div id="dicttype">-->
+
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+		<!--</div>-->
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div class="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button shiro:hasPermission="system:dict:add" type="button"
+								class="btn  btn-primary" onclick="add()">
+								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button shiro:hasPermission="system:dict:batchRemove"
+								type="button" class="btn  btn-danger" onclick="batchRemove()">
+								<i class="fa fa-trash" aria-hidden="true"></i>删除
+							</button>
+						</div>
+						<div class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div class="columns pull-right col-md-2 nopadding">
+							<select data-placeholder="请选择类别" class="form-control chosen-select"
+								tabindex="2" style="width: 100%">
+								<option value="">全部类别</option>
+							</select>
+						</div>
+					</div>
+					<table id="bTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--shiro控制bootstraptable行内按钮看见性 来自justdo的创新方案 -->
+	<div>
+		<script type="text/javascript">
+			var s_edit_h = 'hidden';
+			var s_remove_h = 'hidden';
+			var s_resetPwd_h = 'hidden';
+		</script>
+	</div>
+	<div shiro:hasPermission="system:dict:edit">
+		<script type="text/javascript">
+			s_edit_h = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="system:dict:remove">
+		<script type="text/javascript">
+			var s_remove_h = '';
+		</script>
+	</div>
+	<div shiro:hasPermission="system:dict:add">
+		<script type="text/javascript">
+			var s_add_h = '';
+		</script>
+	</div>
+
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript"
+		src="/js/appjs/system/dict/dict.js"></script>
+</body>
+</html>
