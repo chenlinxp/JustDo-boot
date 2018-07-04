@@ -79,7 +79,7 @@ function load() {
 								},
 								{
 									title : '操作',
-									field : 'roleId',
+									field : 'operation',
 									align : 'center',
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
