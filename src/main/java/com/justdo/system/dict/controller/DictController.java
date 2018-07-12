@@ -112,9 +112,9 @@ public class DictController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/remove")
+	@PostMapping("/del")
 	@ResponseBody
-	@RequiresPermissions("system:dict:remove")
+	@RequiresPermissions("system:dict:del")
 	public R remove(Long id) {
 		if (dictService.remove(id) > 0) {
 			return R.ok();
@@ -125,11 +125,11 @@ public class DictController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
-	@RequiresPermissions("system:dict:batchRemove")
+	@RequiresPermissions("system:dict:batchDel")
 	public R remove(@RequestParam("ids[]") Long[] ids) {
-		dictService.batchRemove(ids);
+		dictService.batchDel(ids);
 		return R.ok();
 	}
 

@@ -56,8 +56,8 @@ public class DictServiceImpl implements DictService {
     }
 
     @Override
-    public int batchRemove(Long[] ids) {
-        return dictDao.batchRemove(ids);
+    public int batchDel(Long[] ids) {
+        return dictDao.batchDel(ids);
     }
 
     @Override

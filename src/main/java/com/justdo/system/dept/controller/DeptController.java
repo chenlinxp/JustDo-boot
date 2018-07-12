@@ -106,9 +106,9 @@ public class DeptController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/remove")
+	@PostMapping("/del")
 	@ResponseBody
-	@RequiresPermissions("system:dept:remove")
+	@RequiresPermissions("system:dept:del")
 	public R remove(Long deptId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("parentId", deptId);
@@ -128,11 +128,11 @@ public class DeptController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
-	@RequiresPermissions("system:dept:batchRemove")
+	@RequiresPermissions("system:dept:batchDel")
 	public R remove(@RequestParam("ids[]") Long[] deptIds) {
-		deptService.batchRemove(deptIds);
+		deptService.batchDel(deptIds);
 		return R.ok();
 	}
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="${package}.dao.${className}Dao">
+<mapper namespace="${package}.${classname}.dao.${className}Dao">
 
-	<select id="get" resultType="${package}.domain.${className}DO">
+	<select id="get" resultType="${package}.${classname}.domain.${className}DO">
 		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName} where ${pk.columnName} = #{value}
 	</select>
 
-	<select id="list" resultType="${package}.domain.${className}DO">
+	<select id="list" resultType="${package}.${classname}.domain.${className}DO">
 		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
         <where>  
 		  #foreach($column in $columns)
@@ -36,7 +36,7 @@
 		</where>
 	</select>
 	 
-	<insert id="save" parameterType="${package}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
+	<insert id="save" parameterType="${package}.${classname}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
 		insert into ${tableName}
 		(
 #foreach($column in $columns)
@@ -57,7 +57,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="${package}.domain.${className}DO">
+	<update id="update" parameterType="${package}.${classname}.domain.${className}DO">
 		update ${tableName} 
 		<set>
 #foreach($column in $columns)
@@ -73,7 +73,7 @@
 		delete from ${tableName} where ${pk.columnName} = #{value}
 	</delete>
 	
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from ${tableName} where ${pk.columnName} in 
 		<foreach item="${pk.attrname}" collection="array" open="(" separator="," close=")">
 			#{${pk.attrname}}

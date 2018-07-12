@@ -28,7 +28,7 @@ public interface UserDao {
 	
 	int remove(Long userId);
 	
-	int batchRemove(Long[] userIds);
+	int batchDel(Long[] userIds);
 	
 	Long[] listAllDept();
 

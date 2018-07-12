@@ -30,7 +30,7 @@ public interface NoticeDao {
 
 	int remove(Long id);
 
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 	List<NoticeDO> listByIds(Long[] ids);
 

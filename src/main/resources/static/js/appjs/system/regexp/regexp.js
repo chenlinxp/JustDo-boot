@@ -14,7 +14,7 @@ function load() {
 					//	showToggle : true,
 					//	showColumns : true,
 						iconSize : 'outline',
-						toolbar : '#exampleToolbar',
+						toolbar : '#bToolbar',
 						striped : true, // 设置为true会有隔行变色效果
 						dataType : "json", // 服务器返回的数据类型
 						pagination : true, // 设置为true会在底部显示分页条
@@ -96,24 +96,7 @@ function load() {
                                        return '<span class="label label-primary">有效</span>';
                                         }
                                       }
-								},
-																{
-									title : '操作',
-									field : 'operation',
-									align : 'center',
-									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.rid
-												+ '\')"><i class="fa fa-edit"></i></a> ';
-										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
-												+ row.rid
-												+ '\')"><i class="fa fa-remove"></i></a> ';
-										var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-												+ row.rid
-												+ '\')"><i class="fa fa-key"></i></a> ';
-										return e + d ;
-									}
-								} ]
+								}]
 					});
 }
 function reLoad() {
@@ -129,7 +112,15 @@ function add() {
 		content : prefix + '/add' // iframe的url
 	});
 }
-function edit(id) {
+function edit() {
+	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+	var id;
+	if (rows.length == 0||rows.length >1) {
+		layer.msg("请选择一条要修改的数据");
+		return;
+	}else{
+		id=rows[0]['rid'];
+	}
 	layer.open({
 		type : 2,
 		title : '编辑',
@@ -139,12 +130,12 @@ function edit(id) {
 		content : prefix + '/edit/' + id // iframe的url
 	});
 }
-function remove(id) {
+function del(id) {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : prefix+"/remove",
+			url : prefix+"/del",
 			type : "post",
 			data : {
 				'rid' : id
@@ -160,11 +151,8 @@ function remove(id) {
 		});
 	})
 }
-
-function resetPwd(id) {
-}
-function batchRemove() {
-	var rows = $('#exampleTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+function batchDel() {
+	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {
 		layer.msg("请选择要删除的数据");
 		return;
@@ -183,7 +171,7 @@ function batchRemove() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchRemove',
+			url : prefix + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

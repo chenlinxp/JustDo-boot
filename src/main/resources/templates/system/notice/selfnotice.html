@@ -12,8 +12,8 @@
 							<button type="button" class="btn  btn-primary hidden" onclick="read()">
 								<i class="fa fa-plus" aria-hidden="true"></i>设为已读
 							</button>
-							<button shiro:hasPermission="system:notice:batchRemove" type="button"
-								class="btn  btn-danger hidden" onclick="batchRemove()">
+							<button shiro:hasPermission="system:notice:batchDel" type="button"
+								class="btn  btn-danger hidden" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
@@ -35,7 +35,7 @@
 	<div>
 		<script type="text/javascript">
 			var s_edit_h = 'hidden';
-			var s_remove_h = 'hidden';
+			var s_delete_h = 'hidden';
 			var s_resetPwd_h = 'hidden';
 		</script>
 	</div>
@@ -44,9 +44,9 @@
 			s_edit_h = '';
 		</script>
 	</div>
-	<div shiro:hasPermission="system:notice:remove">
+	<div shiro:hasPermission="system:notice:del">
 		<script type="text/javascript">
-			var s_remove_h = '';
+			var s_delete_h = '';
 		</script>
 	</div>
 	<div shiro:hasPermission="system:notice:resetPwd">

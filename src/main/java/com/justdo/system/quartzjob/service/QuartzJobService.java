@@ -30,7 +30,7 @@ public interface QuartzJobService {
 	
 	int remove(Long id);
 	
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 	void initSchedule() throws SchedulerException;
 

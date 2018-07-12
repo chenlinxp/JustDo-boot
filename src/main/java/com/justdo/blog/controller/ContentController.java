@@ -21,7 +21,7 @@ import java.util.Map;
  * 文章内容
  * 
  * @author chglee
- * @email 1992lcg@163.com
+ * @email
  * @date 2017-09-09 10:03:34
  */
 @Controller
@@ -106,8 +106,8 @@ public class ContentController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@RequiresPermissions("blog:bContent:remove")
-	@PostMapping("/remove")
+	@RequiresPermissions("blog:bContent:del")
+	@PostMapping("/del")
 	@ResponseBody
 	public R remove(Long id) {
 		if (bContentService.remove(id) > 0) {
@@ -119,11 +119,11 @@ public class ContentController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@RequiresPermissions("blog:bContent:batchRemove")
-	@PostMapping("/batchRemove")
+	@RequiresPermissions("blog:bContent:batchDel")
+	@PostMapping("/batchDel")
 	@ResponseBody
 	public R remove(@RequestParam("ids[]") Long[] cids) {
-		bContentService.batchRemove(cids);
+		bContentService.batchDel(cids);
 		return R.ok();
 	}
 }

@@ -48,8 +48,8 @@ public class ContentServiceImpl implements ContentService {
 	}
 	
 	@Override
-	public int batchRemove(Long[] cids){
-		return bContentMapper.batchRemove(cids);
+	public int batchDel(Long[] cids){
+		return bContentMapper.batchDel(cids);
 	}
 	
 }

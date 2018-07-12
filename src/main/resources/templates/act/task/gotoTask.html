@@ -19,7 +19,7 @@
 		<div>
 			<script type="text/javascript">
 				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
+				var s_delete_h = 'hidden';
 				var s_resetPwd_h = 'hidden';
 			</script>
 		</div>
@@ -28,9 +28,9 @@
 				var s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="act:process:remove">
+		<div shiro:hasPermission="act:process:del">
 			<script type="text/javascript">
-				var s_remove_h = '';
+				var s_delete_h = '';
 			</script>
 		</div>
 		<div shiro:hasPermission="act:process:resetPwd">

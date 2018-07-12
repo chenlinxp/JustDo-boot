@@ -13,7 +13,7 @@ function load() {
 						// showToggle : true,
 						showColumns : true,
 						iconSize : 'outline',
-						toolbar : '#exampleToolbar',
+						toolbar : '#bToolbar',
 						striped : true, // 设置为true会有隔行变色效果
 						dataType : "json", // 服务器返回的数据类型
 						pagination : true, // 设置为true会在底部显示分页条
@@ -44,6 +44,13 @@ function load() {
 						// pageSize, pageNumber, searchText, sortName,
 						// sortOrder.
 						// 返回false将会终止请求
+                        onClickRow: function (row, element) {
+                            $('.success').removeClass('success');//去除之前选中的行的，选中样式
+                            $(element).addClass('success');//添加当前选中的 success样式用于区别
+                            $("#bTable").bootstrapTable("uncheckAll");
+                            var rowindex=$(element).attr("data-index");
+                            $("#bTable").bootstrapTable('check',rowindex);
+                        },
 						columns : [
 								{
 									checkbox : true
@@ -184,7 +191,7 @@ function load() {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
 												+ row.cid
 												+ '\')"><i class="fa fa-edit"></i></a> ';
-										var d = '<a class="btn btn-warning btn-sm '+s_remove_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
+										var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="remove(\''
 												+ row.cid
 												+ '\')"><i class="fa fa-remove"></i></a> ';
 										var f = '<a class="btn btn-success btn-sm" href="#" title="预览"  mce_href="#" onclick="preview(\''
@@ -225,7 +232,7 @@ function remove(id) {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : prefix + "/remove",
+			url : prefix + "/del",
 			type : "post",
 			data : {
 				'id' : id
@@ -246,7 +253,7 @@ function preview(id) {
 	window.open("/blog/open/post/"+id);   
 	//window.location.href="/blog/open/post/"+id;
 }
-function batchRemove() {
+function batchDel() {
 	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {
 		layer.msg("请选择要删除的数据");
@@ -266,7 +273,7 @@ function batchRemove() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchRemove',
+			url : prefix + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

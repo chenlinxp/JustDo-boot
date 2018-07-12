@@ -139,14 +139,14 @@ public class ProcessController extends BaseController{
         }
     }
 
-    @PostMapping("/remove")
+    @PostMapping("/del")
     public R remove(String id){
 
         repositoryService.deleteDeployment(id,true);
         return R.ok();
     }
-    @PostMapping("/batchRemove")
-    public R batchRemove(@RequestParam("ids[]") String[] ids) {
+    @PostMapping("/batchDel")
+    public R batchDel(@RequestParam("ids[]") String[] ids) {
 
         for (String id : ids) {
             repositoryService.deleteDeployment(id,true);

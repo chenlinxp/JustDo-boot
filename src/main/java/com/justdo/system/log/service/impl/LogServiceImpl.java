@@ -46,7 +46,7 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public int batchRemove(Long[] ids){
-		return logdao.batchRemove(ids);
+	public int batchDel(Long[] ids){
+		return logdao.batchDel(ids);
 	}
 }

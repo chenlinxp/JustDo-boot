@@ -27,7 +27,7 @@ public interface NoticeService {
 
 	int remove(Long id);
 
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 //	Map<String, Object> message(Long userId);
 

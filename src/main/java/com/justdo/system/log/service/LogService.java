@@ -20,5 +20,5 @@ public interface LogService {
 	void save(LogDO logDO);
 	PageDO<LogDO> queryList(Query query);
 	int remove(Long id);
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 }

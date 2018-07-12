@@ -93,9 +93,9 @@ public class RegexpController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/remove")
+	@PostMapping( "/del")
 	@ResponseBody
-	@RequiresPermissions("system:regexp:remove")
+	@RequiresPermissions("system:regexp:del")
 	public R remove( String rid){
 		if(regexpService.remove(rid)>0){
 		return R.ok();
@@ -106,11 +106,11 @@ public class RegexpController {
 	/**
 	 * 删除
 	 */
-	@PostMapping( "/batchRemove")
+	@PostMapping( "/batchDel")
 	@ResponseBody
-	@RequiresPermissions("system:regexp:batchRemove")
+	@RequiresPermissions("system:regexp:batchDel")
 	public R remove(@RequestParam("ids[]") String[] rids){
-		regexpService.batchRemove(rids);
+		regexpService.batchDel(rids);
 		return R.ok();
 	}
 	

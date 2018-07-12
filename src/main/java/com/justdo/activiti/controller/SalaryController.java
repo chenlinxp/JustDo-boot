@@ -22,7 +22,7 @@ import java.util.Map;
  * 审批流程测试表
  *
  * @author chglee
- * @email 1992lcg@163.com
+ * @email
  * @date 2017-11-25 13:33:16
  */
 
@@ -104,7 +104,7 @@ public class SalaryController extends BaseController{
     /**
      * 删除
      */
-    @PostMapping("/remove")
+    @PostMapping("/del")
     @ResponseBody
     public R remove(String id) {
 
@@ -117,11 +117,11 @@ public class SalaryController extends BaseController{
     /**
      * 删除
      */
-    @PostMapping("/batchRemove")
+    @PostMapping("/batchDel")
     @ResponseBody
     public R remove(@RequestParam("ids[]") String[] ids) {
 
-        salaryService.batchRemove(ids);
+        salaryService.batchDel(ids);
         return R.ok();
     }
 

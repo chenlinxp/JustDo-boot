@@ -13,7 +13,7 @@ function load3() {
 				// showToggle : true,
 				// showColumns : true,
 				iconSize : 'outline',
-				toolbar : '#exampleToolbar',
+				toolbar : '#bToolbar',
 				striped : true, // 设置为true会有隔行变色效果
 				dataType : "json", // 服务器返回的数据类型
 				pagination : true, // 设置为true会在底部显示分页条

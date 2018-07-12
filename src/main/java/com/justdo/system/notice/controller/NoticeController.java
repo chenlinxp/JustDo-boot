@@ -113,9 +113,9 @@ public class NoticeController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/remove")
+	@PostMapping("/del")
 	@ResponseBody
-	@RequiresPermissions("system:notice:remove")
+	@RequiresPermissions("system:notice:del")
 	public R remove(Long id) {
 		if (NoticeService.remove(id) > 0) {
 			return R.ok();
@@ -126,11 +126,11 @@ public class NoticeController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
-	@RequiresPermissions("system:notice:batchRemove")
+	@RequiresPermissions("system:notice:batchDel")
 	public R remove(@RequestParam("ids[]") Long[] ids) {
-		NoticeService.batchRemove(ids);
+		NoticeService.batchDel(ids);
 		return R.ok();
 	}
 

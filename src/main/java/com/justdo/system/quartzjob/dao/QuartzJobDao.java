@@ -31,5 +31,5 @@ public interface QuartzJobDao {
 	
 	int remove(Long id);
 	
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 }

@@ -13,8 +13,8 @@
                                 onclick="add(0)">
                             <i class="fa fa-plus hidden" aria-hidden="true"></i>添加
                         </button>
-                        <button shiro:hasPermission="system:dept:batchRemove" type="button" class="btn  btn-danger"
-                                onclick="batchRemove()">
+                        <button shiro:hasPermission="system:dept:batchDel" type="button" class="btn  btn-danger"
+                                onclick="batchDel()">
                             <i class="fa fa-trash" aria-hidden="true"></i>删除
                         </button>
                     </div>
@@ -38,7 +38,7 @@
     <script type="text/javascript">
         var s_add_h = 'hidden';
         var s_edit_h = 'hidden';
-        var s_remove_h = 'hidden';
+        var s_delete_h = 'hidden';
         var s_resetPwd_h = 'hidden';
     </script>
 </div>
@@ -52,9 +52,9 @@
         s_add_h = '';
     </script>
 </div>
-<div shiro:hasPermission="system:dept:remove">
+<div shiro:hasPermission="system:dept:del">
     <script type="text/javascript">
-        var s_remove_h = '';
+        var s_delete_h = '';
     </script>
 </div>
 <div shiro:hasPermission="system:dept:resetPwd">

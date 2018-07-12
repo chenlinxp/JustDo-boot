@@ -1,4 +1,4 @@
-package ${package}.service.impl;
+package ${package}.${classname}.service.${className}.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import ${package}.dao.${className}Dao;
-import ${package}.domain.${className}DO;
-import ${package}.service.${className}Service;
+import ${package}.${classname}.dao.${className}Dao;
+import ${package}.${classname}.domain.${className}DO;
+import ${package}.${classname}.service.${className}Service;
 
 
 
@@ -48,8 +48,8 @@ public class ${className}ServiceImpl implements ${className}Service {
 	}
 	
 	@Override
-	public int batchRemove(${pk.attrType}[] ${pk.attrname}s){
-		return ${classname}Dao.batchRemove(${pk.attrname}s);
+	public int batchDel(${pk.attrType}[] ${pk.attrname}s){
+		return ${classname}Dao.batchDel(${pk.attrname}s);
 	}
 	
 }

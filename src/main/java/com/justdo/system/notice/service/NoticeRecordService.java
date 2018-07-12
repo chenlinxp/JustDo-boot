@@ -27,7 +27,7 @@ public interface NoticeRecordService {
 	
 	int remove(Long id);
 	
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 	/**
 	 * 更改阅读状态

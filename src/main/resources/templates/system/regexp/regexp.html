@@ -12,8 +12,10 @@
 							<button shiro:hasPermission="system:regexp:add" type="button" class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
 							</button>
-							<button shiro:hasPermission="system:regexp:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
+							<button shiro:hasPermission="system:regexp:edit" type="button" class="btn  btn-primary" onclick="edit()">
+								<i class="fa fa-edit" aria-hidden="true"></i>编辑
+							</button>
+							<button shiro:hasPermission="system:regexp:batchDel" type="button" class="btn  btn-danger"onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
@@ -29,30 +31,6 @@
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!--shiro控制bootstraptable行内按钮看见性 来自justdo的创新方案 -->
-		<div>
-			<script type="text/javascript">
-				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
-				var s_resetPwd_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="system:regexp:edit">
-			<script type="text/javascript">
-				s_edit_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="system:regexp:remove">
-			<script type="text/javascript">
-				var s_remove_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="system:regexp:resetPwd">
-			<script type="text/javascript">
-				var s_resetPwd_h = '';
-			</script>
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>

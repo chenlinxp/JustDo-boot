@@ -96,7 +96,7 @@ public class QuartzJobController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/remove")
+	@PostMapping("/del")
 	@ResponseBody
 	public R remove(Long id) {
 		if (quartzJobService.remove(id) > 0) {
@@ -108,10 +108,10 @@ public class QuartzJobController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
 	public R remove(@RequestParam("ids[]") Long[] ids) {
-		quartzJobService.batchRemove(ids);
+		quartzJobService.batchDel(ids);
 
 		return R.ok();
 	}

@@ -62,8 +62,8 @@ public class SalaryServiceImpl implements SalaryService {
 	}
 	
 	@Override
-	public int batchRemove(String[] ids){
-		return salaryDao.batchRemove(ids);
+	public int batchDel(String[] ids){
+		return salaryDao.batchDel(ids);
 	}
 	
 }

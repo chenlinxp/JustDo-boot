@@ -33,5 +33,5 @@ public interface RegexpDao {
 	
 	int remove(String RID);
 	
-	int batchRemove(String[] rids);
+	int batchDel(String[] rids);
 }

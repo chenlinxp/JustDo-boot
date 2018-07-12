@@ -29,9 +29,10 @@ public interface DictDao {
 
 	int remove(Long id);
 
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 	List<DictDO> listType();
 
 
 }
+

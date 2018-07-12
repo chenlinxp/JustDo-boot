@@ -126,9 +126,9 @@ public class UserController extends BaseController {
 	}
 
 
-	@RequiresPermissions("system:user:remove")
+	@RequiresPermissions("system:user:del")
 	@Log("删除用户")
-	@PostMapping("/remove")
+	@PostMapping("/del")
 	@ResponseBody
 	R remove(Long id) {
 
@@ -138,11 +138,11 @@ public class UserController extends BaseController {
 		return R.error();
 	}
 
-	@RequiresPermissions("system:user:batchRemove")
+	@RequiresPermissions("system:user:batchDel")
 	@Log("批量删除用户")
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
-	R batchRemove(@RequestParam("ids[]") Long[] userIds) {
+	R batchDel(@RequestParam("ids[]") Long[] userIds) {
 
 		int r = userService.batchremove(userIds);
 		if (r > 0) {

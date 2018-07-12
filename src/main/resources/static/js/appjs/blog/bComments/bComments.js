@@ -14,7 +14,7 @@ function load() {
 					//	showToggle : true,
 					//	showColumns : true,
 						iconSize : 'outline',
-						toolbar : '#exampleToolbar',
+						toolbar : '#bToolbar',
 						striped : true, // 设置为true会有隔行变色效果
 						dataType : "json", // 服务器返回的数据类型
 						pagination : true, // 设置为true会在底部显示分页条
@@ -164,7 +164,7 @@ function remove(id) {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : prefix+"/remove",
+			url : prefix+"/del",
 			type : "post",
 			data : {
 				'id' : id
@@ -183,7 +183,7 @@ function remove(id) {
 
 function resetPwd(id) {
 }
-function batchRemove() {
+function batchDel() {
 	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	
 	if (rows.length == 0) {
@@ -205,7 +205,7 @@ function batchRemove() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchRemove',
+			url : prefix + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

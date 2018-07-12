@@ -15,8 +15,7 @@
 							<button shiro:hasPermission="${pathName}:${classname}:edit" type="button" class="btn  btn-primary" onclick="edit()">
                                 <i class="fa fa-edit" aria-hidden="true"></i>编辑
                             </button>
-							<button shiro:hasPermission="${pathName}:${classname}:batchRemove" type="button" class="btn  btn-danger"
-								onclick="batchRemove()">
+							<button shiro:hasPermission="${pathName}:${classname}:batchDel" type="button" class="btn  btn-danger" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
@@ -37,9 +36,14 @@
 	<!--shiro控制bootstraptable行内按钮看见性 来自justdo的创新方案 -->
 		<div>
 			<script type="text/javascript">
+                var s_add_h = 'hidden';
 				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
-				var s_resetPwd_h = 'hidden';
+				var s_delete_h = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:dept:add">
+			<script type="text/javascript">
+				s_add_h = '';
 			</script>
 		</div>
 		<div shiro:hasPermission="${pathName}:${classname}:edit">
@@ -47,14 +51,9 @@
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:remove">
+		<div shiro:hasPermission="${pathName}:${classname}:del">
 			<script type="text/javascript">
-				var s_remove_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:resetPwd">
-			<script type="text/javascript">
-				var s_resetPwd_h = '';
+				var s_delete_h = '';
 			</script>
 		</div>
 	</div>

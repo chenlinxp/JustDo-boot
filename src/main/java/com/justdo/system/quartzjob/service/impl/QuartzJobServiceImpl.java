@@ -73,7 +73,7 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 	}
 
 	@Override
-	public int batchRemove(Long[] ids) {
+	public int batchDel(Long[] ids) {
 		for (Long id : ids) {
 			try {
 				QuartzJobTaskDO scheduleJob = get(id);
@@ -83,7 +83,7 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 				return 0;
 			}
 		}
-		return taskScheduleJobMapper.batchRemove(ids);
+		return taskScheduleJobMapper.batchDel(ids);
 	}
 
 	@Override

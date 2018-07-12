@@ -54,8 +54,8 @@ public class NoticeRecordServiceImpl implements NoticeRecordService {
 	}
 	
 	@Override
-	public int batchRemove(Long[] ids){
-		return NoticeRecordDao.batchRemove(ids);
+	public int batchDel(Long[] ids){
+		return NoticeRecordDao.batchDel(ids);
 	}
 
 	@Override

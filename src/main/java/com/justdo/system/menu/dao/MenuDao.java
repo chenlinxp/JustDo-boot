@@ -29,7 +29,7 @@ public interface MenuDao {
 	
 	int remove(Long menuId);
 	
-	int batchRemove(Long[] menuIds);
+	int batchDel(Long[] menuIds);
 	
 	List<MenuDO> listMenuByUserId(Long id);
 	

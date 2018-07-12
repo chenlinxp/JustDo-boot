@@ -13,8 +13,8 @@
 							class="btn btn-primary" title="在根节点下添加菜单" onclick="add('0')">
 							<i class="fa fa-plus" aria-hidden="true"></i>添加
 						</button>
-						<button shiro:hasPermission="system:menu:batchRemove" type="button"
-							class="btn btn-danger" onclick="batchRemove()">
+						<button shiro:hasPermission="system:menu:batchDel" type="button"
+							class="btn btn-danger" onclick="batchDel()">
 							<i class="fa fa-trash" aria-hidden="true"></i>删除
 						</button>
 					</div>
@@ -28,7 +28,7 @@
 			<script type="text/javascript">
 				var s_add_h = 'hidden';
 				var s_edit_h = 'hidden';
-				var s_remove_h = 'hidden';
+				var s_delete_h = 'hidden';
 			</script>
 		</div>
 		<div shiro:hasPermission="system:menu:add">
@@ -41,9 +41,9 @@
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="system:user:remove">
+		<div shiro:hasPermission="system:user:del">
 			<script type="text/javascript">
-				var s_remove_h = '';
+				var s_delete_h = '';
 			</script>
 		</div>
 	</div>

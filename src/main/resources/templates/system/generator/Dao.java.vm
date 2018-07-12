@@ -1,9 +1,9 @@
-package ${package}.dao;
+package ${package}.${classname}.dao;
 
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
-import ${package}.domain.${className}DO;
+import ${package}.${classname}.domain.${className}DO;
 
 /**
  * ${comments}
@@ -26,5 +26,5 @@ public interface ${className}Dao {
 	
 	int remove(${pk.attrType} ${pk.columnName});
 	
-	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
+	int batchDel(${pk.attrType}[] ${pk.attrname}s);
 }

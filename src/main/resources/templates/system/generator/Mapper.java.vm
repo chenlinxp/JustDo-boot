@@ -1,4 +1,4 @@
-package ${package}.dao;
+package ${package}.${classname}.dao;
 
 
 
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import ${package}.domain.${className}DO;
+import ${package}.${classname}.domain.${className}DO;
 /**
  * ${comments}
  * 
@@ -90,5 +90,5 @@ public interface ${className}Mapper {
 						"#{${pk.attrname}}" + 
 					"</foreach>"+
 			"</script>")
-	int batchRemove(${pk.attrType}[] ${pk.attrname}s);
+	int batchDel(${pk.attrType}[] ${pk.attrname}s);
 }

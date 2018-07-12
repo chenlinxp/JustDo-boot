@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author justdo 1992lcg@163.com
+ * @author justdo
  */
 @RequestMapping("/blog")
 @Controller

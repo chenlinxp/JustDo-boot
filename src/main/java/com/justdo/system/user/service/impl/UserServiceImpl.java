@@ -155,8 +155,8 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public int batchremove(Long[] userIds) {
-		int count = userMapper.batchRemove(userIds);
-		userRoleMapper.batchRemoveByUserId(userIds);
+		int count = userMapper.batchDel(userIds);
+		userRoleMapper.batchDelByUserId(userIds);
 		return count;
 	}
 
