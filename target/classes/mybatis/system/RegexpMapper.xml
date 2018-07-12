@@ -82,11 +82,11 @@
 		where RID = #{rid}
 	</update>
 	
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_regexp where RID = #{value}
 	</delete>
 	
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from sys_regexp where RID in 
 		<foreach item="rid" collection="array" open="(" separator="," close=")">
 			#{rid}
