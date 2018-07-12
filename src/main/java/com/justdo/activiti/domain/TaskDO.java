@@ -3,7 +3,7 @@ package com.justdo.activiti.domain;
 import java.util.Map;
 
 /**
- * @author justdo 1992lcg@163.com
+ * @author justdo
  */
 public class TaskDO {
     private  String taskId;

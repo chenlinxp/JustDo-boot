@@ -57,8 +57,8 @@ public class DeptServiceImpl implements DeptService {
 	}
 
 	@Override
-	public int batchRemove(Long[] deptIds){
-		return deptDao.batchRemove(deptIds);
+	public int batchDel(Long[] deptIds){
+		return deptDao.batchDel(deptIds);
 	}
 
 	@Override

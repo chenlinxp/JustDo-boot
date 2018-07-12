@@ -25,7 +25,7 @@ import com.justdo.common.utils.*;
  * 文件上传
  * 
  * @author chglee
- * @email 1992lcg@163.com
+ * @email
  * @date 2017-09-19 16:02:20
  */
 @Controller
@@ -108,9 +108,9 @@ public class FileController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/remove")
+	@PostMapping("/del")
 	@ResponseBody
-	// @RequiresPermissions("common:remove")
+	// @RequiresPermissions("common:del")
 	public R remove(Long id, HttpServletRequest request) {
 		if ("test".equals(getUsername())) {
 			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
@@ -130,14 +130,14 @@ public class FileController extends BaseController {
 	/**
 	 * 删除
 	 */
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
-	@RequiresPermissions("system:remove")
+	@RequiresPermissions("system:del")
 	public R remove(@RequestParam("ids[]") Long[] ids) {
 		if ("test".equals(getUsername())) {
 			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
 		}
-		fileService.batchRemove(ids);
+		fileService.batchDel(ids);
 		return R.ok();
 	}
 

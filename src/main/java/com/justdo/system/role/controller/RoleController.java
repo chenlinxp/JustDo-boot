@@ -85,8 +85,8 @@ public class RoleController extends BaseController {
 	}
 
 	@Log("删除角色")
-	@RequiresPermissions("system:role:remove")
-	@PostMapping("/remove")
+	@RequiresPermissions("system:role:del")
+	@PostMapping("/del")
 	@ResponseBody()
 	R save(Long id) {
 		if (roleService.remove(id) > 0) {
@@ -96,11 +96,11 @@ public class RoleController extends BaseController {
 		}
 	}
 	
-	@RequiresPermissions("system:role:batchRemove")
+	@RequiresPermissions("system:role:batchDel")
 	@Log("批量删除角色")
-	@PostMapping("/batchRemove")
+	@PostMapping("/batchDel")
 	@ResponseBody
-	R batchRemove(@RequestParam("ids[]") Long[] ids) {
+	R batchDel(@RequestParam("ids[]") Long[] ids) {
 		int r = roleService.batchremove(ids);
 		if (r > 0) {
 			return R.ok();

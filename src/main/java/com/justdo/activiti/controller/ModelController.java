@@ -35,7 +35,7 @@ import java.util.List;
 import static org.activiti.editor.constants.ModelDataJsonConstants.*;
 
 /**
- * @author justdo 1992lcg@163.com
+ * @author justdo
  */
 @RequestMapping("/activiti")
 @RestController
@@ -182,8 +182,8 @@ public class ModelController extends BaseController{
         return R.ok();
     }
 
-    @PostMapping("/model/batchRemove")
-    public R batchRemove(@RequestParam("ids[]") String[] ids) {
+    @PostMapping("/model/batchDel")
+    public R batchDel(@RequestParam("ids[]") String[] ids) {
 
         for (String id : ids) {
             repositoryService.deleteModel(id);

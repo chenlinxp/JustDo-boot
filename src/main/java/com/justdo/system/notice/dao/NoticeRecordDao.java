@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * 通知通告发送记录
  * 
  * @author chglee
- * @email 1992lcg@163.com
+ * @email
  * @date 2017-10-09 17:18:45
  */
 @Mapper
@@ -29,7 +29,7 @@ public interface NoticeRecordDao {
 
 	int remove(Long id);
 
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 	int batchSave(List<NoticeRecordDO> records);
 
@@ -37,7 +37,7 @@ public interface NoticeRecordDao {
 
 	int removeByNotifbyId(Long NoticeId);
 
-	int batchRemoveByNotifbyId(Long[] NoticeIds);
+	int batchDelByNotifbyId(Long[] NoticeIds);
 
 	int changeRead(NoticeRecordDO NoticeRecord);
 }

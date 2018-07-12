@@ -29,5 +29,5 @@ public interface RegexpService {
 	
 	int remove(String rid);
 	
-	int batchRemove(String[] rids);
+	int batchDel(String[] rids);
 }

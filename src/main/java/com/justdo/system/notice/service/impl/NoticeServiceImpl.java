@@ -115,9 +115,9 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Transactional
     @Override
-    public int batchRemove(Long[] ids) {
-        recordDao.batchRemoveByNotifbyId(ids);
-        return NoticeDao.batchRemove(ids);
+    public int batchDel(Long[] ids) {
+        recordDao.batchDelByNotifbyId(ids);
+        return NoticeDao.batchDel(ids);
     }
 
 

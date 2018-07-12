@@ -96,13 +96,13 @@ public class MenuController extends BaseController {
 		if (menuService.update(menu) > 0) {
 			return R.ok();
 		} else {
-			return R.error(1, "更新失败");
+			return R.error(1, "更新失败!");
 		}
 	}
 
 	@Log("删除菜单")
-	@RequiresPermissions("system:menu:remove")
-	@PostMapping("/remove")
+	@RequiresPermissions("system:menu:del")
+	@PostMapping("/del")
 	@ResponseBody
 	R remove(Long id) {
 		if (menuService.remove(id) > 0) {

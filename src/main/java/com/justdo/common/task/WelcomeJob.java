@@ -11,6 +11,7 @@ import com.justdo.system.notice.domain.Response;
 
 import java.security.Principal;
 
+
 @Component
 public class WelcomeJob implements Job{
 	@Autowired

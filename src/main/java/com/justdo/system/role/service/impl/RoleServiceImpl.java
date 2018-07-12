@@ -117,7 +117,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public int batchremove(Long[] ids) {
-        int r = roleMapper.batchRemove(ids);
+        int r = roleMapper.batchDel(ids);
         return r;
     }
 

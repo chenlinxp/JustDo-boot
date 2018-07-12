@@ -28,7 +28,7 @@ public interface DeptService {
 	
 	int remove(Long deptId);
 	
-	int batchRemove(Long[] deptIds);
+	int batchDel(Long[] deptIds);
 
 	Tree<DeptDO> getTree();
 	

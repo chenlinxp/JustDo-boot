@@ -55,8 +55,8 @@ public class RegexpServiceImpl implements RegexpService {
 	}
 	
 	@Override
-	public int batchRemove(String[] rids){
-		return regexpDao.batchRemove(rids);
+	public int batchDel(String[] rids){
+		return regexpDao.batchDel(rids);
 	}
 	
 }

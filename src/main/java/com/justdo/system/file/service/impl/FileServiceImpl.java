@@ -60,8 +60,8 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
-	public int batchRemove(Long[] ids){
-		return fileDao.batchRemove(ids);
+	public int batchDel(Long[] ids){
+		return fileDao.batchDel(ids);
 	}
 
     @Override

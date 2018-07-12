@@ -28,7 +28,7 @@ import com.justdo.system.user.shiro.UserRealm;
 
 
 /**
- * @author justdo 1992lcg@163.com
+ * @author justdo
  */
 @Configuration
 public class ShiroConfig {

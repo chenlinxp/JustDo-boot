@@ -1,0 +1,1509 @@
+2018-07-05 07:31:14 -Starting JustdoApplication on localhost with PID 12344 (/Users/chenlin/Documents/GitHub/JustDo-boot/target/classes started by chenlin in /Users/chenlin/Documents/GitHub/JustDo-boot)
+2018-07-05 07:31:14 -Running with Spring Boot v1.5.9.RELEASE, Spring v4.3.13.RELEASE
+2018-07-05 07:31:14 -The following profiles are active: dev
+2018-07-05 07:31:14 -HV000001: Hibernate Validator 5.3.6.Final
+2018-07-05 07:31:15 -Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:31:15 CST 2018]; root of context hierarchy
+2018-07-05 07:31:16 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-05 07:31:16 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$4458efa3] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'shiroConfig' of type [com.justdo.system.config.ShiroConfig$$EnhancerBySpringCGLIB$$10b48a84] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'userRealm' of type [com.justdo.system.user.shiro.UserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'redisManager' of type [com.justdo.common.redis.shiro.RedisManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -获取名称为: com.justdo.system.user.shiro.UserRealm.authorizationCache 的RedisCache实例
+2018-07-05 07:31:17 -Bean 'redisSessionDAO' of type [com.justdo.common.redis.shiro.RedisSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'sessionDAO' of type [com.justdo.common.redis.shiro.RedisSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:17 -Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:31:18 -Tomcat initialized with port(s): 8088 (http)
+2018-07-05 07:31:18 -Starting service [Tomcat]
+2018-07-05 07:31:18 -Starting Servlet Engine: Apache Tomcat/8.5.23
+2018-07-05 07:31:18 -Initializing Spring embedded WebApplicationContext
+2018-07-05 07:31:18 -Root WebApplicationContext: initialization completed in 3247 ms
+2018-07-05 07:31:18 -Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-07-05 07:31:18 -Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-07-05 07:31:18 -Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-07-05 07:31:18 -Mapping filter: 'requestContextFilter' to: [/*]
+2018-07-05 07:31:18 -Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-07-05 07:31:18 -Filter xssFilter was not registered (disabled)
+2018-07-05 07:31:18 -Mapping filter: 'webStatFilter' to urls: [/*]
+2018-07-05 07:31:18 -Mapping filter: 'shiroFilterFactoryBean' to: [/*]
+2018-07-05 07:31:18 -Mapping servlet: 'statViewServlet' to [/druid/*]
+2018-07-05 07:31:18 -Mapping servlet: 'dispatcherServlet' to [/]
+2018-07-05 07:31:19 -{dataSource-1} inited
+2018-07-05 07:31:20 -ProcessEngine default created
+2018-07-05 07:31:21 -ApplicationContext registed-->org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:31:15 CST 2018]; root of context hierarchy
+2018-07-05 07:31:21 -Initializing ExecutorService  'clientInboundChannelExecutor'
+2018-07-05 07:31:21 -Initializing ExecutorService  'clientOutboundChannelExecutor'
+2018-07-05 07:31:22 -Using default implementation for ThreadExecutor
+2018-07-05 07:31:22 -Job execution threads will use class loader of thread: main
+2018-07-05 07:31:22 -Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2018-07-05 07:31:22 -Quartz Scheduler v.2.2.1 created.
+2018-07-05 07:31:22 -RAMJobStore initialized.
+2018-07-05 07:31:22 -Scheduler meta-data: Quartz Scheduler (v2.2.1) 'schedulerFactoryBean' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2018-07-05 07:31:22 -Quartz scheduler 'schedulerFactoryBean' initialized from an externally provided properties instance.
+2018-07-05 07:31:22 -Quartz scheduler version: 2.2.1
+2018-07-05 07:31:22 -JobFactory set to: com.justdo.common.quartz.factory.JobFactory@fe13916
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/{id}],methods=[DELETE]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ModelController.remove(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/list],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.activiti.controller.ModelController.list(int,int)
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ModelController.batchRemove(java.lang.String[])
+2018-07-05 07:31:23 -Mapped "{[/activiti/model],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.ModelController.model()
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/add]}" onto public void com.justdo.activiti.controller.ModelController.newModel(javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/{modelId}/json],methods=[GET]}" onto public com.fasterxml.jackson.databind.node.ObjectNode com.justdo.activiti.controller.ModelController.getEditorJson(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/activiti/editor/stencilset],methods=[GET],produces=[application/json;charset=utf-8]}" onto public java.lang.String com.justdo.activiti.controller.ModelController.getStencilset()
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/edit/{id}],methods=[GET]}" onto public void com.justdo.activiti.controller.ModelController.edit(javax.servlet.http.HttpServletResponse,java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/deploy/{id}],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ModelController.deploy(java.lang.String) throws java.lang.Exception
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/{modelId}/save],methods=[PUT]}" onto public void com.justdo.activiti.controller.ModelController.saveModel(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/activiti/model/export/{id}],methods=[GET]}" onto public void com.justdo.activiti.controller.ModelController.exportToXml(java.lang.String,javax.servlet.http.HttpServletResponse)
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/add],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.ProcessController.add()
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.remove(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/list],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.activiti.controller.ProcessController.list(int,int)
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.batchRemove(java.lang.String[])
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.deploy(java.lang.String,java.lang.String,org.springframework.web.multipart.MultipartFile)
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/convertToModel/{procDefId}]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.convertToModel(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes) throws java.io.UnsupportedEncodingException,javax.xml.stream.XMLStreamException
+2018-07-05 07:31:23 -Mapped "{[/activiti/process/resource/read/{xml}/{id}]}" onto public void com.justdo.activiti.controller.ProcessController.resourceRead(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2018-07-05 07:31:23 -Mapped "{[/activiti/process],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.ProcessController.process()
+2018-07-05 07:31:23 -Mapped "{[/act/salary/form],methods=[GET]}" onto java.lang.String com.justdo.activiti.controller.SalaryController.add()
+2018-07-05 07:31:23 -Mapped "{[/act/salary/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.remove(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/act/salary/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.remove(java.lang.String[])
+2018-07-05 07:31:23 -Mapped "{[/act/salary/update]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.update(com.justdo.activiti.domain.SalaryDO)
+2018-07-05 07:31:23 -Mapped "{[/act/salary/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.activiti.controller.SalaryController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/act/salary],methods=[GET]}" onto java.lang.String com.justdo.activiti.controller.SalaryController.Salary()
+2018-07-05 07:31:23 -Mapped "{[/act/salary/form/{taskId}],methods=[GET]}" onto java.lang.String com.justdo.activiti.controller.SalaryController.edit(java.lang.String,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/act/salary/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.saveOrUpdate(com.justdo.activiti.domain.SalaryDO)
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/form/{procDefId}/{taskId}],methods=[GET]}" onto public void com.justdo.activiti.controller.TaskController.form(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/gotoList],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.activiti.controller.TaskController.list(int,int)
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/goto],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.TaskController.gotoTask()
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/form/{procDefId}],methods=[GET]}" onto public void com.justdo.activiti.controller.TaskController.startForm(java.lang.String,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/todo],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.TaskController.todo()
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/todoList],methods=[GET]}" onto java.util.List<com.justdo.activiti.vo.TaskVO> com.justdo.activiti.controller.TaskController.todoList()
+2018-07-05 07:31:23 -Mapped "{[/activiti/task/trace/photo/{procDefId}/{execId}]}" onto public void com.justdo.activiti.controller.TaskController.tracePhoto(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2018-07-05 07:31:23 -Mapped "{[/blog/open/post/{cid}],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.BlogController.post(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/blog/open/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.blog.controller.BlogController.opentList(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/blog/open/page/{categories}],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.BlogController.about(java.lang.String,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/blog],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.BlogController.blog()
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/add],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.ContentController.add()
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.remove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/update]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.update(com.justdo.blog.domain.ContentDO)
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.blog.controller.ContentController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.save(com.justdo.blog.domain.ContentDO)
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent/edit/{cid}],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.ContentController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/blog/bContent],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.ContentController.bContent()
+2018-07-05 07:31:23 -Mapped "{[/error]}" onto public com.justdo.common.utils.R com.justdo.common.exception.HandleErrorController.handleError(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-07-05 07:31:23 -Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView com.justdo.common.exception.HandleErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-07-05 07:31:23 -Mapped "{[/system/dept/add/{pId}],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.add(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/dept/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/dept/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.remove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/dept/update]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.update(com.justdo.system.dept.domain.DeptDO)
+2018-07-05 07:31:23 -Mapped "{[/system/dept/list],methods=[GET]}" onto public java.util.List<com.justdo.system.dept.domain.DeptDO> com.justdo.system.dept.controller.DeptController.list()
+2018-07-05 07:31:23 -Mapped "{[/system/dept/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.save(com.justdo.system.dept.domain.DeptDO)
+2018-07-05 07:31:23 -Mapped "{[/system/dept/tree],methods=[GET]}" onto public com.justdo.common.domain.Tree<com.justdo.system.dept.domain.DeptDO> com.justdo.system.dept.controller.DeptController.tree()
+2018-07-05 07:31:23 -Mapped "{[/system/dept],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.dept()
+2018-07-05 07:31:23 -Mapped "{[/system/dept/edit/{deptId}],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/dept/treeView],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.treeView()
+2018-07-05 07:31:23 -Mapped "{[/system/dict/add],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.add()
+2018-07-05 07:31:23 -Mapped "{[/system/dict/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.remove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/dict/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/update]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.update(com.justdo.system.dict.domain.DictDO)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.dict.controller.DictController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.save(com.justdo.system.dict.domain.DictDO)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/type],methods=[GET]}" onto public java.util.List<com.justdo.system.dict.domain.DictDO> com.justdo.system.dict.controller.DictController.listType()
+2018-07-05 07:31:23 -Mapped "{[/system/dict/view/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.view(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/dict],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.dict(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/add/{type}/{description}],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.addD(org.springframework.ui.Model,java.lang.String,java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/list/{type}],methods=[GET]}" onto public java.util.List<com.justdo.system.dict.domain.DictDO> com.justdo.system.dict.controller.DictController.listByType(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/dicttype],methods=[GET]}" onto public java.util.List<com.justdo.system.dicttype.domain.DictTypeDO> com.justdo.system.dict.controller.DictController.listDictType(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/system/dict/addtype],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.adddict()
+2018-07-05 07:31:23 -Mapped "{[/system/dict/savetype],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.savetype(com.justdo.system.dicttype.domain.DictTypeDO)
+2018-07-05 07:31:23 -Mapped "{[/system/file/add],methods=[GET]}" onto java.lang.String com.justdo.system.file.controller.FileController.add()
+2018-07-05 07:31:23 -Mapped "{[/system/file/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.remove(java.lang.Long,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:31:23 -Mapped "{[/system/file/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.remove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/file/update]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.update(com.justdo.system.file.domain.FileDO)
+2018-07-05 07:31:23 -Mapped "{[/system/file/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.file.controller.FileController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/file/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.save(com.justdo.system.file.domain.FileDO)
+2018-07-05 07:31:23 -Mapped "{[/system/file/info/{id}]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.info(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/file/edit],methods=[GET]}" onto java.lang.String com.justdo.system.file.controller.FileController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/file],methods=[GET]}" onto java.lang.String com.justdo.system.file.controller.FileController.sysFile(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/file/upload],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.file.controller.FileController.upload(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:31:23 -Mapped "{[/system/generator/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.generator.controller.GeneratorController.update(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/generator/list],methods=[GET]}" onto java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.justdo.system.generator.controller.GeneratorController.list()
+2018-07-05 07:31:23 -Mapped "{[/system/generator/code/{tableName}]}" onto public void com.justdo.system.generator.controller.GeneratorController.code(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String) throws java.io.IOException
+2018-07-05 07:31:23 -Mapped "{[/system/generator],methods=[GET]}" onto java.lang.String com.justdo.system.generator.controller.GeneratorController.generator()
+2018-07-05 07:31:23 -Mapped "{[/system/generator/edit],methods=[GET]}" onto public java.lang.String com.justdo.system.generator.controller.GeneratorController.edit(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/generator/batchCode]}" onto public void com.justdo.system.generator.controller.GeneratorController.batchCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String) throws java.io.IOException
+2018-07-05 07:31:23 -Mapped "{[/system/log/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.log.controller.LogController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/log],methods=[GET]}" onto java.lang.String com.justdo.system.log.controller.LogController.log()
+2018-07-05 07:31:23 -Mapped "{[/system/log/list],methods=[GET]}" onto com.justdo.common.domain.PageDO<com.justdo.system.log.domain.LogDO> com.justdo.system.log.controller.LogController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/log/batchRemove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.log.controller.LogController.batchRemove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/menu/add/{pId}],methods=[GET]}" onto java.lang.String com.justdo.system.menu.controller.MenuController.add(org.springframework.ui.Model,java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/menu/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.menu.controller.MenuController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/menu/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.menu.controller.MenuController.update(com.justdo.system.menu.domain.MenuDO)
+2018-07-05 07:31:23 -Mapped "{[/system/menu/list]}" onto java.util.List<com.justdo.system.menu.domain.MenuDO> com.justdo.system.menu.controller.MenuController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/menu/save],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.menu.controller.MenuController.save(com.justdo.system.menu.domain.MenuDO)
+2018-07-05 07:31:23 -Mapped "{[/system/menu/tree/{roleId}],methods=[GET]}" onto com.justdo.common.domain.Tree<com.justdo.system.menu.domain.MenuDO> com.justdo.system.menu.controller.MenuController.tree(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/menu/tree],methods=[GET]}" onto com.justdo.common.domain.Tree<com.justdo.system.menu.domain.MenuDO> com.justdo.system.menu.controller.MenuController.tree()
+2018-07-05 07:31:23 -Mapped "{[/system/menu/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.menu.controller.MenuController.edit(org.springframework.ui.Model,java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/menu],methods=[GET]}" onto java.lang.String com.justdo.system.menu.controller.MenuController.menu(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/notice/add],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.add()
+2018-07-05 07:31:23 -Mapped "{[/system/notice/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/notice/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.remove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/notice/update]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.update(com.justdo.system.notice.domain.NoticeDO)
+2018-07-05 07:31:23 -Mapped "{[/system/notice/read/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.read(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/notice/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.notice.controller.NoticeController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/notice/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.save(com.justdo.system.notice.domain.NoticeDO)
+2018-07-05 07:31:23 -Mapped "{[/system/notice/message],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.system.notice.controller.NoticeController.message()
+2018-07-05 07:31:23 -Mapped "{[/system/notice/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/notice],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.Notice()
+2018-07-05 07:31:23 -Mapped "{[/system/notice/selfnotice],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.selefNotice()
+2018-07-05 07:31:23 -Mapped "{[/system/notice/selflist],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.system.notice.controller.NoticeController.selfList(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/add],methods=[GET]}" onto java.lang.String com.justdo.system.quartzjob.controller.QuartzJobController.add()
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.remove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/update],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.update(com.justdo.system.quartzjob.domain.QuartzJobTaskDO)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.quartzjob.controller.QuartzJobController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.save(com.justdo.system.quartzjob.domain.QuartzJobTaskDO)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/info/{id}]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.info(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.quartzjob.controller.QuartzJobController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob],methods=[GET]}" onto java.lang.String com.justdo.system.quartzjob.controller.QuartzJobController.QuartzJobController()
+2018-07-05 07:31:23 -Mapped "{[/system/quartzjob/changeJobStatus],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.changeJobStatus(java.lang.Long,java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/add],methods=[GET]}" onto java.lang.String com.justdo.system.regexp.controller.RegexpController.add()
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.remove(java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.remove(java.lang.String[])
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/update]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.update(com.justdo.system.regexp.domain.RegexpDO)
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.regexp.controller.RegexpController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.save(com.justdo.system.regexp.domain.RegexpDO)
+2018-07-05 07:31:23 -Mapped "{[/system/regexp/edit/{rid}],methods=[GET]}" onto java.lang.String com.justdo.system.regexp.controller.RegexpController.edit(java.lang.String,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/regexp],methods=[GET]}" onto java.lang.String com.justdo.system.regexp.controller.RegexpController.Regexp()
+2018-07-05 07:31:23 -Mapped "{[/system/role/add],methods=[GET]}" onto java.lang.String com.justdo.system.role.controller.RoleController.add()
+2018-07-05 07:31:23 -Mapped "{[/system/role/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.update(com.justdo.system.role.domain.RoleDO)
+2018-07-05 07:31:23 -Mapped "{[/system/role/list],methods=[GET]}" onto java.util.List<com.justdo.system.role.domain.RoleDO> com.justdo.system.role.controller.RoleController.list()
+2018-07-05 07:31:23 -Mapped "{[/system/role/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.save(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/role/save],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.save(com.justdo.system.role.domain.RoleDO)
+2018-07-05 07:31:23 -Mapped "{[/system/role/batchRemove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.batchRemove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/role],methods=[GET]}" onto java.lang.String com.justdo.system.role.controller.RoleController.role()
+2018-07-05 07:31:23 -Mapped "{[/system/role/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.role.controller.RoleController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/index],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.index(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/main],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.main()
+2018-07-05 07:31:23 -Mapped "{[/login],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.login(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/logout],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.logout()
+2018-07-05 07:31:23 -Mapped "{[/ || ],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.welcome(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/login],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.LoginController.ajaxLogin(java.lang.String,java.lang.String)
+2018-07-05 07:31:23 -Mapped "{[/system/online/list]}" onto public java.util.List<com.justdo.system.user.domain.UserOnline> com.justdo.system.user.controller.SessionController.list()
+2018-07-05 07:31:23 -Mapped "{[/system/online],methods=[GET]}" onto public java.lang.String com.justdo.system.user.controller.SessionController.online()
+2018-07-05 07:31:23 -Mapped "{[/system/online/forceLogout/{sessionId}]}" onto public com.justdo.common.utils.R com.justdo.system.user.controller.SessionController.forceLogout(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes)
+2018-07-05 07:31:23 -Mapped "{[/system/online/sessionList]}" onto public java.util.Collection<org.apache.shiro.session.Session> com.justdo.system.user.controller.SessionController.sessionList()
+2018-07-05 07:31:23 -Mapped "{[/system/user/exit],methods=[POST]}" onto boolean com.justdo.system.user.controller.UserController.exit(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/user/add],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.add(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/user/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.remove(java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/user/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.update(com.justdo.system.user.domain.UserDO)
+2018-07-05 07:31:23 -Mapped "{[/system/user/list],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.system.user.controller.UserController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:31:23 -Mapped "{[/system/user/save],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.save(com.justdo.system.user.domain.UserDO)
+2018-07-05 07:31:23 -Mapped "{[/system/user/batchRemove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.batchRemove(java.lang.Long[])
+2018-07-05 07:31:23 -Mapped "{[/system/user/tree],methods=[GET]}" onto public com.justdo.common.domain.Tree<com.justdo.system.dept.domain.DeptDO> com.justdo.system.user.controller.UserController.tree()
+2018-07-05 07:31:23 -Mapped "{[/system/user],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.user(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/user/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.edit(org.springframework.ui.Model,java.lang.Long)
+2018-07-05 07:31:23 -Mapped "{[/system/user/treeView],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.treeView()
+2018-07-05 07:31:23 -Mapped "{[/system/user/personal],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.personal(org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/user/resetPwd],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.resetPwd(com.justdo.system.user.domain.UserVO)
+2018-07-05 07:31:23 -Mapped "{[/system/user/resetPwd/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.resetPwd(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:31:23 -Mapped "{[/system/user/updatePeronal],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.updatePeronal(com.justdo.system.user.domain.UserDO)
+2018-07-05 07:31:23 -Mapped "{[/system/user/adminResetPwd],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.adminResetPwd(com.justdo.system.user.domain.UserVO)
+2018-07-05 07:31:23 -Mapped "{[/system/user/uploadImg],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.uploadImg(org.springframework.web.multipart.MultipartFile,java.lang.String,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:31:23 -Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:31:23 -Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2018-07-05 07:31:23 -Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2018-07-05 07:31:23 -Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2018-07-05 07:31:23 -Initializing ExecutorService  'messageBrokerTaskScheduler'
+2018-07-05 07:31:23 -Mapped URL path [/endpointChat/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2018-07-05 07:31:24 -Initializing ExecutorService  'brokerChannelExecutor'
+2018-07-05 07:31:24 -Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:31:15 CST 2018]; root of context hierarchy
+2018-07-05 07:31:24 -Mapped URL path [/files/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:31:24 -Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:31:24 -Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:31:24 -Detected @ExceptionHandler methods in BDExceptionHandler
+2018-07-05 07:31:24 -Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:31:26 -
+
+Using default security password: af4907b5-203c-4b55-aff8-8f2c3faab77e
+
+2018-07-05 07:31:26 -Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+2018-07-05 07:31:26 -Creating filter chain: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationNoWebSecurityConfigurerAdapter$1@4db45d, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@89178b4, org.springframework.security.web.context.SecurityContextPersistenceFilter@6fe91918, org.springframework.security.web.header.HeaderWriterFilter@610d0067, org.springframework.security.web.csrf.CsrfFilter@62376bdd, org.springframework.security.web.authentication.logout.LogoutFilter@39a03ccc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f5b4ca6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2319c1e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c7d675c, org.springframework.security.web.session.SessionManagementFilter@18ab513d, org.springframework.security.web.access.ExceptionTranslationFilter@4d529bc0]
+2018-07-05 07:31:27 -Registering beans for JMX exposure on startup
+2018-07-05 07:31:27 -Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-07-05 07:31:27 -Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2018-07-05 07:31:27 -Starting beans in phase 2147483647
+2018-07-05 07:31:27 -Context refreshed
+2018-07-05 07:31:27 -Found 1 custom documentation plugin(s)
+2018-07-05 07:31:27 -Scanning for api listing references
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_1
+2018-07-05 07:31:27 -Generating unique operation named: addUsingGET_1
+2018-07-05 07:31:27 -Generating unique operation named: editUsingGET_1
+2018-07-05 07:31:27 -Generating unique operation named: listUsingGET_1
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_2
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_3
+2018-07-05 07:31:27 -Generating unique operation named: saveUsingPOST_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingGET_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingHEAD_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPOST_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPUT_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPATCH_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingDELETE_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingOPTIONS_1
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingTRACE_1
+2018-07-05 07:31:27 -Generating unique operation named: addUsingGET_2
+2018-07-05 07:31:27 -Generating unique operation named: editUsingGET_2
+2018-07-05 07:31:27 -Generating unique operation named: listUsingGET_2
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_4
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_5
+2018-07-05 07:31:27 -Generating unique operation named: saveUsingPOST_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingGET_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingHEAD_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPOST_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPUT_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPATCH_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingDELETE_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingOPTIONS_2
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingTRACE_2
+2018-07-05 07:31:27 -Generating unique operation named: addUsingGET_3
+2018-07-05 07:31:27 -Generating unique operation named: editUsingGET_3
+2018-07-05 07:31:27 -Generating unique operation named: listUsingGET_3
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_6
+2018-07-05 07:31:27 -Generating unique operation named: removeUsingPOST_7
+2018-07-05 07:31:27 -Generating unique operation named: saveUsingPOST_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingGET_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingHEAD_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPOST_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPUT_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPATCH_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingDELETE_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingOPTIONS_3
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingTRACE_3
+2018-07-05 07:31:27 -Generating unique operation named: editUsingGET_4
+2018-07-05 07:31:27 -Generating unique operation named: listUsingGET_4
+2018-07-05 07:31:27 -Generating unique operation named: updateUsingPOST_4
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_5
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_8
+2018-07-05 07:31:28 -Generating unique operation named: welcomeUsingGET_1
+2018-07-05 07:31:28 -Generating unique operation named: addUsingGET_4
+2018-07-05 07:31:28 -Generating unique operation named: editUsingGET_5
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_6
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_9
+2018-07-05 07:31:28 -Generating unique operation named: saveUsingPOST_4
+2018-07-05 07:31:28 -Generating unique operation named: treeUsingGET_1
+2018-07-05 07:31:28 -Generating unique operation named: treeUsingGET_2
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPOST_5
+2018-07-05 07:31:28 -Generating unique operation named: batchRemoveUsingPOST_1
+2018-07-05 07:31:28 -Generating unique operation named: editUsingGET_6
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_7
+2018-07-05 07:31:28 -Generating unique operation named: addUsingGET_5
+2018-07-05 07:31:28 -Generating unique operation named: editUsingGET_7
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_8
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_10
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_11
+2018-07-05 07:31:28 -Generating unique operation named: saveUsingPOST_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingGET_4
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingHEAD_4
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPOST_6
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPUT_4
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPATCH_4
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingDELETE_4
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingOPTIONS_4
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingTRACE_4
+2018-07-05 07:31:28 -Generating unique operation named: addUsingGET_6
+2018-07-05 07:31:28 -Generating unique operation named: batchRemoveUsingPOST_2
+2018-07-05 07:31:28 -Generating unique operation named: deployUsingPOST_1
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_9
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_12
+2018-07-05 07:31:28 -Generating unique operation named: addUsingGET_7
+2018-07-05 07:31:28 -Generating unique operation named: editUsingGET_8
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingGET_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingHEAD_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingPOST_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingPUT_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingPATCH_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingDELETE_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingOPTIONS_1
+2018-07-05 07:31:28 -Generating unique operation named: infoUsingTRACE_1
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_10
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_13
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_14
+2018-07-05 07:31:28 -Generating unique operation named: saveUsingPOST_6
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPOST_7
+2018-07-05 07:31:28 -Generating unique operation named: addUsingGET_8
+2018-07-05 07:31:28 -Generating unique operation named: editUsingGET_9
+2018-07-05 07:31:28 -Generating unique operation named: listUsingGET_11
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_15
+2018-07-05 07:31:28 -Generating unique operation named: removeUsingPOST_16
+2018-07-05 07:31:28 -Generating unique operation named: saveUsingPOST_7
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingGET_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingHEAD_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPOST_8
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPUT_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingPATCH_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingDELETE_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingOPTIONS_5
+2018-07-05 07:31:28 -Generating unique operation named: updateUsingTRACE_5
+2018-07-05 07:31:28 -Generating unique operation named: addUsingGET_9
+2018-07-05 07:31:28 -Generating unique operation named: batchRemoveUsingPOST_3
+2018-07-05 07:31:28 -Generating unique operation named: editUsingGET_10
+2018-07-05 07:31:29 -Generating unique operation named: listUsingGET_12
+2018-07-05 07:31:29 -Generating unique operation named: saveUsingPOST_8
+2018-07-05 07:31:29 -Generating unique operation named: saveUsingPOST_9
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingPOST_9
+2018-07-05 07:31:29 -Generating unique operation named: addUsingGET_10
+2018-07-05 07:31:29 -Generating unique operation named: editUsingGET_11
+2018-07-05 07:31:29 -Generating unique operation named: listUsingGET_13
+2018-07-05 07:31:29 -Generating unique operation named: removeUsingPOST_17
+2018-07-05 07:31:29 -Generating unique operation named: removeUsingPOST_18
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingGET_6
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingHEAD_6
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingPOST_10
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingPUT_6
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingPATCH_6
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingDELETE_6
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingOPTIONS_6
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingTRACE_6
+2018-07-05 07:31:29 -Generating unique operation named: listUsingGET_14
+2018-07-05 07:31:29 -Generating unique operation named: listUsingHEAD_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingPOST_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingPUT_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingPATCH_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingDELETE_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingOPTIONS_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingTRACE_1
+2018-07-05 07:31:29 -Generating unique operation named: listUsingGET_15
+2018-07-05 07:31:29 -Generating unique operation named: addUsingGET_11
+2018-07-05 07:31:29 -Generating unique operation named: batchRemoveUsingPOST_4
+2018-07-05 07:31:29 -Generating unique operation named: editUsingGET_12
+2018-07-05 07:31:29 -Generating unique operation named: listUsingGET_16
+2018-07-05 07:31:29 -Generating unique operation named: removeUsingPOST_19
+2018-07-05 07:31:29 -Generating unique operation named: saveUsingPOST_10
+2018-07-05 07:31:29 -Generating unique operation named: treeUsingGET_3
+2018-07-05 07:31:29 -Generating unique operation named: treeViewUsingGET_1
+2018-07-05 07:31:29 -Generating unique operation named: updateUsingPOST_11
+2018-07-05 07:31:29 -Starting Quartz Scheduler now
+2018-07-05 07:31:29 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED started.
+2018-07-05 07:31:29 -Starting...
+2018-07-05 07:31:29 -BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2018-07-05 07:31:29 -Started.
+2018-07-05 07:31:29 -Initializing ProtocolHandler ["http-nio-8088"]
+2018-07-05 07:31:29 -Starting ProtocolHandler ["http-nio-8088"]
+2018-07-05 07:31:29 -Using a shared selector for servlet write/read
+2018-07-05 07:31:29 -Tomcat started on port(s): 8088 (http)
+2018-07-05 07:31:29 -==>  Preparing: select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from sys_task order by id desc 
+2018-07-05 07:31:29 -==> Parameters: 
+2018-07-05 07:31:29 -<==      Total: 1
+2018-07-05 07:31:29 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED started.
+2018-07-05 07:31:29 -Started JustdoApplication in 15.484 seconds (JVM running for 16.183)
+2018-07-05 07:32:01 -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-07-05 07:32:01 -FrameworkServlet 'dispatcherServlet': initialization started
+2018-07-05 07:32:01 -FrameworkServlet 'dispatcherServlet': initialization completed in 29 ms
+2018-07-05 07:32:01 -Enabling session validation scheduler...
+2018-07-05 07:32:01 -请求地址 : http://127.0.0.1:8088/login;JSESSIONID=56208b61-3a4c-44bb-8014-1350a2f1ec4a
+2018-07-05 07:32:01 -HTTP METHOD : GET
+2018-07-05 07:32:01 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.login
+2018-07-05 07:32:01 -参数 : [{}]
+2018-07-05 07:32:01 -耗时 : 2
+2018-07-05 07:32:01 -返回值 : login
+2018-07-05 07:32:01 -[THYMELEAF] INITIALIZING TEMPLATE ENGINE
+2018-07-05 07:32:02 -[THYMELEAF] INITIALIZING TEMPLATE RESOLVER: org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+2018-07-05 07:32:02 -[THYMELEAF] TEMPLATE RESOLVER INITIALIZED OK
+2018-07-05 07:32:02 -[THYMELEAF] INITIALIZING MESSAGE RESOLVER: org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+2018-07-05 07:32:02 -[THYMELEAF] MESSAGE RESOLVER INITIALIZED OK
+2018-07-05 07:32:02 -[THYMELEAF] TEMPLATE ENGINE CONFIGURATION:
+[THYMELEAF] * Cache Factory implementation: org.thymeleaf.cache.StandardCacheManager
+[THYMELEAF] * Template modes:
+[THYMELEAF]     * LEGACYHTML5
+[THYMELEAF]     * XML
+[THYMELEAF]     * XHTML
+[THYMELEAF]     * VALIDXML
+[THYMELEAF]     * VALIDXHTML
+[THYMELEAF]     * HTML5
+[THYMELEAF] * Template resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+[THYMELEAF] * Message resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+[THYMELEAF] * Dialect [1 of 3]: org.thymeleaf.spring4.dialect.SpringStandardDialect
+[THYMELEAF]     * Prefix: "th"
+[THYMELEAF] * Dialect [2 of 3]: at.pollux.thymeleaf.shiro.dialect.ShiroDialect
+[THYMELEAF]     * Prefix: "shiro"
+[THYMELEAF] * Dialect [3 of 3]: nz.net.ultraq.thymeleaf.LayoutDialect
+[THYMELEAF]     * Prefix: "layout"
+[THYMELEAF] TEMPLATE ENGINE CONFIGURED OK
+2018-07-05 07:32:02 -[THYMELEAF] TEMPLATE ENGINE INITIALIZED
+2018-07-05 07:32:09 -==>  Preparing: select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user WHERE username = ? order by user_id desc 
+2018-07-05 07:32:09 -==> Parameters: admin(String)
+2018-07-05 07:32:09 -<==      Total: 1
+2018-07-05 07:32:09 -请求地址 : http://127.0.0.1:8088/login
+2018-07-05 07:32:09 -HTTP METHOD : POST
+2018-07-05 07:32:09 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.ajaxLogin
+2018-07-05 07:32:09 -参数 : [admin, 111111]
+2018-07-05 07:32:09 -==>  Preparing: select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user WHERE username = ? order by user_id desc 
+2018-07-05 07:32:09 -==> Parameters: admin(String)
+2018-07-05 07:32:09 -<==      Total: 1
+2018-07-05 07:32:09 -耗时 : 16
+2018-07-05 07:32:09 -返回值 : {msg=用户或密码错误, code=500}
+2018-07-05 07:32:09 -==>  Preparing: insert into sys_log ( `user_id`, `username`, `operation`, `time`, `method`, `params`, `ip`, `gmt_create` ) values ( ?, ?, ?, ?, ?, ?, ?, ? ) 
+2018-07-05 07:32:09 -==> Parameters: -1(Long), 获取用户信息为空(String), 登录(String), 17(Integer), com.justdo.system.user.controller.LoginController.ajaxLogin()(String), null, 127.0.0.1(String), 2018-07-05 07:32:09.677(Timestamp)
+2018-07-05 07:32:09 -<==    Updates: 1
+2018-07-05 07:32:15 -==>  Preparing: select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user WHERE username = ? order by user_id desc 
+2018-07-05 07:32:15 -==> Parameters: admin(String)
+2018-07-05 07:32:15 -<==      Total: 1
+2018-07-05 07:32:15 -请求地址 : http://127.0.0.1:8088/login
+2018-07-05 07:32:15 -HTTP METHOD : POST
+2018-07-05 07:32:15 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.ajaxLogin
+2018-07-05 07:32:15 -参数 : [admin, 888888]
+2018-07-05 07:32:15 -==>  Preparing: select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user WHERE username = ? order by user_id desc 
+2018-07-05 07:32:15 -==> Parameters: admin(String)
+2018-07-05 07:32:15 -<==      Total: 1
+2018-07-05 07:32:15 -耗时 : 23
+2018-07-05 07:32:15 -返回值 : {msg=操作成功, code=0}
+2018-07-05 07:32:15 -==>  Preparing: insert into sys_log ( `user_id`, `username`, `operation`, `time`, `method`, `params`, `ip`, `gmt_create` ) values ( ?, ?, ?, ?, ?, ?, ?, ? ) 
+2018-07-05 07:32:15 -==> Parameters: 1(Long), admin(String), 登录(String), 24(Integer), com.justdo.system.user.controller.LoginController.ajaxLogin()(String), null, 127.0.0.1(String), 2018-07-05 07:32:15.807(Timestamp)
+2018-07-05 07:32:15 -<==    Updates: 1
+2018-07-05 07:32:15 -请求地址 : http://127.0.0.1:8088/index
+2018-07-05 07:32:15 -HTTP METHOD : GET
+2018-07-05 07:32:15 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.index
+2018-07-05 07:32:15 -参数 : [{}]
+2018-07-05 07:32:15 -==>  Preparing: select distinct m.menu_id , parent_id, name, url, perms,`type`,icon,order_num,gmt_create, gmt_modified from sys_menu m left join sys_role_menu rm on m.menu_id = rm.menu_id left join sys_user_role ur on rm.role_id =ur.role_id where ur.user_id = ? and m.type in(0,1) order by m.order_num 
+2018-07-05 07:32:15 -==> Parameters: 1(Long)
+2018-07-05 07:32:15 -<==      Total: 29
+2018-07-05 07:32:15 -==>  Preparing: select `id`,`type`,`url`,`create_date` from sys_file where id = ? 
+2018-07-05 07:32:15 -==> Parameters: 150(Long)
+2018-07-05 07:32:15 -<==      Total: 0
+2018-07-05 07:32:15 -耗时 : 27
+2018-07-05 07:32:15 -返回值 : index
+2018-07-05 07:32:15 -==>  Preparing: insert into sys_log ( `user_id`, `username`, `operation`, `time`, `method`, `params`, `ip`, `gmt_create` ) values ( ?, ?, ?, ?, ?, ?, ?, ? ) 
+2018-07-05 07:32:15 -==> Parameters: 1(Long), admin(String), 请求访问主页(String), 27(Integer), com.justdo.system.user.controller.LoginController.index()(String), null, 127.0.0.1(String), 2018-07-05 07:32:15.923(Timestamp)
+2018-07-05 07:32:15 -<==    Updates: 1
+2018-07-05 07:32:16 -请求地址 : http://127.0.0.1:8088/main
+2018-07-05 07:32:16 -HTTP METHOD : GET
+2018-07-05 07:32:16 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.main
+2018-07-05 07:32:16 -参数 : []
+2018-07-05 07:32:16 -耗时 : 0
+2018-07-05 07:32:16 -返回值 : main
+2018-07-05 07:32:16 -请求地址 : http://127.0.0.1:8088/system/notice/message
+2018-07-05 07:32:16 -HTTP METHOD : GET
+2018-07-05 07:32:16 -CLASS_METHOD : com.justdo.system.notice.controller.NoticeController.message
+2018-07-05 07:32:16 -参数 : []
+2018-07-05 07:32:16 -==>  Preparing: select DISTINCT n.id ,`type`,`title`,`content`,`files`,r.is_read,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from oa_notice_record r right JOIN oa_notice n on r.notice_id = n.id WHERE r.is_read = ? and r.user_id = ? order by is_read ASC, update_date DESC limit ?, ? 
+2018-07-05 07:32:16 -==> Parameters: 0(String), 1(Long), 0(Integer), 3(Integer)
+2018-07-05 07:32:16 -<==      Total: 0
+2018-07-05 07:32:16 -==>  Preparing: select count(*) from oa_notice_record r right JOIN oa_notice n on r.notice_id = n.id where r.user_id =? and r.is_read = ? 
+2018-07-05 07:32:16 -==> Parameters: 1(Long), 0(String)
+2018-07-05 07:32:16 -<==      Total: 1
+2018-07-05 07:32:16 -耗时 : 13
+2018-07-05 07:32:16 -返回值 : com.justdo.common.utils.PageUtils@7f07b3b3
+2018-07-05 07:32:16 -请求地址 : http://127.0.0.1:8088/main
+2018-07-05 07:32:16 -HTTP METHOD : GET
+2018-07-05 07:32:16 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.main
+2018-07-05 07:32:16 -参数 : []
+2018-07-05 07:32:16 -耗时 : 1
+2018-07-05 07:32:16 -返回值 : main
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -==>  Preparing: select distinct m.perms from sys_menu m left join sys_role_menu rm on m.menu_id = rm.menu_id left join sys_user_role ur on rm.role_id = ur.role_id where ur.user_id = ? 
+2018-07-05 07:32:18 -==> Parameters: 1(Long)
+2018-07-05 07:32:18 -<==      Total: 51
+2018-07-05 07:32:18 -根据key从存储 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -请求地址 : http://127.0.0.1:8088/system/regexp
+2018-07-05 07:32:18 -HTTP METHOD : GET
+2018-07-05 07:32:18 -CLASS_METHOD : com.justdo.system.regexp.controller.RegexpController.Regexp
+2018-07-05 07:32:18 -参数 : []
+2018-07-05 07:32:18 -耗时 : 0
+2018-07-05 07:32:18 -返回值 : system/regexp/regexp
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -根据key从Redis中获取对象 key [UserDO{userId=1, username='admin', name='超级管理员', password='9c638dc9b22d78a5694a444384256e36', deptId=6, deptName='null', email='admin@example.com', mobile='17699999999', status=1, userIdCreate=1, gmtCreate=Tue Aug 15 21:40:39 CST 2017, gmtModified=Tue Aug 15 21:41:00 CST 2017, roleIds=null, sex=96, birth=Thu Dec 14 00:00:00 CST 2017, picId=150, liveAddress='ccc', hobby='122;121;', province='北京市', city='北京市市辖区', district='东城区'}]
+2018-07-05 07:32:18 -请求地址 : http://127.0.0.1:8088/system/regexp/list
+2018-07-05 07:32:18 -HTTP METHOD : GET
+2018-07-05 07:32:18 -CLASS_METHOD : com.justdo.system.regexp.controller.RegexpController.list
+2018-07-05 07:32:18 -参数 : [{limit=10, offset=0, rname=}]
+2018-07-05 07:32:18 -==>  Preparing: select RID,`RNAME`,`RCODE`,`RCONTENT`,`RMARKS`,`RVALID` from SYS_REGEXP order by RID desc 
+2018-07-05 07:32:18 -==> Parameters: 
+2018-07-05 07:32:18 -<==      Total: 11
+2018-07-05 07:32:18 -==>  Preparing: select count(*) from sys_regexp 
+2018-07-05 07:32:18 -==> Parameters: 
+2018-07-05 07:32:18 -<==      Total: 1
+2018-07-05 07:32:18 -耗时 : 12
+2018-07-05 07:32:18 -返回值 : com.justdo.common.utils.PageUtils@1418aca0
+2018-07-05 07:32:24 -WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 9, active threads = 0, queued tasks = 0, completed tasks = 9], outboundChannelpool size = 2, active threads = 0, queued tasks = 0, completed tasks = 2], sockJsScheduler[pool size = 7, active threads = 1, queued tasks = 2, completed tasks = 2]
+2018-07-05 07:32:40 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Filtered request failed.] with root cause
+redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40)
+	at redis.clients.jedis.Protocol.process(Protocol.java:151)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getBinaryBulkReply(Connection.java:259)
+	at redis.clients.jedis.BinaryJedis.get(BinaryJedis.java:244)
+	at com.justdo.common.redis.shiro.RedisManager.get(RedisManager.java:68)
+	at com.justdo.common.redis.shiro.RedisSessionDAO.doReadSession(RedisSessionDAO.java:94)
+	at org.apache.shiro.session.mgt.eis.AbstractSessionDAO.readSession(AbstractSessionDAO.java:168)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSessionFromDataSource(DefaultSessionManager.java:236)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSession(DefaultSessionManager.java:222)
+	at org.apache.shiro.session.mgt.AbstractValidatingSessionManager.doGetSession(AbstractValidatingSessionManager.java:118)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.lookupSession(AbstractNativeSessionManager.java:148)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.getSession(AbstractNativeSessionManager.java:140)
+	at org.apache.shiro.mgt.SessionsSecurityManager.getSession(SessionsSecurityManager.java:156)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveContextSession(DefaultSecurityManager.java:456)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveSession(DefaultSecurityManager.java:442)
+	at org.apache.shiro.mgt.DefaultSecurityManager.createSubject(DefaultSecurityManager.java:338)
+	at org.apache.shiro.subject.Subject$Builder.buildSubject(Subject.java:846)
+	at org.apache.shiro.web.subject.WebSubject$Builder.buildWebSubject(WebSubject.java:148)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.createSubject(AbstractShiroFilter.java:292)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:359)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:83)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:208)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-07-05 07:32:40 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Filtered request failed.] with root cause
+redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40)
+	at redis.clients.jedis.Protocol.process(Protocol.java:151)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getBinaryBulkReply(Connection.java:259)
+	at redis.clients.jedis.BinaryJedis.get(BinaryJedis.java:244)
+	at com.justdo.common.redis.shiro.RedisManager.get(RedisManager.java:68)
+	at com.justdo.common.redis.shiro.RedisSessionDAO.doReadSession(RedisSessionDAO.java:94)
+	at org.apache.shiro.session.mgt.eis.AbstractSessionDAO.readSession(AbstractSessionDAO.java:168)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSessionFromDataSource(DefaultSessionManager.java:236)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSession(DefaultSessionManager.java:222)
+	at org.apache.shiro.session.mgt.AbstractValidatingSessionManager.doGetSession(AbstractValidatingSessionManager.java:118)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.lookupSession(AbstractNativeSessionManager.java:148)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.getSession(AbstractNativeSessionManager.java:140)
+	at org.apache.shiro.mgt.SessionsSecurityManager.getSession(SessionsSecurityManager.java:156)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveContextSession(DefaultSecurityManager.java:456)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveSession(DefaultSecurityManager.java:442)
+	at org.apache.shiro.mgt.DefaultSecurityManager.createSubject(DefaultSecurityManager.java:338)
+	at org.apache.shiro.subject.Subject$Builder.buildSubject(Subject.java:846)
+	at org.apache.shiro.web.subject.WebSubject$Builder.buildWebSubject(WebSubject.java:148)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.createSubject(AbstractShiroFilter.java:292)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:359)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:83)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:208)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-07-05 07:32:40 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Filtered request failed.] with root cause
+redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40)
+	at redis.clients.jedis.Protocol.process(Protocol.java:151)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getBinaryBulkReply(Connection.java:259)
+	at redis.clients.jedis.BinaryJedis.get(BinaryJedis.java:244)
+	at com.justdo.common.redis.shiro.RedisManager.get(RedisManager.java:68)
+	at com.justdo.common.redis.shiro.RedisSessionDAO.doReadSession(RedisSessionDAO.java:94)
+	at org.apache.shiro.session.mgt.eis.AbstractSessionDAO.readSession(AbstractSessionDAO.java:168)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSessionFromDataSource(DefaultSessionManager.java:236)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSession(DefaultSessionManager.java:222)
+	at org.apache.shiro.session.mgt.AbstractValidatingSessionManager.doGetSession(AbstractValidatingSessionManager.java:118)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.lookupSession(AbstractNativeSessionManager.java:148)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.getSession(AbstractNativeSessionManager.java:140)
+	at org.apache.shiro.mgt.SessionsSecurityManager.getSession(SessionsSecurityManager.java:156)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveContextSession(DefaultSecurityManager.java:456)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveSession(DefaultSecurityManager.java:442)
+	at org.apache.shiro.mgt.DefaultSecurityManager.createSubject(DefaultSecurityManager.java:338)
+	at org.apache.shiro.subject.Subject$Builder.buildSubject(Subject.java:846)
+	at org.apache.shiro.web.subject.WebSubject$Builder.buildWebSubject(WebSubject.java:148)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.createSubject(AbstractShiroFilter.java:292)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:359)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:123)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:208)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-07-05 07:32:40 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Filtered request failed.] with root cause
+redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40)
+	at redis.clients.jedis.Protocol.process(Protocol.java:151)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getBinaryBulkReply(Connection.java:259)
+	at redis.clients.jedis.BinaryJedis.get(BinaryJedis.java:244)
+	at com.justdo.common.redis.shiro.RedisManager.get(RedisManager.java:68)
+	at com.justdo.common.redis.shiro.RedisSessionDAO.doReadSession(RedisSessionDAO.java:94)
+	at org.apache.shiro.session.mgt.eis.AbstractSessionDAO.readSession(AbstractSessionDAO.java:168)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSessionFromDataSource(DefaultSessionManager.java:236)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSession(DefaultSessionManager.java:222)
+	at org.apache.shiro.session.mgt.AbstractValidatingSessionManager.doGetSession(AbstractValidatingSessionManager.java:118)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.lookupSession(AbstractNativeSessionManager.java:148)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.getSession(AbstractNativeSessionManager.java:140)
+	at org.apache.shiro.mgt.SessionsSecurityManager.getSession(SessionsSecurityManager.java:156)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveContextSession(DefaultSecurityManager.java:456)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveSession(DefaultSecurityManager.java:442)
+	at org.apache.shiro.mgt.DefaultSecurityManager.createSubject(DefaultSecurityManager.java:338)
+	at org.apache.shiro.subject.Subject$Builder.buildSubject(Subject.java:846)
+	at org.apache.shiro.web.subject.WebSubject$Builder.buildWebSubject(WebSubject.java:148)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.createSubject(AbstractShiroFilter.java:292)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:359)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:83)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:208)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-07-05 07:32:40 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Filtered request failed.] with root cause
+redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40)
+	at redis.clients.jedis.Protocol.process(Protocol.java:151)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getBinaryBulkReply(Connection.java:259)
+	at redis.clients.jedis.BinaryJedis.get(BinaryJedis.java:244)
+	at com.justdo.common.redis.shiro.RedisManager.get(RedisManager.java:68)
+	at com.justdo.common.redis.shiro.RedisSessionDAO.doReadSession(RedisSessionDAO.java:94)
+	at org.apache.shiro.session.mgt.eis.AbstractSessionDAO.readSession(AbstractSessionDAO.java:168)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSessionFromDataSource(DefaultSessionManager.java:236)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSession(DefaultSessionManager.java:222)
+	at org.apache.shiro.session.mgt.AbstractValidatingSessionManager.doGetSession(AbstractValidatingSessionManager.java:118)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.lookupSession(AbstractNativeSessionManager.java:148)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.getSession(AbstractNativeSessionManager.java:140)
+	at org.apache.shiro.mgt.SessionsSecurityManager.getSession(SessionsSecurityManager.java:156)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveContextSession(DefaultSecurityManager.java:456)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveSession(DefaultSecurityManager.java:442)
+	at org.apache.shiro.mgt.DefaultSecurityManager.createSubject(DefaultSecurityManager.java:338)
+	at org.apache.shiro.subject.Subject$Builder.buildSubject(Subject.java:846)
+	at org.apache.shiro.web.subject.WebSubject$Builder.buildWebSubject(WebSubject.java:148)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.createSubject(AbstractShiroFilter.java:292)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:359)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:83)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:208)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-07-05 07:32:40 -Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Filtered request failed.] with root cause
+redis.clients.jedis.exceptions.JedisConnectionException: Unexpected end of stream.
+	at redis.clients.util.RedisInputStream.ensureFill(RedisInputStream.java:199)
+	at redis.clients.util.RedisInputStream.readByte(RedisInputStream.java:40)
+	at redis.clients.jedis.Protocol.process(Protocol.java:151)
+	at redis.clients.jedis.Protocol.read(Protocol.java:215)
+	at redis.clients.jedis.Connection.readProtocolWithCheckingBroken(Connection.java:340)
+	at redis.clients.jedis.Connection.getBinaryBulkReply(Connection.java:259)
+	at redis.clients.jedis.BinaryJedis.get(BinaryJedis.java:244)
+	at com.justdo.common.redis.shiro.RedisManager.get(RedisManager.java:68)
+	at com.justdo.common.redis.shiro.RedisSessionDAO.doReadSession(RedisSessionDAO.java:94)
+	at org.apache.shiro.session.mgt.eis.AbstractSessionDAO.readSession(AbstractSessionDAO.java:168)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSessionFromDataSource(DefaultSessionManager.java:236)
+	at org.apache.shiro.session.mgt.DefaultSessionManager.retrieveSession(DefaultSessionManager.java:222)
+	at org.apache.shiro.session.mgt.AbstractValidatingSessionManager.doGetSession(AbstractValidatingSessionManager.java:118)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.lookupSession(AbstractNativeSessionManager.java:148)
+	at org.apache.shiro.session.mgt.AbstractNativeSessionManager.getSession(AbstractNativeSessionManager.java:140)
+	at org.apache.shiro.mgt.SessionsSecurityManager.getSession(SessionsSecurityManager.java:156)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveContextSession(DefaultSecurityManager.java:456)
+	at org.apache.shiro.mgt.DefaultSecurityManager.resolveSession(DefaultSecurityManager.java:442)
+	at org.apache.shiro.mgt.DefaultSecurityManager.createSubject(DefaultSecurityManager.java:338)
+	at org.apache.shiro.subject.Subject$Builder.buildSubject(Subject.java:846)
+	at org.apache.shiro.web.subject.WebSubject$Builder.buildWebSubject(WebSubject.java:148)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.createSubject(AbstractShiroFilter.java:292)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:359)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at com.alibaba.druid.support.http.WebStatFilter.doFilter(WebStatFilter.java:83)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:208)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:177)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:347)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:263)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:108)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:81)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:478)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:803)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1459)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2018-07-05 07:32:45 -请求地址 : http://127.0.0.1:8088/system/user/personal
+2018-07-05 07:32:45 -HTTP METHOD : GET
+2018-07-05 07:32:45 -CLASS_METHOD : com.justdo.system.user.controller.UserController.personal
+2018-07-05 07:32:45 -参数 : [{}]
+2018-07-05 07:32:45 -==>  Preparing: select role_id from sys_user_role where user_id=? 
+2018-07-05 07:32:45 -==> Parameters: 1(Long)
+2018-07-05 07:32:45 -<==      Total: 1
+2018-07-05 07:32:45 -==>  Preparing: select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user where user_id = ? 
+2018-07-05 07:32:45 -==> Parameters: 1(Long)
+2018-07-05 07:32:45 -<==      Total: 1
+2018-07-05 07:32:45 -==>  Preparing: select `dept_id`,`parent_id`,`name`,`order_num`,`del_flag` from sys_dept where dept_id = ? 
+2018-07-05 07:32:45 -==> Parameters: 6(Long)
+2018-07-05 07:32:45 -<==      Total: 1
+2018-07-05 07:32:45 -==>  Preparing: select `id`,`name`,`value`,`type`,`description`,`sort`,`parent_id`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from sys_dict3 WHERE type = ? order by id desc 
+2018-07-05 07:32:45 -==> Parameters: hobby(String)
+2018-07-05 07:32:45 -<==      Total: 2
+2018-07-05 07:32:45 -==>  Preparing: select `id`,`name`,`value`,`type`,`description`,`sort`,`parent_id`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from sys_dict3 WHERE type = ? order by id desc 
+2018-07-05 07:32:45 -==> Parameters: sex(String)
+2018-07-05 07:32:45 -<==      Total: 2
+2018-07-05 07:32:45 -耗时 : 27
+2018-07-05 07:32:45 -返回值 : system/user/personal
+2018-07-05 07:38:28 -Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:31:15 CST 2018]; root of context hierarchy
+2018-07-05 07:38:28 -Stopping beans in phase 2147483647
+2018-07-05 07:38:28 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED paused.
+2018-07-05 07:38:28 -Stopping...
+2018-07-05 07:38:28 -BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2018-07-05 07:38:28 -Stopped.
+2018-07-05 07:38:28 -Unregistering JMX-exposed beans on shutdown
+2018-07-05 07:38:28 -Unregistering JMX-exposed beans
+2018-07-05 07:38:28 -Shutting down ExecutorService 'brokerChannelExecutor'
+2018-07-05 07:38:28 -Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2018-07-05 07:38:28 -清除SpringContextHolder中的ApplicationContext:org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:31:15 CST 2018]; root of context hierarchy
+2018-07-05 07:38:28 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED shutting down.
+2018-07-05 07:38:28 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED paused.
+2018-07-05 07:38:28 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED shutdown complete.
+2018-07-05 07:38:28 -Shutting down Quartz Scheduler
+2018-07-05 07:38:28 -Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2018-07-05 07:38:28 -Shutting down ExecutorService 'clientInboundChannelExecutor'
+2018-07-05 07:38:28 -{dataSource-1} closed
+2018-07-05 07:38:28 -Disabled session validation scheduler.
+2018-07-05 07:38:30 -Starting JustdoApplication on localhost with PID 12368 (/Users/chenlin/Documents/GitHub/JustDo-boot/target/classes started by chenlin in /Users/chenlin/Documents/GitHub/JustDo-boot)
+2018-07-05 07:38:31 -Running with Spring Boot v1.5.9.RELEASE, Spring v4.3.13.RELEASE
+2018-07-05 07:38:31 -The following profiles are active: dev
+2018-07-05 07:38:31 -HV000001: Hibernate Validator 5.3.6.Final
+2018-07-05 07:38:31 -Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:38:31 CST 2018]; root of context hierarchy
+2018-07-05 07:38:32 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2018-07-05 07:38:32 -Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$974ea0c4] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'shiroConfig' of type [com.justdo.system.config.ShiroConfig$$EnhancerBySpringCGLIB$$63aa3ba5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'userRealm' of type [com.justdo.system.user.shiro.UserRealm] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'redisManager' of type [com.justdo.common.redis.shiro.RedisManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -获取名称为: com.justdo.system.user.shiro.UserRealm.authorizationCache 的RedisCache实例
+2018-07-05 07:38:33 -Bean 'redisSessionDAO' of type [com.justdo.common.redis.shiro.RedisSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'sessionDAO' of type [com.justdo.common.redis.shiro.RedisSessionDAO] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'sessionManager' of type [org.apache.shiro.web.session.mgt.DefaultWebSessionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'securityManager' of type [org.apache.shiro.web.mgt.DefaultWebSecurityManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Bean 'authorizationAttributeSourceAdvisor' of type [org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-07-05 07:38:33 -Tomcat initialized with port(s): 8088 (http)
+2018-07-05 07:38:33 -Starting service [Tomcat]
+2018-07-05 07:38:33 -Starting Servlet Engine: Apache Tomcat/8.5.23
+2018-07-05 07:38:34 -Initializing Spring embedded WebApplicationContext
+2018-07-05 07:38:34 -Root WebApplicationContext: initialization completed in 2820 ms
+2018-07-05 07:38:34 -Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-07-05 07:38:34 -Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-07-05 07:38:34 -Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-07-05 07:38:34 -Mapping filter: 'requestContextFilter' to: [/*]
+2018-07-05 07:38:34 -Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-07-05 07:38:34 -Filter xssFilter was not registered (disabled)
+2018-07-05 07:38:34 -Mapping filter: 'webStatFilter' to urls: [/*]
+2018-07-05 07:38:34 -Mapping filter: 'shiroFilterFactoryBean' to: [/*]
+2018-07-05 07:38:34 -Mapping servlet: 'statViewServlet' to [/druid/*]
+2018-07-05 07:38:34 -Mapping servlet: 'dispatcherServlet' to [/]
+2018-07-05 07:38:35 -{dataSource-1} inited
+2018-07-05 07:38:36 -ProcessEngine default created
+2018-07-05 07:38:37 -ApplicationContext registed-->org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:38:31 CST 2018]; root of context hierarchy
+2018-07-05 07:38:37 -Initializing ExecutorService  'clientInboundChannelExecutor'
+2018-07-05 07:38:37 -Initializing ExecutorService  'clientOutboundChannelExecutor'
+2018-07-05 07:38:38 -Using default implementation for ThreadExecutor
+2018-07-05 07:38:38 -Job execution threads will use class loader of thread: main
+2018-07-05 07:38:38 -Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2018-07-05 07:38:38 -Quartz Scheduler v.2.2.1 created.
+2018-07-05 07:38:38 -RAMJobStore initialized.
+2018-07-05 07:38:38 -Scheduler meta-data: Quartz Scheduler (v2.2.1) 'schedulerFactoryBean' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2018-07-05 07:38:38 -Quartz scheduler 'schedulerFactoryBean' initialized from an externally provided properties instance.
+2018-07-05 07:38:38 -Quartz scheduler version: 2.2.1
+2018-07-05 07:38:38 -JobFactory set to: com.justdo.common.quartz.factory.JobFactory@281ca256
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/{id}],methods=[DELETE]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ModelController.remove(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/list],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.activiti.controller.ModelController.list(int,int)
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ModelController.batchRemove(java.lang.String[])
+2018-07-05 07:38:39 -Mapped "{[/activiti/model],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.ModelController.model()
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/deploy/{id}],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ModelController.deploy(java.lang.String) throws java.lang.Exception
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/edit/{id}],methods=[GET]}" onto public void com.justdo.activiti.controller.ModelController.edit(javax.servlet.http.HttpServletResponse,java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/add]}" onto public void com.justdo.activiti.controller.ModelController.newModel(javax.servlet.http.HttpServletResponse) throws java.io.UnsupportedEncodingException
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/{modelId}/json],methods=[GET]}" onto public com.fasterxml.jackson.databind.node.ObjectNode com.justdo.activiti.controller.ModelController.getEditorJson(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/activiti/editor/stencilset],methods=[GET],produces=[application/json;charset=utf-8]}" onto public java.lang.String com.justdo.activiti.controller.ModelController.getStencilset()
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/{modelId}/save],methods=[PUT]}" onto public void com.justdo.activiti.controller.ModelController.saveModel(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/activiti/model/export/{id}],methods=[GET]}" onto public void com.justdo.activiti.controller.ModelController.exportToXml(java.lang.String,javax.servlet.http.HttpServletResponse)
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/add],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.ProcessController.add()
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.remove(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/list],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.activiti.controller.ProcessController.list(int,int)
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.batchRemove(java.lang.String[])
+2018-07-05 07:38:39 -Mapped "{[/activiti/process],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.ProcessController.process()
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.deploy(java.lang.String,java.lang.String,org.springframework.web.multipart.MultipartFile)
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/convertToModel/{procDefId}]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.ProcessController.convertToModel(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes) throws java.io.UnsupportedEncodingException,javax.xml.stream.XMLStreamException
+2018-07-05 07:38:39 -Mapped "{[/activiti/process/resource/read/{xml}/{id}]}" onto public void com.justdo.activiti.controller.ProcessController.resourceRead(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2018-07-05 07:38:39 -Mapped "{[/act/salary/form],methods=[GET]}" onto java.lang.String com.justdo.activiti.controller.SalaryController.add()
+2018-07-05 07:38:39 -Mapped "{[/act/salary/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.remove(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/act/salary/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.remove(java.lang.String[])
+2018-07-05 07:38:39 -Mapped "{[/act/salary/update]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.update(com.justdo.activiti.domain.SalaryDO)
+2018-07-05 07:38:39 -Mapped "{[/act/salary/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.activiti.controller.SalaryController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/act/salary/form/{taskId}],methods=[GET]}" onto java.lang.String com.justdo.activiti.controller.SalaryController.edit(java.lang.String,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/act/salary],methods=[GET]}" onto java.lang.String com.justdo.activiti.controller.SalaryController.Salary()
+2018-07-05 07:38:39 -Mapped "{[/act/salary/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.activiti.controller.SalaryController.saveOrUpdate(com.justdo.activiti.domain.SalaryDO)
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/form/{procDefId}/{taskId}],methods=[GET]}" onto public void com.justdo.activiti.controller.TaskController.form(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/gotoList],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.activiti.controller.TaskController.list(int,int)
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/goto],methods=[GET]}" onto public org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.TaskController.gotoTask()
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/form/{procDefId}],methods=[GET]}" onto public void com.justdo.activiti.controller.TaskController.startForm(java.lang.String,javax.servlet.http.HttpServletResponse) throws java.io.IOException
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/todo],methods=[GET]}" onto org.springframework.web.servlet.ModelAndView com.justdo.activiti.controller.TaskController.todo()
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/todoList],methods=[GET]}" onto java.util.List<com.justdo.activiti.vo.TaskVO> com.justdo.activiti.controller.TaskController.todoList()
+2018-07-05 07:38:39 -Mapped "{[/activiti/task/trace/photo/{procDefId}/{execId}]}" onto public void com.justdo.activiti.controller.TaskController.tracePhoto(java.lang.String,java.lang.String,javax.servlet.http.HttpServletResponse) throws java.lang.Exception
+2018-07-05 07:38:39 -Mapped "{[/blog/open/post/{cid}],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.BlogController.post(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/blog],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.BlogController.blog()
+2018-07-05 07:38:39 -Mapped "{[/blog/open/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.blog.controller.BlogController.opentList(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/blog/open/page/{categories}],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.BlogController.about(java.lang.String,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/add],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.ContentController.add()
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.remove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/update]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.update(com.justdo.blog.domain.ContentDO)
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.blog.controller.ContentController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.blog.controller.ContentController.save(com.justdo.blog.domain.ContentDO)
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent/edit/{cid}],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.ContentController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/blog/bContent],methods=[GET]}" onto java.lang.String com.justdo.blog.controller.ContentController.bContent()
+2018-07-05 07:38:39 -Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView com.justdo.common.exception.HandleErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-07-05 07:38:39 -Mapped "{[/error]}" onto public com.justdo.common.utils.R com.justdo.common.exception.HandleErrorController.handleError(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-07-05 07:38:39 -Mapped "{[/system/dept/add/{pId}],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.add(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/dept/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/dept/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.remove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/dept/update]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.update(com.justdo.system.dept.domain.DeptDO)
+2018-07-05 07:38:39 -Mapped "{[/system/dept/list],methods=[GET]}" onto public java.util.List<com.justdo.system.dept.domain.DeptDO> com.justdo.system.dept.controller.DeptController.list()
+2018-07-05 07:38:39 -Mapped "{[/system/dept/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dept.controller.DeptController.save(com.justdo.system.dept.domain.DeptDO)
+2018-07-05 07:38:39 -Mapped "{[/system/dept/tree],methods=[GET]}" onto public com.justdo.common.domain.Tree<com.justdo.system.dept.domain.DeptDO> com.justdo.system.dept.controller.DeptController.tree()
+2018-07-05 07:38:39 -Mapped "{[/system/dept/treeView],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.treeView()
+2018-07-05 07:38:39 -Mapped "{[/system/dept],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.dept()
+2018-07-05 07:38:39 -Mapped "{[/system/dept/edit/{deptId}],methods=[GET]}" onto java.lang.String com.justdo.system.dept.controller.DeptController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/add],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.add()
+2018-07-05 07:38:39 -Mapped "{[/system/dict/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.remove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/dict/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/update]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.update(com.justdo.system.dict.domain.DictDO)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.dict.controller.DictController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.save(com.justdo.system.dict.domain.DictDO)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/addtype],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.adddict()
+2018-07-05 07:38:39 -Mapped "{[/system/dict/add/{type}/{description}],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.addD(org.springframework.ui.Model,java.lang.String,java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/system/dict],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.dict(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/list/{type}],methods=[GET]}" onto public java.util.List<com.justdo.system.dict.domain.DictDO> com.justdo.system.dict.controller.DictController.listByType(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/dicttype],methods=[GET]}" onto public java.util.List<com.justdo.system.dicttype.domain.DictTypeDO> com.justdo.system.dict.controller.DictController.listDictType(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/savetype],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.dict.controller.DictController.savetype(com.justdo.system.dicttype.domain.DictTypeDO)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/type],methods=[GET]}" onto public java.util.List<com.justdo.system.dict.domain.DictDO> com.justdo.system.dict.controller.DictController.listType()
+2018-07-05 07:38:39 -Mapped "{[/system/dict/view/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.view(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/dict/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.dict.controller.DictController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/file/add],methods=[GET]}" onto java.lang.String com.justdo.system.file.controller.FileController.add()
+2018-07-05 07:38:39 -Mapped "{[/system/file/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.remove(java.lang.Long,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:38:39 -Mapped "{[/system/file/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.remove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/file/update]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.update(com.justdo.system.file.domain.FileDO)
+2018-07-05 07:38:39 -Mapped "{[/system/file/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.file.controller.FileController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/file/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.save(com.justdo.system.file.domain.FileDO)
+2018-07-05 07:38:39 -Mapped "{[/system/file/info/{id}]}" onto public com.justdo.common.utils.R com.justdo.system.file.controller.FileController.info(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/file],methods=[GET]}" onto java.lang.String com.justdo.system.file.controller.FileController.sysFile(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/file/upload],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.file.controller.FileController.upload(org.springframework.web.multipart.MultipartFile,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:38:39 -Mapped "{[/system/file/edit],methods=[GET]}" onto java.lang.String com.justdo.system.file.controller.FileController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/generator/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.generator.controller.GeneratorController.update(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/generator/list],methods=[GET]}" onto java.util.List<java.util.Map<java.lang.String, java.lang.Object>> com.justdo.system.generator.controller.GeneratorController.list()
+2018-07-05 07:38:39 -Mapped "{[/system/generator],methods=[GET]}" onto java.lang.String com.justdo.system.generator.controller.GeneratorController.generator()
+2018-07-05 07:38:39 -Mapped "{[/system/generator/code/{tableName}]}" onto public void com.justdo.system.generator.controller.GeneratorController.code(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String) throws java.io.IOException
+2018-07-05 07:38:39 -Mapped "{[/system/generator/batchCode]}" onto public void com.justdo.system.generator.controller.GeneratorController.batchCode(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse,java.lang.String) throws java.io.IOException
+2018-07-05 07:38:39 -Mapped "{[/system/generator/edit],methods=[GET]}" onto public java.lang.String com.justdo.system.generator.controller.GeneratorController.edit(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/log/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.log.controller.LogController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/log],methods=[GET]}" onto java.lang.String com.justdo.system.log.controller.LogController.log()
+2018-07-05 07:38:39 -Mapped "{[/system/log/list],methods=[GET]}" onto com.justdo.common.domain.PageDO<com.justdo.system.log.domain.LogDO> com.justdo.system.log.controller.LogController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/log/batchRemove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.log.controller.LogController.batchRemove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/menu/add/{pId}],methods=[GET]}" onto java.lang.String com.justdo.system.menu.controller.MenuController.add(org.springframework.ui.Model,java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.menu.controller.MenuController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.menu.controller.MenuController.update(com.justdo.system.menu.domain.MenuDO)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/list]}" onto java.util.List<com.justdo.system.menu.domain.MenuDO> com.justdo.system.menu.controller.MenuController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/save],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.menu.controller.MenuController.save(com.justdo.system.menu.domain.MenuDO)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/tree/{roleId}],methods=[GET]}" onto com.justdo.common.domain.Tree<com.justdo.system.menu.domain.MenuDO> com.justdo.system.menu.controller.MenuController.tree(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/tree],methods=[GET]}" onto com.justdo.common.domain.Tree<com.justdo.system.menu.domain.MenuDO> com.justdo.system.menu.controller.MenuController.tree()
+2018-07-05 07:38:39 -Mapped "{[/system/menu],methods=[GET]}" onto java.lang.String com.justdo.system.menu.controller.MenuController.menu(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/menu/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.menu.controller.MenuController.edit(org.springframework.ui.Model,java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/add],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.add()
+2018-07-05 07:38:39 -Mapped "{[/system/notice/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.remove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/notice/update]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.update(com.justdo.system.notice.domain.NoticeDO)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/read/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.read(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.notice.controller.NoticeController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.notice.controller.NoticeController.save(com.justdo.system.notice.domain.NoticeDO)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/message],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.system.notice.controller.NoticeController.message()
+2018-07-05 07:38:39 -Mapped "{[/system/notice],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.Notice()
+2018-07-05 07:38:39 -Mapped "{[/system/notice/selfnotice],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.selefNotice()
+2018-07-05 07:38:39 -Mapped "{[/system/notice/selflist],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.system.notice.controller.NoticeController.selfList(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/notice/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.notice.controller.NoticeController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/add],methods=[GET]}" onto java.lang.String com.justdo.system.quartzjob.controller.QuartzJobController.add()
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.remove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/update],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.update(com.justdo.system.quartzjob.domain.QuartzJobTaskDO)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.quartzjob.controller.QuartzJobController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.save(com.justdo.system.quartzjob.domain.QuartzJobTaskDO)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob],methods=[GET]}" onto java.lang.String com.justdo.system.quartzjob.controller.QuartzJobController.QuartzJobController()
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/changeJobStatus],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.changeJobStatus(java.lang.Long,java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/info/{id}]}" onto public com.justdo.common.utils.R com.justdo.system.quartzjob.controller.QuartzJobController.info(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/quartzjob/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.quartzjob.controller.QuartzJobController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/add],methods=[GET]}" onto java.lang.String com.justdo.system.regexp.controller.RegexpController.add()
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/remove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.remove(java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/batchRemove],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.remove(java.lang.String[])
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/update]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.update(com.justdo.system.regexp.domain.RegexpDO)
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/list],methods=[GET]}" onto public com.justdo.common.utils.PageUtils com.justdo.system.regexp.controller.RegexpController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/save],methods=[POST]}" onto public com.justdo.common.utils.R com.justdo.system.regexp.controller.RegexpController.save(com.justdo.system.regexp.domain.RegexpDO)
+2018-07-05 07:38:39 -Mapped "{[/system/regexp],methods=[GET]}" onto java.lang.String com.justdo.system.regexp.controller.RegexpController.Regexp()
+2018-07-05 07:38:39 -Mapped "{[/system/regexp/edit/{rid}],methods=[GET]}" onto java.lang.String com.justdo.system.regexp.controller.RegexpController.edit(java.lang.String,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/role/add],methods=[GET]}" onto java.lang.String com.justdo.system.role.controller.RoleController.add()
+2018-07-05 07:38:39 -Mapped "{[/system/role/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.update(com.justdo.system.role.domain.RoleDO)
+2018-07-05 07:38:39 -Mapped "{[/system/role/list],methods=[GET]}" onto java.util.List<com.justdo.system.role.domain.RoleDO> com.justdo.system.role.controller.RoleController.list()
+2018-07-05 07:38:39 -Mapped "{[/system/role/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.save(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/role/save],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.save(com.justdo.system.role.domain.RoleDO)
+2018-07-05 07:38:39 -Mapped "{[/system/role/batchRemove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.role.controller.RoleController.batchRemove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/role],methods=[GET]}" onto java.lang.String com.justdo.system.role.controller.RoleController.role()
+2018-07-05 07:38:39 -Mapped "{[/system/role/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.role.controller.RoleController.edit(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/index],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.index(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/main],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.main()
+2018-07-05 07:38:39 -Mapped "{[/login],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.login(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/ || ],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.welcome(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/login],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.LoginController.ajaxLogin(java.lang.String,java.lang.String)
+2018-07-05 07:38:39 -Mapped "{[/logout],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.LoginController.logout()
+2018-07-05 07:38:39 -Mapped "{[/system/online/list]}" onto public java.util.List<com.justdo.system.user.domain.UserOnline> com.justdo.system.user.controller.SessionController.list()
+2018-07-05 07:38:39 -Mapped "{[/system/online],methods=[GET]}" onto public java.lang.String com.justdo.system.user.controller.SessionController.online()
+2018-07-05 07:38:39 -Mapped "{[/system/online/forceLogout/{sessionId}]}" onto public com.justdo.common.utils.R com.justdo.system.user.controller.SessionController.forceLogout(java.lang.String,org.springframework.web.servlet.mvc.support.RedirectAttributes)
+2018-07-05 07:38:39 -Mapped "{[/system/online/sessionList]}" onto public java.util.Collection<org.apache.shiro.session.Session> com.justdo.system.user.controller.SessionController.sessionList()
+2018-07-05 07:38:39 -Mapped "{[/system/user/exit],methods=[POST]}" onto boolean com.justdo.system.user.controller.UserController.exit(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/user/add],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.add(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/user/remove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.remove(java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/system/user/update],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.update(com.justdo.system.user.domain.UserDO)
+2018-07-05 07:38:39 -Mapped "{[/system/user/list],methods=[GET]}" onto com.justdo.common.utils.PageUtils com.justdo.system.user.controller.UserController.list(java.util.Map<java.lang.String, java.lang.Object>)
+2018-07-05 07:38:39 -Mapped "{[/system/user/save],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.save(com.justdo.system.user.domain.UserDO)
+2018-07-05 07:38:39 -Mapped "{[/system/user/batchRemove],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.batchRemove(java.lang.Long[])
+2018-07-05 07:38:39 -Mapped "{[/system/user/tree],methods=[GET]}" onto public com.justdo.common.domain.Tree<com.justdo.system.dept.domain.DeptDO> com.justdo.system.user.controller.UserController.tree()
+2018-07-05 07:38:39 -Mapped "{[/system/user],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.user(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/user/personal],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.personal(org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/user/resetPwd],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.resetPwd(com.justdo.system.user.domain.UserVO)
+2018-07-05 07:38:39 -Mapped "{[/system/user/resetPwd/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.resetPwd(java.lang.Long,org.springframework.ui.Model)
+2018-07-05 07:38:39 -Mapped "{[/system/user/updatePeronal],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.updatePeronal(com.justdo.system.user.domain.UserDO)
+2018-07-05 07:38:39 -Mapped "{[/system/user/adminResetPwd],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.adminResetPwd(com.justdo.system.user.domain.UserVO)
+2018-07-05 07:38:39 -Mapped "{[/system/user/uploadImg],methods=[POST]}" onto com.justdo.common.utils.R com.justdo.system.user.controller.UserController.uploadImg(org.springframework.web.multipart.MultipartFile,java.lang.String,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:38:39 -Mapped "{[/system/user/treeView],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.treeView()
+2018-07-05 07:38:39 -Mapped "{[/system/user/edit/{id}],methods=[GET]}" onto java.lang.String com.justdo.system.user.controller.UserController.edit(org.springframework.ui.Model,java.lang.Long)
+2018-07-05 07:38:39 -Mapped "{[/v2/api-docs],methods=[GET],produces=[application/json || application/hal+json]}" onto public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)
+2018-07-05 07:38:39 -Mapped "{[/swagger-resources/configuration/security]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.SecurityConfiguration> springfox.documentation.swagger.web.ApiResourceController.securityConfiguration()
+2018-07-05 07:38:39 -Mapped "{[/swagger-resources/configuration/ui]}" onto org.springframework.http.ResponseEntity<springfox.documentation.swagger.web.UiConfiguration> springfox.documentation.swagger.web.ApiResourceController.uiConfiguration()
+2018-07-05 07:38:39 -Mapped "{[/swagger-resources]}" onto org.springframework.http.ResponseEntity<java.util.List<springfox.documentation.swagger.web.SwaggerResource>> springfox.documentation.swagger.web.ApiResourceController.swaggerResources()
+2018-07-05 07:38:40 -Initializing ExecutorService  'messageBrokerTaskScheduler'
+2018-07-05 07:38:40 -Mapped URL path [/endpointChat/**] onto handler of type [class org.springframework.web.socket.sockjs.support.SockJsHttpRequestHandler]
+2018-07-05 07:38:40 -Initializing ExecutorService  'brokerChannelExecutor'
+2018-07-05 07:38:40 -Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:38:31 CST 2018]; root of context hierarchy
+2018-07-05 07:38:41 -Mapped URL path [/files/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:38:41 -Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:38:41 -Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:38:41 -Detected @ExceptionHandler methods in BDExceptionHandler
+2018-07-05 07:38:41 -Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-07-05 07:38:42 -
+
+Using default security password: 6f7ccbcb-2ea5-4a0b-9a2b-e6518d92e3f8
+
+2018-07-05 07:38:42 -Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+2018-07-05 07:38:43 -Creating filter chain: org.springframework.boot.autoconfigure.security.SpringBootWebSecurityConfiguration$ApplicationNoWebSecurityConfigurerAdapter$1@4cb59398, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@22cf1808, org.springframework.security.web.context.SecurityContextPersistenceFilter@50fe5df2, org.springframework.security.web.header.HeaderWriterFilter@64836643, org.springframework.security.web.csrf.CsrfFilter@363a09a2, org.springframework.security.web.authentication.logout.LogoutFilter@279e85eb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@53fd59d4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@750adad8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7156f8cf, org.springframework.security.web.session.SessionManagementFilter@5f346355, org.springframework.security.web.access.ExceptionTranslationFilter@89178b4]
+2018-07-05 07:38:43 -Registering beans for JMX exposure on startup
+2018-07-05 07:38:43 -Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-07-05 07:38:43 -Located MBean 'dataSource': registering with JMX server as MBean [com.alibaba.druid.pool:name=dataSource,type=DruidDataSource]
+2018-07-05 07:38:43 -Starting beans in phase 2147483647
+2018-07-05 07:38:43 -Context refreshed
+2018-07-05 07:38:43 -Found 1 custom documentation plugin(s)
+2018-07-05 07:38:43 -Scanning for api listing references
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_1
+2018-07-05 07:38:44 -Generating unique operation named: addUsingGET_1
+2018-07-05 07:38:44 -Generating unique operation named: editUsingGET_1
+2018-07-05 07:38:44 -Generating unique operation named: listUsingGET_1
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_2
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_3
+2018-07-05 07:38:44 -Generating unique operation named: saveUsingPOST_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingGET_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingHEAD_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPOST_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPUT_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPATCH_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingDELETE_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingOPTIONS_1
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingTRACE_1
+2018-07-05 07:38:44 -Generating unique operation named: addUsingGET_2
+2018-07-05 07:38:44 -Generating unique operation named: editUsingGET_2
+2018-07-05 07:38:44 -Generating unique operation named: listUsingGET_2
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_4
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_5
+2018-07-05 07:38:44 -Generating unique operation named: saveUsingPOST_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingGET_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingHEAD_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPOST_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPUT_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPATCH_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingDELETE_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingOPTIONS_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingTRACE_2
+2018-07-05 07:38:44 -Generating unique operation named: addUsingGET_3
+2018-07-05 07:38:44 -Generating unique operation named: editUsingGET_3
+2018-07-05 07:38:44 -Generating unique operation named: listUsingGET_3
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_6
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_7
+2018-07-05 07:38:44 -Generating unique operation named: saveUsingPOST_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingGET_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingHEAD_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPOST_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPUT_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPATCH_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingDELETE_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingOPTIONS_3
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingTRACE_3
+2018-07-05 07:38:44 -Generating unique operation named: editUsingGET_4
+2018-07-05 07:38:44 -Generating unique operation named: listUsingGET_4
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPOST_4
+2018-07-05 07:38:44 -Generating unique operation named: listUsingGET_5
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_8
+2018-07-05 07:38:44 -Generating unique operation named: welcomeUsingGET_1
+2018-07-05 07:38:44 -Generating unique operation named: addUsingGET_4
+2018-07-05 07:38:44 -Generating unique operation named: editUsingGET_5
+2018-07-05 07:38:44 -Generating unique operation named: listUsingGET_6
+2018-07-05 07:38:44 -Generating unique operation named: removeUsingPOST_9
+2018-07-05 07:38:44 -Generating unique operation named: saveUsingPOST_4
+2018-07-05 07:38:44 -Generating unique operation named: treeUsingGET_1
+2018-07-05 07:38:44 -Generating unique operation named: treeUsingGET_2
+2018-07-05 07:38:44 -Generating unique operation named: updateUsingPOST_5
+2018-07-05 07:38:44 -Generating unique operation named: batchRemoveUsingPOST_1
+2018-07-05 07:38:44 -Generating unique operation named: editUsingGET_6
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_7
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_5
+2018-07-05 07:38:45 -Generating unique operation named: editUsingGET_7
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_8
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_10
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_11
+2018-07-05 07:38:45 -Generating unique operation named: saveUsingPOST_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingGET_4
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingHEAD_4
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPOST_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPUT_4
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPATCH_4
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingDELETE_4
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingOPTIONS_4
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingTRACE_4
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_6
+2018-07-05 07:38:45 -Generating unique operation named: batchRemoveUsingPOST_2
+2018-07-05 07:38:45 -Generating unique operation named: deployUsingPOST_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_9
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_12
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_7
+2018-07-05 07:38:45 -Generating unique operation named: editUsingGET_8
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingGET_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingHEAD_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingPOST_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingPUT_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingPATCH_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingDELETE_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingOPTIONS_1
+2018-07-05 07:38:45 -Generating unique operation named: infoUsingTRACE_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_10
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_13
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_14
+2018-07-05 07:38:45 -Generating unique operation named: saveUsingPOST_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPOST_7
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_8
+2018-07-05 07:38:45 -Generating unique operation named: editUsingGET_9
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_11
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_15
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_16
+2018-07-05 07:38:45 -Generating unique operation named: saveUsingPOST_7
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingGET_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingHEAD_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPOST_8
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPUT_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPATCH_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingDELETE_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingOPTIONS_5
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingTRACE_5
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_9
+2018-07-05 07:38:45 -Generating unique operation named: batchRemoveUsingPOST_3
+2018-07-05 07:38:45 -Generating unique operation named: editUsingGET_10
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_12
+2018-07-05 07:38:45 -Generating unique operation named: saveUsingPOST_8
+2018-07-05 07:38:45 -Generating unique operation named: saveUsingPOST_9
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPOST_9
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_10
+2018-07-05 07:38:45 -Generating unique operation named: editUsingGET_11
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_13
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_17
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_18
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingGET_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingHEAD_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPOST_10
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPUT_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPATCH_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingDELETE_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingOPTIONS_6
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingTRACE_6
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_14
+2018-07-05 07:38:45 -Generating unique operation named: listUsingHEAD_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingPOST_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingPUT_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingPATCH_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingDELETE_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingOPTIONS_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingTRACE_1
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_15
+2018-07-05 07:38:45 -Generating unique operation named: addUsingGET_11
+2018-07-05 07:38:45 -Generating unique operation named: batchRemoveUsingPOST_4
+2018-07-05 07:38:45 -Generating unique operation named: editUsingGET_12
+2018-07-05 07:38:45 -Generating unique operation named: listUsingGET_16
+2018-07-05 07:38:45 -Generating unique operation named: removeUsingPOST_19
+2018-07-05 07:38:45 -Generating unique operation named: saveUsingPOST_10
+2018-07-05 07:38:45 -Generating unique operation named: treeUsingGET_3
+2018-07-05 07:38:45 -Generating unique operation named: treeViewUsingGET_1
+2018-07-05 07:38:45 -Generating unique operation named: updateUsingPOST_11
+2018-07-05 07:38:46 -Starting Quartz Scheduler now
+2018-07-05 07:38:46 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED started.
+2018-07-05 07:38:46 -Starting...
+2018-07-05 07:38:46 -BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2018-07-05 07:38:46 -Started.
+2018-07-05 07:38:46 -Initializing ProtocolHandler ["http-nio-8088"]
+2018-07-05 07:38:46 -Starting ProtocolHandler ["http-nio-8088"]
+2018-07-05 07:38:46 -Using a shared selector for servlet write/read
+2018-07-05 07:38:46 -Tomcat started on port(s): 8088 (http)
+2018-07-05 07:38:46 -==>  Preparing: select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from sys_task order by id desc 
+2018-07-05 07:38:46 -==> Parameters: 
+2018-07-05 07:38:46 -<==      Total: 1
+2018-07-05 07:38:46 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED started.
+2018-07-05 07:38:46 -Started JustdoApplication in 16.55 seconds (JVM running for 17.473)
+2018-07-05 07:39:39 -Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-07-05 07:39:39 -FrameworkServlet 'dispatcherServlet': initialization started
+2018-07-05 07:39:40 -FrameworkServlet 'dispatcherServlet': initialization completed in 29 ms
+2018-07-05 07:39:40 -Enabling session validation scheduler...
+2018-07-05 07:39:40 -请求地址 : http://127.0.0.1:8088/index
+2018-07-05 07:39:40 -HTTP METHOD : GET
+2018-07-05 07:39:40 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.index
+2018-07-05 07:39:40 -参数 : [{}]
+2018-07-05 07:39:40 -==>  Preparing: select distinct m.menu_id , parent_id, name, url, perms,`type`,icon,order_num,gmt_create, gmt_modified from sys_menu m left join sys_role_menu rm on m.menu_id = rm.menu_id left join sys_user_role ur on rm.role_id =ur.role_id where ur.user_id = ? and m.type in(0,1) order by m.order_num 
+2018-07-05 07:39:40 -==> Parameters: 1(Long)
+2018-07-05 07:39:40 -<==      Total: 29
+2018-07-05 07:39:40 -==>  Preparing: select `id`,`type`,`url`,`create_date` from sys_file where id = ? 
+2018-07-05 07:39:40 -==> Parameters: 150(Long)
+2018-07-05 07:39:40 -<==      Total: 0
+2018-07-05 07:39:40 -耗时 : 34
+2018-07-05 07:39:40 -返回值 : index
+2018-07-05 07:39:40 -==>  Preparing: insert into sys_log ( `user_id`, `username`, `operation`, `time`, `method`, `params`, `ip`, `gmt_create` ) values ( ?, ?, ?, ?, ?, ?, ?, ? ) 
+2018-07-05 07:39:40 -==> Parameters: 1(Long), admin(String), 请求访问主页(String), 34(Integer), com.justdo.system.user.controller.LoginController.index()(String), null, 127.0.0.1(String), 2018-07-05 07:39:40.191(Timestamp)
+2018-07-05 07:39:40 -<==    Updates: 1
+2018-07-05 07:39:40 -[THYMELEAF] INITIALIZING TEMPLATE ENGINE
+2018-07-05 07:39:40 -[THYMELEAF] INITIALIZING TEMPLATE RESOLVER: org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+2018-07-05 07:39:40 -[THYMELEAF] TEMPLATE RESOLVER INITIALIZED OK
+2018-07-05 07:39:40 -[THYMELEAF] INITIALIZING MESSAGE RESOLVER: org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+2018-07-05 07:39:40 -[THYMELEAF] MESSAGE RESOLVER INITIALIZED OK
+2018-07-05 07:39:40 -[THYMELEAF] TEMPLATE ENGINE CONFIGURATION:
+[THYMELEAF] * Cache Factory implementation: org.thymeleaf.cache.StandardCacheManager
+[THYMELEAF] * Template modes:
+[THYMELEAF]     * XML
+[THYMELEAF]     * XHTML
+[THYMELEAF]     * HTML5
+[THYMELEAF]     * VALIDXML
+[THYMELEAF]     * VALIDXHTML
+[THYMELEAF]     * LEGACYHTML5
+[THYMELEAF] * Template resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver
+[THYMELEAF] * Message resolvers (in order):
+[THYMELEAF]     * org.thymeleaf.spring4.messageresolver.SpringMessageResolver
+[THYMELEAF] * Dialect [1 of 3]: org.thymeleaf.spring4.dialect.SpringStandardDialect
+[THYMELEAF]     * Prefix: "th"
+[THYMELEAF] * Dialect [2 of 3]: at.pollux.thymeleaf.shiro.dialect.ShiroDialect
+[THYMELEAF]     * Prefix: "shiro"
+[THYMELEAF] * Dialect [3 of 3]: nz.net.ultraq.thymeleaf.LayoutDialect
+[THYMELEAF]     * Prefix: "layout"
+[THYMELEAF] TEMPLATE ENGINE CONFIGURED OK
+2018-07-05 07:39:40 -[THYMELEAF] TEMPLATE ENGINE INITIALIZED
+2018-07-05 07:39:40 -WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannelpool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2018-07-05 07:39:40 -请求地址 : http://127.0.0.1:8088/main
+2018-07-05 07:39:40 -HTTP METHOD : GET
+2018-07-05 07:39:40 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.main
+2018-07-05 07:39:40 -参数 : []
+2018-07-05 07:39:40 -耗时 : 0
+2018-07-05 07:39:40 -返回值 : main
+2018-07-05 07:39:40 -请求地址 : http://127.0.0.1:8088/system/notice/message
+2018-07-05 07:39:40 -HTTP METHOD : GET
+2018-07-05 07:39:40 -CLASS_METHOD : com.justdo.system.notice.controller.NoticeController.message
+2018-07-05 07:39:40 -参数 : []
+2018-07-05 07:39:40 -==>  Preparing: select DISTINCT n.id ,`type`,`title`,`content`,`files`,r.is_read,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from oa_notice_record r right JOIN oa_notice n on r.notice_id = n.id WHERE r.is_read = ? and r.user_id = ? order by is_read ASC, update_date DESC limit ?, ? 
+2018-07-05 07:39:40 -==> Parameters: 0(String), 1(Long), 0(Integer), 3(Integer)
+2018-07-05 07:39:40 -<==      Total: 0
+2018-07-05 07:39:40 -==>  Preparing: select count(*) from oa_notice_record r right JOIN oa_notice n on r.notice_id = n.id where r.user_id =? and r.is_read = ? 
+2018-07-05 07:39:40 -==> Parameters: 1(Long), 0(String)
+2018-07-05 07:39:40 -<==      Total: 1
+2018-07-05 07:39:40 -耗时 : 17
+2018-07-05 07:39:40 -返回值 : com.justdo.common.utils.PageUtils@27bfe5fa
+2018-07-05 07:39:40 -请求地址 : http://127.0.0.1:8088/main
+2018-07-05 07:39:40 -HTTP METHOD : GET
+2018-07-05 07:39:40 -CLASS_METHOD : com.justdo.system.user.controller.LoginController.main
+2018-07-05 07:39:40 -参数 : []
+2018-07-05 07:39:40 -耗时 : 1
+2018-07-05 07:39:40 -返回值 : main
+2018-07-05 07:39:43 -请求地址 : http://127.0.0.1:8088/system/user/personal
+2018-07-05 07:39:43 -HTTP METHOD : GET
+2018-07-05 07:39:43 -CLASS_METHOD : com.justdo.system.user.controller.UserController.personal
+2018-07-05 07:39:43 -参数 : [{}]
+2018-07-05 07:39:43 -==>  Preparing: select role_id from sys_user_role where user_id=? 
+2018-07-05 07:39:43 -==> Parameters: 1(Long)
+2018-07-05 07:39:43 -<==      Total: 1
+2018-07-05 07:39:43 -==>  Preparing: select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user where user_id = ? 
+2018-07-05 07:39:43 -==> Parameters: 1(Long)
+2018-07-05 07:39:43 -<==      Total: 1
+2018-07-05 07:39:43 -==>  Preparing: select `dept_id`,`parent_id`,`name`,`order_num`,`del_flag` from sys_dept where dept_id = ? 
+2018-07-05 07:39:43 -==> Parameters: 6(Long)
+2018-07-05 07:39:43 -<==      Total: 1
+2018-07-05 07:39:43 -==>  Preparing: select `id`,`name`,`value`,`type`,`description`,`sort`,`parent_id`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from sys_dict3 WHERE type = ? order by id desc 
+2018-07-05 07:39:43 -==> Parameters: hobby(String)
+2018-07-05 07:39:43 -<==      Total: 2
+2018-07-05 07:39:43 -==>  Preparing: select `id`,`name`,`value`,`type`,`description`,`sort`,`parent_id`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag` from sys_dict3 WHERE type = ? order by id desc 
+2018-07-05 07:39:43 -==> Parameters: sex(String)
+2018-07-05 07:39:43 -<==      Total: 2
+2018-07-05 07:39:43 -耗时 : 43
+2018-07-05 07:39:43 -返回值 : system/user/personal
+2018-07-05 07:52:34 -Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:38:31 CST 2018]; root of context hierarchy
+2018-07-05 07:52:34 -Stopping beans in phase 2147483647
+2018-07-05 07:52:34 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED paused.
+2018-07-05 07:52:34 -Stopping...
+2018-07-05 07:52:34 -BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [DefaultSubscriptionRegistry[cache[0 destination(s)], registry[0 sessions]]]]
+2018-07-05 07:52:34 -Stopped.
+2018-07-05 07:52:34 -Unregistering JMX-exposed beans on shutdown
+2018-07-05 07:52:34 -Unregistering JMX-exposed beans
+2018-07-05 07:52:34 -Shutting down ExecutorService 'brokerChannelExecutor'
+2018-07-05 07:52:34 -Shutting down ExecutorService 'messageBrokerTaskScheduler'
+2018-07-05 07:52:34 -清除SpringContextHolder中的ApplicationContext:org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@77825085: startup date [Thu Jul 05 07:38:31 CST 2018]; root of context hierarchy
+2018-07-05 07:52:34 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED shutting down.
+2018-07-05 07:52:34 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED paused.
+2018-07-05 07:52:34 -Scheduler schedulerFactoryBean_$_NON_CLUSTERED shutdown complete.
+2018-07-05 07:52:34 -Shutting down Quartz Scheduler
+2018-07-05 07:52:34 -Shutting down ExecutorService 'clientOutboundChannelExecutor'
+2018-07-05 07:52:34 -Shutting down ExecutorService 'clientInboundChannelExecutor'
+2018-07-05 07:52:34 -{dataSource-1} closed
+2018-07-05 07:52:34 -Disabled session validation scheduler.

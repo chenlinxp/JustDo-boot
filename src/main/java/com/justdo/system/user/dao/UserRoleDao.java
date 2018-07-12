@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
  * 用户与角色对应关系
  * 
  * @author chglee
- * @email 1992lcg@163.com
+ * @email
  * @date 2017-10-03 11:08:59
  */
 @Mapper
@@ -29,7 +29,7 @@ public interface UserRoleDao {
 
 	int remove(Long id);
 
-	int batchRemove(Long[] ids);
+	int batchDel(Long[] ids);
 
 	List<Long> listRoleId(Long userId);
 
@@ -39,5 +39,5 @@ public interface UserRoleDao {
 
 	int batchSave(List<UserRoleDO> list);
 
-	int batchRemoveByUserId(Long[] ids);
+	int batchDelByUserId(Long[] ids);
 }
