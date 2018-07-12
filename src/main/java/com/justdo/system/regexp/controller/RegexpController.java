@@ -97,7 +97,7 @@ public class RegexpController {
 	@ResponseBody
 	@RequiresPermissions("system:regexp:del")
 	public R remove( String rid){
-		if(regexpService.remove(rid)>0){
+		if(regexpService.del(rid)>0){
 		return R.ok();
 		}
 		return R.error();

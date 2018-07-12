@@ -27,7 +27,7 @@ public interface RegexpService {
 	
 	int update(RegexpDO regexp);
 	
-	int remove(String rid);
+	int del(String rid);
 	
 	int batchDel(String[] rids);
 }

@@ -24,7 +24,7 @@ import com.justdo.common.utils.*;
 /**
  * 文件上传
  * 
- * @author chglee
+ * @author chenlin
  * @email
  * @date 2017-09-19 16:02:20
  */
@@ -112,9 +112,7 @@ public class FileController extends BaseController {
 	@ResponseBody
 	// @RequiresPermissions("common:del")
 	public R remove(Long id, HttpServletRequest request) {
-		if ("test".equals(getUsername())) {
-			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
-		}
+
 		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getUrl().replace("/files/", "");
 		if (fileService.remove(id) > 0) {
 			boolean b = FileUtil.deleteFile(fileName);
@@ -134,9 +132,7 @@ public class FileController extends BaseController {
 	@ResponseBody
 	@RequiresPermissions("system:del")
 	public R remove(@RequestParam("ids[]") Long[] ids) {
-		if ("test".equals(getUsername())) {
-			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
-		}
+
 		fileService.batchDel(ids);
 		return R.ok();
 	}
@@ -144,9 +140,7 @@ public class FileController extends BaseController {
 	@ResponseBody
 	@PostMapping("/upload")
 	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-		if ("test".equals(getUsername())) {
-			return R.error(1, "演示系统不允许修改,完整体验请部署程序");
-		}
+
 		//request.getSession().getServletContext().getRealPath("/")+ path;
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtil.renameToUUID(fileName);

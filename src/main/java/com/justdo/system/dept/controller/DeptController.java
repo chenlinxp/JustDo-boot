@@ -120,7 +120,7 @@ public class DeptController extends BaseController {
 				return R.ok();
 			}
 		}else {
-			return R.error(1, "部门包含用户,不允许修改");
+			return R.error(1, "部门包含用户,不允许修改！");
 		}
 		return R.error();
 	}

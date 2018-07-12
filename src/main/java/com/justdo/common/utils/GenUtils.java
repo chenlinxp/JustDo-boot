@@ -181,11 +181,11 @@ public class GenUtils {
         }
 
         if (template.contains("domain.java.vm")) {
-            return packagePath + "domain" + File.separator + className + "DO.java";
+            return packagePath + classname +File.separator+ "domain" + File.separator + className + "DO.java";
         }
 
         if (template.contains("Dao.java.vm")) {
-            return packagePath + "dao" + File.separator + className + "Dao.java";
+            return packagePath +classname +File.separator+ "dao" + File.separator + className + "Dao.java";
         }
 
 //		if(template.contains("Mapper.java.vm")){
@@ -193,15 +193,15 @@ public class GenUtils {
 //		}
 
         if (template.contains("Service.java.vm")) {
-            return packagePath + "service" + File.separator + className + "Service.java";
+            return packagePath +classname +File.separator+ "service" + File.separator + className + "Service.java";
         }
 
         if (template.contains("ServiceImpl.java.vm")) {
-            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
+            return packagePath +classname +File.separator+ "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
         }
 
         if (template.contains("Controller.java.vm")) {
-            return packagePath + "controller" + File.separator + className + "Controller.java";
+            return packagePath +classname +File.separator+ "controller" + File.separator + className + "Controller.java";
         }
 
         if (template.contains("Mapper.xml.vm")) {

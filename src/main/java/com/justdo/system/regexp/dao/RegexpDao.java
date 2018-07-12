@@ -31,7 +31,7 @@ public interface RegexpDao {
 	
 	int update(RegexpDO regexp);
 	
-	int remove(String RID);
+	int del(String RID);
 	
 	int batchDel(String[] rids);
 }

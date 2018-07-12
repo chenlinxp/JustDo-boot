@@ -50,8 +50,8 @@ public class RegexpServiceImpl implements RegexpService {
 	}
 	
 	@Override
-	public int remove(String rid){
-		return regexpDao.remove(rid);
+	public int del(String rid){
+		return regexpDao.del(rid);
 	}
 	
 	@Override

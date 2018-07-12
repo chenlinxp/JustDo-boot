@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * 用户与角色对应关系
  * 
- * @author chglee
+ * @author chenlin
  * @email
  * @date 2017-10-03 11:08:59
  */

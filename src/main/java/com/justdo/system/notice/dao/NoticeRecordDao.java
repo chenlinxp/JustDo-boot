@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
  * 通知通告发送记录
  * 
- * @author chglee
+ * @author chenlin
  * @email
  * @date 2017-10-09 17:18:45
  */
