@@ -17,6 +17,8 @@ public class OrganDO implements Serializable {
 	private String organid;
 	//机构上级ID
 	private String organpid;
+	//机构上级名称
+	private String organpname;
 	//机构名称
 	private String organname;
 	//机构所属的地区编号
@@ -65,6 +67,19 @@ public class OrganDO implements Serializable {
 	 */
 	public String getOrganpid() {
 		return organpid;
+	}
+
+	/**
+	 * 设置：机构上级名称
+	 */
+	public void setOrganpname(String organpname) {
+		this.organpname = organpname;
+	}
+	/**
+	 * 获取：机构上级名称
+	 */
+	public String getOrganpname() {
+		return organpname;
 	}
 	/**
 	 * 设置：机构名称

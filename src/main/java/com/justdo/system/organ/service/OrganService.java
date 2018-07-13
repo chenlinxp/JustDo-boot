@@ -1,10 +1,11 @@
 package com.justdo.system.organ.service;
 
-import com.justdo.system.organ.domain.OrganDO;
 
 import java.util.List;
 import java.util.Map;
 
+import com.justdo.common.domain.Tree;
+import com.justdo.system.organ.domain.OrganDO;
 /**
  * 机构
  * 
@@ -24,7 +25,9 @@ public interface OrganService {
 	
 	int update(OrganDO organ);
 	
-	int remove(String organid);
+	int del(String organid);
 	
 	int batchDel(String[] organids);
+
+	Tree<OrganDO> getTree();
 }

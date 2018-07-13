@@ -19,6 +19,7 @@ import com.justdo.system.organ.service.OrganService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
+import com.justdo.common.domain.Tree;
 
 /**
  * 机构
@@ -31,6 +32,7 @@ import com.justdo.common.utils.R;
 @Controller
 @RequestMapping("/system/organ")
 public class OrganController {
+	private String prefix = "system/organ";
 	@Autowired
 	private OrganService organService;
 	
@@ -55,7 +57,7 @@ public class OrganController {
 	@GetMapping("/add")
 	@RequiresPermissions("system:organ:add")
 	String add(){
-	    return "system/organ/add";
+	    return prefix+"/add";
 	}
 
 	@GetMapping("/edit/{organid}")
@@ -63,7 +65,7 @@ public class OrganController {
 	String edit(@PathVariable("organid") String organid,Model model){
 		OrganDO organ = organService.get(organid);
 		model.addAttribute("organ", organ);
-	    return "system/organ/edit";
+	    return prefix+"/edit";
 	}
 	
 	/**
@@ -85,6 +87,9 @@ public class OrganController {
 	@RequestMapping("/update")
 	@RequiresPermissions("system:organ:edit")
 	public R update( OrganDO organ){
+		if(organ.getOrganpid()==organ.getOrganid()) {
+			return R.error();
+		}
 		organService.update(organ);
 		return R.ok();
 	}
@@ -96,7 +101,7 @@ public class OrganController {
 	@ResponseBody
 	@RequiresPermissions("system:organ:del")
 	public R remove( String organid){
-		if(organService.remove(organid)>0){
+		if(organService.del(organid)>0){
 		return R.ok();
 		}
 		return R.error();
@@ -112,5 +117,18 @@ public class OrganController {
 		organService.batchDel(organids);
 		return R.ok();
 	}
-	
+
+	@GetMapping("/tree")
+	@ResponseBody
+	public Tree<OrganDO> tree() {
+		Tree<OrganDO> tree = new Tree<OrganDO>();
+		tree = organService.getTree();
+		return tree;
+	}
+
+	@GetMapping("/treeView")
+	String treeView() {
+		return  prefix + "/organTree";
+	}
+
 }

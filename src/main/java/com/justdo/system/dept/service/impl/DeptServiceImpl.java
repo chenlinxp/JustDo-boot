@@ -53,7 +53,7 @@ public class DeptServiceImpl implements DeptService {
 
 	@Override
 	public int remove(Long deptId){
-		return deptDao.remove(deptId);
+		return deptDao.del(deptId);
 	}
 
 	@Override

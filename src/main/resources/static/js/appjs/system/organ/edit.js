@@ -36,14 +36,44 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
+            organname : {
 				required : true
-			}
+			},
+            organcode : {
+                required : true
+            },
+            organalias : {
+                required : true
+            }
 		},
 		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
+            organname : {
+				required : icon + "请输入机构名称"
+			},
+            organcode : {
+                required : icon + "请输入机构编码"
+            },
+            organalias : {
+                required : icon + "请输入机构别名"
+            }
 		}
 	})
+}
+
+
+var openOrgan = function(){
+    layer.open({
+        type:2,
+        title:"选择机构",
+        area : [ '300px', '450px' ],
+        content:"/system/organ/treeView"
+    })
+}
+function loadOrgan( organpid,organpname){
+	if(organpid==$("#organid").val()){
+        parent.layer.alert("上级机构不能选自己");
+        return;
+	}
+    $("#organpid").val(organpid);
+    $("#organpname").val(organpname);
 }

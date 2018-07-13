@@ -24,7 +24,9 @@ public interface OrganDao {
 	
 	int update(OrganDO organ);
 	
-	int remove(String ORGANID);
+	int del(String organid);
 	
 	int batchDel(String[] organids);
+
+	String[] listParentOrgan();
 }

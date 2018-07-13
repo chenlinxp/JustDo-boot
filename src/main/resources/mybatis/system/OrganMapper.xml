@@ -117,7 +117,7 @@
 		where ORGANID = #{organid}
 	</update>
 	
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_organ where ORGANID = #{value}
 	</delete>
 	
@@ -128,4 +128,7 @@
 		</foreach>
 	</delete>
 
+	<select id="listParentOrgan" resultType="String">
+		select DISTINCT organpid from sys_organ
+	</select>
 </mapper>
