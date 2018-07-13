@@ -24,7 +24,7 @@ public class RegexpDO implements Serializable {
 	//正则的内容
 	private String rcontent;
 	//备注信息
-	private String rmarks;
+	private String remark;
 	//是否有效
 	private Integer rvalid;
 
@@ -79,14 +79,14 @@ public class RegexpDO implements Serializable {
 	/**
 	 * 设置：备注信息
 	 */
-	public void setRmarks(String rmarks) {
-		this.rmarks = rmarks;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	/**
 	 * 获取：备注信息
 	 */
-	public String getRmarks() {
-		return rmarks;
+	public String getRemark() {
+		return remark;
 	}
 	/**
 	 * 设置：是否有效

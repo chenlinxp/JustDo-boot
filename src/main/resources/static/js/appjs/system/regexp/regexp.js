@@ -83,7 +83,7 @@ function load() {
 									title : '正则的内容' 
 								},
 																{
-									field : 'rmarks', 
+									field : 'remark',
 									title : '备注信息' 
 								},
 																{

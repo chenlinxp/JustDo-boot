@@ -10,89 +10,82 @@
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
 							<div class="form-group">
-								<label class="col-sm-3 control-label">机构名称：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">机构名称：</label>
+								<div class="col-sm-4">
 									<input id="organname" name="organname" class="form-control" type="text">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">上级机构：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">上级机构：</label>
+								<div class="col-sm-4">
 									<input id="organpid" name="organpid" type="hidden">
 									<input id="organpname" name="organpname" class="form-control" type="text"
 										style="cursor: pointer;" onclick="openOrgan()"
 										readonly="readonly" placeholder="请选择上级机构">
 								</div>
 							</div>
-
 							<div class="form-group">
-								<label class="col-sm-3 control-label">地区编号：</label>
-								<div class="col-sm-8">
-									<input id="areaid" name="areaid" class="form-control" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">机构编码：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">机构编码：</label>
+								<div class="col-sm-4">
 									<input id="organcode" name="organcode" class="form-control" type="text">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">机构别名：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">机构别名：</label>
+								<div class="col-sm-4">
 									<input id="organalias" name="organalias" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">邮政邮编：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">地区编号：</label>
+								<div class="col-sm-4">
+									<input id="areaid" name="areaid" class="form-control" type="text">
+								</div>
+								<label class="col-sm-2 control-label">邮政邮编：</label>
+								<div class="col-sm-4">
 									<input id="postcode" name="postcode" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">机构地址：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">机构地址：</label>
+								<div class="col-sm-4">
 									<input id="address" name="address" class="form-control" type="text">
 								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">机构电话：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">机构电话：</label>
+								<div class="col-sm-4">
 									<input id="telephone" name="telephone" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">传真号码：</label>
-								<div class="col-sm-8">
-									<input id="fax" name="fax" class="form-control" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">是否有效：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">是否有效：</label>
+								<div class="col-sm-4">
 									<label class="radio-inline">
 										<input type="radio" name="isvalidation" value="1" checked="checked" /> 正常
 									</label>
 									<label class="radio-inline">
 										<input type="radio" name="isvalidation" value="0" /> 禁用
-								    </label>
+									</label>
 								</div>
+								<label class="col-sm-2 control-label">传真号码：</label>
+								<div class="col-sm-4">
+									<input id="fax" name="fax" class="form-control" type="text">
+								</div>
+
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">负责人姓名：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">负责人姓名：</label>
+								<div class="col-sm-4">
 									<input id="organman" name="organman" class="form-control" type="text">
 								</div>
-							</div>
 							<input id="organmanid" name="organmanid" type="hidden">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">备注信息：</label>
+								<label class="col-sm-2 control-label"></label>
 								<div class="col-sm-8">
-									<input id="remark" name="remark" class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-sm-8 col-sm-offset-3">
+								<label class="col-sm-2 control-label">备注信息：</label>
+								<div class="col-sm-10">
+									<textarea id="remark" name="remark" class="form-control"></textarea>
+								</div>
+					       </div>
+							<div class="form-group">
+								<div class="col-sm-4 col-sm-offset-3">
 									<button type="submit" class="btn btn-primary">提交</button>
 								</div>
 							</div>

@@ -19,7 +19,7 @@
 		<if test="rname != null and rname != ''"> and RNAME = #{rname} </if>
 		<if test="rcode != null and rcode != ''"> and RCODE = #{rcode} </if>
 		<if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
-		<if test="rmarks != null and rmarks != ''"> and RMARKS = #{rmarks} </if>
+		<if test="remark != null and remark != ''"> and RMARKS = #{remark} </if>
 		<if test="rvalid != null and rvalid != ''"> and RVALID = #{rvalid} </if>
 	    </where>
 		<choose>
@@ -41,7 +41,7 @@
 		  		  <if test="rname != null and rname != ''"> and RNAME = #{rname} </if>
 		  		  <if test="rcode != null and rcode != ''"> and RCODE = #{rcode} </if>
 		  		  <if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
-		  		  <if test="rmarks != null and rmarks != ''"> and RMARKS = #{rmarks} </if>
+		  		  <if test="remark != null and remark != ''"> and RMARKS = #{remark} </if>
 		  		  <if test="rvalid != null and rvalid != ''"> and RVALID = #{rvalid} </if>
 		  		</where>
 	</select>
@@ -65,7 +65,7 @@
 			#{rname}, 
 			#{rcode}, 
 			#{rcontent}, 
-			#{rmarks}, 
+			#{remark},
 			#{rvalid}
 		)
 	</insert>
@@ -76,7 +76,7 @@
 			<if test="rname != null">`RNAME` = #{rname}, </if>
 			<if test="rcode != null">`RCODE` = #{rcode}, </if>
 			<if test="rcontent != null">`RCONTENT` = #{rcontent}, </if>
-			<if test="rmarks != null">`RMARKS` = #{rmarks}, </if>
+			<if test="remark != null">`RMARKS` = #{remark}, </if>
 			<if test="rvalid != null">`RVALID` = #{rvalid}</if>
 		</set>
 		where RID = #{rid}
