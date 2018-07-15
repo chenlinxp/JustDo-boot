@@ -33,12 +33,10 @@ public class Tree<T> {
 	 * 节点属性
 	 */
 	private Map<String, Object> attributes;
-
 	/**
 	 * 节点的子节点
 	 */
 	private List<Tree<T>> children = new ArrayList<Tree<T>>();
-
 	/**
 	 * 父ID
 	 */
@@ -51,6 +49,10 @@ public class Tree<T> {
 	 * 是否有子节点
 	 */
 	private boolean hasChildren = false;
+	/**
+	 * 节点类型
+	 */
+	private String nodeType;
 
 	public String getId() {
 		return id;
@@ -124,8 +126,15 @@ public class Tree<T> {
 		this.parentId = parentId;
 	}
 
+	public String getNodeType() {
+		return nodeType;
+	}
+
+	public void setNodeType(String nodeType) {
+		this.nodeType = nodeType;
+	}
 	public Tree(String id, String text, Map<String, Object> state, boolean checked, Map<String, Object> attributes,
-			List<Tree<T>> children, boolean isParent, boolean isChildren, String parentID) {
+			List<Tree<T>> children, boolean isParent, boolean isChildren, String parentID,String nodeType ) {
 		super();
 		this.id = id;
 		this.text = text;
@@ -136,6 +145,7 @@ public class Tree<T> {
 		this.hasParent = isParent;
 		this.hasChildren = isChildren;
 		this.parentId = parentID;
+		this.nodeType = nodeType;
 	}
 
 	public Tree() {

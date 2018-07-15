@@ -13,9 +13,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @date 2018-06-19 16:02:20
  */
 public class LogDO {
-	private Long id;
+	private String id;
 
-	private Long userId;
+	private String userId;
 
 	private String username;
 
@@ -31,19 +31,19 @@ public class LogDO {
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date gmtCreate;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

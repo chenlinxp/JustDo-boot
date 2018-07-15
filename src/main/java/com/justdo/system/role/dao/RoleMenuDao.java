@@ -17,7 +17,7 @@ import com.justdo.system.role.domain.RoleMenuDO;
 @Mapper
 public interface RoleMenuDao {
 
-	RoleMenuDO get(Long id);
+	RoleMenuDO get(String id);
 	
 	List<RoleMenuDO> list(Map<String,Object> map);
 	
@@ -27,15 +27,15 @@ public interface RoleMenuDao {
 	
 	int update(RoleMenuDO roleMenu);
 	
-	int remove(Long id);
+	int del(String id);
 	
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 	
-	List<Long> listMenuIdByRoleId(Long roleId);
+	List<String> listMenuIdByRoleId(String roleId);
 	
-	int removeByRoleId(Long roleId);
+	int delByRoleId(String roleId);
 
-	int removeByMenuId(Long menuId);
+	int delByMenuId(String menuId);
 	
 	int batchSave(List<RoleMenuDO> list);
 }

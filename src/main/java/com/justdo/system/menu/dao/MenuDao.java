@@ -17,7 +17,7 @@ import com.justdo.system.menu.domain.MenuDO;
 @Mapper
 public interface MenuDao {
 
-	MenuDO get(Long menuId);
+	MenuDO get(String menuId);
 	
 	List<MenuDO> list(Map<String,Object> map);
 	
@@ -27,11 +27,11 @@ public interface MenuDao {
 	
 	int update(MenuDO menu);
 	
-	int remove(Long menuId);
+	int del(String menuId);
 	
-	int batchDel(Long[] menuIds);
+	int batchDel(String[] menuIds);
 	
-	List<MenuDO> listMenuByUserId(Long id);
+	List<MenuDO> listMenuByUserId(String id);
 	
-	List<String> listUserPerms(Long id);
+	List<String> listUserPerms(String id);
 }

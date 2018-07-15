@@ -52,10 +52,10 @@ public class UserServiceImpl implements UserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Override
-	public UserDO get(Long id) {
-		List<Long> roleIds = userRoleMapper.listRoleId(id);
+	public UserDO get(String id) {
+		List<String> roleIds = userRoleMapper.listRoleId(id);
 		UserDO user = userMapper.get(id);
-		user.setDeptName(deptMapper.get(user.getDeptId()).getName());
+		user.setDeptName(deptMapper.get(user.getDeptId()).getDeptname());
 		user.setRoleIds(roleIds);
 		return user;
 	}
@@ -74,11 +74,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int save(UserDO user) {
 		int count = userMapper.save(user);
-		Long userId = user.getUserId();
-		List<Long> roles = user.getRoleIds();
-		userRoleMapper.removeByUserId(userId);
+		String userId = user.getUserId();
+		List<String> roles = user.getRoleIds();
+		userRoleMapper.delByUserId(userId);
 		List<UserRoleDO> list = new ArrayList<>();
-		for (Long roleId : roles) {
+		for (String roleId : roles) {
 			UserRoleDO ur = new UserRoleDO();
 			ur.setUserId(userId);
 			ur.setRoleId(roleId);
@@ -93,11 +93,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int update(UserDO user) {
 		int r = userMapper.update(user);
-		Long userId = user.getUserId();
-		List<Long> roles = user.getRoleIds();
-		userRoleMapper.removeByUserId(userId);
+		String userId = user.getUserId();
+		List<String> roles = user.getRoleIds();
+		userRoleMapper.delByUserId(userId);
 		List<UserRoleDO> list = new ArrayList<>();
-		for (Long roleId : roles) {
+		for (String roleId : roles) {
 			UserRoleDO ur = new UserRoleDO();
 			ur.setUserId(userId);
 			ur.setRoleId(roleId);
@@ -110,9 +110,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int remove(Long userId) {
-		userRoleMapper.removeByUserId(userId);
-		return userMapper.remove(userId);
+	public int del(String userId) {
+		userRoleMapper.delByUserId(userId);
+		return userMapper.del(userId);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Set<String> listRoles(Long userId) {
+	public Set<String> listRoles(String userId) {
 		return null;
 	}
 
@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public int batchremove(Long[] userIds) {
+	public int batchDel(String[] userIds) {
 		int count = userMapper.batchDel(userIds);
 		userRoleMapper.batchDelByUserId(userIds);
 		return count;
@@ -164,17 +164,17 @@ public class UserServiceImpl implements UserService {
 	public Tree<DeptDO> getTree() {
 		List<Tree<DeptDO>> trees = new ArrayList<Tree<DeptDO>>();
 		List<DeptDO> depts = deptMapper.list(new HashMap<String, Object>(16));
-		Long[] pDepts = deptMapper.listParentDept();
-		Long[] uDepts = userMapper.listAllDept();
-		Long[] allDepts = (Long[]) ArrayUtils.addAll(pDepts, uDepts);
+		String[] pDepts = deptMapper.listParentDept();
+		String[] uDepts = userMapper.listAllDept();
+		String[] allDepts = (String[]) ArrayUtils.addAll(pDepts, uDepts);
 		for (DeptDO dept : depts) {
-			if (!ArrayUtils.contains(allDepts, dept.getDeptId())) {
+			if (!ArrayUtils.contains(allDepts, dept.getDeptid())) {
 				continue;
 			}
 			Tree<DeptDO> tree = new Tree<DeptDO>();
-			tree.setId(dept.getDeptId().toString());
-			tree.setParentId(dept.getParentId().toString());
-			tree.setText(dept.getName());
+			tree.setId(dept.getDeptid().toString());
+			tree.setParentId(dept.getDeptpid().toString());
+			tree.setText(dept.getDeptname());
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
 			state.put("mType", "dept");
@@ -204,7 +204,7 @@ public class UserServiceImpl implements UserService {
 	}
 
     @Override
-    public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, Long userId) throws Exception {
+    public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, String userId) throws Exception {
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtil.renameToUUID(fileName);
 		FileDO sysFile = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());

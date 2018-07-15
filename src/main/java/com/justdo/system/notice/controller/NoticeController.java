@@ -71,7 +71,7 @@ public class NoticeController extends BaseController {
 
 	@GetMapping("/edit/{id}")
 	@RequiresPermissions("system:notice:edit")
-	String edit(@PathVariable("id") Long id, Model model) {
+	String edit(@PathVariable("id") String id, Model model) {
 		NoticeDO notice = NoticeService.get(id);
 		List<DictDO> dictDOS = dictService.listByType("notice_type");
 		String type = notice.getType();
@@ -116,8 +116,8 @@ public class NoticeController extends BaseController {
 	@PostMapping("/del")
 	@ResponseBody
 	@RequiresPermissions("system:notice:del")
-	public R remove(Long id) {
-		if (NoticeService.remove(id) > 0) {
+	public R remove(String id) {
+		if (NoticeService.del(id) > 0) {
 			return R.ok();
 		}
 		return R.error();
@@ -129,7 +129,7 @@ public class NoticeController extends BaseController {
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:notice:batchDel")
-	public R remove(@RequestParam("ids[]") Long[] ids) {
+	public R remove(@RequestParam("ids[]") String[] ids) {
 		NoticeService.batchDel(ids);
 		return R.ok();
 	}
@@ -162,7 +162,7 @@ public class NoticeController extends BaseController {
 
 	@GetMapping("/read/{id}")
 	@RequiresPermissions("system:notice:edit")
-	String read(@PathVariable("id") Long id, Model model) {
+	String read(@PathVariable("id") String id, Model model) {
 		NoticeDO notice = NoticeService.get(id);
 		//更改阅读状态
 		NoticeRecordDO noticeRecordDO = new NoticeRecordDO();

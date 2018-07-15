@@ -47,12 +47,12 @@ public class RoleServiceImpl implements RoleService {
 
 
     @Override
-    public List<RoleDO> list(Long userId) {
-        List<Long> rolesIds = userRoleMapper.listRoleId(userId);
+    public List<RoleDO> list(String userId) {
+        List<String> rolesIds = userRoleMapper.listRoleId(userId);
         List<RoleDO> roles = roleMapper.list(new HashMap<>(16));
         for (RoleDO roleDO : roles) {
             roleDO.setRoleSign("false");
-            for (Long roleId : rolesIds) {
+            for (String roleId : rolesIds) {
                 if (Objects.equals(roleDO.getRoleId(), roleId)) {
                     roleDO.setRoleSign("true");
                     break;
@@ -65,16 +65,16 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int save(RoleDO role) {
         int count = roleMapper.save(role);
-        List<Long> menuIds = role.getMenuIds();
-        Long roleId = role.getRoleId();
+        List<String> menuIds = role.getMenuIds();
+        String roleId = role.getRoleId();
         List<RoleMenuDO> rms = new ArrayList<>();
-        for (Long menuId : menuIds) {
+        for (String menuId : menuIds) {
             RoleMenuDO rmDo = new RoleMenuDO();
             rmDo.setRoleId(roleId);
             rmDo.setMenuId(menuId);
             rms.add(rmDo);
         }
-        roleMenuMapper.removeByRoleId(roleId);
+        roleMenuMapper.delByRoleId(roleId);
         if (rms.size() > 0) {
             roleMenuMapper.batchSave(rms);
         }
@@ -83,15 +83,15 @@ public class RoleServiceImpl implements RoleService {
 
     @Transactional
     @Override
-    public int remove(Long id) {
-        int count = roleMapper.remove(id);
-        userRoleMapper.removeByRoleId(id);
-        roleMenuMapper.removeByRoleId(id);
+    public int del(String id) {
+        int count = roleMapper.del(id);
+        userRoleMapper.delByRoleId(id);
+        roleMenuMapper.delByRoleId(id);
         return count;
     }
 
     @Override
-    public RoleDO get(Long id) {
+    public RoleDO get(String id) {
         RoleDO roleDO = roleMapper.get(id);
         return roleDO;
     }
@@ -99,11 +99,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int update(RoleDO role) {
         int r = roleMapper.update(role);
-        List<Long> menuIds = role.getMenuIds();
-        Long roleId = role.getRoleId();
-        roleMenuMapper.removeByRoleId(roleId);
+        List<String> menuIds = role.getMenuIds();
+        String roleId = role.getRoleId();
+        roleMenuMapper.delByRoleId(roleId);
         List<RoleMenuDO> rms = new ArrayList<>();
-        for (Long menuId : menuIds) {
+        for (String menuId : menuIds) {
             RoleMenuDO rmDo = new RoleMenuDO();
             rmDo.setRoleId(roleId);
             rmDo.setMenuId(menuId);
@@ -116,7 +116,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public int batchremove(Long[] ids) {
+    public int batchDel(String[] ids) {
         int r = roleMapper.batchDel(ids);
         return r;
     }

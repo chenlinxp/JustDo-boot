@@ -15,7 +15,7 @@ import com.justdo.system.role.domain.RoleDO;
 @Service
 public interface RoleService {
 
-	RoleDO get(Long id);
+	RoleDO get(String id);
 
 	List<RoleDO> list();
 
@@ -23,9 +23,9 @@ public interface RoleService {
 
 	int update(RoleDO role);
 
-	int remove(Long id);
+	int del(String id);
 
-	List<RoleDO> list(Long userId);
+	List<RoleDO> list(String userId);
 
-	int batchremove(Long[] ids);
+	int batchDel(String[] ids);
 }

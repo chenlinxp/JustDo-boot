@@ -1,98 +1,146 @@
 package com.justdo.system.dept.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 
 
 /**
  * 部门管理
+ *
  * @author chenlin
- * @email 13233669915@qq.com
- * @date 2018-06-19 16:02:20
+ * @email chenlinxp@qq.com
+ * @date 2018-07-13 22:18:01
  */
 public class DeptDO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	//
-	private Long deptId;
-	//上级部门ID，一级部门为0
-	private Long parentId;
+
+	//部门ID
+	private String deptid;
+	//机构ID
+	private String organid;
+
+	//机构名称
+	private String organname;
+	//上级部门ID
+	private String deptpid;
+	//上级部门名称
+	private String deptpname;
 	//部门名称
-	private String name;
+	private String deptname;
 	//排序
-	private Integer orderNum;
+	private Integer ordernum;
 	//是否删除  -1：已删除  0：正常
-	private Integer delFlag;
+	private Integer delflag;
+	//是否有效
+	private String isvalidation;
 
 	/**
-	 * 设置：
+	 * 设置：部门ID
 	 */
-	public void setDeptId(Long deptId) {
-		this.deptId = deptId;
+	public void setDeptid(String deptid) {
+		this.deptid = deptid;
 	}
 	/**
-	 * 获取：
+	 * 获取：部门ID
 	 */
-	public Long getDeptId() {
-		return deptId;
+	public String getDeptid() {
+		return deptid;
 	}
 	/**
-	 * 设置：上级部门ID，一级部门为0
+	 * 设置：机构ID
 	 */
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setOrganid(String organid) {
+		this.organid = organid;
 	}
 	/**
-	 * 获取：上级部门ID，一级部门为0
+	 * 获取：机构ID
 	 */
-	public Long getParentId() {
-		return parentId;
+	public String getOrganid() {
+		return organid;
+	}
+	/**
+	 * 设置：机构名称
+	 */
+	public void setOrganname(String organname) {
+		this.organname = organname;
+	}
+	/**
+	 * 获取：机构名称
+	 */
+	public String getOrganname() {
+		return organname;
+	}
+	/**
+	 * 设置：上级部门ID
+	 */
+	public void setDeptpid(String deptpid) {
+		this.deptpid = deptpid;
+	}
+	/**
+	 * 获取：上级部门ID
+	 */
+	public String getDeptpid() {
+		return deptpid;
+	}
+	/**
+	 * 设置：上级部门名称
+	 */
+	public void setDeptpname(String deptpname) {
+		this.deptpname = deptpname;
+	}
+	/**
+	 * 获取：上级部门名称
+	 */
+	public String getDeptpname() {
+		return deptpname;
 	}
 	/**
 	 * 设置：部门名称
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setDeptname(String deptname) {
+		this.deptname = deptname;
 	}
 	/**
 	 * 获取：部门名称
 	 */
-	public String getName() {
-		return name;
+	public String getDeptname() {
+		return deptname;
 	}
 	/**
 	 * 设置：排序
 	 */
-	public void setOrderNum(Integer orderNum) {
-		this.orderNum = orderNum;
+	public void setOrdernum(Integer ordernum) {
+		this.ordernum = ordernum;
 	}
 	/**
 	 * 获取：排序
 	 */
-	public Integer getOrderNum() {
-		return orderNum;
+	public Integer getOrdernum() {
+		return ordernum;
 	}
 	/**
-	 * 设置：是否删除  -1：已删除  0：正常
+	 * 设置：是否删除
 	 */
-	public void setDelFlag(Integer delFlag) {
-		this.delFlag = delFlag;
+	public void setDelflag(Integer delflag) {
+		this.delflag = delflag;
 	}
 	/**
-	 * 获取：是否删除  -1：已删除  0：正常
+	 * 获取：是否删除
 	 */
-	public Integer getDelFlag() {
-		return delFlag;
+	public Integer getDelflag() {
+		return delflag;
 	}
-
-	@Override
-	public String toString() {
-		return "DeptDO{" +
-				"deptId=" + deptId +
-				", parentId=" + parentId +
-				", name='" + name + '\'' +
-				", orderNum=" + orderNum +
-				", delFlag=" + delFlag +
-				'}';
+	/**
+	 * 设置：是否有效
+	 */
+	public void setIsvalidation(String isvalidation) {
+		this.isvalidation = isvalidation;
+	}
+	/**
+	 * 获取：是否有效
+	 */
+	public String getIsvalidation() {
+		return isvalidation;
 	}
 }

@@ -49,8 +49,8 @@ public class LogController {
 	
 	@ResponseBody
 	@PostMapping("/del")
-	R remove(Long id) {
-		if (logService.remove(id)>0) {
+	R del(String id) {
+		if (logService.del(id)>0) {
 			return R.ok();
 		}
 		return R.error();
@@ -58,7 +58,7 @@ public class LogController {
 
 	@ResponseBody
 	@PostMapping("/batchDel")
-	R batchDel(@RequestParam("ids[]") Long[] ids) {
+	R batchDel(@RequestParam("ids[]") String[] ids) {
 		int r = logService.batchDel(ids);
 		if (r > 0) {
 			return R.ok();

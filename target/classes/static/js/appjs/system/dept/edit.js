@@ -33,17 +33,48 @@ function update() {
 
 }
 function validateRule() {
-	var icon = "<i class='fa fa-times-circle'></i> ";
-	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
-		}
-	})
+    var icon = "<i class='fa fa-times-circle'></i> ";
+    $("#signupForm").validate({
+        rules : {
+            deptname : {
+                required : true
+            },
+            organid : {
+                required : true
+            }
+        },
+        messages : {
+            deptname : {
+                required : icon + "请输入部门名称"
+            },
+            organid : {
+                required : icon + "请选择机构"
+            }
+        }
+    })
+}
+var openOrgan = function(){
+    layer.open({
+        type:2,
+        title:"选择机构",
+        area : [ '300px', '450px' ],
+        content:"/system/organ/treeView"
+    })
+}
+function loadOrgan( organid,organname){
+    $("#organid").val(organid);
+    $("#organname").val(organname);
+}
+
+var openDept = function(){
+    layer.open({
+        type:2,
+        title:"选择部门",
+        area : [ '300px', '450px' ],
+        content:"/system/dept/treeView"
+    })
+}
+function loadDept( deptpid,deptpname){
+    $("#deptpid").val(deptpid);
+    $("#deptpname").val(deptpname);
 }

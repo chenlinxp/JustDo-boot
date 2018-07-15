@@ -40,13 +40,13 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
-	public int remove(Long id) {
-		int count = logdao.remove(id);
+	public int del(String id) {
+		int count = logdao.del(id);
 		return count;
 	}
 
 	@Override
-	public int batchDel(Long[] ids){
+	public int batchDel(String[] ids){
 		return logdao.batchDel(ids);
 	}
 }

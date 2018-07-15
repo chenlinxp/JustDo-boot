@@ -83,11 +83,11 @@
 		where role_id = #{roleId}
 	</update>
 
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_role where role_id = #{value}
 	</delete>
 
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from sys_role where role_id in
 		<foreach item="roleId" collection="array" open="(" separator=","
 			close=")">

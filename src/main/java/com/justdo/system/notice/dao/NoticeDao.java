@@ -18,7 +18,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface NoticeDao {
 
-	NoticeDO get(Long id);
+	NoticeDO get(String id);
 
 	List<NoticeDO> list(Map<String, Object> map);
 
@@ -28,11 +28,11 @@ public interface NoticeDao {
 
 	int update(NoticeDO notice);
 
-	int remove(Long id);
+	int del(String id);
 
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 
-	List<NoticeDO> listByIds(Long[] ids);
+	List<NoticeDO> listByIds(String[] ids);
 
 	int countDTO(Map<String, Object> map);
 

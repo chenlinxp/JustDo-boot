@@ -138,18 +138,18 @@
 		where user_id = #{userId}
 	</update>
 	
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_user where user_id = #{value}
 	</delete>
 	
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from sys_user where user_id in 
 		<foreach item="userId" collection="array" open="(" separator="," close=")">
 			#{userId}
 		</foreach>
 	</delete>
 
-	<select id="listAllDept" resultType="long">
+	<select id="listAllDept" resultType="String">
 				select DISTINCT dept_id from sys_user
 	</select>
 </mapper>

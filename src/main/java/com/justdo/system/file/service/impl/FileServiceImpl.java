@@ -30,7 +30,7 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private JustdoConfig justdoConfig;
 	@Override
-	public FileDO get(Long id){
+	public FileDO get(String id){
 		return fileDao.get(id);
 	}
 	
@@ -55,12 +55,12 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
-	public int remove(Long id){
-		return fileDao.remove(id);
+	public int del(String id){
+		return fileDao.del(id);
 	}
 	
 	@Override
-	public int batchDel(Long[] ids){
+	public int batchDel(String[] ids){
 		return fileDao.batchDel(ids);
 	}
 

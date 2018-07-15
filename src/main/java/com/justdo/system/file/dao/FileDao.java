@@ -18,7 +18,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FileDao {
 
-	FileDO get(Long id);
+	FileDO get(String id);
 	
 	List<FileDO> list(Map<String,Object> map);
 	
@@ -28,7 +28,7 @@ public interface FileDao {
 	
 	int update(FileDO file);
 	
-	int remove(Long id);
+	int del(String id);
 	
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 }

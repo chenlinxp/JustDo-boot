@@ -18,7 +18,7 @@ import com.justdo.system.log.domain.LogDO;
 @Mapper
 public interface LogDao {
 
-	LogDO get(Long id);
+	LogDO get(String id);
 	
 	List<LogDO> list(Map<String,Object> map);
 	
@@ -28,7 +28,7 @@ public interface LogDao {
 	
 	int update(LogDO log);
 	
-	int remove(Long id);
+	int del(String id);
 	
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 }

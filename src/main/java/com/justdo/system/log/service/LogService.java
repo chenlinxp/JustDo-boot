@@ -19,6 +19,6 @@ import com.justdo.common.utils.Query;
 public interface LogService {
 	void save(LogDO logDO);
 	PageDO<LogDO> queryList(Query query);
-	int remove(Long id);
-	int batchDel(Long[] ids);
+	int del(String id);
+	int batchDel(String[] ids);
 }

@@ -15,7 +15,7 @@ import com.justdo.system.notice.domain.NoticeDO;
  */
 public interface NoticeService {
 
-	NoticeDO get(Long id);
+	NoticeDO get(String id);
 
 	List<NoticeDO> list(Map<String, Object> map);
 
@@ -25,9 +25,9 @@ public interface NoticeService {
 
 	int update(NoticeDO notice);
 
-	int remove(Long id);
+	int del(String id);
 
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 
 //	Map<String, Object> message(Long userId);
 

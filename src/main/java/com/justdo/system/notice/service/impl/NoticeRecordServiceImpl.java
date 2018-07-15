@@ -24,7 +24,7 @@ public class NoticeRecordServiceImpl implements NoticeRecordService {
 	private NoticeRecordDao NoticeRecordDao;
 	
 	@Override
-	public NoticeRecordDO get(Long id){
+	public NoticeRecordDO get(String id){
 		return NoticeRecordDao.get(id);
 	}
 	
@@ -49,12 +49,12 @@ public class NoticeRecordServiceImpl implements NoticeRecordService {
 	}
 	
 	@Override
-	public int remove(Long id){
-		return NoticeRecordDao.remove(id);
+	public int del(String id){
+		return NoticeRecordDao.del(id);
 	}
 	
 	@Override
-	public int batchDel(Long[] ids){
+	public int batchDel(String[] ids){
 		return NoticeRecordDao.batchDel(ids);
 	}
 

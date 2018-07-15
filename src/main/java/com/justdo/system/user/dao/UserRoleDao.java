@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserRoleDao {
 
-	UserRoleDO get(Long id);
+	UserRoleDO get(String id);
 
 	List<UserRoleDO> list(Map<String, Object> map);
 
@@ -27,17 +27,17 @@ public interface UserRoleDao {
 
 	int update(UserRoleDO userRole);
 
-	int remove(Long id);
+	int del(String id);
 
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 
-	List<Long> listRoleId(Long userId);
+	List<String> listRoleId(String userId);
 
-	int removeByUserId(Long userId);
+	int delByUserId(String userId);
 
-	int removeByRoleId(Long roleId);
+	int delByRoleId(String roleId);
 
 	int batchSave(List<UserRoleDO> list);
 
-	int batchDelByUserId(Long[] ids);
+	int batchDelByUserId(String[] ids);
 }

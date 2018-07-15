@@ -4,22 +4,16 @@
 <mapper namespace="com.justdo.system.regexp.dao.RegexpDao">
 
 	<select id="get" resultType="com.justdo.system.regexp.domain.RegexpDO">
-		select `RID`,`RNAME`,`RCODE`,`RCONTENT`,`RMARKS`,`RVALID` from sys_regexp where RID = #{value}
+		select `RID`,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID` from sys_regexp where RID = #{value}
 	</select>
-	<!--`RID`,`RNAME`,`RCODE`,`RCONTENT`,`RMARKS`,`RVALID`-->
-	<!--select (@mycnt := @mycnt + 1) as rownum,res.*-->
-	<!--from-->
-	<!--(select * from SYS_REGEXP limit 0, 5 )-->
-	<!--as res, (select @mycnt := 0) num-->
-
 	<select id="list" resultType="com.justdo.system.regexp.domain.RegexpDO">
-		select RID,`RNAME`,`RCODE`,`RCONTENT`,`RMARKS`,`RVALID` from SYS_REGEXP
+		select RID,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID` from SYS_REGEXP
 		<where>
 		<if test="rid != null and rid != ''"> and RID = #{rid} </if>
 		<if test="rname != null and rname != ''"> and RNAME = #{rname} </if>
 		<if test="rcode != null and rcode != ''"> and RCODE = #{rcode} </if>
 		<if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
-		<if test="remark != null and remark != ''"> and RMARKS = #{remark} </if>
+		<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		<if test="rvalid != null and rvalid != ''"> and RVALID = #{rvalid} </if>
 	    </where>
 		<choose>
@@ -41,7 +35,7 @@
 		  		  <if test="rname != null and rname != ''"> and RNAME = #{rname} </if>
 		  		  <if test="rcode != null and rcode != ''"> and RCODE = #{rcode} </if>
 		  		  <if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
-		  		  <if test="remark != null and remark != ''"> and RMARKS = #{remark} </if>
+		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		  		  <if test="rvalid != null and rvalid != ''"> and RVALID = #{rvalid} </if>
 		  		</where>
 	</select>
@@ -56,7 +50,7 @@
 			`RNAME`, 
 			`RCODE`, 
 			`RCONTENT`, 
-			`RMARKS`, 
+			`REMARK`,
 			`RVALID`
 		)
 		values
@@ -76,7 +70,7 @@
 			<if test="rname != null">`RNAME` = #{rname}, </if>
 			<if test="rcode != null">`RCODE` = #{rcode}, </if>
 			<if test="rcontent != null">`RCONTENT` = #{rcontent}, </if>
-			<if test="remark != null">`RMARKS` = #{remark}, </if>
+			<if test="remark != null">`REMARK` = #{remark}, </if>
 			<if test="rvalid != null">`RVALID` = #{rvalid}</if>
 		</set>
 		where RID = #{rid}

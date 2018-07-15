@@ -63,11 +63,11 @@
 		where id = #{id}
 	</update>
 	
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_file where id = #{value}
 	</delete>
 	
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from sys_file where id in 
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}

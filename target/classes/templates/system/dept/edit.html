@@ -9,35 +9,43 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-							<input id="deptId" name="deptId" th:value="${dept.deptId}"
-								class="hidden">
+							<input id="deptId" name="deptId" th:value="${dept.deptid}"	class="hidden">
 							<div class="form-group">
-								<label class="col-sm-3 control-label ">上级部门：</label>
-								<div class="col-sm-8">
-								<input th:value="${parentDeptName}"
-										class="form-control" type="text" readonly="true" />
-									<input class="form-control hidden" type="text" id="parentId" name="parentId" th:value="${dept.parentId}">
+								<label class="col-sm-2 control-label">机构名称：</label>
+								<div class="col-sm-4">
+									<input id="organid" name="organid" type="hidden" th:value="${dept.organid}">
+									<input id="organname" name="organname" class="form-control" type="text"
+										   style="cursor: pointer;" onclick="openOrgan()" th:value="${dept.organname}"
+										   readonly="readonly" placeholder="请选择机构">
+								</div>
+								<label class="col-sm-2 control-label">上级部门：</label>
+								<div class="col-sm-4">
+									<input id="deptpid" name="deptpid" type="hidden" th:value="${dept.deptpid}">
+									<input id="deptpname" name="deptpname" class="form-control" type="text"
+										   style="cursor: pointer;" onclick="openDept()"  th:value="${dept.deptpname}"
+										   readonly="readonly" placeholder="请选择部门">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label">部门名称：</label>
-								<div class="col-sm-8">
-									<input id="name" name="name" th:value="${dept.name}"
-										class="form-control" type="text">
+								<label class="col-sm-2 control-label">部门名称：</label>
+								<div class="col-sm-4">
+									<input id="deptname" name="deptname" class="form-control" type="text" th:value="${dept.deptname}">
+								</div>
+								<label class="col-sm-2 control-label">排序：</label>
+								<div class="col-sm-4">
+									<input id="ordernum" name="ordernum" class="form-control" type="text" th:value="${dept.ordernum}">
 								</div>
 							</div>
+
 							<div class="form-group">
-								<label class="col-sm-3 control-label">排序：</label>
-								<div class="col-sm-8">
-									<input id="orderNum" name="orderNum" th:value="${dept.orderNum}"
-										class="form-control" type="text">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">状态：</label>
-								<div class="col-sm-8">
-									<input id="delFlag" name="delFlag" th:value="${dept.delFlag}"
-										class="form-control" type="text">
+								<label class="col-sm-2 control-label">状态：</label>
+								<div class="col-sm-10">
+									<label class="radio-inline">
+										<input th:field="*{dept.isvalidation}" type="radio" name="isvalidation" value="1" /> 正常
+									</label>
+									<label class="radio-inline">
+										<input th:field="*{dept.isvalidation}" type="radio" name="isvalidation" value="0" /> 禁用
+									</label>
 								</div>
 							</div>
 							<div class="form-group">

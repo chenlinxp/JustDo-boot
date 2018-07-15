@@ -17,11 +17,11 @@ public class NoticeRecordDO implements Serializable {
     /**
      *  编号
      */
-    private Long id;
+    private String id;
     //通知通告ID
-    private Long noticeId;
+    private String noticeId;
     //接受人
-    private Long userId;
+    private String userId;
     //阅读标记
     private Integer isRead;
     //阅读时间
@@ -30,42 +30,42 @@ public class NoticeRecordDO implements Serializable {
     /**
      * 设置：编号
      */
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     /**
      * 获取：编号
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * 设置：通知通告ID
      */
-    public void setNoticeId(Long noticeId) {
+    public void setNoticeId(String noticeId) {
         this.noticeId = noticeId;
     }
 
     /**
      * 获取：通知通告ID
      */
-    public Long getNoticeId() {
+    public String getNoticeId() {
         return noticeId;
     }
 
     /**
      * 设置：接受人
      */
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
     /**
      * 获取：接受人
      */
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 

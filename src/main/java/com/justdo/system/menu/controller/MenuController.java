@@ -3,6 +3,7 @@ package com.justdo.system.menu.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.justdo.common.utils.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,9 +51,9 @@ public class MenuController extends BaseController {
 	@Log("添加菜单")
 	@RequiresPermissions("system:menu:add")
 	@GetMapping("/add/{pId}")
-	String add(Model model, @PathVariable("pId") Long pId) {
+	String add(Model model, @PathVariable("pId") String pId) {
 		model.addAttribute("pId", pId);
-		if (pId == 0) {
+		if (StringUtils.isNotEmpty(pId)) {
 			model.addAttribute("pName", "根目录");
 		} else {
 			model.addAttribute("pName", menuService.get(pId).getName());
@@ -63,11 +64,11 @@ public class MenuController extends BaseController {
 	@Log("编辑菜单")
 	@RequiresPermissions("system:menu:edit")
 	@GetMapping("/edit/{id}")
-	String edit(Model model, @PathVariable("id") Long id) {
+	String edit(Model model, @PathVariable("id") String id) {
 		MenuDO mdo = menuService.get(id);
-		Long pId = mdo.getParentId();
+		String pId = mdo.getParentId();
 		model.addAttribute("pId", pId);
-		if (pId == 0) {
+		if (StringUtils.isNotEmpty(pId)) {
 			model.addAttribute("pName", "根目录");
 		} else {
 			model.addAttribute("pName", menuService.get(pId).getName());
@@ -104,8 +105,8 @@ public class MenuController extends BaseController {
 	@RequiresPermissions("system:menu:del")
 	@PostMapping("/del")
 	@ResponseBody
-	R remove(Long id) {
-		if (menuService.remove(id) > 0) {
+	R del(String id) {
+		if (menuService.del(id) > 0) {
 			return R.ok();
 		} else {
 			return R.error(1, "删除失败");
@@ -122,7 +123,7 @@ public class MenuController extends BaseController {
 
 	@GetMapping("/tree/{roleId}")
 	@ResponseBody
-	Tree<MenuDO> tree(@PathVariable("roleId") Long roleId) {
+	Tree<MenuDO> tree(@PathVariable("roleId") String roleId) {
 		Tree<MenuDO> tree = new Tree<MenuDO>();
 		tree = menuService.getTree(roleId);
 		return tree;

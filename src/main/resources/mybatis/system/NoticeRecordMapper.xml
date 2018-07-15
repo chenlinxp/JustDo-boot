@@ -106,7 +106,7 @@
 		</foreach>
 	</insert>
 
-	<select id="listNoticeIds" resultType="long">
+	<select id="listNoticeIds" resultType="String">
 		select distinct notice_id from oa_notice_record
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
@@ -117,12 +117,12 @@
 		</where>
 	</select>
 
-	<delete id="removeByNotifbyId">
+	<delete id="delByNotifbyId">
 		delete from oa_notice_record where notice_id =
 		#{value}
 	</delete>
 
-	<delete id="batchRemoveByNotifbyId">
+	<delete id="batchDelByNotifbyId">
 		delete from oa_notice_record where notice_id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">

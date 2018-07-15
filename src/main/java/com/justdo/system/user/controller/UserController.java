@@ -79,7 +79,7 @@ public class UserController extends BaseController {
 	@RequiresPermissions("system:user:edit")
 	@Log("编辑用户")
 	@GetMapping("/edit/{id}")
-	String edit(Model model, @PathVariable("id") Long id) {
+	String edit(Model model, @PathVariable("id") String id) {
 		UserDO userDO = userService.get(id);
 		model.addAttribute("user", userDO);
 		List<RoleDO> roles = roleService.list(id);
@@ -130,9 +130,9 @@ public class UserController extends BaseController {
 	@Log("删除用户")
 	@PostMapping("/del")
 	@ResponseBody
-	R remove(Long id) {
+	R remove(String id) {
 
-		if (userService.remove(id) > 0) {
+		if (userService.del(id) > 0) {
 			return R.ok();
 		}
 		return R.error();
@@ -142,9 +142,9 @@ public class UserController extends BaseController {
 	@Log("批量删除用户")
 	@PostMapping("/batchDel")
 	@ResponseBody
-	R batchDel(@RequestParam("ids[]") Long[] userIds) {
+	R batchDel(@RequestParam("ids[]") String[] userIds) {
 
-		int r = userService.batchremove(userIds);
+		int r = userService.batchDel(userIds);
 		if (r > 0) {
 			return R.ok();
 		}
@@ -161,7 +161,7 @@ public class UserController extends BaseController {
 	@RequiresPermissions("system:user:resetPwd")
 	@Log("请求更改用户密码")
 	@GetMapping("/resetPwd/{id}")
-	String resetPwd(@PathVariable("id") Long userId, Model model) {
+	String resetPwd(@PathVariable("id") String userId, Model model) {
 
 		UserDO userDO = new UserDO();
 		userDO.setUserId(userId);

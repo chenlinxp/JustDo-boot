@@ -37,7 +37,7 @@ public class UserRealm extends AuthorizingRealm {
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
-		Long userId = ShiroUtils.getUserId();
+		String userId = ShiroUtils.getUserId();
 		MenuService menuService = ApplicationContextRegister.getBean(MenuService.class);
 		Set<String> perms = menuService.listPerms(userId);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();

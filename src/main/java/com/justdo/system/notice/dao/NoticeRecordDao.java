@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface NoticeRecordDao {
 
-	NoticeRecordDO get(Long id);
+	NoticeRecordDO get(String id);
 
 	List<NoticeRecordDO> list(Map<String, Object> map);
 
@@ -27,17 +27,17 @@ public interface NoticeRecordDao {
 
 	int update(NoticeRecordDO NoticeRecord);
 
-	int remove(Long id);
+	int del(String id);
 
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 
 	int batchSave(List<NoticeRecordDO> records);
 
-	Long[] listNoticeIds(Map<String, Object> map);
+	String[] listNoticeIds(Map<String, Object> map);
 
-	int removeByNotifbyId(Long NoticeId);
+	int delByNotifbyId(String NoticeId);
 
-	int batchDelByNotifbyId(Long[] NoticeIds);
+	int batchDelByNotifbyId(String[] NoticeIds);
 
 	int changeRead(NoticeRecordDO NoticeRecord);
 }

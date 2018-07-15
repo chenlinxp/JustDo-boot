@@ -82,7 +82,7 @@ public interface ${className}Mapper {
 	int update(${className}DO ${classname});
 	
 	@Delete("delete from ${tableName} where ${pk.columnName} =#{${pk.attrname}}")
-	int remove(${pk.attrType} ${pk.columnName});
+	int del(${pk.attrType} ${pk.columnName});
 	
 	@Delete("<script>"+ 
 			"delete from ${tableName} where ${pk.columnName} in " + 

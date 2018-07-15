@@ -23,13 +23,14 @@ var load = function () {
                 bordered: true, // 是否显示边框
                 expandAll: false, // 是否全部展开
                 toolbar : '#bToolbar',
-                onClickRow: function (row, element) {
-                    $('.success').removeClass('success');//去除之前选中的行的，选中样式
-                    $(element).addClass('success');//添加当前选中的 success样式用于区别
-                },
+
                 columns: [
                     {
-                        checkbox : true
+                        title : '序号',
+                        field : 'rowalias',
+                        align : 'left',
+                        valign : 'center',
+                        width : '50px'
                     },
                     {
                         title: '编号',

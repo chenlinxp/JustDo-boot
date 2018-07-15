@@ -16,7 +16,7 @@ import com.justdo.system.user.domain.UserDO;
 @Mapper
 public interface UserDao {
 
-	UserDO get(Long userId);
+	UserDO get(String userId);
 	
 	List<UserDO> list(Map<String,Object> map);
 	
@@ -26,10 +26,10 @@ public interface UserDao {
 	
 	int update(UserDO user);
 	
-	int remove(Long userId);
+	int del(String userId);
 	
-	int batchDel(Long[] userIds);
-	
-	Long[] listAllDept();
+	int batchDel(String[] userIds);
+
+	String[] listAllDept();
 
 }

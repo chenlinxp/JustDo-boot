@@ -65,7 +65,7 @@ public class FileController extends BaseController {
 
 	@GetMapping("/edit")
 	@RequiresPermissions("system:file:edit")
-	String edit(Long id, Model model) {
+	String edit(String id, Model model) {
 		FileDO file = fileService.get(id);
 		model.addAttribute("file", file);
 		return "system/file/edit";
@@ -76,7 +76,7 @@ public class FileController extends BaseController {
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("system:info")
-	public R info(@PathVariable("id") Long id) {
+	public R info(@PathVariable("id") String id) {
 		FileDO file = fileService.get(id);
 		return R.ok().put("file", file);
 	}
@@ -111,10 +111,10 @@ public class FileController extends BaseController {
 	@PostMapping("/del")
 	@ResponseBody
 	// @RequiresPermissions("common:del")
-	public R remove(Long id, HttpServletRequest request) {
+	public R remove(String id, HttpServletRequest request) {
 
 		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getUrl().replace("/files/", "");
-		if (fileService.remove(id) > 0) {
+		if (fileService.del(id) > 0) {
 			boolean b = FileUtil.deleteFile(fileName);
 			if (!b) {
 				return R.error("数据库记录删除成功，文件删除失败");
@@ -131,7 +131,7 @@ public class FileController extends BaseController {
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:del")
-	public R remove(@RequestParam("ids[]") Long[] ids) {
+	public R remove(@RequestParam("ids[]") String[] ids) {
 
 		fileService.batchDel(ids);
 		return R.ok();

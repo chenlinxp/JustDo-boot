@@ -24,7 +24,7 @@ public interface ${className}Dao {
 	
 	int update(${className}DO ${classname});
 	
-	int remove(${pk.attrType} ${pk.columnName});
+	int del(${pk.attrType} ${pk.columnName});
 	
 	int batchDel(${pk.attrType}[] ${pk.attrname}s);
 }

@@ -98,11 +98,11 @@
 		where menu_id = #{menuId}
 	</update>
 
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_menu where menu_id = #{value}
 	</delete>
 
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from sys_menu where menu_id in
 		<foreach item="menuId" collection="array" open="(" separator=","
 			close=")">

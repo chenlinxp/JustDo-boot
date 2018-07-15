@@ -50,17 +50,25 @@
         };
         var j = 0;
         // 递归获取子节点并且设置子节点
-        target.getChildNodes = function(data, parentNode, parentIndex, tbody) {
+        target.getChildNodes = function(data, parentNode, parentIndex,rowalias, tbody) {
+            var k = 0;
             $.each(data, function(i, item) {
                 if (item[options.parentCode] == parentNode[options.code]) {
                     var tr = $('<tr></tr>');
-                    var nowParentIndex = (parentIndex + (j++) + 1);
+                    var nowParentIndex = (parentIndex + (j++ )+ 1);
                     tr.addClass('treegrid-' + nowParentIndex);
                     tr.addClass('treegrid-parent-' + parentIndex);
+                    k++;
+                    var a=rowalias+"."+k;
+                    if(options.columns[0].field=='rowalias') {
+                        var td = $('<td style="text-align:' + options.columns[0].align + ';' + ((options.columns[0].width) ? ('width:' + options.columns[0].width) : '') + '"></td>');
+                        td.text(a);
+                        tr.append(td);
+                    }
                     target.renderRow(tr,item);
                     item.isShow = true;
                     tbody.append(tr);
-                    target.getChildNodes(data, item, nowParentIndex, tbody)
+                    target.getChildNodes(data, item, nowParentIndex,a, tbody)
 
                 }
             });
@@ -81,13 +89,22 @@
                         td.append(_ipt);
                     }
                     tr.append(td);
-                }else{
-                    var td = $('<td style="text-align:'+column.align+';'+((column.width)?('width:'+column.width):'')+'"></td>');
-                    // 增加formatter渲染
-                    if (column.formatter) {
-                        td.html(column.formatter.call(this, item, index));
-                    } else {
+                    //树序号的别名
+                }else if (index==0&&column.field=='rowalias'){
+
+                }else {
+                    var td;
+                    if(column.visible==false){
+                        td = $('<td style="display:none"></td>');
                         td.text(item[column.field]);
+                    }else {
+                        td = $('<td style="text-align:' + column.align + ';' + ((column.width) ? ('width:' + column.width) : '') + '"></td>');
+                        // 增加formatter渲染
+                        if (column.formatter) {
+                            td.html(column.formatter.call(this, item, index));
+                        } else {
+                            td.text(item[column.field]);
+                        }
                     }
                     tr.append(td);
                 }
@@ -104,9 +121,13 @@
                 // 判断有没有选择列
                 if(i==0&&item.field=='selectItem'){
                     hasSelectItem = true;
-                    th = $('<th style="text-align:'+item.valign+';width:36px"></th>');
+                        th = $('<th style="text-align:' + item.valign + ';width:36px"></th>');
                 }else{
-                    th = $('<th style="text-align:'+item.valign+';padding:10px;'+((item.width)?('width:'+item.width):'')+'"></th>');
+                    if(item.visible==false){
+                        th = $('<th style="display:none"></th>');
+                    }else {
+                        th = $('<th style="text-align:' + item.valign + ';padding:10px;' + ((item.width) ? ('width:' + item.width) : '') + '"></th>');
+                    }
                 }
                 th.text(item.title);
                 thr.append(th);
@@ -141,10 +162,16 @@
                     $.each(rootNode, function(i, item) {
                         var tr = $('<tr></tr>');
                         tr.addClass('treegrid-' + (j + "_" + i));
+                         var rowalias=i + 1;
+                        if(options.columns[0].field=='rowalias') {
+                            var td = $('<td style="text-align:' + options.columns[0].align + ';' + ((options.columns[0].width) ? ('width:' + options.columns[0].width) : '') + '"></td>');
+                            td.text(rowalias);
+                            tr.append(td);
+                        }
                         target.renderRow(tr,item);
                         item.isShow = true;
                         tbody.append(tr);
-                        target.getChildNodes(data, item, (j + "_" + i), tbody);
+                        target.getChildNodes(data, item, (j + "_" + i),rowalias, tbody);
                     });
                     // 下边的操作主要是为了查询时让一些没有根节点的节点显示
                     $.each(data, function(i, item) {
@@ -184,6 +211,9 @@
                                     $(this).addClass("treegrid-selected");
                                 }
                             }
+                        }else{
+                            $('.success').removeClass('success');//去除之前选中的行的，选中样式
+                            $(this).addClass('success');//添加当前选中的 success样式用于区别
                         }
                     });
                 },
@@ -234,6 +264,8 @@
         	target.find("tbody").css("height", height + 'px');
         }
         // 组件的其他方法也可以进行类似封装........
+
+
     };
 
     $.fn.bootstrapTreeTable.defaults = {

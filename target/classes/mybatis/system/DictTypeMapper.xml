@@ -48,7 +48,7 @@
 		where did = #{did}
 	</update>
 
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_dict where did = #{did}
 	</delete>
 

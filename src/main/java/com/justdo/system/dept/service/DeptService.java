@@ -16,7 +16,7 @@ import com.justdo.system.dept.domain.DeptDO;
  */
 public interface DeptService {
 	
-	DeptDO get(Long deptId);
+	DeptDO get(String deptId);
 	
 	List<DeptDO> list(Map<String, Object> map);
 	
@@ -26,11 +26,11 @@ public interface DeptService {
 	
 	int update(DeptDO dept);
 	
-	int remove(Long deptId);
+	int del(String deptId);
 	
-	int batchDel(Long[] deptIds);
+	int batchDel(String[] deptIds);
 
 	Tree<DeptDO> getTree();
 	
-	boolean checkDeptHasUser(Long deptId);
+	boolean checkDeptHasUser(String deptId);
 }

@@ -60,11 +60,11 @@
 		where id = #{id}
 	</update>
 
-	<delete id="remove">
+	<delete id="del">
 		delete from sys_role_menu where id = #{value}
 	</delete>
 
-	<delete id="batchRemove">
+	<delete id="batchDel">
 		delete from sys_role_menu where id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
@@ -72,16 +72,16 @@
 		</foreach>
 	</delete>
 
-	<select id="listMenuIdByRoleId" resultType="long">
+	<select id="listMenuIdByRoleId" resultType="String">
 		select menu_id from sys_role_menu
 		<where>role_id = #{roleId}</where>
 	</select>
 
-	<delete id="removeByRoleId">
+	<delete id="delByRoleId">
 		DELETE FROM sys_role_menu WHERE role_id=#{roleId}
 	</delete>
 
-	<delete id="removeByMenuId">
+	<delete id="delByMenuId">
 		DELETE FROM sys_role_menu WHERE menu_id=#{menuId}
 	</delete>
 

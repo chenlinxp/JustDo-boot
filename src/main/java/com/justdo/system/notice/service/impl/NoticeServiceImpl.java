@@ -46,7 +46,7 @@ public class NoticeServiceImpl implements NoticeService {
     private SimpMessagingTemplate template;
 
     @Override
-    public NoticeDO get(Long id) {
+    public NoticeDO get(String id) {
         NoticeDO rDO = NoticeDao.get(id);
         rDO.setType(dictService.getName("notice_type", rDO.getType()));
         return rDO;
@@ -72,10 +72,10 @@ public class NoticeServiceImpl implements NoticeService {
         Notice.setUpdateDate(new Date());
         int r = NoticeDao.save(Notice);
         // 保存到接受者列表中
-        Long[] userIds = Notice.getUserIds();
-        Long NoticeId = Notice.getId();
+        String[] userIds = Notice.getUserIds();
+        String NoticeId = Notice.getId();
         List<NoticeRecordDO> records = new ArrayList<>();
-        for (Long userId : userIds) {
+        for (String userId : userIds) {
             NoticeRecordDO record = new NoticeRecordDO();
             record.setNoticeId(NoticeId);
             record.setUserId(userId);
@@ -89,7 +89,7 @@ public class NoticeServiceImpl implements NoticeService {
             @Override
             public void run() {
                 for (UserDO userDO : sessionService.listOnlineUser()) {
-                    for (Long userId : userIds) {
+                    for (String userId : userIds) {
                         if (userId.equals(userDO.getUserId())) {
                             template.convertAndSendToUser(userDO.toString(), "/queue/notifications", "新消息：" + Notice.getTitle());
                         }
@@ -108,14 +108,14 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Transactional
     @Override
-    public int remove(Long id) {
-        recordDao.removeByNotifbyId(id);
-        return NoticeDao.remove(id);
+    public int del(String id) {
+        recordDao.delByNotifbyId(id);
+        return NoticeDao.del(id);
     }
 
     @Transactional
     @Override
-    public int batchDel(Long[] ids) {
+    public int batchDel(String[] ids) {
         recordDao.batchDelByNotifbyId(ids);
         return NoticeDao.batchDel(ids);
     }

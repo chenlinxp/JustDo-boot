@@ -17,23 +17,23 @@ import com.justdo.system.menu.domain.MenuDO;
  */
 @Service
 public interface MenuService {
-	Tree<MenuDO> getSysMenuTree(Long id);
+	Tree<MenuDO> getSysMenuTree(String id);
 
-	List<Tree<MenuDO>> listMenuTree(Long id);
+	List<Tree<MenuDO>> listMenuTree(String id);
 
 	Tree<MenuDO> getTree();
 
-	Tree<MenuDO> getTree(Long id);
+	Tree<MenuDO> getTree(String id);
 
 	List<MenuDO> list(Map<String, Object> params);
 
-	int remove(Long id);
+	int del(String id);
 
 	int save(MenuDO menu);
 
 	int update(MenuDO menu);
 
-	MenuDO get(Long id);
+	MenuDO get(String id);
 
-	Set<String> listPerms(Long userId);
+	Set<String> listPerms(String userId);
 }

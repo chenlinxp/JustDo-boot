@@ -7,26 +7,26 @@ package com.justdo.system.role.domain;
  * @date 2018-06-19 16:02:20
  */
 public class RoleMenuDO {
-	private Long id;
-	private Long  roleId;
-	private Long menuId;
+	private String id;
+	private String  roleId;
+	private String menuId;
 	
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	public Long getRoleId() {
+	public String getRoleId() {
 		return roleId;
 	}
-	public void setRoleId(Long roleId) {
+	public void setRoleId(String roleId) {
 		this.roleId = roleId;
 	}
-	public Long getMenuId() {
+	public String getMenuId() {
 		return menuId;
 	}
-	public void setMenuId(Long menuId) {
+	public void setMenuId(String menuId) {
 		this.menuId = menuId;
 	}
 

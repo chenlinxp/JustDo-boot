@@ -69,7 +69,7 @@
 		where ${pk.columnName} = #{${pk.attrname}}
 	</update>
 	
-	<delete id="remove">
+	<delete id="del">
 		delete from ${tableName} where ${pk.columnName} = #{value}
 	</delete>
 	

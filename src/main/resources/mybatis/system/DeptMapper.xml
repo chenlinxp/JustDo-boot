@@ -4,27 +4,26 @@
 <mapper namespace="com.justdo.system.dept.dao.DeptDao">
 
 	<select id="get" resultType="com.justdo.system.dept.domain.DeptDO">
-		select
-		`dept_id`,`parent_id`,`name`,`order_num`,`del_flag` from sys_dept
-		where dept_id = #{value}
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from sys_dept where DEPTID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `dept_id`,`parent_id`,`name`,`order_num`,`del_flag` from
-		sys_dept
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from sys_dept
 		<where>
-			<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
-			<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
-			<if test="name != null and name != ''"> and name = #{name} </if>
-			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
-			<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
+			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
+			<if test="deptpid != null and deptpid != ''"> and DEPTPID = #{deptpid} </if>
+			<if test="deptname != null and deptname != ''"> and DEPTNAME = #{deptname} </if>
+			<if test="ordernum != null and ordernum != ''"> and ORDERNUM = #{ordernum} </if>
+			<if test="delflag != null and delflag != ''"> and DELFLAG = #{delflag} </if>
+			<if test="isvalidation != null and isvalidation != ''"> and ISVALIDATION = #{isvalidation} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
 				order by ${sort} ${order}
 			</when>
 			<otherwise>
-				order by dept_id desc
+				order by DEPTID desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
@@ -35,60 +34,71 @@
 	<select id="count" resultType="int">
 		select count(*) from sys_dept
 		<where>
-			<if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
-			<if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
-			<if test="name != null and name != ''"> and name = #{name} </if>
-			<if test="orderNum != null and orderNum != ''"> and order_num = #{orderNum} </if>
-			<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
+			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
+			<if test="deptpid != null and deptpid != ''"> and DEPTPID = #{deptpid} </if>
+			<if test="deptname != null and deptname != ''"> and DEPTNAME = #{deptname} </if>
+			<if test="ordernum != null and ordernum != ''"> and ORDERNUM = #{ordernum} </if>
+			<if test="delflag != null and delflag != ''"> and DELFLAG = #{delflag} </if>
+			<if test="isvalidation != null and isvalidation != ''"> and ISVALIDATION = #{isvalidation} </if>
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.justdo.system.dept.domain.DeptDO"
-		useGeneratedKeys="true" keyProperty="deptId">
+	<insert id="save" parameterType="com.justdo.system.dept.domain.DeptDO">
+		<selectKey keyProperty="deptid" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as deptid from dual
+		</selectKey>
 		insert into sys_dept
 		(
-		`parent_id`,
-		`name`,
-		`order_num`,
-		`del_flag`
+		`DEPTID`,
+		`ORGANID`,
+		`DEPTPID`,
+		`DEPTNAME`,
+		`ORDERNUM`,
+		`DELFLAG`,
+		`ISVALIDATION`
 		)
 		values
 		(
-		#{parentId},
-		#{name},
-		#{orderNum},
-		#{delFlag}
+		#{deptid},
+		#{organid},
+		#{deptpid},
+		#{deptname},
+		#{ordernum},
+		#{delflag},
+		#{isvalidation}
 		)
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.dept.domain.DeptDO">
 		update sys_dept
 		<set>
-			<if test="parentId != null">`parent_id` = #{parentId}, </if>
-			<if test="name != null">`name` = #{name}, </if>
-			<if test="orderNum != null">`order_num` = #{orderNum}, </if>
-			<if test="delFlag != null">`del_flag` = #{delFlag}</if>
+			<if test="organid != null">`ORGANID` = #{organid}, </if>
+			<if test="deptpid != null">`DEPTPID` = #{deptpid}, </if>
+			<if test="deptname != null">`DEPTNAME` = #{deptname}, </if>
+			<if test="ordernum != null">`ORDERNUM` = #{ordernum}, </if>
+			<if test="delflag != null">`DELFLAG` = #{delflag}, </if>
+			<if test="isvalidation != null">`ISVALIDATION` = #{isvalidation}</if>
 		</set>
-		where dept_id = #{deptId}
+		where DEPTID = #{deptid}
 	</update>
 
 	<delete id="del">
-		delete from sys_dept where dept_id = #{value}
+		delete from sys_dept where DEPTID = #{value}
 	</delete>
 
 	<delete id="batchDel">
-		delete from sys_dept where dept_id in
-		<foreach item="deptId" collection="array" open="(" separator=","
-			close=")">
-			#{deptId}
+		delete from sys_dept where DEPTID in
+		<foreach item="deptid" collection="array" open="(" separator="," close=")">
+			#{deptid}
 		</foreach>
 	</delete>
-	
-	<select id="listParentDept" resultType="long">
-		select DISTINCT parent_id from sys_dept
+
+	<select id="listParentDept" resultType="String">
+		select DISTINCT deptpid from sys_dept
 	</select>
 
-    <select id="getDeptUserNumber" resultType="int">
+	<select id="getDeptUserNumber" resultType="int">
 		select count(*) from sys_user where dept_id = #{value}
 	</select>
 </mapper>

@@ -18,7 +18,7 @@ import com.justdo.system.role.domain.RoleDO;
 @Mapper
 public interface RoleDao {
 
-	RoleDO get(Long roleId);
+	RoleDO get(String roleId);
 	
 	List<RoleDO> list(Map<String,Object> map);
 	
@@ -28,7 +28,7 @@ public interface RoleDao {
 	
 	int update(RoleDO role);
 	
-	int remove(Long roleId);
+	int del(String roleId);
 	
-	int batchDel(Long[] roleIds);
+	int batchDel(String[] roleIds);
 }

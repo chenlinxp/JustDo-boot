@@ -72,21 +72,21 @@
 		</foreach>
 	</delete>
 
-	<select id="listRoleId" resultType="long">
+	<select id="listRoleId" resultType="String">
 		select role_id from
 		sys_user_role where
 		user_id=#{userId}
 	</select>
 
-	<delete id="removeByUserId">
+	<delete id="delByUserId">
 		delete from sys_user_role where user_id=#{userId}
 	</delete>
 
-	<delete id="removeByRoleId">
+	<delete id="delByRoleId">
 		delete from sys_user_role where role_id=#{roleId}
 	</delete>
 
-	<delete id="batchRemoveByUserId">
+	<delete id="batchDelByUserId">
 		delete from sys_user_role where user_id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">

@@ -15,7 +15,7 @@ import com.justdo.system.file.domain.FileDO;
  */
 public interface FileService {
 	
-	FileDO get(Long id);
+	FileDO get(String id);
 	
 	List<FileDO> list(Map<String, Object> map);
 	
@@ -25,9 +25,9 @@ public interface FileService {
 	
 	int update(FileDO sysFile);
 	
-	int remove(Long id);
+	int del(String id);
 	
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 
 	/**
 	 * 判断一个文件是否存在

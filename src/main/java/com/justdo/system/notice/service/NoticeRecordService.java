@@ -15,7 +15,7 @@ import com.justdo.system.notice.domain.NoticeRecordDO;
  */
 public interface NoticeRecordService {
 	
-	NoticeRecordDO get(Long id);
+	NoticeRecordDO get(String id);
 	
 	List<NoticeRecordDO> list(Map<String, Object> map);
 	
@@ -25,9 +25,9 @@ public interface NoticeRecordService {
 	
 	int update(NoticeRecordDO notifyRecord);
 	
-	int remove(Long id);
+	int del(String id);
 	
-	int batchDel(Long[] ids);
+	int batchDel(String[] ids);
 
 	/**
 	 * 更改阅读状态
