@@ -3,6 +3,7 @@ $(function() {
 	var deptId = '';
 	getTreeData();
 	load(deptId);
+    testData();
 });
 
 function load(deptId) {
@@ -224,6 +225,21 @@ function loadTree(tree) {
 	});
 	$('#jstree').jstree().open_all();
 }
+
+function testData() {
+    $.ajax({
+        type : "GET",
+        url : "/system/organ/organdept",
+        data : {
+            "organid" : ''
+        },
+        success : function(data) {
+        	console.log(data);
+            alert(data);
+
+        }
+    });
+}
 $('#jstree').on("changed.jstree", function(e, data) {
 	if (data.selected == -1) {
 		var opt = {
@@ -240,5 +256,7 @@ $('#jstree').on("changed.jstree", function(e, data) {
 		}
 		$('#bTable').bootstrapTable('refresh',opt);
 	}
+
+
 
 });

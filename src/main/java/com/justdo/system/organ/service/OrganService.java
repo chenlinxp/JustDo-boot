@@ -6,6 +6,8 @@ import java.util.Map;
 
 import com.justdo.common.domain.Tree;
 import com.justdo.system.organ.domain.OrganDO;
+import com.justdo.system.organ.domain.OrganDeptVO;
+
 /**
  * 机构
  * 
@@ -30,4 +32,6 @@ public interface OrganService {
 	int batchDel(String[] organids);
 
 	Tree<OrganDO> getTree();
+
+	List<OrganDeptVO> findOrganDept(Map<String, Object> param);
 }

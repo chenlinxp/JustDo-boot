@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import com.justdo.system.dept.domain.DeptVO;
 
 /**
  * 部门管理
@@ -34,6 +35,7 @@ public interface DeptDao {
 	
 	int getDeptUserNumber(String deptId);
 
+	List<DeptVO> getAllDepts(Map<String, Object> param);
 
 
 }

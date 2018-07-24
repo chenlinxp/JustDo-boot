@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.justdo.common.domain.Tree;
 import com.justdo.system.dept.domain.DeptDO;
-
+import com.justdo.system.dept.domain.DeptVO;
 
 
 /**
@@ -33,4 +33,6 @@ public interface DeptService {
 	Tree<DeptDO> getTree();
 	
 	boolean checkDeptHasUser(String deptId);
+
+	List<DeptVO> getAllDepts(Map<String,Object> map);
 }

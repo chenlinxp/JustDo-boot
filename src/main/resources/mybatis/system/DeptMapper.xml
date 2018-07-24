@@ -101,4 +101,16 @@
 	<select id="getDeptUserNumber" resultType="int">
 		select count(*) from sys_user where dept_id = #{value}
 	</select>
+
+	<select id="getAllDepts" resultType="com.justdo.system.dept.domain.DeptVO" parameterType="map" >
+		select deptid,deptname,deptpid,organid from sys_dept
+
+		<where>
+			<if test="deptpid != null and deptpid != ''">and isvalidation = 1 and deptpid = #{deptpid} </if>
+
+			<if test="deptpid == null or deptpid == ''">and isvalidation = 1 and deptpid = '' </if>
+
+			<if test="organid != null and organid != ''"> and organid = #{organid} </if>
+		</where>
+	</select>
 </mapper>

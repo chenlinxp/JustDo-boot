@@ -3,6 +3,8 @@ package com.justdo.system.organ.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.justdo.system.dept.service.DeptService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.justdo.system.organ.domain.OrganDeptVO;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.organ.service.OrganService;
 import com.justdo.common.utils.PageUtils;
@@ -35,6 +38,7 @@ public class OrganController {
 	private String prefix = "system/organ";
 	@Autowired
 	private OrganService organService;
+
 	
 	@GetMapping()
 	@RequiresPermissions("system:organ:organ")
@@ -130,5 +134,11 @@ public class OrganController {
 	String treeView() {
 		return  prefix + "/organTree";
 	}
+	@GetMapping("/organdept")
+	String findOrganDept(@RequestParam Map<String, Object> params){
 
+		List<OrganDeptVO> list=organService.findOrganDept(params);
+
+		return JSON.toJSONString(list);
+	}
 }

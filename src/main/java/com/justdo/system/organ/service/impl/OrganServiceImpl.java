@@ -7,10 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.justdo.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.justdo.system.dept.domain.DeptVO;
+import com.justdo.system.dept.service.DeptService;
+import com.justdo.common.utils.StringUtils;
+import com.justdo.system.organ.domain.OrganDeptVO;
 import com.justdo.system.organ.dao.OrganDao;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.organ.service.OrganService;
@@ -23,7 +26,10 @@ import com.justdo.common.utils.BuildTree;
 public class OrganServiceImpl implements OrganService {
 	@Autowired
 	private OrganDao organDao;
-	
+
+	@Autowired
+	private DeptService deptService;
+
 	@Override
 	public OrganDO get(String organid){
 		OrganDO  organDO = organDao.get(organid);
@@ -86,5 +92,37 @@ public class OrganServiceImpl implements OrganService {
 		Tree<OrganDO> t = BuildTree.build(trees);
 		return t;
 	}
-	
+	/**
+	 * @descript:递归公司，在公司里面递归部门
+	 * @param paramMap
+	 * @return
+	 */
+	@Override
+	public List<OrganDeptVO> findOrganDept(Map<String, Object> paramMap) {
+		List<OrganDeptVO> list=new ArrayList<OrganDeptVO>();
+		//查询公司
+		List<OrganDeptVO> organDeptVosList=organDao.findOrganDept(paramMap);
+		if(organDeptVosList!=null){
+			for(OrganDeptVO organDeptVo:organDeptVosList){
+				OrganDeptVO organDeptVo2=new OrganDeptVO();
+				organDeptVo2.setOrganid(organDeptVo.getOrganid());
+				organDeptVo2.setOrganname(organDeptVo.getOrganname());
+				organDeptVo2.setOrganpid(organDeptVo.getOrganpid());
+				Map<String, Object> dataMap=new HashMap<String, Object>();
+				dataMap.put("organpid", organDeptVo.getOrganid());
+				//通过父级公司递归公司
+				organDeptVo2.setSuborgandeptvo(findOrganDept(dataMap));
+
+				Map<String, Object> dataDeptMap=new HashMap<String, Object>();
+				dataDeptMap.put("organid", organDeptVo.getOrganid());
+				dataDeptMap.put("deptid", "");
+				//通过父级部门递归部门
+				List<DeptVO> deptVOList = deptService.getAllDepts(dataDeptMap);
+				organDeptVo2.setDeptvo(deptVOList);
+				list.add(organDeptVo2);
+			}
+		}
+		return list;
+	}
+
 }

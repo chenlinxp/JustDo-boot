@@ -131,4 +131,13 @@
 	<select id="listParentOrgan" resultType="String">
 		select DISTINCT organpid from sys_organ
 	</select>
+
+	<select id="findOrganDept" parameterType="map" resultType="com.justdo.system.organ.domain.OrganDeptVO" >
+		select `ORGANID`,`ORGANPID`,`ORGANNAME` from sys_organ
+		<where>
+			<if test="organpid != null and organpid != ''">and ISVALIDATION = 1 and ORGANPID = #{organpid} </if>
+
+			<if test="organpid == null or organpid == ''">and ISVALIDATION = 1 and ORGANPID = '' </if>
+		</where>
+	</select>
 </mapper>

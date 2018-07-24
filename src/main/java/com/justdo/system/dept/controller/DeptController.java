@@ -60,9 +60,9 @@ public class DeptController extends BaseController {
 	String add(@PathVariable("pId") String pId, Model model) {
 		model.addAttribute("deptpid", pId);
 		if (!StringUtils.isNotEmpty(pId)) {
-			model.addAttribute("deptpname", "总部门");
-		} else {
 			model.addAttribute("deptpname", deptService.get(pId).getDeptname());
+		} else {
+			model.addAttribute("deptpname", "总部门");
 		}
 		return  prefix + "/add";
 	}

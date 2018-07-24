@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.BuildTree;
 import com.justdo.system.organ.dao.OrganDao;
+import com.justdo.system.dept.domain.DeptVO;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.dept.dao.DeptDao;
 import com.justdo.system.dept.domain.DeptDO;
@@ -28,8 +29,8 @@ public class DeptServiceImpl implements DeptService {
 	@Autowired
 	private DeptDao deptDao;
 
-	@Autowired
-	private OrganDao organDao;
+//	@Autowired
+//	private OrganDao organDao;
 	@Override
 	public DeptDO get(String deptId){
 		return deptDao.get(deptId);
@@ -69,19 +70,19 @@ public class DeptServiceImpl implements DeptService {
 	public Tree<DeptDO> getTree() {
 		List<Tree<DeptDO>> trees = new ArrayList<Tree<DeptDO>>();
 		List<DeptDO> depts = deptDao.list(new HashMap<String,Object>(16));
-		List<OrganDO> organs = organDao.list(new HashMap<String,Object>(16));
-
-		for (OrganDO organ : organs) {
-			Tree<DeptDO> tree = new Tree<DeptDO>();
-			tree.setId(organ.getOrganid());
-			tree.setParentId(organ.getOrganpid());
-			tree.setText(organ.getOrganname());
-			Map<String, Object> state = new HashMap<>(16);
-			state.put("opened", true);
-			tree.setState(state);
-			tree.setNodeType("ORGAN");
-			trees.add(tree);
-		}
+//		List<OrganDO> organs = organDao.list(new HashMap<String,Object>(16));
+//
+//		for (OrganDO organ : organs) {
+//			Tree<DeptDO> tree = new Tree<DeptDO>();
+//			tree.setId(organ.getOrganid());
+//			tree.setParentId(organ.getOrganpid());
+//			tree.setText(organ.getOrganname());
+//			Map<String, Object> state = new HashMap<>(16);
+//			state.put("opened", true);
+//			tree.setState(state);
+//			tree.setNodeType("ORGAN");
+//			trees.add(tree);
+//		}
 
 		for (DeptDO dept : depts) {
 			Tree<DeptDO> tree = new Tree<DeptDO>();
@@ -106,5 +107,24 @@ public class DeptServiceImpl implements DeptService {
 		int result = deptDao.getDeptUserNumber(deptId);
 		return result==0?true:false;
 	}
+	@Override
+	public List<DeptVO> getAllDepts(Map<String, Object> param){
+		List<DeptVO> deptvoList = new ArrayList<DeptVO>();
+		List<DeptVO> deptVos = deptDao.getAllDepts(param);
+		if(deptVos!=null){
+			for(DeptVO deptVO:deptVos){
+				DeptVO depteVo2 = new DeptVO();
+				depteVo2.setDeptid(deptVO.getDeptid());
+				depteVo2.setDeptname(deptVO.getDeptname());
+				Map<String ,Object> paramMap = new HashMap<String ,Object>();
 
+				paramMap.put("deptpid" , deptVO.getDeptid());
+				paramMap.put("organid" ,deptVO.getOrganid());
+
+    				depteVo2.setSubdeptvo(getAllDepts(paramMap));
+				deptvoList.add(depteVo2);
+			}
+		}
+		return  deptvoList;
+	}
 }

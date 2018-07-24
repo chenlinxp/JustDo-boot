@@ -110,7 +110,7 @@ public class FileController extends BaseController {
 	 */
 	@PostMapping("/del")
 	@ResponseBody
-	// @RequiresPermissions("common:del")
+	@RequiresPermissions("system:del")
 	public R remove(String id, HttpServletRequest request) {
 
 		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getUrl().replace("/files/", "");

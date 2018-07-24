@@ -2,8 +2,10 @@ package com.justdo.system.organ.dao;
 
 import java.util.List;
 import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import com.justdo.system.organ.domain.OrganDO;
+import com.justdo.system.organ.domain.OrganDeptVO;
 
 /**
  * 机构
@@ -29,4 +31,6 @@ public interface OrganDao {
 	int batchDel(String[] organids);
 
 	String[] listParentOrgan();
+
+	List<OrganDeptVO> findOrganDept(Map<String, Object> param);
 }

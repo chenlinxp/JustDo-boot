@@ -59,15 +59,14 @@ public class BuildTree {
 		for (Tree<T> children : nodes) {
 
 			String pid = children.getParentId();
-			if (pid == null || idParam.equals(pid)) {
+			if (!StringUtils.isNotEmpty(pid)) {
 				topNodes.add(children);
-
 				continue;
 			}
 
 			for (Tree<T> parent : nodes) {
 				String id = parent.getId();
-				if (id != null && id.equals(pid)) {
+				if (StringUtils.isNotEmpty(id) && id.equals(pid)) {
 					parent.getChildren().add(children);
 					children.setHasParent(true);
 					parent.setChildren(true);

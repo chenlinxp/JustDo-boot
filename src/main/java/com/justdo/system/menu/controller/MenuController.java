@@ -54,9 +54,9 @@ public class MenuController extends BaseController {
 	String add(Model model, @PathVariable("pId") String pId) {
 		model.addAttribute("pId", pId);
 		if (StringUtils.isNotEmpty(pId)) {
-			model.addAttribute("pName", "根目录");
-		} else {
 			model.addAttribute("pName", menuService.get(pId).getName());
+		} else {
+			model.addAttribute("pName", "根目录");
 		}
 		return prefix + "/add";
 	}
@@ -69,9 +69,9 @@ public class MenuController extends BaseController {
 		String pId = mdo.getParentId();
 		model.addAttribute("pId", pId);
 		if (StringUtils.isNotEmpty(pId)) {
-			model.addAttribute("pName", "根目录");
-		} else {
 			model.addAttribute("pName", menuService.get(pId).getName());
+		} else {
+			model.addAttribute("pName", "根目录");
 		}
 		model.addAttribute("menu", mdo);
 		return prefix+"/edit";
