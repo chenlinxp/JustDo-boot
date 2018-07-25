@@ -109,7 +109,7 @@ function load(deptId) {
 							var e = '<a  class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ row.userId
 								+ '\')"><i class="fa fa-edit "></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="del(\''
 								+ row.userId
 								+ '\')"><i class="fa fa-remove"></i></a> ';
 							var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
@@ -134,12 +134,12 @@ function add() {
 		content : prefix + '/add'
 	});
 }
-function remove(id) {
+function del(id) {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : "/system/user/remove",
+			url : "/system/user/del",
 			type : "post",
 			data : {
 				'id' : id
@@ -219,7 +219,11 @@ function getTreeData() {
 function loadTree(tree) {
 	$('#jstree').jstree({
 		'core' : {
-			'data' : tree
+			'data' : tree,
+			"multiple" : false, // no multiselection
+            "themes" : {
+                "dots" : false // no connecting dots between dots
+            }
 		},
 		"plugins" : [ "search" ]
 	});
@@ -259,4 +263,10 @@ $('#jstree').on("changed.jstree", function(e, data) {
 
 
 
+});
+
+
+$("#treeForm").submit(function(e) {
+    e.preventDefault();
+    $("#jstree").jstree(true).search($("#selectDept").val());
 });
