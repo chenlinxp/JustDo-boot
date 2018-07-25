@@ -2,7 +2,7 @@ package com.justdo.system.log.domain;
 
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import com.justdo.common.domain.BaseBean;
 
 
 /**
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class LogDO {
+public class LogDO extends BaseBean {
 	private String id;
 
 	private String userId;

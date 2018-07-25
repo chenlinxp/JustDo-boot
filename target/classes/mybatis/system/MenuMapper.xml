@@ -54,10 +54,13 @@
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.justdo.system.menu.domain.MenuDO"
-		useGeneratedKeys="true" keyProperty="menuId">
+	<insert id="save" parameterType="com.justdo.system.menu.domain.MenuDO" >
+		<selectKey keyProperty="menuId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as organid from dual
+		</selectKey>
 		insert into sys_menu
 		(
+		`menu_id`,
 		`parent_id`,
 		`name`,
 		`url`,
@@ -70,6 +73,7 @@
 		)
 		values
 		(
+		#{menuId},
 		#{parentId},
 		#{name},
 		#{url},

@@ -1,5 +1,7 @@
 package com.justdo.system.role.domain;
 
+import com.justdo.common.domain.BaseBean;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class RoleDO {
+public class RoleDO extends BaseBean {
 	
 	private String roleId;
 	private String roleName;

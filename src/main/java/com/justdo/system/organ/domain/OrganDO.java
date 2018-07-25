@@ -1,6 +1,7 @@
 package com.justdo.system.organ.domain;
 
-import java.io.Serializable;
+import com.justdo.common.domain.BaseBean;
+
 
 
 /**
@@ -10,8 +11,7 @@ import java.io.Serializable;
  * @email chenlinxp@qq.com
  * @date 2018-07-06 15:08:01
  */
-public class OrganDO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class OrganDO extends BaseBean {
 	
 	//机构ID
 	private String organid;

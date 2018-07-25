@@ -1,8 +1,6 @@
 package com.justdo.system.dicttype.domain;
 
-import java.io.Serializable;
-
-
+import com.justdo.common.domain.BaseBean;
 
 /**
  * 字典索引表
@@ -11,8 +9,7 @@ import java.io.Serializable;
  * @email 13233669915@qq.com
  * @date 2018-06-21 18:28:07
  */
-public class DictTypeDO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class DictTypeDO extends BaseBean {
 	
 	//uuid
 	private String did;

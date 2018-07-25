@@ -1,9 +1,9 @@
 package com.justdo.system.notice.domain;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
+import com.justdo.common.domain.BaseBean;
 
 
 /**
@@ -13,9 +13,7 @@ import java.util.Date;
  * @email 13233669915@qq.com
  * @date 2018-06-26 18:32:20
  */
-public class NoticeDO implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+public class NoticeDO  extends BaseBean {
 	//编号
 	private String id;
 	//类型

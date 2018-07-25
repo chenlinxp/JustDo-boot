@@ -1,6 +1,8 @@
 package com.justdo.system.user.domain;
 
-public class UserRoleDO {
+import com.justdo.common.domain.BaseBean;
+
+public class UserRoleDO extends BaseBean {
     private String id;
     private String userId;
     private String roleId;

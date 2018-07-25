@@ -1,8 +1,9 @@
 package com.justdo.system.dict.domain;
 
-import java.io.Serializable;
+
 import java.math.BigDecimal;
 import java.util.Date;
+import com.justdo.common.domain.BaseBean;
 
 
 
@@ -12,8 +13,7 @@ import java.util.Date;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class DictDO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class DictDO extends BaseBean {
 	
 	//编号
 	private Long id;

@@ -1,7 +1,8 @@
 package com.justdo.system.menu.domain;
 
-import java.io.Serializable;
 import java.util.Date;
+import com.justdo.common.domain.BaseBean;
+
 
 /**
  * 菜单管理
@@ -9,8 +10,7 @@ import java.util.Date;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class MenuDO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class MenuDO extends BaseBean {
 	//
 	private String menuId;
 	// 父菜单ID，一级菜单为0

@@ -1,7 +1,7 @@
 package com.justdo.system.regexp.domain;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.justdo.common.domain.BaseBean;
+
 
 
 
@@ -12,8 +12,7 @@ import java.util.Date;
  * @email chenlinxp@qq.com
  * @date 2018-06-26 13:13:39
  */
-public class RegexpDO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class RegexpDO extends BaseBean {
 	
 	//主键
 	private String rid;

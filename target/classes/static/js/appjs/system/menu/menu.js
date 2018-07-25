@@ -23,13 +23,14 @@ var load = function () {
                 bordered: true, // 是否显示边框
                 expandAll: false, // 是否全部展开
                 toolbar : '#bToolbar',
-                onClickRow: function (row, element) {
-                    $('.success').removeClass('success');//去除之前选中的行的，选中样式
-                    $(element).addClass('success');//添加当前选中的 success样式用于区别
-                },
+
                 columns: [
                     {
-                        checkbox : true
+                        title : '序号',
+                        field : 'rowalias',
+                        align : 'left',
+                        valign : 'center',
+                        width : '50px'
                     },
                     {
                         title: '编号',
@@ -106,7 +107,7 @@ var load = function () {
                                 + '\')"><i class="fa fa-plus"></i></a> ';
                             var d = '<a class="btn btn-warning btn-sm '
                                 + s_delete_h
-                                + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+                                + '" href="#" title="删除"  mce_href="#" onclick="del(\''
                                 + item.menuId
                                 + '\')"><i class="fa fa-remove"></i></a> ';
                             return e + d + p;
@@ -130,7 +131,7 @@ function add(pId) {
     });
 }
 
-function remove(id) {
+function del(id) {
     layer.confirm('确定要删除选中的记录？', {
         btn: ['确定', '取消']
     }, function () {

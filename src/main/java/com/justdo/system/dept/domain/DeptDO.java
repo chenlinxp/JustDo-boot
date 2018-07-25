@@ -1,7 +1,6 @@
 package com.justdo.system.dept.domain;
 
-import java.io.Serializable;
-import java.util.Date;
+import com.justdo.common.domain.BaseBean;
 
 
 
@@ -12,8 +11,7 @@ import java.util.Date;
  * @email chenlinxp@qq.com
  * @date 2018-07-13 22:18:01
  */
-public class DeptDO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class DeptDO extends BaseBean {
 
 	//部门ID
 	private String deptid;

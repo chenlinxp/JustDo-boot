@@ -3,13 +3,13 @@ package com.justdo.system.organ.domain;
 
 import java.util.List;
 
+import com.justdo.common.domain.BaseBean;
 import com.justdo.system.dept.domain.DeptVO;
 
 /**
  * Created by chenlin on 2018/7/17.
  */
-public class OrganDeptVO {
-
+public class OrganDeptVO extends BaseBean {
     private String organid;
 
     private String organpid;

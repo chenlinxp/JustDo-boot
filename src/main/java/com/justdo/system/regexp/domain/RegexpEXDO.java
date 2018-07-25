@@ -10,11 +10,9 @@ import java.io.Serializable;
  * @email chenlinxp@qq.com
  * @date 2018-06-26 13:13:39
  */
-public class RegexpEXDO extends RegexpDO implements Serializable {
+public class RegexpEXDO extends RegexpDO{
 	//序号
 	private String rownum;
-
-
 	/**
 	 * 设置：序号
 	 */

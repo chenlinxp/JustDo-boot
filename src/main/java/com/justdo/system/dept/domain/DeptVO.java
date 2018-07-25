@@ -1,8 +1,9 @@
 
 package com.justdo.system.dept.domain;
 
-import java.io.Serializable;
+
 import java.util.List;
+import com.justdo.common.domain.BaseBean;
 
 
 /**
@@ -12,8 +13,7 @@ import java.util.List;
  * @email chenlinxp@qq.com
  * @date 2018-07-17 22:18:01
  */
-public class DeptVO   {
-   // private static final long serialVersionUID = 1L;
+public class DeptVO  extends BaseBean {
     //部门ID
     private String deptid;
     //机构ID

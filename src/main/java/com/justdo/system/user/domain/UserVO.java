@@ -1,5 +1,6 @@
 package com.justdo.system.user.domain;
 
+import com.justdo.common.domain.BaseBean;
 import com.justdo.system.user.domain.UserDO;
 
 /**
@@ -8,7 +9,7 @@ import com.justdo.system.user.domain.UserDO;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class UserVO {
+public class UserVO extends BaseBean {
     /**
      * 更新的用户对象
      */

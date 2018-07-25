@@ -1,12 +1,14 @@
 package com.justdo.system.role.domain;
 
+import com.justdo.common.domain.BaseBean;
+
 /**
  * 角色与菜单对应关系
  * @author chenlin
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class RoleMenuDO {
+public class RoleMenuDO extends BaseBean {
 	private String id;
 	private String  roleId;
 	private String menuId;

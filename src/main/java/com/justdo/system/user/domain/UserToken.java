@@ -1,6 +1,7 @@
 package com.justdo.system.user.domain;
 
-import java.io.Serializable;
+import com.justdo.common.domain.BaseBean;
+
 
 /**
  * 用户
@@ -8,7 +9,7 @@ import java.io.Serializable;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class UserToken implements Serializable {
+public class UserToken extends BaseBean {
     private static final long serialVersionUID = 1L;
     private Long userId;
     private String username;

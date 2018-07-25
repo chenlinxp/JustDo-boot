@@ -1,5 +1,7 @@
 package com.justdo.system.user.domain;
 
+import com.justdo.common.domain.BaseBean;
+
 import java.util.Date;
 
 /**
@@ -8,8 +10,7 @@ import java.util.Date;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class UserOnline {
-
+public class UserOnline extends BaseBean {
     /**
      */
     private String id;

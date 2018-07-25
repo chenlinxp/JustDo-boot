@@ -1,11 +1,11 @@
 package com.justdo.system.quartzjob.domain;
 
-import java.io.Serializable;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
+import com.justdo.common.domain.BaseBean;
 /**
  *
  * 自动任务
@@ -13,7 +13,7 @@ import org.quartz.JobExecutionException;
  * @email 13233669915@qq.com
  * @date 2018-06-19 18:32:20
  */
-public class QuartzJobDO implements Serializable ,Job {
+public class QuartzJobDO extends BaseBean  implements Job {
 
 	public static final String STATUS_RUNNING = "1";
 	public static final String STATUS_NOT_RUNNING = "0";

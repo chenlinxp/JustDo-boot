@@ -1,9 +1,9 @@
 package com.justdo.system.user.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.justdo.common.domain.BaseBean;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -13,8 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class UserDO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class UserDO extends BaseBean {
     //
     private String userId;
     // 用户名
