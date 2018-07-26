@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.justdo.common.domain.Tree;
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.dept.domain.DeptDO;
 import com.justdo.system.dept.domain.DeptVO;
 
@@ -35,4 +36,10 @@ public interface DeptService {
 	boolean checkDeptHasUser(String deptId);
 
 	List<DeptVO> getAllDepts(Map<String,Object> map);
+
+	List<TreeNode> getDepts(Map<String, Object> param);
+
+	List<TreeNode> getTopDepts(Map<String, Object> param);
+
+	List<TreeNode> getAllDepts2(Map<String, Object> param);
 }

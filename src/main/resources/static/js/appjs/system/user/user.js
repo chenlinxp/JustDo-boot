@@ -3,7 +3,6 @@ $(function() {
 	var deptId = '';
 	getTreeData();
 	load(deptId);
-    testData();
 });
 
 function load(deptId) {
@@ -210,7 +209,11 @@ function batchDel() {
 function getTreeData() {
 	$.ajax({
 		type : "GET",
-		url : "/system/dept/tree",
+        url : "/system/organ/organdept",
+        data : {
+            "organid" : ''
+        },
+		// url : "/system/dept/tree",
 		success : function(tree) {
 			loadTree(tree);
 		}
@@ -228,21 +231,6 @@ function loadTree(tree) {
 		"plugins" : [ "search" ]
 	});
 	$('#jstree').jstree().open_all();
-}
-
-function testData() {
-    $.ajax({
-        type : "GET",
-        url : "/system/organ/organdept",
-        data : {
-            "organid" : ''
-        },
-        success : function(data) {
-        	console.log(data);
-            alert(data);
-
-        }
-    });
 }
 $('#jstree').on("changed.jstree", function(e, data) {
 	if (data.selected == -1) {
@@ -265,7 +253,10 @@ $('#jstree').on("changed.jstree", function(e, data) {
 
 });
 
-
+$('#jstree').on("open_node.jstree", function(e, data){
+	var curreatnode = data.node;
+	console.log(curreatnode);
+});
 $("#treeForm").submit(function(e) {
     e.preventDefault();
     $("#jstree").jstree(true).search($("#selectDept").val());

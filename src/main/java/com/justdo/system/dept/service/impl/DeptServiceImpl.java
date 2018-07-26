@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.justdo.common.domain.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,7 +93,6 @@ public class DeptServiceImpl implements DeptService {
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
 			tree.setState(state);
-			tree.setNodeType("DEPT");
 			trees.add(tree);
 		}
 		// 默认顶级菜单为０，根据数据库实际情况调整
@@ -127,4 +127,62 @@ public class DeptServiceImpl implements DeptService {
 		}
 		return  deptvoList;
 	}
+	@Override
+	public List<TreeNode> getTopDepts(Map<String, Object> param){
+		List<TreeNode> topdeptTree = deptDao.getTopDepts(param);
+		return topdeptTree;
+	}
+
+	@Override
+	public List<TreeNode> getDepts(Map<String, Object> param){
+		List<TreeNode> deptTree = new ArrayList<TreeNode>();
+		List<TreeNode> subdeptTree = deptDao.getDepts(param);
+		if(subdeptTree!=null){
+			for(TreeNode treeNode:subdeptTree){
+				TreeNode treeNode2 = new TreeNode();
+				treeNode2.setId(treeNode.getId());
+				treeNode2.setText(treeNode.getText());
+				treeNode2.setParentid(treeNode.getParentid());
+				treeNode2.setIcon("fa fa-home");
+				Map<String, Object> state = new HashMap<>(16);
+				state.put("opened", true);
+				treeNode2.setState(state);
+
+				Map<String ,Object> paramMap = new HashMap<String ,Object>();
+				paramMap.put("deptpid" , treeNode.getId());
+				paramMap.put("organid" ,treeNode.getParentid());
+
+				treeNode2.setChildren(getDepts(paramMap));
+				deptTree.add(treeNode2);
+			}
+		}
+		return deptTree;
+	}
+
+	@Override
+	public List<TreeNode> getAllDepts2(Map<String, Object> param){
+		List<TreeNode> deptTreeList = new ArrayList<TreeNode>();
+		List<TreeNode> topdeptTree =getTopDepts(param);
+		if(topdeptTree!=null){
+			for(TreeNode treeNode:topdeptTree){
+				TreeNode treeNode2 = new TreeNode();
+				treeNode2.setId(treeNode.getId());
+				treeNode2.setText(treeNode.getText());
+				treeNode2.setParentid(treeNode.getParentid());
+				treeNode2.setIcon("fa fa-home");
+				Map<String, Object> state = new HashMap<>(16);
+				state.put("opened", true);
+				treeNode2.setState(state);
+
+				Map<String ,Object> paramMap = new HashMap<String ,Object>();
+				paramMap.put("deptpid" , treeNode.getId());
+				paramMap.put("organid" ,treeNode.getParentid());
+
+				treeNode2.setChildren(getDepts(paramMap));
+				deptTreeList.add(treeNode2);
+			}
+		}
+		return  deptTreeList;
+	}
+
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.dept.service.DeptService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,11 +135,13 @@ public class OrganController {
 	String treeView() {
 		return  prefix + "/organTree";
 	}
+
 	@GetMapping("/organdept")
-	String findOrganDept(@RequestParam Map<String, Object> params){
+	@ResponseBody
+	public List<TreeNode> findOrganDept(@RequestParam Map<String, Object> params){
 
-		List<OrganDeptVO> list=organService.findOrganDept(params);
+		List<TreeNode> list=organService.getOrgans(params);
 
-		return JSON.toJSONString(list);
+		return list;
 	}
 }

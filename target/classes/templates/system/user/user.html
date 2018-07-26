@@ -7,9 +7,19 @@
 	<div class="wrapper wrapper-content ">
 		<div class="row">
 			<div class="col-sm-3">
-				<div class="ibox ibox-body">
-					<div class="ibox-title">
-						<h5>选择部门</h5>
+				<div class="ibox" style="margin-top: 10px">
+					<div class="ibox-body">
+						<form id="treeForm">
+
+							<div class="columns pull-right">
+								<button type="submit" class="btn btn-success">查询</button>
+							</div>
+
+							<div class="columns pull-left col-md-9 nopadding">
+						<input type="search" class="form-control" placeholder="请选择部门" id="selectDept" />
+							</div>
+
+					    </form>
 					</div>
 					<div class="ibox-content">
 						<div id="jstree"></div>
@@ -45,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		<!--shiro控制bootstraptable行内按钮看见性 来自justdo的创新方案 -->
+
 		<div>
 			<script type="text/javascript">
 				var s_edit_h = 'hidden';

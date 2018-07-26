@@ -52,7 +52,7 @@ public class Tree<T> {
 	/**
 	 * 节点类型
 	 */
-	private String nodeType;
+	private String icon;
 
 	public String getId() {
 		return id;
@@ -126,15 +126,15 @@ public class Tree<T> {
 		this.parentId = parentId;
 	}
 
-	public String getNodeType() {
-		return nodeType;
+	public String getIcon() {
+		return icon;
 	}
 
-	public void setNodeType(String nodeType) {
-		this.nodeType = nodeType;
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	public Tree(String id, String text, Map<String, Object> state, boolean checked, Map<String, Object> attributes,
-			List<Tree<T>> children, boolean isParent, boolean isChildren, String parentID,String nodeType ) {
+			List<Tree<T>> children, boolean isParent, boolean isChildren, String parentID,String icon ) {
 		super();
 		this.id = id;
 		this.text = text;
@@ -145,7 +145,7 @@ public class Tree<T> {
 		this.hasParent = isParent;
 		this.hasChildren = isChildren;
 		this.parentId = parentID;
-		this.nodeType = nodeType;
+		this.icon = icon;
 	}
 
 	public Tree() {

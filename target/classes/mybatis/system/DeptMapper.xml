@@ -113,4 +113,25 @@
 			<if test="organid != null and organid != ''"> and organid = #{organid} </if>
 		</where>
 	</select>
+
+
+	<select id="getTopDepts" resultType="com.justdo.common.domain.TreeNode" parameterType="map" >
+		select deptid as id,deptname as text,organid as parentid  from sys_dept
+
+		<where>
+			<if test="deptpid == null or deptpid == ''">and isvalidation = 1 and deptpid = '' </if>
+
+			<if test="organid != null and organid != ''"> and organid = #{organid} </if>
+		</where>
+	</select>
+
+	<select id="getDepts" resultType="com.justdo.common.domain.TreeNode" parameterType="map" >
+		select deptid as id,deptname as text,deptpid as parentid from sys_dept
+
+		<where>
+			<if test="deptpid != null and deptpid != ''">and isvalidation = 1 and deptpid = #{deptpid} </if>
+
+			<if test="organid != null and organid != ''"> and organid = #{organid} </if>
+		</where>
+	</select>
 </mapper>

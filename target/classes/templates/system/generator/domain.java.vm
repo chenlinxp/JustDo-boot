@@ -1,6 +1,6 @@
 package ${package}.${classname}.domain;
 
-import java.io.Serializable;
+import com.justdo.common.domain.BaseBean;
 import java.util.Date;
 
 #if(${hasBigDecimal})
@@ -15,8 +15,7 @@ import java.math.BigDecimal;
  * @email ${email}
  * @date ${datetime}
  */
-public class ${className}DO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ${className}DO extends BaseBean {
 	
 #foreach ($column in $columns)
 	//$column.comments

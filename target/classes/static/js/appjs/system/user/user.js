@@ -3,7 +3,6 @@ $(function() {
 	var deptId = '';
 	getTreeData();
 	load(deptId);
-    testData();
 });
 
 function load(deptId) {
@@ -109,7 +108,7 @@ function load(deptId) {
 							var e = '<a  class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ row.userId
 								+ '\')"><i class="fa fa-edit "></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="del(\''
 								+ row.userId
 								+ '\')"><i class="fa fa-remove"></i></a> ';
 							var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
@@ -134,12 +133,12 @@ function add() {
 		content : prefix + '/add'
 	});
 }
-function remove(id) {
+function del(id) {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : "/system/user/remove",
+			url : "/system/user/del",
 			type : "post",
 			data : {
 				'id' : id
@@ -210,7 +209,11 @@ function batchDel() {
 function getTreeData() {
 	$.ajax({
 		type : "GET",
-		url : "/system/dept/tree",
+        url : "/system/organ/organdept",
+        data : {
+            "organid" : ''
+        },
+		// url : "/system/dept/tree",
 		success : function(tree) {
 			loadTree(tree);
 		}
@@ -219,26 +222,15 @@ function getTreeData() {
 function loadTree(tree) {
 	$('#jstree').jstree({
 		'core' : {
-			'data' : tree
+			'data' : tree,
+			"multiple" : false, // no multiselection
+            "themes" : {
+                "dots" : false // no connecting dots between dots
+            }
 		},
 		"plugins" : [ "search" ]
 	});
 	$('#jstree').jstree().open_all();
-}
-
-function testData() {
-    $.ajax({
-        type : "GET",
-        url : "/system/organ/organdept",
-        data : {
-            "organid" : ''
-        },
-        success : function(data) {
-        	console.log(data);
-            alert(data);
-
-        }
-    });
 }
 $('#jstree').on("changed.jstree", function(e, data) {
 	if (data.selected == -1) {
@@ -259,4 +251,13 @@ $('#jstree').on("changed.jstree", function(e, data) {
 
 
 
+});
+
+$('#jstree').on("open_node.jstree", function(e, data){
+	var curreatnode = data.node;
+	console.log(curreatnode);
+});
+$("#treeForm").submit(function(e) {
+    e.preventDefault();
+    $("#jstree").jstree(true).search($("#selectDept").val());
 });

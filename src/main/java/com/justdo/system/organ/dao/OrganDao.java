@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.organ.domain.OrganDeptVO;
 
@@ -33,4 +34,6 @@ public interface OrganDao {
 	String[] listParentOrgan();
 
 	List<OrganDeptVO> findOrganDept(Map<String, Object> param);
+
+	List<TreeNode> getOrgans(Map<String, Object> param);
 }

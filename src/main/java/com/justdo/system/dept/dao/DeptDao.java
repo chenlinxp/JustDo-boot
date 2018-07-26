@@ -1,5 +1,6 @@
 package com.justdo.system.dept.dao;
 
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.dept.domain.DeptDO;
 
 import java.util.List;
@@ -36,6 +37,12 @@ public interface DeptDao {
 	int getDeptUserNumber(String deptId);
 
 	List<DeptVO> getAllDepts(Map<String, Object> param);
+
+	List<TreeNode> getDepts(Map<String, Object> param);
+
+
+	List<TreeNode> getTopDepts(Map<String, Object> param);
+
 
 
 }

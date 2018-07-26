@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.justdo.common.domain.Tree;
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.organ.domain.OrganDeptVO;
 
@@ -34,4 +35,6 @@ public interface OrganService {
 	Tree<OrganDO> getTree();
 
 	List<OrganDeptVO> findOrganDept(Map<String, Object> param);
+
+	List<TreeNode> getOrgans(Map<String, Object> param);
 }

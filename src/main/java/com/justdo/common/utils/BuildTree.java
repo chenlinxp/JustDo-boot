@@ -44,7 +44,8 @@ public class BuildTree {
 			root.setText("顶级节点");
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
-			state.put("icon", "../img/liya.img");
+			//root.setIcon("../../img/organ.png");
+			root.setIcon("fa fa-institution");
 			root.setState(state);
 		}
 

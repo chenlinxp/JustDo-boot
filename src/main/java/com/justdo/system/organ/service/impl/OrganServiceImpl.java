@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.justdo.common.domain.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -125,4 +126,39 @@ public class OrganServiceImpl implements OrganService {
 		return list;
 	}
 
+	@Override
+	public List<TreeNode> getOrgans(Map<String, Object> param){
+		List<TreeNode> list=new ArrayList<TreeNode>();
+		//查询公司
+		List<TreeNode> organTreeList=organDao.getOrgans(param);
+		if(organTreeList!=null){
+			for(TreeNode treeNode:organTreeList){
+				TreeNode treeNode2 = new TreeNode();
+				treeNode2.setId(treeNode.getId());
+				treeNode2.setText(treeNode.getText());
+				treeNode2.setParentid(treeNode.getParentid());
+				treeNode2.setIcon("fa fa-bank");
+				Map<String, Object> state = new HashMap<>(16);
+				state.put("opened", true);
+				treeNode2.setState(state);
+				Map<String, Object> dataMap=new HashMap<String, Object>();
+				dataMap.put("organpid", treeNode.getId());
+				//通过父级公司递归公司
+				//treeNode2.setChildren(getOrgans(dataMap));
+
+
+				List<TreeNode> listchidren = getOrgans(dataMap);
+
+				Map<String, Object> dataDeptMap=new HashMap<String, Object>();
+				dataDeptMap.put("organid", treeNode.getId());
+				dataDeptMap.put("deptid", "");
+				//通过父级部门递归部门
+				List<TreeNode> deptTreeList = deptService.getAllDepts2(dataDeptMap);
+				listchidren.addAll(deptTreeList);
+				treeNode2.setChildren(listchidren);
+				list.add(treeNode2);
+			}
+		}
+		return list;
+	}
 }
