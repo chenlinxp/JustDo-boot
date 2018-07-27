@@ -140,4 +140,13 @@
 			<if test="organpid == null or organpid == ''">and ISVALIDATION = 1 and ORGANPID = '' </if>
 		</where>
 	</select>
+
+	<select id="getOrgans" parameterType="map" resultType="com.justdo.common.domain.TreeNode" >
+		select `ORGANID` as id ,`ORGANPID` as parentid ,`ORGANNAME` as text from sys_organ
+		<where>
+			<if test="organpid != null and organpid != ''">and ISVALIDATION = 1 and ORGANPID = #{organpid} </if>
+
+			<if test="organpid == null or organpid == ''">and ISVALIDATION = 1 and ORGANPID = '' </if>
+		</where>
+	</select>
 </mapper>

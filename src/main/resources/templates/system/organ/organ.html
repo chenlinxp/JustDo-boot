@@ -15,7 +15,7 @@
 							<button shiro:hasPermission="system:organ:edit" type="button" class="btn  btn-primary" onclick="edit()">
                                 <i class="fa fa-edit" aria-hidden="true"></i>编辑
                             </button>
-							<button shiro:hasPermission="system:organ:batchDel" type="button" class="btn  btn-danger" onclick="batchDel()">
+							<button shiro:hasPermission="system:organ:batchDel" type="button" class="btn  btn-danger" onclick="del()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
@@ -24,7 +24,7 @@
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
 							<input id="searchName" type="text" class="form-control"
-								placeholder="">
+								placeholder="机构名称">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">

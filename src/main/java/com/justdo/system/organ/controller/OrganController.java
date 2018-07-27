@@ -1,11 +1,9 @@
 package com.justdo.system.organ.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSON;
-import com.justdo.common.domain.TreeNode;
-import com.justdo.system.dept.service.DeptService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.organ.domain.OrganDeptVO;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.organ.service.OrganService;
@@ -50,13 +49,9 @@ public class OrganController {
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("system:organ:organ")
-	public PageUtils list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-		List<OrganDO> organList = organService.list(query);
-		int total = organService.count(query);
-		PageUtils pageUtils = new PageUtils(organList, total);
-		return pageUtils;
+	public List<OrganDO> list(@RequestParam Map<String, Object> params){
+		List<OrganDO> deptList = organService.list(params);
+		return deptList;
 	}
 	
 	@GetMapping("/add")

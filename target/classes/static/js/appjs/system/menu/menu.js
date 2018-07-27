@@ -1,12 +1,6 @@
 var prefix = "/system/menu"
 $(document).ready(function () {
     load();
-    //点击选中列
-    $("#bTable").on("click-row.bs.table",function (e,row,element) {
-        alert("123");
-        $('.success').removeClass('success');//去除之前选中的行的，选中样式
-        $(element).addClass('success');//添加当前选中的 success样式用于区别
-    });
 });
 var load = function () {
     $('#bTable')
