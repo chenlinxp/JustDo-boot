@@ -115,7 +115,6 @@
         }
         // 加载数据
         target.load = function(params){
-            alert("3333");
             // 加载数据前先清空
             target.html("");
             // 构造表头
@@ -261,7 +260,6 @@
         // 刷新记录
         refresh : function(target, params) {
             if(params){
-                alert(5555);
                 target.load();
             }else{
                 target.load();

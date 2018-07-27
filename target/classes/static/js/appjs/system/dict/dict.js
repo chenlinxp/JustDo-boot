@@ -238,7 +238,7 @@ function load() {
 							var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ row.id
 								+ '\')"><i class="fa fa-edit"></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
+							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="del(\''
 								+ row.id
 								+ '\')"><i class="fa fa-remove"></i></a> ';
 							var f = '<a class="btn btn-success btn-sm ' + s_add_h + '" href="#" title="增加"  mce_href="#" onclick="addD(\''
@@ -288,7 +288,7 @@ function edit(id) {
 		content : prefix + '/edit/' + id // iframe的url
 	});
 }
-function remove(id) {
+function del(id) {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
 	}, function() {

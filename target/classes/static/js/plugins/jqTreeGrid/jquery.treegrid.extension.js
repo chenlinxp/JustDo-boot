@@ -1,10 +1,10 @@
 (function($) {
     "use strict";
 
-    $.fn.bootstrapTreeTable = function(options, param) {
+    $.fn.bootstrapTreeTable = function(options, params) {
         // 如果是调用方法
         if (typeof options == 'string') {
-            return $.fn.bootstrapTreeTable.methods[options](this, param);
+            return $.fn.bootstrapTreeTable.methods[options](this, params);
         }
 
         // 如果是初始化组件
@@ -107,11 +107,15 @@
                         }
                     }
                     tr.append(td);
+                    if(options.id==column.field){
+                      $(tr).attr("id",item[column.field])
+                    }
                 }
             });
         }
         // 加载数据
-        target.load = function(parms){
+        target.load = function(params){
+            alert("3333");
             // 加载数据前先清空
             target.html("");
             // 构造表头
@@ -148,7 +152,7 @@
             $.ajax({
                 type : options.type,
                 url : options.url,
-                data : parms?parms:options.ajaxParams,
+                data : params?params:options.ajaxParams,
                 dataType : "JSON",
                 success : function(data, textStatus, jqXHR) {
                     // 加载完数据先清空
@@ -229,7 +233,6 @@
         } else {
             // 也可以通过defaults里面的data属性通过传递一个数据集合进来对组件进行初始化....有兴趣可以自己实现，思路和上述类似
         }
-
         return target;
     };
 
@@ -251,10 +254,15 @@
             }
             return chk_value;
         },
+        getSelection : function(target) {
+            var row = target.find("tbody").find("tr.success");
+            return row.attr("id");
+        },
         // 刷新记录
-        refresh : function(target, parms) {
-            if(parms){
-                target.load(parms);
+        refresh : function(target, params) {
+            if(params){
+                alert(5555);
+                target.load();
             }else{
                 target.load();
             }
