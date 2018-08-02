@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	DeptDao deptMapper;
 	@Autowired
-	private FileService sysFileService;
+	private FileService fileDaoService;
 	@Autowired
 	private JustdoConfig justdoConfig;
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -207,7 +207,7 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, String userId) throws Exception {
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtil.renameToUUID(fileName);
-		FileDO sysFile = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
+		FileDO fileDao = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
 		//获取图片后缀
 		String prefix = fileName.substring((fileName.lastIndexOf(".")+1));
 		String[] str=avatar_data.split(",");
@@ -233,12 +233,12 @@ public class UserServiceImpl implements UserService {
 			throw  new Exception("图片裁剪错误！！");
 		}
 		Map<String, Object> result = new HashMap<>();
-		if(sysFileService.save(sysFile)>0){
+		if(fileDaoService.save(fileDao)>0){
 			UserDO userDO = new UserDO();
 			userDO.setUserId(userId);
-			userDO.setPicId(sysFile.getId());
+			userDO.setPicId(fileDao.getId());
 			if(userMapper.update(userDO)>0){
-				result.put("url",sysFile.getUrl());
+				result.put("url",fileDao.getUrl());
 			}
 		}
 		return result;

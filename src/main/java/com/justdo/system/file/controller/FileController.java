@@ -40,7 +40,7 @@ public class FileController extends BaseController {
 
 	@GetMapping()
 	@RequiresPermissions("system:file:file")
-	String sysFile(Model model) {
+	String fileDao(Model model) {
 		Map<String, Object> params = new HashMap<>(16);
 		return "system/file/file";
 	}
@@ -51,9 +51,9 @@ public class FileController extends BaseController {
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
 		Query query = new Query(params);
-		List<FileDO> sysFileList = fileService.list(query);
+		List<FileDO> fileDaoList = fileService.list(query);
 		int total = fileService.count(query);
-		PageUtils pageUtils = new PageUtils(sysFileList, total);
+		PageUtils pageUtils = new PageUtils(fileDaoList, total);
 		return pageUtils;
 	}
 
@@ -75,7 +75,7 @@ public class FileController extends BaseController {
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
-	@RequiresPermissions("system:info")
+	@RequiresPermissions("system:file:info")
 	public R info(@PathVariable("id") String id) {
 		FileDO file = fileService.get(id);
 		return R.ok().put("file", file);
@@ -86,7 +86,7 @@ public class FileController extends BaseController {
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("system:save")
+	@RequiresPermissions("system:file:save")
 	public R save(FileDO file) {
 		if (fileService.save(file) > 0) {
 			return R.ok();
@@ -98,7 +98,7 @@ public class FileController extends BaseController {
 	 * 修改
 	 */
 	@RequestMapping("/update")
-	@RequiresPermissions("system:update")
+	@RequiresPermissions("system:file:update")
 	public R update(@RequestBody FileDO file) {
 		fileService.update(file);
 
@@ -110,7 +110,7 @@ public class FileController extends BaseController {
 	 */
 	@PostMapping("/del")
 	@ResponseBody
-	@RequiresPermissions("system:del")
+	@RequiresPermissions("system:file:del")
 	public R remove(String id, HttpServletRequest request) {
 
 		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getUrl().replace("/files/", "");
@@ -130,7 +130,7 @@ public class FileController extends BaseController {
 	 */
 	@PostMapping("/batchDel")
 	@ResponseBody
-	@RequiresPermissions("system:del")
+	@RequiresPermissions("system:file:del")
 	public R remove(@RequestParam("ids[]") String[] ids) {
 
 		fileService.batchDel(ids);
@@ -145,14 +145,13 @@ public class FileController extends BaseController {
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtil.renameToUUID(fileName);
 		String path = StringUtils.defaultIfEmpty(justdoConfig.getUploadPath(), "/upload/");
-		//String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
-		FileDO _file = new FileDO(FileType.fileType(fileName), path+ fileName, new Date());
+		String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
+		FileDO _file = new FileDO(FileType.fileType(fileName), "/files/"+ fileName, new Date());
 		try {
 			FileUtil.uploadFile(file.getBytes(), path, fileName);
 		} catch (Exception e) {
 			return R.error();
 		}
-
 		if (fileService.save(_file) > 0) {
 			return R.ok().put("fileName",_file.getUrl());
 		}

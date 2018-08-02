@@ -4,6 +4,9 @@ $(function() {
 	load();
 });
 function load() {
+    var query = {
+        organname : $('#searchName').val()
+    }
     $('#bTable')
         .bootstrapTreeTable(
             {
@@ -12,11 +15,11 @@ function load() {
                 parentCode : 'organpid',
                 type : "GET", // 请求数据的ajax类型
                 url : prefix + '/list', // 请求数据的ajax的url
-                ajaxParams : {}, // 请求数据的ajax的data属性
+                ajaxParams : query, // 请求数据的ajax的data属性
                 expandColumn : '2', // 在哪一列上面显示展开按钮
                 striped : true, // 是否各行渐变色
                 bordered : true, // 是否显示边框
-                expandAll : false, // 是否全部展开
+                expandAll : true, // 是否全部展开
                 // toolbar : '#bToolbar',
                 columns : [
                     {
@@ -98,10 +101,7 @@ function load() {
             });
 }
 function reLoad() {
-    var query = {
-    	organname : $('#searchName').val()
-	}
-    $('#bTable').bootstrapTreeTable('refresh', query);
+    load();
 }
 function add() {
 	layer.open({

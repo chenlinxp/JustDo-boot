@@ -165,6 +165,7 @@ public class DictController extends BaseController {
 	 *数据字典索引的列表
 	 */
 	@GetMapping("/dicttype")
+	@RequiresPermissions("system:dict:dict")
 	@ResponseBody
 	public List<DictTypeDO> listDictType(@RequestParam("dname") String dname) {
 

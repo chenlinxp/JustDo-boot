@@ -45,13 +45,13 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	@Override
-	public int save(FileDO sysFile){
-		return fileDao.save(sysFile);
+	public int save(FileDO fileDO){
+		return fileDao.save(fileDO);
 	}
 	
 	@Override
-	public int update(FileDO sysFile){
-		return fileDao.update(sysFile);
+	public int update(FileDO fileDO){
+		return fileDao.update(fileDO);
 	}
 	
 	@Override

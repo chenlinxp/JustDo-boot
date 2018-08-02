@@ -12,7 +12,7 @@
         <where>  
 		  		  <if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
 		  		  <if test="organpid != null and organpid != ''"> and ORGANPID = #{organpid} </if>
-		  		  <if test="organname != null and organname != ''"> and ORGANNAME = #{organname} </if>
+		  		  <if test="organname != null and organname != ''"> and ORGANNAME like concat('%' ,#{organname},'%') </if>
 		  		  <if test="areaid != null and areaid != ''"> and AREAID = #{areaid} </if>
 		  		  <if test="organcode != null and organcode != ''"> and ORGANCODE = #{organcode} </if>
 		  		  <if test="organalias != null and organalias != ''"> and ORGANALIAS = #{organalias} </if>

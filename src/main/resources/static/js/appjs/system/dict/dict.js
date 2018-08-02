@@ -98,7 +98,7 @@ function dictTypeLoad() {
 }
 function load() {
 	selectLoad();
-   // dictTypeLoad();
+   dictTypeLoad();
 	$('#bTable')
 		.bootstrapTable(
 			{

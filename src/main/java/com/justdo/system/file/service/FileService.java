@@ -21,9 +21,9 @@ public interface FileService {
 	
 	int count(Map<String, Object> map);
 	
-	int save(FileDO sysFile);
+	int save(FileDO fileDao);
 	
-	int update(FileDO sysFile);
+	int update(FileDO fileDao);
 	
 	int del(String id);
 	

@@ -126,7 +126,7 @@ function delone(id) {
 					reLoad();
 				} else {
 					layer.msg(r.msg);
-				}
+			 	}
 			}
 		});
 	})

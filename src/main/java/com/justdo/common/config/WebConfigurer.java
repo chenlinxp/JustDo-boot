@@ -11,7 +11,9 @@ class WebConfigurer extends WebMvcConfigurerAdapter {
 	JustdoConfig justdoConfig;
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/files/**").addResourceLocations("file:///"+justdoConfig.getUploadPath());
+	registry.addResourceHandler("/files/**")
+			//.addResourceLocations("files:/Users/chenlin/Documents/GitHub/JustDo-boot/target/classes/"+justdoConfig.getUploadPath());
+			.addResourceLocations("classpath:/"+justdoConfig.getUploadPath());
 	}
 
 }
