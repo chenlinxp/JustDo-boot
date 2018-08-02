@@ -130,27 +130,6 @@ function edit() {
 		content : prefix + '/edit/' + id // iframe的url
 	});
 }
-function del(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : prefix+"/del",
-			type : "post",
-			data : {
-				'rid' : id
-			},
-			success : function(r) {
-				if (r.code==0) {
-					layer.msg(r.msg);
-					reLoad();
-				}else{
-					layer.msg(r.msg);
-				}
-			}
-		});
-	})
-}
 function batchDel() {
 	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {

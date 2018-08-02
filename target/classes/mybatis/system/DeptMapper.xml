@@ -13,7 +13,7 @@
 			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
 			<if test="deptpid != null and deptpid != ''"> and DEPTPID = #{deptpid} </if>
-			<if test="deptname != null and deptname != ''"> and DEPTNAME = #{deptname} </if>
+			<if test="deptname != null and deptname != ''"> and DEPTNAME like concat('%',#{deptname},'%')</if>
 			<if test="ordernum != null and ordernum != ''"> and ORDERNUM = #{ordernum} </if>
 			<if test="delflag != null and delflag != ''"> and DELFLAG = #{delflag} </if>
 			<if test="isvalidation != null and isvalidation != ''"> and ISVALIDATION = #{isvalidation} </if>

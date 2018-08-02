@@ -14,7 +14,7 @@
 		`did`,`dname`,`dcode`,`remark`
 		from sys_dict
 		<where>
-			<if test="dname != null and dname != ''"> and dname = #{dname} </if>
+			<if test="dname != null and dname != ''"> and dname like concat('%' , #{dname},'%') </if>
 		</where>
 	</select>
 

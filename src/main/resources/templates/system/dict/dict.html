@@ -18,7 +18,7 @@
 							<button type="button" class="btn  btn-primary" onclick="addDict()" id="addDict">
 								<i class="fa fa-plus "  aria-hidden="true"></i>增加
 							</button>
-							<button type="button" class="btn btn-warning" onclick="updateDict()" id="updateDict">
+							<button type="button" class="btn btn-primary" onclick="updateDict()" id="updateDict">
 								<i class="fa fa-edit "  aria-hidden="true"></i>修改
 							</button>
 							<button type="button" class="btn btn-danger" onclick="delDict()" id="delDict">
@@ -40,6 +40,9 @@
 							<button shiro:hasPermission="system:dict:add" type="button"
 								class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button shiro:hasPermission="system:dict:edit" type="button" class="btn  btn-primary" onclick="edit()">
+								<i class="fa fa-edit" aria-hidden="true"></i>编辑
 							</button>
 							<button shiro:hasPermission="system:dict:batchDel"
 								type="button" class="btn  btn-danger" onclick="batchDel()">

@@ -9,58 +9,37 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="signupForm">
-                        <input id="id" name="id" th:value="${dict.id}"
-                               class="form-control" type="hidden">
+                        <input id="dcid" name="dcid" th:value="${dictContent.dcid}"  type="hidden">
+                        <input id="did" name="did" th:value="${dictContent.did}" type="hidden">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">标签名：</label>
-                            <div class="col-sm-8">
-                                <input id="name" name="name" th:value="${dict.name}"
-                                       class="form-control" type="text">
+                            <label class="col-sm-2 control-label">文本内容：</label>
+                            <div class="col-sm-4">
+                                <input id="dcvalue" name="dcvalue" th:value="${dictContent.dcvalue}" class="form-control" type="text">
+                            </div>
+                            <label class="col-sm-2 control-label">编码：</label>
+                            <div class="col-sm-4">
+                                <input id="dccode" name="dccode" th:value="${dictContent.dccode}" class="form-control" type="text">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">数据值：</label>
-                            <div class="col-sm-8">
-                                <input id="value" name="value" th:value="${dict.value}"
-                                       class="form-control" type="text">
+                            <label class="col-sm-2 control-label">排序：</label>
+                            <div class="col-sm-4">
+                                <input id="orderno" name="orderno" th:value="${dictContent.orderno}" class="form-control" type="text">
+                            </div>
+                            <label class="col-sm-2 control-label">是否有效：</label>
+                            <div class="col-sm-4">
+                                <label class="radio-inline">
+                                    <input th:field="*{dictContent.dcvalid}" type="radio" name="dcvalid" value="1" /> 正常
+                                </label>
+                                <label class="radio-inline">
+                                    <input th:field="*{dictContent.dcvalid}" type="radio" name="dcvalid" value="0" /> 禁用
+                                </label>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">类型：</label>
-                            <div class="col-sm-8">
-                                <input id="type" name="type" th:value="${dict.type}"
-                                       class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">描述：</label>
-                            <div class="col-sm-8">
-                                <input id="description" name="description"
-                                       th:value="${dict.description}" class="form-control"
-                                       type="text">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">排序：</label>
-                            <div class="col-sm-8">
-                                <input id="sort" name="sort" th:value="${dict.sort}"
-                                       class="form-control" type="text">
-                            </div>
-                        </div>
-                        <div class="form-group hidden">
-                            <label class="col-sm-3 control-label ">父级编号：</label>
-                            <div class="col-sm-8">
-                                <input id="parentId" name="parentId"
-                                       th:value="${dict.parentId}" class="form-control"
-                                       type="text">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">备注信息：</label>
-                            <div class="col-sm-8">
-                                <input id="remarks" name="remarks"
-                                       th:value="${dict.remarks}" class="form-control" type="text">
+                            <label class="col-sm-2 control-label">说明描述：</label>
+                            <div class="col-sm-10">
+                                <textarea id="remark" name="remark" class="form-control" th:text="${dictContent.remark}"></textarea>
                             </div>
                         </div>
                         <div class="form-group">

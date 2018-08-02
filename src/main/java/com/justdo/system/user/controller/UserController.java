@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.justdo.system.dict.service.DictContentService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,6 @@ import com.justdo.common.controller.BaseController;
 import com.justdo.system.file.domain.FileDO;
 import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.*;
-import com.justdo.system.dict.service.DictService;
 import com.justdo.system.dept.domain.DeptDO;
 import com.justdo.system.role.service.RoleService;
 import com.justdo.system.role.domain.RoleDO;
@@ -49,7 +50,7 @@ public class UserController extends BaseController {
 	@Autowired
 	RoleService roleService;
 	@Autowired
-	DictService dictService;
+	DictContentService dictContentService;
 	@RequiresPermissions("system:user:user")
 	@GetMapping("")
 	String user(Model model) {
@@ -211,8 +212,8 @@ public class UserController extends BaseController {
 	String personal(Model model) {
 		UserDO userDO  = userService.get(getUserId());
 		model.addAttribute("user",userDO);
-		model.addAttribute("hobbyList",dictService.getHobbyList(userDO));
-		model.addAttribute("sexList",dictService.getSexList());
+//		model.addAttribute("hobbyList",dictContentService.getHobbyList(userDO));
+//		model.addAttribute("sexList",dictContentService.getSexList());
 		return prefix + "/personal";
 	}
 	@ResponseBody

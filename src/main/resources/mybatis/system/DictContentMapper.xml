@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.dictContent.dao.DictContentDao">
+
+	<select id="get" resultType="com.justdo.system.dictContent.domain.DictContentDO">
+		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from sys_dict_content where DCID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.dictContent.domain.DictContentDO">
+		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from sys_dict_content
+        <where>  
+		  		  <if test="dcid != null and dcid != ''"> and DCID = #{dcid} </if>
+		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
+		  		  <if test="dcvalue != null and dcvalue != ''"> and DCVALUE = #{dcvalue} </if>
+		  		  <if test="dccode != null and dccode != ''"> and DCCODE = #{dccode} </if>
+		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+		  		  <if test="orderno != null and orderno != ''"> and ORDERNO = #{orderno} </if>
+		  		  <if test="dcvalid != null and dcvalid != ''"> and DCVALID = #{dcvalid} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by DCID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_dict_content
+		 <where>  
+		  		  <if test="dcid != null and dcid != ''"> and DCID = #{dcid} </if>
+		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
+		  		  <if test="dcvalue != null and dcvalue != ''"> and DCVALUE = #{dcvalue} </if>
+		  		  <if test="dccode != null and dccode != ''"> and DCCODE = #{dccode} </if>
+		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+		  		  <if test="orderno != null and orderno != ''"> and ORDERNO = #{orderno} </if>
+		  		  <if test="dcvalid != null and dcvalid != ''"> and DCVALID = #{dcvalid} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.dictContent.domain.DictContentDO">
+		insert into sys_dict_content
+		(
+			`DCID`, 
+			`DID`, 
+			`DCVALUE`, 
+			`DCCODE`, 
+			`REMARK`, 
+			`ORDERNO`, 
+			`DCVALID`
+		)
+		values
+		(
+			#{dcid}, 
+			#{did}, 
+			#{dcvalue}, 
+			#{dccode}, 
+			#{remark}, 
+			#{orderno}, 
+			#{dcvalid}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.dictContent.domain.DictContentDO">
+		update sys_dict_content 
+		<set>
+			<if test="did != null">`DID` = #{did}, </if>
+			<if test="dcvalue != null">`DCVALUE` = #{dcvalue}, </if>
+			<if test="dccode != null">`DCCODE` = #{dccode}, </if>
+			<if test="remark != null">`REMARK` = #{remark}, </if>
+			<if test="orderno != null">`ORDERNO` = #{orderno}, </if>
+			<if test="dcvalid != null">`DCVALID` = #{dcvalid}</if>
+		</set>
+		where DCID = #{dcid}
+	</update>
+	
+	<delete id="del">
+		delete from sys_dict_content where DCID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_dict_content where DCID in 
+		<foreach item="dcid" collection="array" open="(" separator="," close=")">
+			#{dcid}
+		</foreach>
+	</delete>
+
+</mapper>

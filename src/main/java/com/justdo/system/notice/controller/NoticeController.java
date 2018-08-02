@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.justdo.system.dict.domain.DictContentDO;
+import com.justdo.system.dict.service.DictContentService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.justdo.common.config.Constant;
 import com.justdo.common.controller.BaseController;
-import com.justdo.system.dict.domain.DictDO;
-import com.justdo.system.dict.service.DictService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
@@ -43,7 +43,7 @@ public class NoticeController extends BaseController {
 	@Autowired
 	private NoticeRecordService NoticeRecordService;
 	@Autowired
-	private DictService dictService;
+	private DictContentService dictContentService;
 
 	@GetMapping()
 	@RequiresPermissions("system:notice:notice")
@@ -73,11 +73,11 @@ public class NoticeController extends BaseController {
 	@RequiresPermissions("system:notice:edit")
 	String edit(@PathVariable("id") String id, Model model) {
 		NoticeDO notice = NoticeService.get(id);
-		List<DictDO> dictDOS = dictService.listByType("notice_type");
+		List<DictContentDO> dictDOS = dictContentService.listByType("notice_type");
 		String type = notice.getType();
-		for (DictDO dictDO:dictDOS){
-			if(type.equals(dictDO.getValue())){
-				dictDO.setRemarks("checked");
+		for (DictContentDO dictDO:dictDOS){
+			if(type.equals(dictDO.getDcvalue())){
+				//dictDO.setRemarks("checked");
 			}
 		}
 		model.addAttribute("noticeTypes",dictDOS);

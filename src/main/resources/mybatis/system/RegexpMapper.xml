@@ -10,7 +10,7 @@
 		select RID,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID` from SYS_REGEXP
 		<where>
 		<if test="rid != null and rid != ''"> and RID = #{rid} </if>
-		<if test="rname != null and rname != ''"> and RNAME = #{rname} </if>
+		<if test="rname != null and rname != ''"> and RNAME like concat('%',#{rname},'%') </if>
 		<if test="rcode != null and rcode != ''"> and RCODE = #{rcode} </if>
 		<if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
 		<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>

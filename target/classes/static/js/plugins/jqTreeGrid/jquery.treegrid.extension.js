@@ -181,6 +181,12 @@
                         if(!item.isShow){
                             var tr = $('<tr></tr>');
                             tr.addClass('treegrid-' + (j + "_" + i));
+                            var rowalias=i + 1;
+                            if(options.columns[0].field=='rowalias') {
+                                var td = $('<td style="text-align:' + options.columns[0].align + ';' + ((options.columns[0].width) ? ('width:' + options.columns[0].width) : '') + '"></td>');
+                                td.text(rowalias);
+                                tr.append(td);
+                            }
                             target.renderRow(tr,item);
                             tbody.append(tr);
                         }

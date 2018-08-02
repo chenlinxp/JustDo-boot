@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.justdo.system.dict.service.DictContentService;
+import com.justdo.system.dict.domain.DictContentDO;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.config.Constant;
-import com.justdo.system.dict.domain.DictDO;
 import com.justdo.system.dicttype.domain.DictTypeDO;
-import com.justdo.system.dict.service.DictService;
 import com.justdo.system.dicttype.service.DictTypeService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
@@ -35,7 +35,7 @@ import com.justdo.common.utils.R;
 @RequestMapping("/system/dict")
 public class DictController extends BaseController {
 	@Autowired
-	private DictService dictService;
+	private DictContentService dictContentService;
 
 	@Autowired
 	private DictTypeService dictTypeService;
@@ -56,16 +56,18 @@ public class DictController extends BaseController {
 	@RequiresPermissions("system:dict:dict")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
+		//查询列表数据
 		Query query = new Query(params);
-		List<DictDO> dictList = dictService.list(query);
-		int total = dictService.count(query);
-		PageUtils pageUtils = new PageUtils(dictList, total);
+		List<DictContentDO> dictContentList = dictContentService.list(query);
+		int total = dictContentService.count(query);
+		PageUtils pageUtils = new PageUtils(dictContentList, total);
 		return pageUtils;
 	}
 
-	@GetMapping("/add")
+	@GetMapping("/add/{id}")
 	@RequiresPermissions("system:dict:add")
-	String add() {
+	String add(@PathVariable("id") String id, Model model) {
+		model.addAttribute("did", id);
 		return "system/dict/add";
 	}
 
@@ -75,8 +77,8 @@ public class DictController extends BaseController {
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("system:dict:add")
-	public R save(DictDO dict) {
-		if (dictService.save(dict) > 0) {
+	public R save(DictContentDO dictContent) {
+		if (dictContentService.save(dictContent) > 0) {
 			return R.ok();
 		}
 		return R.error();
@@ -84,17 +86,17 @@ public class DictController extends BaseController {
 
 	@GetMapping("/edit/{id}")
 	@RequiresPermissions("system:dict:edit")
-	String edit(@PathVariable("id") Long id, Model model) {
-		DictDO dict = dictService.get(id);
-		model.addAttribute("dict", dict);
+	String edit(@PathVariable("id") String id, Model model) {
+		DictContentDO dictContent = dictContentService.get(id);
+		model.addAttribute("dictContent", dictContent);
 		return "system/dict/edit";
 	}
 
 	@GetMapping("/view/{id}")
 	@RequiresPermissions("system:dict:dict")
-	String view(@PathVariable("id") Long id, Model model) {
-		DictDO dict = dictService.get(id);
-		model.addAttribute("dict", dict);
+	String view(@PathVariable("id") String id, Model model) {
+		DictContentDO dictContent = dictContentService.get(id);
+		model.addAttribute("dictContent", dictContent);
 		return "system/dict/view";
 	}
 
@@ -104,8 +106,8 @@ public class DictController extends BaseController {
 	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("system:dict:edit")
-	public R update(DictDO dict) {
-		dictService.update(dict);
+	public R update(DictContentDO dictContent) {
+		dictContentService.update(dictContent);
 		return R.ok();
 	}
 
@@ -115,8 +117,8 @@ public class DictController extends BaseController {
 	@PostMapping("/del")
 	@ResponseBody
 	@RequiresPermissions("system:dict:del")
-	public R remove(Long id) {
-		if (dictService.remove(id) > 0) {
+	public R del(String id) {
+		if (dictContentService.del(id) > 0) {
 			return R.ok();
 		}
 		return R.error();
@@ -128,18 +130,10 @@ public class DictController extends BaseController {
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:dict:batchDel")
-	public R remove(@RequestParam("ids[]") Long[] ids) {
-		dictService.batchDel(ids);
+	public R del(@RequestParam("ids[]") String[] ids) {
+		dictContentService.batchDel(ids);
 		return R.ok();
 	}
-
-	@GetMapping("/type")
-	@ResponseBody
-	public List<DictDO> listType() {
-
-		return dictService.listType();
-	};
-
 
 	// 类别已经指定增加
 	@GetMapping("/add/{type}/{description}")
@@ -153,11 +147,11 @@ public class DictController extends BaseController {
 
 	@ResponseBody
 	@GetMapping("/list/{type}")
-	public List<DictDO> listByType(@PathVariable("type") String type) {
+	public List<DictContentDO> listByType(@PathVariable("type") String type) {
 		// 查询列表数据
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("type", type);
-		List<DictDO> dictList = dictService.list(map);
+		List<DictContentDO> dictList = dictContentService.list(map);
 		return dictList;
 	}
 

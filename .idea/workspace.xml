@@ -2,32 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce3f1745-5d68-4251-976e-ef60ba149be0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/js/plugins/toastr/toastr.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/static/var/uploaded_files/43b9ee46-494c-4e4d-8872-1577714a7738.jpeg" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/var/uploaded_files/43b9ee46-494c-4e4d-8872-1577714a7738.jpeg" afterPath="$PROJECT_DIR$/src/main/resources/var/uploaded_files/43b9ee46-494c-4e4d-8872-1577714a7738.jpeg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/common/config/WebConfigurer.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/common/config/WebConfigurer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/file/controller/FileController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/file/controller/FileController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/file/service/impl/FileServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/file/service/impl/FileServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/user/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/user/service/impl/UserServiceImpl.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/DictContentMapper.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/dao/DictDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/domain/DictDO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/service/DictService.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/service/impl/DictServiceImpl.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/mybatis/system/DictMapper.xml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/dao/DictDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/dao/DictContentDao.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/domain/DictDO.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/domain/DictContentDO.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/DictService.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/DictContentService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/impl/DictServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/impl/DictContentServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/controller/DictController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/controller/DictController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/notice/controller/NoticeController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/notice/controller/NoticeController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/notice/service/impl/NoticeServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/notice/service/impl/NoticeServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/user/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/user/controller/UserController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/common/config/WebConfigurer.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/common/config/WebConfigurer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/controller/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/controller/FileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/service/FileService.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/service/FileService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/service/impl/FileServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/service/impl/FileServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/user/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/user/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/DictTypeMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/DictTypeMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/OrganMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/OrganMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dept/dept.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dept/dept.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/controller/NoticeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/controller/NoticeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/service/impl/NoticeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/service/impl/NoticeServiceImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/user/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/user/controller/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/DeptMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/DeptMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/RegexpMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/RegexpMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/plugins/chosen/chosen.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/plugins/chosen/chosen.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/organ/organ.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/organ/organ.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/role/role.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/role/role.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/regexp/regexp.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/regexp/regexp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/system/OrganMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/OrganMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/appjs/system/dept/dept.js" afterPath="$PROJECT_DIR$/target/classes/static/js/appjs/system/dept/dept.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/appjs/system/organ/organ.js" afterPath="$PROJECT_DIR$/target/classes/static/js/appjs/system/organ/organ.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/appjs/system/role/role.js" afterPath="$PROJECT_DIR$/target/classes/static/js/appjs/system/role/role.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/Controller.java.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/Controller.java.vm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/system/DeptMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/DeptMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/system/DictTypeMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/DictTypeMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/mybatis/system/RegexpMapper.xml" afterPath="$PROJECT_DIR$/target/classes/mybatis/system/RegexpMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/css/plugins/chosen/chosen.css" afterPath="$PROJECT_DIR$/target/classes/static/css/plugins/chosen/chosen.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/appjs/system/dict/dict.js" afterPath="$PROJECT_DIR$/target/classes/static/js/appjs/system/dict/dict.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/appjs/system/regexp/regexp.js" afterPath="$PROJECT_DIR$/target/classes/static/js/appjs/system/regexp/regexp.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/add.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/dict.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/dict.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/generator/Controller.java.vm" afterPath="$PROJECT_DIR$/target/classes/templates/system/generator/Controller.java.vm" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,18 +54,70 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="file.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/file/file.html">
+      <file leaf-file-name="DictController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="61" column="40" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="40" />
+            <state relative-caret-position="175">
+              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExtendedModelMap.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.13.RELEASE/spring-context-4.3.13.RELEASE-sources.jar!/org/springframework/ui/ExtendedModelMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="11" column="83" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="83" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DictTypeMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DictTypeMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="23" selection-end-column="20" />
               <folding>
-                <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#5235#5380#0" expanded="false" />
-                <element signature="e#5399#8025#0" expanded="false" />
-                <element signature="e#5812#7059#0" expanded="false" />
-                <element signature="e#7095#7865#0" expanded="false" />
-                <element signature="e#8056#8099#0" expanded="false" />
+                <marker date="1533185981817" expanded="true" signature="292:366" ph="select `did`... sys_dict" />
+                <marker date="1533185981817" expanded="true" signature="1089:1307" ph="update sys_d... " />
+                <marker date="1533185981817" expanded="true" signature="1341:1380" ph="delete from " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DictContentMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DictContentMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="53" column="19" lean-forward="true" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+              <folding>
+                <marker date="1533194109394" expanded="true" signature="290:401" ph="select `DCID... sys_dict_content" />
+                <marker date="1533194109394" expanded="true" signature="2394:2642" ph="insert into sys_dict_content... " />
+                <marker date="1533194109394" expanded="true" signature="2741:3145" ph="update sys_d... " />
+                <marker date="1533194109394" expanded="true" signature="3180:3230" ph="delete from " />
               </folding>
             </state>
           </provider>
@@ -60,8 +126,8 @@
       <file leaf-file-name="dict.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-436">
-              <caret line="33" column="14" lean-forward="true" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+            <state relative-caret-position="174">
+              <caret line="20" column="67" lean-forward="true" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -70,111 +136,45 @@
       <file leaf-file-name="dict.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="100" column="3" lean-forward="false" selection-start-line="100" selection-start-column="3" selection-end-line="100" selection-end-column="3" />
+            <state relative-caret-position="207">
+              <caret line="185" column="70" lean-forward="false" selection-start-line="185" selection-start-column="70" selection-end-line="185" selection-end-column="70" />
               <folding>
-                <marker date="1533167841785" expanded="true" signature="1906:1916" ph="..." />
+                <marker date="1533194865930" expanded="true" signature="903:913" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DictController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java">
+      <file leaf-file-name="jquery.treegrid.extension.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="167" column="44" lean-forward="false" selection-start-line="167" selection-start-column="44" selection-end-line="167" selection-end-column="44" />
+            <state relative-caret-position="-1068">
+              <caret line="169" column="186" lean-forward="false" selection-start-line="169" selection-start-column="186" selection-end-line="169" selection-end-column="186" />
+              <folding>
+                <marker date="1533170830514" expanded="true" signature="926:939" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="2735:2779" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="3511:3539" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="4264:4276" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="4411:4443" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="5445:5486" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="5608:5620" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="5702:5746" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="6304:6338" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="6983:7017" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="7536:7580" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="8480:8524" ph="..." />
+                <marker date="1533170830514" expanded="true" signature="10964:10998" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DictContentService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/DictContentService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrganMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/OrganMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="99" lean-forward="true" selection-start-line="14" selection-start-column="82" selection-end-line="14" selection-end-column="99" />
-              <folding>
-                <marker date="1533168336119" expanded="true" signature="280:480" ph="select `ORGA... sys_organ" />
-                <marker date="1533168336119" expanded="true" signature="4543:5363" ph="update sys_o... " />
-                <marker date="1533168336119" expanded="true" signature="5398:5444" ph="delete from " />
-                <marker date="1533168336119" expanded="true" signature="5695:5734" ph="select DISTI... sys_organ" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DictTypeMapper.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/DictTypeMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="16" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-              <folding>
-                <marker date="1533168427267" expanded="true" signature="292:366" ph="select `did`... sys_dict" />
-                <marker date="1533168427267" expanded="true" signature="1089:1307" ph="update sys_d... " />
-                <marker date="1533168427267" expanded="true" signature="1341:1380" ph="delete from " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DictMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/DictMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1531533498822" expanded="true" signature="276:454" ph="select `id`,... sys_dict3" />
-                <marker date="1531533498822" expanded="true" signature="3273:3651" ph="insert into sys_dict3... " />
-                <marker date="1531533498822" expanded="true" signature="3741:4523" ph="update sys_d... " />
-                <marker date="1531533498822" expanded="true" signature="4557:4598" ph="delete from " />
-                <marker date="1531533498822" expanded="true" signature="4858:4909" ph="select disti... sys_dict3" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RegexpMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/RegexpMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1531638845120" expanded="true" signature="284:378" ph="select `RID`... sys_regexp" />
-                <marker date="1531638845120" expanded="true" signature="2344:2683" ph="update sys_r... " />
-                <marker date="1531638845120" expanded="true" signature="2718:2761" ph="delete from " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeptMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DeptMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <marker date="1532933755844" expanded="true" signature="276:396" ph="select `DEPT... sys_dept" />
-                <marker date="1532933755844" expanded="true" signature="2687:3125" ph="update sys_d... " />
-                <marker date="1532933755844" expanded="true" signature="3159:3203" ph="delete from " />
-                <marker date="1532933755844" expanded="true" signature="3447:3484" ph="select DISTI... sys_dept" />
-                <marker date="1532933755844" expanded="true" signature="3549:3603" ph="select count... sys_user" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OrganMapper.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/OrganMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="12" column="94" lean-forward="false" selection-start-line="12" selection-start-column="94" selection-end-line="12" selection-end-column="94" />
-              <folding>
-                <marker date="1533168427460" expanded="true" signature="280:480" ph="select `ORGA... sys_organ" />
-                <marker date="1533168427460" expanded="true" signature="4543:5363" ph="update sys_o... " />
-                <marker date="1533168427460" expanded="true" signature="5398:5444" ph="delete from " />
-                <marker date="1533168427460" expanded="true" signature="5695:5734" ph="select DISTI... sys_organ" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -190,11 +190,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onClickRow</find>
-      <find>that</find>
-      <find>$el</find>
-      <find>BootstrapTable(</find>
-      <find>console</find>
       <find>com.justdo.system.dept.service.DeptService</find>
       <find>fastjson</find>
       <find>fastjso</find>
@@ -220,6 +215,11 @@
       <find>toastr.info</find>
       <find>test1</find>
       <find>organname</find>
+      <find>下边的操作主要是为了查询时让一些没有根节点的节点显示</find>
+      <find>DictContentDO</find>
+      <find>dictContent</find>
+      <find>getSexList</find>
+      <find>&lt;meta charset=&quot;utf-8&quot;&gt;</find>
     </findStrings>
     <replaceStrings>
       <replace>@author chenlin</replace>
@@ -227,6 +227,7 @@
       <replace>REMARK</replace>
       <replace />
       <replace>fileDao</replace>
+      <replace>dict</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/main/java/com/justdo/system</dir>
@@ -247,44 +248,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dicttype/domain/DictTypeDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/file/domain/FileDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/log/domain/LogDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/menu/domain/MenuDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/domain/NoticeDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/domain/NoticeRecordDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/organ/domain/OrganDeptVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/quartzjob/domain/QuartzJobDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/quartzjob/domain/QuartzJobTaskDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/regexp/domain/RegexpDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/regexp/domain/RegexpEXDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/role/domain/RoleDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/role/domain/RoleMenuDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/user/domain/UserOnline.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/user/domain/UserRoleDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/user/domain/UserVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/user/domain/UserDO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/user/domain/UserToken.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/organ/domain/OrganDO.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/domain.java.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/act/model/model.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/common/domain/Tree.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/common/utils/BuildTree.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dept/dao/DeptDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dept/service/DeptService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/organ/dao/OrganDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/organ/service/OrganService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/menu/menu.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/menu/menu.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/common/domain/TreeNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dept/service/impl/DeptServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/organ/service/impl/OrganServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/DeptMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/user/user.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/user/user.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/organ/controller/OrganController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/organ/organ.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/organ/organ.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dept/dept.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/role/role.js" />
@@ -293,11 +265,40 @@
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/common/config/WebConfigurer.java" />
         <option value="$PROJECT_DIR$/target/classes/mybatis/system/OrganMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/file/file.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/OrganMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/DictTypeMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/RegexpMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/DeptMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/plugins/chosen/chosen.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/include.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/dao/DictContentDao.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dictContent/dictContent.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/controller/DictContentController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/Controller.java.vm" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/domain/DictContentDO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/domain/DictDO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/domain/DictContentDO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/dao/DictDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/DictService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/service/impl/DictContentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/impl/DictServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/dao/DictContentDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/user/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/service/impl/NoticeServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/DictContentService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/notice/controller/NoticeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/impl/DictContentServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/regexp/regexp.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/dictContent/add.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/dictContent/edit.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/edit.html.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java" />
+        <option value="$PROJECT_DIR$/target/classes/mybatis/system/DictContentMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" />
       </list>
     </option>
   </component>
@@ -430,6 +431,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="target" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mybatis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -598,7 +621,75 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="file" />
+              <option name="myItemId" value="regexp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="organ" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="generator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -658,7 +749,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dept" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -687,10 +786,6 @@
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -714,15 +809,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appjs" />
+              <option name="myItemId" value="mybatis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -744,19 +831,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="justdo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="appjs" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="justdo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -782,19 +895,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="com" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appjs" />
+              <option name="myItemId" value="justdo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -805,124 +914,8 @@
               <option name="myItemId" value="dict" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mybatis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="justdo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="justdo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
+              <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -960,7 +953,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dicttype" />
+              <option name="myItemId" value="dict" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1062,15 +1063,16 @@
     <property name="FullScreen" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/js/appjs/system" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/system" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/justdo/system" />
+      <recent name="$PROJECT_DIR$/src/main/resources/mybatis/system" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/js/plugins/toastr" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/var/uploaded_files" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/static/js/plugins/toastr" />
-      <recent name="$PROJECT_DIR$/src/main/resources/static/img" />
-      <recent name="$PROJECT_DIR$/src/main/resources/static/js/plugins/bootstrap-table" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates/system/organ" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1508,7 +1510,7 @@
       <workItem from="1532568512166" duration="15543000" />
       <workItem from="1532655610181" duration="13567000" />
       <workItem from="1532772063101" duration="11070000" />
-      <workItem from="1533012735753" duration="5359000" />
+      <workItem from="1533012735753" duration="23190000" />
     </task>
     <task id="LOCAL-00001" summary="修改">
       <created>1530747545459</created>
@@ -1594,11 +1596,18 @@
       <option name="project" value="LOCAL" />
       <updated>1532678122778</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="增肌模糊查询， 优化数据字典功能">
+      <created>1533168711863</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1533168711863</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139827000" />
+    <option name="totallyTimeSpent" value="157658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -1658,7 +1667,8 @@
     <MESSAGE value="增加BaseBean类，修改对应的实体类，修改代码生成的模版" />
     <MESSAGE value="完善组织结构的树、和相关的代码" />
     <MESSAGE value="完善机构的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善机构的功能" />
+    <MESSAGE value="增肌模糊查询， 优化数据字典功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增肌模糊查询， 优化数据字典功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1676,7 +1686,7 @@
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="30" />
+      <option name="time" value="35" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1685,375 +1695,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/organ/service/OrganService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="22" column="18" lean-forward="false" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/organ/dao/OrganDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dept/controller/DeptController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="51" column="11" lean-forward="true" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/organ/organ.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="75" lean-forward="false" selection-start-line="12" selection-start-column="75" selection-end-line="12" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/organ/controller/OrganController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dept/add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dept/dept.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/organ/add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/organ/organ.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="188" column="34" lean-forward="false" selection-start-line="188" selection-start-column="34" selection-end-line="188" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dept/dept.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="112" column="21" lean-forward="false" selection-start-line="112" selection-start-column="21" selection-end-line="112" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/redis/shiro/RedisManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/role/role.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="87" column="144" lean-forward="false" selection-start-line="87" selection-start-column="144" selection-end-line="87" selection-end-column="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/utils/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/plugins/validate/additional-methods.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/file/service/FileService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/plugins/toastr/toastr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="348" column="35" lean-forward="false" selection-start-line="348" selection-start-column="35" selection-end-line="348" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/file/service/impl/FileServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="48" column="25" lean-forward="false" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/file/controller/FileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="153" column="9" lean-forward="false" selection-start-line="153" selection-start-column="9" selection-end-line="153" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/file/domain/FileDO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-338">
-          <caret line="29" column="11" lean-forward="false" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/file/dao/FileDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="8" lean-forward="false" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/favicon.ico">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/config/JustdoConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/config/QuartzConfigration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/config/XssConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/config/BDSessionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/config/ShiroConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="33" column="13" lean-forward="false" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/config/Swagger2Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/config/WebSocketConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="13" column="13" lean-forward="false" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/config/ApplicationContextRegister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/config/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/config/DruidDBConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/controller/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#293#294#0" expanded="false" />
-            <element signature="e#327#328#0" expanded="false" />
-            <element signature="e#357#358#0" expanded="false" />
-            <element signature="e#392#393#0" expanded="false" />
-            <element signature="e#424#425#0" expanded="false" />
-            <element signature="e#461#462#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/controller/WebSocketController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/var/uploaded_files/2f39ec98-6b17-4ad9-9add-1a0d459a70ab.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/var/uploaded_files/43b9ee46-494c-4e4d-8872-1577714a7738.jpeg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application-dev.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="27" selection-end-line="1" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/var/uploaded_files/89b02b89-2ef9-49c9-b26f-d71d07d87877.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/config/WebConfigurer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DeptMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1532933755844" expanded="true" signature="276:396" ph="select `DEPT... sys_dept" />
-            <marker date="1532933755844" expanded="true" signature="2687:3125" ph="update sys_d... " />
-            <marker date="1532933755844" expanded="true" signature="3159:3203" ph="delete from " />
-            <marker date="1532933755844" expanded="true" signature="3447:3484" ph="select DISTI... sys_dept" />
-            <marker date="1532933755844" expanded="true" signature="3549:3603" ph="select count... sys_user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/OrganMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="12" column="94" lean-forward="false" selection-start-line="12" selection-start-column="94" selection-end-line="12" selection-end-column="94" />
-          <folding>
-            <marker date="1533168427460" expanded="true" signature="280:480" ph="select `ORGA... sys_organ" />
-            <marker date="1533168427460" expanded="true" signature="4543:5363" ph="update sys_o... " />
-            <marker date="1533168427460" expanded="true" signature="5398:5444" ph="delete from " />
-            <marker date="1533168427460" expanded="true" signature="5695:5734" ph="select DISTI... sys_organ" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/file/file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="61" column="40" lean-forward="false" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#5235#5380#0" expanded="false" />
-            <element signature="e#5399#8025#0" expanded="false" />
-            <element signature="e#5812#7059#0" expanded="false" />
-            <element signature="e#7095#7865#0" expanded="false" />
-            <element signature="e#8056#8099#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-436">
-          <caret line="33" column="14" lean-forward="true" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="100" column="3" lean-forward="false" selection-start-line="100" selection-start-column="3" selection-end-line="100" selection-end-column="3" />
-          <folding>
-            <marker date="1533167841785" expanded="true" signature="1906:1916" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="167" column="44" lean-forward="false" selection-start-line="167" selection-start-column="44" selection-end-line="167" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/DictMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2068,40 +1709,449 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/RegexpMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/file/file.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="583">
+          <caret line="60" column="39" lean-forward="true" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#5235#5380#0" expanded="false" />
+            <element signature="e#5399#8025#0" expanded="false" />
+            <element signature="e#5812#7059#0" expanded="false" />
+            <element signature="e#7095#7865#0" expanded="false" />
+            <element signature="e#8056#8099#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/blog/bComments/bComments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2770">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/job/job.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="46" column="17" lean-forward="true" selection-start-line="46" selection-start-column="17" selection-end-line="47" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/plugins/chosen/chosen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="428" column="1" lean-forward="false" selection-start-line="428" selection-start-column="1" selection-end-line="428" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/include.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="9" column="46" lean-forward="true" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/DictContentMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1531638845120" expanded="true" signature="284:378" ph="select `RID`... sys_regexp" />
-            <marker date="1531638845120" expanded="true" signature="2344:2683" ph="update sys_r... " />
-            <marker date="1531638845120" expanded="true" signature="2718:2761" ph="delete from " />
+            <marker date="1533180542000" expanded="true" signature="304:415" ph="select `DCID... sys_dict_content" />
+            <marker date="1533180542000" expanded="true" signature="2286:2534" ph="insert into sys_dict_content... " />
+            <marker date="1533180542000" expanded="true" signature="2640:3044" ph="update sys_d... " />
+            <marker date="1533180542000" expanded="true" signature="3079:3129" ph="delete from " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/OrganMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/Controller.java.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/controller/DictContentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="47" column="4" lean-forward="true" selection-start-line="47" selection-start-column="4" selection-end-line="52" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/dao/DictContentDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="99" lean-forward="true" selection-start-line="14" selection-start-column="82" selection-end-line="14" selection-end-column="99" />
+          <caret line="14" column="31" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/domain/DictContentDO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="13" lean-forward="false" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/service/DictContentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dictContent/service/impl/DictContentServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="52" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/user/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2228">
+          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/notice/service/impl/NoticeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
-            <marker date="1533168336119" expanded="true" signature="280:480" ph="select `ORGA... sys_organ" />
-            <marker date="1533168336119" expanded="true" signature="4543:5363" ph="update sys_o... " />
-            <marker date="1533168336119" expanded="true" signature="5398:5444" ph="delete from " />
-            <marker date="1533168336119" expanded="true" signature="5695:5734" ph="select DISTI... sys_organ" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/DictTypeMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/notice/controller/NoticeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="16" lean-forward="true" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+        <state relative-caret-position="207">
+          <caret line="79" column="18" lean-forward="false" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
           <folding>
-            <marker date="1533168427267" expanded="true" signature="292:366" ph="select `did`... sys_dict" />
-            <marker date="1533168427267" expanded="true" signature="1089:1307" ph="update sys_d... " />
-            <marker date="1533168427267" expanded="true" signature="1341:1380" ph="delete from " />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dictContent/dictContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="143" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dictContent/add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dictContent/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dictContent/dictContent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DictMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1501">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/regexp/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-218">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/regexp/add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/regexp/regexp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="137" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/regexp/regexp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="14" column="28" lean-forward="false" selection-start-line="14" selection-start-column="28" selection-end-line="16" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/regexp/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/organ/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="80" column="28" lean-forward="false" selection-start-line="80" selection-start-column="28" selection-end-line="85" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/organ/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="85" column="26" lean-forward="false" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="134" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dept/controller/DeptController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/dao/DictContentDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="19" column="18" lean-forward="false" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.4.4/mybatis-3.4.4-sources.jar!/org/apache/ibatis/binding/MapperProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.13.RELEASE/spring-aop-4.3.13.RELEASE-sources.jar!/org/springframework/aop/support/AopUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="332" column="0" lean-forward="false" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.3.13.RELEASE/spring-aop-4.3.13.RELEASE-sources.jar!/org/springframework/aop/framework/ReflectiveMethodInvocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="189" column="0" lean-forward="false" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/impl/DictContentServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#841#842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dictContent/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="26" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="50" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dictContent/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="53" column="26" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="53" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/edit.html.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="11" column="50" lean-forward="false" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/dict.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="20" column="67" lean-forward="true" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/organ/organ.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="117" column="5" lean-forward="true" selection-start-line="117" selection-start-column="5" selection-end-line="120" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/plugins/jqTreeGrid/jquery.treegrid.extension.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1068">
+          <caret line="169" column="186" lean-forward="false" selection-start-line="169" selection-start-column="186" selection-end-line="169" selection-end-column="186" />
+          <folding>
+            <marker date="1533170830514" expanded="true" signature="926:939" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="2735:2779" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="3511:3539" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="4264:4276" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="4411:4443" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="5445:5486" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="5608:5620" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="5702:5746" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="6304:6338" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="6983:7017" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="7536:7580" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="8480:8524" ph="..." />
+            <marker date="1533170830514" expanded="true" signature="10964:10998" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DictTypeMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="23" selection-end-column="20" />
+          <folding>
+            <marker date="1533185981817" expanded="true" signature="292:366" ph="select `did`... sys_dict" />
+            <marker date="1533185981817" expanded="true" signature="1089:1307" ph="update sys_d... " />
+            <marker date="1533185981817" expanded="true" signature="1341:1380" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/domain/DictContentDO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/service/DictContentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/classes/mybatis/system/DictContentMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="53" column="19" lean-forward="true" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+          <folding>
+            <marker date="1533194109394" expanded="true" signature="290:401" ph="select `DCID... sys_dict_content" />
+            <marker date="1533194109394" expanded="true" signature="2394:2642" ph="insert into sys_dict_content... " />
+            <marker date="1533194109394" expanded="true" signature="2741:3145" ph="update sys_d... " />
+            <marker date="1533194109394" expanded="true" signature="3180:3230" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/4.3.13.RELEASE/spring-context-4.3.13.RELEASE-sources.jar!/org/springframework/ui/ExtendedModelMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="11" column="83" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="10" column="74" lean-forward="false" selection-start-line="10" selection-start-column="74" selection-end-line="10" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="185" column="70" lean-forward="false" selection-start-line="185" selection-start-column="70" selection-end-line="185" selection-end-column="70" />
+          <folding>
+            <marker date="1533194865930" expanded="true" signature="903:913" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

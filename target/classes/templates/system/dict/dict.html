@@ -4,35 +4,35 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content ">
-		<!--<div class="col-sm-3">-->
+		<div class="col-sm-3">
 
-					<!--<div class="ibox ibox-body">-->
-						<!--<div class="ibox-title">-->
-							<!--<h5>数据字典类型</h5>-->
-						<!--</div>-->
-						<!--<div class="ibox-title">-->
-							<!--<h5>过滤：</h5><input id="searchDName" type="text" class="form-control"-->
-											   <!--placeholder="请输入关键字">-->
-						<!--</div>-->
-						<!--<div class="ibox-title">-->
-							<!--<button type="button" class="btn  btn-primary" onclick="addDict()" id="addDict">-->
-								<!--<i class="fa fa-plus "  aria-hidden="true"></i>增加-->
-							<!--</button>-->
-							<!--<button type="button" class="btn btn-warning" onclick="updateDict()" id="updateDict">-->
-								<!--<i class="fa fa-edit "  aria-hidden="true"></i>修改-->
-							<!--</button>-->
-							<!--<button type="button" class="btn btn-danger" onclick="delDict()" id="delDict">-->
-								<!--<i class="fa fa-remove " aria-hidden="true"></i>删除-->
-							<!--</button>-->
-						<!--</div>-->
-						<!--<div class="ibox-content">-->
-							<!--<div id="dicttype">-->
+					<div class="ibox ibox-body">
+						<div class="ibox-title">
+							<h5>数据字典类型</h5>
+						</div>
+						<div class="ibox-title">
+							<h5>过滤：</h5><input id="searchDName" type="text" class="form-control"
+											   placeholder="请输入关键字">
+						</div>
+						<div class="ibox-title">
+							<button type="button" class="btn  btn-primary" onclick="addDict()" id="addDict">
+								<i class="fa fa-plus "  aria-hidden="true"></i>增加
+							</button>
+							<button type="button" class="btn btn-primary" onclick="updateDict()" id="updateDict">
+								<i class="fa fa-edit "  aria-hidden="true"></i>修改
+							</button>
+							<button type="button" class="btn btn-danger" onclick="delDict()" id="delDict">
+								<i class="fa fa-remove " aria-hidden="true"></i>删除
+							</button>
+						</div>
+						<div class="ibox-content">
+							<div id="dicttype">
 
-							<!--</div>-->
-						<!--</div>-->
-					<!--</div>-->
-		<!--</div>-->
-		<div class="col-sm-12">
+							</div>
+						</div>
+					</div>
+		</div>
+		<div class="col-sm-9">
 			<div class="ibox">
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
@@ -40,6 +40,9 @@
 							<button shiro:hasPermission="system:dict:add" type="button"
 								class="btn  btn-primary" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
+							</button>
+							<button shiro:hasPermission="system:dict:edit" type="button" class="btn  btn-primary" onclick="edit()">
+								<i class="fa fa-edit" aria-hidden="true"></i>编辑
 							</button>
 							<button shiro:hasPermission="system:dict:batchDel"
 								type="button" class="btn  btn-danger" onclick="batchDel()">

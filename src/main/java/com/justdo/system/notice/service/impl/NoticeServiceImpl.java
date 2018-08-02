@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import com.justdo.system.dict.service.DictContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.justdo.system.user.domain.UserDO;
 import com.justdo.system.user.service.SessionService;
-import com.justdo.system.dict.service.DictService;
 import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.system.notice.dao.NoticeDao;
@@ -39,7 +39,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private UserDao userDao;
     @Autowired
-    private DictService dictService;
+    private DictContentService dictContentService;
     @Autowired
     private SessionService sessionService;
     @Autowired
@@ -48,7 +48,7 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public NoticeDO get(String id) {
         NoticeDO rDO = NoticeDao.get(id);
-        rDO.setType(dictService.getName("notice_type", rDO.getType()));
+        rDO.setType(dictContentService.getName("notice_type", rDO.getType()));
         return rDO;
     }
 
@@ -56,7 +56,7 @@ public class NoticeServiceImpl implements NoticeService {
     public List<NoticeDO> list(Map<String, Object> map) {
         List<NoticeDO> Notices = NoticeDao.list(map);
         for (NoticeDO NoticeDO : Notices) {
-            NoticeDO.setType(dictService.getName("notice_type", NoticeDO.getType()));
+            NoticeDO.setType(dictContentService.getName("notice_type", NoticeDO.getType()));
         }
         return Notices;
     }
