@@ -35,16 +35,28 @@ function save() {
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
-		}
+        rules : {
+            dcvalue : {
+                required : true
+            },
+            dccode : {
+                required : true
+            },
+            orderno : {
+                required : true
+            }
+        },
+        messages : {
+            dcvalue : {
+                required : icon + "文本内容"
+            },
+            dccode : {
+                required : icon + "编码"
+            },
+            orderno : {
+                required : icon + "排序"
+            }
+        }
 	})
 }
 

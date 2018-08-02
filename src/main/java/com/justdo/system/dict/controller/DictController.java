@@ -55,7 +55,6 @@ public class DictController extends BaseController {
 	@GetMapping("/list")
 	@RequiresPermissions("system:dict:dict")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
-		// 查询列表数据
 		//查询列表数据
 		Query query = new Query(params);
 		List<DictContentDO> dictContentList = dictContentService.list(query);
@@ -104,7 +103,7 @@ public class DictController extends BaseController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@RequestMapping("/edit")
 	@RequiresPermissions("system:dict:edit")
 	public R update(DictContentDO dictContent) {
 		dictContentService.update(dictContent);
@@ -155,6 +154,7 @@ public class DictController extends BaseController {
 		return dictList;
 	}
 
+	/*------------------------------------*/
 	/**
 	 *数据字典索引的列表
 	 */
@@ -167,22 +167,60 @@ public class DictController extends BaseController {
 	};
 
 	@GetMapping("/addtype")
-//	@RequiresPermissions("common:dict:add")
+	@RequiresPermissions("system:dict:add")
 	String adddict() {
 		return "system/dict/addtype";
 	}
-
 
 	/**
 	 * 保存数据字典索引
 	 */
 	@ResponseBody
 	@PostMapping("/savetype")
-	//@RequiresPermissions("common:dict:add")
+	@RequiresPermissions("system:dict:add")
 	public R savetype(DictTypeDO dicttype) {
 		if (dictTypeService.save(dicttype) > 0) {
 			return R.ok();
 		}
 		return R.error();
 	}
+
+
+	@GetMapping("/edittype/{id}")
+	@RequiresPermissions("system:dict:edit")
+	String editdict(@PathVariable("id") String id, Model model) {
+		DictTypeDO dictTypeDO = dictTypeService.get(id);
+		model.addAttribute("dictTypeDO", dictTypeDO);
+		return "system/dict/edittype";
+	}
+
+	/**
+	 * 更新数据字典索引
+	 */
+	@ResponseBody
+	@PostMapping("/updatetype")
+	@RequiresPermissions("system:dict:edit")
+	public R edittype(DictTypeDO dicttype) {
+		if (dictTypeService.update(dicttype) > 0) {
+			return R.ok();
+		}
+		return R.error();
+	}
+	/**
+	 * 删除
+	 */
+	@PostMapping("/deltype")
+	@ResponseBody
+	@RequiresPermissions("system:dict:batchDel")
+	public R deltype(@RequestParam("id") String id) {
+		if(dictContentService.listByType(id).size()==0) {
+			dictTypeService.del(id);
+			return R.ok();
+		}else{
+			return R.error("此类型下有数据不能删除");
+		}
+	}
+
+
+
 }

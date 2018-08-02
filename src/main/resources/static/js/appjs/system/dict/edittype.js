@@ -4,7 +4,7 @@ $().ready(function() {
 
 $.validator.setDefaults({
 	submitHandler : function() {
-		save();
+        update();
 	}
 });
 
@@ -20,9 +20,9 @@ function validateRule() {
             }
 		},
 		messages : {
-			dname : {
-				required : icon + "请输入标签名"
-			},
+            dname : {
+                required : icon + "请输入标签名"
+            },
             dcode : {
                 required : icon + "请输入数据值"
             }
@@ -31,11 +31,11 @@ function validateRule() {
 }
 
 
-function save() {
+function update() {
     $.ajax({
         cache : true,
         type : "POST",
-        url : "/system/dict/savetype",
+        url : "/system/dict/updatetype",
         data : $('#dictTypeForm').serialize(), // 你的formid
         async : false,
         error : function(request) {

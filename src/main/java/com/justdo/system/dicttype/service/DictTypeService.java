@@ -22,7 +22,7 @@ public interface DictTypeService {
 
 	int update(DictTypeDO dict);
 
-	int remove(String id);
+	int del(String id);
 
 	List<DictTypeDO>  list(String dname);
 

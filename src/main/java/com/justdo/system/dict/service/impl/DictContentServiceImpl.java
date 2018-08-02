@@ -99,9 +99,9 @@ public class DictContentServiceImpl implements DictContentService {
     }
 
     @Override
-    public List<DictContentDO> listByType(String type) {
+    public List<DictContentDO> listByType(String id) {
         Map<String, Object> param = new HashMap<>(16);
-        param.put("type", type);
+        param.put("did", id);
         return dictContentDao.list(param);
     }
 

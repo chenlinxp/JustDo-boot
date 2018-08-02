@@ -26,7 +26,7 @@ public interface DictTypeDao {
 
 	int update(DictTypeDO dict);
 
-	int remove(String did);
+	int del(String did);
 
 	List<DictTypeDO> list(Map<String, Object> map);
 

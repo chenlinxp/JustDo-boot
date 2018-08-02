@@ -11,7 +11,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/dict/update",
+		url : "/system/dict/edit",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -36,14 +36,26 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
+            dcvalue : {
 				required : true
-			}
+			},
+            dccode : {
+                required : true
+            },
+            orderno : {
+                required : true
+            }
 		},
 		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
+            dcvalue : {
+				required : icon + "文本内容"
+			},
+            dccode : {
+                required : icon + "编码"
+            },
+            orderno : {
+                required : icon + "排序"
+            }
 		}
 	})
 }

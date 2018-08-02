@@ -18,7 +18,7 @@
 							<button type="button" class="btn  btn-primary" onclick="addDict()" id="addDict">
 								<i class="fa fa-plus "  aria-hidden="true"></i>增加
 							</button>
-							<button type="button" class="btn btn-primary" onclick="updateDict()" id="updateDict">
+							<button type="button" class="btn btn-primary" onclick="editDict()" id="editDict">
 								<i class="fa fa-edit "  aria-hidden="true"></i>修改
 							</button>
 							<button type="button" class="btn btn-danger" onclick="delDict()" id="delDict">
@@ -53,10 +53,12 @@
 							<button class="btn btn-success" onclick="reLoad()">查询</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
-							<select data-placeholder="请选择类别" class="form-control chosen-select"
-								tabindex="2" style="width: 100%">
-								<option value="">全部类别</option>
-							</select>
+							<!--<select data-placeholder="请选择类别" class="form-control chosen-select"-->
+								<!--tabindex="2" style="width: 100%">-->
+								<!--<option value="">全部类别</option>-->
+							<!--</select>-->
+							<input id="searchName" type="text" class="form-control"
+								   placeholder="关键字">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
@@ -65,28 +67,7 @@
 			</div>
 		</div>
 	</div>
-
 	<div>
-		<script type="text/javascript">
-			var s_edit_h = 'hidden';
-			var s_delete_h = 'hidden';
-			var s_resetPwd_h = 'hidden';
-		</script>
-	</div>
-	<div shiro:hasPermission="system:dict:edit">
-		<script type="text/javascript">
-			s_edit_h = '';
-		</script>
-	</div>
-	<div shiro:hasPermission="system:dict:del">
-		<script type="text/javascript">
-			var s_delete_h = '';
-		</script>
-	</div>
-	<div shiro:hasPermission="system:dict:add">
-		<script type="text/javascript">
-			var s_add_h = '';
-		</script>
 	</div>
 
 	</div>

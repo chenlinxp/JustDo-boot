@@ -1,6 +1,11 @@
 
 var prefix = "/system/dict"
 $(function() {
+    $('#searchDName').bind('keypress',function(event){
+        if(event.keyCode == "13") {
+            dictTypeLoad();
+        }
+    });
 	load();
 });
 function selectLoad() {
@@ -29,20 +34,21 @@ function selectLoad() {
 		}
 	});
 }
-
 function dictTypeLoad() {
     var html = "";
-    var dname = "";
+    var dname =$('#searchDName').val();
     $.ajax({
         url : '/system/dict/dicttype',
 		data : {  "dname" : dname },
         success : function(data) {
             //加载数据
             html ='<ul class="folder-list" style="padding: 0">';
+            html +='<li value=""><a href="javascript:void(0)"><i class="fa fa-folder"></i>全部类型</a></li>';
             for (var i = 0; i < data.length; i++) {
                 html += '<li value="' + data[i].did + '"><a href="javascript:void(0)"><i class="fa fa-folder"></i>'+ data[i].dname+ '</a></li>'
             }
             html += '</ul>';
+            $("#dicttype").empty();
             $("#dicttype").append(html);
             //点击事件
             $('#dicttype li').on('click', function() {
@@ -88,9 +94,9 @@ function load() {
                     return {
                         //说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
                         limit: params.limit,
-                        offset:params.offset
-                        // name:$('#searchName').val(),
-                        // username:$('#searchName').val()
+                        offset:params.offset,
+                        dcvalue:$('#searchName').val(),
+                        did:$('#dicttype li a.hactive.aactive').parent().attr("value") || ""
                     };
                 },
                 onDblClickRow: function (row, element) {
@@ -144,11 +150,13 @@ function load() {
                     },
                     {
                         field : 'orderno',
-                        title : '排序'
+                        title : '排序',
+                        width : '30px'
                     },
                     {
                         field : 'dcvalid',
 						title : '是否有效',
+                        width : '60px',
 						formatter : function(value, row, index) {
 							if (value == '0') {
 								return '<span class="label label-danger">无效</span>';
@@ -156,6 +164,7 @@ function load() {
 								return '<span class="label label-primary">有效</span>';
 							}
 				    	}
+
 				    },
                     {
                         field : 'remark',
@@ -164,12 +173,7 @@ function load() {
             });
 }
 function reLoad() {
-	var opt = {
-		query : {
-			type : $('.chosen-select').val(),
-		}
-	}
-	$('#bTable').bootstrapTable('refresh', opt);
+    $('#bTable').bootstrapTable('refresh');
 }
 
 function view(id) {
@@ -184,8 +188,7 @@ function view(id) {
 }
 function add() {
    var id = $('#dicttype li a.hactive.aactive').parent().attr("value")
-    alert(id);
-    if (id == undefined) {
+    if (id == undefined||id == "") {
         layer.msg("请选择数据字典类型");
         return;
     }
@@ -214,17 +217,6 @@ function edit() {
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
 		content : prefix + '/edit/' + id // iframe的url
-	});
-}
-
-function addD(type,description) {
-	layer.open({
-		type : 2,
-		title : '增加',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/add/'+type+'/'+description // iframe的url
 	});
 }
 function batchDel() {
@@ -271,4 +263,49 @@ function addDict() {
         area : [ '500px', '400px' ],
         content : '/system/dict/addtype' // iframe的url
     });
+}
+
+
+function editDict() {
+    var id = $('#dicttype li a.hactive.aactive').parent().attr("value")
+    if (id == undefined||id == "") {
+        layer.msg("请选择要修改的数据字典类型");
+        return;
+    }
+    layer.open({
+        type : 2,
+        title : '修改字典类型',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '500px', '400px' ],
+        content : '/system/dict/edittype/'+id // iframe的url
+    });
+}
+
+function delDict() {
+    var id = $('#dicttype li a.hactive.aactive').parent().attr("value")
+    if (id == undefined||id == "") {
+        layer.msg("请选择要删除的数据字典类型");
+        return;
+    }
+    layer.confirm("确认要删除选中的数据吗?", {
+        btn : [ '确定', '取消' ]
+        // 按钮
+    }, function() {
+        $.ajax({
+            type : 'POST',
+            data : {
+                "id" : id
+            },
+            url : prefix + '/deltype',
+            success : function(r) {
+                if (r.code == 0) {
+                    layer.msg(r.msg);
+                    dictTypeLoad();
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    }, function() {});
 }

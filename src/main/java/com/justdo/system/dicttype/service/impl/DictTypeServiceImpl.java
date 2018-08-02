@@ -45,8 +45,8 @@ public class DictTypeServiceImpl implements DictTypeService {
     }
 
     @Override
-    public int remove(String id) {
-        return dicttypeDao.remove(id);
+    public int del(String id) {
+        return dicttypeDao.del(id);
     }
 
 
