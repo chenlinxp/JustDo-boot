@@ -35,15 +35,28 @@ function update() {
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
-		}
+        rules : {
+            rname : {
+                required : true
+            },
+            rcode : {
+                required : true
+            },
+            rcontent : {
+                required : true
+            }
+
+        },
+        messages : {
+            rname : {
+                required : icon + "请输入名称"
+            },
+            rcode : {
+                required : icon + "请输入编码"
+            },
+            rcontent : {
+                required : icon + "请输入内容"
+            }
+        }
 	})
 }

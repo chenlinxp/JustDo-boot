@@ -21,10 +21,10 @@ function validateRule() {
 		},
 		messages : {
 			dname : {
-				required : icon + "请输入名称"
+				required : icon + "请输入标签名"
 			},
             dcode : {
-                required : icon + "请输入编码"
+                required : icon + "请输入数据值"
             }
 		}
 	})
@@ -44,7 +44,7 @@ function save() {
         success : function(data) {
             if (data.code == 0) {
                 parent.layer.msg("操作成功");
-                parent.reLoad();
+                parent.dictTypeLoad();
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
 
