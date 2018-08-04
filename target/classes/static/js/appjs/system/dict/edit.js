@@ -48,13 +48,13 @@ function validateRule() {
 		},
 		messages : {
             dcvalue : {
-				required : icon + "文本内容"
+				required : icon + "请输入文本内容"
 			},
             dccode : {
-                required : icon + "编码"
+                required : icon + "请输入编码"
             },
             orderno : {
-                required : icon + "排序"
+                required : icon + "请输入排序"
             }
 		}
 	})

@@ -36,19 +36,35 @@ function load() {
 					{
 						field : 'deptname',
 						title : '部门名称',
-                        valign : 'center'
+                        valign : 'center',
+                        width : '150px'
 					},
-					{
-						field : 'ordernum',
-						title : '排序',
+                    {
+                        field : 'deptcode',
+                        title : '部门别名'
+                    },
+                    {
+                        field : 'deptman',
+                        title : '负责人'
+                    },
+                    {
+                        field : 'deptmanid',
+                        title : '部门的责人ID',
+                        visible : false
+                    },
+                    {
+                        field : 'ordernum',
+                        title : '排序',
                         align : 'center',
                         valign : 'center',
-					},
+                        width : '50px'
+                    },
 					{
 						field : 'isvalidation',
 						title : '状态',
 						align : 'center',
                         valign : 'center',
+                        width : '50px',
 						formatter : function(item, index) {
 							if (item.isvalidation == '0') {
 								return '<span class="label label-danger">禁用</span>';
@@ -57,11 +73,16 @@ function load() {
 							}
 						}
 					},
+                    {
+                        field : 'remark',
+                        title : '备注'
+                    },
 					{
 						title : '操作',
 						field : 'operation',
 						align : 'center',
                         valign : 'center',
+                        width : '150px',
 						formatter : function(item, index) {
 							var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ item.deptid
