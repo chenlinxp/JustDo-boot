@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.justdo.system.dictContent.dao.DictContentDao">
+<mapper namespace="com.justdo.system.dict.dao.DictContentDao">
 
-	<select id="get" resultType="com.justdo.system.dictContent.domain.DictContentDO">
+	<select id="get" resultType="com.justdo.system.dict.domain.DictContentDO">
 		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from sys_dict_content where DCID = #{value}
 	</select>
 
-	<select id="list" resultType="com.justdo.system.dictContent.domain.DictContentDO">
+	<select id="list" resultType="com.justdo.system.dict.domain.DictContentDO">
 		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from sys_dict_content
         <where>  
 		  		  <if test="dcid != null and dcid != ''"> and DCID = #{dcid} </if>
@@ -44,7 +44,7 @@
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.justdo.system.dictContent.domain.DictContentDO">
+	<insert id="save" parameterType="com.justdo.system.dict.domain.DictContentDO">
 		insert into sys_dict_content
 		(
 			`DCID`, 
@@ -67,7 +67,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.justdo.system.dictContent.domain.DictContentDO">
+	<update id="update" parameterType="com.justdo.system.dict.domain.DictContentDO">
 		update sys_dict_content 
 		<set>
 			<if test="did != null">`DID` = #{did}, </if>
