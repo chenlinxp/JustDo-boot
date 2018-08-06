@@ -33,4 +33,5 @@ public interface DictContentService {
 	List<DictContentDO> getSexList();
 
 	List<DictContentDO> listByType(String id);
+
 }

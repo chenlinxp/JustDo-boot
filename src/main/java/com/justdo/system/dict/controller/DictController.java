@@ -77,10 +77,19 @@ public class DictController extends BaseController {
 	@PostMapping("/save")
 	@RequiresPermissions("system:dict:add")
 	public R save(DictContentDO dictContent) {
-		if (dictContentService.save(dictContent) > 0) {
-			return R.ok();
+			Map<String, Object> map = new HashMap<>(16);
+			map.put("dccode",dictContent.getDccode());
+			map.put("did",dictContent.getDid());
+			List<DictContentDO> dictContentList = dictContentService.list(map);
+	    if(dictContentList.size()==0){
+			if (dictContentService.save(dictContent) > 0) {
+				return R.ok();
+			}else {
+				return R.error();
+			}
+		}else {
+			return R.error("此字典编码重复，请重新输入！");
 		}
-		return R.error();
 	}
 
 	@GetMapping("/edit/{id}")
@@ -106,8 +115,20 @@ public class DictController extends BaseController {
 	@RequestMapping("/edit")
 	@RequiresPermissions("system:dict:edit")
 	public R update(DictContentDO dictContent) {
-		dictContentService.update(dictContent);
-		return R.ok();
+		Map<String, Object> map = new HashMap<>(16);
+		map.put("dccode",dictContent.getDccode());
+		map.put("did",dictContent.getDid());
+		List<DictContentDO> dictContentList = dictContentService.list(map);
+		if(dictContentList.size()>=1){
+			return R.error("此字典编码重复，请重新输入！");
+		}else {
+			if (dictContentService.update(dictContent) > 0) {
+				return R.ok();
+			}else {
+				return R.error();
+			}
+		}
+
 	}
 
 	/**
@@ -161,9 +182,8 @@ public class DictController extends BaseController {
 	@GetMapping("/dicttype")
 	@RequiresPermissions("system:dict:dict")
 	@ResponseBody
-	public List<DictTypeDO> listDictType(@RequestParam("dname") String dname) {
-
-		return dictTypeService.list(dname);
+	public List<DictTypeDO> listDictType(@RequestParam Map<String, Object> params) {
+		return dictTypeService.list(params);
 	};
 
 	@GetMapping("/addtype")
@@ -179,10 +199,20 @@ public class DictController extends BaseController {
 	@PostMapping("/savetype")
 	@RequiresPermissions("system:dict:add")
 	public R savetype(DictTypeDO dicttype) {
+
+		Map<String, Object> map = new HashMap<>(16);
+		map.put("dcode",dicttype.getDcode());
+		List<DictTypeDO> dictTypeDOList = dictTypeService.list(map);
+		if(dictTypeDOList.size()==0){
 		if (dictTypeService.save(dicttype) > 0) {
 			return R.ok();
+			}else{
+				return R.error();
+			}
 		}
-		return R.error();
+		else{
+			return R.error("此字典数据值已存在，请重新输入！");
+		}
 	}
 
 
@@ -201,10 +231,20 @@ public class DictController extends BaseController {
 	@PostMapping("/updatetype")
 	@RequiresPermissions("system:dict:edit")
 	public R edittype(DictTypeDO dicttype) {
-		if (dictTypeService.update(dicttype) > 0) {
-			return R.ok();
+
+		Map<String, Object> map = new HashMap<>(16);
+		map.put("dcode",dicttype.getDcode());
+		List<DictTypeDO> dictTypeDOList = dictTypeService.list(map);
+		if(dictTypeDOList.size()>1){
+			return R.error("此字典数据值已存在，请重新输入！");
 		}
-		return R.error();
+		else{
+			if (dictTypeService.update(dicttype) > 0) {
+				return R.ok();
+			}else{
+				return R.error();
+			}
+		}
 	}
 	/**
 	 * 删除

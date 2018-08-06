@@ -52,11 +52,8 @@ public class DictTypeServiceImpl implements DictTypeService {
 
     @Override
 
-    public List<DictTypeDO> list(String dname) {
-
-        Map<String, Object> param = new HashMap<>(16);
-        param.put("dname", dname);
-        return dicttypeDao.list(param);
+    public List<DictTypeDO> list(Map<String, Object> params) {
+        return dicttypeDao.list(params);
     }
 
 

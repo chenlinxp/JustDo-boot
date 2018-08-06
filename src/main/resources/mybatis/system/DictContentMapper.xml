@@ -45,6 +45,9 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.system.dict.domain.DictContentDO">
+		<selectKey keyProperty="dcid" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as dcid from dual
+		</selectKey>
 		insert into sys_dict_content
 		(
 			`DCID`, 

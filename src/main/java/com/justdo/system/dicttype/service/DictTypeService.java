@@ -1,6 +1,7 @@
 package com.justdo.system.dicttype.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.justdo.system.dicttype.domain.DictTypeDO;
 
@@ -24,7 +25,7 @@ public interface DictTypeService {
 
 	int del(String id);
 
-	List<DictTypeDO>  list(String dname);
+	List<DictTypeDO>  list(Map<String, Object> params);
 
 
 

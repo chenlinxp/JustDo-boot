@@ -31,6 +31,5 @@ public interface DictContentDao {
 
 	int batchDel(String[] dcids);
 
-
 }
 

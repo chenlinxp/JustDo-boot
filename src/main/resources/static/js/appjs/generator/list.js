@@ -41,10 +41,11 @@ function load() {
                             $("#bTable").bootstrapTable("uncheckAll");
                             var rowindex=$(element).attr("data-index");
                             $("#bTable").bootstrapTable('check',rowindex);
-                            // $.each($("#bTable  input[type='checkbox']"), function(index, value) {
-                            //     $(value).prop("checked",false);
-                            // });
-                            // $(element).find("input[type='checkbox']").prop("checked","checked");
+                        },
+                        icons: {
+                            refresh: 'glyphicon-repeat',
+                            toggle: 'glyphicon-list-alt',
+                            columns: 'glyphicon-list'
                         },
 						columns : [
 								{
