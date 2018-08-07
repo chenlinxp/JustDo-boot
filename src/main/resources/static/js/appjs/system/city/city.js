@@ -60,9 +60,6 @@ function load() {
 						// 返回false将会终止请求
 						columns : [
 								{
-									checkbox : true
-								},
-								{
 									field : 'SerialNumber',
 									title : '序号',
 									align : 'center',

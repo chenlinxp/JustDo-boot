@@ -43,14 +43,9 @@ public class CityController {
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:city:city")
-	public PageUtils list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-		List<CityDO> cityList = cityService.list(query);
-		int total = cityService.count(query);
-		PageUtils pageUtils = new PageUtils(cityList, total);
-		return pageUtils;
+	@RequiresPermissions("system:province:province")
+	public List<CityDO> list(@RequestParam Map<String, Object> params){
+		return cityService.list(params);
 	}
 	
 	@GetMapping("/add")
@@ -83,7 +78,7 @@ public class CityController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@RequestMapping("/edit")
 	@RequiresPermissions("system:city:edit")
 	public R update( CityDO city){
 		cityService.update(city);
