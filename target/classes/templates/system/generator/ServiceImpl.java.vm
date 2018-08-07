@@ -44,7 +44,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	
 	@Override
 	public int del(${pk.attrType} ${pk.attrname}){
-		return ${classname}Dao.remove(${pk.attrname});
+		return ${classname}Dao.del(${pk.attrname});
 	}
 	
 	@Override

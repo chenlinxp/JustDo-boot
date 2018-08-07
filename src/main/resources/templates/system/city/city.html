@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="col-sm-12">
+			<div class="ibox">
+				<div class="ibox-body">
+					<div class="fixed-table-toolbar">
+						<div class="columns pull-left">
+							<button shiro:hasPermission="system:city:add" type="button" class="btn  btn-primary" onclick="add()">
+                            <i class="fa fa-plus" aria-hidden="true"></i>添加
+                        </button>
+							<button shiro:hasPermission="system:city:edit" type="button" class="btn  btn-primary" onclick="edit()">
+                                <i class="fa fa-edit" aria-hidden="true"></i>编辑
+                            </button>
+							<button shiro:hasPermission="system:city:batchDel" type="button" class="btn  btn-danger" onclick="batchDel()">
+								<i class="fa fa-trash" aria-hidden="true"></i>删除
+							</button>
+						</div>
+						<div class="columns pull-right">
+							<button class="btn btn-success" onclick="reLoad()">查询</button>
+						</div>
+						<div class="columns pull-right col-md-2 nopadding">
+							<input id="searchName" type="text" class="form-control"
+								placeholder="">
+						</div>
+					</div>
+					<table id="bTable" data-mobile-responsive="true">
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		<div>
+			<script type="text/javascript">
+                var s_add_h = 'hidden';
+				var s_edit_h = 'hidden';
+				var s_delete_h = 'hidden';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:dept:add">
+			<script type="text/javascript">
+				s_add_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:city:edit">
+			<script type="text/javascript">
+				s_edit_h = '';
+			</script>
+		</div>
+		<div shiro:hasPermission="system:city:del">
+			<script type="text/javascript">
+				var s_delete_h = '';
+			</script>
+		</div>
+	</div>
+	<div th:include="include :: footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/city/city.js"></script>
+</body>
+</html>

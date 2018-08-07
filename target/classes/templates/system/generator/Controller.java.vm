@@ -97,7 +97,7 @@ public class ${className}Controller {
 	@ResponseBody
 	@RequiresPermissions("${pathName}:${classname}:del")
 	public R remove( ${pk.attrType} ${pk.attrname}){
-		if(${classname}Service.remove(${pk.attrname})>0){
+		if(${classname}Service.del(${pk.attrname})>0){
 		return R.ok();
 		}
 		return R.error();

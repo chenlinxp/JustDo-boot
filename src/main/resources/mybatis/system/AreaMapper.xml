@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.area.dao.AreaDao">
+
+	<select id="get" resultType="com.justdo.system.area.domain.AreaDO">
+		select `AREAID`,`AREACODE`,`AREANAME`,`CITYCODE`,`COUNTYCODE`,`ZIPCODE` from sys_area where AREAID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.area.domain.AreaDO">
+		select `AREAID`,`AREACODE`,`AREANAME`,`CITYCODE`,`COUNTYCODE`,`ZIPCODE` from sys_area
+        <where>  
+		  		  <if test="areaid != null and areaid != ''"> and AREAID = #{areaid} </if>
+		  		  <if test="areacode != null and areacode != ''"> and AREACODE = #{areacode} </if>
+		  		  <if test="areaname != null and areaname != ''"> and AREANAME = #{areaname} </if>
+		  		  <if test="citycode != null and citycode != ''"> and CITYCODE = #{citycode} </if>
+		  		  <if test="countycode != null and countycode != ''"> and COUNTYCODE = #{countycode} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and ZIPCODE = #{zipcode} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by AREAID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_area
+		 <where>  
+		  		  <if test="areaid != null and areaid != ''"> and AREAID = #{areaid} </if>
+		  		  <if test="areacode != null and areacode != ''"> and AREACODE = #{areacode} </if>
+		  		  <if test="areaname != null and areaname != ''"> and AREANAME = #{areaname} </if>
+		  		  <if test="citycode != null and citycode != ''"> and CITYCODE = #{citycode} </if>
+		  		  <if test="countycode != null and countycode != ''"> and COUNTYCODE = #{countycode} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and ZIPCODE = #{zipcode} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.area.domain.AreaDO">
+		insert into sys_area
+		(
+			`AREAID`, 
+			`AREACODE`, 
+			`AREANAME`, 
+			`CITYCODE`, 
+			`COUNTYCODE`, 
+			`ZIPCODE`
+		)
+		values
+		(
+			#{areaid}, 
+			#{areacode}, 
+			#{areaname}, 
+			#{citycode}, 
+			#{countycode}, 
+			#{zipcode}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.area.domain.AreaDO">
+		update sys_area 
+		<set>
+			<if test="areacode != null">`AREACODE` = #{areacode}, </if>
+			<if test="areaname != null">`AREANAME` = #{areaname}, </if>
+			<if test="citycode != null">`CITYCODE` = #{citycode}, </if>
+			<if test="countycode != null">`COUNTYCODE` = #{countycode}, </if>
+			<if test="zipcode != null">`ZIPCODE` = #{zipcode}</if>
+		</set>
+		where AREAID = #{areaid}
+	</update>
+	
+	<delete id="del">
+		delete from sys_area where AREAID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_area where AREAID in 
+		<foreach item="areaid" collection="array" open="(" separator="," close=")">
+			#{areaid}
+		</foreach>
+	</delete>
+
+</mapper>

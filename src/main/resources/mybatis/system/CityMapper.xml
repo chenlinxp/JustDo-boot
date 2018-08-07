@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.city.dao.CityDao">
+
+	<select id="get" resultType="com.justdo.system.city.domain.CityDO">
+		select `CITYID`,`CITYCODE`,`CITYNAME`,`PROVINCECODE`,`COUNTYCODE`,`ZIPCODE` from sys_city where CITYID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.city.domain.CityDO">
+		select `CITYID`,`CITYCODE`,`CITYNAME`,`PROVINCECODE`,`COUNTYCODE`,`ZIPCODE` from sys_city
+        <where>  
+		  		  <if test="cityid != null and cityid != ''"> and CITYID = #{cityid} </if>
+		  		  <if test="citycode != null and citycode != ''"> and CITYCODE = #{citycode} </if>
+		  		  <if test="cityname != null and cityname != ''"> and CITYNAME = #{cityname} </if>
+		  		  <if test="provincecode != null and provincecode != ''"> and PROVINCECODE = #{provincecode} </if>
+		  		  <if test="countycode != null and countycode != ''"> and COUNTYCODE = #{countycode} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and ZIPCODE = #{zipcode} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by CITYID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_city
+		 <where>  
+		  		  <if test="cityid != null and cityid != ''"> and CITYID = #{cityid} </if>
+		  		  <if test="citycode != null and citycode != ''"> and CITYCODE = #{citycode} </if>
+		  		  <if test="cityname != null and cityname != ''"> and CITYNAME = #{cityname} </if>
+		  		  <if test="provincecode != null and provincecode != ''"> and PROVINCECODE = #{provincecode} </if>
+		  		  <if test="countycode != null and countycode != ''"> and COUNTYCODE = #{countycode} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and ZIPCODE = #{zipcode} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.city.domain.CityDO">
+		insert into sys_city
+		(
+			`CITYID`, 
+			`CITYCODE`, 
+			`CITYNAME`, 
+			`PROVINCECODE`, 
+			`COUNTYCODE`, 
+			`ZIPCODE`
+		)
+		values
+		(
+			#{cityid}, 
+			#{citycode}, 
+			#{cityname}, 
+			#{provincecode}, 
+			#{countycode}, 
+			#{zipcode}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.city.domain.CityDO">
+		update sys_city 
+		<set>
+			<if test="citycode != null">`CITYCODE` = #{citycode}, </if>
+			<if test="cityname != null">`CITYNAME` = #{cityname}, </if>
+			<if test="provincecode != null">`PROVINCECODE` = #{provincecode}, </if>
+			<if test="countycode != null">`COUNTYCODE` = #{countycode}, </if>
+			<if test="zipcode != null">`ZIPCODE` = #{zipcode}</if>
+		</set>
+		where CITYID = #{cityid}
+	</update>
+	
+	<delete id="del">
+		delete from sys_city where CITYID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_city where CITYID in 
+		<foreach item="cityid" collection="array" open="(" separator="," close=")">
+			#{cityid}
+		</foreach>
+	</delete>
+
+</mapper>

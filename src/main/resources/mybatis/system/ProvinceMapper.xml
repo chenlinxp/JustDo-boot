@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.province.dao.ProvinceDao">
+
+	<select id="get" resultType="com.justdo.system.province.domain.ProvinceDO">
+		select `PROVINCEID`,`PROVINCECODE`,`PROVINCENAME` from sys_province where PROVINCEID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.province.domain.ProvinceDO">
+		select `PROVINCEID`,`PROVINCECODE`,`PROVINCENAME` from sys_province
+        <where>  
+		  		  <if test="provinceid != null and provinceid != ''"> and PROVINCEID = #{provinceid} </if>
+		  		  <if test="provincecode != null and provincecode != ''"> and PROVINCECODE = #{provincecode} </if>
+		  		  <if test="provincename != null and provincename != ''"> and PROVINCENAME = #{provincename} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by PROVINCEID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_province
+		 <where>  
+		  		  <if test="provinceid != null and provinceid != ''"> and PROVINCEID = #{provinceid} </if>
+		  		  <if test="provincecode != null and provincecode != ''"> and PROVINCECODE = #{provincecode} </if>
+		  		  <if test="provincename != null and provincename != ''"> and PROVINCENAME = #{provincename} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.province.domain.ProvinceDO">
+		<selectKey keyProperty="provinceid" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as provinceid from dual
+		</selectKey>
+		insert into sys_province
+		(
+			`PROVINCEID`, 
+			`PROVINCECODE`, 
+			`PROVINCENAME`
+		)
+		values
+		(
+			#{provinceid}, 
+			#{provincecode}, 
+			#{provincename}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.province.domain.ProvinceDO">
+		update sys_province 
+		<set>
+			<if test="provincecode != null">`PROVINCECODE` = #{provincecode}, </if>
+			<if test="provincename != null">`PROVINCENAME` = #{provincename}</if>
+		</set>
+		where PROVINCEID = #{provinceid}
+	</update>
+	
+	<delete id="del">
+		delete from sys_province where PROVINCEID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_province where PROVINCEID in 
+		<foreach item="provinceid" collection="array" open="(" separator="," close=")">
+			#{provinceid}
+		</foreach>
+	</delete>
+
+</mapper>
