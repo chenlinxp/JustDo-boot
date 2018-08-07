@@ -83,7 +83,7 @@ public class ${className}Controller {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@RequestMapping("/edit")
 	@RequiresPermissions("${pathName}:${classname}:edit")
 	public R update( ${className}DO ${classname}){
 		${classname}Service.update(${classname});

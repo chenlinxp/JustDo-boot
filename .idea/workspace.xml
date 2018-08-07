@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ce3f1745-5d68-4251-976e-ef60ba149be0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/city/controller/CityController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/city/controller/CityController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/province/controller/ProvinceController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/province/controller/ProvinceController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/city/city.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/city/city.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/province/province.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/province/province.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/Controller.java.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/Controller.java.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/Mapper.xml.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/Mapper.xml.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/edit.html.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/edit.html.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/province/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/province/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/generator/Controller.java.vm" afterPath="$PROJECT_DIR$/target/classes/templates/system/generator/Controller.java.vm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/generator/Mapper.xml.vm" afterPath="$PROJECT_DIR$/target/classes/templates/system/generator/Mapper.xml.vm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/generator/edit.html.vm" afterPath="$PROJECT_DIR$/target/classes/templates/system/generator/edit.html.vm" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1357,7 +1352,7 @@
       <workItem from="1532568512166" duration="15543000" />
       <workItem from="1532655610181" duration="13567000" />
       <workItem from="1532772063101" duration="11070000" />
-      <workItem from="1533012735753" duration="61251000" />
+      <workItem from="1533012735753" duration="61596000" />
     </task>
     <task id="LOCAL-00001" summary="修改">
       <created>1530747545459</created>
@@ -1499,11 +1494,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533621236278</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="增加省市县区维护的功能">
+      <created>1533637081136</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1533637081136</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195719000" />
+    <option name="totallyTimeSpent" value="196064000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -1569,7 +1571,8 @@
     <MESSAGE value="完善部门功能" />
     <MESSAGE value="修复字典功能问题" />
     <MESSAGE value="完善数据字典的功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善数据字典的功能" />
+    <MESSAGE value="增加省市县区维护的功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加省市县区维护的功能" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
