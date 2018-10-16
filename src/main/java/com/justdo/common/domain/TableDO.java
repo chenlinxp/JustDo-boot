@@ -23,6 +23,10 @@ public class TableDO {
     private String className;
     //类名(第一个字母小写)，如：sys_user => sysUser
     private String classname;
+    //构造函数的参数
+    private String constructorParams;
+    //是否生成移动端的crud接口
+    private int  appInterface;
 
     public String getTableName() {
         return tableName;
@@ -72,6 +76,21 @@ public class TableDO {
         this.classname = classname;
     }
 
+    public String getConstructorParams() {
+        return constructorParams;
+    }
+
+    public void setConstructorParams(String constructorParams) {
+        this.constructorParams = constructorParams;
+    }
+
+    public int getAppInterface() {
+        return appInterface;
+    }
+
+    public void setAppInterface(int appInterface) {
+        this.appInterface = appInterface;
+    }
     @Override
     public String toString() {
         return "TableDO{" +

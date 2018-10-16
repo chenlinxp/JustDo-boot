@@ -29,7 +29,9 @@ function load() {
 						showColumns : false, // 是否显示内容下拉框（选择显示的列）
 						sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
                         detailView:true,
-						queryParams : function(params) {
+                       // smartDisplay:true,
+                        editable:true,//开启编辑模式
+                        queryParams : function(params) {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit: params.limit,
@@ -78,7 +80,15 @@ function load() {
 								{
 									field : 'provincecode', 
 									title : '编号' ,
-                                    width : '60px'
+                                    width : '60px',
+                                    editable: {
+                                        type: 'text',
+                                        title: '编号',
+                                        validate: function (e) {
+                                            if (!e) return '编号不能为空';
+
+                                        }
+                                    }
 								},
 								{
 									field : 'provincename', 
@@ -228,15 +238,21 @@ function view(id) {
     });
 }
 function add() {
-	layer.open({
-		type : 2,
-		title : '增加',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/add' // iframe的url
-	});
-}
+
+	// layer.open({
+	// 	type : 2,
+	// 	title : '增加',
+	// 	maxmin : true,
+	// 	shadeClose : false, // 点击遮罩关闭层
+	// 	area : [ '800px', '520px' ],
+	// 	content : prefix + '/add' // iframe的url
+	// });
+       // $('#bTable').bootstrapTable('selectPage', 1); //Jump to the first page
+        var data = {SerialNumber:'',provinceid: '', provincecode: '',provincename:'',operation:''}; //define a new row data，certainly it's empty
+        $('#bTable').bootstrapTable('prepend', data); //the method of prepend must defined all fields，but append needn't
+        //$("#bTable input")[0].focus();
+
+    }
 function edit(id) {
 	layer.open({
 		type : 2,
