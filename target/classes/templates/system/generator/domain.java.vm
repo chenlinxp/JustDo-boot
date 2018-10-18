@@ -16,11 +16,36 @@ import java.math.BigDecimal;
  * @date ${datetime}
  */
 public class ${className}DO extends BaseBean {
-	
+
+
+    //$pk.comments
+    private $pk.attrType $pk.attrname;
+
 #foreach ($column in $columns)
 	//$column.comments
 	private $column.attrType $column.attrname;
 #end
+
+    /**
+    * 构造方法
+    */
+    public ${className}(${constructorParams}) {
+        super();
+		#foreach ($column in $columns)
+            this.${column.attrname}= $column.attrname;
+		#end
+    /**
+     * 设置：${pk.comments}
+     */
+    public void set${pk.attrName}($pk.attrType $pk.attrname) {
+        this.$pk.attrname = $pk.attrname;
+    }
+    /**
+     * 获取：${pk.comments}
+     */
+    public $pk.attrType get${pk.attrName}() {
+        return $pk.attrname;
+    }
 
 #foreach ($column in $columns)
 	/**
@@ -36,4 +61,5 @@ public class ${className}DO extends BaseBean {
 		return $column.attrname;
 	}
 #end
+
 }
