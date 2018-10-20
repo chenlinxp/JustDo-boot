@@ -1,0 +1,16 @@
+package ${package}.${classname}.dao;
+import com.sxsihe.oxhide.persistence.BaseDAOIface;
+
+/**
+ * ${comments}
+ * Description：
+ * @author: ${author}
+ * @email: ${email}
+ * @date: ${datetime}
+ * Modification History:  
+ * Modified by :  
+ */
+ 
+public interface ${className}DAO extends BaseDAOIface {
+
+}

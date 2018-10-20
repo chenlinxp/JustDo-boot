@@ -1,0 +1,22 @@
+package ${package}.${classname}.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.sxsihe.oxhide.service.BaseServiceIface;
+
+/**
+ * ${comments}
+ * 
+ * @author: ${author}
+ * @email: ${email}
+ * @date: ${datetime}
+ * Modification History:  
+ * Modified by :  
+ */
+ 
+public interface ${className}Service extends BaseServiceIface {
+
+	
+
+}

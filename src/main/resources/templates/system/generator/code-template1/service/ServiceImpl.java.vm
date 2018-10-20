@@ -1,0 +1,30 @@
+package ${package}.${classname}.service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import org.springframework.stereotype.Service;
+import com.sxsihe.oxhide.persistence.BaseDAOIface;
+import com.sxsihe.oxhide.service.BaseServiceImpl;
+import com.sxsihe.utils.json.JsonUtil;
+
+/**
+ * ${comments}
+ * Description：
+ * @author: ${author}
+ * @email: ${email}
+ * @date: ${datetime}
+ * Modification History:  
+ * Modified by :  
+ */
+ 
+@Service("${classname}Service")
+public class ${className}ServiceImpl extends BaseServiceImpl implements ${className}Service {
+	@Override
+	@Resource(name = "${classname}DAO")
+	public void setDao(BaseDAOIface dao) {
+		this.dao=dao;
+	}
+}
