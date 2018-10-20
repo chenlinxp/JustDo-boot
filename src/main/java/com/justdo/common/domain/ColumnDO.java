@@ -1,9 +1,13 @@
 package com.justdo.common.domain;
 
 /**
- * 列的属性
- * 
- * 
+ * 代码生成-数据表
+ * Description：
+ * @author: chenlin
+ * @email: chenlinxp@qq.com
+ * @date: 2018-10-16 18:09:51
+ * Modification History:
+ * Modified by :
  */
 public class ColumnDO {
 	// 列名

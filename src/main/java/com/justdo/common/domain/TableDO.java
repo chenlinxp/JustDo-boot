@@ -3,11 +3,13 @@ package com.justdo.common.domain;
 import java.util.List;
 
 /**
- * 表数据
- *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月20日 上午12:02:55
+ * 代码生成-数据表
+ * Description：
+ * @author: chenlin
+ * @email: chenlinxp@qq.com
+ * @date: 2018-10-16 18:09:51
+ * Modification History:
+ * Modified by :
  */
 public class TableDO {
     //表的名称
