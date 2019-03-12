@@ -1,7 +1,7 @@
 package com.justdo.common.redis.shiro;
 
 /**
- * @author justdo 1992lcg@163.com
+ * @author justdo
  * @version V1.0
  */
 

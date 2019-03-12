@@ -1,17 +1,19 @@
 package com.justdo.system.user.controller;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.justdo.common.annotation.Log;
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.domain.Tree;
+import com.justdo.common.utils.MD5Utils;
+import com.justdo.common.utils.PageUtils;
+import com.justdo.common.utils.Query;
+import com.justdo.common.utils.R;
+import com.justdo.system.dept.domain.DeptDO;
 import com.justdo.system.dict.service.DictContentService;
-import org.apache.commons.collections.CollectionUtils;
+import com.justdo.system.role.domain.RoleDO;
+import com.justdo.system.role.service.RoleService;
+import com.justdo.system.user.domain.UserDO;
+import com.justdo.system.user.domain.UserVO;
+import com.justdo.system.user.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,18 +21,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.justdo.common.annotation.Log;
-import com.justdo.common.config.Constant;
-import com.justdo.common.controller.BaseController;
-import com.justdo.system.file.domain.FileDO;
-import com.justdo.common.domain.Tree;
-import com.justdo.common.utils.*;
-import com.justdo.system.dept.domain.DeptDO;
-import com.justdo.system.role.service.RoleService;
-import com.justdo.system.role.domain.RoleDO;
-import com.justdo.system.user.domain.UserDO;
-import com.justdo.system.user.service.UserService;
-import com.justdo.system.user.domain.UserVO;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 

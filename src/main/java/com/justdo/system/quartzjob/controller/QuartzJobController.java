@@ -1,22 +1,19 @@
 package com.justdo.system.quartzjob.controller;
 
-import java.util.List;
-import java.util.Map;
-
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.PageUtils;
+import com.justdo.common.utils.Query;
+import com.justdo.common.utils.R;
+import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;
+import com.justdo.system.quartzjob.service.QuartzJobService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.justdo.system.quartzjob.service.QuartzJobService;
-import com.justdo.common.controller.BaseController;
-import com.justdo.common.config.Constant;
-import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;
-
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
-import com.justdo.common.utils.R;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -63,7 +60,7 @@ public class QuartzJobController extends BaseController {
 	}
 
 	/**
-	 * 信息
+	 * 详情
 	 */
 	@RequestMapping("/info/{id}")
 	public R info(@PathVariable("id") Long id) {

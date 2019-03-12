@@ -1,23 +1,17 @@
 package com.justdo.common.redis.shiro;
 
 /**
- * @author justdo 1992lcg@163.com
+ * @author justdo
  * @version V1.0
  */
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import com.justdo.common.utils.SerializeUtils;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.util.CollectionUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 public class RedisCache<K, V> implements Cache<K, V> {
 

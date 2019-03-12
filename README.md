@@ -39,7 +39,7 @@
 * 模板引擎：Thymeleaf
 * 持久层框架：MyBatis
 * 数据库连接池：Alibaba Druid 
-* 缓存框架：Ehcache 、Redis
+* 缓存框架：Redis
 * 日志管理：SLF4J 
 * 工具类：Apache Commons、Jackson 
 
