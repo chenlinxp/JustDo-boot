@@ -1,25 +1,24 @@
 package com.justdo.system.dept.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.justdo.common.annotation.Log;
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.domain.Tree;
+import com.justdo.common.utils.R;
+import com.justdo.common.utils.StringUtils;
+import com.justdo.system.dept.domain.DeptDO;
+import com.justdo.system.dept.service.DeptService;
 import com.justdo.system.organ.domain.OrganDO;
+import com.justdo.system.organ.service.OrganService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.ApiOperation;
 
-import com.justdo.common.config.Constant;
-import com.justdo.common.controller.BaseController;
-import com.justdo.common.domain.Tree;
-import com.justdo.common.utils.R;
-import com.justdo.system.dept.domain.DeptDO;
-import com.justdo.system.dept.service.DeptService;
-import com.justdo.common.utils.StringUtils;
-import com.justdo.system.organ.service.OrganService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -96,8 +95,9 @@ public class DeptController extends BaseController {
 	}
 
 	/**
-	 * 保存
+	 * 新增部门
 	 */
+	@Log("新增部门")
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("system:dept:add")
@@ -109,8 +109,9 @@ public class DeptController extends BaseController {
 	}
 
 	/**
-	 * 修改
+	 * 修改部门
 	 */
+	@Log("修改部门")
 	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("system:dept:edit")
@@ -122,8 +123,9 @@ public class DeptController extends BaseController {
 	}
 
 	/**
-	 * 删除
+	 * 删除部门
 	 */
+	@Log("删除部门")
 	@PostMapping("/del")
 	@ResponseBody
 	@RequiresPermissions("system:dept:del")
@@ -144,8 +146,9 @@ public class DeptController extends BaseController {
 	}
 
 	/**
-	 * 删除
+	 * 批量删除部门
 	 */
+	@Log("删除部门")
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:dept:batchDel")

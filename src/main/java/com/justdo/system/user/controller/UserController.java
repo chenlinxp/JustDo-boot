@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 
-
-
 /**
  * 用户
  * @author chenlin
@@ -63,7 +61,6 @@ public class UserController extends BaseController {
 	}
 
 	@RequiresPermissions("system:user:add")
-	@Log("添加用户")
 	@GetMapping("/add")
 	String add(Model model) {
 		List<RoleDO> roles = roleService.list();
@@ -72,7 +69,6 @@ public class UserController extends BaseController {
 	}
 
 	@RequiresPermissions("system:user:edit")
-	@Log("编辑用户")
 	@GetMapping("/edit/{id}")
 	String edit(Model model, @PathVariable("id") String id) {
 		UserDO userDO = userService.get(id);
@@ -83,7 +79,7 @@ public class UserController extends BaseController {
 	}
 
 	@RequiresPermissions("system:user:add")
-	@Log("保存用户")
+	@Log("添加用户")
 	@PostMapping("/save")
 	@ResponseBody
 	R save(UserDO user) {
@@ -96,7 +92,7 @@ public class UserController extends BaseController {
 	}
 
 	@RequiresPermissions("system:user:edit")
-	@Log("更新用户")
+	@Log("编辑用户")
 	@PostMapping("/update")
 	@ResponseBody
 	R update(UserDO user) {
@@ -109,7 +105,7 @@ public class UserController extends BaseController {
 
 
 	@RequiresPermissions("system:user:edit")
-	@Log("更新用户")
+	@Log("更新个人信息")
 	@PostMapping("/updatePeronal")
 	@ResponseBody
 	R updatePeronal(UserDO user) {
@@ -154,7 +150,6 @@ public class UserController extends BaseController {
 	}
 
 	@RequiresPermissions("system:user:resetPwd")
-	@Log("请求更改用户密码")
 	@GetMapping("/resetPwd/{id}")
 	String resetPwd(@PathVariable("id") String userId, Model model) {
 
@@ -164,7 +159,7 @@ public class UserController extends BaseController {
 		return prefix + "/reset_pwd";
 	}
 
-	@Log("提交更改用户密码")
+	@Log("更改用户密码")
 	@PostMapping("/resetPwd")
 	@ResponseBody
 	R resetPwd(UserVO userVO) {
@@ -177,7 +172,7 @@ public class UserController extends BaseController {
 
 	}
 	@RequiresPermissions("system:user:resetPwd")
-	@Log("admin提交更改用户密码")
+	@Log("修改用户密码")
 	@PostMapping("/adminResetPwd")
 	@ResponseBody
 	R adminResetPwd(UserVO userVO) {

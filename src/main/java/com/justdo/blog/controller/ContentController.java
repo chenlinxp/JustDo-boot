@@ -2,7 +2,6 @@ package com.justdo.blog.controller;
 
 import com.justdo.blog.domain.ContentDO;
 import com.justdo.blog.service.ContentService;
-import com.justdo.common.config.Constant;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
