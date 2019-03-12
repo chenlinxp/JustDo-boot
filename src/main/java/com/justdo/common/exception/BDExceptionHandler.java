@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.justdo.common.config.Constant;
+import com.justdo.config.Constant;
 import com.justdo.system.log.domain.LogDO;
 import com.justdo.system.log.service.LogService;
 import com.justdo.common.utils.ExceptionUtils;

@@ -37,7 +37,7 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public List<UserOnline> list() {
         List<UserOnline> list = new ArrayList<>();
-        Collection<Session> sessions = sessionDAO.getActiveSessions();
+        Collection<Session> sessions = sessionList();
         for (Session session : sessions) {
             UserOnline userOnline = new UserOnline();
             if (session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY) == null) {
@@ -62,13 +62,12 @@ public class SessionServiceImpl implements SessionService {
     public List<UserDO> listOnlineUser() {
         List<UserDO> list = new ArrayList<>();
         UserDO userDO;
-        Collection<Session> sessions = sessionDAO.getActiveSessions();
+        Collection<Session> sessions = sessionList();
         for (Session session : sessions) {
-            SimplePrincipalCollection principalCollection = new SimplePrincipalCollection();
             if (session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY) == null) {
                 continue;
             } else {
-                principalCollection = (SimplePrincipalCollection) session
+                SimplePrincipalCollection  principalCollection = (SimplePrincipalCollection) session
                         .getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
                 userDO = (UserDO) principalCollection.getPrimaryPrincipal();
                 list.add(userDO);

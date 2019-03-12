@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.justdo.common.config.JustdoConfig;
+import com.justdo.config.JustdoConfig;
 import com.justdo.system.file.dao.FileDao;
 import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;

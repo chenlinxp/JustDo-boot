@@ -16,25 +16,28 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import com.justdo.common.utils.ShiroUtils;
 import com.justdo.system.user.dao.UserDao;
 import com.justdo.system.user.domain.UserDO;
 import com.justdo.system.menu.service.MenuService;
-import com.justdo.common.config.ApplicationContextRegister;
+import com.justdo.config.ApplicationContextRegister;
 import com.justdo.system.user.domain.UserToken;
 
-/*
-*
-*
+/**
+ *
+ *用户认证、授权
+ *
  */
 public class UserRealm extends AuthorizingRealm {
-/*	@Autowired
-	UserDao userMapper;
-	@Autowired
-	MenuService menuService;*/
 
+
+	/**
+	 * 授权：即权限验证，验证某个已认证的用户是否拥有某个权限；即判断用户是否能做事情，常见的如：验证某个用户是否拥有某个角色。或者细粒度的验证某个用户对某个资源是否具有某个权限
+	 * @param arg0
+	 * @return
+	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
 		String userId = ShiroUtils.getUserId();
@@ -45,6 +48,12 @@ public class UserRealm extends AuthorizingRealm {
 		return info;
 	}
 
+	/**
+	 * 认证：身份认证/登录，验证用户是不是拥有相应的身份
+	 * @param token
+	 * @return
+	 * @throws AuthenticationException
+	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username = (String) token.getPrincipal();

@@ -82,16 +82,19 @@ public class LoginController extends BaseController {
 	@Log("登录")
 	@PostMapping("/login")
 	@ResponseBody
-	R ajaxLogin(String username, String password) {
+	R ajaxLogin(String username, String password, String rememberme) {
 
 		password = MD5Utils.encrypt(username, password);
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		if(rememberme!=null){
+			token.setRememberMe(true);
+		}
 		Subject subject = SecurityUtils.getSubject();
 		try {
 			subject.login(token);
 			return R.ok();
 		} catch (AuthenticationException e) {
-			return R.error("用户或密码错误");
+			return R.error("用户名或密码错误");
 		}
 	}
 

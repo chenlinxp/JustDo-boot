@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 
 
-import com.justdo.common.config.Constant;
+import com.justdo.config.Constant;
 import com.justdo.system.quartzjob.dao.QuartzJobDao;
 import com.justdo.system.quartzjob.domain.QuartzJobDO;
 import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;

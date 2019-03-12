@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.justdo.common.config.JustdoConfig;
+import com.justdo.config.JustdoConfig;
 import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;
 import com.justdo.common.utils.*;

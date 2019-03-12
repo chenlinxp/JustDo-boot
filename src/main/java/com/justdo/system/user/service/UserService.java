@@ -21,6 +21,7 @@ import com.justdo.system.user.domain.UserVO;
  */
 @Service
 public interface UserService {
+
 	UserDO get(String id);
 
 	List<UserDO> list(Map<String, Object> map);

@@ -1,7 +1,7 @@
 package com.justdo.common.utils;
 
 
-import com.justdo.common.config.Constant;
+import com.justdo.config.Constant;
 import com.justdo.common.domain.ColumnDO;
 import com.justdo.common.domain.TableDO;
 import com.justdo.common.exception.BDException;
