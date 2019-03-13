@@ -1,5 +1,6 @@
 package com.justdo.common.redis.shiro;
 
+import com.justdo.common.redis.RedisManager;
 import com.justdo.common.utils.SerializeUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
@@ -97,7 +98,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
     /**
      * 获得byte[]型的key
-     * @param key
+     * @param sessionId
      * @return
      */
     private byte[] getByteKey(Serializable sessionId){

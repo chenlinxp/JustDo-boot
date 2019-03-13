@@ -4,6 +4,8 @@ package com.justdo.common.redis.shiro;
  * @author justdo
  * @version V1.0
  */
+
+import com.justdo.common.redis.RedisManager;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
