@@ -1,7 +1,7 @@
 package com.justdo.common.utils;
 
 
-import com.justdo.config.Constant;
+import com.justdo.config.ConstantConfig;
 import com.justdo.common.domain.ColumnDO;
 import com.justdo.common.domain.TableDO;
 import com.justdo.common.exception.BDException;
@@ -25,7 +25,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * 代码生成器   工具类
  */
-public class GenUtils {
+public class GeneratorCodeUtils {
 
 
     public static List<String> getTemplates() {
@@ -170,7 +170,7 @@ public class GenUtils {
      * 表名转换成Java类名
      */
     public static String tableToJava(String tableName, String tablePrefix, String autoRemovePre) {
-        if (Constant.AUTO_REOMVE_PRE.equals(autoRemovePre)) {
+        if (ConstantConfig.AUTO_REOMVE_PRE.equals(autoRemovePre)) {
             tableName = tableName.substring(tableName.indexOf("_") + 1);
         }
         if (StringUtils.isNotBlank(tablePrefix)) {

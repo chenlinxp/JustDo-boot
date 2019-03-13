@@ -1,9 +1,6 @@
-package com.justdo.common.quartz.utils;
+package com.justdo.common.quartz;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
+import com.justdo.system.quartzjob.domain.QuartzJobDO;
 import org.apache.log4j.Logger;
 import org.quartz.*;
 import org.quartz.DateBuilder.IntervalUnit;
@@ -11,7 +8,9 @@ import org.quartz.impl.matchers.GroupMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.justdo.system.quartzjob.domain.QuartzJobDO;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 /**
  * 
  * 
@@ -33,7 +32,7 @@ public class QuartzManager {
 	/**
 	 * 添加任务
 	 * 
-	 * @param quartzJobDO
+	 * @param job
 	 * @throws SchedulerException
 	 */
 	

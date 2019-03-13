@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSON;
 
 import com.justdo.system.generator.service.GeneratorService;
-import com.justdo.common.utils.GenUtils;
+import com.justdo.common.utils.GeneratorCodeUtils;
 import com.justdo.common.utils.R;
 
 
@@ -78,7 +78,7 @@ public class GeneratorController {
 
 	@GetMapping("/edit")
 	public String edit(Model model) {
-		Configuration conf = GenUtils.getConfig();
+		Configuration conf = GeneratorCodeUtils.getConfig();
 		Map<String, Object> property = new HashMap<>(16);
 		property.put("author", conf.getProperty("author"));
 		property.put("email", conf.getProperty("email"));

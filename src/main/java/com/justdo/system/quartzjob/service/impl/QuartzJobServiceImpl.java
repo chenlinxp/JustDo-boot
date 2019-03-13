@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 
 
 
-import com.justdo.config.Constant;
+import com.justdo.config.ConstantConfig;
 import com.justdo.system.quartzjob.dao.QuartzJobDao;
 import com.justdo.system.quartzjob.domain.QuartzJobDO;
 import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;
-import com.justdo.common.quartz.utils.QuartzManager;
+import com.justdo.common.quartz.QuartzManager;
 import com.justdo.system.quartzjob.service.QuartzJobService;
 import com.justdo.common.utils.ScheduleJobUtils;
 
@@ -105,11 +105,11 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 		if (scheduleJob == null) {
 			return;
 		}
-		if (Constant.STATUS_RUNNING_STOP.equals(cmd)) {
+		if (ConstantConfig.STATUS_RUNNING_STOP.equals(cmd)) {
 			quartzManager.deleteJob(ScheduleJobUtils.entityToData(scheduleJob));
 			scheduleJob.setJobStatus(QuartzJobDO.STATUS_NOT_RUNNING);
 		} else {
-			if (!Constant.STATUS_RUNNING_START.equals(cmd)) {
+			if (!ConstantConfig.STATUS_RUNNING_START.equals(cmd)) {
 			} else {
                 scheduleJob.setJobStatus(QuartzJobDO.STATUS_RUNNING);
                 quartzManager.addJob(ScheduleJobUtils.entityToData(scheduleJob));

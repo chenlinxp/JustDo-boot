@@ -1,6 +1,5 @@
 package com.justdo.system.notice.controller;
 
-import java.security.Principal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.justdo.config.Constant;
+import com.justdo.config.ConstantConfig;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
@@ -142,7 +141,7 @@ public class NoticeController extends BaseController {
 		params.put("limit", 3);
 		Query query = new Query(params);
         query.put("userId", getUserId());
-        query.put("isRead",Constant.Notice_READ_NO);
+        query.put("isRead", ConstantConfig.Notice_READ_NO);
 		return NoticeService.selfList(query);
 	}
 
@@ -169,7 +168,7 @@ public class NoticeController extends BaseController {
 		noticeRecordDO.setNoticeId(id);
 		noticeRecordDO.setUserId(getUserId());
 		noticeRecordDO.setReadDate(new Date());
-		noticeRecordDO.setIsRead(Constant.Notice_READ_YES);
+		noticeRecordDO.setIsRead(ConstantConfig.Notice_READ_YES);
 		NoticeRecordService.changeRead(noticeRecordDO);
 		model.addAttribute("notice", notice);
 		return "system/notice/read";

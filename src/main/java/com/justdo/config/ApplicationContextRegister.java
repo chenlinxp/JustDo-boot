@@ -11,9 +11,6 @@ import org.springframework.stereotype.Component;
  *
  * @author chen
  * @date 2017/9/4
- * <p>
- * Email 122741482@qq.com
- * <p>
  * Describe:
  */
 @Component

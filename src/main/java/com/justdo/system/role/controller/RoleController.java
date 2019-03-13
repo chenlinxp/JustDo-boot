@@ -1,19 +1,17 @@
 package com.justdo.system.role.controller;
 
-import java.util.List;
-
+import com.justdo.common.annotation.Log;
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.R;
+import com.justdo.system.role.domain.RoleDO;
+import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.justdo.common.annotation.Log;
-import com.justdo.common.config.Constant;
-import com.justdo.common.controller.BaseController;
-import com.justdo.common.utils.R;
-import com.justdo.system.role.domain.RoleDO;
-import com.justdo.system.role.service.RoleService;
+import java.util.List;
 
 
 

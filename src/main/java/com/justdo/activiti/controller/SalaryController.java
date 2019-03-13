@@ -3,7 +3,6 @@ package com.justdo.activiti.controller;
 import com.justdo.activiti.domain.SalaryDO;
 import com.justdo.activiti.service.SalaryService;
 import com.justdo.activiti.utils.ActivitiUtils;
-import com.justdo.common.config.Constant;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;

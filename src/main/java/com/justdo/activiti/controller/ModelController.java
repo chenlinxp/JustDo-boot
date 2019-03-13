@@ -1,12 +1,11 @@
 package com.justdo.activiti.controller;
 
-import com.justdo.common.config.Constant;
-import com.justdo.common.controller.BaseController;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.R;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.PageUtils;
+import com.justdo.common.utils.R;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;

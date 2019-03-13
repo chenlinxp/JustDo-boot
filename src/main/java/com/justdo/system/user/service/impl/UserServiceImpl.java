@@ -206,7 +206,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, String userId) throws Exception {
 		String fileName = file.getOriginalFilename();
-		fileName = FileUtil.renameToUUID(fileName);
+		fileName = FileUtils.renameToUUID(fileName);
 		FileDO fileDao = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
 		//获取图片后缀
 		String prefix = fileName.substring((fileName.lastIndexOf(".")+1));
@@ -228,7 +228,7 @@ public class UserServiceImpl implements UserService {
 			boolean flag = ImageIO.write(rotateImage, prefix, out);
 			//转换后存入数据库
 			byte[] b = out.toByteArray();
-			FileUtil.uploadFile(b, justdoConfig.getUploadPath(), fileName);
+			FileUtils.uploadFile(b, justdoConfig.getUploadPath(), fileName);
 		} catch (Exception e) {
 			throw  new Exception("图片裁剪错误！！");
 		}

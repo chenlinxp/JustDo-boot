@@ -1,13 +1,12 @@
 package com.justdo.config;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.justdo.common.redis.RedisManager;
+import com.justdo.common.redis.shiro.RedisCacheManager;
+import com.justdo.common.redis.shiro.RedisSessionDAO;
+import com.justdo.system.user.shiro.UserRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListener;
-import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -19,11 +18,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.justdo.common.redis.shiro.RedisCacheManager;
-import com.justdo.common.redis.shiro.RedisManager;
-import com.justdo.common.redis.shiro.RedisSessionDAO;
-import com.justdo.system.user.shiro.UserRealm;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
 
 
 /**

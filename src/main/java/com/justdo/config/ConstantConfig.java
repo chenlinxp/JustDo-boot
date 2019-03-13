@@ -1,6 +1,9 @@
 package com.justdo.config;
 
-public class Constant {
+/**
+ * 常量配置类
+ */
+public class ConstantConfig {
     //演示系统账户
     public static String DEMO_ACCOUNT = "test";
     //自动去除表前缀
@@ -15,8 +18,6 @@ public class Constant {
     public static int Notice_READ_YES = 1;
     //部门根节点id
     public static Long DEPT_ROOT_ID = 0l;
-    //缓存方式
-    public static String CACHE_TYPE_REDIS ="redis";
 
     public static String LOG_ERROR = "error";
 

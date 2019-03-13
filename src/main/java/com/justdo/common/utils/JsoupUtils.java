@@ -1,20 +1,18 @@
-package com.justdo.common.utils.xss;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
+package com.justdo.common.utils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.safety.Whitelist;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
- * xss非法标签过滤
- * {@link http://www.jianshu.com/p/32abc12a175a?nomobile=yes}
- * @author yangwenkui
- * @version v2.0
+ * 过滤xss非法标签
+ * @author
  * @time 2017年4月27日 下午5:47:09
  */
-public class JsoupUtil {
+public class JsoupUtils {
 
 	/**
 	 * 使用自带的basicWithImages 白名单

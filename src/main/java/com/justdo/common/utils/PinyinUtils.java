@@ -1,8 +1,5 @@
 package com.justdo.common.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -10,12 +7,15 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
-public class PinyinUtil {
+import java.util.ArrayList;
+import java.util.List;
+
+public class PinyinUtils {
 	/**
 	 * 返回拼音,忽略多音字,只取第一个
 	 * @param src 	源
-	 * @param isAll是否是全拼
-	 * @param isUpper是否是大写
+	 * @param isAll 是否是全拼
+	 * @param isUpper 是否是大写
 	 * @return
 	 */
 	public static String getPinyin(String src,boolean isAll,boolean isUpper){
@@ -61,8 +61,8 @@ public class PinyinUtil {
 	/**
 	 * 返回拼音数组,多音字在数组中
 	 * @param src 	源
-	 * @param isAll是否是全拼
-	 * @param isUpper是否是大写
+	 * @param isAll 是否是全拼
+	 * @param isUpper 是否是大写
 	 * @return
 	 */
 	public static List getPinyins(String src,boolean isAll,boolean isUpper){

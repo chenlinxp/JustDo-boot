@@ -2,7 +2,6 @@ package com.justdo.activiti.controller;
 
 import com.justdo.activiti.service.ProcessService;
 import com.justdo.activiti.vo.ProcessVO;
-import com.justdo.common.config.Constant;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.R;

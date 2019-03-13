@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * Created by PrimaryKey on 17/2/4.
+ * 数据库链接配置
  */
 @SuppressWarnings("AlibabaRemoveCommentedCode")
 @Configuration

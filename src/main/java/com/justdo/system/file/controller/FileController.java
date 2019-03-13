@@ -115,7 +115,7 @@ public class FileController extends BaseController {
 
 		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getUrl().replace("/files/", "");
 		if (fileService.del(id) > 0) {
-			boolean b = FileUtil.deleteFile(fileName);
+			boolean b = FileUtils.deleteFile(fileName);
 			if (!b) {
 				return R.error("数据库记录删除成功，文件删除失败");
 			}
@@ -143,12 +143,12 @@ public class FileController extends BaseController {
 
 		//request.getSession().getServletContext().getRealPath("/")+ path;
 		String fileName = file.getOriginalFilename();
-		fileName = FileUtil.renameToUUID(fileName);
+		fileName = FileUtils.renameToUUID(fileName);
 		String path = StringUtils.defaultIfEmpty(justdoConfig.getUploadPath(), "/upload/");
 		String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
 		FileDO _file = new FileDO(FileType.fileType(fileName), "/files/"+ fileName, new Date());
 		try {
-			FileUtil.uploadFile(file.getBytes(), path, fileName);
+			FileUtils.uploadFile(file.getBytes(), path, fileName);
 		} catch (Exception e) {
 			return R.error();
 		}

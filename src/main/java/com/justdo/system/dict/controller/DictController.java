@@ -1,25 +1,23 @@
 package com.justdo.system.dict.controller;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.justdo.system.dict.service.DictContentService;
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.PageUtils;
+import com.justdo.common.utils.Query;
+import com.justdo.common.utils.R;
 import com.justdo.system.dict.domain.DictContentDO;
+import com.justdo.system.dict.service.DictContentService;
+import com.justdo.system.dicttype.domain.DictTypeDO;
+import com.justdo.system.dicttype.service.DictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.justdo.common.controller.BaseController;
-import com.justdo.common.config.Constant;
-import com.justdo.system.dicttype.domain.DictTypeDO;
-import com.justdo.system.dicttype.service.DictTypeService;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
-import com.justdo.common.utils.R;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 

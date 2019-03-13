@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @create 2017-01-02 23:53
  */
 @Component
-class WebConfigurer extends WebMvcConfigurerAdapter {
+class WebConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	JustdoConfig justdoConfig;
 	@Override

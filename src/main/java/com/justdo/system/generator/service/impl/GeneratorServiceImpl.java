@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.justdo.system.generator.dao.GeneratorDao;
 import com.justdo.system.generator.service.GeneratorService;
-import com.justdo.common.utils.GenUtils;
+import com.justdo.common.utils.GeneratorCodeUtils;
 
 /**
  * 代码生成
@@ -40,7 +40,7 @@ public class GeneratorServiceImpl implements GeneratorService {
 			//查询列信息
 			List<Map<String, String>> columns = generatorMapper.listColumns(tableName);
 			//生成代码
-			GenUtils.generatorCode(table, columns, zip);
+			GeneratorCodeUtils.generatorCode(table, columns, zip);
 		}
 		IOUtils.closeQuietly(zip);
 		return outputStream.toByteArray();

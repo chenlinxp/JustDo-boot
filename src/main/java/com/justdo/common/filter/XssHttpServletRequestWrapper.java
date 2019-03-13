@@ -3,7 +3,7 @@ package com.justdo.common.filter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import com.justdo.common.utils.xss.JsoupUtil;
+import com.justdo.common.utils.JsoupUtils;
 import org.apache.commons.lang3.StringUtils;
 
 
@@ -32,10 +32,10 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         if( flag && !isIncludeRichText){
             return super.getParameter(name);
         }
-        name = JsoupUtil.clean(name);
+        name = JsoupUtils.clean(name);
         String value = super.getParameter(name);  
         if (StringUtils.isNotBlank(value)) {
-            value = JsoupUtil.clean(value);  
+            value = JsoupUtils.clean(value);
         }
         return value;  
     }  
@@ -45,7 +45,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     	String[] arr = super.getParameterValues(name);
     	if(arr != null){
     		for (int i=0;i<arr.length;i++) {
-    			arr[i] = JsoupUtil.clean(arr[i]);
+    			arr[i] = JsoupUtils.clean(arr[i]);
     		}
     	}
     	return arr;
@@ -59,10 +59,10 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     */  
     @Override  
     public String getHeader(String name) {  
-        name = JsoupUtil.clean(name);
+        name = JsoupUtils.clean(name);
         String value = super.getHeader(name);  
         if (StringUtils.isNotBlank(value)) {  
-            value = JsoupUtil.clean(value); 
+            value = JsoupUtils.clean(value);
         }  
         return value;  
     }  
