@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="errorlogId" name="errorlogId" th:value="${errorLog.errorlogId}"  type="hidden">
+																								<div class="form-group">
+								<label class="col-sm-3 control-label">用户id：</label>
+								<div class="col-sm-8">
+									<input id="userId" name="userId" th:value="${errorLog.userId}" class="form-control" type="text">
+								</div>
+							</div>
+																																<div class="form-group">
+								<label class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-8">
+									<input id="userName" name="userName" th:value="${errorLog.userName}" class="form-control" type="text">
+								</div>
+							</div>
+																																<div class="form-group">
+								<label class="col-sm-3 control-label">异常信息：</label>
+								<div class="col-sm-8">
+									<input id="exceptionContent" name="exceptionContent" th:value="${errorLog.exceptionContent}" class="form-control" type="text">
+								</div>
+							</div>
+																																<div class="form-group">
+								<label class="col-sm-3 control-label">异常状态：</label>
+								<div class="col-sm-8">
+									<input id="exceptionState" name="exceptionState" th:value="${errorLog.exceptionState}" class="form-control" type="text">
+								</div>
+							</div>
+																																<div class="form-group">
+								<label class="col-sm-3 control-label">备注信息：</label>
+								<div class="col-sm-8">
+									<input id="remark" name="remark" th:value="${errorLog.remark}" class="form-control" type="text">
+								</div>
+							</div>
+																																<div class="form-group">
+								<label class="col-sm-3 control-label">IP地址：</label>
+								<div class="col-sm-8">
+									<input id="ip" name="ip" th:value="${errorLog.ip}" class="form-control" type="text">
+								</div>
+							</div>
+																																<div class="form-group">
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="createTime" name="createTime" th:value="${errorLog.createTime}" class="form-control" type="text">
+								</div>
+							</div>
+																							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/errorLog/edit.js">
+	</script>
+</body>
+</html>

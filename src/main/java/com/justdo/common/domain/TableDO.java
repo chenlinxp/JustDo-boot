@@ -25,6 +25,8 @@ public class TableDO {
     private String className;
     //类名(第一个字母小写)，如：sys_user => sysUser
     private String classname;
+    // 类名(所有字母小写)，如：sys_user => sysuser
+    private String classnametolower;
     //构造函数的参数
     private String constructorParams;
     //是否生成移动端的crud接口
@@ -77,7 +79,13 @@ public class TableDO {
     public void setClassname(String classname) {
         this.classname = classname;
     }
+    public String getClassnametolower() {
+        return classnametolower;
+    }
 
+    public void setClassnametolower(String classnametolower) {
+        this.classnametolower = classnametolower;
+    }
     public String getConstructorParams() {
         return constructorParams;
     }

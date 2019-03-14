@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.justdo.system.log.dao.LogDao">
+<mapper namespace="com.justdo.system.operationlog.dao.OperationLogDao">
 
-	<select id="get" resultType="com.justdo.system.log.domain.LogDO">
-		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_log where id = #{value}
+	<select id="get" resultType="com.justdo.system.operationlog.domain.OperationLogDO">
+		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_operation_log where id = #{value}
 	</select>
 
-	<select id="list" resultType="com.justdo.system.log.domain.LogDO">
-		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_log
+	<select id="list" resultType="com.justdo.system.operationlog.domain.OperationLogDO">
+		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_operation_log
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
@@ -34,7 +34,7 @@
 	</select>
 	
  	<select id="count" resultType="int">
-		select count(*) from sys_log
+		select count(*) from sys_operation_log
 		 <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
@@ -48,8 +48,8 @@
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.justdo.system.log.domain.LogDO" useGeneratedKeys="true" keyProperty="id">
-		insert into sys_log
+	<insert id="save" parameterType="com.justdo.system.operationlog.domain.OperationLogDO" useGeneratedKeys="true" keyProperty="id">
+		insert into sys_operation_log
 		(
 			`user_id`, 
 			`username`, 
@@ -73,8 +73,8 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.justdo.system.log.domain.LogDO">
-		update sys_log 
+	<update id="update" parameterType="com.justdo.system.operationlog.domain.OperationLogDO">
+		update sys_operation_log
 		<set>
 			<if test="userId != null">`user_id` = #{userId}, </if>
 			<if test="username != null">`username` = #{username}, </if>
@@ -89,11 +89,11 @@
 	</update>
 	
 	<delete id="del">
-		delete from sys_log where id = #{value}
+		delete from sys_operation_log where id = #{value}
 	</delete>
 	
 	<delete id="batchDel">
-		delete from sys_log where id in 
+		delete from sys_operation_log where id in
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

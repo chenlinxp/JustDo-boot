@@ -1,5 +1,5 @@
 
-var prefix = "/${pathName}/${classnametolower}"
+var prefix = "/system/errorlog"
 $(function() {
 	load();
 });
@@ -63,8 +63,8 @@ function load() {
 									checkbox : true
 								},
 								{
-									field : '${pk.attrname}',
-									title : '${pk.comments}',
+									field : 'errorlogId',
+									title : '主键ID',
 									visible :false
 								},
 								{
@@ -78,22 +78,44 @@ function load() {
 										return (pageNumber-1)*pageSize+index+1;
 									}
 								},
-								#foreach($column in $columns)
 								{
-									field : '${column.attrname}', 
-									title : '${column.comments}' 
+									field : 'userId', 
+									title : '用户ID'
 								},
-								#end
+								{
+									field : 'userName', 
+									title : '用户名' 
+								},
+								{
+									field : 'exceptionContent', 
+									title : '异常信息' 
+								},
+								{
+									field : 'exceptionState', 
+									title : '异常状态' 
+								},
+								{
+									field : 'remark', 
+									title : '备注信息' 
+								},
+								{
+									field : 'ip', 
+									title : 'IP地址' 
+								},
+								{
+									field : 'createTime', 
+									title : '创建时间' 
+								},
 								{
 									title : '操作',
 									field : 'operation',
 									align : 'center',
 									formatter : function(value, row, index) {
 										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.${pk.attrname}
+												+ row.errorlogId
 												+ '\')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
-												+ row.${pk.attrname}
+												+ row.errorlogId
 												+ '\')"><i class="fa fa-remove"></i></a> ';
 										return e + d ;
 									}
@@ -141,7 +163,7 @@ function del(id) {
 			url : prefix+"/del",
 			type : "post",
 			data : {
-				'${pk.attrname}' : id
+				'errorlogId' : id
 			},
 			success : function(r) {
 				if (r.code==0) {
@@ -168,7 +190,7 @@ function batchDel() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {
-			ids[i] = row['${pk.attrname}'];
+			ids[i] = row['errorlogId'];
 		});
 		$.ajax({
 			type : 'POST',

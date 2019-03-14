@@ -49,7 +49,6 @@ public class LoginController extends BaseController {
 		return "redirect:/login";
 	}
 
-	@Log("访问首页")
 	@GetMapping({ "/index" })
 	String index(Model model) {
 		List<Tree<MenuDO>> menus = menuService.listMenuTree(getUserId());

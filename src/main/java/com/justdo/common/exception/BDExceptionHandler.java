@@ -2,22 +2,15 @@ package com.justdo.common.exception;
 
 import com.justdo.common.utils.HttpServletUtils;
 import com.justdo.common.utils.R;
-import com.justdo.common.utils.ShiroUtils;
-import com.justdo.config.ConstantConfig;
-import com.justdo.system.log.domain.LogDO;
-import com.justdo.system.log.service.LogService;
-import com.justdo.system.user.domain.UserDO;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 
 /**
@@ -26,12 +19,10 @@ import java.util.Date;
 @RestControllerAdvice
 public class BDExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    @Autowired
-    LogService logService;
+//    @Autowired
+//    LogService logService;
 
-    /**
-     * 自定义异常
-     */
+
     @ExceptionHandler(BDException.class)
     public R handleBDException(BDException e) {
         logger.error(e.getMessage(), e);
@@ -65,18 +56,18 @@ public class BDExceptionHandler {
 
     @ExceptionHandler({Exception.class})
     public Object handleException(Exception e, HttpServletRequest request) {
-        LogDO logDO = new LogDO();
-        logDO.setGmtCreate(new Date());
-        logDO.setOperation(ConstantConfig.LOG_ERROR);
-        logDO.setMethod(request.getRequestURL().toString());
-        logDO.setParams(e.toString());
-        UserDO current = ShiroUtils.getUser();
-        if(null!=current){
-            logDO.setUserId(current.getUserId());
-            logDO.setUsername(current.getUsername());
-        }
-        logService.save(logDO);
-        logger.error(e.getMessage(), e);
+//        LogDO logDO = new LogDO();
+//        logDO.setGmtCreate(new Date());
+//        logDO.setOperation(ConstantConfig.LOG_ERROR);
+//        logDO.setMethod(request.getRequestURL().toString());
+//        logDO.setParams(e.toString());
+//        UserDO current = ShiroUtils.getUser();
+//        if(null!=current){
+//            logDO.setUserId(current.getUserId());
+//            logDO.setUsername(current.getUsername());
+//        }
+//        logService.save(logDO);
+//        logger.error(e.getMessage(), e);
         if (HttpServletUtils.jsAjax(request)) {
             return R.error(500, "服务器错误，请联系管理员");
         }

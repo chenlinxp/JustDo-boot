@@ -12,6 +12,8 @@ package com.justdo.common.domain;
 public class ColumnDO {
 	// 列名
 	private String columnName;
+	// 列名(所有字母小写)，如：user_name => user_name
+	private String columnnametolower;
 	// 列名类型
 	private String dataType;
 	// 列名备注
@@ -37,6 +39,13 @@ public class ColumnDO {
 
 	public void setColumnName(String columnName) {
 		this.columnName = columnName;
+	}
+	public String getColumnnametolower() {
+		return columnnametolower;
+	}
+
+	public void setColumnnametolower(String columnnametolower) {
+		this.columnnametolower = columnnametolower;
 	}
 
 	public String getDataType() {

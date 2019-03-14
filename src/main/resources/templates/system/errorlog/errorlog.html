@@ -9,13 +9,13 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="${pathName}:${classname}:add" type="button" class="btn  btn-primary" onclick="add()">
+							<button shiro:hasPermission="system:errorLog:add" type="button" class="btn  btn-primary" onclick="add()">
                             <i class="fa fa-plus" aria-hidden="true"></i>添加
                         </button>
-							<button shiro:hasPermission="${pathName}:${classname}:edit" type="button" class="btn  btn-primary" onclick="edit()">
+							<button shiro:hasPermission="system:errorLog:edit" type="button" class="btn  btn-primary" onclick="edit()">
                                 <i class="fa fa-edit" aria-hidden="true"></i>编辑
                             </button>
-							<button shiro:hasPermission="${pathName}:${classname}:batchDel" type="button" class="btn  btn-danger" onclick="batchDel()">
+							<button shiro:hasPermission="system:errorLog:batchDel" type="button" class="btn  btn-danger" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
@@ -45,18 +45,18 @@
 				s_add_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:edit">
+		<div shiro:hasPermission="system:errorLog:edit">
 			<script type="text/javascript">
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:del">
+		<div shiro:hasPermission="system:errorLog:del">
 			<script type="text/javascript">
 				var s_delete_h = '';
 			</script>
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/${pathName}/${classnametolower}/${classnametolower}.js"></script>
+	<script type="text/javascript" src="/js/appjs/system/errorLog/errorLog.js"></script>
 </body>
 </html>

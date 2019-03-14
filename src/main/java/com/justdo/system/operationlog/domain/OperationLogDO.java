@@ -1,18 +1,19 @@
-package com.justdo.system.log.domain;
+package com.justdo.system.operationlog.domain;
 
-import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
 
+import java.util.Date;
+
 
 /**
- * 系统日志
+ * 操作日志
  *
  * @author chenlin
  * @email 13233669915@qq.com
  * @date 2018-06-19 16:02:20
  */
-public class LogDO extends BaseBean {
+public class OperationLogDO extends BaseBean {
 	private String id;
 
 	private String userId;
