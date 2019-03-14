@@ -1,3 +1,4 @@
+var preUrl = "/system/errorlog"
 $().ready(function() {
 	validateRule();
 });
@@ -11,7 +12,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/errorLog/update",
+		url : preUrl+"/update",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

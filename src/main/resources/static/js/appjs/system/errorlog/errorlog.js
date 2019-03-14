@@ -1,5 +1,5 @@
 
-var prefix = "/system/errorlog"
+var preUrl = "/system/errorlog"
 $(function() {
 	load();
 });
@@ -9,7 +9,7 @@ function load() {
 			.bootstrapTable(
 					{
 						method : 'get', // 服务器数据的请求方式 get or post
-						url : prefix + "/list", // 服务器数据的加载地址
+						url : preUrl + "/list", // 服务器数据的加载地址
 					//	showRefresh : true,
 					//	showToggle : true,
 					//	showColumns : true,
@@ -132,7 +132,7 @@ function view(id) {
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
-        content : prefix + '/view/'+id // iframe的url
+        content : preUrl + '/view/'+id // iframe的url
     });
 }
 function add() {
@@ -142,7 +142,7 @@ function add() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/add' // iframe的url
+		content : preUrl + '/add' // iframe的url
 	});
 }
 function edit(id) {
@@ -152,7 +152,7 @@ function edit(id) {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
+		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
 function del(id) {
@@ -160,7 +160,7 @@ function del(id) {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : prefix+"/del",
+			url : preUrl+"/del",
 			type : "post",
 			data : {
 				'errorlogId' : id
@@ -197,7 +197,7 @@ function batchDel() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchDel',
+			url : preUrl + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

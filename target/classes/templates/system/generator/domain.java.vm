@@ -1,4 +1,4 @@
-package ${package}.${classname}.domain;
+package ${package}.${classnametolower}.domain;
 
 import com.justdo.common.domain.BaseBean;
 import java.util.Date;
@@ -29,11 +29,12 @@ public class ${className}DO extends BaseBean {
     /**
     * 构造方法
     */
-    public ${className}(${constructorParams}) {
-        super();
+    public ${className}DO(${constructorParams}){
+		super();
 		#foreach ($column in $columns)
-            this.${column.attrname}= $column.attrname;
+			this.${column.attrname}= $column.attrname;
 		#end
+	}
     /**
      * 设置：${pk.comments}
      */

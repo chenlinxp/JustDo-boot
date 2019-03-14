@@ -1,9 +1,9 @@
-package ${package}.${classname}.dao;
+package ${package}.${classnametolower}.dao;
 
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
-import ${package}.${classname}.domain.${className}DO;
+import ${package}.${classnametolower}.domain.${className}DO;
 
 /**
  * ${comments}

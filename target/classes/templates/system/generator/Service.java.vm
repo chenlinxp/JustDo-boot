@@ -1,6 +1,6 @@
-package ${package}.${classname}.service;
+package ${package}.${classnametolower}.service;
 
-import ${package}.${classname}.domain.${className}DO;
+import ${package}.${classnametolower}.domain.${className}DO;
 
 import java.util.List;
 import java.util.Map;
