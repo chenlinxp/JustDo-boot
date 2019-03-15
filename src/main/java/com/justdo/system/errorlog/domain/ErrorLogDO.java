@@ -15,7 +15,7 @@ import java.util.Date;
 public class ErrorLogDO extends BaseBean {
 
 
-    //
+    //主键ID
     private String errorlogId;
 
 	//用户id
@@ -47,7 +47,7 @@ public class ErrorLogDO extends BaseBean {
 	    this.ip = ip;
 	    this.createTime = createTime;
     }
-		    /**
+	/**
      * 设置：
      */
     public void setErrorlogId(String errorlogId) {

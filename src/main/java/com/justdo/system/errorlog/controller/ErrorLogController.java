@@ -54,7 +54,7 @@ public class ErrorLogController {
 
 	@GetMapping("/edit/{errorlogId}")
 	@RequiresPermissions("system:errorlog:edit")
-	String edit(@PathVariable("errorlogId") Long errorlogId,Model model){
+	String edit(@PathVariable("errorlogId") String errorlogId,Model model){
 		ErrorLogDO errorLog = errorLogService.get(errorlogId);
 		model.addAttribute("errorLog", errorLog);
 	    return "system/errorlog/edit";
@@ -76,7 +76,7 @@ public class ErrorLogController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/edit")
+	@RequestMapping("/update")
 	@RequiresPermissions("system:errorlog:edit")
 	public R update( ErrorLogDO errorLog){
 		errorLogService.update(errorLog);
@@ -89,7 +89,7 @@ public class ErrorLogController {
 	@PostMapping( "/del")
 	@ResponseBody
 	@RequiresPermissions("system:errorlog:del")
-	public R remove( Long errorlogId){
+	public R remove( String errorlogId){
 		if(errorLogService.del(errorlogId)>0){
 		return R.ok();
 		}
@@ -102,7 +102,7 @@ public class ErrorLogController {
 	@PostMapping( "/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:errorlog:batchDel")
-	public R remove(@RequestParam("ids[]") Long[] errorlogIds){
+	public R remove(@RequestParam("ids[]") String[] errorlogIds){
 		errorLogService.batchDel(errorlogIds);
 		return R.ok();
 	}

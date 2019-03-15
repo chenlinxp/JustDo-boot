@@ -12,7 +12,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : preUrl+"/update",
+		url : preUrl+"/edit",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

@@ -34,13 +34,24 @@ import com.justdo.common.utils.R;
 public class ${className}Controller {
 	@Autowired
 	private ${className}Service ${classname}Service;
-	
+
+	/**
+	* 列表页面
+	* @param params
+	* @return 列表页面路径
+	*/
 	@GetMapping()
 	@RequiresPermissions("${pathName}:${classnametolower}:${classnametolower}")
 	String ${className}(){
 	    return "${pathName}/${classnametolower}/${classnametolower}";
 	}
-	
+
+
+	/**
+	* 列表数据
+	* @param params
+	* @return
+	*/
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("${pathName}:${classnametolower}:${classnametolower}")
@@ -52,21 +63,19 @@ public class ${className}Controller {
 		PageUtils pageUtils = new PageUtils(${classname}List, total);
 		return pageUtils;
 	}
-	
+
+
+	/**
+	* 增加页面
+	* @return 增加页面路径
+	*/
 	@GetMapping("/add")
 	@RequiresPermissions("${pathName}:${classnametolower}:add")
 	String add(){
 	    return "${pathName}/${classnametolower}/add";
 	}
 
-	@GetMapping("/edit/{${pk.attrname}}")
-	@RequiresPermissions("${pathName}:${classname}:edit")
-	String edit(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
-		${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
-		model.addAttribute("${classname}", ${classname});
-	    return "${pathName}/${classnametolower}/edit";
-	}
-	
+
 	/**
 	 * 保存
 	 */
@@ -79,11 +88,26 @@ public class ${className}Controller {
 		}
 		return R.error();
 	}
+
 	/**
-	 * 修改
+	* 编辑页面
+    * @param model
+    * @return 编辑页面路径
+    */
+	@GetMapping("/edit/{${pk.attrname}}")
+	@RequiresPermissions("${pathName}:${classname}:edit")
+	String edit(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
+		${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
+		model.addAttribute("${classname}", ${classname});
+	    return "${pathName}/${classnametolower}/edit";
+	}
+	
+
+	/**
+	 * 更新
 	 */
 	@ResponseBody
-	@RequestMapping("/edit")
+	@RequestMapping("/update")
 	@RequiresPermissions("${pathName}:${classnametolower}:edit")
 	public R update( ${className}DO ${classname}){
 		${classname}Service.update(${classname});
@@ -104,7 +128,7 @@ public class ${className}Controller {
 	}
 	
 	/**
-	 * 删除
+	 * 批量删除
 	 */
 	@PostMapping( "/batchDel")
 	@ResponseBody

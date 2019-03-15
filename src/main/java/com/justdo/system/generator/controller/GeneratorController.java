@@ -76,7 +76,7 @@ public class GeneratorController {
 		IOUtils.write(data, response.getOutputStream());
 	}
 
-	@GetMapping("/edit")
+	@GetMapping("/update")
 	public String edit(Model model) {
 		Configuration conf = GeneratorCodeUtils.getConfig();
 		Map<String, Object> property = new HashMap<>(16);

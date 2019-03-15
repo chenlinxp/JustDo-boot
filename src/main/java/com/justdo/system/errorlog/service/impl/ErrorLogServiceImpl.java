@@ -18,7 +18,7 @@ public class ErrorLogServiceImpl implements ErrorLogService {
 	private ErrorLogDao errorLogDao;
 	
 	@Override
-	public ErrorLogDO get(Long errorlogId){
+	public ErrorLogDO get(String errorlogId){
 		return errorLogDao.get(errorlogId);
 	}
 	
@@ -43,12 +43,12 @@ public class ErrorLogServiceImpl implements ErrorLogService {
 	}
 	
 	@Override
-	public int del(Long errorlogId){
+	public int del(String errorlogId){
 		return errorLogDao.del(errorlogId);
 	}
 	
 	@Override
-	public int batchDel(Long[] errorlogIds){
+	public int batchDel(String[] errorlogIds){
 		return errorLogDao.batchDel(errorlogIds);
 	}
 	

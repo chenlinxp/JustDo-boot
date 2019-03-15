@@ -37,6 +37,7 @@
 	</select>
 	 
 	<insert id="save" parameterType="${package}.${classnametolower}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="${pk.columnName}"#end>
+
 		insert into ${tableName}
 		(
 #foreach($column in $columns)

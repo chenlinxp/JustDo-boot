@@ -63,7 +63,7 @@ public class FileController extends BaseController {
 		return "system/file/add";
 	}
 
-	@GetMapping("/edit")
+	@GetMapping("/update")
 	@RequiresPermissions("system:file:edit")
 	String edit(String id, Model model) {
 		FileDO file = fileService.get(id);

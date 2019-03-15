@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface ErrorLogService {
 	
-	ErrorLogDO get(Long errorlogId);
+	ErrorLogDO get(String errorlogId);
 	
 	List<ErrorLogDO> list(Map<String, Object> map);
 	
@@ -24,7 +24,7 @@ public interface ErrorLogService {
 	
 	int update(ErrorLogDO errorLog);
 	
-	int del(Long errorlogId);
+	int del(String errorlogId);
 	
-	int batchDel(Long[] errorlogIds);
+	int batchDel(String[] errorlogIds);
 }

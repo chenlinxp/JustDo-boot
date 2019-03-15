@@ -15,7 +15,7 @@ function update() {
 		data : $('#signupForm').serialize(),
 		async : false,
 		error : function(request) {
-			layer.alert("Connection error");
+			layer.alert("服务异常，请稍后再试");
 		},
 		success : function(data) {
 			if (data.code == 0) {

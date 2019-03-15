@@ -110,7 +110,7 @@ public class DictController extends BaseController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/edit")
+	@RequestMapping("/update")
 	@RequiresPermissions("system:dict:edit")
 	public R update(DictContentDO dictContent) {
 		Map<String, Object> map = new HashMap<>(16);

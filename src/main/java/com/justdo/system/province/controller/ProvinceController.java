@@ -83,7 +83,7 @@ public class ProvinceController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/edit")
+	@RequestMapping("/update")
 	@RequiresPermissions("system:province:edit")
 	public R update( ProvinceDO province){
 		provinceService.update(province);

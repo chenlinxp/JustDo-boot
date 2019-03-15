@@ -78,7 +78,7 @@ public class CityController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/edit")
+	@RequestMapping("/update")
 	@RequiresPermissions("system:city:edit")
 	public R update( CityDO city){
 		cityService.update(city);

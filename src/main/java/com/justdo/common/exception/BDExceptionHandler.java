@@ -10,6 +10,7 @@ import com.justdo.system.user.domain.UserDO;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,7 +26,7 @@ import java.util.Date;
 @RestControllerAdvice
 public class BDExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
-//    @Autowired
+    @Autowired
     ErrorLogService errorLogService;
 
 
@@ -78,8 +79,6 @@ public class BDExceptionHandler {
         errorLogDO.setIp(IPUtils.getIpAddr(request));
         errorLogService.save(errorLogDO);
         logger.error(e.getMessage(), e);
-
-
         if (HttpServletUtils.jsAjax(request)) {
             return R.error(500, "服务器错误，请联系管理员");
         }
