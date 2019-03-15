@@ -5,18 +5,18 @@ $().ready(function() {
 
 $.validator.setDefaults({
 	submitHandler : function() {
-		update();
+		save();
 	}
 });
-function update() {
+function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : preUrl+"/update",
+		url : preUrl+"/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
-			parent.layer.alert("Connection error");
+			parent.layer.alert("服务异常，请稍后再试");
 		},
 		success : function(data) {
 			if (data.code == 0) {
@@ -43,7 +43,7 @@ function validateRule() {
 		},
 		messages : {
 			name : {
-				required : icon + "请输入名字"
+				required : icon + "请输入姓名"
 			}
 		}
 	})

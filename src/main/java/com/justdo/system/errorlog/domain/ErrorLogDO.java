@@ -16,10 +16,10 @@ public class ErrorLogDO extends BaseBean {
 
 
     //
-    private Long errorlogId;
+    private String errorlogId;
 
 	//用户id
-	private Long userId;
+	private String userId;
 	//用户名
 	private String userName;
 	//异常信息
@@ -33,6 +33,7 @@ public class ErrorLogDO extends BaseBean {
 	//创建时间
 	private Date createTime;
 
+	public ErrorLogDO(){}
     /**
     * 构造方法
     */
@@ -49,26 +50,26 @@ public class ErrorLogDO extends BaseBean {
 		    /**
      * 设置：
      */
-    public void setErrorlogId(Long errorlogId) {
+    public void setErrorlogId(String errorlogId) {
         this.errorlogId = errorlogId;
     }
     /**
      * 获取：
      */
-    public Long getErrorlogId() {
+    public String getErrorlogId() {
         return errorlogId;
     }
 
 	/**
 	 * 设置：用户id
 	 */
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	/**
 	 * 获取：用户id
 	 */
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	/**

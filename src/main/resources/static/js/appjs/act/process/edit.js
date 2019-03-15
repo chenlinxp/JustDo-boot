@@ -18,7 +18,7 @@ function update() {
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
-			alert("Connection error");
+			alert("服务异常，请稍后再试");
 		},
 		success : function(data) {
 			if (data.code == 0) {

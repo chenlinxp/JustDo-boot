@@ -16,7 +16,7 @@ function save() {
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
-			parent.layer.alert("Connection error");
+			parent.layer.alert("服务异常，请稍后再试");
 		},
 		success : function(data) {
 			if (data.code == 0) {

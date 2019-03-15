@@ -10,16 +10,16 @@
 	<select id="list" resultType="${package}.${classnametolower}.domain.${className}DO">
 		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
         <where>  
-		  #foreach($column in $columns)
+#foreach($column in $columns)
 		  <if test="$column.attrname != null and $column.attrname.trim() != ''"> and $column.columnName = #{$column.attrname} </if>
-		  #end
+#end
 		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by ${pk.attrname} desc
+                order by ${pk.columnName} desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
@@ -30,13 +30,13 @@
  	<select id="count" resultType="int">
 		select count(*) from ${tableName}
 		 <where>  
-		  #foreach($column in $columns)
+#foreach($column in $columns)
 		  <if test="$column.attrname != null and $column.attrname.trim() != ''"> and $column.columnName = #{$column.attrname} </if>
-		  #end
+#end
 		</where>
 	</select>
 	 
-	<insert id="save" parameterType="${package}.${classnametolower}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
+	<insert id="save" parameterType="${package}.${classnametolower}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="${pk.columnName}"#end>
 		insert into ${tableName}
 		(
 #foreach($column in $columns)
@@ -66,7 +66,7 @@
 #end
 #end
 		</set>
-		where ${pk.attrname} = #{${pk.attrname}}
+		where ${pk.columnName} = #{${pk.attrname}}
 	</update>
 	
 	<delete id="del">

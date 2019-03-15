@@ -184,9 +184,8 @@ function batchDel() {
 		return;
 	}
 	layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
-		btn : [ '确定', '取消' ]
-	// 按钮
-	}, function() {
+		btn : [ '确定', '取消' ]},
+		function() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {

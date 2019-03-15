@@ -30,7 +30,7 @@ function update() {
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
-			laryer.alert("Connection error");
+			laryer.alert("服务异常，请稍后再试");
 		},
 		success : function(data) {
 			if (data.code == 0) {

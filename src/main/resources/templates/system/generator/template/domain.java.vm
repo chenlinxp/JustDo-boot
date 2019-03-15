@@ -29,11 +29,12 @@ public class ${className}DO extends BaseBean {
     /**
     * 构造方法
     */
+    public ${className}DO(${constructorParams}){ }
     public ${className}DO(${constructorParams}){
 		super();
-		#foreach ($column in $columns)
+#foreach ($column in $columns)
 			this.${column.attrname}= $column.attrname;
-		#end
+#end
 	}
     /**
      * 设置：${pk.comments}

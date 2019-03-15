@@ -18,7 +18,7 @@ $("#base_save").click(function () {
                 data : $('#basicInfoForm').serialize(),
                 async : false,
                 error : function(request) {
-                    laryer.alert("Connection error");
+                    laryer.alert("服务异常，请稍后再试");
                 },
                 success : function(data) {
                     if (data.code == 0) {
@@ -40,7 +40,7 @@ $("#pwd_save").click(function () {
             data : $('#modifyPwd').serialize(),
             async : false,
             error : function(request) {
-                parent.laryer.alert("Connection error");
+                parent.laryer.alert("服务异常，请稍后再试");
             },
             success : function(data) {
                 if (data.code == 0) {

@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.errorlog.dao.ErrorLogDao">
 
 	<select id="get" resultType="com.justdo.system.errorlog.domain.ErrorLogDO">
-		select `USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log where ERRORLOG_ID = #{value}
+		select `ERRORLOG_ID`,``USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log where ERRORLOG_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.errorlog.domain.ErrorLogDO">
-		select `USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log
+		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log
         <where>  
 		  		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
 		  		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
@@ -23,7 +23,7 @@
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by errorlogId desc
+                order by ERRORLOG_ID desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
@@ -44,9 +44,13 @@
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.justdo.system.errorlog.domain.ErrorLogDO" useGeneratedKeys="true" keyProperty="errorlogId">
+	<insert id="save" parameterType="com.justdo.system.errorlog.domain.ErrorLogDO">
+		<selectKey keyProperty="ERRORLOG_ID" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as errorlogId from dual
+		</selectKey>
 		insert into sys_error_log
 		(
+		    `ERRORLOG_ID`,
 			`USER_ID`, 
 			`USER_NAME`, 
 			`EXCEPTION_CONTENT`, 
@@ -57,6 +61,7 @@
 		)
 		values
 		(
+		    #{errorlogId},
 			#{userId}, 
 			#{userName}, 
 			#{exceptionContent}, 
@@ -78,7 +83,7 @@
 			<if test="ip != null">`IP` = #{ip}, </if>
 			<if test="createTime != null">`CREATE_TIME` = #{createTime}</if>
 		</set>
-		where errorlogId = #{errorlogId}
+		where ERRORLOG_ID = #{errorlogId}
 	</update>
 	
 	<delete id="del">

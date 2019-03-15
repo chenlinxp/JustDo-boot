@@ -78,12 +78,12 @@ function load() {
 										return (pageNumber-1)*pageSize+index+1;
 									}
 								},
-								#foreach($column in $columns)
+#foreach($column in $columns)
 								{
 									field : '${column.attrname}', 
 									title : '${column.comments}' 
 								},
-								#end
+#end
 								{
 									title : '操作',
 									field : 'operation',

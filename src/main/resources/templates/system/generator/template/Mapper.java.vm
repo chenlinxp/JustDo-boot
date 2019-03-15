@@ -29,10 +29,10 @@ public interface ${className}Mapper {
 	
 	@Select("<script>" +
 	"select * from ${tableName} " + 
-			"<where>" + 
-		  #foreach($column in $columns)
+			"<where>" +
+#foreach($column in $columns)
 		  "<if test=\"$column.attrname != null and $column.attrname.trim() != ''\">"+ "and $column.columnName = #{$column.attrname} " + "</if>" + 
-		  #end
+#end
 			"</where>"+ 
 			" <choose>" + 
 	            "<when test=\"sort != null and sort.trim() != ''\">" + 
@@ -51,9 +51,9 @@ public interface ${className}Mapper {
 	@Select("<script>" +
 	"select count(*) from ${tableName} " + 
 			"<where>" + 
-		  #foreach($column in $columns)
+#foreach($column in $columns)
 		  "<if test=\"$column.attrname != null and $column.attrname.trim() != ''\">"+ "and $column.columnName = #{$column.attrname} " + "</if>" + 
-		  #end
+#end
 			"</where>"+ 
 			"</script>")
 	int count(Map<String,Object> map);
@@ -72,10 +72,10 @@ public interface ${className}Mapper {
 	
 	@Update("<script>"+ 
 			"update ${tableName} " + 
-					"<set>" + 
-		  #foreach($column in $columns)
+					"<set>" +
+#foreach($column in $columns)
           "<if test=\"$column.attrname != null\">`$column.columnName` = #{$column.attrname}, </if>" + 
-          #end
+#end
 					"</set>" + 
 					"where ${pk.columnName} = #{${pk.attrname}}"+
 			"</script>")

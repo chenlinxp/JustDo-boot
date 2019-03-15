@@ -1,7 +1,12 @@
 package com.justdo.common.exception;
 
 import com.justdo.common.utils.HttpServletUtils;
+import com.justdo.common.utils.IPUtils;
 import com.justdo.common.utils.R;
+import com.justdo.common.utils.ShiroUtils;
+import com.justdo.system.errorlog.domain.ErrorLogDO;
+import com.justdo.system.errorlog.service.ErrorLogService;
+import com.justdo.system.user.domain.UserDO;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 
 /**
@@ -20,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BDExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
 //    @Autowired
-//    LogService logService;
+    ErrorLogService errorLogService;
 
 
     @ExceptionHandler(BDException.class)
@@ -56,18 +62,24 @@ public class BDExceptionHandler {
 
     @ExceptionHandler({Exception.class})
     public Object handleException(Exception e, HttpServletRequest request) {
-//        LogDO logDO = new LogDO();
-//        logDO.setGmtCreate(new Date());
-//        logDO.setOperation(ConstantConfig.LOG_ERROR);
-//        logDO.setMethod(request.getRequestURL().toString());
-//        logDO.setParams(e.toString());
-//        UserDO current = ShiroUtils.getUser();
-//        if(null!=current){
-//            logDO.setUserId(current.getUserId());
-//            logDO.setUsername(current.getUsername());
-//        }
-//        logService.save(logDO);
-//        logger.error(e.getMessage(), e);
+        ErrorLogDO errorLogDO = new ErrorLogDO();
+        errorLogDO.setCreateTime(new Date());
+        UserDO current = ShiroUtils.getUser();
+        if(null!=current) {
+            errorLogDO.setUserId(current.getUserId());
+            errorLogDO.setUserName(current.getUsername());
+        }else {
+            errorLogDO.setUserId("-1");
+            errorLogDO.setUserName("获取用户信息为空");
+        }
+        errorLogDO.setExceptionContent(e.toString());
+        errorLogDO.setExceptionState(0);
+        errorLogDO.setRemark("");
+        errorLogDO.setIp(IPUtils.getIpAddr(request));
+        errorLogService.save(errorLogDO);
+        logger.error(e.getMessage(), e);
+
+
         if (HttpServletUtils.jsAjax(request)) {
             return R.error(500, "服务器错误，请联系管理员");
         }

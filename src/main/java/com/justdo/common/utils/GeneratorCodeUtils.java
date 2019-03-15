@@ -30,19 +30,19 @@ public class GeneratorCodeUtils {
 
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
-        templates.add("templates/system/generator/domain.java.vm");
-        templates.add("templates/system/generator/Dao.java.vm");
+        templates.add("templates/system/generator/template/domain.java.vm");
+        templates.add("templates/system/generator/template/Dao.java.vm");
         //templates.add("templates/generator/Mapper.java.vm");
-        templates.add("templates/system/generator/Mapper.xml.vm");
-        templates.add("templates/system/generator/Service.java.vm");
-        templates.add("templates/system/generator/ServiceImpl.java.vm");
-        templates.add("templates/system/generator/Controller.java.vm");
-        templates.add("templates/system/generator/list.html.vm");
-        templates.add("templates/system/generator/add.html.vm");
-        templates.add("templates/system/generator/edit.html.vm");
-        templates.add("templates/system/generator/list.js.vm");
-        templates.add("templates/system/generator/add.js.vm");
-        templates.add("templates/system/generator/edit.js.vm");
+        templates.add("templates/system/generator/template/Mapper.xml.vm");
+        templates.add("templates/system/generator/template/Service.java.vm");
+        templates.add("templates/system/generator/template/ServiceImpl.java.vm");
+        templates.add("templates/system/generator/template/Controller.java.vm");
+        templates.add("templates/system/generator/template/list.html.vm");
+        templates.add("templates/system/generator/template/add.html.vm");
+        templates.add("templates/system/generator/template/edit.html.vm");
+        templates.add("templates/system/generator/template/list.js.vm");
+        templates.add("templates/system/generator/template/add.js.vm");
+        templates.add("templates/system/generator/template/edit.js.vm");
         //templates.add("templates/generator/menu.sql.vm");
         return templates;
     }
