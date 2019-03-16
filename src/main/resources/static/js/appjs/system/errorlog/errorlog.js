@@ -105,18 +105,7 @@ function load() {
 								{
 									field : 'createTime', 
 									title : '创建时间' 
-								},
-								{
-									title : '操作',
-									field : 'operation',
-									align : 'center',
-									formatter : function(value, row, index) {
-										var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
-												+ row.errorlogId
-												+ '\')"><i class="fa fa-remove"></i></a> ';
-										return  d ;
-									}
-								} ]
+								}]
 					});
 }
 function reLoad() {
@@ -169,27 +158,6 @@ function edit() {
 		area : [ '800px', '520px' ],
 		content : preUrl + '/edit/' + id // iframe的url
 	});
-}
-function del(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : preUrl+"/del",
-			type : "post",
-			data : {
-				'errorlogId' : id
-			},
-			success : function(r) {
-				if (r.code==0) {
-					layer.msg(r.msg);
-					reLoad();
-				}else{
-					layer.msg(r.msg);
-				}
-			}
-		});
-	})
 }
 
 function batchDel() {
