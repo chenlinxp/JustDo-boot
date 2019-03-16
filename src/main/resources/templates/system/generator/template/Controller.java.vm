@@ -35,9 +35,10 @@ public class ${className}Controller {
 	@Autowired
 	private ${className}Service ${classname}Service;
 
+
+
 	/**
 	* 列表页面
-	* @param params
 	* @return 列表页面路径
 	*/
 	@GetMapping()
@@ -64,6 +65,18 @@ public class ${className}Controller {
 		return pageUtils;
 	}
 
+	/**
+	* 详情页面
+	* @param ${pk.attrname}
+	* @return 列表页面路径
+	*/
+	@GetMapping("/view/{${pk.attrname}}")
+	@RequiresPermissions("${pathName}:${classname}:edit")
+	String view(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
+			${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
+		model.addAttribute("${classname}", ${classname});
+		return "${pathName}/${classnametolower}/view";
+	}
 
 	/**
 	* 增加页面
@@ -78,6 +91,8 @@ public class ${className}Controller {
 
 	/**
 	 * 保存
+	 * @param ${classname}
+     * @return R
 	 */
 	@ResponseBody
 	@PostMapping("/save")
@@ -91,7 +106,7 @@ public class ${className}Controller {
 
 	/**
 	* 编辑页面
-    * @param model
+    * @param ${pk.attrname}
     * @return 编辑页面路径
     */
 	@GetMapping("/edit/{${pk.attrname}}")
@@ -105,6 +120,8 @@ public class ${className}Controller {
 
 	/**
 	 * 更新
+	 * @param ${classname}
+	 * @return R
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
@@ -116,6 +133,8 @@ public class ${className}Controller {
 	
 	/**
 	 * 删除
+	 * @param ${pk.attrname}
+	 * @return R
 	 */
 	@PostMapping( "/del")
 	@ResponseBody
@@ -129,6 +148,8 @@ public class ${className}Controller {
 	
 	/**
 	 * 批量删除
+	 * @param ${pk.attrname}s
+	 * @return R
 	 */
 	@PostMapping( "/batchDel")
 	@ResponseBody

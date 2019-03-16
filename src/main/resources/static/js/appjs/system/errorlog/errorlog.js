@@ -105,13 +105,24 @@ function load() {
 								{
 									field : 'createTime', 
 									title : '创建时间' 
+								},
+								{
+									title : '操作',
+									field : 'operation',
+									align : 'center',
+									formatter : function(value, row, index) {
+										var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
+												+ row.errorlogId
+												+ '\')"><i class="fa fa-remove"></i></a> ';
+										return  d ;
+									}
 								} ]
 					});
 }
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
-function view(id) {
+function view() {
     // 返回所有选择的行，当没有选择的记录时，返回一个空数组
     var rows = $('#bTable').bootstrapTable('getSelections');
     var id;
@@ -145,7 +156,7 @@ function edit() {
     var rows = $('#bTable').bootstrapTable('getSelections');
     var id;
     if (rows.length == 0||rows.length >1) {
-        layer.msg("请选择一条数据数据");
+        layer.msg("请选择一条数据");
         return;
     }else{
         id=rows[0]['errorlogId'];
@@ -159,15 +170,38 @@ function edit() {
 		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
+function del(id) {
+	layer.confirm('确定要删除选中的记录？', {
+		btn : [ '确定', '取消' ]
+	}, function() {
+		$.ajax({
+			url : preUrl+"/del",
+			type : "post",
+			data : {
+				'errorlogId' : id
+			},
+			success : function(r) {
+				if (r.code==0) {
+					layer.msg(r.msg);
+					reLoad();
+				}else{
+					layer.msg(r.msg);
+				}
+			}
+		});
+	})
+}
+
 function batchDel() {
-	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+	var rows = $('#bTable').bootstrapTable('getSelections');
 	if (rows.length == 0) {
 		layer.msg("请选择要删除的数据");
 		return;
 	}
 	layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
-		btn : [ '确定', '取消' ]},
-		function() {
+		btn : [ '确定', '取消' ]
+	}, function() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
 		$.each(rows, function(i, row) {

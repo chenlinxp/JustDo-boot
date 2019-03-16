@@ -4,11 +4,11 @@
 <mapper namespace="${package}.${classnametolower}.dao.${className}Dao">
 
 	<select id="get" resultType="${package}.${classnametolower}.domain.${className}DO">
-		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName} where ${pk.columnName} = #{value}
+		select #if($pk.extra != 'auto_increment') `${pk.columnName}`,#end #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName} where ${pk.columnName} = #{value}
 	</select>
 
 	<select id="list" resultType="${package}.${classnametolower}.domain.${className}DO">
-		select #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
+		select #if($pk.extra != 'auto_increment') `${pk.columnName}`,#end ErrorLogMapper.xml#foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
         <where>  
 #foreach($column in $columns)
 		  <if test="$column.attrname != null and $column.attrname.trim() != ''"> and $column.columnName = #{$column.attrname} </if>
@@ -40,7 +40,7 @@
 #if(${pk.extra} != 'auto_increment')
         <selectKey keyProperty="$pk.attrname" resultType="string" order="BEFORE">
         select replace(uuid(), '-', '') as $pk.attrname from dual
-		</selectKey
+		</selectKey>
 #end
         insert into ${tableName}
 		(
@@ -48,15 +48,16 @@
 		    `$pk.columnName`,
 #end
 #foreach($column in $columns)
-			`$column.columnName`#if($velocityCount != $columns.size()), #end
+            `$column.columnName`#if($velocityCount != $columns.size()), #end
 #end
+        )
 		values
 		(
 #if(${pk.extra} != 'auto_increment')
-           {$pk.attrname},
+           #{$pk.attrname},
 #end
 #foreach($column in $columns)
-		   {$column.attrname}#if($velocityCount != $columns.size()), #end
+           #{$column.attrname}#if($velocityCount != $columns.size()), #end
 #end
 		)
 	</insert>

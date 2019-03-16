@@ -19,7 +19,7 @@ import java.util.Map;
  * 
  * @author chenlin
  * @email chenlinxp@qq.com
- * @date 2019-03-14 18:08:46
+ * @date 2019-03-16 19:46:45
  */
  
 @Controller
@@ -27,13 +27,25 @@ import java.util.Map;
 public class ErrorLogController {
 	@Autowired
 	private ErrorLogService errorLogService;
-	
+
+
+
+	/**
+	* 列表页面
+	* @return 列表页面路径
+	*/
 	@GetMapping()
 	@RequiresPermissions("system:errorlog:errorlog")
 	String ErrorLog(){
 	    return "system/errorlog/errorlog";
 	}
-	
+
+
+	/**
+	* 列表数据
+	* @param params
+	* @return
+	*/
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("system:errorlog:errorlog")
@@ -45,21 +57,31 @@ public class ErrorLogController {
 		PageUtils pageUtils = new PageUtils(errorLogList, total);
 		return pageUtils;
 	}
-	
+
+	/**
+	* 详情页面
+	* @param errorlogId
+	* @return 列表页面路径
+	*/
+	@GetMapping("/view/{errorlogId}")
+	@RequiresPermissions("system:errorLog:edit")
+	String view(@PathVariable("errorlogId") String errorlogId,Model model){
+			ErrorLogDO errorLog = errorLogService.get(errorlogId);
+		model.addAttribute("errorLog", errorLog);
+		return "system/errorlog/view";
+	}
+
+	/**
+	* 增加页面
+	* @return 增加页面路径
+	*/
 	@GetMapping("/add")
 	@RequiresPermissions("system:errorlog:add")
 	String add(){
 	    return "system/errorlog/add";
 	}
 
-	@GetMapping("/edit/{errorlogId}")
-	@RequiresPermissions("system:errorlog:edit")
-	String edit(@PathVariable("errorlogId") String errorlogId,Model model){
-		ErrorLogDO errorLog = errorLogService.get(errorlogId);
-		model.addAttribute("errorLog", errorLog);
-	    return "system/errorlog/edit";
-	}
-	
+
 	/**
 	 * 保存
 	 */
@@ -72,8 +94,25 @@ public class ErrorLogController {
 		}
 		return R.error();
 	}
+
 	/**
-	 * 修改
+	* 编辑页面
+    * @param errorlogId
+    * @return 编辑页面路径
+    */
+	@GetMapping("/edit/{errorlogId}")
+	@RequiresPermissions("system:errorLog:edit")
+	String edit(@PathVariable("errorlogId") String errorlogId,Model model){
+		ErrorLogDO errorLog = errorLogService.get(errorlogId);
+		model.addAttribute("errorLog", errorLog);
+	    return "system/errorlog/edit";
+	}
+	
+
+	/**
+	 * 更新
+	 * @param errorLog
+	 * @return R
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
@@ -85,6 +124,8 @@ public class ErrorLogController {
 	
 	/**
 	 * 删除
+	 * @param errorlogId
+	 * @return R
 	 */
 	@PostMapping( "/del")
 	@ResponseBody
@@ -97,7 +138,9 @@ public class ErrorLogController {
 	}
 	
 	/**
-	 * 删除
+	 * 批量删除
+	 * @param errorlogIds
+	 * @return R
 	 */
 	@PostMapping( "/batchDel")
 	@ResponseBody

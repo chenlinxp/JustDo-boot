@@ -10,14 +10,14 @@
 	<select id="list" resultType="com.justdo.system.errorlog.domain.ErrorLogDO">
 		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log
         <where>  
-		  		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
-		  		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
-		  		  <if test="exceptionContent != null and exceptionContent != ''"> and EXCEPTION_CONTENT = #{exceptionContent} </if>
-		  		  <if test="exceptionState != null and exceptionState != ''"> and EXCEPTION_STATE = #{exceptionState} </if>
-		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
-		  		  <if test="ip != null and ip != ''"> and IP = #{ip} </if>
-		  		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
-		  		</where>
+		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
+		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
+		  <if test="exceptionContent != null and exceptionContent != ''"> and EXCEPTION_CONTENT = #{exceptionContent} </if>
+		  <if test="exceptionState != null and exceptionState != ''"> and EXCEPTION_STATE = #{exceptionState} </if>
+		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+		  <if test="ip != null and ip != ''"> and IP = #{ip} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
@@ -34,40 +34,40 @@
  	<select id="count" resultType="int">
 		select count(*) from sys_error_log
 		 <where>  
-		  		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
-		  		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
-		  		  <if test="exceptionContent != null and exceptionContent != ''"> and EXCEPTION_CONTENT = #{exceptionContent} </if>
-		  		  <if test="exceptionState != null and exceptionState != ''"> and EXCEPTION_STATE = #{exceptionState} </if>
-		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
-		  		  <if test="ip != null and ip != ''"> and IP = #{ip} </if>
-		  		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
-		  		</where>
+		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
+		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
+		  <if test="exceptionContent != null and exceptionContent != ''"> and EXCEPTION_CONTENT = #{exceptionContent} </if>
+		  <if test="exceptionState != null and exceptionState != ''"> and EXCEPTION_STATE = #{exceptionState} </if>
+		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+		  <if test="ip != null and ip != ''"> and IP = #{ip} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		</where>
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.system.errorlog.domain.ErrorLogDO">
-		<selectKey keyProperty="errorlogId" resultType="string" order="BEFORE">
-			select replace(uuid(), '-', '') as errorlogId from dual
+        <selectKey keyProperty="errorlogId" resultType="string" order="BEFORE">
+        select replace(uuid(), '-', '') as errorlogId from dual
 		</selectKey>
 		insert into sys_error_log
 		(
-		    `ERRORLOG_ID`,
-			`USER_ID`, 
-			`USER_NAME`, 
-			`EXCEPTION_CONTENT`, 
-			`EXCEPTION_STATE`, 
-			`REMARK`, 
-			`IP`, 
+			`ERRORLOG_ID`,
+			`USER_ID`,
+			`USER_NAME`,
+			`EXCEPTION_CONTENT`,
+			`EXCEPTION_STATE`,
+			`REMARK`,
+			`IP`,
 			`CREATE_TIME`
 		)
 		values
 		(
-		    #{errorlogId},
-			#{userId}, 
-			#{userName}, 
-			#{exceptionContent}, 
-			#{exceptionState}, 
-			#{remark}, 
-			#{ip}, 
+			#{errorlogId},
+			#{userId},
+			#{userName},
+			#{exceptionContent},
+			#{exceptionState},
+			#{remark},
+			#{ip},
 			#{createTime}
 		)
 	</insert>

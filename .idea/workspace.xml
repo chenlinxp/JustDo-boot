@@ -2,93 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce3f1745-5d68-4251-976e-ef60ba149be0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/view.html.vm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/view.js.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/common/exception/BDExceptionHandler.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/common/exception/BDExceptionHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/controller/DictController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/dict/controller/DictController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/file/controller/FileController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/file/controller/FileController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/justdo/system/generator/controller/GeneratorController.class" afterPath="$PROJECT_DIR$/target/classes/com/justdo/system/generator/controller/GeneratorController.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/view.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/view.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/common/exception/BDExceptionHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/common/exception/BDExceptionHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/common/utils/GeneratorCodeUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/common/utils/GeneratorCodeUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/domain/ErrorLogDO.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/domain/ErrorLogDO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/edit.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/edit.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml" afterPath="$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/plugins/jqgrid/i18n/grid.locale-cn.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/plugins/jqgrid/i18n/grid.locale-cn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/act/salary/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/act/salary/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/act/salary/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/act/salary/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/act/salary/start.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/act/salary/start.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/area/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/area/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/area/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/area/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/city/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/city/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/city/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/city/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dept/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dept/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dept/deptTree.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dept/deptTree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dept/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dept/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/addtype.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/addtype.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/dict/edittype.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/dict/edittype.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/add.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/edit.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/errorlog.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/errorlog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/edit.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Mapper.xml.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Mapper.xml.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/add.html.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/add.html.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/edit.html.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/edit.html.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.html.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.html.vm" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/menu/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/menu/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/menu/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/menu/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/notice/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/notice/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/notice/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/notice/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/notice/read.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/notice/read.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/organ/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/organ/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/organ/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/organ/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/organ/organTree.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/organ/organTree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/province/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/province/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/province/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/province/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/quartzjob/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/quartzjob/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/quartzjob/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/quartzjob/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/regexp/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/regexp/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/regexp/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/regexp/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/role/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/role/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/role/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/role/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/user/add.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/user/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/user/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/user/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/user/reset_pwd.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/user/reset_pwd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/user/userTree.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/user/userTree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/appjs/system/dict/dict.js" afterPath="$PROJECT_DIR$/target/classes/static/js/appjs/system/dict/dict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/static/js/plugins/jqgrid/i18n/grid.locale-cn.js" afterPath="$PROJECT_DIR$/target/classes/static/js/plugins/jqgrid/i18n/grid.locale-cn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/act/salary/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/act/salary/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/act/salary/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/act/salary/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/act/salary/start.html" afterPath="$PROJECT_DIR$/target/classes/templates/act/salary/start.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dept/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dept/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dept/deptTree.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dept/deptTree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dept/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dept/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/addtype.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/addtype.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/dict/edittype.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/dict/edittype.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/generator/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/generator/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/menu/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/menu/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/menu/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/menu/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/notice/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/notice/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/notice/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/notice/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/notice/read.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/notice/read.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/organ/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/organ/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/organ/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/organ/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/quartzjob/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/quartzjob/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/quartzjob/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/quartzjob/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/regexp/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/regexp/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/regexp/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/regexp/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/role/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/role/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/role/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/role/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/user/add.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/user/add.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/user/edit.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/user/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/user/reset_pwd.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/user/reset_pwd.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/system/user/userTree.html" afterPath="$PROJECT_DIR$/target/classes/templates/system/user/userTree.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -112,7 +37,103 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="edit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/edit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-35">
+              <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/add.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="825">
+              <caret line="55" column="80" lean-forward="false" selection-start-line="55" selection-start-column="80" selection-end-line="55" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/edit.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="825">
+              <caret line="56" column="80" lean-forward="false" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorLogMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+              <folding>
+                <marker date="1552736112713" expanded="true" signature="292:448" ph="select `ERRO... sys_error_log" />
+                <marker date="1552736112713" expanded="true" signature="2557:2612" ph="select repla... dual" />
+                <marker date="1552736112713" expanded="true" signature="3048:3584" ph="update sys_e... " />
+                <marker date="1552736112713" expanded="true" signature="3619:3673" ph="delete from " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java.vm" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1286">
+              <caret line="149" column="11" lean-forward="true" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorLogController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1383">
+              <caret line="140" column="11" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.js.vm" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2270">
+              <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="errorlog.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="901">
+              <caret line="118" column="34" lean-forward="false" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="errorlog.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/errorlog.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="76" lean-forward="false" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -207,15 +228,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/dao/ErrorLogDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/service/ErrorLogService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/service/impl/ErrorLogServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/edit.js.vm" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/city/controller/CityController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/dict/controller/DictController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/file/controller/FileController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/province/controller/ProvinceController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Mapper.xml.vm" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/domain/ErrorLogDO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/common/exception/BDExceptionHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/role/controller/RoleController.java" />
@@ -227,8 +244,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/edit.html.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.html.vm" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/dict/dict.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/add.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/errorlog/edit.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/view.js.vm" />
@@ -240,6 +255,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/act/salary/edit.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/act/salary/start.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/justdo/common/utils/GeneratorCodeUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Mapper.xml.vm" />
+        <option value="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm" />
       </list>
     </option>
   </component>
@@ -415,40 +436,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="operationlog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="generator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -488,74 +475,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="template" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="errorlog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="JustDo-boot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dict" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -671,6 +590,74 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="appjs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="mybatis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -692,6 +679,132 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="justdo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="justdo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="justdo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="errorlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="JustDo-boot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="justdo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="system" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="errorlog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -709,11 +822,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/templates/system/generator/template" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller" />
       <recent name="$PROJECT_DIR$/src/main/resources/mybatis/system" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/justdo/system" />
-      <recent name="$PROJECT_DIR$/src/main/java/com/justdo/system/config" />
-      <recent name="$PROJECT_DIR$/src/main/resources/templates/system/generator/code-template1" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/js/appjs/system" />
+      <recent name="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog" />
+      <recent name="$PROJECT_DIR$/src/main/resources/templates/system/errorlog" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/templates/system/generator/template" />
@@ -1432,11 +1545,18 @@
       <option name="project" value="LOCAL" />
       <updated>1552642122022</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="优化完善代码生成模版">
+      <created>1552733735687</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1552733735687</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="319411000" />
+    <option name="totallyTimeSpent" value="322896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1542,18 +1662,11 @@
     <MESSAGE value="优化代码生成的模版" />
     <MESSAGE value="代码生成模版目录改变&#10;异常信息提示&#10;异常日志记录完善" />
     <MESSAGE value="优化代码生成模版" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化代码生成模版" />
+    <MESSAGE value="优化完善代码生成模版" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化完善代码生成模版" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java</url>
-          <line>69</line>
-          <properties />
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="84" />
     </breakpoint-manager>
     <watches-manager />
@@ -1563,35 +1676,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/common/exception/ExceptionErrorController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-329">
-          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.13.RELEASE/spring-web-4.3.13.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="213" column="0" lean-forward="false" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/OperationLogMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-468">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1552491537187" expanded="true" signature="308:438" ph="select `id`,... sys_operation_log" />
-            <marker date="1552491537187" expanded="true" signature="2702:2990" ph="insert into sys_operation_log... " />
-            <marker date="1552491537187" expanded="true" signature="3098:3620" ph="update sys_o... " />
-            <marker date="1552491537187" expanded="true" signature="3655:3704" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/RegexpMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-218">
@@ -1676,40 +1760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="94" column="20" lean-forward="false" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="47" column="4" lean-forward="false" selection-start-line="47" selection-start-column="4" selection-end-line="49" selection-end-column="20" />
-          <folding>
-            <marker date="1552620979098" expanded="true" signature="292:448" ph="select `USER... sys_error_log" />
-            <marker date="1552620979098" expanded="true" signature="2683:3019" ph="insert into sys_error_log... " />
-            <marker date="1552620979098" expanded="true" signature="3119:3655" ph="update sys_e... " />
-            <marker date="1552620979098" expanded="true" signature="3690:3744" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Mapper.xml.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="51" column="4" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-          <folding>
-            <marker date="1552728132722" expanded="true" signature="308:463" ph="select ##fore... where" />
-            <marker date="1552728132722" expanded="true" signature="1792:1849" ph="select repla... " />
-            <marker date="1552728132722" expanded="true" signature="2371:2666" ph="update ${tab... " />
-            <marker date="1552728132722" expanded="true" signature="2701:2759" ph="delete from " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/service/ErrorLogService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1761,17 +1811,9 @@
         <state relative-caret-position="705">
           <caret line="138" column="16" lean-forward="false" selection-start-line="138" selection-start-column="16" selection-end-line="138" selection-end-column="16" />
           <folding>
-            <element signature="e#2432#2433#0" expanded="true" />
-            <element signature="e#2467#2468#0" expanded="true" />
+            <element signature="e#2432#2433#0" expanded="false" />
+            <element signature="e#2467#2468#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="78" column="28" lean-forward="false" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1849,50 +1891,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1807">
-          <caret line="160" column="1" lean-forward="false" selection-start-line="160" selection-start-column="1" selection-end-line="160" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="137" column="26" lean-forward="false" selection-start-line="137" selection-start-column="26" selection-end-line="137" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.html.vm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="124" lean-forward="false" selection-start-line="11" selection-start-column="117" selection-end-line="11" selection-end-column="124" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="55" column="80" lean-forward="false" selection-start-line="55" selection-start-column="80" selection-end-line="55" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="80" lean-forward="false" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
           <folding />
         </state>
       </provider>
@@ -1933,14 +1935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="371">
           <caret line="27" column="48" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/errorlog.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="22" column="76" lean-forward="false" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
           <folding />
         </state>
       </provider>
@@ -1997,6 +1991,120 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="262" column="114" lean-forward="false" selection-start-line="262" selection-start-column="114" selection-end-line="262" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog/add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="80" lean-forward="false" selection-start-line="55" selection-start-column="80" selection-end-line="55" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/errorlog.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="76" lean-forward="false" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/errorlog/edit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="56" column="80" lean-forward="false" selection-start-line="56" selection-start-column="80" selection-end-line="56" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/list.js.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2270">
+          <caret line="207" column="0" lean-forward="false" selection-start-line="207" selection-start-column="0" selection-end-line="207" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/appjs/system/errorlog/errorlog.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="118" column="34" lean-forward="false" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Mapper.xml.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="10" column="92" lean-forward="false" selection-start-line="10" selection-start-column="92" selection-end-line="10" selection-end-column="92" />
+          <folding>
+            <marker date="1552736451539" expanded="true" signature="308:522" ph="select ##fore... where" />
+            <marker date="1552736451539" expanded="true" signature="1928:1985" ph="select repla... " />
+            <marker date="1552736451539" expanded="true" signature="2535:2830" ph="update ${tab... " />
+            <marker date="1552736451539" expanded="true" signature="2865:2923" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis/system/ErrorLogMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+          <folding>
+            <marker date="1552736112713" expanded="true" signature="292:448" ph="select `ERRO... sys_error_log" />
+            <marker date="1552736112713" expanded="true" signature="2557:2612" ph="select repla... dual" />
+            <marker date="1552736112713" expanded="true" signature="3048:3584" ph="update sys_e... " />
+            <marker date="1552736112713" expanded="true" signature="3619:3673" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/justdo/system/errorlog/controller/ErrorLogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1383">
+          <caret line="140" column="11" lean-forward="false" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/system/generator/template/Controller.java.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1286">
+          <caret line="149" column="11" lean-forward="true" selection-start-line="149" selection-start-column="11" selection-end-line="149" selection-end-column="11" />
           <folding />
         </state>
       </provider>
