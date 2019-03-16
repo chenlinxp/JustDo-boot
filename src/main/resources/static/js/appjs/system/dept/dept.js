@@ -84,13 +84,13 @@ function load() {
                         valign : 'center',
                         width : '150px',
 						formatter : function(item, index) {
-							var e = '<a class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
+							var e = '<a class="btn btn-success btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
 								+ item.deptid
 								+ '\')"><i class="fa fa-edit"></i></a> ';
-							var a = '<a class="btn btn-primary btn-sm ' + s_add_h + '" href="#" title="增加下級"  mce_href="#" onclick="add(\''
+							var a = '<a class="btn btn-success btn-sm ' + s_add_h + '" href="#" title="增加下級"  mce_href="#" onclick="add(\''
 								+ item.deptid
 								+ '\')"><i class="fa fa-plus"></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="delone(\''
+							var d = '<a class="btn btn-success btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="delone(\''
 								+ item.deptid
 								+ '\')"><i class="fa fa-remove"></i></a> ';
 							return e + a + d;

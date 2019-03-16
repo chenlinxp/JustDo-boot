@@ -94,12 +94,12 @@ var load = function () {
                                 + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
                                 + item.menuId
                                 + '\')"><i class="fa fa-edit"></i></a> ';
-                            var p = '<a class="btn btn-primary btn-sm '
+                            var p = '<a class="btn btn-success btn-sm '
                                 + s_add_h
                                 + '" href="#" mce_href="#" title="添加下级" onclick="add(\''
                                 + item.menuId
                                 + '\')"><i class="fa fa-plus"></i></a> ';
-                            var d = '<a class="btn btn-warning btn-sm '
+                            var d = '<a class="btn btn-success btn-sm '
                                 + s_delete_h
                                 + '" href="#" title="删除"  mce_href="#" onclick="del(\''
                                 + item.menuId
