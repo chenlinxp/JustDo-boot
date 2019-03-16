@@ -37,23 +37,26 @@
 	</select>
 	 
 	<insert id="save" parameterType="${package}.${classnametolower}.domain.${className}DO"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="${pk.columnName}"#end>
-
-		insert into ${tableName}
-		(
-#foreach($column in $columns)
-#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-			`$column.columnName`#if($velocityCount != $columns.size()), #end
-
-#end			
+#if(${pk.extra} != 'auto_increment')
+        <selectKey keyProperty="$pk.attrname" resultType="string" order="BEFORE">
+        select replace(uuid(), '-', '') as $pk.attrname from dual
+		</selectKey
 #end
-		)
+        insert into ${tableName}
+		(
+#if(${pk.extra} != 'auto_increment')
+		    `$pk.columnName`,
+#end
+#foreach($column in $columns)
+			`$column.columnName`#if($velocityCount != $columns.size()), #end
+#end
 		values
 		(
+#if(${pk.extra} != 'auto_increment')
+           {$pk.attrname},
+#end
 #foreach($column in $columns)
-#if($column.columnName != $pk.columnName || $pk.extra != 'auto_increment')
-			#{$column.attrname}#if($velocityCount != $columns.size()), #end
-
-#end			
+		   {$column.attrname}#if($velocityCount != $columns.size()), #end
 #end
 		)
 	</insert>

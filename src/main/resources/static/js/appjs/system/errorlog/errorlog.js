@@ -10,7 +10,7 @@ function load() {
 					{
 						method : 'get', // 服务器数据的请求方式 get or post
 						url : preUrl + "/list", // 服务器数据的加载地址
-					//	showRefresh : true,
+					    showRefresh : true,
 					//	showToggle : true,
 					//	showColumns : true,
 						iconSize : 'outline',
@@ -105,20 +105,6 @@ function load() {
 								{
 									field : 'createTime', 
 									title : '创建时间' 
-								},
-								{
-									title : '操作',
-									field : 'operation',
-									align : 'center',
-									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.errorlogId
-												+ '\')"><i class="fa fa-edit"></i></a> ';
-										var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
-												+ row.errorlogId
-												+ '\')"><i class="fa fa-remove"></i></a> ';
-										return e + d ;
-									}
 								} ]
 					});
 }
@@ -126,6 +112,15 @@ function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
 function view(id) {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['errorlogId'];
+    }
     layer.open({
         type : 2,
         title : '查看',
@@ -145,7 +140,16 @@ function add() {
 		content : preUrl + '/add' // iframe的url
 	});
 }
-function edit(id) {
+function edit() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据数据");
+        return;
+    }else{
+        id=rows[0]['errorlogId'];
+    }
 	layer.open({
 		type : 2,
 		title : '编辑',
@@ -155,28 +159,6 @@ function edit(id) {
 		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
-function del(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : preUrl+"/del",
-			type : "post",
-			data : {
-				'errorlogId' : id
-			},
-			success : function(r) {
-				if (r.code==0) {
-					layer.msg(r.msg);
-					reLoad();
-				}else{
-					layer.msg(r.msg);
-				}
-			}
-		});
-	})
-}
-
 function batchDel() {
 	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {

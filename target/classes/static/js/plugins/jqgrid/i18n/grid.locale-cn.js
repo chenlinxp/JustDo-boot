@@ -59,7 +59,7 @@ $.jgrid.regional["cn"] = {
     edit : {
         addCaption: "添加记录",
         editCaption: "编辑记录",
-        bSubmit: "提交",
+        bSubmit: "保存",
         bCancel: "取消",
         bClose: "关闭",
         saveData: "数据已改变，是否保存？",

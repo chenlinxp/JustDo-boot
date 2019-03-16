@@ -203,7 +203,8 @@ function add() {
 	});
 }
 function edit() {
-    var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
     var id;
     if (rows.length == 0||rows.length >1) {
         layer.msg("请选择一条要修改的数据");

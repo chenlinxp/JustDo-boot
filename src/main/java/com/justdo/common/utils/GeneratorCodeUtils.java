@@ -40,9 +40,11 @@ public class GeneratorCodeUtils {
         templates.add("templates/system/generator/template/list.html.vm");
         templates.add("templates/system/generator/template/add.html.vm");
         templates.add("templates/system/generator/template/edit.html.vm");
+        templates.add("templates/system/generator/template/view.html.vm");
         templates.add("templates/system/generator/template/list.js.vm");
         templates.add("templates/system/generator/template/add.js.vm");
         templates.add("templates/system/generator/template/edit.js.vm");
+        templates.add("templates/system/generator/template/view.js.vm");
         //templates.add("templates/generator/menu.sql.vm");
         return templates;
     }
@@ -240,7 +242,10 @@ public class GeneratorCodeUtils {
             return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
                     + packageName + File.separator + classname + File.separator + "edit.html";
         }
-
+        if (template.contains("view.html.vm")) {
+            return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
+                    + packageName + File.separator + classname + File.separator + "view.html";
+        }
         if (template.contains("list.js.vm")) {
             return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
                     + "appjs" + File.separator + packageName + File.separator + classname + File.separator + className.toLowerCase() + ".js";
@@ -252,6 +257,10 @@ public class GeneratorCodeUtils {
         if (template.contains("edit.js.vm")) {
             return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
                     + "appjs" + File.separator + packageName + File.separator + classname + File.separator + "edit.js";
+        }
+        if (template.contains("view.js.vm")) {
+            return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
+                    + "appjs" + File.separator + packageName + File.separator + classname + File.separator + "view.js";
         }
 //		if(template.contains("menu.sql.vm")){
 //			return className.toLowerCase() + "_menu.sql";

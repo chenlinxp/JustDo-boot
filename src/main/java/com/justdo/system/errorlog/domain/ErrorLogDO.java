@@ -1,7 +1,7 @@
 package com.justdo.system.errorlog.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
-import java.util.Date;
 
 
 
@@ -31,13 +31,14 @@ public class ErrorLogDO extends BaseBean {
 	//IP地址
 	private String ip;
 	//创建时间
-	private Date createTime;
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private String createTime;
 
 	public ErrorLogDO(){}
     /**
     * 构造方法
     */
-    public ErrorLogDO(Long ErrorlogId,Long UserId,String UserName,String ExceptionContent,Integer ExceptionState,String Remark,String Ip,Date CreateTim) {
+    public ErrorLogDO(Long ErrorlogId,Long UserId,String UserName,String ExceptionContent,Integer ExceptionState,String Remark,String Ip,String CreateTim) {
 	    super();
 	    this.userId = userId;
 	    this.userName = userName;
@@ -135,13 +136,13 @@ public class ErrorLogDO extends BaseBean {
 	/**
 	 * 设置：创建时间
 	 */
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 	/**
 	 * 获取：创建时间
 	 */
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 

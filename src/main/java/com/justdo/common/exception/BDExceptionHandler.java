@@ -1,9 +1,6 @@
 package com.justdo.common.exception;
 
-import com.justdo.common.utils.HttpServletUtils;
-import com.justdo.common.utils.IPUtils;
-import com.justdo.common.utils.R;
-import com.justdo.common.utils.ShiroUtils;
+import com.justdo.common.utils.*;
 import com.justdo.system.errorlog.domain.ErrorLogDO;
 import com.justdo.system.errorlog.service.ErrorLogService;
 import com.justdo.system.user.domain.UserDO;
@@ -64,7 +61,9 @@ public class BDExceptionHandler {
     @ExceptionHandler({Exception.class})
     public Object handleException(Exception e, HttpServletRequest request) {
         ErrorLogDO errorLogDO = new ErrorLogDO();
-        errorLogDO.setCreateTime(new Date());
+        Date date = new Date();
+        String nowtimeStr = DataFormater.toString(date,"yyyy-MM-dd HH:mm:ss");
+        errorLogDO.setCreateTime(nowtimeStr);
         UserDO current = ShiroUtils.getUser();
         if(null!=current) {
             errorLogDO.setUserId(current.getUserId());

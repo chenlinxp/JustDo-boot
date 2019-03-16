@@ -10,7 +10,7 @@ function load() {
 					{
 						method : 'get', // 服务器数据的请求方式 get or post
 						url : preUrl + "/list", // 服务器数据的加载地址
-					//	showRefresh : true,
+					    showRefresh : true,
 					//	showToggle : true,
 					//	showColumns : true,
 						iconSize : 'outline',
@@ -89,13 +89,10 @@ function load() {
 									field : 'operation',
 									align : 'center',
 									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm '+s_edit_h+'" href="#" mce_href="#" title="编辑" onclick="edit(\''
-												+ row.${pk.attrname}
-												+ '\')"><i class="fa fa-edit"></i></a> ';
 										var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
 												+ row.${pk.attrname}
 												+ '\')"><i class="fa fa-remove"></i></a> ';
-										return e + d ;
+										return  d ;
 									}
 								} ]
 					});
@@ -103,7 +100,16 @@ function load() {
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
-function view(id) {
+function view() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['${pk.attrname}'];
+    }
     layer.open({
         type : 2,
         title : '查看',
@@ -123,7 +129,17 @@ function add() {
 		content : preUrl + '/add' // iframe的url
 	});
 }
-function edit(id) {
+
+function edit() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['${pk.attrname}'];
+    }
 	layer.open({
 		type : 2,
 		title : '编辑',
@@ -156,14 +172,14 @@ function del(id) {
 }
 
 function batchDel() {
-	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+	var rows = $('#bTable').bootstrapTable('getSelections');
 	if (rows.length == 0) {
 		layer.msg("请选择要删除的数据");
 		return;
 	}
 	layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
 		btn : [ '确定', '取消' ]
-	// 按钮
 	}, function() {
 		var ids = new Array();
 		// 遍历所有选择的行数据，取每条数据对应的ID
@@ -189,3 +205,5 @@ function batchDel() {
 
 	});
 }
+
+});
