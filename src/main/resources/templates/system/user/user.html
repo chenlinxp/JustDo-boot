@@ -10,15 +10,12 @@
 				<div class="ibox" style="margin-top: 10px">
 					<div class="ibox-body">
 						<form id="treeForm">
-
 							<div class="columns pull-right">
 								<button type="submit" class="btn btn-success">查询</button>
 							</div>
-
 							<div class="columns pull-left col-md-9 nopadding">
 						<input type="search" class="form-control" placeholder="请选择部门" id="selectDept" />
 							</div>
-
 					    </form>
 					</div>
 					<div class="ibox-content">
@@ -34,6 +31,10 @@
 								<button shiro:hasPermission="system:user:add" type="button"
 									class="btn  btn-success" onclick="add()">
 									<i class="fa fa-plus hidden" aria-hidden="true"></i>添加
+								</button>
+								<button shiro:hasPermission="system:user:edit" type="button"
+										class="btn  btn-success" onclick="edit()">
+									<i class="fa fa-plus hidden" aria-hidden="true"></i>编辑
 								</button>
 								<button shiro:hasPermission="system:user:batchDel" type="button"
 									class="btn  btn-success" onclick="batchDel()">
@@ -55,22 +56,9 @@
 				</div>
 			</div>
 		</div>
-
 		<div>
 			<script type="text/javascript">
-				var s_edit_h = 'hidden';
-				var s_delete_h = 'hidden';
 				var s_resetPwd_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="system:user:edit">
-			<script type="text/javascript">
-				s_edit_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="system:user:del">
-			<script type="text/javascript">
-				var s_delete_h = '';
 			</script>
 		</div>
 		<div shiro:hasPermission="system:user:resetPwd">

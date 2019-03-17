@@ -1,4 +1,4 @@
-var prefix = "/system/user"
+var preUrl = "/system/user"
 $(function() {
 	var deptId = '';
 	getTreeData();
@@ -10,8 +10,8 @@ function load(deptId) {
 		.bootstrapTable(
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
-				url : prefix + "/list", // 服务器数据的加载地址
-				// showRefresh : true,
+				url : preUrl + "/list", // 服务器数据的加载地址
+				showRefresh : true,
 				// showToggle : true,
 				// showColumns : true,
 				iconSize : 'outline',
@@ -40,6 +40,9 @@ function load(deptId) {
 						deptId : deptId
 					};
 				},
+                onDblClickRow: function (row, element) {
+                    view(row["id"]);
+                },
 				// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
 				// queryParamsType = 'limit' ,返回参数必须包含
 				// limit, offset, search, sort, order 否则, 需要包含:
@@ -106,22 +109,35 @@ function load(deptId) {
 						field : 'id',
 						align : 'center',
 						formatter : function(value, row, index) {
-							var e = '<a  class="btn btn-primary btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
-								+ row.userId
-								+ '\')"><i class="fa fa-edit "></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="del(\''
-								+ row.userId
-								+ '\')"><i class="fa fa-remove"></i></a> ';
 							var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
 								+ row.userId
 								+ '\')"><i class="fa fa-key"></i></a> ';
-							return e + d + f;
+							return  f;
 						}
 					} ]
 			});
 }
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
+}
+function view() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['userId'];
+    }
+    layer.open({
+        type : 2,
+        title : '查看',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : preUrl + '/view/'+id // iframe的url
+    });
 }
 function add() {
 	// iframe层
@@ -131,38 +147,26 @@ function add() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/add'
+		content : preUrl + '/add'
 	});
 }
-function del(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : "/system/user/del",
-			type : "post",
-			data : {
-				'id' : id
-			},
-			success : function(r) {
-				if (r.code == 0) {
-					layer.msg(r.msg);
-					reLoad();
-				} else {
-					layer.msg(r.msg);
-				}
-			}
-		});
-	})
-}
-function edit(id) {
+function edit() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['userId'];
+    }
 	layer.open({
 		type : 2,
 		title : '用户修改',
 		maxmin : true,
 		shadeClose : false,
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
+		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
 function resetPwd(id) {
@@ -172,7 +176,7 @@ function resetPwd(id) {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '400px', '260px' ],
-		content : prefix + '/resetPwd/' + id // iframe的url
+		content : preUrl + '/resetPwd/' + id // iframe的url
 	});
 }
 function batchDel() {
@@ -195,7 +199,7 @@ function batchDel() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchDel',
+			url : preUrl + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

@@ -1,3 +1,4 @@
+var preUrl = "/system/user"
 $().ready(function() {
 	validateRule();
 });
@@ -23,7 +24,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/user/save",
+		url : preUrl+"/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -55,7 +56,7 @@ function validateRule() {
 				required : true,
 				minlength : 2,
 				remote : {
-					url : "/system/user/exit", // 后台处理程序
+					url : preUrl+"/exit", // 后台处理程序
 					type : "post", // 数据发送方式
 					dataType : "json", // 接受数据格式
 					data : { // 要传递的数据

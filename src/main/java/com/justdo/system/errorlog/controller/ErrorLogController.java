@@ -61,7 +61,7 @@ public class ErrorLogController {
 	/**
 	* 详情页面
 	* @param errorlogId
-	* @return 列表页面路径
+	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{errorlogId}")
 	@RequiresPermissions("system:errorLog:edit")
@@ -115,7 +115,7 @@ public class ErrorLogController {
 	 * @return R
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:errorlog:edit")
 	public R update( ErrorLogDO errorLog){
 		errorLogService.update(errorLog);

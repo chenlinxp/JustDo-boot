@@ -36,19 +36,31 @@ import java.util.Map;
 @RequestMapping("/system/user")
 @Controller
 public class UserController extends BaseController {
-	private String prefix="system/user"  ;
+
+	private String preUrl="system/user"  ;
 	@Autowired
 	UserService userService;
 	@Autowired
 	RoleService roleService;
 	@Autowired
 	DictContentService dictContentService;
+
+	/**
+	 * 用户列表页面
+	 * @return 用户列表页面路径
+	 */
 	@RequiresPermissions("system:user:user")
 	@GetMapping("")
-	String user(Model model) {
-		return prefix + "/user";
+	String user() {
+		return preUrl + "/user";
 	}
 
+	/**
+	 * 用户列表数据
+	 * @param params
+	 * @return 用户列表数据
+	 */
+	@Log("用户列表")
 	@GetMapping("/list")
 	@ResponseBody
 	PageUtils list(@RequestParam Map<String, Object> params) {
@@ -60,14 +72,38 @@ public class UserController extends BaseController {
 		return pageUtil;
 	}
 
+	/**
+	 * 用户详情页面
+	 * @param id
+	 * @return 用户详情页面路径
+	 */
+	@GetMapping("/view/{id}")
+	@RequiresPermissions("system:user:edit")
+	String view(@PathVariable("id") String id,Model model){
+		UserDO userDO = userService.get(id);
+		model.addAttribute("user", userDO);
+		return preUrl+"/view";
+	}
+
+	/**
+	 * 新增用户页面
+	 * @param model
+	 * @return 新增用户页面路径
+	 */
 	@RequiresPermissions("system:user:add")
 	@GetMapping("/add")
 	String add(Model model) {
 		List<RoleDO> roles = roleService.list();
 		model.addAttribute("roles", roles);
-		return prefix + "/add";
+		return preUrl + "/add";
 	}
 
+	/**
+	 * 编辑用户页面
+	 * @param model
+	 * @param id
+	 * @return 编辑用户页面路径
+	 */
 	@RequiresPermissions("system:user:edit")
 	@GetMapping("/edit/{id}")
 	String edit(Model model, @PathVariable("id") String id) {
@@ -75,15 +111,19 @@ public class UserController extends BaseController {
 		model.addAttribute("user", userDO);
 		List<RoleDO> roles = roleService.list(id);
 		model.addAttribute("roles", roles);
-		return prefix+"/edit";
+		return preUrl+"/edit";
 	}
 
+	/**
+	 * 新增用户
+	 * @param user
+	 * @return R
+	 */
+	@Log("保存用户")
 	@RequiresPermissions("system:user:add")
-	@Log("添加用户")
 	@PostMapping("/save")
 	@ResponseBody
 	R save(UserDO user) {
-
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
 		if (userService.save(user) > 0) {
 			return R.ok();
@@ -91,46 +131,61 @@ public class UserController extends BaseController {
 		return R.error();
 	}
 
+	/**
+	 * 更新用户
+	 * @param user
+	 * @return R
+	 */
+	@Log("更新用户")
 	@RequiresPermissions("system:user:edit")
-	@Log("编辑用户")
 	@PostMapping("/update")
 	@ResponseBody
 	R update(UserDO user) {
-
 		if (userService.update(user) > 0) {
 			return R.ok();
 		}
 		return R.error();
 	}
 
-
-	@RequiresPermissions("system:user:edit")
+	/**
+	 * 更新个人信息
+	 * @param user
+	 * @return R
+	 */
 	@Log("更新个人信息")
+	@RequiresPermissions("system:user:edit")
 	@PostMapping("/updatePeronal")
 	@ResponseBody
 	R updatePeronal(UserDO user) {
-
 		if (userService.updatePersonal(user) > 0) {
 			return R.ok();
 		}
 		return R.error();
 	}
 
-
-	@RequiresPermissions("system:user:del")
+	/**
+	 * 删除用户
+	 * @param id
+	 * @return R
+	 */
 	@Log("删除用户")
+	@RequiresPermissions("system:user:del")
 	@PostMapping("/del")
 	@ResponseBody
 	R remove(String id) {
-
 		if (userService.del(id) > 0) {
 			return R.ok();
 		}
 		return R.error();
 	}
 
-	@RequiresPermissions("system:user:batchDel")
+	/**
+	 * 批量删除用户
+	 * @param userIds
+	 * @return R
+	 */
 	@Log("批量删除用户")
+	@RequiresPermissions("system:user:batchDel")
 	@PostMapping("/batchDel")
 	@ResponseBody
 	R batchDel(@RequestParam("ids[]") String[] userIds) {
@@ -142,6 +197,11 @@ public class UserController extends BaseController {
 		return R.error();
 	}
 
+	/**
+	 * 退出账号
+	 * @param params
+	 * @return
+	 */
 	@PostMapping("/exit")
 	@ResponseBody
 	boolean exit(@RequestParam Map<String, Object> params) {
@@ -149,6 +209,12 @@ public class UserController extends BaseController {
 		return !userService.exit(params);
 	}
 
+	/**
+	 * 更改用户密码页面
+	 * @param userId
+	 * @param model
+	 * @return 更改用户密码页面路径
+	 */
 	@RequiresPermissions("system:user:resetPwd")
 	@GetMapping("/resetPwd/{id}")
 	String resetPwd(@PathVariable("id") String userId, Model model) {
@@ -156,9 +222,14 @@ public class UserController extends BaseController {
 		UserDO userDO = new UserDO();
 		userDO.setUserId(userId);
 		model.addAttribute("user", userDO);
-		return prefix + "/reset_pwd";
+		return preUrl + "/reset_pwd";
 	}
 
+	/**
+	 * 更改用户密码
+	 * @param userVO
+	 * @return R
+	 */
 	@Log("更改用户密码")
 	@PostMapping("/resetPwd")
 	@ResponseBody
@@ -171,8 +242,14 @@ public class UserController extends BaseController {
 		}
 
 	}
+
+	/**
+	 * admin更改用户密码
+	 * @param userVO
+	 * @return
+	 */
+	@Log("admin修改用户密码")
 	@RequiresPermissions("system:user:resetPwd")
-	@Log("修改用户密码")
 	@PostMapping("/adminResetPwd")
 	@ResponseBody
 	R adminResetPwd(UserVO userVO) {
@@ -184,6 +261,8 @@ public class UserController extends BaseController {
 		}
 
 	}
+
+
 	@GetMapping("/tree")
 	@ResponseBody
 	public Tree<DeptDO> tree() {
@@ -194,7 +273,7 @@ public class UserController extends BaseController {
 
 	@GetMapping("/treeView")
 	String treeView() {
-		return  prefix + "/userTree";
+		return  preUrl + "/userTree";
 	}
 
 	@GetMapping("/personal")
@@ -203,8 +282,9 @@ public class UserController extends BaseController {
 		model.addAttribute("user",userDO);
 //		model.addAttribute("hobbyList",dictContentService.getHobbyList(userDO));
 //		model.addAttribute("sexList",dictContentService.getSexList());
-		return prefix + "/personal";
+		return preUrl + "/personal";
 	}
+
 	@ResponseBody
 	@PostMapping("/uploadImg")
 	R uploadImg(@RequestParam("avatar_file") MultipartFile file, String avatar_data, HttpServletRequest request) {

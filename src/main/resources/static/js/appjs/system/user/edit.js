@@ -1,7 +1,6 @@
-// 以下为官方示例
+var preUrl = "/system/user"
 $().ready(function() {
 	validateRule();
-	// $("#signupForm").validate();
 });
 
 $.validator.setDefaults({
@@ -14,7 +13,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/user/update",
+		url : preUrl+"/user/update",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

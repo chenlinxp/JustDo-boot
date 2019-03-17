@@ -32,6 +32,8 @@ import com.justdo.common.utils.R;
 @Controller
 @RequestMapping("/${pathName}/${classnametolower}")
 public class ${className}Controller {
+
+	private String preUrl="${pathName}/${classnametolower}"  ;
 	@Autowired
 	private ${className}Service ${classname}Service;
 
@@ -44,7 +46,7 @@ public class ${className}Controller {
 	@GetMapping()
 	@RequiresPermissions("${pathName}:${classnametolower}:${classnametolower}")
 	String ${className}(){
-	    return "${pathName}/${classnametolower}/${classnametolower}";
+	    return preUrl + "/${classnametolower}";
 	}
 
 
@@ -53,6 +55,7 @@ public class ${className}Controller {
 	* @param params
 	* @return
 	*/
+	@Log("${comments}列表")
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("${pathName}:${classnametolower}:${classnametolower}")
@@ -68,14 +71,14 @@ public class ${className}Controller {
 	/**
 	* 详情页面
 	* @param ${pk.attrname}
-	* @return 列表页面路径
+	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{${pk.attrname}}")
 	@RequiresPermissions("${pathName}:${classname}:edit")
 	String view(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
 			${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
 		model.addAttribute("${classname}", ${classname});
-		return "${pathName}/${classnametolower}/view";
+		return preUrl + "/view";
 	}
 
 	/**
@@ -85,7 +88,7 @@ public class ${className}Controller {
 	@GetMapping("/add")
 	@RequiresPermissions("${pathName}:${classnametolower}:add")
 	String add(){
-	    return "${pathName}/${classnametolower}/add";
+	    return preUrl + "/add";
 	}
 
 
@@ -94,6 +97,7 @@ public class ${className}Controller {
 	 * @param ${classname}
      * @return R
 	 */
+	@Log("${comments}保存")
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("${pathName}:${classnametolower}:add")
@@ -114,7 +118,7 @@ public class ${className}Controller {
 	String edit(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
 		${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
 		model.addAttribute("${classname}", ${classname});
-	    return "${pathName}/${classnametolower}/edit";
+	    return preUrl + "/edit";
 	}
 	
 
@@ -123,8 +127,9 @@ public class ${className}Controller {
 	 * @param ${classname}
 	 * @return R
 	 */
+	@Log("${comments}更新")
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("${pathName}:${classnametolower}:edit")
 	public R update( ${className}DO ${classname}){
 		${classname}Service.update(${classname});
@@ -136,6 +141,7 @@ public class ${className}Controller {
 	 * @param ${pk.attrname}
 	 * @return R
 	 */
+	@Log("${comments}删除")
 	@PostMapping( "/del")
 	@ResponseBody
 	@RequiresPermissions("${pathName}:${classnametolower}:del")
@@ -151,6 +157,7 @@ public class ${className}Controller {
 	 * @param ${pk.attrname}s
 	 * @return R
 	 */
+	@Log("${comments}批量删除")
 	@PostMapping( "/batchDel")
 	@ResponseBody
 	@RequiresPermissions("${pathName}:${classnametolower}:batchDel")

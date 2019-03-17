@@ -739,7 +739,8 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 }
 
 .btn-success {
-    background-color: #1c84c6;
+    /*background-color: #1c84c6;*/
+    background-color:#39aef5;
     border-color: #1c84c6;
     color: #FFFFFF;
 }
