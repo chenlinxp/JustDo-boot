@@ -5,6 +5,9 @@ import com.justdo.common.utils.Query;
 import com.justdo.system.operationlog.domain.OperationLogDO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * 系统日志
  *
@@ -14,8 +17,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface OperationLogService {
+
+
+	OperationLogDO get(String id);
+
+	List<OperationLogDO> list(Map<String,Object> map);
+
+	int count(Map<String,Object> map);
+
 	void save(OperationLogDO operationLogDO);
+
 	PageDO<OperationLogDO> queryList(Query query);
+
 	int del(String id);
+
 	int batchDel(String[] ids);
+
 }

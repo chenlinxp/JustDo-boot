@@ -14,6 +14,7 @@ import java.util.Date;
  * @date 2018-06-19 16:02:20
  */
 public class OperationLogDO extends BaseBean {
+
 	private String id;
 
 	private String userId;

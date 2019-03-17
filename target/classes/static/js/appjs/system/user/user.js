@@ -175,7 +175,7 @@ function resetPwd(id) {
 		title : '重置密码',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
-		area : [ '400px', '260px' ],
+		area : [ '400px', '400px' ],
 		content : preUrl + '/resetPwd/' + id // iframe的url
 	});
 }
@@ -253,8 +253,6 @@ $('#jstree').on("changed.jstree", function(e, data) {
 		}
 		$('#bTable').bootstrapTable('refresh',opt);
 	}
-
-
 
 });
 

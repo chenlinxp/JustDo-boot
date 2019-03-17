@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<input id="id" name="id" th:value="${operationLog.id}"  type="hidden">
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">用户id：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.userId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.username}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">用户操作：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.operation}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">响应时间：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.time}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">请求方法：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.method}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">请求参数：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.params}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">IP地址：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.ip}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${operationLog.gmtCreate}"></span>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/operationlog/view.js">
+	</script>
+</body>
+</html>

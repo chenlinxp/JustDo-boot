@@ -1,14 +1,15 @@
 package com.justdo.system.operationlog.service.impl;
 
-import java.util.List;
+import com.justdo.common.domain.PageDO;
+import com.justdo.common.utils.Query;
+import com.justdo.system.operationlog.domain.OperationLogDO;
+import com.justdo.system.operationlog.service.OperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.justdo.system.operationlog.domain.OperationLogDO;
-import com.justdo.common.domain.PageDO;
-import com.justdo.system.operationlog.service.OperationLogService;
-import com.justdo.common.utils.Query;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 系统日志
@@ -22,6 +23,20 @@ public class OperationLogServiceImpl implements OperationLogService {
 	@Autowired
 	com.justdo.system.operationlog.dao.OperationLogDao operationlogdao;
 
+	@Override
+	public OperationLogDO get(String id){
+		return operationlogdao.get(id);
+	}
+
+	@Override
+	public List<OperationLogDO> list(Map<String, Object> map){
+		return operationlogdao.list(map);
+	}
+
+	@Override
+	public int count(Map<String, Object> map){
+		return operationlogdao.count(map);
+	}
 	@Async
 	@Override
 	public void save(OperationLogDO logDO) {

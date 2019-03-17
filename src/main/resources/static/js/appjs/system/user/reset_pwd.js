@@ -1,5 +1,5 @@
 var preUrl = "/system/user"
-$().ready(function() {
+$(document).ready(function() {
 	validateRule();
 });
 $.validator.setDefaults({
@@ -35,23 +35,26 @@ function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
         rules : {
-            password : {
+            pwdNew : {
                 required : true,
                 minlength : 6
             },
-            password2 : {
+            confirm_password : {
                 required : true,
-                minlength : 6
+                minlength : 6,
+                equalTo : "#pwdNew"
+
             }
         },
         messages : {
-            password : {
-                required : icon + "请输入您的密码",
+            pwdNew : {
+                required : icon + "请输入新密码",
                 minlength : icon + "密码必须6个字符以上"
             },
-            password2 : {
-                required : icon + "请再次输入您的密码",
-                minlength : icon + "密码必须6个字符以上"
+            confirm_password : {
+                required : icon + "请再次输入新密码",
+                minlength : icon + "密码必须6个字符以上",
+                equalTo : icon + "两次输入的密码不一致"
             }
         }
     })

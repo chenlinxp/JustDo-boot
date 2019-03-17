@@ -9,7 +9,7 @@
 
 	<select id="list" resultType="com.justdo.system.operationlog.domain.OperationLogDO">
 		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_operation_log
-        <where>  
+        <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>
@@ -25,17 +25,17 @@
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by id desc
+				order by id desc
 			</otherwise>
-        </choose>
+		</choose>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
- 	<select id="count" resultType="int">
+
+	<select id="count" resultType="int">
 		select count(*) from sys_operation_log
-		 <where>  
+		 <where>
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>
@@ -48,9 +48,13 @@
 		  		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.justdo.system.operationlog.domain.OperationLogDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.justdo.system.operationlog.domain.OperationLogDO">
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as id from dual
+		</selectKey>
 		insert into sys_operation_log
 		(
+		    `id`,
 			`user_id`, 
 			`username`, 
 			`operation`, 
@@ -62,6 +66,7 @@
 		)
 		values
 		(
+		    #{id},
 			#{userId}, 
 			#{username}, 
 			#{operation}, 

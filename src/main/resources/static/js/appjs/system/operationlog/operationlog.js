@@ -1,12 +1,7 @@
-var prefix = "/system/operationlog"
+var preUrl = "/system/operationlog"
 $(function () {
     load();
 
-});
-$('#bTable').on('load-success.bs.table', function (e, data) {
-    if (data.total && !data.rows.length) {
-        $('#bTable').bootstrapTable('selectPage').bootstrapTable('refresh');
-    }
 });
 
 function load() {
@@ -14,8 +9,8 @@ function load() {
         .bootstrapTable(
             {
                 method: 'get', // 服务器数据的请求方式 get or post
-                url: prefix + "/list", // 服务器数据的加载地址
-                // showRefresh : true,
+                url: preUrl + "/list", // 服务器数据的加载地址
+                showRefresh : true,
                 // showToggle : true,
                 // showColumns : true,
                 iconSize: 'outline',
@@ -103,8 +98,12 @@ function load() {
                         title: '方法'
                     },
                     {
-                        field: 'params',
-                        title: '参数'
+                        title : '参数',
+                        field : 'id',
+                        align : 'center',
+                        formatter : function(value, row, index) {
+                            return  '<span class="label label-primary">查看参数</span>';
+                        }
                     },
                     {
                         field: 'ip',
@@ -113,17 +112,6 @@ function load() {
                     {
                         field: 'gmtCreate',
                         title: '创建时间'
-                    },
-                    {
-                        title: '操作',
-                        field: 'operation',
-                        align: 'center',
-                        formatter: function (value, row, index) {
-                            var d = '<a class="btn btn-warning btn-sm" href="#" title="删除"  mce_href="#" onclick="remove(\''
-                                + row.id
-                                + '\')"><i class="fa fa-remove"></i></a> ';
-                            return d;
-                        }
                     }]
             });
 }
@@ -132,34 +120,28 @@ function reLoad() {
     $('#bTable').bootstrapTable('refresh');
 }
 
-function remove(id) {
-    layer.confirm('确定要删除选中的记录？', {
-        btn: ['确定', '取消']
-    }, function () {
-        $.ajax({
-            url: prefix + "/del",
-            type: "post",
-            data: {
-                'id': id
-            },
-            beforeSend: function (request) {
-                index = layer.load();
-            },
-            success: function (r) {
-                if (r.code == 0) {
-                    layer.close(index);
-                    layer.msg(r.msg);
-                    reLoad();
-                } else {
-                    layer.msg(r.msg);
-                }
-            }
-        });
-    })
+function view() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['id'];
+    }
+    layer.open({
+        type : 2,
+        title : '查看',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : preUrl + '/view/'+id // iframe的url
+    });
 }
-
 function batchDel() {
-    var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
     if (rows.length == 0) {
         layer.msg("请选择要删除的数据");
         return;
@@ -178,7 +160,7 @@ function batchDel() {
             data: {
                 "ids": ids
             },
-            url: prefix + '/batchDel',
+            url: preUrl + '/batchDel',
             success: function (r) {
                 if (r.code == 0) {
                     layer.msg(r.msg);

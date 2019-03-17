@@ -1,17 +1,15 @@
 package com.justdo.system.user.service;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.justdo.common.domain.Tree;
 import com.justdo.system.dept.domain.DeptDO;
 import com.justdo.system.user.domain.UserDO;
 import com.justdo.system.user.domain.UserVO;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 用户
@@ -41,6 +39,7 @@ public interface UserService {
 	Set<String> listRoles(String userId);
 
 	int resetPwd(UserVO userVO,UserDO userDO) throws Exception;
+
 	int adminResetPwd(UserVO userVO) throws Exception;
 	Tree<DeptDO> getTree();
 

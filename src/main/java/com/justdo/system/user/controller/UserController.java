@@ -75,7 +75,7 @@ public class UserController extends BaseController {
 	/**
 	 * 用户详情页面
 	 * @param id
-	 * @return 用户详情页面路径
+	 * @return 详情页面路径
 	 */
 	@GetMapping("/view/{id}")
 	@RequiresPermissions("system:user:edit")

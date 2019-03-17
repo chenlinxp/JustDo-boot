@@ -54,8 +54,8 @@ public class WebLogAspect {
         // 记录类名和方法名
         logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "."
                 + joinPoint.getSignature().getName());
-        logger.info("参数 : " + Arrays.toString(joinPoint.getArgs()));
         logger.info("参数 : " + joinPoint.getArgs());
+        logger.info("参数 : " + Arrays.toString(joinPoint.getArgs()));
 
     }
 

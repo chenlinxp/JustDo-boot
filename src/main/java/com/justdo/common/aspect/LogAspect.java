@@ -3,7 +3,6 @@ package com.justdo.common.aspect;
 import com.justdo.common.annotation.Log;
 import com.justdo.common.utils.HttpContextUtils;
 import com.justdo.common.utils.IPUtils;
-import com.justdo.common.utils.JSONUtils;
 import com.justdo.common.utils.ShiroUtils;
 import com.justdo.system.operationlog.domain.OperationLogDO;
 import com.justdo.system.operationlog.service.OperationLogService;
@@ -20,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -79,7 +79,7 @@ public class LogAspect {
         // 请求的参数
         Object[] args = joinPoint.getArgs();
         try {
-            String params = JSONUtils.beanToJson(args[0]).substring(0, 4999);
+            String params =  Arrays.toString(args);
             operationLog.setParams(params);
         } catch (Exception e) {
 
