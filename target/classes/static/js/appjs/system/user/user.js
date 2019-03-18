@@ -81,7 +81,7 @@ function load(deptId) {
                         }
                     },
 					{
-						field : 'name',
+						field : 'realname',
 						title : '姓名'
 					},
 					{

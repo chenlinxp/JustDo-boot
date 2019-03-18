@@ -33,7 +33,6 @@ function load() {
                     return {
                         limit: params.limit,
                         offset: params.offset,
-                        name: $('#searchName').val(),
                         sort: 'gmt_create',
                         order: 'desc',
                         operation: $("#searchOperation").val(),

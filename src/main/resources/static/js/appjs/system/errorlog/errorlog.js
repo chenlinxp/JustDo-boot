@@ -12,7 +12,7 @@ function load() {
 						url : preUrl + "/list", // 服务器数据的加载地址
 					    showRefresh : true,
 					//	showToggle : true,
-					//	showColumns : true,
+					    showColumns : true,
 						iconSize : 'outline',
 						toolbar : '#bToolbar',
 						striped : true, // 设置为true会有隔行变色效果

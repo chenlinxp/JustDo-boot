@@ -6,13 +6,13 @@
 	<select id="get" resultType="com.justdo.system.dicttype.domain.DictTypeDO">
 		select
 		`did`,`dname`,`dcode`,`remark`
-		from sys_dict where did = #{did}
+		from SYS_DICTIONARY_TYPE where did = #{did}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dicttype.domain.DictTypeDO">
 		select
 		`did`,`dname`,`dcode`,`remark`
-		from sys_dict
+		from SYS_DICTIONARY_TYPE
 		<where>
 			<if test="dcode != null and dcode != ''">and dcode = #{dcode} </if>
 			<if test="dname != null and dname != ''"> and dname like concat('%' , #{dname},'%') </if>
@@ -23,7 +23,7 @@
 		<selectKey keyProperty="did" resultType="string" order="BEFORE">
 			select replace(uuid(), '-', '') as did from dual
 		</selectKey>
-		insert into sys_dict
+		insert into SYS_DICTIONARY_TYPE
 		(
 		`did`,
 		`dname`,
@@ -40,7 +40,7 @@
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.dicttype.domain.DictTypeDO">
-		update sys_dict
+		update SYS_DICTIONARY_TYPE
 		<set>
 			<if test="dname != null">`dname` = #{dname}, </if>
 			<if test="dcode != null">`dcode` = #{dcode}, </if>
@@ -50,7 +50,7 @@
 	</update>
 
 	<delete id="del">
-		delete from sys_dict where did = #{did}
+		delete from SYS_DICTIONARY_TYPE where did = #{did}
 	</delete>
 
 

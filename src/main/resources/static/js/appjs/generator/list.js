@@ -1,4 +1,4 @@
-var prefix = "/system/generator"
+var preUrl = "/system/generator"
 $(function() {
 	load();
 });
@@ -8,10 +8,10 @@ function load() {
 			.bootstrapTable(
 					{
 						method : 'get', // 服务器数据的请求方式 get or post
-						url : prefix + "/list", // 服务器数据的加载地址
+						url : preUrl + "/list", // 服务器数据的加载地址
 						showRefresh : true,
 						showToggle : true,
-						showColumns : true,
+						//showColumns : true,
 						iconSize : 'outline',
 						toolbar : '#bToolbar',
 						striped : true, // 设置为true会有隔行变色效果
@@ -83,7 +83,7 @@ function load() {
 									field : 'id',
 									align : 'center',
 									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="生成代码" onclick="code(\''
+										var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="生成代码" onclick="generateCode(\''
 												+ row.tableName
 												+ '\')"><i class="fa fa-code"></i></a> ';
 										return e;
@@ -94,11 +94,12 @@ function load() {
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
-function code(tableName) {
-	location.href = prefix + "/code/" + tableName;
+function generateCode(tableName) {
+	location.href = preUrl + "/code/" + tableName;
 }
 function batchCode() {
-	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+	var rows = $('#bTable').bootstrapTable('getSelections');
 	if (rows.length == 0) {
 		layer.msg("请选择要生成代码的表");
 		return;
@@ -108,17 +109,16 @@ function batchCode() {
 	$.each(rows, function(i, row) {
 		tables[i] = row['tableName'];
 	});
-	location.href = prefix + "/batchCode?tables=" + JSON.stringify(tables);
+	location.href = preUrl + "/batchCode?tables=" + JSON.stringify(tables);
 }
 
 function edit(){
-	console.log('打开配置页面');
 	layer.open({
 		type : 2,
 		title : '增加',
 		maxmin : true,
 		shadeClose : false, 
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit'
+		content : preUrl + '/edit'
 	});
 }

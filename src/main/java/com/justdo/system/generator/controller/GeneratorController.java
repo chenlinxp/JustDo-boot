@@ -8,6 +8,7 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.IOUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,11 +38,21 @@ public class GeneratorController {
 	@Autowired
 	GeneratorService generatorService;
 
+	/**
+	 * 列表页面
+	 * @return 列表页面路径
+	 */
+	@RequiresPermissions("system:generator:list")
 	@GetMapping()
 	String generator() {
 		return preUrl + "/list";
 	}
 
+	/**
+	 * 列表数据
+	 * @return 列表数据
+	 */
+	@RequiresPermissions("system:generator:list")
 	@ResponseBody
 	@GetMapping("/list")
 	List<Map<String, Object>> list() {
@@ -49,7 +60,12 @@ public class GeneratorController {
 		return list;
 	};
 
-	@RequestMapping("/code/{tableName}")
+	/**
+	 * @param tableName
+	 * 生成单表代码
+	 */
+	@RequiresPermissions("system:generator:list")
+	@GetMapping("/code/{tableName}")
 	public void code(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("tableName") String tableName) throws IOException {
 		String[] tableNames = new String[] { tableName };
@@ -62,7 +78,12 @@ public class GeneratorController {
 		IOUtils.write(data, response.getOutputStream());
 	}
 
-	@RequestMapping("/batchCode")
+	/**
+	 * @param tables　
+	 * 生成多表代码
+	 */
+	@RequiresPermissions("system:generator:list")
+	@GetMapping("/batchCode")
 	public void batchCode(HttpServletRequest request, HttpServletResponse response, String tables) throws IOException {
 		String[] tableNames = new String[] {};
 		tableNames = JSON.parseArray(tables).toArray(tableNames);
@@ -75,6 +96,11 @@ public class GeneratorController {
 		IOUtils.write(data, response.getOutputStream());
 	}
 
+	/**
+	 * 编辑代码生成策略
+	 * @return 代码生成策略页面
+	 */
+	@RequiresPermissions("system:generator:edit")
 	@GetMapping("/edit")
 	public String edit(Model model) {
 		Configuration conf = GeneratorCodeUtils.getConfig();
@@ -88,6 +114,11 @@ public class GeneratorController {
 		return preUrl + "/edit";
 	}
 
+	/**
+	 * 更新代码生成策略
+	 * @return 代码生成策略
+	 */
+	@RequiresPermissions("system:generator:edit")
 	@ResponseBody
 	@PostMapping("/update")
 	R update(@RequestParam Map<String, Object> map) {

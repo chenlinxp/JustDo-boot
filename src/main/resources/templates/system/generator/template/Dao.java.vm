@@ -14,17 +14,52 @@ import ${package}.${classnametolower}.domain.${className}DO;
 @Mapper
 public interface ${className}Dao {
 
+	/**
+	* 返回实体
+	* @param ${pk.attrname}
+	* @return ${className}DO
+	*/
 	${className}DO get(${pk.attrType} ${pk.attrname});
-	
+
+	/**
+	 * 返回实体list
+	 * @param map
+	 * @return list
+	 */
 	List<${className}DO> list(Map<String,Object> map);
-	
+
+	/**
+	 * 返回数量
+	 * @param map
+	 * @return
+	 */
 	int count(Map<String,Object> map);
-	
+
+	/**
+	 * 保存实体
+	 * @param ${classname}
+	 * @return
+	 */
 	int save(${className}DO ${classname});
-	
+
+	/**
+	 * 更新实体
+	 * @param ${classname}
+	 * @return list
+	 */
 	int update(${className}DO ${classname});
-	
+
+	/**
+	 * 删除实体
+	 * @param ${classname}
+	 * @return list
+	 */
 	int del(${pk.attrType} ${pk.columnName});
-	
+
+	/**
+	 * 批量删除实体
+	 * @param ${classname}
+	 * @return list
+	 */
 	int batchDel(${pk.attrType}[] ${pk.attrname}s);
 }

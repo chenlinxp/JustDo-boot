@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.dict.dao.DictContentDao">
 
 	<select id="get" resultType="com.justdo.system.dict.domain.DictContentDO">
-		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from sys_dict_content where DCID = #{value}
+		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from SYS_DICTIONARY_CONTENT where DCID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dict.domain.DictContentDO">
-		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from sys_dict_content
+		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from SYS_DICTIONARY_CONTENT
         <where>  
 		  		  <if test="dcid != null and dcid != ''"> and DCID = #{dcid} </if>
 		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
@@ -32,7 +32,7 @@
 	</select>
 	
  	<select id="count" resultType="int">
-		select count(*) from sys_dict_content
+		select count(*) from SYS_DICTIONARY_CONTENT
 		 <where>  
 		  		  <if test="dcid != null and dcid != ''"> and DCID = #{dcid} </if>
 		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
@@ -48,7 +48,7 @@
 		<selectKey keyProperty="dcid" resultType="string" order="BEFORE">
 			select replace(uuid(), '-', '') as dcid from dual
 		</selectKey>
-		insert into sys_dict_content
+		insert into SYS_DICTIONARY_CONTENT
 		(
 			`DCID`, 
 			`DID`, 
@@ -71,7 +71,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.system.dict.domain.DictContentDO">
-		update sys_dict_content 
+		update SYS_DICTIONARY_CONTENT
 		<set>
 			<if test="did != null">`DID` = #{did}, </if>
 			<if test="dcvalue != null">`DCVALUE` = #{dcvalue}, </if>
@@ -84,11 +84,11 @@
 	</update>
 	
 	<delete id="del">
-		delete from sys_dict_content where DCID = #{value}
+		delete from SYS_DICTIONARY_CONTENT where DCID = #{value}
 	</delete>
 	
 	<delete id="batchDel">
-		delete from sys_dict_content where DCID in 
+		delete from SYS_DICTIONARY_CONTENT where DCID in
 		<foreach item="dcid" collection="array" open="(" separator="," close=")">
 			#{dcid}
 		</foreach>

@@ -179,10 +179,8 @@
     <div id="right-sidebar">
         <div class="sidebar-container">
             <ul class="nav nav-tabs navs-3">
-
-                <li class="active"><a data-toggle="tab" href="#tab-1"> <i
-                        class="fa fa-gear"></i> 主题
-                </a></li>
+                <li class="active"><a data-toggle="tab" href="#tab-1">
+                    <i class="fa fa-gear"></i> 主题 </a></li>
                 <li class=""><a data-toggle="tab" href="#tab-2"> 通知 </a></li>
                 <li><a data-toggle="tab" href="#tab-3"> 项目进度 </a></li>
             </ul>
@@ -213,7 +211,6 @@
                         </div>
                         <div class="setings-item">
                             <span>固定顶部</span>
-
                             <div class="switch">
                                 <div class="onoffswitch">
                                     <input type="checkbox" name="fixednavbar"
@@ -240,12 +237,12 @@
                         </div>
                         <div class="title">皮肤选择</div>
                         <div class="setings-item default-skin nb">
-								<span class="skin-name "> <a href="#" class="s-skin-0">
+								<span class="skin-name "> <a href="#" class="s-skin-1">
 										默认皮肤 </a>
 								</span>
                         </div>
                         <div class="setings-item blue-skin nb">
-								<span class="skin-name "> <a href="#" class="s-skin-1">
+								<span class="skin-name "> <a href="#" class="s-skin-0">
 										蓝色主题 </a>
 								</span>
                         </div>
@@ -292,7 +289,6 @@
 <script src="/js/plugins/pace/pace.min.js"></script>
 <!-- vue -->
 <script type="text/javascript" src="/js/vue.min.js">
-
 </script>
 <script src="/js/appjs/webSocket/sockjs.min.js"></script>
 <script src="/js/appjs/webSocket/stomp.min.js"></script>
@@ -303,17 +299,16 @@
     $(function () {
         connect();
     });
-
     function connect() {
         var sock = new SockJS("/endpointChat");
         var stomp = Stomp.over(sock);
         stomp.connect('guest', 'guest', function(frame) {
-
             /**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
              *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
              *  */
             stomp.subscribe("/user/queue/notifications", handleNotification);
-            stomp.subscribe('/topic/getResponse', function (response) { //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
+            //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
+            stomp.subscribe('/topic/getResponse', function (response) {
                 toastr.options = {
                     "closeButton": true,
                     "debug": false,
@@ -337,7 +332,6 @@
             toastr.info(message.body);
         }
     }
-
     var wrapper = new Vue({
         el: '#wrapper',
         data: {
