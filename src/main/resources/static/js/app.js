@@ -193,12 +193,10 @@ $(function () {
             if (localStorageSupport) {
                 localStorage.setItem("fixednavbar", 'off');
             }
-
-
             if (localStorageSupport) {
                 localStorage.setItem("boxedlayout", 'on');
             }
-        } else {
+            } else {
             $("body").removeClass('boxed-layout');
 
             if (localStorageSupport) {
@@ -248,7 +246,6 @@ $(function () {
     }
 
     if (localStorageSupport) {
-
         var collapse = localStorage.getItem("collapse_menu");
         var fixednavbar = localStorage.getItem("fixednavbar");
         var boxedlayout = localStorage.getItem("boxedlayout");

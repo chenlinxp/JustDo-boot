@@ -102,7 +102,7 @@ function load() {
                         field : 'id',
                         align : 'center',
                         formatter : function(value, row, index) {
-                            return  '<span class="label label-primary">查看参数</span>';
+                            return  '<span class="label label-primary">点击查看</span>';
                         }
                     },
                     {

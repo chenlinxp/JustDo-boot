@@ -186,7 +186,7 @@ public class UserServiceImpl implements UserService {
 			Tree<DeptDO> tree = new Tree<DeptDO>();
 			tree.setId(user.getUserId().toString());
 			tree.setParentId(user.getDeptId().toString());
-			tree.setText(user.getName());
+			tree.setText(user.getRealname());
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
 			state.put("mType", "user");

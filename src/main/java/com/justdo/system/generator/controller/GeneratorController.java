@@ -1,13 +1,9 @@
 package com.justdo.system.generator.controller;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSON;
+import com.justdo.common.utils.GeneratorCodeUtils;
+import com.justdo.common.utils.R;
+import com.justdo.system.generator.service.GeneratorService;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -17,11 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.alibaba.fastjson.JSON;
-
-import com.justdo.system.generator.service.GeneratorService;
-import com.justdo.common.utils.GeneratorCodeUtils;
-import com.justdo.common.utils.R;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -34,13 +31,15 @@ import com.justdo.common.utils.R;
 @RequestMapping("/system/generator")
 @Controller
 public class GeneratorController {
-	String prefix = "system/generator";
+
+	String preUrl = "system/generator";
+
 	@Autowired
 	GeneratorService generatorService;
 
 	@GetMapping()
 	String generator() {
-		return prefix + "/list";
+		return preUrl + "/list";
 	}
 
 	@ResponseBody
@@ -76,7 +75,7 @@ public class GeneratorController {
 		IOUtils.write(data, response.getOutputStream());
 	}
 
-	@GetMapping("/update")
+	@GetMapping("/edit")
 	public String edit(Model model) {
 		Configuration conf = GeneratorCodeUtils.getConfig();
 		Map<String, Object> property = new HashMap<>(16);
@@ -86,7 +85,7 @@ public class GeneratorController {
 		property.put("autoRemovePre", conf.getProperty("autoRemovePre"));
 		property.put("tablePrefix", conf.getProperty("tablePrefix"));
 		model.addAttribute("property", property);
-		return prefix + "/edit";
+		return preUrl + "/edit";
 	}
 
 	@ResponseBody

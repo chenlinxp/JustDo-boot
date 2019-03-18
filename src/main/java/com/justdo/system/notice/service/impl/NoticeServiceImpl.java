@@ -126,7 +126,7 @@ public class NoticeServiceImpl implements NoticeService {
         List<NoticeDTO> rows = NoticeDao.listDTO(map);
         for (NoticeDTO NoticeDTO : rows) {
             NoticeDTO.setBefore(DateUtils.getTimeBefore(NoticeDTO.getUpdateDate()));
-            NoticeDTO.setSender(userDao.get(NoticeDTO.getCreateBy()).getName());
+            NoticeDTO.setSender(userDao.get(NoticeDTO.getCreateBy()).getRealname());
         }
         PageUtils page = new PageUtils(rows, NoticeDao.countDTO(map));
         return page;

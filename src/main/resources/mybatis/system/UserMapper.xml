@@ -4,15 +4,15 @@
 <mapper namespace="com.justdo.system.user.dao.UserDao">
 
 	<select id="get" resultType="com.justdo.system.user.domain.UserDO">
-		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user where user_id = #{value}
+		select `user_id`,`username`,`realname`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user where user_id = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.user.domain.UserDO">
-		select `user_id`,`username`,`name`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user
+		select `user_id`,`username`,`realname`,`password`,`dept_id`,`email`,`mobile`,`status`,`user_id_create`,`gmt_create`,`gmt_modified`,`sex`,`birth`,`pic_id`,`live_address`,`hobby`,`province`,`city`,`district` from sys_user
         <where>  
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>
-		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="realname != null and realname != ''"> and name = #{realname} </if>
 		  		  <if test="password != null and password != ''"> and password = #{password} </if>
 		  		  <if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
 		  		  <if test="email != null and email != ''"> and email = #{email} </if>
@@ -48,7 +48,7 @@
 		 <where>  
 		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
 		  		  <if test="username != null and username != ''"> and username = #{username} </if>
-		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="realname != null and realname != ''"> and name = #{realname} </if>
 		  		  <if test="password != null and password != ''"> and password = #{password} </if>
 		  		  <if test="deptId != null and deptId != ''"> and dept_id = #{deptId} </if>
 		  		  <if test="email != null and email != ''"> and email = #{email} </if>
@@ -72,7 +72,7 @@
 		insert into sys_user
 		(
 			`username`, 
-			`name`, 
+			`realname`,
 			`password`, 
 			`dept_id`, 
 			`email`, 
@@ -93,7 +93,7 @@
 		values
 		(
 			#{username}, 
-			#{name}, 
+			#{realname},
 			#{password}, 
 			#{deptId}, 
 			#{email}, 
@@ -117,7 +117,7 @@
 		update sys_user 
 		<set>
 			<if test="username != null">`username` = #{username}, </if>
-			<if test="name != null">`name` = #{name}, </if>
+			<if test="realname != null">`realname` = #{realname}, </if>
 			<if test="password != null">`password` = #{password}, </if>
 			<if test="deptId != null">`dept_id` = #{deptId}, </if>
 			<if test="email != null">`email` = #{email}, </if>

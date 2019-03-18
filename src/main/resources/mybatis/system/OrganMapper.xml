@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.organ.dao.OrganDao">
 
 	<select id="get" resultType="com.justdo.system.organ.domain.OrganDO">
-		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK` from sys_organ where ORGANID = #{value}
+		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK` from SYS_ORGANIZATION where ORGANID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.organ.domain.OrganDO">
-		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK` from sys_organ
+		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK` from SYS_ORGANIZATION
         <where>  
 		  		  <if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
 		  		  <if test="organpid != null and organpid != ''"> and ORGANPID = #{organpid} </if>
@@ -39,7 +39,7 @@
 	</select>
 	
  	<select id="count" resultType="int">
-		select count(*) from sys_organ
+		select count(*) from SYS_ORGANIZATION
 		 <where>  
 		  		  <if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
 		  		  <if test="organpid != null and organpid != ''"> and ORGANPID = #{organpid} </if>
@@ -62,7 +62,7 @@
 		<selectKey keyProperty="organid" resultType="string" order="BEFORE">
 			select replace(uuid(), '-', '') as organid from dual
 		</selectKey>
-		insert into sys_organ
+		insert into SYS_ORGANIZATION
 		(
 			`ORGANID`, 
 			`ORGANPID`, 
@@ -99,7 +99,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.system.organ.domain.OrganDO">
-		update sys_organ 
+		update SYS_ORGANIZATION
 		<set>
 			<if test="organname != null">`ORGANNAME` = #{organname}, </if>
 			<if test="areaid != null">`AREAID` = #{areaid}, </if>
@@ -118,22 +118,22 @@
 	</update>
 	
 	<delete id="del">
-		delete from sys_organ where ORGANID = #{value}
+		delete from SYS_ORGANIZATION where ORGANID = #{value}
 	</delete>
 	
 	<delete id="batchDel">
-		delete from sys_organ where ORGANID in 
+		delete from SYS_ORGANIZATION where ORGANID in
 		<foreach item="organid" collection="array" open="(" separator="," close=")">
 			#{organid}
 		</foreach>
 	</delete>
 
 	<select id="listParentOrgan" resultType="String">
-		select DISTINCT organpid from sys_organ
+		select DISTINCT organpid from SYS_ORGANIZATION
 	</select>
 
 	<select id="findOrganDept" parameterType="map" resultType="com.justdo.system.organ.domain.OrganDeptVO" >
-		select `ORGANID`,`ORGANPID`,`ORGANNAME` from sys_organ
+		select `ORGANID`,`ORGANPID`,`ORGANNAME` from SYS_ORGANIZATION
 		<where>
 			<if test="organpid != null and organpid != ''">and ISVALIDATION = 1 and ORGANPID = #{organpid} </if>
 
@@ -142,7 +142,7 @@
 	</select>
 
 	<select id="getOrgans" parameterType="map" resultType="com.justdo.common.domain.TreeNode" >
-		select `ORGANID` as id ,`ORGANPID` as parentid ,`ORGANNAME` as text from sys_organ
+		select `ORGANID` as id ,`ORGANPID` as parentid ,`ORGANNAME` as text from SYS_ORGANIZATION
 		<where>
 			<if test="organpid != null and organpid != ''">and ISVALIDATION = 1 and ORGANPID = #{organpid} </if>
 

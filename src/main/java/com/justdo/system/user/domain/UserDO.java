@@ -1,10 +1,10 @@
 package com.justdo.system.user.domain;
 
-import java.util.Date;
-import java.util.List;
-
 import com.justdo.common.domain.BaseBean;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -19,7 +19,7 @@ public class UserDO extends BaseBean {
     // 用户名
     private String username;
     // 用户真实姓名
-    private String name;
+    private String realname;
     // 密码
     private String password;
     // 部门
@@ -73,12 +73,12 @@ public class UserDO extends BaseBean {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getRealname() {
+        return realname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
     public String getPassword() {
@@ -230,7 +230,7 @@ public class UserDO extends BaseBean {
         return "UserDO{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
-                ", name='" + name + '\'' +
+                ", realname='" +realname + '\'' +
                 ", password='" + password + '\'' +
                 ", deptId=" + deptId +
                 ", deptName='" + deptName + '\'' +

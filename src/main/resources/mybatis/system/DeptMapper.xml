@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.dept.dao.DeptDao">
 
 	<select id="get" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from sys_dept where DEPTID = #{value}
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from SYS_DEPARTMENT where DEPTID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from sys_dept
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from SYS_DEPARTMENT
 		<where>
 			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
@@ -32,7 +32,7 @@
 	</select>
 
 	<select id="count" resultType="int">
-		select count(*) from sys_dept
+		select count(*) from SYS_DEPARTMENT
 		<where>
 			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
@@ -48,7 +48,7 @@
 		<selectKey keyProperty="deptid" resultType="string" order="BEFORE">
 			select replace(uuid(), '-', '') as deptid from dual
 		</selectKey>
-		insert into sys_dept
+		insert into SYS_DEPARTMENT
 		(
 		`DEPTID`,
 		`ORGANID`,
@@ -71,7 +71,7 @@
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.dept.domain.DeptDO">
-		update sys_dept
+		update SYS_DEPARTMENT
 		<set>
 			<if test="organid != null">`ORGANID` = #{organid}, </if>
 			<if test="deptpid != null">`DEPTPID` = #{deptpid}, </if>
@@ -84,18 +84,18 @@
 	</update>
 
 	<delete id="del">
-		delete from sys_dept where DEPTID = #{value}
+		delete from SYS_DEPARTMENT where DEPTID = #{value}
 	</delete>
 
 	<delete id="batchDel">
-		delete from sys_dept where DEPTID in
+		delete from SYS_DEPARTMENT where DEPTID in
 		<foreach item="deptid" collection="array" open="(" separator="," close=")">
 			#{deptid}
 		</foreach>
 	</delete>
 
 	<select id="listParentDept" resultType="String">
-		select DISTINCT deptpid from sys_dept
+		select DISTINCT deptpid from SYS_DEPARTMENT
 	</select>
 
 	<select id="getDeptUserNumber" resultType="int">
@@ -103,7 +103,7 @@
 	</select>
 
 	<select id="getAllDepts" resultType="com.justdo.system.dept.domain.DeptVO" parameterType="map" >
-		select deptid,deptname,deptpid,organid from sys_dept
+		select deptid,deptname,deptpid,organid from SYS_DEPARTMENT
 
 		<where>
 			<if test="deptpid != null and deptpid != ''">and isvalidation = 1 and deptpid = #{deptpid} </if>
@@ -116,7 +116,7 @@
 
 
 	<select id="getTopDepts" resultType="com.justdo.common.domain.TreeNode" parameterType="map" >
-		select deptid as id,deptname as text,organid as parentid  from sys_dept
+		select deptid as id,deptname as text,organid as parentid  from SYS_DEPARTMENT
 
 		<where>
 			<if test="deptpid == null or deptpid == ''">and isvalidation = 1 and deptpid = '' </if>
@@ -126,7 +126,7 @@
 	</select>
 
 	<select id="getDepts" resultType="com.justdo.common.domain.TreeNode" parameterType="map" >
-		select deptid as id,deptname as text,deptpid as parentid from sys_dept
+		select deptid as id,deptname as text,deptpid as parentid from SYS_DEPARTMENT
 
 		<where>
 			<if test="deptpid != null and deptpid != ''">and isvalidation = 1 and deptpid = #{deptpid} </if>
