@@ -10,7 +10,7 @@ function load() {
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
 				url : prefix + "/list", // 服务器数据的加载地址
-				//	showRefresh : true,
+				showRefresh : true,
 				//	showToggle : true,
 				//	showColumns : true,
 				iconSize : 'outline',
@@ -147,9 +147,6 @@ function load() {
 							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
 								+ row.id
 								+ '\')"><i class="fa fa-remove"></i></a> ';
-							var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-								+ row.id
-								+ '\')"><i class="fa fa-key"></i></a> ';
 							return e + d;
 						}
 					} ]
@@ -178,30 +175,7 @@ function edit(id) {
 		content : prefix + '/edit/' + id // iframe的url
 	});
 }
-function remove(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : prefix + "/del",
-			type : "post",
-			data : {
-				'id' : id
-			},
-			success : function(r) {
-				if (r.code == 0) {
-					layer.msg(r.msg);
-					reLoad();
-				} else {
-					layer.msg(r.msg);
-				}
-			}
-		});
-	})
-}
 
-function resetPwd(id) {
-}
 function batchDel() {
 	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	if (rows.length == 0) {

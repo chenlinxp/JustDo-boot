@@ -32,7 +32,7 @@ public class GeneratorCodeUtils {
         List<String> templates = new ArrayList<String>();
         templates.add("templates/system/generator/template/domain.java.vm");
         templates.add("templates/system/generator/template/Dao.java.vm");
-        //templates.add("templates/generator/Mapper.java.vm");
+        templates.add("templates/system/generator/template/Mapper.java.vm");
         templates.add("templates/system/generator/template/Mapper.xml.vm");
         templates.add("templates/system/generator/template/Service.java.vm");
         templates.add("templates/system/generator/template/ServiceImpl.java.vm");
@@ -45,7 +45,7 @@ public class GeneratorCodeUtils {
         templates.add("templates/system/generator/template/add.js.vm");
         templates.add("templates/system/generator/template/edit.js.vm");
         templates.add("templates/system/generator/template/view.js.vm");
-        //templates.add("templates/generator/menu.sql.vm");
+        templates.add("templates/system/generator/template/resource.sql.vm");
         return templates;
     }
 
@@ -210,9 +210,9 @@ public class GeneratorCodeUtils {
             return packagePath +classname +File.separator+ "dao" + File.separator + className + "Dao.java";
         }
 
-//		if(template.contains("Mapper.java.vm")){
-//			return packagePath + "dao" + File.separator + className + "Mapper.java";
-//		}
+        if(template.contains("Mapper.java.vm")){
+            return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + packageName + File.separator + className + "Mapper.java";
+        }
 
         if (template.contains("Service.java.vm")) {
             return packagePath +classname +File.separator+ "service" + File.separator + className + "Service.java";
@@ -229,7 +229,9 @@ public class GeneratorCodeUtils {
         if (template.contains("Mapper.xml.vm")) {
             return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + packageName + File.separator + className + "Mapper.xml";
         }
-
+        if(template.contains("resource.sql.vm")){
+            return "main" + File.separator + "resources" + File.separator + "sql" + File.separator + packageName + File.separator + className + "resource.sql";
+        }
         if (template.contains("list.html.vm")) {
             return "main" + File.separator + "resources" + File.separator + "templates" + File.separator
                     + packageName + File.separator + classname + File.separator + className.toLowerCase() + ".html";
@@ -262,9 +264,7 @@ public class GeneratorCodeUtils {
             return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
                     + "appjs" + File.separator + packageName + File.separator + classname + File.separator + "view.js";
         }
-//		if(template.contains("menu.sql.vm")){
-//			return className.toLowerCase() + "_menu.sql";
-//		}
+
         return null;
     }
 }

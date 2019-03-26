@@ -44,7 +44,7 @@ public class ${className}Controller {
 	* @return 列表页面路径
 	*/
 	@GetMapping()
-	@RequiresPermissions("${pathName}:${classnametolower}:${classnametolower}")
+	@RequiresPermissions("${pathName}:${classnametolower}:list")
 	String ${className}(){
 	    return preUrl + "/${classnametolower}";
 	}
@@ -58,7 +58,7 @@ public class ${className}Controller {
 	@Log("${comments}列表")
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("${pathName}:${classnametolower}:${classnametolower}")
+	@RequiresPermissions("${pathName}:${classnametolower}:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -74,7 +74,7 @@ public class ${className}Controller {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{${pk.attrname}}")
-	@RequiresPermissions("${pathName}:${classname}:edit")
+	@RequiresPermissions("${pathName}:${classname}:info")
 	String view(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
 			${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
 		model.addAttribute("${classname}", ${classname});
