@@ -74,7 +74,7 @@ public class ${className}Controller {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{${pk.attrname}}")
-	@RequiresPermissions("${pathName}:${classname}:info")
+	@RequiresPermissions("${pathName}:${classname}:view")
 	String view(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
 			${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
 		model.addAttribute("${classname}", ${classname});

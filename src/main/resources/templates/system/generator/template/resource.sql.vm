@@ -11,7 +11,7 @@ VALUES(@RESOURCE_ID,'100000','${comments}','${pathName}','${pathName}:${classnam
 -- 资源菜单对应按钮SQL
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'查看','${pathName}/view','${pathName}:${classname}:info',1,'fa fa-file-code-o',0,1,now(),now());
+VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'查看','${pathName}/view','${pathName}:${classname}:view',1,'fa fa-file-code-o',0,1,now(),now());
 
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
@@ -28,3 +28,5 @@ VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'删除',NULL,'${pathName}:${classn
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
 VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'批量删除',NULL,'${pathName}:${classname}:batchDel',1,'fa fa-file-code-o',0,5,now(),now());
+
+

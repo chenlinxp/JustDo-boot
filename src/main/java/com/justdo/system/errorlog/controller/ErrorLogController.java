@@ -35,7 +35,7 @@ public class ErrorLogController {
 	* @return 列表页面路径
 	*/
 	@GetMapping()
-	@RequiresPermissions("system:errorlog:errorlog")
+	@RequiresPermissions("system:errorlog")
 	String ErrorLog(){
 	    return "system/errorlog/errorlog";
 	}
@@ -48,7 +48,7 @@ public class ErrorLogController {
 	*/
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:errorlog:errorlog")
+	@RequiresPermissions("system:errorlog")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -64,7 +64,7 @@ public class ErrorLogController {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{errorlogId}")
-	@RequiresPermissions("system:errorLog:edit")
+	@RequiresPermissions("system:errorLog:view")
 	String view(@PathVariable("errorlogId") String errorlogId,Model model){
 			ErrorLogDO errorLog = errorLogService.get(errorlogId);
 		model.addAttribute("errorLog", errorLog);
