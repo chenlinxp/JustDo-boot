@@ -29,7 +29,7 @@ public class ${className}DO extends BaseBean {
     /**
     * 构造方法
     */
-    public ${className}DO(${constructorParams}){ }
+    public ${className}DO(){ }
     public ${className}DO(${constructorParams}){
 		super();
 #foreach ($column in $columns)
@@ -63,5 +63,15 @@ public class ${className}DO extends BaseBean {
 		return $column.attrname;
 	}
 #end
+
+	@Override
+	public String toString() {
+		return "${className}DO{" +
+				"$pk.attrname=" + $pk.attrname +
+#foreach ($column in $columns)
+		        ", $column.attrname='" + $column.attrname + '\'' +
+#end
+				'}';
+	}
 
 }

@@ -37,14 +37,20 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
-				required : true
-			}
+#foreach ($column in $columns)
+	    $column.attrname :
+	               {required : true}
+#if($velocityCount != $columns.size()),
+#end
+#end
 		},
 		messages : {
-			name : {
-				required : icon + "请输入姓名"
-			}
+#foreach ($column in $columns)
+	    $column.attrname :
+	              {required : icon + "$column.comments"}
+#if($velocityCount != $columns.size()),
+#end
+#end
 		}
 	})
 }

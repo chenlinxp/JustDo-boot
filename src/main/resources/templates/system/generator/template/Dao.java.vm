@@ -51,14 +51,14 @@ public interface ${className}Dao {
 
 	/**
 	 * 删除实体
-	 * @param ${classname}
+	 * @param ${pk.attrname}
 	 * @return list
 	 */
-	int del(${pk.attrType} ${pk.columnName});
+	int del(${pk.attrType} ${pk.attrname});
 
 	/**
 	 * 批量删除实体
-	 * @param ${classname}
+	 * @param ${pk.attrname}s
 	 * @return list
 	 */
 	int batchDel(${pk.attrType}[] ${pk.attrname}s);

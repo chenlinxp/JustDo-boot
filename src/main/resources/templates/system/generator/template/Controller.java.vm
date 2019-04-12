@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import ${package}.${classnametolower}.domain.${className}DO;
 import ${package}.${classnametolower}.service.${className}Service;
+import com.justdo.common.annotation.Log;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
@@ -105,7 +106,8 @@ public class ${className}Controller {
 		if(${classname}Service.save(${classname})>0){
 			return R.ok();
 		}
-		return R.error();
+		return R.error(1, "保存失败!");
+
 	}
 
 	/**
@@ -132,8 +134,10 @@ public class ${className}Controller {
 	@PostMapping("/update")
 	@RequiresPermissions("${pathName}:${classnametolower}:edit")
 	public R update( ${className}DO ${classname}){
-		${classname}Service.update(${classname});
-		return R.ok();
+		if(${classname}Service.update(${classname})>0){
+			return R.ok();
+		}
+		return R.error(1, "更新失败!");
 	}
 	
 	/**
@@ -149,7 +153,7 @@ public class ${className}Controller {
 		if(${classname}Service.del(${pk.attrname})>0){
 		return R.ok();
 		}
-		return R.error();
+		return R.error(1, "删除失败!");
 	}
 	
 	/**
@@ -162,8 +166,9 @@ public class ${className}Controller {
 	@ResponseBody
 	@RequiresPermissions("${pathName}:${classnametolower}:batchDel")
 	public R remove(@RequestParam("ids[]") ${pk.attrType}[] ${pk.attrname}s){
-		${classname}Service.batchDel(${pk.attrname}s);
-		return R.ok();
+		if(${classname}Service.batchDel(${pk.attrname}s)>0){
+			return R.ok();
+		}
+		return R.error(1, "批量删除失败!");
 	}
-	
 }
