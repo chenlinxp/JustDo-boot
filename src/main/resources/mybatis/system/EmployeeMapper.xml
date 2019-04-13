@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.employee.dao.EmployeeDao">
+
+	<select id="get" resultType="com.justdo.system.employee.domain.EmployeeDO">
+		select `EMPLOYEE_ID`, `EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_ID`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee where EMPLOYEE_ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.employee.domain.EmployeeDO">
+		select  `EMPLOYEE_ID`,`EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_ID`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee
+        <where>  
+		  <if test="employeeNumber != null and employeeNumber != ''"> and EMPLOYEE_NUMBER = #{employeeNumber} </if>
+		  <if test="loginName != null and loginName != ''"> and LOGIN_NAME = #{loginName} </if>
+		  <if test="realName != null and realName != ''"> and REAL_NAME = #{realName} </if>
+		  <if test="password != null and password != ''"> and PASSWORD = #{password} </if>
+		  <if test="passwordSalt != null and passwordSalt != ''"> and PASSWORD_SALT = #{passwordSalt} </if>
+		  <if test="deptmentId != null and deptmentId != ''"> and DEPTMENT_ID = #{deptmentId} </if>
+		  <if test="organId != null and organId != ''"> and ORGAN_ID = #{organId} </if>
+		  <if test="positionId != null and positionId != ''"> and POSITION_ID = #{positionId} </if>
+		  <if test="email != null and email != ''"> and EMAIL = #{email} </if>
+		  <if test="mobile != null and mobile != ''"> and MOBILE = #{mobile} </if>
+		  <if test="employeeState != null and employeeState != ''"> and EMPLOYEE_STATE = #{employeeState} </if>
+		  <if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+		  <if test="employeeSex != null and employeeSex != ''"> and EMPLOYEE_SEX = #{employeeSex} </if>
+		  <if test="birthday != null and birthday != ''"> and BIRTHDAY = #{birthday} </if>
+		  <if test="photoId != null and photoId != ''"> and PHOTO_ID = #{photoId} </if>
+		  <if test="liveAddress != null and liveAddress != ''"> and LIVE_ADDRESS = #{liveAddress} </if>
+		  <if test="employeeHobby != null and employeeHobby != ''"> and EMPLOYEE_HOBBY = #{employeeHobby} </if>
+		  <if test="province != null and province != ''"> and PROVINCE = #{province} </if>
+		  <if test="city != null and city != ''"> and CITY = #{city} </if>
+		  <if test="district != null and district != ''"> and DISTRICT = #{district} </if>
+		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by EMPLOYEE_ID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_employee
+		 <where>  
+		  <if test="employeeNumber != null and employeeNumber != ''"> and EMPLOYEE_NUMBER = #{employeeNumber} </if>
+		  <if test="loginName != null and loginName != ''"> and LOGIN_NAME = #{loginName} </if>
+		  <if test="realName != null and realName != ''"> and REAL_NAME = #{realName} </if>
+		  <if test="password != null and password != ''"> and PASSWORD = #{password} </if>
+		  <if test="passwordSalt != null and passwordSalt != ''"> and PASSWORD_SALT = #{passwordSalt} </if>
+		  <if test="deptmentId != null and deptmentId != ''"> and DEPTMENT_ID = #{deptmentId} </if>
+		  <if test="organId != null and organId != ''"> and ORGAN_ID = #{organId} </if>
+		  <if test="positionId != null and positionId != ''"> and POSITION_ID = #{positionId} </if>
+		  <if test="email != null and email != ''"> and EMAIL = #{email} </if>
+		  <if test="mobile != null and mobile != ''"> and MOBILE = #{mobile} </if>
+		  <if test="employeeState != null and employeeState != ''"> and EMPLOYEE_STATE = #{employeeState} </if>
+		  <if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+		  <if test="employeeSex != null and employeeSex != ''"> and EMPLOYEE_SEX = #{employeeSex} </if>
+		  <if test="birthday != null and birthday != ''"> and BIRTHDAY = #{birthday} </if>
+		  <if test="photoId != null and photoId != ''"> and PHOTO_ID = #{photoId} </if>
+		  <if test="liveAddress != null and liveAddress != ''"> and LIVE_ADDRESS = #{liveAddress} </if>
+		  <if test="employeeHobby != null and employeeHobby != ''"> and EMPLOYEE_HOBBY = #{employeeHobby} </if>
+		  <if test="province != null and province != ''"> and PROVINCE = #{province} </if>
+		  <if test="city != null and city != ''"> and CITY = #{city} </if>
+		  <if test="district != null and district != ''"> and DISTRICT = #{district} </if>
+		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.employee.domain.EmployeeDO" >
+		<selectKey keyProperty="employeeID" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as employeeID from dual
+		</selectKey>
+        insert into sys_employee
+		(
+		    `EMPLOYEE_ID`,
+            `EMPLOYEE_NUMBER`,
+            `LOGIN_NAME`,
+            `REAL_NAME`,
+            `PASSWORD`,
+            `PASSWORD_SALT`,
+            `DEPTMENT_ID`,
+            `ORGAN_ID`,
+            `POSITION_ID`,
+            `EMAIL`,
+            `MOBILE`,
+            `EMPLOYEE_STATE`,
+            `CREATE_EMPLOYEE_ID`,
+            `CREATE_TIME`,
+            `MODIFY_TIME`,
+            `EMPLOYEE_SEX`,
+            `BIRTHDAY`,
+            `PHOTO_ID`,
+            `LIVE_ADDRESS`,
+            `EMPLOYEE_HOBBY`,
+            `PROVINCE`,
+            `CITY`,
+            `DISTRICT`,
+            `REMARK`
+          )
+		values
+		(
+		   #{employeeID},
+           #{employeeNumber},
+           #{loginName},
+           #{realName},
+           #{password},
+           #{passwordSalt},
+           #{deptmentId},
+           #{organId},
+           #{positionId},
+           #{email},
+           #{mobile},
+           #{employeeState},
+           #{createEmployeeId},
+           #{createTime},
+           #{modifyTime},
+           #{employeeSex},
+           #{birthday},
+           #{photoId},
+           #{liveAddress},
+           #{employeeHobby},
+           #{province},
+           #{city},
+           #{district},
+           #{remark}
+        )
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.employee.domain.EmployeeDO">
+		update sys_employee 
+		<set>
+			<if test="employeeNumber != null">`EMPLOYEE_NUMBER` = #{employeeNumber}, </if>
+			<if test="loginName != null">`LOGIN_NAME` = #{loginName}, </if>
+			<if test="realName != null">`REAL_NAME` = #{realName}, </if>
+			<if test="password != null">`PASSWORD` = #{password}, </if>
+			<if test="passwordSalt != null">`PASSWORD_SALT` = #{passwordSalt}, </if>
+			<if test="deptmentId != null">`DEPTMENT_ID` = #{deptmentId}, </if>
+			<if test="organId != null">`ORGAN_ID` = #{organId}, </if>
+			<if test="positionId != null">`POSITION_ID` = #{positionId}, </if>
+			<if test="email != null">`EMAIL` = #{email}, </if>
+			<if test="mobile != null">`MOBILE` = #{mobile}, </if>
+			<if test="employeeState != null">`EMPLOYEE_STATE` = #{employeeState}, </if>
+			<if test="createEmployeeId != null">`CREATE_EMPLOYEE_ID` = #{createEmployeeId}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}, </if>
+			<if test="employeeSex != null">`EMPLOYEE_SEX` = #{employeeSex}, </if>
+			<if test="birthday != null">`BIRTHDAY` = #{birthday}, </if>
+			<if test="photoId != null">`PHOTO_ID` = #{photoId}, </if>
+			<if test="liveAddress != null">`LIVE_ADDRESS` = #{liveAddress}, </if>
+			<if test="employeeHobby != null">`EMPLOYEE_HOBBY` = #{employeeHobby}, </if>
+			<if test="province != null">`PROVINCE` = #{province}, </if>
+			<if test="city != null">`CITY` = #{city}, </if>
+			<if test="district != null">`DISTRICT` = #{district}, </if>
+			<if test="remark != null">`REMARK` = #{remark}</if>
+		</set>
+		where EMPLOYEE_ID = #{employeeId}
+	</update>
+	
+	<delete id="del">
+		delete from sys_employee where EMPLOYEE_ID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_employee where EMPLOYEE_ID in 
+		<foreach item="employeeId" collection="array" open="(" separator="," close=")">
+			#{employeeId}
+		</foreach>
+	</delete>
+
+	<select id="listAllDept" resultType="String">
+		select DISTINCT DEPTMENT_ID from sys_employee
+	</select>
+</mapper>

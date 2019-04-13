@@ -1,13 +1,10 @@
 package com.justdo.system.file.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.*;
+import com.justdo.config.JustdoConfig;
+import com.justdo.system.file.domain.FileDO;
+import com.justdo.system.file.service.FileService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.justdo.common.controller.BaseController;
-import com.justdo.config.JustdoConfig;
-import com.justdo.system.file.domain.FileDO;
-import com.justdo.system.file.service.FileService;
-import com.justdo.common.utils.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 文件上传
@@ -113,7 +110,7 @@ public class FileController extends BaseController {
 	@RequiresPermissions("system:file:del")
 	public R remove(String id, HttpServletRequest request) {
 
-		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getUrl().replace("/files/", "");
+		String fileName = justdoConfig.getUploadPath() + fileService.get(id).getFileUrl().replace("/files/", "");
 		if (fileService.del(id) > 0) {
 			boolean b = FileUtils.deleteFile(fileName);
 			if (!b) {
@@ -153,7 +150,7 @@ public class FileController extends BaseController {
 			return R.error();
 		}
 		if (fileService.save(_file) > 0) {
-			return R.ok().put("fileName",_file.getUrl());
+			return R.ok().put("fileName",_file.getFileUrl());
 		}
 		return R.error();
 	}

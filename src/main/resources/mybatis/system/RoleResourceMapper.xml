@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.role.dao.RoleResourceDao">
+
+	<select id="get" resultType="com.justdo.system.role.domain.RoleResourceDO">
+		select  `ROLE_ID`,`RESOURCE_ID` from sys_role_resource where ROLE_RESOURCE_ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.role.domain.RoleResourceDO">
+		select  `ROLE_ID`,`RESOURCE_ID` from sys_role_resource
+        <where>  
+		  <if test="roleId != null and roleId != ''"> and ROLE_ID = #{roleId} </if>
+		  <if test="resourceId != null and resourceId != ''"> and RESOURCE_ID = #{resourceId} </if>
+		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ROLE_RESOURCE_ID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_role_resource
+		 <where>  
+		  <if test="roleId != null and roleId != ''"> and ROLE_ID = #{roleId} </if>
+		  <if test="resourceId != null and resourceId != ''"> and RESOURCE_ID = #{resourceId} </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.role.domain.RoleResourceDO" useGeneratedKeys="true" keyProperty="ROLE_RESOURCE_ID">
+        insert into sys_role_resource
+		(
+            `ROLE_ID`,
+            `RESOURCE_ID`
+        )
+		values
+		(
+           #{roleId},
+           #{resourceId}
+        )
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.role.domain.RoleResourceDO">
+		update sys_role_resource 
+		<set>
+			<if test="roleId != null">`ROLE_ID` = #{roleId}, </if>
+			<if test="resourceId != null">`RESOURCE_ID` = #{resourceId}</if>
+		</set>
+		where ROLE_RESOURCE_ID = #{roleResourceId}
+	</update>
+	
+	<delete id="del">
+		delete from sys_role_resource where ROLE_RESOURCE_ID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_role_resource where ROLE_RESOURCE_ID in 
+		<foreach item="roleResourceId" collection="array" open="(" separator="," close=")">
+			#{roleResourceId}
+		</foreach>
+	</delete>
+
+	<select id="listResourceIdByRoleId" resultType="String">
+		select RESOURCE_ID from sys_role_resource
+		<where>ROLE_ID = #{roleId}</where>
+	</select>
+
+	<delete id="delByRoleId">
+		DELETE FROM sys_role_resource WHERE ROLE_ID=#{roleId}
+	</delete>
+
+	<delete id="delByResourceId">
+		DELETE FROM sys_role_resource WHERE RESOURCE_ID=#{resourceId}
+	</delete>
+
+	<insert id="batchSave">
+		INSERT INTO sys_role_resource(ROLE_ID, RESOURCE_ID) values
+		<foreach item="item" index="index" collection="list" separator=",">
+			(#{item.roleId},#{item.resourceId})
+		</foreach>
+	</insert>
+
+</mapper>

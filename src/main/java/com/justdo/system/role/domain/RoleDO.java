@@ -12,78 +12,62 @@ import java.util.List;
  * @date 2018-06-19 16:02:20
  */
 public class RoleDO extends BaseBean {
-	
+
+	//
 	private String roleId;
+	//角色名称
 	private String roleName;
+	//角色标识
 	private String roleSign;
+	//角色状态
+	private Integer roleState;
+	//备注
 	private String remark;
-	private String userIdCreate;
-	private Timestamp gmtCreate;
-	private Timestamp gmtModified;
-	private List<String> menuIds;
+	//创建用户id
+	private Long createEmployeeId;
+	//创建时间
+	private Timestamp createTime;
+	//创建时间
+	private Timestamp modifyTime;
 
-	public String getRoleId() {
+	private List<String> resourceIds;
+
+	public  String         getRoleId() {
 		return roleId;
-	}
-
-	public void setRoleId(String roleId) {
+	}public void         setRoleId(String roleId) {
 		this.roleId = roleId;
-	}
-
-	public String getRoleName() {
+	}public String       getRoleName() {
 		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
+	}public void         setRoleName(String roleName) {
 		this.roleName = roleName;
-	}
-
-	public String getRoleSign() {
+	}public String       getRoleSign() {
 		return roleSign;
-	}
-
-	public void setRoleSign(String roleSign) {
+	}public void         setRoleSign(String roleSign) {
 		this.roleSign = roleSign;
-	}
-
-	public String getRemark() {
+	}public Integer      getRoleState() {
+		return roleState;
+	}public void         setRoleState(Integer roleState) {
+		this.roleState = roleState;
+	}public String       getRemark() {
 		return remark;
-	}
-
-	public void setRemark(String remark) {
+	}public void         setRemark(String remark) {
 		this.remark = remark;
-	}
-
-	public String getUserIdCreate() {
-		return userIdCreate;
-	}
-
-	public void setUserIdCreate(String userIdCreate) {
-		this.userIdCreate = userIdCreate;
-	}
-
-	public Timestamp getGmtCreate() {
-		return gmtCreate;
-	}
-
-	public void setGmtCreate(Timestamp gmtCreate) {
-		this.gmtCreate = gmtCreate;
-	}
-
-	public Timestamp getGmtModified() {
-		return gmtModified;
-	}
-
-	public void setGmtModified(Timestamp gmtModified) {
-		this.gmtModified = gmtModified;
-	}
-
-	public List<String> getMenuIds() {
-		return menuIds;
-	}
-
-	public void setMenuIds(List<String> menuIds) {
-		this.menuIds = menuIds;
+	}public Long         getCreateEmployeeId() {
+		return createEmployeeId;
+	}public void         setCreateEmployeeId(Long createEmployeeId) {
+		this.createEmployeeId = createEmployeeId;
+	}public Timestamp    getCreateTime() {
+		return createTime;
+	}public void         setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}public Timestamp    getModifyTime() {
+		return modifyTime;
+	}public void         setModifyTime(Timestamp modifyTime) {
+		this.modifyTime = modifyTime;
+	}public List<String> getResourceIds() {
+		return resourceIds;
+	}public void         setResourceIds(List<String> resourceIds) {
+		this.resourceIds = resourceIds;
 	}
 
 	@Override
@@ -93,10 +77,10 @@ public class RoleDO extends BaseBean {
 				", roleName='" + roleName + '\'' +
 				", roleSign='" + roleSign + '\'' +
 				", remark='" + remark + '\'' +
-				", userIdCreate=" + userIdCreate +
-				", gmtCreate=" + gmtCreate +
-				", gmtModified=" + gmtModified +
-				", menuIds=" + menuIds +
+				", createEmployeeId=" + createEmployeeId +
+				", createTime=" + createTime +
+				", modifyTime=" + modifyTime +
+				", resourceIds=" + resourceIds +
 				'}';
 	}
 }

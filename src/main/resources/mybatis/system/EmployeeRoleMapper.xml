@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.employee.dao.EmployeeRoleDao">
+
+	<select id="get" resultType="com.justdo.system.employee.domain.EmployeeRoleDO">
+		select `employee_role_id`,`employee_id`,`role_id`
+		from sys_employee_role
+		where employee_role_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.employee.domain.EmployeeRoleDO">
+		select `employee_role_id`,`employee_id`,`role_id`
+		from sys_employee_role
+		<where>
+			<if test="employeeRoleId != null and employeeRoleId != ''"> and employee_role_id = #{employeeRoleId} </if>
+			<if test="employeeId != null and employeeId != ''"> and employee_id = #{employeeId} </if>
+			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
+		</where>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
+			<otherwise>
+				order by employee_role_id desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="count" resultType="int">
+		select
+		count(*)
+		from sys_employee_role
+		<where>
+			<if test="employeeRoleId != null and employeeRoleId != ''"> and id = #{id} </if>
+			<if test="employeeId != null and employeeId != ''"> and employee_id = #{employeeId} </if>
+			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="com.justdo.system.employee.domain.EmployeeRoleDO" >
+		<selectKey keyProperty="employeeRoleId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as employeeRoleId from dual
+		</selectKey>
+		insert into sys_employee_role
+		(
+		`employee_role_id`
+		`employee_id`,
+		`role_id`
+		)
+		values
+		(
+		#{employeeRoleId},
+		#{employeeId},
+		#{roleId}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.justdo.system.employee.domain.EmployeeRoleDO">
+		update sys_employee_role
+		<set>
+			<if test="employeeId != null">`employee_id` = #{employeeId}, </if>
+			<if test="roleId != null">`role_id` = #{roleId}</if>
+		</set>
+		where employee_role_id = #{employeeRoleId}
+	</update>
+
+	<delete id="remove">
+		delete from sys_employee_role where employee_role_id = #{value}
+	</delete>
+
+	<delete id="batchRemove">
+		delete from sys_employee_role where id in
+		<foreach item="employeeRoleId" collection="array" open="(" separator="," close=")">
+			#{employeeRoleId}
+		</foreach>
+	</delete>
+
+	<select id="listRoleId" resultType="String">
+		select role_id
+		from sys_employee_role
+		where employee_id = #{employeeId}
+	</select>
+
+	<delete id="delByEmployeeId">
+		delete
+		from sys_employee_role
+		where employee_id=#{employeeId}
+	</delete>
+
+	<delete id="delByRoleId">
+		delete
+		from sys_employee_role
+		where role_id=#{roleId}
+	</delete>
+
+	<delete id="batchDelByEmployeeId">
+		delete
+		from sys_employee_role
+		where employee_id in
+		<foreach item="employeeId" collection="array" open="(" separator="," close=")">
+			#{employeeId}
+		</foreach>
+	</delete>
+
+	<insert id="batchSave">
+		INSERT INTO sys_employee_role(employee_id, role_id)
+		values
+		<foreach item="item" index="index" collection="list" separator=",">
+			(#{item.employeeId},#{item.roleId})
+		</foreach>
+	</insert>
+</mapper>

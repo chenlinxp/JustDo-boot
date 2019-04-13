@@ -12,7 +12,9 @@ import ${package}.${classnametolower}.service.${className}Service;
 
 
 
+@SuppressWarnings("AlibabaRemoveCommentedCode")
 @Service
+@Transactional(readOnly = true,rollbackFor = Exception.class)
 public class ${className}ServiceImpl implements ${className}Service {
 	@Autowired
 	private ${className}Dao ${classname}Dao;
@@ -33,21 +35,25 @@ public class ${className}ServiceImpl implements ${className}Service {
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int save(${className}DO ${classname}){
 		return ${classname}Dao.save(${classname});
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(${className}DO ${classname}){
 		return ${classname}Dao.update(${classname});
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int del(${pk.attrType} ${pk.attrname}){
 		return ${classname}Dao.del(${pk.attrname});
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int batchDel(${pk.attrType}[] ${pk.attrname}s){
 		return ${classname}Dao.batchDel(${pk.attrname}s);
 	}

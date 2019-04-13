@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<input id="employeeId" name="employeeId" th:value="${employee.employeeId}"  type="hidden">
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">员工编号：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.employeeNumber}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">用户名：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.loginName}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">真是姓名：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.realName}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">密码：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.password}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">密码盐：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.passwordSalt}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.deptmentId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.organId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.positionId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">邮箱：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.email}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">手机号：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.mobile}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">状态 0:禁用，1:正常：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.employeeState}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">创建用户id：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.createEmployeeId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.createTime}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.modifyTime}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">性别：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.employeeSex}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">出身日期：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.birthday}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">照片ID：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.photoId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">现居住地：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.liveAddress}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">爱好：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.employeeHobby}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">省份：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.province}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">所在城市：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.city}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">所在地区(县)：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.district}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+                                    <span th:text="${employee.remark}"></span>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/employee/view.js">
+	</script>
+</body>
+</html>

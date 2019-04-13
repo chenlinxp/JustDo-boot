@@ -1,29 +1,29 @@
 package com.justdo.system.organ.service.impl;
 
 
+import com.justdo.common.domain.Tree;
+import com.justdo.common.domain.TreeNode;
+import com.justdo.common.utils.BuildTree;
+import com.justdo.common.utils.StringUtils;
+import com.justdo.system.dept.domain.DeptVO;
+import com.justdo.system.dept.service.DeptService;
+import com.justdo.system.organ.dao.OrganDao;
+import com.justdo.system.organ.domain.OrganDO;
+import com.justdo.system.organ.domain.OrganDeptVO;
+import com.justdo.system.organ.service.OrganService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.justdo.common.domain.TreeNode;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.justdo.system.dept.domain.DeptVO;
-import com.justdo.system.dept.service.DeptService;
-import com.justdo.common.utils.StringUtils;
-import com.justdo.system.organ.domain.OrganDeptVO;
-import com.justdo.system.organ.dao.OrganDao;
-import com.justdo.system.organ.domain.OrganDO;
-import com.justdo.system.organ.service.OrganService;
-import com.justdo.common.domain.Tree;
-import com.justdo.common.utils.BuildTree;
-
-
-
+@SuppressWarnings("AlibabaRemoveCommentedCode")
 @Service
+@Transactional(readOnly = true,rollbackFor = Exception.class)
 public class OrganServiceImpl implements OrganService {
 	@Autowired
 	private OrganDao organDao;

@@ -11,7 +11,6 @@ import com.justdo.system.dict.service.DictContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.justdo.common.utils.StringUtils;
-import com.justdo.system.user.domain.UserDO;
 
  /**
  * 字典表

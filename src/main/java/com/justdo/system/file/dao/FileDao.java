@@ -1,12 +1,10 @@
 package com.justdo.system.file.dao;
 
+import com.justdo.system.file.domain.FileDO;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.List;
 import java.util.Map;
-
-import com.justdo.system.file.domain.FileDO;
-
-
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 文件上传
@@ -18,7 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FileDao {
 
-	FileDO get(String id);
+	FileDO get(String fileId);
 	
 	List<FileDO> list(Map<String,Object> map);
 	
@@ -28,7 +26,7 @@ public interface FileDao {
 	
 	int update(FileDO file);
 	
-	int del(String id);
+	int del(String fileId);
 	
-	int batchDel(String[] ids);
+	int batchDel(String[] fileIds);
 }

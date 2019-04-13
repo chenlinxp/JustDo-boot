@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.resource.dao.ResourceDao">
+
+	<select id="get" resultType="com.justdo.system.resource.domain.ResourceDO">
+		select  `RESOURCE_ID`, `PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource where RESOURCE_ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.resource.domain.ResourceDO">
+		select  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource
+        <where>  
+		  <if test="parentId != null and parentId != ''"> and PARENT_ID = #{parentId} </if>
+		  <if test="resourceName != null and resourceName != ''"> and RESOURCE_NAME = #{resourceName} </if>
+		  <if test="resourceUrl != null and resourceUrl != ''"> and RESOURCE_URL = #{resourceUrl} </if>
+		  <if test="resourcePermission != null and resourcePermission != ''"> and RESOURCE_PERMISSION = #{resourcePermission} </if>
+		  <if test="resourceType != null and resourceType != ''"> and RESOURCE_TYPE = #{resourceType} </if>
+		  <if test="resourceIcon != null and resourceIcon != ''"> and RESOURCE_ICON = #{resourceIcon} </if>
+		  <if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by RESOURCE_ID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_resource
+		 <where>  
+		  <if test="parentId != null and parentId != ''"> and PARENT_ID = #{parentId} </if>
+		  <if test="resourceName != null and resourceName != ''"> and RESOURCE_NAME = #{resourceName} </if>
+		  <if test="resourceUrl != null and resourceUrl != ''"> and RESOURCE_URL = #{resourceUrl} </if>
+		  <if test="resourcePermission != null and resourcePermission != ''"> and RESOURCE_PERMISSION = #{resourcePermission} </if>
+		  <if test="resourceType != null and resourceType != ''"> and RESOURCE_TYPE = #{resourceType} </if>
+		  <if test="resourceIcon != null and resourceIcon != ''"> and RESOURCE_ICON = #{resourceIcon} </if>
+		  <if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.resource.domain.ResourceDO">
+        <selectKey keyProperty="resourceId" resultType="string" order="BEFORE">
+        select replace(uuid(), '-', '') as resourceId from dual
+		</selectKey>
+        insert into sys_resource
+		(
+		    `RESOURCE_ID`,
+            `PARENT_ID`,
+		    `RESOURCE_NAME`,
+		    `RESOURCE_URL`,
+		    `RESOURCE_PERMISSION`,
+		    `RESOURCE_TYPE`,
+		    `RESOURCE_ICON`,
+		    `ORDER_NUM`,
+		    `CREATE_TIME`,
+		    `MODIFY_TIME`
+		)
+		values
+		(
+           #{resourceId},
+           #{parentId},
+		   #{resourceName},
+		   #{resourceUrl},
+		   #{resourcePermission},
+		   #{resourceType},
+		   #{resourceIcon},
+		   #{orderNum},
+		   #{createTime},
+		   #{modifyTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.resource.domain.ResourceDO">
+		update sys_resource 
+		<set>
+			<if test="parentId != null">`PARENT_ID` = #{parentId}, </if>
+			<if test="resourceName != null">`RESOURCE_NAME` = #{resourceName}, </if>
+			<if test="resourceUrl != null">`RESOURCE_URL` = #{resourceUrl}, </if>
+			<if test="resourcePermission != null">`RESOURCE_PERMISSION` = #{resourcePermission}, </if>
+			<if test="resourceType != null">`RESOURCE_TYPE` = #{resourceType}, </if>
+			<if test="resourceIcon != null">`RESOURCE_ICON` = #{resourceIcon}, </if>
+			<if test="orderNum != null">`ORDER_NUM` = #{orderNum}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}</if>
+		</set>
+		where RESOURCE_ID = #{resourceId}
+	</update>
+	
+	<delete id="del">
+		delete from sys_resource where RESOURCE_ID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_resource where RESOURCE_ID in 
+		<foreach item="resourceId" collection="array" open="(" separator="," close=")">
+			#{resourceId}
+		</foreach>
+	</delete>
+
+	<select id="listResourceByEmployeeId" resultType="com.justdo.system.resource.domain.ResourceDO">
+		select distinct
+		r.RESOURCE_ID ,
+		PARENT_ID,
+		RESOURCE_NAME,
+		RESOURCE_URL,
+		RESOURCE_PERMISSION,`RESOURCE_TYPE`,RESOURCE_ICON,ORDER_NUM,CREATE_TIME, MODIFY_TIME
+		from sys_resource r
+		left
+		join sys_role_resource rr on r.resource_id = rr.resource_id left join
+		sys_employee_role er
+		on rr.role_id =er.role_id where er.employee_id = #{employeeId}
+		and
+		r.RESOURCE_TYPE in(0,1)
+		order by
+		r.ORDER_NUM
+	</select>
+
+	<select id="listEmployeePermissions" resultType="string">
+		select distinct r.RESOURCE_PERMISSION
+		from sys_resource r left join
+		sys_role_resource rr on r.RESOURCE_ID = rr.RESOURCE_ID
+		left join sys_employee_role er
+		on rr.role_id = er.role_id where er.employee_id
+		= #{employeeId}
+	</select>
+</mapper>

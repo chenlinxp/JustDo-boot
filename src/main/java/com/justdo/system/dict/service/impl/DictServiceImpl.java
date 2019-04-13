@@ -1,18 +1,17 @@
 package com.justdo.system.dict.service.impl;
 
+import com.justdo.common.utils.StringUtils;
+import com.justdo.system.dict.dao.DictDao;
+import com.justdo.system.dict.domain.DictDO;
+import com.justdo.system.dict.service.DictService;
+import com.justdo.system.employee.domain.EmployeeDO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.justdo.system.dict.domain.DictDO;
-import com.justdo.common.utils.StringUtils;
-import com.justdo.system.dict.dao.DictDao;
-import com.justdo.system.dict.service.DictService;
-import com.justdo.system.user.domain.UserDO;
 
 /**
  * 字典表
@@ -78,23 +77,23 @@ public class DictServiceImpl implements DictService {
 	}
 
 	@Override
-	public List<DictDO> getHobbyList(UserDO userDO) {
+	public List<DictDO> getHobbyList(EmployeeDO employeeDO) {
 		Map<String, Object> param = new HashMap<>(16);
 		param.put("type", "hobby");
 		List<DictDO> hobbyList = dictDao.list(param);
 
-		if (StringUtils.isNotEmpty(userDO.getHobby())) {
-			String userHobbys[] = userDO.getHobby().split(";");
-			for (String userHobby : userHobbys) {
-				for (DictDO hobby : hobbyList) {
-					if (!Objects.equals(userHobby, hobby.getId().toString())) {
-						continue;
-					}
-					hobby.setRemarks("true");
-					break;
-				}
-			}
-		}
+//		if (StringUtils.isNotEmpty(employeeDO.)) {
+//			String userHobbys[] = employeeDO.getHobby().split(";");
+//			for (String userHobby : userHobbys) {
+//				for (DictDO hobby : hobbyList) {
+//					if (!Objects.equals(userHobby, hobby.getId().toString())) {
+//						continue;
+//					}
+//					hobby.setRemarks("true");
+//					break;
+//				}
+//			}
+//		}
 
 		return hobbyList;
 	}

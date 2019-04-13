@@ -70,8 +70,8 @@ public class SalaryController extends BaseController{
 
         salary.setCreateDate(new Date());
         salary.setUpdateDate(new Date());
-        salary.setCreateBy(ShiroUtils.getUserId().toString());
-        salary.setUpdateBy(ShiroUtils.getUserId().toString());
+        salary.setCreateBy(ShiroUtils.getEmployeeId().toString());
+        salary.setUpdateBy(ShiroUtils.getEmployeeId().toString());
         salary.setDelFlag("1");
         if (salaryService.save(salary) > 0) {
             return R.ok();

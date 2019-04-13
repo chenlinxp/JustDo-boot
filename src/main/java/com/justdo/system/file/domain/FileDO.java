@@ -1,8 +1,9 @@
 package com.justdo.system.file.domain;
 
 
-import java.util.Date;
 import com.justdo.common.domain.BaseBean;
+
+import java.util.Date;
 
 /**
  * 文件上传
@@ -13,13 +14,13 @@ import com.justdo.common.domain.BaseBean;
  */
 public class FileDO extends BaseBean {
     //
-    private String id;
+    private String fileId;
     // 文件类型
-    private Integer type;
+    private Integer fileType;
     // URL地址
-    private String url;
+    private String fileUrl;
     // 创建时间
-    private Date createDate;
+    private Date createTime;
 
 
     public FileDO() {
@@ -27,77 +28,77 @@ public class FileDO extends BaseBean {
     }
 
 
-    public FileDO(Integer type, String url, Date createDate) {
+    public FileDO(Integer fileType, String fileUrl, Date createTime) {
         super();
-        this.type = type;
-        this.url = url;
-        this.createDate = createDate;
+        this.fileType = fileType;
+        this.fileUrl = fileUrl;
+        this.createTime = createTime;
     }
 
 
     /**
      * 设置：
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
     }
 
     /**
      * 获取：
      */
-    public String getId() {
-        return id;
+    public String getFileId() {
+        return fileId;
     }
 
     /**
      * 设置：文件类型
      */
-    public void setType(Integer type) {
-        this.type = type;
+    public void setFileType(Integer fileType) {
+        this.fileType = fileType;
     }
 
     /**
      * 获取：文件类型
      */
-    public Integer getType() {
-        return type;
+    public Integer getFileType() {
+        return fileType;
     }
 
     /**
      * 设置：URL地址
      */
-    public void setUrl(String url) {
-        this.url = url;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 
     /**
      * 获取：URL地址
      */
-    public String getUrl() {
-        return url;
+    public String getFileUrl() {
+        return fileUrl;
     }
 
     /**
      * 设置：创建时间
      */
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     /**
      * 获取：创建时间
      */
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreateTime() {
+        return createTime;
     }
 
     @Override
     public String toString() {
         return "FileDO{" +
-                "id=" + id +
-                ", type=" + type +
-                ", url='" + url + '\'' +
-                ", createDate=" + createDate +
+                "fileId=" + fileId +
+                ", fileType=" + fileType +
+                ", fileUrl='" + fileUrl + '\'' +
+                ", createTime=" + createTime +
                 '}';
     }
 }

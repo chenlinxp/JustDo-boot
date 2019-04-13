@@ -4,9 +4,9 @@ import com.justdo.common.annotation.Log;
 import com.justdo.common.utils.HttpContextUtils;
 import com.justdo.common.utils.IPUtils;
 import com.justdo.common.utils.ShiroUtils;
+import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.operationlog.domain.OperationLogDO;
 import com.justdo.system.operationlog.service.OperationLogService;
-import com.justdo.system.user.domain.UserDO;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -89,13 +89,13 @@ public class LogAspect {
         // 设置IP地址
         operationLog.setIp(IPUtils.getIpAddr(request));
         // 用户名
-        UserDO currUser = ShiroUtils.getUser();
+        EmployeeDO currUser = ShiroUtils.getEmployee();
         if (currUser == null) {
             operationLog.setUserId("-1");
             operationLog.setUsername("获取用户信息为空");
         } else {
-            operationLog.setUserId(ShiroUtils.getUserId());
-            operationLog.setUsername(ShiroUtils.getUser().getUsername());
+            operationLog.setUserId(ShiroUtils.getEmployeeId());
+            operationLog.setUsername(ShiroUtils.getEmployee().getLoginName());
         }
         logger.info("当前用户ID: " + operationLog.getUserId());
         logger.info("当前用户名: " + operationLog.getUsername());

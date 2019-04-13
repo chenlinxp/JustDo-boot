@@ -1,10 +1,10 @@
 package com.justdo.system.dict.service;
 
+import com.justdo.system.dict.domain.DictDO;
+import com.justdo.system.employee.domain.EmployeeDO;
+
 import java.util.List;
 import java.util.Map;
-
-import com.justdo.system.dict.domain.DictDO;
-import com.justdo.system.user.domain.UserDO;
 
 
 /**
@@ -38,10 +38,10 @@ public interface DictService {
 	/**
 	 * 获取爱好列表
 	 *
-	 * @param userDO
+	 * @param employeeDO
 	 * @return
 	 */
-	List<DictDO> getHobbyList(UserDO userDO);
+	List<DictDO> getHobbyList(EmployeeDO employeeDO);
 
 	/**
 	 * 获取性别列表
@@ -53,7 +53,7 @@ public interface DictService {
 	/**
 	 * 根据type获取数据
 	 *
-	 * @param map
+	 * @param type
 	 * @return
 	 */
 	List<DictDO> listByType(String type);

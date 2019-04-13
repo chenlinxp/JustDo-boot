@@ -28,15 +28,15 @@
 					<div class="ibox-body">
 						<div class="fixed-table-toolbar">
 							<div class="columns pull-left">
-								<button shiro:hasPermission="system:user:add" type="button"
+								<button shiro:hasPermission="system:employee:add" type="button"
 									class="btn  btn-success" onclick="add()">
 									<i class="fa fa-plus hidden" aria-hidden="true"></i>添加
 								</button>
-								<button shiro:hasPermission="system:user:edit" type="button"
+								<button shiro:hasPermission="system:employee:edit" type="button"
 										class="btn  btn-success" onclick="edit()">
 									<i class="fa fa-plus hidden" aria-hidden="true"></i>编辑
 								</button>
-								<button shiro:hasPermission="system:user:batchDel" type="button"
+								<button shiro:hasPermission="system:employee:batchDel" type="button"
 									class="btn  btn-success" onclick="batchDel()">
 									<i class="fa fa-trash hidden" aria-hidden="true"></i>删除
 								</button>
@@ -61,13 +61,13 @@
 				var s_resetPwd_h = 'hidden';
 			</script>
 		</div>
-		<div shiro:hasPermission="system:user:resetPwd">
+		<div shiro:hasPermission="system:employee:resetPwd">
 			<script type="text/javascript">
 				var s_resetPwd_h = '';
 			</script>
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/system/user/user.js"></script>
+	<script type="text/javascript" src="/js/appjs/system/employee/employee.js"></script>
 </body>
 </html>

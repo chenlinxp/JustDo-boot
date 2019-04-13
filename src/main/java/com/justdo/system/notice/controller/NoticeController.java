@@ -1,27 +1,26 @@
 package com.justdo.system.notice.controller;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.PageUtils;
+import com.justdo.common.utils.Query;
+import com.justdo.common.utils.R;
+import com.justdo.config.ConstantConfig;
 import com.justdo.system.dict.domain.DictContentDO;
 import com.justdo.system.dict.service.DictContentService;
+import com.justdo.system.notice.domain.NoticeDO;
+import com.justdo.system.notice.domain.NoticeRecordDO;
+import com.justdo.system.notice.service.NoticeRecordService;
+import com.justdo.system.notice.service.NoticeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.justdo.config.ConstantConfig;
-import com.justdo.common.controller.BaseController;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
-import com.justdo.common.utils.R;
-import com.justdo.system.notice.domain.NoticeDO;
-import com.justdo.system.notice.domain.NoticeRecordDO;
-import com.justdo.system.notice.service.NoticeRecordService;
-import com.justdo.system.notice.service.NoticeService;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -91,7 +90,7 @@ public class NoticeController extends BaseController {
 	@PostMapping("/save")
 	@RequiresPermissions("system:notice:add")
 	public R save(NoticeDO Notice) {
-		Notice.setCreateBy(getUserId());
+		Notice.setCreateBy(getEmployeeId());
 		if (NoticeService.save(Notice) > 0) {
 			return R.ok();
 		}
@@ -140,7 +139,7 @@ public class NoticeController extends BaseController {
 		params.put("offset", 0);
 		params.put("limit", 3);
 		Query query = new Query(params);
-        query.put("userId", getUserId());
+        query.put("userId", getEmployeeId());
         query.put("isRead", ConstantConfig.Notice_READ_NO);
 		return NoticeService.selfList(query);
 	}
@@ -154,7 +153,7 @@ public class NoticeController extends BaseController {
 	@GetMapping("/selflist")
 	PageUtils selfList(@RequestParam Map<String, Object> params) {
 		Query query = new Query(params);
-		query.put("userId", getUserId());
+		query.put("userId", getEmployeeId());
 
 		return NoticeService.selfList(query);
 	}
@@ -166,7 +165,7 @@ public class NoticeController extends BaseController {
 		//更改阅读状态
 		NoticeRecordDO noticeRecordDO = new NoticeRecordDO();
 		noticeRecordDO.setNoticeId(id);
-		noticeRecordDO.setUserId(getUserId());
+		noticeRecordDO.setUserId(getEmployeeId());
 		noticeRecordDO.setReadDate(new Date());
 		noticeRecordDO.setIsRead(ConstantConfig.Notice_READ_YES);
 		NoticeRecordService.changeRead(noticeRecordDO);

@@ -1,27 +1,29 @@
 package com.justdo.system.notice.service.impl;
 
-import java.util.concurrent.TimeUnit;
-import java.util.*;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.LinkedBlockingDeque;
-
-import com.justdo.system.dict.service.DictContentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.justdo.system.user.domain.UserDO;
-import com.justdo.system.user.service.SessionService;
 import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
+import com.justdo.system.dict.service.DictContentService;
+import com.justdo.system.employee.dao.EmployeeDao;
+import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.service.ESessionService;
 import com.justdo.system.notice.dao.NoticeDao;
 import com.justdo.system.notice.dao.NoticeRecordDao;
 import com.justdo.system.notice.domain.NoticeDO;
 import com.justdo.system.notice.domain.NoticeDTO;
 import com.justdo.system.notice.domain.NoticeRecordDO;
 import com.justdo.system.notice.service.NoticeService;
-import com.justdo.system.user.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 通知通告
@@ -37,11 +39,11 @@ public class NoticeServiceImpl implements NoticeService {
     @Autowired
     private NoticeRecordDao recordDao;
     @Autowired
-    private UserDao userDao;
+    private EmployeeDao employeeDao;
     @Autowired
     private DictContentService dictContentService;
     @Autowired
-    private SessionService sessionService;
+    private ESessionService esessionService;
     @Autowired
     private SimpMessagingTemplate template;
 
@@ -88,10 +90,10 @@ public class NoticeServiceImpl implements NoticeService {
         executor.execute(new Runnable() {
             @Override
             public void run() {
-                for (UserDO userDO : sessionService.listOnlineUser()) {
+                for (EmployeeDO employeeDO : esessionService.listOnlineEmployee()) {
                     for (String userId : userIds) {
-                        if (userId.equals(userDO.getUserId())) {
-                            template.convertAndSendToUser(userDO.toString(), "/queue/notifications", "新消息：" + Notice.getTitle());
+                        if (userId.equals(employeeDO.getEmployeeId())) {
+                            template.convertAndSendToUser(employeeDO.toString(), "/queue/notifications", "新消息：" + Notice.getTitle());
                         }
                     }
                 }
@@ -126,7 +128,7 @@ public class NoticeServiceImpl implements NoticeService {
         List<NoticeDTO> rows = NoticeDao.listDTO(map);
         for (NoticeDTO NoticeDTO : rows) {
             NoticeDTO.setBefore(DateUtils.getTimeBefore(NoticeDTO.getUpdateDate()));
-            NoticeDTO.setSender(userDao.get(NoticeDTO.getCreateBy()).getRealname());
+            NoticeDTO.setSender(employeeDao.get(NoticeDTO.getCreateBy()).getRealName());
         }
         PageUtils page = new PageUtils(rows, NoticeDao.countDTO(map));
         return page;

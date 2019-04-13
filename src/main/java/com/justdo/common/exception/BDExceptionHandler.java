@@ -1,9 +1,9 @@
 package com.justdo.common.exception;
 
 import com.justdo.common.utils.*;
+import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.errorlog.domain.ErrorLogDO;
 import com.justdo.system.errorlog.service.ErrorLogService;
-import com.justdo.system.user.domain.UserDO;
 import org.apache.shiro.authz.AuthorizationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,10 +64,10 @@ public class BDExceptionHandler {
         Date date = new Date();
         String nowtimeStr = DataFormater.toString(date,"yyyy-MM-dd HH:mm:ss");
         errorLogDO.setCreateTime(nowtimeStr);
-        UserDO current = ShiroUtils.getUser();
+        EmployeeDO current = ShiroUtils.getEmployee();
         if(null!=current) {
-            errorLogDO.setUserId(current.getUserId());
-            errorLogDO.setUserName(current.getUsername());
+            errorLogDO.setUserId(current.getEmployeeId());
+            errorLogDO.setUserName(current.getLoginName());
         }else {
             errorLogDO.setUserId("-1");
             errorLogDO.setUserName("获取用户信息为空");

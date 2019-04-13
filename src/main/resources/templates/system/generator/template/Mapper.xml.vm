@@ -80,8 +80,8 @@
 	
 	<delete id="batchDel">
 		delete from ${tableName} where ${pk.columnName} in 
-		<foreach item="${pk.attrname}" collection="array" open="(" separator="," close=")">
-			#{${pk.attrname}}
+		<foreach item="${pk.attrname}s" collection="array" open="(" separator="," close=")">
+			#{${pk.attrname}s}
 		</foreach>
 	</delete>
 

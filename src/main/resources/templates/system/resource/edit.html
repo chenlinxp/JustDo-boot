@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="resourceId" name="resourceId" th:value="${resource.resourceId}"  type="hidden">
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">父菜单ID，一级菜单为0：</label>
+								<div class="col-sm-8">
+									<input id="parentId" name="parentId" th:value="${resource.parentId}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">菜单名称：</label>
+								<div class="col-sm-8">
+									<input id="resourceName" name="resourceName" th:value="${resource.resourceName}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">菜单URL：</label>
+								<div class="col-sm-8">
+									<input id="resourceUrl" name="resourceUrl" th:value="${resource.resourceUrl}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">授权(多个用逗号分隔，如：user:list,user:create)：</label>
+								<div class="col-sm-8">
+									<input id="resourcePermission" name="resourcePermission" th:value="${resource.resourcePermission}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">类型   0：目录   1：菜单   2：按钮：</label>
+								<div class="col-sm-8">
+									<input id="resourceType" name="resourceType" th:value="${resource.resourceType}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">菜单图标：</label>
+								<div class="col-sm-8">
+									<input id="resourceIcon" name="resourceIcon" th:value="${resource.resourceIcon}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-8">
+									<input id="orderNum" name="orderNum" th:value="${resource.orderNum}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="createTime" name="createTime" th:value="${resource.createTime}" class="form-control" type="text">
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="modifyTime" name="modifyTime" th:value="${resource.modifyTime}" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-success">保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/resource/edit.js">
+	</script>
+</body>
+</html>

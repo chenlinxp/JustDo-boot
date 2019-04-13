@@ -4,7 +4,7 @@ import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
-import com.justdo.system.user.shiro.UserRealm;
+import com.justdo.system.employee.shiro.EmployeeRealm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -86,7 +86,7 @@ public class ShiroConfig {
 	public SecurityManager securityManager() {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		//设置realm.
-		securityManager.setRealm(userRealm());
+		securityManager.setRealm(employeeRealm());
 		// 自定义缓存实现 使用redis
 		securityManager.setCacheManager(cacheManager());
         //session 管理
@@ -98,9 +98,9 @@ public class ShiroConfig {
 	}
 
 	@Bean
-	UserRealm userRealm() {
-		UserRealm userRealm = new UserRealm();
-		return userRealm;
+	EmployeeRealm employeeRealm() {
+		EmployeeRealm employeeRealm = new EmployeeRealm();
+		return employeeRealm;
 	}
 
 	/**

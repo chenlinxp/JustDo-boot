@@ -1,21 +1,20 @@
 package com.justdo.system.role.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-
+import com.justdo.system.employee.dao.EmployeeDao;
+import com.justdo.system.employee.dao.EmployeeRoleDao;
+import com.justdo.system.role.dao.RoleDao;
+import com.justdo.system.role.dao.RoleResourceDao;
+import com.justdo.system.role.domain.RoleDO;
+import com.justdo.system.role.domain.RoleResourceDO;
+import com.justdo.system.role.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.justdo.system.role.dao.RoleDao;
-import com.justdo.system.role.dao.RoleMenuDao;
-import com.justdo.system.user.dao.UserDao;
-import com.justdo.system.user.dao.UserRoleDao;
-import com.justdo.system.role.domain.RoleDO;
-import com.justdo.system.role.domain.RoleMenuDO;
-import com.justdo.system.role.service.RoleService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 角色
@@ -31,25 +30,25 @@ public class RoleServiceImpl implements RoleService {
     public static final String DEMO_CACHE_NAME = "role";
 
     @Autowired
-    RoleDao roleMapper;
+    RoleDao roleDao;
     @Autowired
-    RoleMenuDao roleMenuMapper;
+    RoleResourceDao roleResourceDao;
     @Autowired
-    UserDao userMapper;
+    EmployeeDao employeeDao;
     @Autowired
-    UserRoleDao userRoleMapper;
+    EmployeeRoleDao employeeRoleDao;
 
     @Override
     public List<RoleDO> list() {
-        List<RoleDO> roles = roleMapper.list(new HashMap<>(16));
+        List<RoleDO> roles = roleDao.list(new HashMap<>(16));
         return roles;
     }
 
 
     @Override
-    public List<RoleDO> list(String userId) {
-        List<String> rolesIds = userRoleMapper.listRoleId(userId);
-        List<RoleDO> roles = roleMapper.list(new HashMap<>(16));
+    public List<RoleDO> list(String EmployeeId) {
+        List<String> rolesIds = employeeRoleDao.listRoleId(EmployeeId);
+        List<RoleDO> roles = roleDao.list(new HashMap<>(16));
         for (RoleDO roleDO : roles) {
             roleDO.setRoleSign("false");
             for (String roleId : rolesIds) {
@@ -64,60 +63,60 @@ public class RoleServiceImpl implements RoleService {
     @Transactional
     @Override
     public int save(RoleDO role) {
-        int count = roleMapper.save(role);
-        List<String> menuIds = role.getMenuIds();
+        int count = roleDao.save(role);
+        List<String> resourceIds = role.getResourceIds();
         String roleId = role.getRoleId();
-        List<RoleMenuDO> rms = new ArrayList<>();
-        for (String menuId : menuIds) {
-            RoleMenuDO rmDo = new RoleMenuDO();
-            rmDo.setRoleId(roleId);
-            rmDo.setMenuId(menuId);
-            rms.add(rmDo);
+        List<RoleResourceDO> roleResourceDOs = new ArrayList<>();
+        for (String resourceId : resourceIds) {
+            RoleResourceDO roleResourceDO = new RoleResourceDO();
+            roleResourceDO.setRoleId(roleId);
+            roleResourceDO.setResourceId(resourceId);
+            roleResourceDOs.add(roleResourceDO);
         }
-        roleMenuMapper.delByRoleId(roleId);
-        if (rms.size() > 0) {
-            roleMenuMapper.batchSave(rms);
+        roleResourceDao.delByRoleId(roleId);
+        if (roleResourceDOs.size() > 0) {
+            roleResourceDao.batchSave(roleResourceDOs);
         }
         return count;
     }
 
     @Transactional
     @Override
-    public int del(String id) {
-        int count = roleMapper.del(id);
-        userRoleMapper.delByRoleId(id);
-        roleMenuMapper.delByRoleId(id);
+    public int del(String roleId) {
+        int count = roleDao.del(roleId);
+        employeeRoleDao.delByRoleId(roleId);
+        roleResourceDao.delByRoleId(roleId);
         return count;
     }
 
     @Override
-    public RoleDO get(String id) {
-        RoleDO roleDO = roleMapper.get(id);
+    public RoleDO get(String roleId) {
+        RoleDO roleDO = roleDao.get(roleId);
         return roleDO;
     }
 
     @Override
     public int update(RoleDO role) {
-        int r = roleMapper.update(role);
-        List<String> menuIds = role.getMenuIds();
+        int r = roleDao.update(role);
+        List<String> resourceIds = role.getResourceIds();
         String roleId = role.getRoleId();
-        roleMenuMapper.delByRoleId(roleId);
-        List<RoleMenuDO> rms = new ArrayList<>();
-        for (String menuId : menuIds) {
-            RoleMenuDO rmDo = new RoleMenuDO();
-            rmDo.setRoleId(roleId);
-            rmDo.setMenuId(menuId);
-            rms.add(rmDo);
+        roleResourceDao.delByRoleId(roleId);
+        List<RoleResourceDO> roleResourceDOs = new ArrayList<>();
+        for (String resourceId : resourceIds) {
+            RoleResourceDO roleResourceDO = new RoleResourceDO();
+            roleResourceDO.setRoleId(roleId);
+            roleResourceDO.setResourceId(resourceId);
+            roleResourceDOs.add(roleResourceDO);
         }
-        if (rms.size() > 0) {
-            roleMenuMapper.batchSave(rms);
+        if (roleResourceDOs.size() > 0) {
+            roleResourceDao.batchSave(roleResourceDOs);
         }
         return r;
     }
 
     @Override
     public int batchDel(String[] ids) {
-        int r = roleMapper.batchDel(ids);
+        int r = roleDao.batchDel(ids);
         return r;
     }
 
