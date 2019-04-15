@@ -1,25 +1,18 @@
 package com.justdo.system.province.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.justdo.system.province.domain.ProvinceDO;
-import com.justdo.system.province.service.ProvinceService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
+import com.justdo.system.province.domain.ProvinceDO;
+import com.justdo.system.province.service.ProvinceService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 省份编码表
@@ -36,14 +29,14 @@ public class ProvinceController {
 	private ProvinceService provinceService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:province:province")
+	@RequiresPermissions("system:province:list")
 	String Province(){
 	    return "system/province/province";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:province:province")
+	@RequiresPermissions("system:province:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);

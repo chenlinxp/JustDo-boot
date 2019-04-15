@@ -33,6 +33,9 @@ function load() {
 						// pageSize, pageNumber, searchText, sortName,
 						// sortOrder.
 						// 返回false将会终止请求
+                        onDblClickRow: function (row, element) {
+                            view(row["roleId"]);
+                        },
                         onClickRow: function (row, element) {
                             $('.success').removeClass('success');//去除之前选中的行的，选中样式
                             $(element).addClass('success');//添加当前选中的 success样式用于区别
@@ -45,10 +48,8 @@ function load() {
                             // $(element).find("input[type='checkbox']").prop("checked","checked");
                         },
 						columns : [
-								{ // 列配置项
-									// 数据类型，详细参数配置参见文档http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
+								{
 									checkbox : true
-								// 列表中显示复选框
 								},
 								{
 									visible:false,
@@ -68,17 +69,38 @@ function load() {
 								},
 								{
 									field : 'roleName',
-									title : '角色名'
+									title : '角色名称'
 								},
 								{
-									field : '',
-									title : '权限'
+									field : 'roleSign',
+									title : '角色标识'
 								},
 								{
-									field : 'gmtCreate',
-									title : '创建时间'
+									field : 'roleState',
+									title : '角色状态',
+                                    formatter : function(value, row, index) {
+                                        if (value == '1') {
+                                            return '<span class="label label-primary">正常</span>';
+                                        } else  {
+                                            return '<span class="label label-danger">禁用</span>';
+                                        }
+                                    }
 								},
-                        	    {
+								{
+									field : 'createEmployeeId',
+									title : '创建员工'
+								},
+								{
+									field : 'createTime',
+									title : '创建时间',
+                                    width : '150px'
+								},
+								{
+									field : 'modifyTime',
+									title : '创建时间',
+                                    width : '150px'
+								},
+								{
 									field : 'remark',
 									title : '备注'
 								}]
@@ -107,7 +129,9 @@ function edit() {
         layer.msg("请选择一条数据");
         return;
     }else{
+       console.log(rows);
         id=rows[0]['roleId'];
+        alert(id);
     }
 	layer.open({
 		type : 2,

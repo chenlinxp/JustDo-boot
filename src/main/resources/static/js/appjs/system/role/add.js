@@ -1,8 +1,8 @@
-//var menuTree;
-
-var menuIds;
+//var resourceTree;
+var preUrl = "/system/role"
+var resourceIds;
 $(function() {
-	getMenuTreeData();
+	getResourceTreeData();
 	validateRule();
 });
 $.validator.setDefaults({
@@ -13,44 +13,44 @@ $.validator.setDefaults({
 });
 
 function getAllSelectNodes() {
-	var ref = $('#menuTree').jstree(true); // 获得整个树
+	var ref = $('#resourceTree').jstree(true); // 获得整个树
 
-	menuIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
+    resourceIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
 
-	$("#menuTree").find(".jstree-undetermined").each(function(i, element) {
-		menuIds.push($(element).closest('.jstree-node').attr("id"));
+	$("#resourceTree").find(".jstree-undetermined").each(function(i, element) {
+        resourceIds.push($(element).closest('.jstree-node').attr("id"));
 	});
 }
-function getMenuTreeData() {
+function getResourceTreeData() {
 	$.ajax({
 		type : "GET",
-		url : "/system/menu/tree",
-		success : function(menuTree) {
-			loadMenuTree(menuTree);
+		url : "/system/resource/tree",
+		success : function(resourceTree) {
+			loadResourceTree(resourceTree);
 		}
 	});
 }
-function loadMenuTree(menuTree) {
-	$('#menuTree').jstree({
+function loadResourceTree(resourceTree) {
+	$('#resourceTree').jstree({
 		'core' : {
-			'data' : menuTree
+			'data' : resourceTree
 		},
 		"checkbox" : {
 			"three_state" : true,
 		},
 		"plugins" : [ "wholerow", "checkbox" ]
 	});
-	//$('#menuTree').jstree("open_all");
+	//$('#resourceTree').jstree("open_all");
 
 }
 
 function save() {
-	$('#menuIds').val(menuIds);
+	$('#resourceIds').val(resourceIds);
 	var role = $('#signupForm').serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/role/save",
+		url : preUrl+"/save",
 		data : role, // 你的formid
 
 		async : false,

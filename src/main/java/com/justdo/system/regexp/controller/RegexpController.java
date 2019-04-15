@@ -1,25 +1,18 @@
 package com.justdo.system.regexp.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.justdo.system.regexp.domain.RegexpEXDO;
-import com.justdo.system.regexp.domain.RegexpDO;
-import com.justdo.system.regexp.service.RegexpService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
+import com.justdo.system.regexp.domain.RegexpDO;
+import com.justdo.system.regexp.service.RegexpService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 系统正则表达式
@@ -36,14 +29,14 @@ public class RegexpController {
 	private RegexpService regexpService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:regexp:regexp")
+	@RequiresPermissions("system:regexp:list")
 	String Regexp(){
 	    return "system/regexp/regexp";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:regexp:regexp")
+	@RequiresPermissions("system:regexp:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);

@@ -36,7 +36,7 @@ public class FileController extends BaseController {
 	private JustdoConfig justdoConfig;
 
 	@GetMapping()
-	@RequiresPermissions("system:file:file")
+	@RequiresPermissions("system:file:list")
 	String fileDao(Model model) {
 		Map<String, Object> params = new HashMap<>(16);
 		return "system/file/file";
@@ -44,7 +44,7 @@ public class FileController extends BaseController {
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:file:file")
+	@RequiresPermissions("system:file:list")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
 		Query query = new Query(params);

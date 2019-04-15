@@ -30,14 +30,14 @@ public class QuartzJobController extends BaseController {
 	private QuartzJobService quartzJobService;
 
 	@GetMapping()
-	@RequiresPermissions("system:quartzjob:quartzjob")
+	@RequiresPermissions("system:quartzjob:list")
 	String QuartzJobController() {
 		return "system/quartzjob/quartzjob";
 	}
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:quartzjob:quartzjob")
+	@RequiresPermissions("system:quartzjob:list")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
 		Query query = new Query(params);

@@ -35,7 +35,7 @@ public class ErrorLogController {
 	* @return 列表页面路径
 	*/
 	@GetMapping()
-	@RequiresPermissions("system:errorlog")
+	@RequiresPermissions("system:errorlog:list")
 	String ErrorLog(){
 	    return "system/errorlog/errorlog";
 	}
@@ -48,7 +48,7 @@ public class ErrorLogController {
 	*/
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:errorlog")
+	@RequiresPermissions("system:errorlog:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);

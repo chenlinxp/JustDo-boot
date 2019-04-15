@@ -39,7 +39,7 @@ public class DictController extends BaseController {
 	private DictTypeService dictTypeService;
 
 	@GetMapping()
-	@RequiresPermissions("system:dict:dict")
+	@RequiresPermissions("system:dict:list")
 	String dict(Model model) {
 
 		model.addAttribute("title", "数据字典列表");
@@ -51,7 +51,7 @@ public class DictController extends BaseController {
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:dict:dict")
+	@RequiresPermissions("system:dict:list")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		//查询列表数据
 		Query query = new Query(params);

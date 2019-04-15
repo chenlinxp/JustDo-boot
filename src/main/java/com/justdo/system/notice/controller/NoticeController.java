@@ -44,14 +44,14 @@ public class NoticeController extends BaseController {
 	private DictContentService dictContentService;
 
 	@GetMapping()
-	@RequiresPermissions("system:notice:notice")
+	@RequiresPermissions("system:notice:list")
 	String Notice() {
 		return "system/notice/notice";
 	}
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:notice:notice")
+	@RequiresPermissions("system:notice:list")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		// 查询列表数据
 		Query query = new Query(params);

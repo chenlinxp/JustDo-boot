@@ -1,25 +1,18 @@
 package com.justdo.system.area.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.justdo.system.area.domain.AreaDO;
-import com.justdo.system.area.service.AreaService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
+import com.justdo.system.area.domain.AreaDO;
+import com.justdo.system.area.service.AreaService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 地区编码表
@@ -36,14 +29,14 @@ public class AreaController {
 	private AreaService areaService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:area:area")
+	@RequiresPermissions("system:area:list")
 	String Area(){
 	    return "system/area/area";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:area:area")
+	@RequiresPermissions("system:area:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);

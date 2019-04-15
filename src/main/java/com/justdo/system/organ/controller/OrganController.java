@@ -1,28 +1,18 @@
 package com.justdo.system.organ.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.justdo.common.domain.Tree;
 import com.justdo.common.domain.TreeNode;
-import com.justdo.system.organ.domain.OrganDeptVO;
+import com.justdo.common.utils.R;
 import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.organ.service.OrganService;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
-import com.justdo.common.utils.R;
-import com.justdo.common.domain.Tree;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 机构
@@ -41,14 +31,14 @@ public class OrganController {
 
 	
 	@GetMapping()
-	@RequiresPermissions("system:organ:organ")
+	@RequiresPermissions("system:organ:list")
 	String Organ(){
 	    return "system/organ/organ";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:organ:organ")
+	@RequiresPermissions("system:organ:list")
 	public List<OrganDO> list(@RequestParam Map<String, Object> params){
 		List<OrganDO> deptList = organService.list(params);
 		return deptList;

@@ -2,8 +2,6 @@ package com.justdo.system.resource.controller;
 
 import com.justdo.common.annotation.Log;
 import com.justdo.common.domain.Tree;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
 import com.justdo.common.utils.StringUtils;
 import com.justdo.system.resource.domain.ResourceDO;
@@ -40,7 +38,7 @@ public class ResourceController {
 	* @return 列表页面路径
 	*/
 	@GetMapping()
-	@RequiresPermissions("system:resource:resource")
+	@RequiresPermissions("system:resource:list")
 	String Resource(){
 	    return preUrl + "/resource";
 	}
@@ -54,14 +52,11 @@ public class ResourceController {
 	@Log("资源菜单管理列表")
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:resource:resource")
-	public PageUtils list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-		List<ResourceDO> resourceList = resourceService.list(query);
-		int total = resourceService.count(query);
-		PageUtils pageUtils = new PageUtils(resourceList, total);
-		return pageUtils;
+	@RequiresPermissions("system:resource:list")
+	List<ResourceDO> list(@RequestParam Map<String, Object> params){
+		List<ResourceDO> resourceDOs = resourceService.list(params);
+		return resourceDOs;
+
 	}
 
 	/**

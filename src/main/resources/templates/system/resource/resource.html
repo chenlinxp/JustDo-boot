@@ -7,25 +7,15 @@
 		<div class="col-sm-12">
 			<div class="ibox">
 				<div class="ibox-body">
-					<div class="fixed-table-toolbar">
-						<div class="columns pull-left">
-							<button shiro:hasPermission="system:resource:add" type="button" class="btn  btn-success" onclick="add()">
-                            <i class="fa fa-plus" aria-hidden="true"></i>添加
-                        </button>
-							<button shiro:hasPermission="system:resource:edit" type="button" class="btn  btn-success" onclick="edit()">
-                                <i class="fa fa-edit" aria-hidden="true"></i>编辑
-                            </button>
-							<button shiro:hasPermission="system:resource:batchDel" type="button" class="btn  btn-success" onclick="batchDel()">
-								<i class="fa fa-trash" aria-hidden="true"></i>删除
-							</button>
-						</div>
-						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
-						</div>
-						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="用户名">
-						</div>
+					<div role="group" class="t-bar">
+						<button shiro:hasPermission="system:resource:add" type="button"
+								class="btn btn-success" title="在根节点下添加菜单" onclick="add('')">
+							<i class="fa fa-plus" aria-hidden="true"></i>添加
+						</button>
+						<button shiro:hasPermission="system:resource:batchDel" type="button"
+								class="btn btn-success" onclick="batchDel()">
+							<i class="fa fa-trash" aria-hidden="true"></i>删除
+						</button>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
 					</table>
@@ -37,10 +27,10 @@
 			<script type="text/javascript">
                 var s_add_h = 'hidden';
 				var s_edit_h = 'hidden';
-				var s_delete_h = 'hidden';
+                var s_delete_h = 'hidden';
 			</script>
 		</div>
-		<div shiro:hasPermission="system:dept:add">
+		<div shiro:hasPermission="system:resource:add">
 			<script type="text/javascript">
 				s_add_h = '';
 			</script>
@@ -50,7 +40,7 @@
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="system:resource:del">
+		<div shiro:hasPermission="system:user:del">
 			<script type="text/javascript">
 				var s_delete_h = '';
 			</script>

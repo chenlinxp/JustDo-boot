@@ -212,10 +212,10 @@ public class EmployeeController {
 	@RequiresPermissions("system:employee:resetPwd")
 	@Log("请求更改用户密码")
 	@GetMapping("/resetPwd/{id}")
-	String resetPwd(@PathVariable("id") String userId, Model model) {
+	String resetPwd(@PathVariable("id") String employeeId, Model model) {
 
 		EmployeeDO employeeDO = new EmployeeDO();
-		employeeDO.setEmployeeId(userId);
+		employeeDO.setEmployeeId(employeeId);
 		model.addAttribute("employee", employeeDO);
 		return preUrl + "/reset_pwd";
 	}

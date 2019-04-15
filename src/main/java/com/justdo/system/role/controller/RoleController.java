@@ -24,17 +24,17 @@ import java.util.List;
 @RequestMapping("/system/role")
 @Controller
 public class RoleController extends BaseController {
-	String prefix = "system/role";
+	String preUrl = "system/role";
 	@Autowired
 	RoleService roleService;
 
-	@RequiresPermissions("system:role:role")
+	@RequiresPermissions("system:role:list")
 	@GetMapping()
 	String role() {
-		return prefix + "/role";
+		return preUrl + "/role";
 	}
 
-	@RequiresPermissions("system:role:role")
+	@RequiresPermissions("system:role:list")
 	@GetMapping("/list")
 	@ResponseBody()
 	List<RoleDO> list() {
@@ -46,7 +46,7 @@ public class RoleController extends BaseController {
 	@RequiresPermissions("system:role:add")
 	@GetMapping("/add")
 	String add() {
-		return prefix + "/add";
+		return preUrl + "/add";
 	}
 
 	@Log("编辑角色")
@@ -55,7 +55,7 @@ public class RoleController extends BaseController {
 	String edit(@PathVariable("id") String id, Model model) {
 		RoleDO roleDO = roleService.get(id);
 		model.addAttribute("role", roleDO);
-		return prefix + "/edit";
+		return preUrl + "/edit";
 	}
 
 	@Log("保存角色")

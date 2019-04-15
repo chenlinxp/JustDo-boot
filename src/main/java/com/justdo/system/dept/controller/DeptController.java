@@ -39,7 +39,7 @@ public class DeptController extends BaseController {
 	@Autowired
 	private OrganService organService;
 	@GetMapping()
-	@RequiresPermissions("system:dept:dept")
+	@RequiresPermissions("system:dept:list")
 	String dept() {
 		return prefix + "/dept";
 	}
@@ -47,7 +47,7 @@ public class DeptController extends BaseController {
 	@ApiOperation(value="获取部门列表", notes="")
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:dept:dept")
+	@RequiresPermissions("system:dept:list")
 	public List<DeptDO> list() {
 		Map<String, Object> query = new HashMap<>(16);
 		List<DeptDO> deptList = deptService.list(query);

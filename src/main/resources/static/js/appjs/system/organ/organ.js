@@ -1,5 +1,5 @@
 
-var prefix = "/system/organ"
+var preUrl = "/system/organ"
 $(function() {
 	load();
 });
@@ -125,7 +125,7 @@ function edit() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
+		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
 function del() {
@@ -138,7 +138,7 @@ function del() {
             return;
         }
 		$.ajax({
-			url : prefix+"/del",
+			url : preUrl+"/del",
 			type : "post",
 			data : {
 				'organid' : id

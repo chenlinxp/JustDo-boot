@@ -1,3 +1,4 @@
+var preUrl = "/system/job"
 $().ready(function() {
 	validateRule();
 });
@@ -11,7 +12,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url :"/system/job/update",
+		url :preUrl+"/update",
 		data : $('#signupForm').serialize(),
 		async : false,
 		error : function(request) {

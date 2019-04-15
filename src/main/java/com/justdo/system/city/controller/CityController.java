@@ -1,25 +1,16 @@
 package com.justdo.system.city.controller;
 
-import java.util.List;
-import java.util.Map;
-
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.justdo.common.utils.R;
 import com.justdo.system.city.domain.CityDO;
 import com.justdo.system.city.service.CityService;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
-import com.justdo.common.utils.R;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 城市编码信息
@@ -36,14 +27,14 @@ public class CityController {
 	private CityService cityService;
 	
 	@GetMapping()
-	@RequiresPermissions("system:city:city")
+	@RequiresPermissions("system:city:list")
 	String City(){
 	    return "system/city/city";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:province:province")
+	@RequiresPermissions("system:province:list")
 	public List<CityDO> list(@RequestParam Map<String, Object> params){
 		return cityService.list(params);
 	}

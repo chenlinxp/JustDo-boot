@@ -38,7 +38,7 @@ public class OperationLogController {
 	 * @return 列表页面路径
 	 */
 	@GetMapping()
-	@RequiresPermissions("system:operationlog:operationlog")
+	@RequiresPermissions("system:operationlog:list")
 	String OperationLog(){
 		return preUrl + "/operationlog";
 	}
@@ -52,7 +52,7 @@ public class OperationLogController {
 	@Log("系统操作日志列表")
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("system:operationlog:operationlog")
+	@RequiresPermissions("system:operationlog:list")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		Query query = new Query(params);
