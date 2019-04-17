@@ -93,7 +93,7 @@ public class NoticeServiceImpl implements NoticeService {
                 for (EmployeeDO employeeDO : esessionService.listOnlineEmployee()) {
                     for (String userId : userIds) {
                         if (userId.equals(employeeDO.getEmployeeId())) {
-                            template.convertAndSendToUser(employeeDO.toString(), "/queue/notifications", "新消息：" + Notice.getTitle());
+                            template.convertAndSendToUser(userId, "/queue/notifications", "新消息：" + Notice.getTitle());
                         }
                     }
                 }
