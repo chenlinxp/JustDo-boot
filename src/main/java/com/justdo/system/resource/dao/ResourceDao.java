@@ -77,4 +77,6 @@ public interface ResourceDao {
 	 * @return list
 	 */
 	int batchDel(String[] resourceIds);
+
+
 }

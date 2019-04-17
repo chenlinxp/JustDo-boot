@@ -48,7 +48,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeDO get(String  employeeId){
 		return employeeDao.get(employeeId);
 	}
-	
+
+	@Override
+	public String getPasswordSalt(String loginName){
+		return employeeDao.getPasswordSalt(loginName);
+	}
 	@Override
 	public List<EmployeeDO> list(Map<String, Object> map){
 		return employeeDao.list(map);
@@ -92,8 +96,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int resetPwd(EmployeeVO employeeVO, EmployeeDO employeeDO) throws Exception {
+
 		if(Objects.equals(employeeVO.getEmployeeDO().getEmployeeId(),employeeDO.getEmployeeId())){
+
 			if(Objects.equals(MD5Utils.encrypt(employeeDO.getPasswordSalt(),employeeVO.getPwdOld()),employeeDO.getPassword())){
 				employeeDO.setPassword(MD5Utils.encrypt(employeeDO.getPasswordSalt(),employeeVO.getPwdNew()));
 				return employeeDao.update(employeeDO);
@@ -105,19 +112,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 	}
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int adminResetPwd(EmployeeVO employeeVO) throws Exception {
-		EmployeeDO employeeDO =get(employeeVO.getEmployeeDO().getEmployeeId());
+		EmployeeDO employeeDO = get(employeeVO.getEmployeeDO().getEmployeeId());
 		if("admin".equals(employeeDO.getLoginName())){
 			throw new Exception("超级管理员的账号不允许直接重置！");
 		}
-		employeeDO.setPassword(MD5Utils.encrypt(employeeDO.getLoginName(), employeeVO.getPwdNew()));
+		employeeDO.setPasswordSalt(StringUtils.getUUID());
+		employeeDO.setPassword(MD5Utils.encrypt(employeeDO.getPasswordSalt(), employeeVO.getPwdNew()));
 		return employeeDao.update(employeeDO);
 
 
 	}
 
-	@Transactional
+
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int batchRemove(String[] employeeIds) {
 		int count = employeeDao.batchDel(employeeIds);
 		employeeRoleDao.batchDelByEmployeeId(employeeIds);
@@ -163,11 +173,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int updatePersonal(EmployeeDO employeeDO) {
 		return employeeDao.update(employeeDO);
 	}
 
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, String employeeId) throws Exception {
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtils.renameToUUID(fileName);

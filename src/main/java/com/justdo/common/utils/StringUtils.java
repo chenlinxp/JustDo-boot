@@ -4,7 +4,7 @@ package com.justdo.common.utils;
  * @author justdo
  */
 
-import java.io.IOException;
+        import java.io.IOException;
         import java.io.InputStream;
         import java.util.ArrayList;
         import java.util.Enumeration;
@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class StringUtils extends org.apache.commons.lang.StringUtils {
     private final static Map<String, String> regexs = new HashMap<String, String>();
+
     static{
         Properties entityReferences = new Properties();
         InputStream is = StringUtils.class.getResourceAsStream("regex.properties");

@@ -30,14 +30,14 @@ public class ContentController extends BaseController {
     ContentService bContentService;
 
 	@GetMapping()
-	@RequiresPermissions("blog:bContent:bContent")
+	@RequiresPermissions("blog:bContent:list")
 	String bContent() {
 		return "blog/bContent/bContent";
 	}
 
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("blog:bContent:bContent")
+	@RequiresPermissions("blog:bContent:list")
 	public PageUtils list(@RequestParam Map<String, Object> params) {
 		Query query = new Query(params);
 		List<ContentDO> bContentList = bContentService.list(query);

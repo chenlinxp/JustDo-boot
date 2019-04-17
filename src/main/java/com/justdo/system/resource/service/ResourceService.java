@@ -99,4 +99,6 @@ public interface ResourceService {
 	 */
 	int batchDel(String[] resourceIds);
 
+
+
 }

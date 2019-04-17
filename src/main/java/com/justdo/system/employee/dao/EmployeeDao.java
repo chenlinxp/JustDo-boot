@@ -23,6 +23,13 @@ public interface EmployeeDao {
 	EmployeeDO get(String employeeId);
 
 	/**
+	 * 返回密码盐
+	 * @param loginName
+	 * @return
+	 */
+	String getPasswordSalt(String loginName);
+
+	/**
 	 * 返回实体list
 	 * @param map
 	 * @return list

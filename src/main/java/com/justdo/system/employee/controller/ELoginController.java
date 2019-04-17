@@ -7,6 +7,7 @@ import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.MD5Utils;
 import com.justdo.common.utils.R;
 import com.justdo.common.utils.ShiroUtils;
+import com.justdo.system.employee.service.EmployeeService;
 import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;
 import com.justdo.system.resource.domain.ResourceDO;
@@ -36,6 +37,8 @@ public class ELoginController extends BaseController {
 
 	@Autowired
 	ResourceService resourceService;
+	@Autowired
+	EmployeeService employeeService;
 	@Autowired
 	FileService fileService;
 	@GetMapping({ "/", "" })
@@ -79,7 +82,8 @@ public class ELoginController extends BaseController {
 	@ResponseBody
 	R ajaxLogin(String username, String password, String rememberme) {
 
-		password = MD5Utils.encrypt(username, password);
+		String salt = employeeService.getPasswordSalt(username);
+		password = MD5Utils.encrypt(salt, password);
 		Subject currentUser = SecurityUtils.getSubject();
 		if(currentUser.isAuthenticated() && currentUser.isRemembered()) {
 			return R.ok();

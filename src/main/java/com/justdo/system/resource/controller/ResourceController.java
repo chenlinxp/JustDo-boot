@@ -12,8 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 资源菜单管理
@@ -80,7 +79,7 @@ public class ResourceController {
 	@RequiresPermissions("system:resource:add")
 	String add(Model model, @PathVariable("pId") String pId){
 		model.addAttribute("pId", pId);
-		if (StringUtils.isNotEmpty(pId)) {
+		if (StringUtils.isNotEmpty(pId)&&!pId.endsWith("0")) {
 			model.addAttribute("pName", resourceService.get(pId).getResourceName());
 		} else {
 			model.addAttribute("pName", "根目录");
@@ -99,6 +98,9 @@ public class ResourceController {
 	@PostMapping("/save")
 	@RequiresPermissions("system:resource:add")
 	public R save( ResourceDO resource){
+		Date date = new Date();
+		resource.setCreateTime(date);
+		resource.setModifyTime(date);
 		if(resourceService.save(resource)>0){
 			return R.ok();
 		}
@@ -136,6 +138,8 @@ public class ResourceController {
 	@PostMapping("/update")
 	@RequiresPermissions("system:resource:edit")
 	public R update( ResourceDO resource){
+		Date date = new Date();
+		resource.setModifyTime(date);
 		if (resourceService.update(resource) > 0) {
 			return R.ok();
 		} else {
@@ -153,10 +157,16 @@ public class ResourceController {
 	@ResponseBody
 	@RequiresPermissions("system:resource:del")
 	public R remove( String resourceId){
-		if(resourceService.del(resourceId)>0){
-		return R.ok();
-		}else {
-			return R.error(1, "删除失败");
+		Map<String,Object > map = new HashMap<>();
+		map.put("parentId",resourceId);
+		if(resourceService.count(map)>0) {
+			return R.error(1, "有下级资源不能删除");
+		}else{
+			if (resourceService.del(resourceId) > 0) {
+				return R.ok();
+			} else {
+				return R.error(1, "删除失败");
+			}
 		}
 	}
 	

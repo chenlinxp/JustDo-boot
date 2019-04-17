@@ -4,30 +4,26 @@
 <mapper namespace="com.justdo.system.role.dao.RoleDao">
 
 	<select id="get" resultType="com.justdo.system.role.domain.RoleDO">
-		select
-		`role_id`,`role_name`,`role_sign`,`remark`,`user_id_create`,`gmt_create`,`gmt_modified`
-		from sys_role where role_id = #{value}
+		select  `ROLE_ID`,`ROLE_NAME`,`ROLE_SIGN`,`ROLE_STATE`,`REMARK`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME` from sys_role where ROLE_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.role.domain.RoleDO">
-		select
-		`role_id`,`role_name`,`role_sign`,`remark`,`user_id_create`,`gmt_create`,`gmt_modified`
-		from sys_role
+		select  `ROLE_ID`,`ROLE_NAME`,`ROLE_SIGN`,`ROLE_STATE`,`REMARK`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME` from sys_role
 		<where>
-			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
-			<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>
-			<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>
-			<if test="remark != null and remark != ''"> and remark = #{remark} </if>
-			<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
-			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
-			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+			<if test="roleName != null and roleName != ''"> and ROLE_NAME = #{roleName} </if>
+			<if test="roleSign != null and roleSign != ''"> and ROLE_SIGN = #{roleSign} </if>
+			<if test="roleState != null and roleState != ''"> and ROLE_STATE = #{roleState} </if>
+			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+			<if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
 				order by ${sort} ${order}
 			</when>
 			<otherwise>
-				order by role_id desc
+				order by ROLE_ID desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
@@ -36,61 +32,67 @@
 	</select>
 
 	<select id="count" resultType="int">
-		select count(*) from sys_role
+		select count(*) from syss_role
 		<where>
-			<if test="roleId != null and roleId != ''"> and role_id = #{roleId} </if>
-			<if test="roleName != null and roleName != ''"> and role_name = #{roleName} </if>
-			<if test="roleSign != null and roleSign != ''"> and role_sign = #{roleSign} </if>
-			<if test="remark != null and remark != ''"> and remark = #{remark} </if>
-			<if test="userIdCreate != null and userIdCreate != ''"> and user_id_create = #{userIdCreate} </if>
-			<if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
-			<if test="gmtModified != null and gmtModified != ''"> and gmt_modified = #{gmtModified} </if>
+			<if test="roleName != null and roleName != ''"> and ROLE_NAME = #{roleName} </if>
+			<if test="roleSign != null and roleSign != ''"> and ROLE_SIGN = #{roleSign} </if>
+			<if test="roleState != null and roleState != ''"> and ROLE_STATE = #{roleState} </if>
+			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+			<if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.justdo.system.role.domain.RoleDO"
-		useGeneratedKeys="true" keyProperty="roleId">
+	<insert id="save" parameterType="com.justdo.system.role.domain.RoleDO">
+		<selectKey keyProperty="roleId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as roleId from dual
+		</selectKey>
 		insert into sys_role
 		(
-		`role_name`,
-		`role_sign`,
-		`remark`,
-		`user_id_create`,
-		`gmt_create`,
-		`gmt_modified`
+		`ROLE_ID`,
+		`ROLE_NAME`,
+		`ROLE_SIGN`,
+		`ROLE_STATE`,
+		`REMARK`,
+		`CREATE_EMPLOYEE_ID`,
+		`CREATE_TIME`,
+		`MODIFY_TIME`
 		)
 		values
 		(
+		#{roleId},
 		#{roleName},
 		#{roleSign},
+		#{roleState},
 		#{remark},
-		#{userIdCreate},
-		#{gmtCreate},
-		#{gmtModified}
+		#{createEmployeeId},
+		#{createTime},
+		#{modifyTime}
 		)
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.role.domain.RoleDO">
 		update sys_role
 		<set>
-			<if test="roleName != null">`role_name` = #{roleName}, </if>
-			<if test="roleSign != null">`role_sign` = #{roleSign}, </if>
-			<if test="remark != null">`remark` = #{remark}, </if>
-			<if test="userIdCreate != null">`user_id_create` = #{userIdCreate}, </if>
-			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
-			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}</if>
+			<if test="roleName != null">`ROLE_NAME` = #{roleName}, </if>
+			<if test="roleSign != null">`ROLE_SIGN` = #{roleSign}, </if>
+			<if test="roleState != null">`ROLE_STATE` = #{roleState}, </if>
+			<if test="remark != null">`REMARK` = #{remark}, </if>
+			<if test="createEmployeeId != null">`CREATE_EMPLOYEE_ID` = #{createEmployeeId}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}</if>
 		</set>
-		where role_id = #{roleId}
+		where ROLE_ID = #{roleId}
 	</update>
 
 	<delete id="del">
-		delete from sys_role where role_id = #{value}
+		delete from sys_role where ROLE_ID = #{value}
 	</delete>
 
 	<delete id="batchDel">
-		delete from sys_role where role_id in
-		<foreach item="roleId" collection="array" open="(" separator=","
-			close=")">
+		delete from sys_role where ROLE_ID in
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
 			#{roleId}
 		</foreach>
 	</delete>

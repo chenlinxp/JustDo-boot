@@ -24,14 +24,17 @@ public class ResourceDO extends BaseBean {
 	private String resourceName;
 	//菜单URL
 	private String resourceUrl;
-	//授权(多个用逗号分隔，如：user:list,user:create)
+	//授权(多个用逗号分隔，如：esource:list,esource:add)
 	private String resourcePermission;
 	//类型   0：目录   1：菜单   2：按钮
-	private Integer resourceType;
+	private int resourceType;
 	//菜单图标
 	private String resourceIcon;
+
+	//桌面显示
+	private int deskDisplay;
 	//排序
-	private Integer orderNum;
+	private int orderNum;
 	//创建时间
 	private Date createTime;
 	//修改时间
@@ -41,7 +44,7 @@ public class ResourceDO extends BaseBean {
     * 构造方法
     */
     public ResourceDO(){ }
-    public ResourceDO(String ResourceId,String ParentId,String ResourceName,String ResourceUrl,String ResourcePermission,Integer ResourceType,String ResourceIcon,Integer OrderNum,Date CreateTime,Date ModifyTime){
+    public ResourceDO(String ResourceId,String ParentId,String ResourceName,String ResourceUrl,String ResourcePermission,int ResourceType,String ResourceIcon,int deskDisply,int OrderNum,Date CreateTime,Date ModifyTime){
 		super();
 			this.parentId= parentId;
 			this.resourceName= resourceName;
@@ -117,13 +120,13 @@ public class ResourceDO extends BaseBean {
 	/**
 	 * 设置：类型   0：目录   1：菜单   2：按钮
 	 */
-	public void setResourceType(Integer resourceType) {
+	public void setResourceType(int resourceType) {
 		this.resourceType = resourceType;
 	}
 	/**
 	 * 获取：类型   0：目录   1：菜单   2：按钮
 	 */
-	public Integer getResourceType() {
+	public int getResourceType() {
 		return resourceType;
 	}
 	/**
@@ -139,15 +142,27 @@ public class ResourceDO extends BaseBean {
 		return resourceIcon;
 	}
 	/**
+	 * 获取：桌面显示
+	 */
+	public int getDeskDisplay() {
+		return deskDisplay;
+	}
+	/**
+	 * 设置：桌面显示
+	 */
+	public void setDeskDisplay(int deskDisplay) {
+		this.deskDisplay = deskDisplay;
+	}
+	/**
 	 * 设置：排序
 	 */
-	public void setOrderNum(Integer orderNum) {
+	public void setOrderNum(int orderNum) {
 		this.orderNum = orderNum;
 	}
 	/**
 	 * 获取：排序
 	 */
-	public Integer getOrderNum() {
+	public int getOrderNum() {
 		return orderNum;
 	}
 	/**

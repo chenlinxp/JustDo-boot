@@ -211,8 +211,8 @@ public class EmployeeController {
 
 	@RequiresPermissions("system:employee:resetPwd")
 	@Log("请求更改用户密码")
-	@GetMapping("/resetPwd/{id}")
-	String resetPwd(@PathVariable("id") String employeeId, Model model) {
+	@GetMapping("/resetPwd/{employeeId}")
+	String resetPwd(@PathVariable("employeeId") String employeeId, Model model) {
 
 		EmployeeDO employeeDO = new EmployeeDO();
 		employeeDO.setEmployeeId(employeeId);
@@ -241,6 +241,7 @@ public class EmployeeController {
 			employeeService.adminResetPwd(employeeVO);
 			return R.ok();
 		}catch (Exception e){
+			System.out.println(e.getMessage());
 			return R.error(1,e.getMessage());
 		}
 
@@ -261,7 +262,7 @@ public class EmployeeController {
 	@GetMapping("/personal")
 	String personal(Model model) {
 		EmployeeDO employeeDO  = employeeService.get(getEmployeeId());
-		model.addAttribute("user",employeeDO);
+		model.addAttribute("employee",employeeDO);
 		model.addAttribute("hobbyList",dictService.getHobbyList(employeeDO));
 		model.addAttribute("sexList",dictService.getSexList());
 		return preUrl + "/personal";

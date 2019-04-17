@@ -1,6 +1,7 @@
-var menuIds;
+var preUrl = "/system/role"
+var resourceIds;
 $(function() {
-	getMenuTreeData();
+	getResourceTreeData();
 	validateRule();
 });
 $.validator.setDefaults({
@@ -9,11 +10,11 @@ $.validator.setDefaults({
 		update();
 	}
 });
-function loadMenuTree(menuTree) {
-	$('#menuTree').jstree({
+function loadResourceTree(resourceTree) {
+	$('#resourceTree').jstree({
 		"plugins" : [ "wholerow", "checkbox" ],
 		'core' : {
-			'data' : menuTree
+			'data' : resourceTree
 		},
 		"checkbox" : {
 			//"keep_selected_style" : false,
@@ -22,33 +23,33 @@ function loadMenuTree(menuTree) {
 			//"cascade" : ' up'
 		}
 	});
-	$('#menuTree').jstree('open_all');
+	$('#resourceTree').jstree('open_all');
 }
 function getAllSelectNodes() {
-	var ref = $('#menuTree').jstree(true); // 获得整个树
-	menuIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
-	$("#menuTree").find(".jstree-undetermined").each(function(i, element) {
-		menuIds.push($(element).closest('.jstree-node').attr("id"));
+	var ref = $('#resourceTree').jstree(true); // 获得整个树
+    resourceIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
+	$("#resourceTree").find(".jstree-undetermined").each(function(i, element) {
+        resourceIds.push($(element).closest('.jstree-node').attr("id"));
 	});
-	console.log(menuIds); 
+	console.log(resourceIds);
 }
-function getMenuTreeData() {
+function getResourceTreeData() {
 	var roleId = $('#roleId').val();
 	$.ajax({
 		type : "GET",
-		url : "/system/menu/tree/" + roleId,
+		url : "/system/resource/tree/" + roleId,
 		success : function(data) {
-			loadMenuTree(data);
+			loadResourceTree(data);
 		}
 	});
 }
 function update() {
-	$('#menuIds').val(menuIds);
+	$('#resourceIds').val(resourceIds);
 	var role = $('#signupForm').serialize();
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/role/update",
+		url : preUrl+"/update",
 		data : role, // 你的formid
 		async : false,
 		error : function(request) {

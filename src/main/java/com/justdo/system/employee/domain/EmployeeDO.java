@@ -39,17 +39,17 @@ public class EmployeeDO extends BaseBean {
 	//手机号
 	private String mobile;
 	//状态 0:禁用，1:正常
-	private Integer employeeState;
+	private int employeeState;
 	//创建用户id
-	private Long createEmployeeId;
+	private String createEmployeeId;
 	//创建时间
 	private Date createTime;
 	//修改时间
 	private Date modifyTime;
 	//性别
-	private Long employeeSex;
+	private int employeeSex;
 	//出身日期
-	private Date birthday;
+	private String birthday;
 	//照片ID
 	private String photoId;
 	//现居住地
@@ -69,7 +69,7 @@ public class EmployeeDO extends BaseBean {
 	 * 构造方法
 	 */
 	public EmployeeDO(){ }
-	public EmployeeDO(String EmployeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,Long CreateEmployeeId,Date CreateTime,Date ModifyTime,Long EmployeeSex,Date Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
+	public EmployeeDO(String EmployeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,Long CreateEmployeeId,Date CreateTime,Date ModifyTime,int EmployeeSex,String Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
 		super();
 		this.employeeNumber= employeeNumber;
 		this.loginName= loginName;
@@ -231,25 +231,25 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：状态 0:禁用，1:正常
 	 */
-	public void setEmployeeState(Integer employeeState) {
+	public void setEmployeeState(int employeeState) {
 		this.employeeState = employeeState;
 	}
 	/**
 	 * 获取：状态 0:禁用，1:正常
 	 */
-	public Integer getEmployeeState() {
+	public int getEmployeeState() {
 		return employeeState;
 	}
 	/**
 	 * 设置：创建用户id
 	 */
-	public void setCreateEmployeeId(Long createEmployeeId) {
+	public void setCreateEmployeeId(String createEmployeeId) {
 		this.createEmployeeId = createEmployeeId;
 	}
 	/**
 	 * 获取：创建用户id
 	 */
-	public Long getCreateEmployeeId() {
+	public String getCreateEmployeeId() {
 		return createEmployeeId;
 	}
 	/**
@@ -279,25 +279,25 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：性别
 	 */
-	public void setEmployeeSex(Long employeeSex) {
+	public void setEmployeeSex(int employeeSex) {
 		this.employeeSex = employeeSex;
 	}
 	/**
 	 * 获取：性别
 	 */
-	public Long getEmployeeSex() {
+	public int getEmployeeSex() {
 		return employeeSex;
 	}
 	/**
 	 * 设置：出身日期
 	 */
-	public void setBirthday(Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 	/**
 	 * 获取：出身日期
 	 */
-	public Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 	/**

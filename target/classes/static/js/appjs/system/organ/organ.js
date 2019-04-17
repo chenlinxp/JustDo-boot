@@ -1,5 +1,5 @@
 
-var prefix = "/system/organ"
+var preUrl = "/system/organ"
 $(function() {
 	load();
 });
@@ -14,7 +14,7 @@ function load() {
                 code : 'organid',
                 parentCode : 'organpid',
                 type : "GET", // 请求数据的ajax类型
-                url : prefix + '/list', // 请求数据的ajax的url
+                url : preUrl + '/list', // 请求数据的ajax的url
                 ajaxParams : query, // 请求数据的ajax的data属性
                 expandColumn : '2', // 在哪一列上面显示展开按钮
                 striped : true, // 是否各行渐变色
@@ -110,7 +110,7 @@ function add() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/add' // iframe的url
+		content : preUrl + '/add' // iframe的url
 	});
 }
 function edit() {
@@ -125,7 +125,7 @@ function edit() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
+		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
 function del() {
@@ -138,7 +138,7 @@ function del() {
             return;
         }
 		$.ajax({
-			url : prefix+"/del",
+			url : preUrl+"/del",
 			type : "post",
 			data : {
 				'organid' : id

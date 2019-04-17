@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 
-<head th:include="system/user/include :: header"></head>
+<head th:include="system/employee/include :: header"></head>
 
 <body>
 <div class="animated fadeInRight">
@@ -22,21 +22,21 @@
                     <!--basic info-->
                     <div class="ibox-content tab-pane fade in active"  id="basic_info">
                         <form class="gg-form" role="form" id="basicInfoForm">
-                            <input name="employeeId" type="hidden" th:value="${employeeId.employeeId}"/>
+                            <input name="employeeId" type="hidden" th:value="${employee.employeeId}"/>
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
                                     <span>用户名:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="userName" name="username" th:value="${user.username}"  readonly="true" />
+                                    <input type="text" class="form-control" id="loginName" name="loginName" th:value="${employee.loginName}"  readonly="true" />
                                 </div>
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
                                     <span>姓名:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="realName" name="realname" th:value="${user.realname}"  placeholder="请输入姓名" />
+                                    <input type="text" class="form-control" id="realName" name="realName" th:value="${employee.realName}"  placeholder="请输入姓名" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -46,8 +46,8 @@
                                 </div>
                                 <div class="gg-formDetail">
                                     <div class="radio i-checks">
-                                        <label class="radio-inline" th:each="sex:${sexList}"> <input
-                                                th:field="*{user.sex}" type="radio" name="sex" th:value="${sex.id}" th:text="${sex.name}"/>
+                                        <label class="radio-inline" th:each="sex:${sexList}">
+                                            <input  th:field="*{employee.employeeSex}" type="radio" name="sex" th:value="${sex.id}" th:text="${sex.name}"/>
                                         </label>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                                     <span>出生年月:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="laydate-icon layer-date form-control" id="birth" name="birth" th:value="${user.birth}==null?null:${#dates.format(user.birth,'yyyy-MM-dd')}" placeholder="请选择出生年月"
+                                    <input type="text" class="laydate-icon layer-date form-control" id="birthday" name="birthday" th:value="${employee.birthday}" placeholder="请选择出生年月"
                                            onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     <span>手机:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="phone" name="mobile"  th:value="${user.mobile}" placeholder="请输入手机号" />
+                                    <input type="text" class="form-control" id="phone" name="mobile"  th:value="${employee.mobile}" placeholder="请输入手机号" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -77,7 +77,7 @@
                                     <span>邮箱:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="email" name="email" th:value="${user.email}" placeholder="请输入邮箱" />
+                                    <input type="text" class="form-control" id="email" name="email" th:value="${employee.email}" placeholder="请输入邮箱" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -85,7 +85,7 @@
                                     <em class="gg-star">*</em>
                                     <span>居住地:</span>
                                 </div>
-                                <div class="gg-formDetail gg-font0" data-toggle="distpicker"  th:attr="data-province=${user.province},data-city=${user.city},data-district=${user.district}">
+                                <div class="gg-formDetail gg-font0" data-toggle="distpicker"  th:attr="data-province=${employee.province},data-city=${employee.city},data-district=${employee.district}">
                                     <div class="gg-area">
                                         <select class="form-control" id="province" name="province">
                                         </select>
@@ -106,7 +106,7 @@
                                     <span>联系地址:</span>
                                 </div>
                                 <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="address" name="liveAddress" th:value="${user.liveAddress}" placeholder="请输入居住地址" />
+                                    <input type="text" class="form-control" id="address" name="liveAddress" th:value="${employee.liveAddress}" placeholder="请输入居住地址" />
                                 </div>
                             </div>
                             <div class="gg-formGroup">
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="gg-formDetail">
                                     <div class="checxbox i-checks" >
-                                        <input type="hidden" name="hobby" id="hobby"/>
+                                        <input type="hidden" name="employeehobby" id="employeeHobby"/>
                                         <label th:each="hobby : ${hobbyList}">
                                             <input type="checkbox" class="hobby"  th:value="${hobby.id}" th:text="${hobby.name}" th:checked="${hobby.remarks}=='true'"/>
                                         </label>
@@ -174,7 +174,7 @@
                     <div class="ibox-content tab-pane fade" id="pwd_info">
                         <form class="gg-form" role="form" id="modifyPwd">
                             <a id="logout" class="hidden" href="/logout"></a>
-                            <input type="hidden" name ="userDO.employeeId" th:value="${employee.employeeId}"/>
+                            <input type="hidden" name ="employeeDO.employeeId" th:value="${employee.employeeId}"/>
                             <div class="gg-formGroup">
                                 <div class="gg-formTitle">
                                     <em class="gg-star">*</em>
@@ -217,7 +217,7 @@
         </div>
     </div>
 </div>
-<div th:include="system/user/include :: footer"></div>
+<div th:include="system/employee/include :: footer"></div>
 <script type="text/javascript" src="/js/appjs/system/employee/personal.js"></script>
 </body>
 </html>

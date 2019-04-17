@@ -166,5 +166,7 @@ public class ResourceServiceImpl implements ResourceService {
 	public int batchDel(String[] resourceIds){
 		return resourceDao.batchDel(resourceIds);
 	}
+
+
 	
 }

@@ -4,23 +4,23 @@
 <mapper namespace="com.justdo.system.file.dao.FileDao">
 
 	<select id="get" resultType="com.justdo.system.file.domain.FileDO">
-		select `id`,`type`,`url`,`create_date` from sys_file where id = #{value}
+		select `file_id`,`file_type`,`file_url`,`create_time` from sys_file where file_id = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.file.domain.FileDO">
-		select `id`,`type`,`url`,`create_date` from sys_file
+		select `file_id`,`file_type`,`file_url`,`create_time` from sys_file
         <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="type != null and type != ''"> and type = #{type} </if>
-		  		  <if test="url != null and url != ''"> and url = #{url} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		</where>
+		  		  <if test="fileId != null and fileId != ''"> and file_id = #{fileId} </if>
+		  		  <if test="fileType != null and fileType != ''"> and file_type = #{fileType} </if>
+		  		  <if test="fileUrl != null and fileUrl != ''"> and file_url = #{fileUrl} </if>
+		  		  <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by id desc
+                order by file_id desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
@@ -30,47 +30,45 @@
 	
  	<select id="count" resultType="int">
 		select count(*) from sys_file
-		 <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="type != null and type != ''"> and type = #{type} </if>
-		  		  <if test="url != null and url != ''"> and url = #{url} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		</where>
+		 <where>
+			 <if test="fileId != null and fileId != ''"> and file_id = #{fileId} </if>
+			 <if test="fileType != null and fileType != ''"> and file_type = #{fileType} </if>
+			 <if test="fileUrl != null and fileUrl != ''"> and file_url = #{fileUrl} </if>
+			 <if test="createTime != null and createTime != ''"> and create_time = #{createTime} </if>
+		 </where>
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.system.file.domain.FileDO" useGeneratedKeys="true" keyProperty="id">
 		insert into sys_file
 		(
-			`type`, 
-			`url`, 
-			`create_date`
+			`file_type`,`file_url`,`create_time`
 		)
 		values
 		(
-			#{type}, 
-			#{url}, 
-			#{createDate}
+			#{fileType},
+			#{fileUrl},
+			#{createTime}
 		)
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.system.file.domain.FileDO">
 		update sys_file 
 		<set>
-			<if test="type != null">`type` = #{type}, </if>
-			<if test="url != null">`url` = #{url}, </if>
-			<if test="createDate != null">`create_date` = #{createDate}</if>
+			<if test="fileType != null"> and file_type = #{fileType} </if>
+			<if test="fileUrl != null"> and file_url = #{fileUrl} </if>
+			<if test="createTime != null"> and create_time = #{createTime} </if>
 		</set>
-		where id = #{id}
+		where file_id = #{fileId}
 	</update>
 	
 	<delete id="del">
-		delete from sys_file where id = #{value}
+		delete from sys_file where file_id = #{value}
 	</delete>
 	
 	<delete id="batchDel">
-		delete from sys_file where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
+		delete from sys_file where file_id in
+		<foreach item="fileIds" collection="array" open="(" separator="," close=")">
+			#{fileIds}
 		</foreach>
 	</delete>
 

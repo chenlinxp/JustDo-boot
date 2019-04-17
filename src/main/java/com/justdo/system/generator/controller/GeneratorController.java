@@ -104,6 +104,7 @@ public class GeneratorController {
 	@GetMapping("/edit")
 	public String edit(Model model) {
 		Configuration conf = GeneratorCodeUtils.getConfig();
+
 		Map<String, Object> property = new HashMap<>(16);
 		property.put("author", conf.getProperty("author"));
 		property.put("email", conf.getProperty("email"));

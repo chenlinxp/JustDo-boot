@@ -33,12 +33,11 @@ var load = function () {
                     {
                         field : 'resourceName',
                         title : '资源名称',
-                        width: '20%'
                     },
                     {
                         field : 'resourceIcon',
                         title : '图标',
-                        width : '5%',
+                        width : '50px',
                         formatter: function (item, index) {
                             return item.resourceIcon == null ? ''
                                 : '<i class="' + item.resourceIcon
@@ -48,7 +47,7 @@ var load = function () {
                     {
                         field : 'deskDisplay',
                         title : '桌面显示',
-                        width: '100px',
+                        width: '80px',
                         formatter: function (item, index) {
                             if (item.deskDisplay === 1) {
                                 return '是';
@@ -60,7 +59,7 @@ var load = function () {
                     {
                         field : 'resourceType',
                         title : '资源类型',
-                        width: '100px',
+                        width: '80px',
                         formatter: function (item, index) {
                             if (item.resourceType === 0) {
                                 return '<span class="label label-success">目录</span>';
@@ -108,7 +107,6 @@ var load = function () {
                         align : 'center',
                         valign : 'center',
                         width : '50px'
-
                     },
                     {
                         field : 'createTime',
@@ -125,9 +123,9 @@ var load = function () {
                         field: 'resourceId',
                         align: 'center',
                         valign: 'center',
-                        width : '100px',
+                        width : '150px',
                         formatter: function (item, index) {
-                            var e = '<a class="btn btn-primary btn-sm '
+                            var e = '<a class="btn btn-success btn-sm '
                                 + s_edit_h
                                 + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
                                 + item.resourceId
@@ -171,7 +169,7 @@ function del(id) {
             url: preUrl + "/del",
             type: "post",
             data: {
-                'id': id
+                'resourceId': id
             },
             success: function (data) {
                 if (data.code == 0) {

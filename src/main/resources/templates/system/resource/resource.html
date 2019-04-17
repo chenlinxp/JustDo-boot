@@ -9,12 +9,8 @@
 				<div class="ibox-body">
 					<div role="group" class="t-bar">
 						<button shiro:hasPermission="system:resource:add" type="button"
-								class="btn btn-success" title="在根节点下添加菜单" onclick="add('')">
+								class="btn btn-success" title="在根节点下添加菜单" onclick="add('0')">
 							<i class="fa fa-plus" aria-hidden="true"></i>添加
-						</button>
-						<button shiro:hasPermission="system:resource:batchDel" type="button"
-								class="btn btn-success" onclick="batchDel()">
-							<i class="fa fa-trash" aria-hidden="true"></i>删除
 						</button>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
@@ -40,7 +36,7 @@
 				s_edit_h = '';
 			</script>
 		</div>
-		<div shiro:hasPermission="system:user:del">
+		<div shiro:hasPermission="system:resource:del">
 			<script type="text/javascript">
 				var s_delete_h = '';
 			</script>

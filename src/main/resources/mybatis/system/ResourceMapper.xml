@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.resource.dao.ResourceDao">
 
 	<select id="get" resultType="com.justdo.system.resource.domain.ResourceDO">
-		select  `RESOURCE_ID`, `PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource where RESOURCE_ID = #{value}
+		select  `RESOURCE_ID`, `PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource where RESOURCE_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.resource.domain.ResourceDO">
-		select  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource
+		select  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource
         <where>  
 		  <if test="parentId != null and parentId != ''"> and PARENT_ID = #{parentId} </if>
 		  <if test="resourceName != null and resourceName != ''"> and RESOURCE_NAME = #{resourceName} </if>
@@ -16,6 +16,7 @@
 		  <if test="resourcePermission != null and resourcePermission != ''"> and RESOURCE_PERMISSION = #{resourcePermission} </if>
 		  <if test="resourceType != null and resourceType != ''"> and RESOURCE_TYPE = #{resourceType} </if>
 		  <if test="resourceIcon != null and resourceIcon != ''"> and RESOURCE_ICON = #{resourceIcon} </if>
+          <if test="deskDisplay != null and deskDisplay != ''">and DESK_DISPLAY = #{deskDisplay} </if>
 		  <if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
 		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
 		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
@@ -42,6 +43,7 @@
 		  <if test="resourcePermission != null and resourcePermission != ''"> and RESOURCE_PERMISSION = #{resourcePermission} </if>
 		  <if test="resourceType != null and resourceType != ''"> and RESOURCE_TYPE = #{resourceType} </if>
 		  <if test="resourceIcon != null and resourceIcon != ''"> and RESOURCE_ICON = #{resourceIcon} </if>
+		  <if test="deskDisplay != null and deskDisplay != ''">and DESK_DISPLAY = #{deskDisplay} </if>
 		  <if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
 		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
 		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
@@ -61,6 +63,7 @@
 		    `RESOURCE_PERMISSION`,
 		    `RESOURCE_TYPE`,
 		    `RESOURCE_ICON`,
+		    `DESK_DISPLAY`,
 		    `ORDER_NUM`,
 		    `CREATE_TIME`,
 		    `MODIFY_TIME`
@@ -74,6 +77,7 @@
 		   #{resourcePermission},
 		   #{resourceType},
 		   #{resourceIcon},
+	       #{deskDisplay},
 		   #{orderNum},
 		   #{createTime},
 		   #{modifyTime}
@@ -89,6 +93,7 @@
 			<if test="resourcePermission != null">`RESOURCE_PERMISSION` = #{resourcePermission}, </if>
 			<if test="resourceType != null">`RESOURCE_TYPE` = #{resourceType}, </if>
 			<if test="resourceIcon != null">`RESOURCE_ICON` = #{resourceIcon}, </if>
+			<if test="deskDisplay != null">`DESK_DISPLAY` = #{deskDisplay}, </if>
 			<if test="orderNum != null">`ORDER_NUM` = #{orderNum}, </if>
 			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
 			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}</if>
@@ -113,7 +118,7 @@
 		PARENT_ID,
 		RESOURCE_NAME,
 		RESOURCE_URL,
-		RESOURCE_PERMISSION,`RESOURCE_TYPE`,RESOURCE_ICON,ORDER_NUM,CREATE_TIME, MODIFY_TIME
+		RESOURCE_PERMISSION,`RESOURCE_TYPE`,RESOURCE_ICON,DESK_DISPLAY,ORDER_NUM,CREATE_TIME, MODIFY_TIME
 		from sys_resource r
 		left
 		join sys_role_resource rr on r.resource_id = rr.resource_id left join
@@ -133,4 +138,7 @@
 		on rr.role_id = er.role_id where er.employee_id
 		= #{employeeId}
 	</select>
+
+
+
 </mapper>

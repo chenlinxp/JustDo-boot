@@ -24,8 +24,14 @@ public interface EmployeeService {
 	 * @param employeeId
 	 * @return EmployeeDO
 	 */
-		EmployeeDO get(String employeeId);
+	EmployeeDO get(String employeeId);
 
+	/**
+	 * 返回密码盐
+	 * @param loginName
+	 * @return passwordSalt
+	 */
+	String getPasswordSalt(String loginName);
 	/**
 	 * 返回实体list
 	 * @param map

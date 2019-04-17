@@ -50,6 +50,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 		String loginName = (String) token.getPrincipal();
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
+
 		String password = new String((char[]) token.getCredentials());
 
 		EmployeeDao employeeDao = ApplicationContextRegister.getBean(EmployeeDao.class);
@@ -65,11 +66,10 @@ public class EmployeeRealm extends AuthorizingRealm {
 		if (!password.equals(employee.getPassword())) {
 			throw new IncorrectCredentialsException("账号或密码不正确");
 		}
-
-//		// 账号锁定
-//		if (employee.getStatus() == 0) {
-//			throw new LockedAccountException("账号已被锁定,请联系管理员");
-//		}
+		// 账号锁定
+		if (employee.getEmployeeState() == 0) {
+			throw new LockedAccountException("账号已被锁定,请联系管理员");
+		}
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(employee, password, getName());
 		return info;
 	}

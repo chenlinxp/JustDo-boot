@@ -109,6 +109,25 @@ function load() {
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
+function view() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['roleId'];
+    }
+    layer.open({
+        type : 2,
+        title : '查看',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : preUrl + '/view/'+id // iframe的url
+    });
+}
 function add() {
 	// iframe层
 	layer.open({
@@ -129,9 +148,7 @@ function edit() {
         layer.msg("请选择一条数据");
         return;
     }else{
-       console.log(rows);
         id=rows[0]['roleId'];
-        alert(id);
     }
 	layer.open({
 		type : 2,
@@ -149,27 +166,28 @@ function batchDel() {
 		layer.msg("请选择要删除的数据");
 		return;
 	}
-	layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?", {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		var ids = new Array();
-		$.each(rows, function(i, row) {
-			ids[i] = row['roleId'];
-		});
-		$.ajax({
-			type : 'POST',
-			data : {
-				"ids" : ids
-			},
-			url : preUrl + '/batchDel',
-			success : function(r) {
-				if (r.code == 0) {
-					layer.msg(r.msg);
-					reLoad();
-				} else {
-					layer.msg(r.msg);
+	layer.confirm("确认要删除选中的'" + rows.length + "'条数据吗?",
+		{ btn : [ '确定', '取消' ]},
+		function() {
+			var ids = new Array();
+			$.each(rows, function(i, row) {
+				ids[i] = row['roleId'];
+			});
+			$.ajax({
+				type : 'POST',
+				data : {
+					"ids" : ids
+				},
+				url : preUrl + '/batchDel',
+				success : function(r) {
+					if (r.code == 0) {
+						layer.msg(r.msg);
+						reLoad();
+					} else {
+						layer.msg(r.msg);
+					}
 				}
-			}
-		});
-	}, function() {});
+			});
+	    },
+		function() {});
 }
