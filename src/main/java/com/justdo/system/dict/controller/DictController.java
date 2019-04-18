@@ -163,13 +163,11 @@ public class DictController extends BaseController {
 		return "system/dict/add";
 	}
 
+
 	@ResponseBody
-	@GetMapping("/list/{type}")
-	public List<DictContentDO> listByType(@PathVariable("type") String type) {
-		// 查询列表数据
-		Map<String, Object> map = new HashMap<>(16);
-		map.put("type", type);
-		List<DictContentDO> dictList = dictContentService.list(map);
+	@GetMapping("/list/{dictCode}")
+	public List<DictContentDO> listByType(@PathVariable("dictCode") String dictCode) {
+		List<DictContentDO> dictList = dictContentService.listDictByCode(dictCode);
 		return dictList;
 	}
 
@@ -178,7 +176,7 @@ public class DictController extends BaseController {
 	 *数据字典索引的列表
 	 */
 	@GetMapping("/dicttype")
-	@RequiresPermissions("system:dict:dict")
+	@RequiresPermissions("system:dict:list")
 	@ResponseBody
 	public List<DictTypeDO> listDictType(@RequestParam Map<String, Object> params) {
 		return dictTypeService.list(params);
@@ -245,20 +243,18 @@ public class DictController extends BaseController {
 		}
 	}
 	/**
-	 * 删除
+	 * 删除数据索引
 	 */
 	@PostMapping("/deltype")
 	@ResponseBody
 	@RequiresPermissions("system:dict:batchDel")
 	public R deltype(@RequestParam("id") String id) {
-		if(dictContentService.listByType(id).size()==0) {
+		if(dictContentService.listByTypeId(id).size()==0) {
 			dictTypeService.del(id);
 			return R.ok();
 		}else{
 			return R.error("此类型下有数据不能删除");
 		}
 	}
-
-
 
 }

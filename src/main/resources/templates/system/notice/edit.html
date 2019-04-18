@@ -17,7 +17,7 @@
 									<select data-placeholder="--选择类别--" name="type" id="type"
 										class="form-control chosen-select" tabindex="2">
 										<option value="">-- 选择类别 --</option>
-										<option th:each="noticeType : ${noticeTypes}" th:value="${noticeType.value}" th:text="${noticeType.name}" th:if="${noticeType.remarks ==checked}" th:selected="selected"></option>
+										<option th:each="noticeType : ${noticeTypes}" th:value="${noticeType.dccode}" th:text="${noticeType.dcvalue}" th:if="${noticeType.dccode ==notice.type}" th:selected="selected"></option>
 									</select>
 								</div>
 							</div>

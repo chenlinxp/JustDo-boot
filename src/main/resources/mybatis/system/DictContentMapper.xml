@@ -94,4 +94,13 @@
 		</foreach>
 	</delete>
 
+
+	<select id="listDictByCode" resultType="com.justdo.system.dict.domain.DictContentDO">
+		select `DCID`,`DID`,`DCVALUE` ,`DCCODE` from SYS_DICTIONARY_CONTENT
+	    where DCVALID = 1 and  DID in (select `DID` from SYS_DICTIONARY_TYPE  where DCODE = #{value})
+		order by ORDERNO asc
+
+	</select>
+
+
 </mapper>

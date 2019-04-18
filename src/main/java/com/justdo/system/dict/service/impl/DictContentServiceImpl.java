@@ -91,17 +91,15 @@ public class DictContentServiceImpl implements DictContentService {
 //    }
 
     @Override
-    public List<DictContentDO> getSexList() {
-        Map<String, Object> param = new HashMap<>(16);
-        param.put("type", "sex");
-        return dictContentDao.list(param);
+    public List<DictContentDO> listDictByCode(String dcode) {
+        return dictContentDao.listDictByCode(dcode);
     }
 
-    @Override
-    public List<DictContentDO> listByType(String id) {
-        Map<String, Object> param = new HashMap<>(16);
-        param.put("did", id);
-        return dictContentDao.list(param);
-    }
-
+     @Override
+     public List<DictContentDO> listByTypeId(String did)
+     {
+         Map<String, Object> param = new HashMap<>(16);
+         param.put("did", did);
+         return dictContentDao.list(param);
+     }
 }

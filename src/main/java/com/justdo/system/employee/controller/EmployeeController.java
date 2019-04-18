@@ -5,7 +5,7 @@ import com.justdo.common.annotation.Log;
 import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.*;
 import com.justdo.system.dept.domain.DeptDO;
-import com.justdo.system.dict.service.DictService;
+import com.justdo.system.dict.service.DictContentService;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.EmployeeVO;
 import com.justdo.system.employee.service.EmployeeService;
@@ -45,7 +45,7 @@ public class EmployeeController {
 	@Autowired
 	RoleService roleService;
 	@Autowired
-	DictService dictService;
+	DictContentService dictContentService;
 
 
 
@@ -263,8 +263,8 @@ public class EmployeeController {
 	String personal(Model model) {
 		EmployeeDO employeeDO  = employeeService.get(getEmployeeId());
 		model.addAttribute("employee",employeeDO);
-		model.addAttribute("hobbyList",dictService.getHobbyList(employeeDO));
-		model.addAttribute("sexList",dictService.getSexList());
+		model.addAttribute("hobbyList",dictContentService.listDictByCode("hobbyCode"));
+		model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 		return preUrl + "/personal";
 	}
 	@ResponseBody

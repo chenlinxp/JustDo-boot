@@ -1,4 +1,5 @@
-$().ready(function() {
+var preUrl1= "/system/notice"
+$(function() {
 	loadType();
 	validateRule();
 });
@@ -12,7 +13,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/notice/save",
+		url : preUrl1+"/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -48,31 +49,28 @@ function validateRule() {
 		}
 	})
 }
+
 function loadType(){
-	var html = "";
-	$.ajax({
-		url : '/system/dict/list/notice_type',
-		success : function(data) {
-			//加载数据
-			for (var i = 0; i < data.length; i++) {
-				html += '<option value="' + data[i].value + '">' + data[i].name + '</option>'
-			}
-			$(".chosen-select").append(html);
-			$(".chosen-select").chosen({
-				maxHeight : 200
-			});
-			//点击事件
-			$('.chosen-select').on('change', function(e, params) {
-				console.log(params.selected);
-				var opt = {
-					query : {
-						type : params.selected,
-					}
-				}
-				$('#bTable').bootstrapTable('refresh', opt);
-			});
-		}
-	});
+    var html = "";
+    $.ajax({
+        url : '/system/dict/list/noticeCode',
+        success : function(data) {
+            // 加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].dccode + '">' + data[i].dcvalue + '</option>'
+            }
+            $(".chosen-select").append(html);
+            $(".chosen-select").chosen({
+                maxHeight : 200
+            });
+            $(".chosen-select").val($("#Ttype").val());
+            $(".chosen-select").trigger("chosen:updated");
+            // 点击事件
+            $('.chosen-select').on('change', function(e, params) {
+
+            });
+        }
+    });
 }
 
 var openUser = function(){

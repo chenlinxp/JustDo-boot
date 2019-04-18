@@ -78,7 +78,7 @@ public class ResourceController {
 	@GetMapping("/add/{pId}")
 	@RequiresPermissions("system:resource:add")
 	String add(Model model, @PathVariable("pId") String pId){
-		model.addAttribute("pId", pId);
+		model.addAttribute("parentId", pId);
 		if (StringUtils.isNotEmpty(pId)&&!pId.endsWith("0")) {
 			model.addAttribute("pName", resourceService.get(pId).getResourceName());
 		} else {
@@ -117,7 +117,6 @@ public class ResourceController {
 	String edit(@PathVariable("resourceId") String resourceId,Model model){
 		ResourceDO resource = resourceService.get(resourceId);
 		String pId = resource.getParentId();
-		model.addAttribute("pId", pId);
 		if (StringUtils.isNotEmpty(pId)) {
 			model.addAttribute("pName", resourceService.get(pId).getResourceName());
 		} else {

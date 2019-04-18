@@ -1,10 +1,10 @@
 package com.justdo.system.dict.dao;
 
-import java.util.List;
-import java.util.Map;
-
 import com.justdo.system.dict.domain.DictContentDO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -31,5 +31,6 @@ public interface DictContentDao {
 
 	int batchDel(String[] dcids);
 
+	List<DictContentDO> listDictByCode(String dcode);
 }
 

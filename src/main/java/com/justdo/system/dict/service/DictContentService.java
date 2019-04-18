@@ -30,8 +30,19 @@ public interface DictContentService {
 
 	String getName(String type, String value);
 
-	List<DictContentDO> getSexList();
+	/**
+	 * 根据dcode获取数据
+	 *
+	 * @param dcode
+	 * @return
+	 */
+	List<DictContentDO> listDictByCode(String dcode);
 
-	List<DictContentDO> listByType(String id);
+	/**
+	 * 根据did获取数据
+	 * @param did
+	 * @return
+	 */
+	List<DictContentDO> listByTypeId(String did);
 
 }

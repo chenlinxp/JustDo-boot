@@ -9,12 +9,11 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-							<input id="parentId" name="parentId" class="form-control" type="hidden">
+							<input id="parentId" name="parentId" th:value="${parentId}" type="hidden">
 							<div class="form-group">
 								<label class="col-sm-2 control-label">上级菜单：</label>
 								<div class="col-sm-4">
-									<input id="" name="" class="form-control" type="text"
-										   th:value="${pName}" readonly>
+									<input id="pName" name="pName"  type="text" class="form-control"   th:value="${pName}" readonly="readonly">
 								</div>
 								<label class="col-sm-2 control-label">菜单名称：</label>
 								<div class="col-sm-4">

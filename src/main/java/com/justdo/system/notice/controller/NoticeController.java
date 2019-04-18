@@ -71,7 +71,7 @@ public class NoticeController extends BaseController {
 	@RequiresPermissions("system:notice:edit")
 	String edit(@PathVariable("id") String id, Model model) {
 		NoticeDO notice = NoticeService.get(id);
-		List<DictContentDO> dictDOS = dictContentService.listByType("notice_type");
+		List<DictContentDO> dictDOS = dictContentService.listDictByCode("noticeCode");
 		String type = notice.getType();
 		for (DictContentDO dictDO:dictDOS){
 			if(type.equals(dictDO.getDcvalue())){
