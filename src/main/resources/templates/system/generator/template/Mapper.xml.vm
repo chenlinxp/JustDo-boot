@@ -8,8 +8,9 @@
 	</select>
 
 	<select id="list" resultType="${package}.${classnametolower}.domain.${className}DO">
-		select #if($pk.extra != 'auto_increment') `${pk.columnName}`,#end ErrorLogMapper.xml#foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
-        <where>  
+		select #if($pk.extra != 'auto_increment') `${pk.columnName}`,#end #foreach($column in $columns)`$column.columnName`#if($velocityCount != $columns.size()),#end#end from ${tableName}
+        <where>
+			<if test="$pk.attrname != null and $pk.attrname.trim() != ''"> and $pk.columnName != #{$pk.attrname} </if>
 #foreach($column in $columns)
 		  <if test="$column.attrname != null and $column.attrname.trim() != ''"> and $column.columnName = #{$column.attrname} </if>
 #end
