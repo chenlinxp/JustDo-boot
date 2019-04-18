@@ -56,7 +56,7 @@
                             <li><a href="/logout">安全退出</a>
                             </li>
                         </ul>
-                        <div class="logo-element">BootDo</div>
+                        <div class="logo-element">JustDo</div>
                     </div>
                 </li>
                 <li><a href="#"> <i class="fa fa-home"></i> <span
@@ -301,13 +301,13 @@
         connect();
     });
     function connect() {
-        var sock = new SockJS("/endpointChat");
+        var sock = new SockJS("/justdo-websocket");
         var stomp = Stomp.over(sock);
         stomp.connect('guest', 'guest', function(frame) {
             /**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
              *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
              *  */
-            stomp.subscribe("/user/queue/notifications", handleNotification);
+            stomp.subscribe("/justdo/queue/notifications", handleNotification);
             //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
             stomp.subscribe('/topic/getResponse', function (response) {
                 toastr.options = {

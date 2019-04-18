@@ -1,3 +1,4 @@
+var preUrl = "/system/organ"
 $().ready(function() {
 	validateRule();
 });
@@ -11,7 +12,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/organ/save",
+		url : preUrl+"/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -66,7 +67,7 @@ var openOrgan = function(){
         type:2,
         title:"选择机构",
         area : [ '300px', '450px' ],
-        content:"/system/organ/treeView"
+        content:preUrl+"/treeView"
     })
 }
 function loadOrgan( organpid,organpname){

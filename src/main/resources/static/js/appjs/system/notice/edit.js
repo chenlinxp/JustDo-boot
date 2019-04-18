@@ -68,9 +68,22 @@ function loadType(){
 			$(".chosen-select").trigger("chosen:updated");
 			// 点击事件
 			$('.chosen-select').on('change', function(e, params) {
-				
+
 			});
 		}
 	});
 }
 
+var openEmployee= function(){
+    layer.open({
+        type:2,
+        title:"选择人员",
+        area : [ '300px', '450px' ],
+        content:"/system/employee/treeView"
+    })
+}
+
+function loadEmployee(employeeIds,employeeNames){
+    $("#employeeIds").val(employeeIds);
+    $("#employeeNames").val(employeeNames);
+}

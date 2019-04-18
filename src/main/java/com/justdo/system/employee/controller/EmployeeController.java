@@ -256,7 +256,7 @@ public class EmployeeController {
 
 	@GetMapping("/treeView")
 	String treeView() {
-		return  preUrl + "/userTree";
+		return  preUrl + "/employeeTree";
 	}
 
 	@GetMapping("/personal")

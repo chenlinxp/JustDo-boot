@@ -73,7 +73,7 @@ function loadType(){
     });
 }
 
-var openUser = function(){
+var openEmployee= function(){
 	layer.open({
 		type:2,
 		title:"选择人员",
@@ -82,7 +82,7 @@ var openUser = function(){
 	})
 }
 
-function loadUser(userIds,userNames){
-	$("#userIds").val(userIds);
-	$("#userNames").val(userNames);
+function loadEmployee(employeeIds,employeeNames){
+	$("#employeeIds").val(employeeIds);
+	$("#employeeNames").val(employeeNames);
 }

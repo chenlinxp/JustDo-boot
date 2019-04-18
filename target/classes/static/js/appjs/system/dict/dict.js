@@ -1,5 +1,5 @@
 
-var prefix = "/system/dict"
+var preUrl = "/system/dict"
 $(function() {
     $('#searchDName').bind('keypress',function(event){
         if(event.keyCode == "13") {
@@ -11,7 +11,7 @@ $(function() {
 function selectLoad() {
 	var html = "";
 	$.ajax({
-		url : '/system/dict/type',
+		url : preUrl+'/type',
 		success : function(data) {
 			//加载数据
 			for (var i = 0; i < data.length; i++) {
@@ -38,7 +38,7 @@ function dictTypeLoad() {
     var html = "";
     var dname =$('#searchDName').val();
     $.ajax({
-        url : '/system/dict/dicttype',
+        url : preUrl+'/dicttype',
 		data : {  "dname" : dname },
         success : function(data) {
             //加载数据
@@ -71,7 +71,7 @@ function load() {
         .bootstrapTable(
             {
                 method : 'get', // 服务器数据的请求方式 get or post
-                url : prefix + "/list", // 服务器数据的加载地址
+                url : preUrl+ "/list", // 服务器数据的加载地址
                 showRefresh : true,
                 //	showToggle : true,
                 //	showColumns : true,
@@ -184,7 +184,7 @@ function view(id) {
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
-        content : prefix + '/view/'+id // iframe的url
+        content : preUrl+'/view/'+id // iframe的url
     });
 }
 function add() {
@@ -199,7 +199,7 @@ function add() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/add/'+id// iframe的url
+		content : preUrl+'/add/'+id// iframe的url
 	});
 }
 function edit() {
@@ -218,7 +218,7 @@ function edit() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
+		content : preUrl+ '/edit/' + id // iframe的url
 	});
 }
 function batchDel() {
@@ -242,7 +242,7 @@ function batchDel() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchDel',
+			url : preUrl+'/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);
@@ -263,7 +263,7 @@ function addDict() {
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '500px', '400px' ],
-        content : '/system/dict/addtype' // iframe的url
+        content : preUrl+'/addtype' // iframe的url
     });
 }
 
@@ -280,7 +280,7 @@ function editDict() {
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '500px', '400px' ],
-        content : '/system/dict/edittype/'+id // iframe的url
+        content : preUrl+'/edittype/'+id // iframe的url
     });
 }
 
@@ -299,7 +299,7 @@ function delDict() {
             data : {
                 "id" : id
             },
-            url : prefix + '/deltype',
+            url : preUrl+'/deltype',
             success : function(r) {
                 if (r.code == 0) {
                     layer.msg(r.msg);

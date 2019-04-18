@@ -114,8 +114,10 @@ public class DictController extends BaseController {
 	@RequiresPermissions("system:dict:edit")
 	public R update(DictContentDO dictContent) {
 		Map<String, Object> map = new HashMap<>(16);
+		map.put("dcid",dictContent.getDcid());
 		map.put("dccode",dictContent.getDccode());
 		map.put("did",dictContent.getDid());
+
 		List<DictContentDO> dictContentList = dictContentService.list(map);
 		if(dictContentList.size()>=1){
 			return R.error("此字典编码重复，请重新输入！");
@@ -229,6 +231,7 @@ public class DictController extends BaseController {
 	public R edittype(DictTypeDO dicttype) {
 
 		Map<String, Object> map = new HashMap<>(16);
+		map.put("did",dicttype.getDid());
 		map.put("dcode",dicttype.getDcode());
 		List<DictTypeDO> dictTypeDOList = dictTypeService.list(map);
 		if(dictTypeDOList.size()>1){
