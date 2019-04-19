@@ -137,6 +137,7 @@ public class EmployeeController {
 		model.addAttribute("employee", employee);
 		List<RoleDO> roles = roleService.list(employeeId);
 		model.addAttribute("roles", roles);
+		model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 	    return preUrl + "/edit";
 	}
 	
@@ -151,6 +152,7 @@ public class EmployeeController {
 	@PostMapping("/update")
 	@RequiresPermissions("system:employee:edit")
 	public R update( EmployeeDO employee){
+		employee.setModifyTime(new Date());
 		if(employeeService.update(employee)>0){
 			return R.ok();
 		}
@@ -195,7 +197,7 @@ public class EmployeeController {
 	@PostMapping("/updatePeronal")
 	@ResponseBody
 	R updatePeronal(EmployeeDO employeeDO) {
-
+		employeeDO.setModifyTime(new Date());
 		if (employeeService.updatePersonal(employeeDO) > 0) {
 			return R.ok();
 		}
@@ -267,6 +269,8 @@ public class EmployeeController {
 		model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 		return preUrl + "/personal";
 	}
+
+	@Log("员工头像设置")
 	@ResponseBody
 	@PostMapping("/uploadImg")
 	R uploadImg(@RequestParam("avatar_file") MultipartFile file, String avatar_data, HttpServletRequest request) {

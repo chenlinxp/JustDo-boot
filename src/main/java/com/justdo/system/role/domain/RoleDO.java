@@ -2,7 +2,7 @@ package com.justdo.system.role.domain;
 
 import com.justdo.common.domain.BaseBean;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,49 +24,66 @@ public class RoleDO extends BaseBean {
 	//备注
 	private String remark;
 	//创建用户id
-	private Long createEmployeeId;
+	private String createEmployeeId;
 	//创建时间
-	private Timestamp createTime;
+	private Date createTime;
 	//创建时间
-	private Timestamp modifyTime;
+	private Date modifyTime;
 
 	private List<String> resourceIds;
 
-	public  String         getRoleId() {
+	public  String     getRoleId() {
 		return roleId;
-	}public void         setRoleId(String roleId) {
+	}
+	public void         setRoleId(String roleId) {
 		this.roleId = roleId;
-	}public String       getRoleName() {
+	}
+	public String       getRoleName() {
 		return roleName;
-	}public void         setRoleName(String roleName) {
+	}
+	public void         setRoleName(String roleName) {
 		this.roleName = roleName;
-	}public String       getRoleSign() {
+	}
+	public String       getRoleSign() {
 		return roleSign;
-	}public void         setRoleSign(String roleSign) {
+	}
+	public void         setRoleSign(String roleSign) {
 		this.roleSign = roleSign;
-	}public Integer      getRoleState() {
+	}
+	public Integer      getRoleState() {
 		return roleState;
-	}public void         setRoleState(Integer roleState) {
+	}
+	public void         setRoleState(Integer roleState) {
 		this.roleState = roleState;
-	}public String       getRemark() {
+	}
+	public String       getRemark() {
 		return remark;
-	}public void         setRemark(String remark) {
+	}
+	public void         setRemark(String remark) {
 		this.remark = remark;
-	}public Long         getCreateEmployeeId() {
+	}
+	public String         getCreateEmployeeId() {
 		return createEmployeeId;
-	}public void         setCreateEmployeeId(Long createEmployeeId) {
+	}
+	public void         setCreateEmployeeId(String createEmployeeId) {
 		this.createEmployeeId = createEmployeeId;
-	}public Timestamp    getCreateTime() {
+	}
+	public Date    getCreateTime() {
 		return createTime;
-	}public void         setCreateTime(Timestamp createTime) {
+	}
+	public void         setCreateTime(Date createTime) {
 		this.createTime = createTime;
-	}public Timestamp    getModifyTime() {
+	}
+	public Date    getModifyTime() {
 		return modifyTime;
-	}public void         setModifyTime(Timestamp modifyTime) {
+	}
+	public void         setModifyTime(Date modifyTime) {
 		this.modifyTime = modifyTime;
-	}public List<String> getResourceIds() {
+	}
+	public List<String> getResourceIds() {
 		return resourceIds;
-	}public void         setResourceIds(List<String> resourceIds) {
+	}
+	public void         setResourceIds(List<String> resourceIds) {
 		this.resourceIds = resourceIds;
 	}
 

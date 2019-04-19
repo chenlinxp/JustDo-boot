@@ -1,6 +1,7 @@
 package com.justdo.system.dict.controller;
 
 
+import com.justdo.common.annotation.Log;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
@@ -49,6 +50,7 @@ public class DictController extends BaseController {
 		return "system/dict/dict";
 	}
 
+	@Log("数据字典列表")
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("system:dict:list")
@@ -71,6 +73,7 @@ public class DictController extends BaseController {
 	/**
 	 * 保存
 	 */
+	@Log("增加字典内容")
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("system:dict:add")
@@ -83,7 +86,7 @@ public class DictController extends BaseController {
 			if (dictContentService.save(dictContent) > 0) {
 				return R.ok();
 			}else {
-				return R.error();
+				return R.error("增加字典内容失败！");
 			}
 		}else {
 			return R.error("此字典编码重复，请重新输入！");
@@ -99,7 +102,7 @@ public class DictController extends BaseController {
 	}
 
 	@GetMapping("/view/{id}")
-	@RequiresPermissions("system:dict:dict")
+	@RequiresPermissions("system:dict:info")
 	String view(@PathVariable("id") String id, Model model) {
 		DictContentDO dictContent = dictContentService.get(id);
 		model.addAttribute("dictContent", dictContent);
@@ -109,6 +112,7 @@ public class DictController extends BaseController {
 	/**
 	 * 修改
 	 */
+	@Log("编辑字典内容")
 	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("system:dict:edit")
@@ -125,7 +129,7 @@ public class DictController extends BaseController {
 			if (dictContentService.update(dictContent) > 0) {
 				return R.ok();
 			}else {
-				return R.error();
+				return R.error("更新字典内容失败！");
 			}
 		}
 
@@ -134,6 +138,7 @@ public class DictController extends BaseController {
 	/**
 	 * 删除
 	 */
+	@Log("删除字典内容")
 	@PostMapping("/del")
 	@ResponseBody
 	@RequiresPermissions("system:dict:del")
@@ -141,31 +146,29 @@ public class DictController extends BaseController {
 		if (dictContentService.del(id) > 0) {
 			return R.ok();
 		}
-		return R.error();
+		return R.error("删除字典内容失败！");
 	}
 
 	/**
 	 * 删除
 	 */
+	@Log("批量删除字典内容")
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:dict:batchDel")
 	public R del(@RequestParam("ids[]") String[] ids) {
-		dictContentService.batchDel(ids);
-		return R.ok();
-	}
-
-	// 类别已经指定增加
-	@GetMapping("/add/{type}/{description}")
-	@RequiresPermissions("system:dict:add")
-	String addD(Model model, @PathVariable("type") String type, @PathVariable("description") String description) {
-
-		model.addAttribute("type", type);
-		model.addAttribute("description", description);
-		return "system/dict/add";
+		if (dictContentService.batchDel(ids)> 0) {
+			return R.ok();
+		}
+		return R.ok("批量删除字典内容失败！");
 	}
 
 
+	/**
+	 * 根据字典索引编码获取字典列
+	 * @param dictCode
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/list/{dictCode}")
 	public List<DictContentDO> listByType(@PathVariable("dictCode") String dictCode) {
@@ -193,6 +196,7 @@ public class DictController extends BaseController {
 	/**
 	 * 保存数据字典索引
 	 */
+	@Log("增加字典索引")
 	@ResponseBody
 	@PostMapping("/savetype")
 	@RequiresPermissions("system:dict:add")
@@ -205,7 +209,7 @@ public class DictController extends BaseController {
 		if (dictTypeService.save(dicttype) > 0) {
 			return R.ok();
 			}else{
-				return R.error();
+				return R.error("增加字典索引失败！");
 			}
 		}
 		else{
@@ -225,6 +229,7 @@ public class DictController extends BaseController {
 	/**
 	 * 更新数据字典索引
 	 */
+	@Log("编辑字典索引")
 	@ResponseBody
 	@PostMapping("/updatetype")
 	@RequiresPermissions("system:dict:edit")
@@ -241,20 +246,24 @@ public class DictController extends BaseController {
 			if (dictTypeService.update(dicttype) > 0) {
 				return R.ok();
 			}else{
-				return R.error();
+				return R.error("更新字典索引失败！");
 			}
 		}
 	}
 	/**
 	 * 删除数据索引
 	 */
+	@Log("删除字典索引")
 	@PostMapping("/deltype")
 	@ResponseBody
 	@RequiresPermissions("system:dict:batchDel")
 	public R deltype(@RequestParam("id") String id) {
 		if(dictContentService.listByTypeId(id).size()==0) {
-			dictTypeService.del(id);
-			return R.ok();
+			if (dictTypeService.del(id) > 0) {
+				return R.ok();
+			}else{
+				return R.error("删除字典索引失败！");
+			}
 		}else{
 			return R.error("此类型下有数据不能删除");
 		}

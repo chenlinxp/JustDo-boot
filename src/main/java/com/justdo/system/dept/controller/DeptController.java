@@ -33,7 +33,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/system/dept")
 public class DeptController extends BaseController {
-	private String prefix = "system/dept";
+	
+	private String preUrl = "system/dept";
 	@Autowired
 	private DeptService deptService;
 	@Autowired
@@ -41,10 +42,11 @@ public class DeptController extends BaseController {
 	@GetMapping()
 	@RequiresPermissions("system:dept:list")
 	String dept() {
-		return prefix + "/dept";
+		return preUrl + "/dept";
 	}
 
 	@ApiOperation(value="获取部门列表", notes="")
+	@Log("部门列表")
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("system:dept:list")
@@ -63,13 +65,13 @@ public class DeptController extends BaseController {
 		} else {
 			model.addAttribute("deptpname", "总部门");
 		}
-		return  prefix + "/add";
+		return  preUrl + "/add";
 	}
 
 	@GetMapping("/add")
 	@RequiresPermissions("system:dept:add")
 	String add(Model model) {
-		return  prefix + "/add";
+		return  preUrl + "/add";
 	}
 
 	@GetMapping("/edit/{deptId}")
@@ -91,7 +93,7 @@ public class DeptController extends BaseController {
 		}
 
 		model.addAttribute("dept", dept);
-		return  prefix + "/edit";
+		return  preUrl + "/edit";
 	}
 
 	/**
@@ -105,13 +107,13 @@ public class DeptController extends BaseController {
 		if (deptService.save(dept) > 0) {
 			return R.ok();
 		}
-		return R.error();
+		return R.error("新增部门失败！");
 	}
 
 	/**
 	 * 修改部门
 	 */
-	@Log("修改部门")
+	@Log("编辑部门")
 	@ResponseBody
 	@RequestMapping("/update")
 	@RequiresPermissions("system:dept:edit")
@@ -119,7 +121,7 @@ public class DeptController extends BaseController {
 		if (deptService.update(dept) > 0) {
 			return R.ok();
 		}
-		return R.error();
+		return R.error("更新部门失败！");
 	}
 
 	/**
@@ -142,19 +144,21 @@ public class DeptController extends BaseController {
 		}else {
 			return R.error(1, "部门包含用户,不允许修改！");
 		}
-		return R.error();
+		return R.error(1,"删除部门失败");
 	}
 
 	/**
 	 * 批量删除部门
 	 */
-	@Log("删除部门")
+	@Log("批量删除部门")
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:dept:batchDel")
 	public R remove(@RequestParam("ids[]") String[] deptIds) {
-		deptService.batchDel(deptIds);
-		return R.ok();
+		if (deptService.batchDel(deptIds)>0) {
+			return R.ok();
+			}
+		return R.error(1,"批量删除部门失败");
 	}
 
 	@GetMapping("/tree")
@@ -167,7 +171,7 @@ public class DeptController extends BaseController {
 
 	@GetMapping("/treeView")
 	String treeView() {
-		return  prefix + "/deptTree";
+		return  preUrl + "/deptTree";
 	}
 
 }

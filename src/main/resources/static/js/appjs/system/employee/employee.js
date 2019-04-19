@@ -90,7 +90,7 @@ function load(deptId) {
                     },
                     {
                         field : 'loginName',
-                        title : '登录名'
+                        title : '账号名称'
                     },
 					{
 						field : 'email',
@@ -98,7 +98,7 @@ function load(deptId) {
 					},
 					{
 						field : 'employeeState',
-						title : '状态',
+						title : '账号状态',
 						align : 'center',
 						formatter : function(value, row, index) {
 							if (value == '0') {

@@ -60,7 +60,7 @@ function load() {
 									field : 'SerialNumber',
 									title : '序号',
 									align : 'center',
-									width : '30px',
+									width : '50px',
 									formatter: function (value ,row ,index){
 										var pageNumber=$('#bTable').bootstrapTable("getOptions").pageNumber;
 										var pageSize=$('#bTable').bootstrapTable("getOptions").pageSize;
@@ -78,6 +78,7 @@ function load() {
 								{
 									field : 'roleState',
 									title : '角色状态',
+                                    width : '50px',
                                     formatter : function(value, row, index) {
                                         if (value == '1') {
                                             return '<span class="label label-primary">正常</span>';

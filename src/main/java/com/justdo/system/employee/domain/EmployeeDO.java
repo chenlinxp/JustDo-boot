@@ -39,7 +39,7 @@ public class EmployeeDO extends BaseBean {
 	//手机号
 	private String mobile;
 	//状态 0:禁用，1:正常
-	private int employeeState;
+	private Integer employeeState;
 	//创建用户id
 	private String createEmployeeId;
 	//创建时间
@@ -47,7 +47,7 @@ public class EmployeeDO extends BaseBean {
 	//修改时间
 	private Date modifyTime;
 	//性别
-	private int employeeSex;
+	private Integer employeeSex;
 	//出身日期
 	private String birthday;
 	//照片ID
@@ -69,7 +69,7 @@ public class EmployeeDO extends BaseBean {
 	 * 构造方法
 	 */
 	public EmployeeDO(){ }
-	public EmployeeDO(String EmployeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,Long CreateEmployeeId,Date CreateTime,Date ModifyTime,int EmployeeSex,String Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
+	public EmployeeDO(String EmployeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,String CreateEmployeeId,Date CreateTime,Date ModifyTime,Integer EmployeeSex,String Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
 		super();
 		this.employeeNumber= employeeNumber;
 		this.loginName= loginName;
@@ -231,13 +231,13 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：状态 0:禁用，1:正常
 	 */
-	public void setEmployeeState(int employeeState) {
+	public void setEmployeeState(Integer employeeState) {
 		this.employeeState = employeeState;
 	}
 	/**
 	 * 获取：状态 0:禁用，1:正常
 	 */
-	public int getEmployeeState() {
+	public Integer getEmployeeState() {
 		return employeeState;
 	}
 	/**
@@ -279,13 +279,13 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：性别
 	 */
-	public void setEmployeeSex(int employeeSex) {
+	public void setEmployeeSex(Integer employeeSex) {
 		this.employeeSex = employeeSex;
 	}
 	/**
 	 * 获取：性别
 	 */
-	public int getEmployeeSex() {
+	public Integer getEmployeeSex() {
 		return employeeSex;
 	}
 	/**

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,6 +35,7 @@ public class RoleController extends BaseController {
 		return preUrl + "/role";
 	}
 
+	@Log("角色列表")
 	@RequiresPermissions("system:role:list")
 	@GetMapping("/list")
 	@ResponseBody()
@@ -58,15 +60,18 @@ public class RoleController extends BaseController {
 		return preUrl + "/edit";
 	}
 
-	@Log("保存角色")
+	@Log("新增角色")
 	@RequiresPermissions("system:role:add")
 	@PostMapping("/save")
 	@ResponseBody()
 	R save(RoleDO role) {
+		Date nowdate =	new Date();
+		role.setCreateTime(nowdate);
+		role.setModifyTime(nowdate);
 		if (roleService.save(role) > 0) {
 			return R.ok();
 		} else {
-			return R.error(1, "保存失败");
+			return R.error(1, "新增角色失败");
 		}
 	}
 
@@ -75,10 +80,11 @@ public class RoleController extends BaseController {
 	@PostMapping("/update")
 	@ResponseBody()
 	R update(RoleDO role) {
+		role.setModifyTime(new Date());
 		if (roleService.update(role) > 0) {
 			return R.ok();
 		} else {
-			return R.error(1, "保存失败");
+			return R.error(1, "更新角色失败");
 		}
 	}
 
@@ -90,7 +96,7 @@ public class RoleController extends BaseController {
 		if (roleService.del(id) > 0) {
 			return R.ok();
 		} else {
-			return R.error(1, "删除失败");
+			return R.error(1, "删除角色失败");
 		}
 	}
 	
@@ -103,6 +109,6 @@ public class RoleController extends BaseController {
 		if (r > 0) {
 			return R.ok();
 		}
-		return R.error();
+		return R.error(1, "批量删除角色失败");
 	}
 }

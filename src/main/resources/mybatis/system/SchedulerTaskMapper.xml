@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.quartzjob.dao.QuartzJobDao">
 
 	<select id="get" resultType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
-		select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from sys_task where id = #{value}
+		select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from SYS_SCHEDULER_TASK where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
-		select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from sys_task
+		select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from SYS_SCHEDULER_TASK
         <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="cronExpression != null and cronExpression != ''"> and cron_expression = #{cronExpression} </if>
@@ -39,7 +39,7 @@
 	</select>
 	
  	<select id="count" resultType="int">
-		select count(*) from sys_task
+		select count(*) from SYS_SCHEDULER_TASK
 		 <where>  
 		  		  <if test="id != null and id != ''"> and id = #{id} </if>
 		  		  <if test="cronExpression != null and cronExpression != ''"> and cron_expression = #{cronExpression} </if>
@@ -59,7 +59,7 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO" useGeneratedKeys="true" keyProperty="id">
-		insert into sys_task
+		insert into SYS_SCHEDULER_TASK
 		(
 			`cron_expression`, 
 			`method_name`, 
@@ -94,7 +94,7 @@
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
-		update sys_task 
+		update SYS_SCHEDULER_TASK 
 		<set>
 			<if test="cronExpression != null">`cron_expression` = #{cronExpression}, </if>
 			<if test="methodName != null">`method_name` = #{methodName}, </if>
@@ -114,11 +114,11 @@
 	</update>
 	
 	<delete id="del">
-		delete from sys_task where id = #{value}
+		delete from SYS_SCHEDULER_TASK where id = #{value}
 	</delete>
 	
 	<delete id="batchDel">
-		delete from sys_task where id in 
+		delete from SYS_SCHEDULER_TASK where id in 
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

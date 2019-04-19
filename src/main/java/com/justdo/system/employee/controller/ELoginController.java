@@ -102,6 +102,7 @@ public class ELoginController extends BaseController {
 		}
 	}
 
+	@Log("退出")
 	@GetMapping("/logout")
 	String logout() {
 		ShiroUtils.logout();

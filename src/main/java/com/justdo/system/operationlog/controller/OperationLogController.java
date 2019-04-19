@@ -68,7 +68,7 @@ public class OperationLogController {
 	 * @return 详情页面路径
 	 */
 	@GetMapping("/view/{id}")
-	@RequiresPermissions("system:operationLog:edit")
+	@RequiresPermissions("system:operationLog:info")
 	String view(@PathVariable("id") String id,Model model){
 		OperationLogDO operationLog = operationLogService.get(id);
 		model.addAttribute("operationLog", operationLog);

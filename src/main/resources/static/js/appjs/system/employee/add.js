@@ -118,6 +118,6 @@ var openDept = function(){
 	})
 }
 function loadDept( deptId,deptName){
-	$("#deptId").val(deptId);
+	$("#deptmentId").val(deptId);
 	$("#deptName").val(deptName);
 }

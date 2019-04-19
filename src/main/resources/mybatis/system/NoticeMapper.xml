@@ -6,13 +6,13 @@
 	<select id="get" resultType="com.justdo.system.notice.domain.NoticeDO">
 		select
 		`id`,`type`,`title`,`content`,`files`,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from oa_notice where id = #{value}
+		from SYS_NOTICE where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.notice.domain.NoticeDO">
 		select
 		`id`,`type`,`title`,`content`,`files`,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from oa_notice
+		from SYS_NOTICE
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
 			<if test="type != null and type != ''"> and type = #{type} </if>
@@ -41,7 +41,7 @@
 	</select>
 
 	<select id="count" resultType="int">
-		select count(*) from oa_notice
+		select count(*) from SYS_NOTICE
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
 			<if test="type != null and type != ''"> and type = #{type} </if>
@@ -60,7 +60,7 @@
 
 	<insert id="save" parameterType="com.justdo.system.notice.domain.NoticeDO"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into oa_notice
+		insert into SYS_NOTICE
 		(
 		`type`,
 		`title`,
@@ -91,7 +91,7 @@
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.notice.domain.NoticeDO">
-		update oa_notice
+		update SYS_NOTICE
 		<set>
 			<if test="type != null">`type` = #{type}, </if>
 			<if test="title != null">`title` = #{title}, </if>
@@ -109,11 +109,11 @@
 	</update>
 
 	<delete id="del">
-		delete from oa_notice where id = #{value}
+		delete from SYS_NOTICE where id = #{value}
 	</delete>
 
 	<delete id="batchDel">
-		delete from oa_notice where id in
+		delete from SYS_NOTICE where id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
 			#{id}
@@ -123,7 +123,7 @@
 	<select id="listByIds" resultType="com.justdo.system.notice.domain.NoticeDO">
 		select
 		`id`,`type`,`title`,`content`,`files`,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from oa_notice where id in
+		from SYS_NOTICE where id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
 			#{id}
@@ -134,7 +134,7 @@
 	<select id="countDTO" resultType="int">
 		select count(*)
 		from
-		oa_notice_record r right JOIN oa_notice n on r.notice_id
+		oa_notice_record r right JOIN SYS_NOTICE n on r.notice_id
 		= n.id where
 		r.user_id =#{userId} and
 		r.is_read = #{isRead}
@@ -143,7 +143,7 @@
 	<select id="listDTO" resultType="com.justdo.system.notice.domain.NoticeDTO">
 		select DISTINCT
 		n.id ,`type`,`title`,`content`,`files`,r.is_read,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from oa_notice_record r right JOIN oa_notice n on r.notice_id = n.id
+		from oa_notice_record r right JOIN SYS_NOTICE n on r.notice_id = n.id
 		<where>
 			<if test="id != null and id != ''"> and r.id = #{id} </if>
 			<if test="noticeId != null and noticeId != ''"> and r.notice_id = #{noticeId} </if>

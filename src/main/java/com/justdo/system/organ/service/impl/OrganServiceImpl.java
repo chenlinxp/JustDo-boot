@@ -56,21 +56,25 @@ public class OrganServiceImpl implements OrganService {
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int save(OrganDO organ){
 		return organDao.save(organ);
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(OrganDO organ){
 		return organDao.update(organ);
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int del(String organid){
 		return organDao.del(organid);
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int batchDel(String[] organids){
 		return organDao.batchDel(organids);
 	}

@@ -11,7 +11,7 @@
 		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log
         <where>  
 		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
-		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
+		  <if test="userName != null and userName != ''"> and USER_NAME like concat('%',#{userName},'%') </if>
 		  <if test="exceptionContent != null and exceptionContent != ''"> and EXCEPTION_CONTENT = #{exceptionContent} </if>
 		  <if test="exceptionState != null and exceptionState != ''"> and EXCEPTION_STATE = #{exceptionState} </if>
 		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>

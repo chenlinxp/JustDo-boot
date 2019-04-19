@@ -64,21 +64,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int save(EmployeeDO employee){
 		return employeeDao.save(employee);
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(EmployeeDO employee){
 		return employeeDao.update(employee);
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int del(String employeeId){
 		return employeeDao.del(employeeId);
 	}
 	
 	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int batchDel(String[] employeeIds){
 		return employeeDao.batchDel(employeeIds);
 	}

@@ -5,13 +5,13 @@
 
 	<select id="get" resultType="com.justdo.system.notice.domain.NoticeRecordDO">
 		select
-		`id`,`notice_id`,`user_id`,`is_read`,`read_date` from oa_notice_record
+		`id`,`notice_id`,`user_id`,`is_read`,`read_date` from SYS_NOTICE_RECORD
 		where id = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.notice.domain.NoticeRecordDO">
 		select `id`,`notice_id`,`user_id`,`is_read`,`read_date` from
-		oa_notice_record
+		SYS_NOTICE_RECORD
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
 			<if test="noticeId != null and noticeId != ''"> and notice_id = #{noticeId} </if>
@@ -33,7 +33,7 @@
 	</select>
 
 	<select id="count" resultType="int">
-		select count(*) from oa_notice_record
+		select count(*) from SYS_NOTICE_RECORD
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
 			<if test="noticeId != null and noticeId != ''"> and notice_id = #{noticeId} </if>
@@ -45,7 +45,7 @@
 
 	<insert id="save" parameterType="com.justdo.system.notice.domain.NoticeRecordDO"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into oa_notice_record
+		insert into SYS_NOTICE_RECORD
 		(
 		`notice_id`,
 		`user_id`,
@@ -62,7 +62,7 @@
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.notice.domain.NoticeRecordDO">
-		update oa_notice_record
+		update SYS_NOTICE_RECORD
 		<set>
 			<if test="noticeId != null">`notice_id` = #{noticeId}, </if>
 			<if test="userId != null">`user_id` = #{userId}, </if>
@@ -73,11 +73,11 @@
 	</update>
 
 	<delete id="remove">
-		delete from oa_notice_record where id = #{value}
+		delete from SYS_NOTICE_RECORD where id = #{value}
 	</delete>
 
 	<delete id="batchRemove">
-		delete from oa_notice_record where id in
+		delete from SYS_NOTICE_RECORD where id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
 			#{id}
@@ -87,7 +87,7 @@
 
 	<insert id="batchSave" parameterType="com.justdo.system.notice.domain.NoticeRecordDO"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into oa_notice_record
+		insert into SYS_NOTICE_RECORD
 		(
 		`notice_id`,
 		`user_id`,
@@ -107,7 +107,7 @@
 	</insert>
 
 	<select id="listNoticeIds" resultType="String">
-		select distinct notice_id from oa_notice_record
+		select distinct notice_id from SYS_NOTICE_RECORD
 		<where>
 			<if test="id != null and id != ''"> and id = #{id} </if>
 			<if test="noticeId != null and noticeId != ''"> and notice_id = #{noticeId} </if>
@@ -118,12 +118,12 @@
 	</select>
 
 	<delete id="delByNotifbyId">
-		delete from oa_notice_record where notice_id =
+		delete from SYS_NOTICE_RECORD where notice_id =
 		#{value}
 	</delete>
 
 	<delete id="batchDelByNotifbyId">
-		delete from oa_notice_record where notice_id in
+		delete from SYS_NOTICE_RECORD where notice_id in
 		<foreach item="id" collection="array" open="(" separator=","
 			close=")">
 			#{id}
@@ -131,7 +131,7 @@
 	</delete>
 
 	<update id="changeRead" parameterType="com.justdo.system.notice.domain.NoticeRecordDO">
-		update oa_notice_record
+		update SYS_NOTICE_RECORD
 		<set>
 			<if test="isRead != null">`is_read` = #{isRead}, </if>
 			<if test="readDate != null">`read_date` = #{readDate}</if>
