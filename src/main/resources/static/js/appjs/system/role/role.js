@@ -73,7 +73,8 @@ function load() {
 								},
 								{
 									field : 'roleSign',
-									title : '角色标识'
+									title : '角色标识',
+                                    width : '100px'
 								},
 								{
 									field : 'roleState',
@@ -88,6 +89,11 @@ function load() {
                                     }
 								},
 								{
+									field : 'remark',
+									title : '备注'
+								},
+								{
+                                    visible:false,
 									field : 'createEmployeeId',
 									title : '创建员工'
 								},
@@ -100,10 +106,6 @@ function load() {
 									field : 'modifyTime',
 									title : '创建时间',
                                     width : '150px'
-								},
-								{
-									field : 'remark',
-									title : '备注'
 								}]
 					});
 }

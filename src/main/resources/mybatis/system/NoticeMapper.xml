@@ -134,7 +134,7 @@
 	<select id="countDTO" resultType="int">
 		select count(*)
 		from
-		oa_notice_record r right JOIN SYS_NOTICE n on r.notice_id
+		sys_notice_record r right JOIN SYS_NOTICE n on r.notice_id
 		= n.id where
 		r.user_id =#{userId} and
 		r.is_read = #{isRead}
@@ -143,7 +143,7 @@
 	<select id="listDTO" resultType="com.justdo.system.notice.domain.NoticeDTO">
 		select DISTINCT
 		n.id ,`type`,`title`,`content`,`files`,r.is_read,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from oa_notice_record r right JOIN SYS_NOTICE n on r.notice_id = n.id
+		from sys_notice_record r right JOIN SYS_NOTICE n on r.notice_id = n.id
 		<where>
 			<if test="id != null and id != ''"> and r.id = #{id} </if>
 			<if test="noticeId != null and noticeId != ''"> and r.notice_id = #{noticeId} </if>

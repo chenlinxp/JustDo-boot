@@ -5,12 +5,13 @@ package com.justdo.common.redis;
  * @version V1.0
  */
 
-import java.util.Set;
-
+import org.apache.shiro.cache.CacheException;
 import org.springframework.beans.factory.annotation.Value;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+
+import java.util.Set;
 
 /**
  *
@@ -56,6 +57,21 @@ public class RedisManager {
     }
 
     /**
+     * 获取连接池中的redis实例
+     * @return obj
+     */
+    private  Jedis getJedis() {
+        if (jedisPool == null) {
+            try {
+                init();
+            } catch (Exception e) {
+                throw new CacheException("缓存连接池初始化异常", e);
+            }
+        }
+        Jedis jedis = jedisPool.getResource();
+        return jedis;
+    }
+    /**
      * get value from redis
      *
      * @param key
@@ -63,7 +79,7 @@ public class RedisManager {
      */
     public byte[] get(byte[] key) {
         byte[] value = null;
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             value = jedis.get(key);
         } finally {
@@ -82,7 +98,7 @@ public class RedisManager {
      * @return
      */
     public byte[] set(byte[] key, byte[] value) {
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             jedis.set(key, value);
             if (this.expire != 0) {
@@ -105,7 +121,7 @@ public class RedisManager {
      * @return
      */
     public byte[] set(byte[] key, byte[] value, int expire) {
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             jedis.set(key, value);
             if (expire != 0) {
@@ -125,7 +141,7 @@ public class RedisManager {
      * @param key
      */
     public void del(byte[] key) {
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             jedis.del(key);
         } finally {
@@ -139,7 +155,7 @@ public class RedisManager {
      * flush
      */
     public void flushDB() {
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             jedis.flushDB();
         } finally {
@@ -154,7 +170,7 @@ public class RedisManager {
      */
     public Long dbSize() {
         Long dbSize = 0L;
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             dbSize = jedis.dbSize();
         } finally {
@@ -168,12 +184,12 @@ public class RedisManager {
     /**
      * keys
      *
-     * @param regex
+     * @param pattern
      * @return
      */
     public Set<byte[]> keys(String pattern) {
         Set<byte[]> keys = null;
-        Jedis jedis = jedisPool.getResource();
+        Jedis jedis = getJedis();
         try {
             keys = jedis.keys(pattern.getBytes());
         } finally {

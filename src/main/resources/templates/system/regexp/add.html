@@ -10,41 +10,39 @@
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
 							<div class="form-group">	
-								<label class="col-sm-3 control-label">正则的名称：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">正则的名称：</label>
+								<div class="col-sm-4">
 									<input id="rname" name="rname" class="form-control" type="text">
 								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">正则的代码：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">正则的代码：</label>
+								<div class="col-sm-4">
 									<input id="rcode" name="rcode" class="form-control" type="text">
 								</div>
 							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">正则的内容：</label>
-								<div class="col-sm-8">
-									<textarea id="rcontent" name="rcontent" class="form-control" ></textarea>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">备注信息：</label>
-								<div class="col-sm-8">
-									<textarea id="remark" name="remark" class="form-control"></textarea>
-								</div>
-							</div>
-														<div class="form-group">	
-								<label class="col-sm-3 control-label">是否有效：</label>
-								<div class="col-sm-8">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">是否有效：</label>
+								<div class="col-sm-10">
 									<label class="radio-inline">
 										<input type="radio" name="rvalid" value="1" checked="checked" /> 正常
 									</label>
 									<label class="radio-inline">
 										<input type="radio" name="rvalid" value="0" /> 禁用
-								</label>
+									</label>
 								</div>
 							</div>
-																					<div class="form-group">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">正则的内容：</label>
+								<div class="col-sm-10">
+									<textarea id="rcontent" name="rcontent" rows="3" class="form-control" ></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注信息：</label>
+								<div class="col-sm-10">
+									<textarea id="remark" name="remark" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
 									<button type="submit" class="btn btn-success">保存</button>
 								</div>

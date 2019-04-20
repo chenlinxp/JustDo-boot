@@ -44,7 +44,7 @@
 								<label class="col-sm-2 control-label">排序：</label>
 								<div class="col-sm-4">
 									<input id="ordernum" name="ordernum" class="form-control"
-										   type="text">
+										   type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
 								</div>
 							</div>
 							<div class="form-group">

@@ -9,7 +9,7 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-							<input id="deptId" name="deptId" th:value="${dept.deptid}"	class="hidden">
+							<input id="deptid" name="deptid" th:value="${dept.deptid}"	class="hidden">
 							<div class="form-group">
 								<label class="col-sm-2 control-label">机构名称：</label>
 								<div class="col-sm-4">
@@ -46,7 +46,7 @@
 
 								<label class="col-sm-2 control-label">排序：</label>
 								<div class="col-sm-4">
-									<input id="ordernum" name="ordernum" class="form-control" type="text" th:value="${dept.ordernum}" >
+									<input id="ordernum" name="ordernum" class="form-control" type="text" th:value="${dept.ordernum}" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')" >
 								</div>
 							</div>
 

@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.dept.dao.DeptDao">
 
 	<select id="get" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from SYS_DEPARTMENT where DEPTID = #{value}
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION`,`DEPTCODE`,`REMARK`,`DEPTMAN`,`DEPTMANID` from SYS_DEPARTMENT where DEPTID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION` from SYS_DEPARTMENT
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION`,`DEPTCODE`,`REMARK`,`DEPTMAN`,`DEPTMANID` from SYS_DEPARTMENT
 		<where>
 			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
@@ -17,6 +17,10 @@
 			<if test="ordernum != null and ordernum != ''"> and ORDERNUM = #{ordernum} </if>
 			<if test="delflag != null and delflag != ''"> and DELFLAG = #{delflag} </if>
 			<if test="isvalidation != null and isvalidation != ''"> and ISVALIDATION = #{isvalidation} </if>
+			<if test="deptcode != null and deptcode != ''"> and DEPTCODE = #{deptcode} </if>
+			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+			<if test="deptman != null and deptman != ''"> and DEPTMAN = #{deptman} </if>
+			<if test="deptmanid != null and deptmanid != ''"> and DEPTMANID = #{deptmanid} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
@@ -41,6 +45,10 @@
 			<if test="ordernum != null and ordernum != ''"> and ORDERNUM = #{ordernum} </if>
 			<if test="delflag != null and delflag != ''"> and DELFLAG = #{delflag} </if>
 			<if test="isvalidation != null and isvalidation != ''"> and ISVALIDATION = #{isvalidation} </if>
+			<if test="deptcode != null and deptcode != ''"> and DEPTCODE = #{deptcode} </if>
+			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+			<if test="deptman != null and deptman != ''"> and DEPTMAN = #{deptman} </if>
+			<if test="deptmanid != null and deptmanid != ''"> and DEPTMANID = #{deptmanid} </if>
 		</where>
 	</select>
 
@@ -56,7 +64,11 @@
 		`DEPTNAME`,
 		`ORDERNUM`,
 		`DELFLAG`,
-		`ISVALIDATION`
+		`ISVALIDATION`,
+		`DEPTCODE`,
+		`REMARK`,
+		`DEPTMAN`,
+		`DEPTMANID`
 		)
 		values
 		(
@@ -66,7 +78,11 @@
 		#{deptname},
 		#{ordernum},
 		#{delflag},
-		#{isvalidation}
+		#{isvalidation},
+		#{deptcode},
+		#{remark},
+		#{deptman},
+		#{deptmanid
 		)
 	</insert>
 
@@ -78,7 +94,11 @@
 			<if test="deptname != null">`DEPTNAME` = #{deptname}, </if>
 			<if test="ordernum != null">`ORDERNUM` = #{ordernum}, </if>
 			<if test="delflag != null">`DELFLAG` = #{delflag}, </if>
-			<if test="isvalidation != null">`ISVALIDATION` = #{isvalidation}</if>
+			<if test="isvalidation != null">`ISVALIDATION` = #{isvalidation},</if>
+			<if test="deptcode != null">  `DEPTCODE` = #{deptcode}, </if>
+			<if test="remark != null ">  `REMARK` = #{remark} ,</if>
+			<if test="deptman != null ">  `DEPTMAN` = #{deptman}, </if>
+			<if test="deptmanid != null">  `DEPTMANID` = #{deptmanid} </if>
 		</set>
 		where DEPTID = #{deptid}
 	</update>
@@ -99,7 +119,7 @@
 	</select>
 
 	<select id="getDeptUserNumber" resultType="int">
-		select count(*) from sys_user where dept_id = #{value}
+		select count(*) from SYS_EMPLOYEE where dept_id = #{value}
 	</select>
 
 	<select id="getAllDepts" resultType="com.justdo.system.dept.domain.DeptVO" parameterType="map" >
