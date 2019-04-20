@@ -49,19 +49,22 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
+            realName : {
 				required : true
 			},
-			username : {
+            employeeNumber : {
+                required : true
+            },
+            loginName : {
 				required : true,
 				minlength : 2,
 				remote : {
-					url : preUrl+"/exit", // 后台处理程序
+					url : preUrl+"/exist", // 后台处理程序
 					type : "post", // 数据发送方式
 					dataType : "json", // 接受数据格式
 					data : { // 要传递的数据
-						username : function() {
-							return $("#username").val();
+                        loginName : function() {
+							return $("#loginName").val();
 						}
 					}
 				}
@@ -79,21 +82,23 @@ function validateRule() {
 				required : true,
 				email : true
 			},
-			topic : {
-				required : "#newsletter:checked",
-				minlength : 2
-			},
-			agree : "required"
+            mobile : {
+                required : true,
+                mobile : true
+			}
 		},
 		messages : {
 
-			name : {
-				required : icon + "请输入姓名"
+            realName : {
+				required : icon + "请输入员工姓名"
 			},
-			username : {
-				required : icon + "请输入您的用户名",
-				minlength : icon + "用户名必须两个字符以上",
-				remote : icon + "用户名已经存在"
+            employeeNumber : {
+                required : icon + "请输入员工编号"
+            },
+            loginName : {
+				required : icon + "请输入您的账名",
+				minlength : icon + "账名必须两个字符以上",
+				remote : icon + "账名已经存在"
 			},
 			password : {
 				required : icon + "请输入您的密码",
@@ -105,6 +110,7 @@ function validateRule() {
 				equalTo : icon + "两次输入的密码不一致"
 			},
 			email : icon + "请输入您的E-mail",
+            mobile : icon + "请输入您的手机号",
 		}
 	})
 }

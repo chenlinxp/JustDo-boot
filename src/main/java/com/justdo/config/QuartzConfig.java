@@ -12,6 +12,13 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import java.io.IOException;
 import java.util.Properties;
 
+/**
+ * 定时任务配置
+ *
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2018-08-07 13:33:49
+ */
 @Configuration
 public class QuartzConfig {
 

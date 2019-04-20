@@ -100,6 +100,7 @@ public class EmployeeController {
 		String add(Model model) {
 			List<RoleDO> roles = roleService.list();
 			model.addAttribute("roles", roles);
+		    model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 			return preUrl + "/add";
 	}
 

@@ -30,6 +30,11 @@ public class ErrorLogDO extends BaseBean {
 	private String remark;
 	//IP地址
 	private String ip;
+	//解决人姓名
+	private String solveMan;
+	//解决时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private String solveTime;
 	//创建时间
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private String createTime;
@@ -132,6 +137,22 @@ public class ErrorLogDO extends BaseBean {
 	 */
 	public String getIp() {
 		return ip;
+	}
+	
+	public String getSolveMan() {
+		return solveMan;
+	}
+
+	public void setSolveMan(String solveMan) {
+		this.solveMan = solveMan;
+	}
+
+	public String getSolveTime() {
+		return solveTime;
+	}
+
+	public void setSolveTime(String solveTime) {
+		this.solveTime = solveTime;
 	}
 	/**
 	 * 设置：创建时间

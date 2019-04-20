@@ -54,7 +54,7 @@
 		                    <div class="form-group">
 								<label class="col-sm-2 control-label">排序：</label>
 								<div class="col-sm-4">
-									<input id="orderNum" name="orderNum" class="form-control" type="text">
+									<input id="orderNum" name="orderNum" class="form-control" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
 								</div>
 								<label class="col-sm-2 control-label">菜单图标：</label>
 								<div class="col-sm-4">

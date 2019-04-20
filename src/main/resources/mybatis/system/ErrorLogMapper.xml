@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.errorlog.dao.ErrorLogDao">
 
 	<select id="get" resultType="com.justdo.system.errorlog.domain.ErrorLogDO">
-		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log where ERRORLOG_ID = #{value}
+		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`SOLVE_MAN`,`SOLVE_TIME`,`CREATE_TIME` from sys_error_log where ERRORLOG_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.errorlog.domain.ErrorLogDO">
-		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`CREATE_TIME` from sys_error_log
+		select `ERRORLOG_ID`,`USER_ID`,`USER_NAME`,`EXCEPTION_CONTENT`,`EXCEPTION_STATE`,`REMARK`,`IP`,`SOLVE_MAN`,`SOLVE_TIME`,`CREATE_TIME` from sys_error_log
         <where>  
 		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
 		  <if test="userName != null and userName != ''"> and USER_NAME like concat('%',#{userName},'%') </if>
@@ -16,6 +16,8 @@
 		  <if test="exceptionState != null and exceptionState != ''"> and EXCEPTION_STATE = #{exceptionState} </if>
 		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		  <if test="ip != null and ip != ''"> and IP = #{ip} </if>
+		  <if test="solveMan != null and solveMan != ''"> and SOLVE_MAN = #{solveMan} </if>
+		  <if test="solveTime != null and solveTime != ''"> and SOLVE_TIME = #{solveTime} </if>
 		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
 		</where>
         <choose>
@@ -81,6 +83,8 @@
 			<if test="exceptionState != null">`EXCEPTION_STATE` = #{exceptionState}, </if>
 			<if test="remark != null">`REMARK` = #{remark}, </if>
 			<if test="ip != null">`IP` = #{ip}, </if>
+			<if test="solveMan != null">  `SOLVE_MAN` = #{solveMan} </if>
+			<if test="solveTime != null">  `SOLVE_TIME` = #{solveTime} </if>
 			<if test="createTime != null">`CREATE_TIME` = #{createTime}</if>
 		</set>
 		where ERRORLOG_ID = #{errorlogId}

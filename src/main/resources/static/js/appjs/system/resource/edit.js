@@ -36,15 +36,15 @@ function update() {
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
-		}
+        rules : {
+            resourceName : {
+                required : true
+            }
+        },
+        messages : {
+            resourceName : {
+                required : icon + "请输入资源名称"
+            }
+        }
 	})
 }

@@ -78,7 +78,8 @@ function load() {
                     {
                         visible: false,
                         field: 'userId',
-                        title: '用户Id'
+                        title: '用户Id',
+                        visible: false
                     },
                     {
                         field: 'username',

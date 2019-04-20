@@ -81,7 +81,8 @@ function load() {
 								},
 								{
 									field : 'userId', 
-									title : '用户ID'
+									title : '用户ID',
+                                    visible :false
 								},
 								{
 									field : 'userName', 
@@ -93,11 +94,20 @@ function load() {
 								},
 								{
 									field : 'exceptionState', 
-									title : '异常状态' 
+									title : '异常状态',
+                                    align : 'center',
+                                    formatter : function(value, row, index) {
+                                        if (value == '0') {
+                                            return '<span class="label label-danger">未解决</span>';
+                                        } else {
+                                            return '<span class="label label-primary">已解决</span>';
+                                        }
+                                    }
 								},
 								{
 									field : 'remark', 
-									title : '备注信息' 
+									title : '备注信息',
+                                    visible :false
 								},
 								{
 									field : 'ip', 
@@ -130,16 +140,6 @@ function view() {
         area : [ '800px', '520px' ],
         content : preUrl + '/view/'+id // iframe的url
     });
-}
-function add() {
-	layer.open({
-		type : 2,
-		title : '增加',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : preUrl + '/add' // iframe的url
-	});
 }
 function edit() {
     // 返回所有选择的行，当没有选择的记录时，返回一个空数组

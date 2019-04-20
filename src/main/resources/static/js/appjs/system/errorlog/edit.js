@@ -37,14 +37,20 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
+			solveMan : {
+				required : true
+			},
+			solveTime : {
 				required : true
 			}
 		},
 		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
+            solveMan : {
+				required : icon + "请输入解决人名字"
+			},
+            solveTime : {
+                required : icon + "请输入解决时间"
+            }
 		}
 	})
 }
