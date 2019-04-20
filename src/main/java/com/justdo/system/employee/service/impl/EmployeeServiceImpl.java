@@ -88,10 +88,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean exit(Map<String, Object> params) {
-		boolean exit;
-		exit = employeeDao.list(params).size() > 0;
-		return exit;
+	public boolean exist(Map<String, Object> params) {
+		boolean exist;
+		exist = employeeDao.list(params).size() > 0;
+		return exist;
 	}
 
 	@Override

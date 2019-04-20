@@ -96,6 +96,7 @@ function load() {
 									field : 'exceptionState', 
 									title : '异常状态',
                                     align : 'center',
+                                    width : '80px',
                                     formatter : function(value, row, index) {
                                         if (value == '0') {
                                             return '<span class="label label-danger">未解决</span>';
@@ -111,7 +112,8 @@ function load() {
 								},
 								{
 									field : 'ip', 
-									title : 'IP地址' 
+									title : 'IP地址',
+                                    width : '100px'
 								},
 								{
 									field : 'createTime', 

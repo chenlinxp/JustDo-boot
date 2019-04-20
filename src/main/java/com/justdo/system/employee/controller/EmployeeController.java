@@ -205,11 +205,11 @@ public class EmployeeController {
 		return R.error();
 	}
 
-	@PostMapping("/exit")
+	@PostMapping("/exist")
 	@ResponseBody
-	boolean exit(@RequestParam Map<String, Object> params) {
+	boolean exist(@RequestParam Map<String, Object> params) {
 		// 存在，不通过，false
-		return !employeeService.exit(params);
+		return !employeeService.exist(params);
 	}
 
 	@RequiresPermissions("system:employee:resetPwd")

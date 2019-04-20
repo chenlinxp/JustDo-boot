@@ -64,7 +64,7 @@ public class ErrorLogController {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{errorlogId}")
-	@RequiresPermissions("system:errorLog:info")
+	@RequiresPermissions("system:errorlog:info")
 	String view(@PathVariable("errorlogId") String errorlogId,Model model){
 			ErrorLogDO errorLog = errorLogService.get(errorlogId);
 		model.addAttribute("errorLog", errorLog);
@@ -92,7 +92,7 @@ public class ErrorLogController {
 		if(errorLogService.save(errorLog)>0){
 			return R.ok();
 		}
-		return R.error();
+		return R.error("新增错误日志失败");
 	}
 
 	/**
@@ -101,7 +101,7 @@ public class ErrorLogController {
     * @return 编辑页面路径
     */
 	@GetMapping("/edit/{errorlogId}")
-	@RequiresPermissions("system:errorLog:edit")
+	@RequiresPermissions("system:errorlog:edit")
 	String edit(@PathVariable("errorlogId") String errorlogId,Model model){
 		ErrorLogDO errorLog = errorLogService.get(errorlogId);
 		model.addAttribute("errorLog", errorLog);
@@ -118,8 +118,10 @@ public class ErrorLogController {
 	@PostMapping("/update")
 	@RequiresPermissions("system:errorlog:edit")
 	public R update( ErrorLogDO errorLog){
-		errorLogService.update(errorLog);
-		return R.ok();
+		if(errorLogService.update(errorLog)>0){
+			return R.ok();
+		}
+		return R.error("更新错误日志失败");
 	}
 	
 	/**
@@ -134,7 +136,7 @@ public class ErrorLogController {
 		if(errorLogService.del(errorlogId)>0){
 		return R.ok();
 		}
-		return R.error();
+		return R.error("删除错误日志失败");
 	}
 	
 	/**
@@ -146,8 +148,10 @@ public class ErrorLogController {
 	@ResponseBody
 	@RequiresPermissions("system:errorlog:batchDel")
 	public R remove(@RequestParam("ids[]") String[] errorlogIds){
-		errorLogService.batchDel(errorlogIds);
-		return R.ok();
+		if(errorLogService.batchDel(errorlogIds)>0){
+			return R.ok();
+		}
+		return R.error("批量删除错误日志失败");
 	}
 	
 }

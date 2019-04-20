@@ -79,7 +79,7 @@ public interface EmployeeService {
 	 * @param params
 	 * @return
 	 */
-	boolean exit(Map<String, Object> params);
+	boolean exist(Map<String, Object> params);
 
 	/**
 	 *

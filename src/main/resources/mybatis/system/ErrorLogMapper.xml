@@ -83,8 +83,8 @@
 			<if test="exceptionState != null">`EXCEPTION_STATE` = #{exceptionState}, </if>
 			<if test="remark != null">`REMARK` = #{remark}, </if>
 			<if test="ip != null">`IP` = #{ip}, </if>
-			<if test="solveMan != null">  `SOLVE_MAN` = #{solveMan} </if>
-			<if test="solveTime != null">  `SOLVE_TIME` = #{solveTime} </if>
+			<if test="solveMan != null">  `SOLVE_MAN` = #{solveMan} ,</if>
+			<if test="solveTime != null">  `SOLVE_TIME` = #{solveTime} ,</if>
 			<if test="createTime != null">`CREATE_TIME` = #{createTime}</if>
 		</set>
 		where ERRORLOG_ID = #{errorlogId}

@@ -43,7 +43,7 @@ public class ErrorLogDO extends BaseBean {
     /**
     * 构造方法
     */
-    public ErrorLogDO(Long ErrorlogId,Long UserId,String UserName,String ExceptionContent,Integer ExceptionState,String Remark,String Ip,String CreateTim) {
+    public ErrorLogDO(Long ErrorlogId,Long UserId,String UserName,String ExceptionContent,Integer ExceptionState,String Remark,String Ip,String CreateTime) {
 	    super();
 	    this.userId = userId;
 	    this.userName = userName;
