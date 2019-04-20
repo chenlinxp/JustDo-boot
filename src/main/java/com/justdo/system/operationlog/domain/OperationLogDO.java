@@ -15,11 +15,11 @@ import java.util.Date;
  */
 public class OperationLogDO extends BaseBean {
 
-	private String id;
+	private String operationLogId;
 
 	private String userId;
 
-	private String username;
+	private String userName;
 
 	private String operation;
 
@@ -31,14 +31,14 @@ public class OperationLogDO extends BaseBean {
 
 	private String ip;
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date gmtCreate;
+	private Date createTime;
 
-	public String getId() {
-		return id;
+	public String getOperationLogId() {
+		return operationLogId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setOperationLogId(String operationLogId) {
+		this.operationLogId = operationLogId;
 	}
 
 	public String getUserId() {
@@ -49,12 +49,12 @@ public class OperationLogDO extends BaseBean {
 		this.userId = userId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username == null ? null : username.trim();
+	public void setUserName(String userName) {
+		this.userName = userName == null ? null : userName.trim();
 	}
 
 	public String getOperation() {
@@ -97,26 +97,26 @@ public class OperationLogDO extends BaseBean {
 		this.ip = ip == null ? null : ip.trim();
 	}
 
-	public Date getGmtCreate() {
-		return gmtCreate;
+	public Date getCreateTime() {
+		return createTime;
 	}
 
-	public void setGmtCreate(Date gmtCreate) {
-		this.gmtCreate = gmtCreate;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
 	@Override
 	public String toString() {
 		return "LogDO{" +
-				"id=" + id +
+				"operationLogId=" + operationLogId +
 				", userId=" + userId +
-				", username='" + username + '\'' +
+				", userName='" + userName + '\'' +
 				", operation='" + operation + '\'' +
 				", time=" + time +
 				", method='" + method + '\'' +
 				", params='" + params + '\'' +
 				", ip='" + ip + '\'' +
-				", gmtCreate=" + gmtCreate +
+				", createTime=" + createTime +
 				'}';
 	}
 }

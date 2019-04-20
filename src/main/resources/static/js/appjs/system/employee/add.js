@@ -1,6 +1,9 @@
 var preUrl = "/system/employee"
-$().ready(function() {
+$(document).ready(function() {
 	validateRule();
+    laydate({
+        elem : '#birthday'
+    });
 });
 
 $.validator.setDefaults({

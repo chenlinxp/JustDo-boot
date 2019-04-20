@@ -115,7 +115,8 @@ function load() {
 								},
 								{
 									field : 'createTime', 
-									title : '创建时间' 
+									title : '创建时间',
+                                    width : '150px'
 								}]
 					});
 }

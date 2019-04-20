@@ -33,7 +33,7 @@ function load() {
                     return {
                         limit: params.limit,
                         offset: params.offset,
-                        sort: 'gmt_create',
+                        sort: 'CREATE_TIME',
                         order: 'desc',
                         operation: $("#searchOperation").val(),
                         username: $("#searchUsername").val()
@@ -61,7 +61,7 @@ function load() {
                     },
                     {
                         visible: false,
-                        field: 'id', // 列字段名
+                        field: 'operationLogId', // 列字段名
                         title: '序号' // 列标题
                     },
                     {
@@ -82,7 +82,7 @@ function load() {
                         visible: false
                     },
                     {
-                        field: 'username',
+                        field: 'userName',
                         title: '用户名'
                     },
                     {
@@ -99,7 +99,7 @@ function load() {
                     },
                     {
                         title : '参数',
-                        field : 'id',
+                        field : 'operationLogId',
                         align : 'center',
                         formatter : function(value, row, index) {
                             return  '<span class="label label-primary">点击查看</span>';
@@ -110,8 +110,9 @@ function load() {
                         title: 'IP地址'
                     },
                     {
-                        field: 'gmtCreate',
-                        title: '创建时间'
+                        field: 'createTime',
+                        title: '创建时间',
+                        width : '150px'
                     }]
             });
 }
@@ -128,7 +129,7 @@ function view() {
         layer.msg("请选择一条数据");
         return;
     }else{
-        id=rows[0]['id'];
+        id=rows[0]['operationLogId'];
     }
     layer.open({
         type : 2,
@@ -153,7 +154,7 @@ function batchDel() {
         var ids = new Array();
         // 遍历所有选择的行数据，取每条数据对应的ID
         $.each(rows, function (i, row) {
-            ids[i] = row['id'];
+            ids[i] = row['operationLogId'];
         });
         $.ajax({
             type: 'POST',

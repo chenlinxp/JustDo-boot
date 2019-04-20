@@ -1,6 +1,9 @@
 var preUrl = "/system/errorlog"
-$().ready(function() {
+$(function() {
 	validateRule();
+    laydate({
+        elem : '#solveTime'
+    });
 });
 
 $.validator.setDefaults({

@@ -1,7 +1,7 @@
 var preUrl = "/system/employee"
 $(function () {
     laydate({
-        elem : '#birth'
+        elem : '#birthday'
     });
 });
 /**

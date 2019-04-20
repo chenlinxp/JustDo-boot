@@ -4,28 +4,28 @@
 <mapper namespace="com.justdo.system.operationlog.dao.OperationLogDao">
 
 	<select id="get" resultType="com.justdo.system.operationlog.domain.OperationLogDO">
-		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_operation_log where id = #{value}
+		select `OPERATION_LOG_ID`,`USER_ID`,`USER_NAME`,`OPERATION`,`TIME`,`METHOD`,`PARAMS`,`IP`,`CREATE_TIME` from sys_operation_log where OPERATION_LOG_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.operationlog.domain.OperationLogDO">
-		select `id`,`user_id`,`username`,`operation`,`time`,`method`,`params`,`ip`,`gmt_create` from sys_operation_log
+		select `OPERATION_LOG_ID`,`USER_ID`,`USER_NAME`,`OPERATION`,`TIME`,`METHOD`,`PARAMS`,`IP`,`CREATE_TIME` from sys_operation_log
         <where>
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-		  		  <if test="username != null and username != ''"> and username = #{username} </if>
-		  		  <if test="operation != null and operation != ''"> and operation = #{operation} </if>
-		  		  <if test="time != null and time != ''"> and time = #{time} </if>
-		  		  <if test="method != null and method != ''"> and method = #{method} </if>
-		  		  <if test="params != null and params != ''"> and params = #{params} </if>
-		  		  <if test="ip != null and ip != ''"> and ip = #{ip} </if>
-		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+		  		  <if test="operationLogId != null and operationLogId != ''"> and OPERATION_LOG_ID = #{operationLogId} </if>
+		  		  <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
+		  		  <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
+		  		  <if test="operation != null and operation != ''"> and OPERATION = #{operation} </if>
+		  		  <if test="time != null and time != ''"> and `TIME` = #{time} </if>
+		  		  <if test="method != null and method != ''"> and METHOD = #{method} </if>
+		  		  <if test="params != null and params != ''"> and PARAMS = #{params} </if>
+		  		  <if test="ip != null and ip != ''"> and IP = #{ip} </if>
+		  		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-				order by id desc
+				order by operationLogId desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
@@ -36,71 +36,72 @@
 	<select id="count" resultType="int">
 		select count(*) from sys_operation_log
 		 <where>
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-		  		  <if test="username != null and username != ''"> and username = #{username} </if>
-		  		  <if test="operation != null and operation != ''"> and operation = #{operation} </if>
-		  		  <if test="time != null and time != ''"> and time = #{time} </if>
-		  		  <if test="method != null and method != ''"> and method = #{method} </if>
-		  		  <if test="params != null and params != ''"> and params = #{params} </if>
-		  		  <if test="ip != null and ip != ''"> and ip = #{ip} </if>
-		  		  <if test="gmtCreate != null and gmtCreate != ''"> and gmt_create = #{gmtCreate} </if>
+			 <if test="operationLogId != null and operationLogId != ''"> and OPERATION_LOG_ID = #{operationLogId} </if>
+			 <if test="userId != null and userId != ''"> and USER_ID = #{userId} </if>
+			 <if test="userName != null and userName != ''"> and USER_NAME = #{userName} </if>
+			 <if test="operation != null and operation != ''"> and OPERATION = #{operation} </if>
+			 <if test="time != null and time != ''"> and `TIME` = #{time} </if>
+			 <if test="method != null and method != ''"> and METHOD = #{method} </if>
+			 <if test="params != null and params != ''"> and PARAMS = #{params} </if>
+			 <if test="ip != null and ip != ''"> and IP = #{ip} </if>
+			 <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
 		  		</where>
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.system.operationlog.domain.OperationLogDO">
-		<selectKey keyProperty="id" resultType="string" order="BEFORE">
-			select replace(uuid(), '-', '') as id from dual
+		<selectKey keyProperty="operationLogId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as operationLogId from dual
 		</selectKey>
 		insert into sys_operation_log
 		(
-		    `id`,
-			`user_id`, 
-			`username`, 
-			`operation`, 
-			`time`, 
-			`method`, 
-			`params`, 
-			`ip`, 
-			`gmt_create`
+		    `OPERATION_LOG_ID`,
+			`USER_ID`,
+			`USER_NAME`,
+			`OPERATION`,
+			`TIME`,
+			`METHOD`,
+			`PARAMS`,
+			`IP`,
+			`CREATE_TIME`
 		)
 		values
 		(
-		    #{id},
+		    #{operationLogId},
 			#{userId}, 
-			#{username}, 
+			#{userName},
 			#{operation}, 
 			#{time}, 
 			#{method}, 
 			#{params}, 
 			#{ip}, 
-			#{gmtCreate}
+			#{createTime}
 		)
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.system.operationlog.domain.OperationLogDO">
 		update sys_operation_log
 		<set>
-			<if test="userId != null">`user_id` = #{userId}, </if>
-			<if test="username != null">`username` = #{username}, </if>
-			<if test="operation != null">`operation` = #{operation}, </if>
-			<if test="time != null">`time` = #{time}, </if>
-			<if test="method != null">`method` = #{method}, </if>
-			<if test="params != null">`params` = #{params}, </if>
-			<if test="ip != null">`ip` = #{ip}, </if>
-			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}</if>
+			<if test="operationLogId != null">  OPERATION_LOG_ID = #{operationLogId} </if>
+			<if test="userId != null ">  USER_ID = #{userId} </if>
+			<if test="userName != null ">  USER_NAME = #{userName} </if>
+			<if test="operation != null ">  OPERATION = #{operation} </if>
+			<if test="time != null "> and `TIME` = #{time} </if>
+			<if test="method != null ">  METHOD = #{method} </if>
+			<if test="params != null">  PARAMS = #{params} </if>
+			<if test="ip != null "> and IP = #{ip} </if>
+			<if test="createTime != null ">  CREATE_TIME = #{createTime} </if>
 		</set>
-		where id = #{id}
+		where OPERATION_LOG_ID = #{operationLogId}
 	</update>
 	
 	<delete id="del">
-		delete from sys_operation_log where id = #{value}
+		delete from sys_operation_log where OPERATION_LOG_ID = #{value}
 	</delete>
 	
 	<delete id="batchDel">
-		delete from sys_operation_log where id in
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
+		delete from sys_operation_log where OPERATION_LOG_ID in
+		<foreach item="operationLogId" collection="array" open="(" separator="," close=")">
+			#{operationLogId}
 		</foreach>
 	</delete>
 

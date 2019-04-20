@@ -24,8 +24,8 @@ public class OperationLogServiceImpl implements OperationLogService {
 	com.justdo.system.operationlog.dao.OperationLogDao operationlogdao;
 
 	@Override
-	public OperationLogDO get(String id){
-		return operationlogdao.get(id);
+	public OperationLogDO get(String operationLogId){
+		return operationlogdao.get(operationLogId);
 	}
 
 	@Override
@@ -54,13 +54,13 @@ public class OperationLogServiceImpl implements OperationLogService {
 	}
 
 	@Override
-	public int del(String id) {
-		int count = operationlogdao.del(id);
+	public int del(String operationLogId) {
+		int count = operationlogdao.del(operationLogId);
 		return count;
 	}
 
 	@Override
-	public int batchDel(String[] ids){
-		return operationlogdao.batchDel(ids);
+	public int batchDel(String[] operationLogIds){
+		return operationlogdao.batchDel(operationLogIds);
 	}
 }

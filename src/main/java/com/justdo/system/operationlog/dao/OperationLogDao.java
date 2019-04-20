@@ -17,7 +17,7 @@ import java.util.Map;
 @Mapper
 public interface OperationLogDao {
 
-	OperationLogDO get(String id);
+	OperationLogDO get(String operationLogId);
 	
 	List<OperationLogDO> list(Map<String,Object> map);
 	
@@ -27,7 +27,7 @@ public interface OperationLogDao {
 	
 	int update(OperationLogDO log);
 	
-	int del(String id);
+	int del(String operationLogId);
 	
-	int batchDel(String[] ids);
+	int batchDel(String[] operationLogIds);
 }

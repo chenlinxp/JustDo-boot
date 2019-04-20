@@ -92,17 +92,17 @@ public class LogAspect {
         EmployeeDO currUser = ShiroUtils.getEmployee();
         if (currUser == null) {
             operationLog.setUserId("-1");
-            operationLog.setUsername("获取用户信息为空");
+            operationLog.setUserName("获取用户信息为空");
         } else {
             operationLog.setUserId(ShiroUtils.getEmployeeId());
-            operationLog.setUsername(ShiroUtils.getEmployee().getLoginName());
+            operationLog.setUserName(ShiroUtils.getEmployee().getLoginName());
         }
         logger.info("当前用户ID: " + operationLog.getUserId());
-        logger.info("当前用户名: " + operationLog.getUsername());
+        logger.info("当前用户名: " + operationLog.getUserName());
         operationLog.setTime((int) time);
         // 系统当前时间
         Date date = new Date();
-        operationLog.setGmtCreate(date);
+        operationLog.setCreateTime(date);
         // 保存系统日志
         operationLogService.save(operationLog);
     }

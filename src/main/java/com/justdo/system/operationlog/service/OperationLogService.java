@@ -19,7 +19,7 @@ import java.util.Map;
 public interface OperationLogService {
 
 
-	OperationLogDO get(String id);
+	OperationLogDO get(String operationLogId);
 
 	List<OperationLogDO> list(Map<String,Object> map);
 
@@ -29,8 +29,8 @@ public interface OperationLogService {
 
 	PageDO<OperationLogDO> queryList(Query query);
 
-	int del(String id);
+	int del(String operationLogId);
 
-	int batchDel(String[] ids);
+	int batchDel(String[] operationLogIds);
 
 }
