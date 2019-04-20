@@ -81,7 +81,7 @@ public class ESessionServiceImpl implements ESessionService {
 	}
 
 	@Override
-	public boolean forceLogout(String sessionId) {
+	public boolean  forceLogout(String sessionId) {
 		Session session = sessionDAO.readSession(sessionId);
 		session.setTimeout(0);
 		return true;

@@ -1,4 +1,4 @@
-var prefix = "/system/online"
+var preUrl = "/system/online"
 $(function() {
 	load();
 });
@@ -8,8 +8,8 @@ function load() {
 			.bootstrapTable(
 					{
 						method : 'get', // 服务器数据的请求方式 get or post
-						url : prefix + "/list", // 服务器数据的加载地址
-						// showRefresh : true,
+						url : preUrl + "/list", // 服务器数据的加载地址
+						showRefresh : true,
 						// showToggle : true,
 						// showColumns : true,
 						iconSize : 'outline',
@@ -33,6 +33,7 @@ function load() {
 								// 说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 								limit : params.limit,
 								offset : params.offset,
+                                sort: 'START_TIME',
 								name : $('#searchName').val()
 							};
 						},
@@ -74,29 +75,14 @@ function load() {
 									}
 								},
 								{
-									field : 'username',
+									field : 'loginName',
 									title : '用户名'
-								},
-								{
-									field : 'host',
-									title : '主机'
-								},
-								{
-									field : 'startTimestamp',
-									title : '登录时间'
-								},
-								{
-									field : 'lastAccessTime',
-									title : '最后访问时间'
-								},
-								{
-									field : 'timeout',
-									title : '过期时间'
 								},
 								{
 									field : 'status',
 									title : '状态',
 									align : 'center',
+									width : '50px',
 									formatter : function(value, row, index) {
 										if (value == 'on_line') {
 											return '<span class="label label-success">在线</span>';
@@ -104,6 +90,26 @@ function load() {
 											return '<span class="label label-primary">离线</span>';
 										}
 									}
+								},
+								{
+									field : 'hostIP',
+									title : '主机IP'
+								},
+								{
+									field : 'hostMAC',
+									title : '主机MAC'
+								},
+								{
+									field : 'startTime',
+									title : '登录时间'
+								},
+								{
+									field : 'lastTime',
+									title : '最后访问时间'
+								},
+								{
+									field : 'timeout',
+									title : '过期时间'
 								},
 								{
 									title : '操作',
@@ -129,7 +135,7 @@ function add() {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/add'
+		content : preUrl + '/add'
 	});
 }
 function forceLogout(id) {
@@ -137,7 +143,7 @@ function forceLogout(id) {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : prefix+"/forceLogout/" + id,
+			url : preUrl+"/forceLogout/" + id,
 			type : "post",
 			data : {
 				'id' : id
@@ -160,7 +166,7 @@ function edit(id) {
 		maxmin : true,
 		shadeClose : true, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
+		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
 function resetPwd(id) {
@@ -170,7 +176,7 @@ function resetPwd(id) {
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '400px', '260px' ],
-		content : prefix + '/resetPwd/' + id // iframe的url
+		content : preUrl + '/resetPwd/' + id // iframe的url
 	});
 }
 function batchDel() {
@@ -193,7 +199,7 @@ function batchDel() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchDel',
+			url : preUrl + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

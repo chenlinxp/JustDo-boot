@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -81,24 +83,31 @@ public class ELoginController extends BaseController {
 	@PostMapping("/login")
 	@ResponseBody
 	R ajaxLogin(String username, String password, String rememberme) {
-
-		String salt = employeeService.getPasswordSalt(username);
-		password = MD5Utils.encrypt(salt, password);
-		Subject currentUser = SecurityUtils.getSubject();
-		if(currentUser.isAuthenticated() && currentUser.isRemembered()) {
-			return R.ok();
-		} else
-		{
-			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-			if (rememberme != null) {
-				token.setRememberMe(true);
-			}
-			try {
-				currentUser.login(token);
+		String loginName = username.trim();
+		Map<String ,Object> params = new HashMap<>(1);
+		params.put("loginName",loginName);
+		if(employeeService.exist(params)) {
+			String salt = employeeService.getPasswordSalt(loginName);
+			password = MD5Utils.encrypt(salt, password);
+			Subject currentUser = SecurityUtils.getSubject();
+			if (currentUser.isAuthenticated() && currentUser.isRemembered()) {
 				return R.ok();
-			} catch (AuthenticationException e) {
-				return R.error("用户名或密码错误");
+			} else {
+				UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
+				if (rememberme != null) {
+					token.setRememberMe(true);
+				}
+				try {
+					currentUser.login(token);
+					return R.ok();
+				} catch (AuthenticationException e) {
+					return R.error("用户名或密码错误");
+				}
 			}
+		}
+		else
+		{
+			return R.error("用户名或密码错误");
 		}
 	}
 

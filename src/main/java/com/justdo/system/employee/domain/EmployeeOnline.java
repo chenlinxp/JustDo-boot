@@ -27,7 +27,7 @@ public class EmployeeOnline extends BaseBean {
 	/**
 	 * 员工编号
 	 */
-	private String employeeNum;
+	private String employeeNumber;
 
 	/**
 	 * 登陆名
@@ -96,12 +96,12 @@ public class EmployeeOnline extends BaseBean {
 		this.employeeId = employeeId;
 	}
 
-	public String getEmployeeNum() {
-		return employeeNum;
+	public String getEmployeeNumber() {
+		return employeeNumber;
 	}
 
-	public void setEmployeeNum(String employeeNum) {
-		this.employeeNum = employeeNum;
+	public void setEmployeeNumber(String employeeNumber) {
+		this.employeeNumber = employeeNumber;
 	}
 
 	public String getLoginName() {
