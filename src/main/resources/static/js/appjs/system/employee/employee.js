@@ -232,7 +232,6 @@ function getTreeData() {
         data : {
             "organid" : ''
         },
-		// url : "/system/dept/tree",
 		success : function(tree) {
 			loadTree(tree);
 		}
@@ -272,7 +271,6 @@ $('#jstree').on("changed.jstree", function(e, data) {
 
 $('#jstree').on("open_node.jstree", function(e, data){
 	var curreatnode = data.node;
-	console.log(curreatnode);
 });
 $("#treeForm").submit(function(e) {
     e.preventDefault();

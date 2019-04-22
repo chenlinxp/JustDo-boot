@@ -76,4 +76,11 @@ public interface EmployeeDao {
 	 * @return
 	 */
 	String [] listAllDept();
+
+	/**
+	 * 获取部门下的员工数量
+	 * @param deptId
+	 * @return
+	 */
+	int getDeptEmployeeCount(String deptId);
 }

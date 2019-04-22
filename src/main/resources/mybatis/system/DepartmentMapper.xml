@@ -82,7 +82,7 @@
 		#{deptcode},
 		#{remark},
 		#{deptman},
-		#{deptmanid
+		#{deptmanid}
 		)
 	</insert>
 
@@ -116,10 +116,6 @@
 
 	<select id="listParentDept" resultType="String">
 		select DISTINCT deptpid from SYS_DEPARTMENT
-	</select>
-
-	<select id="getDeptUserNumber" resultType="int">
-		select count(*) from SYS_EMPLOYEE where dept_id = #{value}
 	</select>
 
 	<select id="getAllDepts" resultType="com.justdo.system.dept.domain.DeptVO" parameterType="map" >

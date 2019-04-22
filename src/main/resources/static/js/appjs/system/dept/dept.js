@@ -1,5 +1,6 @@
 
-var prefix = "/system/dept"
+var preUrl = "/system/dept";
+
 $(function() {
 	load();
 });
@@ -12,7 +13,7 @@ function load() {
 				code : 'deptid',
                 parentCode : 'deptpid',
 				type : "GET", // 请求数据的ajax类型
-				url : prefix + '/list', // 请求数据的ajax的url
+				url : preUrl + '/list', // 请求数据的ajax的url
 				ajaxParams : {}, // 请求数据的ajax的data属性
 				expandColumn : '2', // 在哪一列上面显示展开按钮
 				striped : true, // 是否各行渐变色
@@ -76,80 +77,63 @@ function load() {
                     {
                         field : 'remark',
                         title : '备注'
-                    },
-					{
-						title : '操作',
-						field : 'operation',
-						align : 'center',
-                        valign : 'center',
-                        width : '150px',
-						formatter : function(item, index) {
-							var e = '<a class="btn btn-success btn-sm ' + s_edit_h + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
-								+ item.deptid
-								+ '\')"><i class="fa fa-edit"></i></a> ';
-							var a = '<a class="btn btn-success btn-sm ' + s_add_h + '" href="#" title="增加下級"  mce_href="#" onclick="add(\''
-								+ item.deptid
-								+ '\')"><i class="fa fa-plus"></i></a> ';
-							var d = '<a class="btn btn-success btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="delone(\''
-								+ item.deptid
-								+ '\')"><i class="fa fa-remove"></i></a> ';
-							return e + a + d;
-						}
-					} ]
+                    } ]
 			});
 }
 function reLoad() {
 	load();
 }
-function add(pId) {
-	layer.open({
-		type : 2,
-		title : '增加',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/add/' + pId
-	});
-}
+
 function add() {
     layer.open({
         type : 2,
-        title : '增加',
+        title : '增加部门',
         maxmin : true,
         shadeClose : false, // 点击遮罩关闭层
         area : [ '800px', '520px' ],
-        content : prefix + '/add'
+        content : preUrl + '/add'
     });
 }
-function edit(id) {
-	layer.open({
-		type : 2,
-		title : '编辑',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/edit/' + id // iframe的url
-	});
+function edit() {
+    var id = $('#bTable').bootstrapTreeTable('getSelection');
+    if (id == undefined) {
+        layer.msg("请选择一条要修改的数据");
+        return;
+    }
+    layer.open({
+        type : 2,
+        title : '编辑部门',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '800px', '520px' ],
+        content : preUrl + '/edit/' + id // iframe的url
+    });
 }
-function delone(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : prefix + "/del",
-			type : "post",
-			data : {
-				'deptid' : id
-			},
-			success : function(r) {
-				if (r.code == 0) {
-					layer.msg(r.msg);
-					reLoad();
-				} else {
-					layer.msg(r.msg);
-			 	}
-			}
-		});
-	})
+
+function del() {
+    layer.confirm('确定要删除选中的记录？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        var id = $('#bTable').bootstrapTreeTable('getSelection');
+        if (id == undefined) {
+            layer.msg("请选择一条要删除的数据");
+            return;
+        }
+        $.ajax({
+            url : preUrl+"/del",
+            type : "post",
+            data : {
+                'deptId' : id
+            },
+            success : function(r) {
+                if (r.code==0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                }else{
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    })
 }
 

@@ -12,17 +12,15 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">机构名称：</label>
 								<div class="col-sm-4">
-									<input id="organid" name="organid" type="hidden">
+									<input id="organid" name="organid" type="hidden" value="0">
 									<input id="organname" name="organname" class="form-control" type="text"
-										   style="cursor: pointer;" onclick="openOrgan()"
-										   readonly="readonly" placeholder="请选择机构">
+										   style="cursor: pointer;" onclick="openOrgan()" readonly="readonly" placeholder="请选择机构">
 								</div>
 								<label class="col-sm-2 control-label">上级部门：</label>
 								<div class="col-sm-4">
-									<input id="deptpid" name="deptpid" type="hidden" th:value="${deptpid}">
+									<input id="deptpid" name="deptpid" type="hidden" value="0">
 									<input id="deptpname" name="deptpname" class="form-control" type="text"
-										   style="cursor: pointer;" onclick="openDept()"  th:value="${deptpname}"
-										   readonly="readonly" placeholder="请选择部门">
+										   style="cursor: pointer;" onclick="openDept()" readonly="readonly" placeholder="请选择部门">
 								</div>
 							</div>
 							<div class="form-group">

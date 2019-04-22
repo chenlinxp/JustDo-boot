@@ -103,7 +103,7 @@ public class OrganServiceImpl implements OrganService {
 	 * @return
 	 */
 	@Override
-	public List<OrganDeptVO> findOrganDept(Map<String, Object> paramMap) {
+	public List<OrganDeptVO> getOrganDept(Map<String, Object> paramMap) {
 		List<OrganDeptVO> list=new ArrayList<OrganDeptVO>();
 		//查询公司
 		List<OrganDeptVO> organDeptVosList=organDao.findOrganDept(paramMap);
@@ -116,13 +116,13 @@ public class OrganServiceImpl implements OrganService {
 				Map<String, Object> dataMap=new HashMap<String, Object>();
 				dataMap.put("organpid", organDeptVo.getOrganid());
 				//通过父级公司递归公司
-				organDeptVo2.setSuborgandeptvo(findOrganDept(dataMap));
+				organDeptVo2.setSuborgandeptvo(getOrganDept(dataMap));
 
 				Map<String, Object> dataDeptMap=new HashMap<String, Object>();
 				dataDeptMap.put("organid", organDeptVo.getOrganid());
 				dataDeptMap.put("deptid", "");
 				//通过父级部门递归部门
-				List<DeptVO> deptVOList = deptService.getAllDepts(dataDeptMap);
+				List<DeptVO> deptVOList = deptService.getAllDeptList(dataDeptMap);
 				organDeptVo2.setDeptvo(deptVOList);
 				list.add(organDeptVo2);
 			}
@@ -131,7 +131,7 @@ public class OrganServiceImpl implements OrganService {
 	}
 
 	@Override
-	public List<TreeNode> getOrgans(Map<String, Object> param){
+	public List<TreeNode> getOrganDeptTree(Map<String, Object> param){
 		List<TreeNode> list=new ArrayList<TreeNode>();
 		//查询公司
 		List<TreeNode> organTreeList=organDao.getOrgans(param);
@@ -141,23 +141,23 @@ public class OrganServiceImpl implements OrganService {
 				treeNode2.setId(treeNode.getId());
 				treeNode2.setText(treeNode.getText());
 				treeNode2.setParentid(treeNode.getParentid());
-				treeNode2.setIcon("fa fa-bank");
-				Map<String, Object> state = new HashMap<>(16);
+				treeNode2.setIcon("O");
+				Map<String, Object> treeMap = new HashMap<>(1);
+				treeMap.put("type","organ");
+				treeMap.put("organid",treeNode2.getParentid());
+				treeNode2.setAttributes(treeMap);
+				Map<String, Object> state = new HashMap<>(1);
 				state.put("opened", true);
 				treeNode2.setState(state);
-				Map<String, Object> dataMap=new HashMap<String, Object>();
+				Map<String, Object> dataMap = new HashMap<>(1);
 				dataMap.put("organpid", treeNode.getId());
-				//通过父级公司递归公司
-				//treeNode2.setChildren(getOrgans(dataMap));
-
-
-				List<TreeNode> listchidren = getOrgans(dataMap);
-
-				Map<String, Object> dataDeptMap=new HashMap<String, Object>();
+				Map<String, Object> dataDeptMap = new HashMap<>(1);
 				dataDeptMap.put("organid", treeNode.getId());
 				dataDeptMap.put("deptid", "");
 				//通过父级部门递归部门
-				List<TreeNode> deptTreeList = deptService.getAllDepts2(dataDeptMap);
+				List<TreeNode> deptTreeList = deptService.getAllDeptTreeList(dataDeptMap);
+				//通过父级公司递归公司
+				List<TreeNode> listchidren = getOrganDeptTree(dataMap);
 				listchidren.addAll(deptTreeList);
 				treeNode2.setChildren(listchidren);
 				list.add(treeNode2);

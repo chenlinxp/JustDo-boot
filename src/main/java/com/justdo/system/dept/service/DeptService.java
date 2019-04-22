@@ -1,12 +1,12 @@
 package com.justdo.system.dept.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.justdo.common.domain.Tree;
 import com.justdo.common.domain.TreeNode;
 import com.justdo.system.dept.domain.DeptDO;
 import com.justdo.system.dept.domain.DeptVO;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -31,15 +31,15 @@ public interface DeptService {
 	
 	int batchDel(String[] deptIds);
 
-	Tree<DeptDO> getTree();
+	Tree<DeptDO> getTree(Map<String,Object> map);
 	
 	boolean checkDeptHasUser(String deptId);
 
-	List<DeptVO> getAllDepts(Map<String,Object> map);
+	List<DeptVO> getAllDeptList(Map<String,Object> map);
 
-	List<TreeNode> getDepts(Map<String, Object> param);
+	List<TreeNode> getDepts(Map<String, Object> param,String organid);
 
 	List<TreeNode> getTopDepts(Map<String, Object> param);
 
-	List<TreeNode> getAllDepts2(Map<String, Object> param);
+	List<TreeNode> getAllDeptTreeList(Map<String, Object> param);
 }

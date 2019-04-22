@@ -1,4 +1,6 @@
-var preUrl = "/system/employee"
+var preUrl = "/system/employee";
+var preUrl2 = "/system/organ";
+var preUrl3 = "/system/dept";
 $(document).ready(function() {
 	validateRule();
     laydate({
@@ -85,6 +87,12 @@ function validateRule() {
                     }
                 }
             },
+            deptName : {
+                required : true
+            },
+            organName : {
+                required : true
+            },
             password : {
                 required : true,
                 minlength : 6
@@ -116,6 +124,12 @@ function validateRule() {
                 minlength : icon + "账名必须两个字符以上",
                 remote : icon + "账名已经存在"
             },
+            organName : {
+                required : icon + "请选择机构"
+            },
+            deptName : {
+                required : icon + "请选择部门"
+            },
             password : {
                 required : icon + "请输入您的密码",
                 minlength : icon + "密码必须6个字符以上"
@@ -130,15 +144,33 @@ function validateRule() {
         }
     })
 }
-var openDept = function(){
-	layer.open({
-		type:2,
-		title:"选择部门",
-		area : [ '300px', '450px' ],
-		content:"/system/dept/treeView"
-	})
+var openOrgan = function(){
+    layer.open({
+        type:2,
+        title:"选择机构",
+        area : [ '300px', '450px' ],
+        content:preUrl2+"/treeView"
+    })
+}
+function loadOrgan( organid,organname){
+    $("#organid").val(organid);
+    $("#organname").val(organname);
+}
+
+var openDept = function() {
+    var organid = $("#organid").val();
+    if (organid == "0") {
+        parent.layer.alert("请先选择机构");
+    } else {
+        layer.open({
+            type: 2,
+            title: "选择部门",
+            area: ['300px', '450px'],
+            content: preUrl3 + "/treeView/" + organid
+        })
+    }
 }
 function loadDept( deptId,deptName){
-	$("#deptmentId").val(deptId);
-	$("#deptName").val(deptName);
+    $("#deptmentId").val(deptId);
+    $("#deptName").val(deptName);
 }

@@ -281,8 +281,8 @@
     };
 
     $.fn.bootstrapTreeTable.defaults = {
-        id : 'menuId',// 选取记录返回的值
-        code : 'menuId',// 用于设置父子关系
+        id : 'resourceId',// 选取记录返回的值
+        code : 'resourceId',// 用于设置父子关系
         parentCode : 'parentId',// 用于设置父子关系
         rootCodeValue: null,//设置根节点code值----可指定根节点，默认为null,"",0,"0"
         data : [], // 构造table的数据集合

@@ -1,5 +1,5 @@
 
-var preUrl = "/system/organ"
+var preUrl = "/system/organ";
 $(function() {
 	load();
 });

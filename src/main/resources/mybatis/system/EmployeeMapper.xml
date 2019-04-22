@@ -183,4 +183,8 @@
 	<select id="listAllDept" resultType="String">
 		select DISTINCT DEPTMENT_ID from sys_employee
 	</select>
+
+	<select id="getDeptEmployeeCount" resultType="int">
+		select count(*) from SYS_EMPLOYEE where DEPTMENT_ID = #{value}
+	</select>
 </mapper>

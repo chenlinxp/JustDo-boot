@@ -147,9 +147,9 @@ public class OrganController {
 
 	@GetMapping("/organdept")
 	@ResponseBody
-	public List<TreeNode> findOrganDept(@RequestParam Map<String, Object> params){
+	public List<TreeNode> getOrganDeptTree(@RequestParam Map<String, Object> params){
 
-		List<TreeNode> list=organService.getOrgans(params);
+		List<TreeNode> list=organService.getOrganDeptTree(params);
 
 		return list;
 	}

@@ -39,6 +39,8 @@ public class DeptController extends BaseController {
 	private DeptService deptService;
 	@Autowired
 	private OrganService organService;
+
+
 	@GetMapping()
 	@RequiresPermissions("system:dept:list")
 	String dept() {
@@ -133,7 +135,7 @@ public class DeptController extends BaseController {
 	@RequiresPermissions("system:dept:del")
 	public R remove(String deptId) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("parentId", deptId);
+		map.put("deptpid", deptId);
 		if(deptService.count(map)>0) {
 			return R.error(1, "包含下级部门,不允许修改");
 		}
@@ -161,16 +163,19 @@ public class DeptController extends BaseController {
 		return R.error(1,"批量删除部门失败");
 	}
 
-	@GetMapping("/tree")
+	@GetMapping("/tree/{organId}")
 	@ResponseBody
-	public Tree<DeptDO> tree() {
+	public Tree<DeptDO> tree(@PathVariable("organId") String organId) {
 		Tree<DeptDO> tree = new Tree<DeptDO>();
-		tree = deptService.getTree();
+		Map<String,Object> map = new HashMap<String,Object>(1);
+		if(StringUtils.isNotEmpty(organId)&&!organId.equals("0")){
+		map.put("organid",organId);}
+		tree = deptService.getTree(map);
 		return tree;
 	}
-
-	@GetMapping("/treeView")
-	String treeView() {
+	@GetMapping("/treeView/{organId}")
+	String treeView(@PathVariable("organId") String organId, Model model) {
+		model.addAttribute("organId", organId);
 		return  preUrl + "/deptTree";
 	}
 

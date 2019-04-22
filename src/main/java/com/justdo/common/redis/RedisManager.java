@@ -29,14 +29,39 @@ public class RedisManager {
 
     //timeout for jedis try to connect to redis server, not expire time! In milliseconds
     @Value("${spring.redis.timeout}")
-    private int timeout = 0;
+    private int timeout = 10000;
 
     @Value("${spring.redis.password}")
-    private String password = "";
+    private String password = "oxhide";
+
+
+    @Value("${spring.redis.pool.min-Idle}")
+    private int minIdle = 300;
+
+    @Value("${spring.redis.pool.max-active}")
+    private int maxactive = 5000;
+
+    @Value("${spring.redis.pool.max-Idle}")
+    private int maxIdle = 500;
+
+    @Value("${spring.redis.pool.max-Wait}")
+    private int maxWait = -1;
+
+    @Value("${spring.redis.pool.testOnBorrow}")
+    private boolean testOnBorrow = false;
+
+    @Value("${spring.redis.pool.testOnReturn}")
+    private boolean testOnReturn = true;
+
+    @Value("${spring.redis.pool.testWhileIdle}")
+    private boolean testWhileIdle = true;
+
 
     private static JedisPool jedisPool = null;
 
     public RedisManager() {
+
+
 
     }
 
@@ -44,13 +69,23 @@ public class RedisManager {
      * 初始化方法
      */
     public void init() {
+
+        JedisPoolConfig poolConfig = new JedisPoolConfig();
+        poolConfig.setMaxTotal(maxactive);
+        poolConfig.setMaxIdle(maxIdle);
+        poolConfig.setMaxWaitMillis(maxWait);
+        poolConfig.setMinIdle(minIdle);
+        poolConfig.setTestOnBorrow(testOnBorrow);
+        poolConfig.setTestOnReturn(testOnReturn);
+        poolConfig.setTestWhileIdle(testWhileIdle);
+
         if (jedisPool == null) {
             if (password != null && !"".equals(password)) {
-                jedisPool = new JedisPool(new JedisPoolConfig(), host, port, timeout, password);
+                jedisPool = new JedisPool(poolConfig, host, port, timeout, password);
             } else if (timeout != 0) {
-                jedisPool = new JedisPool(new JedisPoolConfig(), host, port, timeout);
+                jedisPool = new JedisPool(poolConfig, host, port, timeout);
             } else {
-                jedisPool = new JedisPool(new JedisPoolConfig(), host, port);
+                jedisPool = new JedisPool(poolConfig, host, port);
             }
 
         }

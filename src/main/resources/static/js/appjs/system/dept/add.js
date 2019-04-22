@@ -1,7 +1,8 @@
-$().ready(function() {
+var preUrl = "/system/dept";
+var preUrl2 = "/system/organ";
+$(function() {
 	validateRule();
 });
-
 $.validator.setDefaults({
 	submitHandler : function() {
 		save();
@@ -11,7 +12,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/dept/save",
+		url : preUrl+"/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -39,7 +40,7 @@ function validateRule() {
 			deptname : {
 				required : true
 			},
-            organid : {
+            organname : {
                 required : true
             }
 		},
@@ -47,7 +48,7 @@ function validateRule() {
             deptname : {
 				required : icon + "请输入部门名称"
 			},
-            organid : {
+            organname : {
 				required : icon + "请选择机构"
 			}
 		}
@@ -58,7 +59,7 @@ var openOrgan = function(){
         type:2,
         title:"选择机构",
         area : [ '300px', '450px' ],
-        content:"/system/organ/treeView"
+        content:preUrl2+"/treeView"
     })
 }
 function loadOrgan( organid,organname){
@@ -67,14 +68,21 @@ function loadOrgan( organid,organname){
 }
 
 var openDept = function(){
-    layer.open({
-        type:2,
-        title:"选择部门",
-        area : [ '300px', '450px' ],
-        content:"/system/dept/treeView"
-    })
+	var organid =  $("#organid").val();
+	if(organid=="0"){
+        parent.layer.alert("请先选择机构");
+	}else {
+        layer.open({
+            type: 2,
+            title: "选择部门",
+            area: ['300px', '450px'],
+            content: preUrl + "/treeView/" + organid
+        })
+    }
 }
 function loadDept( deptpid,deptpname){
     $("#deptpid").val(deptpid);
     $("#deptpname").val(deptpname);
 }
+
+

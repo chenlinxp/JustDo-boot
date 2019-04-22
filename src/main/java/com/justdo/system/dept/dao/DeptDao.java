@@ -2,12 +2,11 @@ package com.justdo.system.dept.dao;
 
 import com.justdo.common.domain.TreeNode;
 import com.justdo.system.dept.domain.DeptDO;
+import com.justdo.system.dept.domain.DeptVO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-import com.justdo.system.dept.domain.DeptVO;
 
 /**
  * 部门管理
@@ -33,8 +32,6 @@ public interface DeptDao {
 	int batchDel(String[] deptIds);
 	
 	String[] listParentDept();
-	
-	int getDeptUserNumber(String deptId);
 
 	List<DeptVO> getAllDepts(Map<String, Object> param);
 
