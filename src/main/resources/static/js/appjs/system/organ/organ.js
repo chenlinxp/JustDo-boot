@@ -49,6 +49,19 @@ function load() {
                         title : '机构别名'
                     },
                     {
+                        field : 'isvalidation',
+                        title : '状态',
+                        align : 'center',
+                        valign : 'center',
+                        formatter : function(item, index) {
+                            if (item.isvalidation == '0') {
+                                return '<span class="label label-danger">禁用</span>';
+                            } else if (item.isvalidation == '1') {
+                                return '<span class="label label-primary">正常</span>';
+                            }
+                        }
+                    },
+                    {
                         field : 'areaid',
                         title : '地区编号'
                     },
@@ -86,17 +99,14 @@ function load() {
                         title : '机构备注信息'
                     },
                     {
-                        field : 'isvalidation',
-                        title : '状态',
-                        align : 'center',
-                        valign : 'center',
-                        formatter : function(item, index) {
-                            if (item.isvalidation == '0') {
-                                return '<span class="label label-danger">禁用</span>';
-                            } else if (item.isvalidation == '1') {
-                                return '<span class="label label-primary">正常</span>';
-                            }
-                        }
+                        field : 'createTime',
+                        title : '创建时间',
+                        width : '150px'
+                    },
+                    {
+                        field : 'modifyTime',
+                        title : '修改时间',
+                        width : '150px'
                     }]
             });
 }

@@ -136,7 +136,10 @@ public class EmployeeController {
 	String edit(@PathVariable("employeeId") String employeeId,Model model){
 		EmployeeDO employee = employeeService.get(employeeId);
 		model.addAttribute("employee", employee);
-		List<RoleDO> roles = roleService.list(employeeId);
+//		List<String> roleIds = employeeService.listRoleIds(employeeId);
+//		List<RoleDO> roles = roleService.list(roleIds);
+
+		List<RoleDO> roles = roleService.list();
 		model.addAttribute("roles", roles);
 		model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 	    return preUrl + "/edit";

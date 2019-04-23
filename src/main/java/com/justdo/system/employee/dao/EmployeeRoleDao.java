@@ -30,7 +30,7 @@ public interface EmployeeRoleDao {
 
 	int batchDel(String[] ids);
 
-	List<String> listRoleId(String employeeId);
+	List<String> listRoleIds(String employeeId);
 
 	int delByemployeeId(String employeeId);
 

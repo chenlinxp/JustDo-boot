@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.organ.dao.OrganDao">
 
 	<select id="get" resultType="com.justdo.system.organ.domain.OrganDO">
-		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK` from SYS_ORGANIZATION where ORGANID = #{value}
+		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK`,`CREATE_TIME`,`MODIFY_TIME` from SYS_ORGANIZATION where ORGANID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.organ.domain.OrganDO">
-		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK` from SYS_ORGANIZATION
+		select `ORGANID`,`ORGANPID`,`ORGANNAME`,`AREAID`,`ORGANCODE`,`ORGANALIAS`,`POSTCODE`,`ADDRESS`,`TELEPHONE`,`FAX`,`ISVALIDATION`,`ORGANMAN`,`ORGANMANID`,`REMARK`,`CREATE_TIME`,`MODIFY_TIME` from SYS_ORGANIZATION
         <where>  
 		  		  <if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
 		  		  <if test="organpid != null and organpid != ''"> and ORGANPID = #{organpid} </if>
@@ -55,6 +55,8 @@
 		  		  <if test="organman != null and organman != ''"> and ORGANMAN = #{organman} </if>
 		  		  <if test="organmanid != null and organmanid != ''"> and ORGANMANID = #{organmanid} </if>
 		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+				 <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+				 <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		  		</where>
 	</select>
 	 
@@ -77,7 +79,9 @@
 			`ISVALIDATION`, 
 			`ORGANMAN`, 
 			`ORGANMANID`, 
-			`REMARK`
+			`REMARK`,
+			`CREATE_TIME`,
+			`MODIFY_TIME`
 		)
 		values
 		(
@@ -94,7 +98,9 @@
 			#{isvalidation}, 
 			#{organman}, 
 			#{organmanid}, 
-			#{remark}
+			#{remark},
+			#{createTime},
+			#{modifyTime}
 		)
 	</insert>
 	 
@@ -112,7 +118,9 @@
 			<if test="isvalidation != null">`ISVALIDATION` = #{isvalidation}, </if>
 			<if test="organman != null">`ORGANMAN` = #{organman}, </if>
 			<if test="organmanid != null">`ORGANMANID` = #{organmanid}, </if>
-			<if test="remark != null">`REMARK` = #{remark}</if>
+			<if test="remark != null">`REMARK` = #{remark},</if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}</if>
 		</set>
 		where ORGANID = #{organid}
 	</update>

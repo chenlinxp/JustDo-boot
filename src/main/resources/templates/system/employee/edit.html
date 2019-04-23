@@ -56,15 +56,18 @@
 								<label class="col-sm-2 control-label">岗位:</label>
 								<div class="col-sm-4">
 									<input id="positionId" name="positionId" th:value="${employee.positionId}"  class="hidden">
+									<input id="positionName" name="positionName" class="form-control" type="text"
+										   style="cursor: pointer;" onclick="openPosition()"
+										   readonly="readonly" placeholder="所属岗位">
 								</div>
 								<label class="col-sm-2 control-label">角色:</label>
 								<div class="col-sm-4">
-									<label th:each="role:${roles}" class="checkbox-inline">
-										<input name="role" type="checkbox" th:value="${role.roleId}"
-											   th:text="${role.roleName}">
-									</label>
+									<select data-placeholder="--选择角色--" name="roleIds" id="roleIds"
+											class="form-control chosen-select" tabindex="2">
+										<option value="">-- 选择角色 --</option>
+										<option th:each="role:${roles}" th:value="${role.roleId}" th:text="${role.roleName}"></option>
+									</select>
 								</div>
-								<input type="hidden" name="roleIds" id="roleIds">
 							</div>
 	                        <div class="form-group">
 								<label class="col-sm-2 control-label">邮箱:</label>

@@ -9,7 +9,7 @@
 
 	<select id="list" resultType="com.justdo.system.dict.domain.DictContentDO">
 		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from SYS_DICTIONARY_CONTENT
-        <where>  
+               <where>
 		  		  <if test="dcid != null and dcid != ''"> and DCID != #{dcid} </if>
 		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
 		  		  <if test="dcvalue != null and dcvalue != ''"> and DCVALUE = #{dcvalue} </if>

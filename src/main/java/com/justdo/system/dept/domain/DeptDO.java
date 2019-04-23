@@ -2,7 +2,7 @@ package com.justdo.system.dept.domain;
 
 import com.justdo.common.domain.BaseBean;
 
-
+import java.util.Date;
 
 
 /**
@@ -40,7 +40,10 @@ public class DeptDO extends BaseBean {
 	private String deptman;
 	//部门的责人ID
 	private String deptmanid;
-
+	//创建时间
+	private Date createTime;
+	//创建时间
+	private Date modifyTime;
 	/**
 	 * 设置：部门ID
 	 */
@@ -197,5 +200,17 @@ public class DeptDO extends BaseBean {
 	 */
 	public String getDeptmanid() {
 		return deptmanid;
+	}
+	public Date    getCreateTime() {
+		return createTime;
+	}
+	public void         setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date    getModifyTime() {
+		return modifyTime;
+	}
+	public void         setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 }

@@ -73,13 +73,13 @@
 	</delete>
 
 	<delete id="batchRemove">
-		delete from sys_employee_role where id in
+		delete from sys_employee_role where employee_role_id in
 		<foreach item="employeeRoleId" collection="array" open="(" separator="," close=")">
 			#{employeeRoleId}
 		</foreach>
 	</delete>
 
-	<select id="listRoleId" resultType="String">
+	<select id="listRoleIds" resultType="String">
 		select role_id
 		from sys_employee_role
 		where employee_id = #{employeeId}

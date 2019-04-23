@@ -28,7 +28,7 @@ public interface DictContentService {
 
 	int batchDel(String[] dcids);
 
-	String getName(String type, String value);
+	String getName(String Dicttype, String value);
 
 	/**
 	 * 根据dcode获取数据

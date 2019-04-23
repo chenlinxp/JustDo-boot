@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * 员工管理
@@ -86,7 +85,7 @@ public interface EmployeeService {
 	 * @param employeeId
 	 * @return
 	 */
-	Set<String> listRoles(String employeeId);
+	List<String> listRoleIds(String employeeId);
 
 	/**
 	 *

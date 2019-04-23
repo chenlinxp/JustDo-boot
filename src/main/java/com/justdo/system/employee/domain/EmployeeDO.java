@@ -1,8 +1,9 @@
 package com.justdo.system.employee.domain;
 
 import com.justdo.common.domain.BaseBean;
-import java.util.Date;
 
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -24,6 +25,8 @@ public class EmployeeDO extends BaseBean {
 	private String loginName;
 	//真是姓名
 	private String realName;
+	//角色
+	private List<String> roleIds;
 	//密码
 	private String password;
 	//密码盐
@@ -42,10 +45,6 @@ public class EmployeeDO extends BaseBean {
 	private Integer employeeState;
 	//创建用户id
 	private String createEmployeeId;
-	//创建时间
-	private Date createTime;
-	//修改时间
-	private Date modifyTime;
 	//性别
 	private Integer employeeSex;
 	//出身日期
@@ -64,6 +63,10 @@ public class EmployeeDO extends BaseBean {
 	private String district;
 	//备注
 	private String remark;
+	//创建时间
+	private Date createTime;
+	//修改时间
+	private Date modifyTime;
 
 	/**
 	 * 构造方法
@@ -143,6 +146,18 @@ public class EmployeeDO extends BaseBean {
 	 */
 	public String getRealName() {
 		return realName;
+	}
+	/**
+	 * 设置：角色
+	 */
+	public void setRoleIds(List<String> roleIds) {
+		this.roleIds = roleIds;
+	}
+	/**
+	 * 获取：角色
+	 */
+	public List<String> getRoleIds() {
+		return roleIds;
 	}
 	/**
 	 * 设置：密码
@@ -253,30 +268,6 @@ public class EmployeeDO extends BaseBean {
 		return createEmployeeId;
 	}
 	/**
-	 * 设置：创建时间
-	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
-	/**
-	 * 获取：创建时间
-	 */
-	public Date getCreateTime() {
-		return createTime;
-	}
-	/**
-	 * 设置：修改时间
-	 */
-	public void setModifyTime(Date modifyTime) {
-		this.modifyTime = modifyTime;
-	}
-	/**
-	 * 获取：修改时间
-	 */
-	public Date getModifyTime() {
-		return modifyTime;
-	}
-	/**
 	 * 设置：性别
 	 */
 	public void setEmployeeSex(Integer employeeSex) {
@@ -373,18 +364,41 @@ public class EmployeeDO extends BaseBean {
 		return district;
 	}
 	/**
-	 * 设置：
+	 * 设置：备注
 	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 	/**
-	 * 获取：
+	 * 获取：备注
 	 */
 	public String getRemark() {
 		return remark;
 	}
-
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public Date getCreateTime() {
+		return createTime;
+	}
+	/**
+	 * 设置：修改时间
+	 */
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+	/**
+	 * 获取：修改时间
+	 */
+	public Date getModifyTime() {
+		return modifyTime;
+	}
 	@Override
 	public String toString() {
 		return "EmployeeDO{" +

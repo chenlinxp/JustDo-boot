@@ -26,5 +26,7 @@ public interface RoleService {
 
 	List<RoleDO> list(String employeeId);
 
+	List<RoleDO> list(List<String> roleIds);
+
 	int batchDel(String[] ids);
 }

@@ -1,5 +1,6 @@
 package com.justdo.system.role.service.impl;
 
+import com.justdo.common.utils.StringUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.dao.EmployeeRoleDao;
 import com.justdo.system.role.dao.RoleDao;
@@ -47,7 +48,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<RoleDO> list(String EmployeeId) {
-        List<String> rolesIds = employeeRoleDao.listRoleId(EmployeeId);
+        List<String> rolesIds = employeeRoleDao.listRoleIds(EmployeeId);
         List<RoleDO> roles = roleDao.list(new HashMap<>(16));
         for (RoleDO roleDO : roles) {
             roleDO.setRoleSign("false");
@@ -59,6 +60,12 @@ public class RoleServiceImpl implements RoleService {
             }
         }
         return roles;
+    }
+
+    @Override
+    public List<RoleDO> list(List<String> roleIds){
+        String[] Ids =roleIds.toArray(new String[roleIds.size()]);
+        return roleDao.getListByIds(Ids);
     }
     @Transactional
     @Override

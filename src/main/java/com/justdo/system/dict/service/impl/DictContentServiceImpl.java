@@ -60,11 +60,15 @@ public class DictContentServiceImpl implements DictContentService {
 
 
     @Override
-    public String getName(String type, String value) {
+    public String getName(String Dicttype, String value) {
         Map<String, Object> param = new HashMap<String, Object>(16);
-        param.put("type", type);
-        param.put("value", value);
-        String rString = dictContentDao.list(param).get(0).getDcvalue();
+        param.put("did", Dicttype);
+        param.put("dccode", value);
+        String rString = "";
+        List<DictContentDO> ListD =  dictContentDao.list(param);
+        if(ListD.size()>0){
+            rString = ListD.get(0).getDcvalue();
+        }
         return rString;
     }
 

@@ -84,17 +84,17 @@ function load(organId,deptId) {
                             return (pageNumber-1)*pageSize+index+1;
                         }
                     },
-					{
-						field : 'realName',
-						title : '员工姓名'
-					},
-                    {
-                        field : 'employeeNumber',
-                        title : '员工编号'
-                    },
                     {
                         field : 'loginName',
                         title : '账号名称'
+                    },
+                    {
+                        field : 'realName',
+                        title : '员工姓名'
+                    },
+                    {
+                        field : 'employeeNumber',
+                        title : '员工编号'
                     },
 					{
 						field : 'email',

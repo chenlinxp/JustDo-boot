@@ -9,6 +9,7 @@ import com.justdo.system.dept.domain.DeptDO;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.dao.EmployeeRoleDao;
 import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.EmployeeRoleDO;
 import com.justdo.system.employee.domain.EmployeeVO;
 import com.justdo.system.employee.service.EmployeeService;
 import com.justdo.system.file.domain.FileDO;
@@ -46,7 +47,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public EmployeeDO get(String  employeeId){
-		return employeeDao.get(employeeId);
+		List<String> roleIds = employeeRoleDao.listRoleIds(employeeId);
+		EmployeeDO employeeDO = employeeDao.get(employeeId);
+		employeeDO.setRoleIds(roleIds);
+		return employeeDO;
 	}
 
 	@Override
@@ -66,6 +70,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int save(EmployeeDO employee){
+		String employeeId = StringUtils.getUUID();
+		employee.setEmployeeId(employeeId);
+		for (String roleId:employee.getRoleIds()) {
+		EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
+		employeeRoleDO.setEmplpoyeeId(employeeId);
+		employeeRoleDO.setRoleId(roleId);
+		employeeRoleDao.save(employeeRoleDO);
+		}
 		return employeeDao.save(employee);
 	}
 	
@@ -95,8 +107,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Set<String> listRoles(String employeeId) {
-		return null;
+	public List<String> listRoleIds(String employeeId) {
+		return employeeRoleDao.listRoleIds(employeeId);
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,6 +107,9 @@ public class DeptController extends BaseController {
 	@PostMapping("/save")
 	@RequiresPermissions("system:dept:add")
 	public R save(DeptDO dept) {
+		Date nowdate =	new Date();
+		dept.setCreateTime(nowdate);
+		dept.setModifyTime(nowdate);
 		if (deptService.save(dept) > 0) {
 			return R.ok();
 		}
@@ -120,6 +124,7 @@ public class DeptController extends BaseController {
 	@RequestMapping("/update")
 	@RequiresPermissions("system:dept:edit")
 	public R update(DeptDO dept) {
+		dept.setModifyTime(new Date());
 		if (deptService.update(dept) > 0) {
 			return R.ok();
 		}

@@ -103,12 +103,11 @@ function validateRule() {
                 equalTo : "#password"
             },
             email : {
-                required : true,
-                email : true
+                required : true
             },
             mobile : {
                 required : true,
-                mobile : true
+                minlength : 11
             }
         },
         messages : {
@@ -140,7 +139,7 @@ function validateRule() {
                 equalTo : icon + "两次输入的密码不一致"
             },
             email : icon + "请输入您的E-mail",
-            mobile : icon + "请输入您的手机号",
+            mobile : icon + "请输入您的手机号"
         }
     })
 }

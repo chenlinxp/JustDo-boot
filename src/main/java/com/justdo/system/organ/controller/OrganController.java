@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +74,9 @@ public class OrganController {
 	@PostMapping("/save")
 	@RequiresPermissions("system:organ:add")
 	public R save( OrganDO organ){
+		Date nowdate =	new Date();
+		organ.setCreateTime(nowdate);
+		organ.setModifyTime(nowdate);
 		if(organService.save(organ)>0){
 			return R.ok();
 		}
@@ -89,6 +93,7 @@ public class OrganController {
 		if (organ.getOrganpid() == organ.getOrganid()) {
 			return R.error("上级机构不能选自己！");
 		}
+		organ.setModifyTime(new Date());
 		if (organService.update(organ) > 0) {
 			return R.ok();
 		}

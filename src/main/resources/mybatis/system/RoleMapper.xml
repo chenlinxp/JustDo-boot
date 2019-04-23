@@ -97,4 +97,12 @@
 		</foreach>
 	</delete>
 
+	<select id="getListByIds" resultType="com.justdo.system.role.domain.RoleDO">
+	select  `ROLE_ID`,`ROLE_NAME`,`ROLE_SIGN`,`ROLE_STATE`,`REMARK`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`
+	from sys_role  where ROLE_ID  in
+		<foreach item="roleIds" collection="array" open="(" separator="," close=")">
+			#{roleIds}
+		</foreach>
+	</select>
+
 </mapper>

@@ -1,11 +1,10 @@
 package com.justdo.system.role.dao;
 
-import java.util.List;
-import java.util.Map;
-
+import com.justdo.system.role.domain.RoleDO;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.justdo.system.role.domain.RoleDO;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -31,4 +30,6 @@ public interface RoleDao {
 	int del(String roleId);
 	
 	int batchDel(String[] roleIds);
+
+	List<RoleDO> getListByIds(String[] roleIds);
 }

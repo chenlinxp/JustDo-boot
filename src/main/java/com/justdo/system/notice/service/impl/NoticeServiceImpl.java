@@ -2,6 +2,7 @@ package com.justdo.system.notice.service.impl;
 
 import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
+import com.justdo.system.dict.domain.DictContentDO;
 import com.justdo.system.dict.service.DictContentService;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
@@ -50,15 +51,18 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public NoticeDO get(String id) {
         NoticeDO rDO = NoticeDao.get(id);
-        rDO.setType(dictContentService.getName("notice_type", rDO.getType()));
+        List<DictContentDO> listD = dictContentService.listDictByCode("noticeCode");
+        rDO.setType(dictContentService.getName(listD.get(0).getDid(), rDO.getType()));
         return rDO;
     }
 
     @Override
     public List<NoticeDO> list(Map<String, Object> map) {
         List<NoticeDO> Notices = NoticeDao.list(map);
+        List<DictContentDO> listD = dictContentService.listDictByCode("noticeCode");
         for (NoticeDO NoticeDO : Notices) {
-            NoticeDO.setType(dictContentService.getName("notice_type", NoticeDO.getType()));
+
+            NoticeDO.setType(dictContentService.getName(listD.get(0).getDid(), NoticeDO.getType()));
         }
         return Notices;
     }

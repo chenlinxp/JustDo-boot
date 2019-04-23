@@ -2,6 +2,7 @@ package com.justdo.system.organ.domain;
 
 import com.justdo.common.domain.BaseBean;
 
+import java.util.Date;
 
 
 /**
@@ -43,6 +44,10 @@ public class OrganDO extends BaseBean {
 	private String organmanid;
 	//机构备注信息
 	private String remark;
+	//创建时间
+	private Date createTime;
+	//创建时间
+	private Date modifyTime;
 
 	/**
 	 * 设置：机构ID
@@ -224,5 +229,18 @@ public class OrganDO extends BaseBean {
 	 */
 	public String getRemark() {
 		return remark;
+	}
+
+	public Date    getCreateTime() {
+		return createTime;
+	}
+	public void         setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date    getModifyTime() {
+		return modifyTime;
+	}
+	public void         setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 }

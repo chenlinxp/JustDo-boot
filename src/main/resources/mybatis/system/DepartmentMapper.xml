@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.dept.dao.DeptDao">
 
 	<select id="get" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION`,`DEPTCODE`,`REMARK`,`DEPTMAN`,`DEPTMANID` from SYS_DEPARTMENT where DEPTID = #{value}
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION`,`DEPTCODE`,`REMARK`,`DEPTMAN`,`DEPTMANID`,`CREATE_TIME`,`MODIFY_TIME` from SYS_DEPARTMENT where DEPTID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dept.domain.DeptDO">
-		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION`,`DEPTCODE`,`REMARK`,`DEPTMAN`,`DEPTMANID` from SYS_DEPARTMENT
+		select `DEPTID`,`ORGANID`,`DEPTPID`,`DEPTNAME`,`ORDERNUM`,`DELFLAG`,`ISVALIDATION`,`DEPTCODE`,`REMARK`,`DEPTMAN`,`DEPTMANID`,`CREATE_TIME`,`MODIFY_TIME` from SYS_DEPARTMENT
 		<where>
 			<if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 			<if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
@@ -21,6 +21,8 @@
 			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 			<if test="deptman != null and deptman != ''"> and DEPTMAN = #{deptman} </if>
 			<if test="deptmanid != null and deptmanid != ''"> and DEPTMANID = #{deptmanid} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
@@ -49,6 +51,8 @@
 			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 			<if test="deptman != null and deptman != ''"> and DEPTMAN = #{deptman} </if>
 			<if test="deptmanid != null and deptmanid != ''"> and DEPTMANID = #{deptmanid} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		</where>
 	</select>
 
@@ -68,7 +72,9 @@
 		`DEPTCODE`,
 		`REMARK`,
 		`DEPTMAN`,
-		`DEPTMANID`
+		`DEPTMANID`,
+		`CREATE_TIME`,
+		`MODIFY_TIME`
 		)
 		values
 		(
@@ -82,7 +88,9 @@
 		#{deptcode},
 		#{remark},
 		#{deptman},
-		#{deptmanid}
+		#{deptmanid},
+		#{createTime},
+		#{modifyTime}
 		)
 	</insert>
 
@@ -98,7 +106,9 @@
 			<if test="deptcode != null">  `DEPTCODE` = #{deptcode}, </if>
 			<if test="remark != null ">  `REMARK` = #{remark} ,</if>
 			<if test="deptman != null ">  `DEPTMAN` = #{deptman}, </if>
-			<if test="deptmanid != null">  `DEPTMANID` = #{deptmanid} </if>
+			<if test="deptmanid != null">  `DEPTMANID` = #{deptmanid}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}</if>
 		</set>
 		where DEPTID = #{deptid}
 	</update>

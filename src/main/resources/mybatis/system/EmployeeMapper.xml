@@ -80,9 +80,6 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.system.employee.domain.EmployeeDO" >
-		<selectKey keyProperty="employeeID" resultType="string" order="BEFORE">
-			select replace(uuid(), '-', '') as employeeID from dual
-		</selectKey>
         insert into sys_employee
 		(
 		    `EMPLOYEE_ID`,
