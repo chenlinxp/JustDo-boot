@@ -1,11 +1,12 @@
 var preUrl = "/system/employee"
 $(function() {
+	var organId = '';
 	var deptmentId = '';
 	getTreeData();
-	load(deptmentId);
+	load(organId,deptmentId);
 });
 
-function load(deptId) {
+function load(organId,deptId) {
 	$('#bTable')
 		.bootstrapTable(
 			{
@@ -36,8 +37,11 @@ function load(deptId) {
 						// 说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 						limit : params.limit,
 						offset : params.offset,
-						name : $('#searchName').val(),
-                        deptmentId : deptId
+                        sort: 'CREATE_TIME',
+                        order: 'desc',
+                        loginName : $('#searchName').val(),
+                        deptmentId : deptId,
+						organId: organId
 					};
 				},
                 onDblClickRow: function (row, element) {
@@ -251,22 +255,23 @@ function loadTree(tree) {
 	$('#jstree').jstree().open_all();
 }
 $('#jstree').on("changed.jstree", function(e, data) {
-	if (data.selected == -1) {
-		var opt = {
-			query : {
-                deptmentId : '',
-			}
-		}
-		$('#bTable').bootstrapTable('refresh', opt);
-	} else {
-		var opt = {
-			query : {
-                deptmentId : data.selected[0],
-			}
-		}
-		$('#bTable').bootstrapTable('refresh',opt);
+	var organId = '';
+    var deptmentId = '';
+    var opt = {
+        query : {
+            deptmentId : deptmentId,
+            organId :organId
+        }
+    }
+    if(data.selected != -1){
+        if(data.node["icon"]=="D"){
+            opt.query.deptmentId = data.node["id"];
+        }else{
+            opt.query.organId = data.node["id"];
+        }
+        console.log(opt);
+        $('#bTable').bootstrapTable('refresh', opt);
 	}
-
 });
 
 $('#jstree').on("open_node.jstree", function(e, data){
