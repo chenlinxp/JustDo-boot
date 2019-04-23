@@ -153,12 +153,12 @@ var openOrgan = function(){
     })
 }
 function loadOrgan( organid,organname){
-    $("#organid").val(organid);
-    $("#organname").val(organname);
+    $("#organId").val(organid);
+    $("#organName").val(organname);
 }
 
 var openDept = function() {
-    var organid = $("#organid").val();
+    var organid = $("#organId").val();
     if (organid == "0") {
         parent.layer.alert("请先选择机构");
     } else {
