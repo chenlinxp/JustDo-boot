@@ -116,7 +116,7 @@ public class ActTaskServiceImpl implements ActTaskService {
      */
     @Override
     public String startProcess(String procDefKey, String businessTable, String businessId, String title, Map<String, Object> vars) {
-        String userId = ShiroUtils.getEmployee().getLoginName();//ObjectUtils.toString(UserUtils.getUser().getId())
+        String userId = ShiroUtils.getSimpleEmployee().getLoginName();//ObjectUtils.toString(UserUtils.getUser().getId())
 
         // 用来设置启动流程的人员ID，引擎会自动把用户ID保存到activiti:initiator中
         identityService.setAuthenticatedUserId(userId);

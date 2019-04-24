@@ -5,6 +5,7 @@ import com.justdo.common.utils.ShiroUtils;
 import com.justdo.config.ApplicationContextRegister;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.resource.service.ResourceService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -57,6 +58,13 @@ public class EmployeeRealm extends AuthorizingRealm {
 		// 查询用户信息
 		EmployeeDO employee = employeeDao.list(map).get(0);
 
+		SimpleEmployeeDO simpleEmployeeDO = new SimpleEmployeeDO();
+		simpleEmployeeDO.setEmployeeId(employee.getEmployeeId());
+		simpleEmployeeDO.setLoginName(employee.getLoginName());
+		simpleEmployeeDO.setEmployeeNumber(employee.getEmployeeNumber());
+		simpleEmployeeDO.setDeptmentId(employee.getDeptmentId());
+		simpleEmployeeDO.setOrganId(employee.getOrganId());
+		simpleEmployeeDO.setPositionId(employee.getPositionId());
 		// 账号不存在
 		if (employee == null) {
 			throw new UnknownAccountException("账号或密码不正确");
@@ -70,9 +78,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 		if (employee.getEmployeeState() == 0) {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
-//		employee.setPasswordSalt("");
-//		employee.setPassword("");
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(employee, password, getName());
+		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(simpleEmployeeDO, password, getName());
 		return info;
 	}
 

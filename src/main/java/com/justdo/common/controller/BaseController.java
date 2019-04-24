@@ -1,7 +1,7 @@
 package com.justdo.common.controller;
 
 import com.justdo.common.utils.ShiroUtils;
-import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -18,8 +18,8 @@ public class BaseController {
 	 * 获取当前对象
 	 * @return EmployeeDO
 	 */
-	public EmployeeDO getEmployee() {
-		return ShiroUtils.getEmployee();
+	public SimpleEmployeeDO getSimpleEmployee() {
+		return ShiroUtils.getSimpleEmployee();
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class BaseController {
 	 * @return
 	 */
 	public String getEmployeeId() {
-		return getEmployee().getEmployeeId();
+		return getSimpleEmployee().getEmployeeId();
 	}
 
 	/**
@@ -35,6 +35,6 @@ public class BaseController {
 	 * @return
 	 */
 	public String getEmployeename() {
-		return getEmployee().getLoginName();
+		return getSimpleEmployee().getLoginName();
 	}
 }

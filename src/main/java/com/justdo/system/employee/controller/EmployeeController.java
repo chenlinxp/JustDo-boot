@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.justdo.common.utils.ShiroUtils.getEmployee;
 import static com.justdo.common.utils.ShiroUtils.getEmployeeId;
 
 /**
@@ -120,6 +119,7 @@ public class EmployeeController {
 		employee.setModifyTime(date);
 		employee.setPasswordSalt(StringUtils.getUUID());
 		employee.setPassword(MD5Utils.encrypt(employee.getPasswordSalt(), employee.getPassword()));
+		employee.setEmployeeId(getEmployeeId());
 		if(employeeService.save(employee)>0){
 			return R.ok();
 		}
@@ -231,7 +231,7 @@ public class EmployeeController {
 	@ResponseBody
 	R resetPwd(EmployeeVO employeeVO) {
 		try{
-			employeeService.resetPwd(employeeVO,getEmployee());
+			employeeService.resetPwd(employeeVO,getEmployeeId());
 			return R.ok();
 		}catch (Exception e){
 			return R.error(1,e.getMessage());

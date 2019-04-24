@@ -126,7 +126,7 @@ function validateRule() {
             organName : {
                 required : icon + "请选择机构"
             },
-            deptName : {
+            deptmentName : {
                 required : icon + "请选择部门"
             },
             password : {

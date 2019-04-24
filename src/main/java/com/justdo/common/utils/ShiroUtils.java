@@ -1,6 +1,6 @@
 package com.justdo.common.utils;
 
-import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -33,10 +33,10 @@ public class ShiroUtils {
      * 员工对象
      * @return
      */
-    public static EmployeeDO getEmployee() {
+    public static SimpleEmployeeDO getSimpleEmployee() {
 
         Object object = getSubjct().getPrincipal();
-        return (EmployeeDO)object;
+        return (SimpleEmployeeDO)object;
     }
 
     /**
@@ -45,7 +45,7 @@ public class ShiroUtils {
      */
     public static String getEmployeeId() {
 
-        return getEmployee().getEmployeeId();
+        return getSimpleEmployee().getEmployeeId();
     }
 
     /**

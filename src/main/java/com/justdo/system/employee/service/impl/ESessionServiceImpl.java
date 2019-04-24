@@ -3,6 +3,7 @@ package com.justdo.system.employee.service.impl;
 
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.EmployeeOnline;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.employee.service.ESessionService;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
@@ -44,8 +45,8 @@ public class ESessionServiceImpl implements ESessionService {
 			} else {
 				SimplePrincipalCollection principalCollection = (SimplePrincipalCollection) session
 						.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
-				EmployeeDO employeeDO = (EmployeeDO) principalCollection.getPrimaryPrincipal();
-				employeeOnline.setLoginName(employeeDO.getLoginName());
+				SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO) principalCollection.getPrimaryPrincipal();
+				employeeOnline.setLoginName(simpleEmployeeDO.getLoginName());
 			}
 			employeeOnline.setId((String) session.getId());
 			employeeOnline.setHostIP(session.getHost());
@@ -83,6 +84,7 @@ public class ESessionServiceImpl implements ESessionService {
 	@Override
 	public boolean  forceLogout(String sessionId) {
 		Session session = sessionDAO.readSession(sessionId);
+		sessionDAO.delete(session);
 		session.setTimeout(0);
 		return true;
 	}

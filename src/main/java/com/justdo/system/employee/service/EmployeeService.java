@@ -90,11 +90,10 @@ public interface EmployeeService {
 	/**
 	 *
 	 * @param employeeVO
-	 * @param employeeDO
 	 * @return
 	 * @throws Exception
 	 */
-	int resetPwd(EmployeeVO employeeVO, EmployeeDO employeeDO) throws Exception;
+	int resetPwd(EmployeeVO employeeVO,String employeeId) throws Exception;
 
 	/**
 	 * 管理员重置密码

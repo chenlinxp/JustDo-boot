@@ -37,10 +37,16 @@ public class EmployeeDO extends BaseBean {
 	private String passwordSalt;
 	//部门ID
 	private String deptmentId;
+	//部门名称
+    private String deptmentName;
 	//机构ID
 	private String organId;
+	//机构名称
+	private String organName;
 	//岗位ID
 	private String positionId;
+	//岗位名称
+	private String positionName;
 	//邮箱
 	private String email;
 	//手机号
@@ -76,8 +82,9 @@ public class EmployeeDO extends BaseBean {
 	 * 构造方法
 	 */
 	public EmployeeDO(){ }
-	public EmployeeDO(String EmployeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,String CreateEmployeeId,Date CreateTime,Date ModifyTime,Integer EmployeeSex,String Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
+	public EmployeeDO(String employeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,String CreateEmployeeId,Date CreateTime,Date ModifyTime,Integer EmployeeSex,String Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
 		super();
+		this.employeeId = employeeId;
 		this.employeeNumber= employeeNumber;
 		this.loginName= loginName;
 		this.realName= realName;
@@ -186,40 +193,76 @@ public class EmployeeDO extends BaseBean {
 		return passwordSalt;
 	}
 	/**
-	 * 设置：
+	 * 设置：部门ID
 	 */
 	public void setDeptmentId(String deptmentId) {
 		this.deptmentId = deptmentId;
 	}
 	/**
-	 * 获取：
+	 * 获取：部门ID
 	 */
 	public String getDeptmentId() {
 		return deptmentId;
 	}
 	/**
-	 * 设置：
+	 * 获取：部门名称
+	 */
+	public  String getDeptmentName() {
+		return deptmentName;
+	}
+	/**
+	 * 设置：部门名称
+	 */
+	public void   setDeptmentName(String deptmentName) {
+		this.deptmentName = deptmentName;
+	}
+	/**
+	 * 设置：机构ID
 	 */
 	public void setOrganId(String organId) {
 		this.organId = organId;
 	}
 	/**
-	 * 获取：
+	 * 获取：机构ID
 	 */
 	public String getOrganId() {
 		return organId;
 	}
 	/**
-	 * 设置：
+	 * 设置：机构名称
+	 */
+	public String getOrganName() {
+		return organName;
+	}
+	/**
+	 * 获取：机构名称
+	 */
+	public void   setOrganName(String organName) {
+		this.organName = organName;
+	}
+	/**
+	 * 设置：岗位ID
 	 */
 	public void setPositionId(String positionId) {
 		this.positionId = positionId;
 	}
 	/**
-	 * 获取：
+	 * 获取：岗位ID
 	 */
 	public String getPositionId() {
 		return positionId;
+	}
+	/**
+	 * 获取：岗位名称
+	 */
+	public String getPositionName() {
+		return positionName;
+	}
+	/**
+	 * 设置：岗位名称
+	 */
+	public void   setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
 	/**
 	 * 设置：邮箱

@@ -14,6 +14,8 @@ import com.justdo.system.employee.domain.EmployeeVO;
 import com.justdo.system.employee.service.EmployeeService;
 import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;
+import com.justdo.system.organ.dao.OrganDao;
+import com.justdo.system.organ.domain.OrganDO;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private DeptDao deptDao;
 
 	@Autowired
+	private OrganDao organDao;
+
+	@Autowired
 	private JustdoConfig justdoConfig;
 	
 	@Override
@@ -50,6 +55,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<String> roleIds = employeeRoleDao.listRoleIds(employeeId);
 		EmployeeDO employeeDO = employeeDao.get(employeeId);
 		employeeDO.setRoleIds(roleIds);
+
+		if(StringUtils.isNotEmpty(employeeDO.getOrganId())){
+			OrganDO organDO = organDao.get(employeeDO.getOrganId());
+			if(organDO!=null){
+				employeeDO.setOrganName(organDO.getOrganname());
+				organDO = null;
+			}
+		}
+
+		if(StringUtils.isNotEmpty(employeeDO.getDeptmentId())){
+			DeptDO deptDO = deptDao.get(employeeDO.getDeptmentId());
+			if(deptDO!=null){
+				employeeDO.setDeptmentName(deptDO.getDeptname());
+				deptDO = null;
+			}
+		}
+
+
 		return employeeDO;
 	}
 
@@ -113,13 +136,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
-	public int resetPwd(EmployeeVO employeeVO, EmployeeDO employeeDO) throws Exception {
+	public int resetPwd(EmployeeVO employeeVO,String employeeId) throws Exception {
 
-		if(Objects.equals(employeeVO.getEmployeeDO().getEmployeeId(),employeeDO.getEmployeeId())){
-
-			if(Objects.equals(MD5Utils.encrypt(employeeDO.getPasswordSalt(),employeeVO.getPwdOld()),employeeDO.getPassword())){
-				employeeDO.setPassword(MD5Utils.encrypt(employeeDO.getPasswordSalt(),employeeVO.getPwdNew()));
-				return employeeDao.update(employeeDO);
+		if(Objects.equals(employeeVO.getEmployeeDO().getEmployeeId(),employeeId)){
+			EmployeeDO currentEmployee =  get(employeeId);
+			if(Objects.equals(MD5Utils.encrypt(currentEmployee.getPasswordSalt(),employeeVO.getPwdOld()),currentEmployee.getPassword())){
+				currentEmployee.setPassword(MD5Utils.encrypt(currentEmployee.getPasswordSalt(),employeeVO.getPwdNew()));
+				return employeeDao.update(currentEmployee);
 			}else{
 				throw new Exception("输入的旧密码有误！");
 			}

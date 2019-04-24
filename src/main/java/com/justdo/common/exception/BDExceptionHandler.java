@@ -1,7 +1,7 @@
 package com.justdo.common.exception;
 
 import com.justdo.common.utils.*;
-import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.errorlog.domain.ErrorLogDO;
 import com.justdo.system.errorlog.service.ErrorLogService;
 import org.apache.shiro.authz.AuthorizationException;
@@ -64,7 +64,7 @@ public class BDExceptionHandler {
         Date date = new Date();
         String nowtimeStr = DataFormater.toString(date,"yyyy-MM-dd HH:mm:ss");
         errorLogDO.setCreateTime(nowtimeStr);
-        EmployeeDO current = ShiroUtils.getEmployee();
+        SimpleEmployeeDO current = ShiroUtils.getSimpleEmployee();
         if(null!=current) {
             errorLogDO.setUserId(current.getEmployeeId());
             errorLogDO.setUserName(current.getLoginName());

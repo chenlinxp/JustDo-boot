@@ -55,8 +55,8 @@ public class ELoginController extends BaseController {
 	String index(Model model) {
 		List<Tree<ResourceDO>> resourceDOs = resourceService.listEmployeeResourceTree(getEmployeeId());
 		model.addAttribute("menus", resourceDOs);
-		model.addAttribute("name", getEmployee().getLoginName());
-		FileDO fileDO = fileService.get(getEmployee().getPhotoId());
+		model.addAttribute("name", getSimpleEmployee().getLoginName());
+		FileDO fileDO = fileService.get(getSimpleEmployee().getPhotoId());
 		if(fileDO!=null&&fileDO.getFileUrl()!=null){
 			if(fileService.isExist(fileDO.getFileUrl())){
 				model.addAttribute("picUrl",fileDO.getFileUrl());
@@ -67,7 +67,7 @@ public class ELoginController extends BaseController {
 
 			model.addAttribute("picUrl","/img/photo_s.jpg");
 		}
-		model.addAttribute("username", getEmployee().getLoginName());
+		model.addAttribute("username", getSimpleEmployee().getLoginName());
 		return "index";
 	}
 
