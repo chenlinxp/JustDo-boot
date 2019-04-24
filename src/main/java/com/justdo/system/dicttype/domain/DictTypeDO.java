@@ -11,7 +11,7 @@ import com.justdo.common.domain.BaseBean;
  */
 public class DictTypeDO extends BaseBean {
 	
-	//uuid
+	//主键ID
 	private String did;
 
 	private String dname;

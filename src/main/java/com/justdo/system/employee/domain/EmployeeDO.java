@@ -1,5 +1,6 @@
 package com.justdo.system.employee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.justdo.common.domain.BaseBean;
 
 import java.util.Date;
@@ -26,10 +27,13 @@ public class EmployeeDO extends BaseBean {
 	//真是姓名
 	private String realName;
 	//角色
+    @JsonIgnore
 	private List<String> roleIds;
 	//密码
+	@JsonIgnore
 	private String password;
 	//密码盐
+	@JsonIgnore
 	private String passwordSalt;
 	//部门ID
 	private String deptmentId;
@@ -150,14 +154,12 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：角色
 	 */
-	public void setRoleIds(List<String> roleIds) {
-		this.roleIds = roleIds;
-	}
-	/**
-	 * 获取：角色
-	 */
 	public List<String> getRoleIds() {
 		return roleIds;
+	}
+
+	public void setRoleIds(List<String> roleIds) {
+		this.roleIds = roleIds;
 	}
 	/**
 	 * 设置：密码

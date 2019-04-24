@@ -70,6 +70,8 @@ public class EmployeeRealm extends AuthorizingRealm {
 		if (employee.getEmployeeState() == 0) {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
+//		employee.setPasswordSalt("");
+//		employee.setPassword("");
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(employee, password, getName());
 		return info;
 	}

@@ -1,17 +1,16 @@
 package com.justdo.system.dicttype.dao;
 
-import java.util.List;
-import java.util.Map;
-
+import com.justdo.system.dicttype.domain.DictTypeDO;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.justdo.system.dicttype.domain.DictTypeDO;
+import java.util.List;
+import java.util.Map;
 
 
 
 
 /**
- * 字典表
+ * 字典类型表
  *
  * @author chenlin
  * @email 13233669915@qq.com
@@ -20,14 +19,39 @@ import com.justdo.system.dicttype.domain.DictTypeDO;
 @Mapper
 public interface DictTypeDao {
 
+	/**
+	 * 获取字典类型实体
+	 * @param did
+	 * @return
+	 */
 	DictTypeDO get(String did);
 
+	/**
+	 * 保存字典类型
+	 * @param dict
+	 * @return
+	 */
 	int save(DictTypeDO dict);
 
+	/**
+	 * 编辑字典类型
+	 * @param dict
+	 * @return
+	 */
 	int update(DictTypeDO dict);
 
+	/**
+	 * 删除字典类型
+	 * @param did
+	 * @return
+	 */
 	int del(String did);
 
+	/**
+	 * 字典类型list
+	 * @param map
+	 * @return
+	 */
 	List<DictTypeDO> list(Map<String, Object> map);
 
 }
