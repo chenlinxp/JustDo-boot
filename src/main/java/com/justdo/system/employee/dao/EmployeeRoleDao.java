@@ -32,7 +32,7 @@ public interface EmployeeRoleDao {
 
 	List<String> listRoleIds(String employeeId);
 
-	int delByemployeeId(String employeeId);
+	int delByEmployeeId(String employeeId);
 
 	int delByRoleId(String roleId);
 

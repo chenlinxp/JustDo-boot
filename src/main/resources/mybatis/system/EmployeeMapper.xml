@@ -12,7 +12,8 @@
 	</select>
 	<select id="list" resultType="com.justdo.system.employee.domain.EmployeeDO">
 		select  `EMPLOYEE_ID`,`EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_ID`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee
-        <where>  
+        <where>
+		  <if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID != #{employeeId} </if>
 		  <if test="employeeNumber != null and employeeNumber != ''"> and EMPLOYEE_NUMBER = #{employeeNumber} </if>
 		  <if test="loginName != null and loginName != ''"> and LOGIN_NAME = #{loginName} </if>
 		  <if test="realName != null and realName != ''"> and REAL_NAME = #{realName} </if>

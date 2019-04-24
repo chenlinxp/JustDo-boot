@@ -83,6 +83,9 @@ function validateRule() {
                     data : { // 要传递的数据
                         loginName : function() {
                             return $("#loginName").val();
+                        },
+                        employeeId:function() {
+                            return $("#employeeId").val();
                         }
                     }
                 }

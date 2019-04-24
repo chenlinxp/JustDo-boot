@@ -135,8 +135,10 @@ public class EmployeeController {
 	@RequiresPermissions("system:employee:edit")
 	String edit(@PathVariable("employeeId") String employeeId,Model model){
 		EmployeeDO employee = employeeService.get(employeeId);
+		List<String> roleIds = employeeService.listRoleIds(employeeId);
+		employee.setRoleIds(roleIds);
 		model.addAttribute("employee", employee);
-//		List<String> roleIds = employeeService.listRoleIds(employeeId);
+
 //		List<RoleDO> roles = roleService.list(roleIds);
 
 		List<RoleDO> roles = roleService.list();

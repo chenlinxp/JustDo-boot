@@ -107,6 +107,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(EmployeeDO employee){
+		String employeeId = employee.getEmployeeId();
+		employeeRoleDao.delByEmployeeId(employeeId);
+		for (String roleId:employee.getRoleIds()) {
+			EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
+			employeeRoleDO.setEmplpoyeeId(employeeId);
+			employeeRoleDO.setRoleId(roleId);
+			employeeRoleDao.save(employeeRoleDO);
+		}
 		return employeeDao.update(employee);
 	}
 	
