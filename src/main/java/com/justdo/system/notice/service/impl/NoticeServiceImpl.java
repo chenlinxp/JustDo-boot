@@ -2,6 +2,7 @@ package com.justdo.system.notice.service.impl;
 
 import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
+import com.justdo.common.utils.StringUtils;
 import com.justdo.system.dict.domain.DictContentDO;
 import com.justdo.system.dict.service.DictContentService;
 import com.justdo.system.employee.dao.EmployeeDao;
@@ -36,9 +37,9 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class NoticeServiceImpl implements NoticeService {
     @Autowired
-    private NoticeDao NoticeDao;
+    private NoticeDao noticeDao;
     @Autowired
-    private NoticeRecordDao recordDao;
+    private NoticeRecordDao noticeRecordDao;
     @Autowired
     private EmployeeDao employeeDao;
     @Autowired
@@ -50,91 +51,93 @@ public class NoticeServiceImpl implements NoticeService {
 
     @Override
     public NoticeDO get(String id) {
-        NoticeDO rDO = NoticeDao.get(id);
-        List<DictContentDO> listD = dictContentService.listDictByCode("noticeCode");
-        rDO.setType(dictContentService.getName(listD.get(0).getDid(), rDO.getType()));
-        return rDO;
+        NoticeDO noticeDO = noticeDao.get(id);
+//        List<DictContentDO> listD = dictContentService.listDictByCode("noticeCode");
+//        noticeDO.setNoticeType(dictContentService.getName(listD.get(0).getDid(), noticeDO.getNoticeType()));
+        return noticeDO;
     }
 
     @Override
     public List<NoticeDO> list(Map<String, Object> map) {
-        List<NoticeDO> Notices = NoticeDao.list(map);
+        List<NoticeDO> Notices = noticeDao.list(map);
         List<DictContentDO> listD = dictContentService.listDictByCode("noticeCode");
         for (NoticeDO NoticeDO : Notices) {
 
-            NoticeDO.setType(dictContentService.getName(listD.get(0).getDid(), NoticeDO.getType()));
+            NoticeDO.setNoticeType(dictContentService.getName(listD.get(0).getDid(), NoticeDO.getNoticeType()));
         }
         return Notices;
     }
 
     @Override
     public int count(Map<String, Object> map) {
-        return NoticeDao.count(map);
+        return noticeDao.count(map);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int save(NoticeDO Notice) {
-        Notice.setUpdateDate(new Date());
-        int r = NoticeDao.save(Notice);
+    public int save(NoticeDO notice) {
+        int r = noticeDao.save(notice);
         // 保存到接受者列表中
-        String[] userIds = Notice.getUserIds();
-        String NoticeId = Notice.getId();
-        List<NoticeRecordDO> records = new ArrayList<>();
-        for (String userId : userIds) {
-            NoticeRecordDO record = new NoticeRecordDO();
-            record.setNoticeId(NoticeId);
-            record.setUserId(userId);
-            record.setIsRead(0);
-            records.add(record);
-        }
-        recordDao.batchSave(records);
-        //给在线用户发送通知
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(1,1,0, TimeUnit.MILLISECONDS,new LinkedBlockingDeque<>());
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                for (EmployeeDO employeeDO : esessionService.listOnlineEmployee()) {
-                    for (String userId : userIds) {
-                        if (userId.equals(employeeDO.getEmployeeId())) {
-                            template.convertAndSendToUser(userId, "/queue/notifications", "新消息：" + Notice.getTitle());
+        String[] employeeIds = notice.getEmployeeIds();
+        if(employeeIds.length>0) {
+            String NoticeId = notice.getNoticeId();
+            List<NoticeRecordDO> records = new ArrayList<>();
+            for (String employeeId : employeeIds) {
+                NoticeRecordDO record = new NoticeRecordDO();
+                record.setNoticeRecordId(StringUtils.getUUID());
+                record.setNoticeId(NoticeId);
+                record.setEmployeeId(employeeId);
+                record.setIsRead(0);
+                records.add(record);
+            }
+            noticeRecordDao.batchSave(records);
+            //给在线用户发送通知
+            ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    for (EmployeeDO employeeDO : esessionService.listOnlineEmployee()) {
+                        for (String employeeId : employeeIds) {
+                            if (employeeId.equals(employeeDO.getEmployeeId())) {
+                                template.convertAndSendToUser(employeeId, "/queue/notifications", "新消息：" + notice.getNoticeTitle());
+                            }
                         }
                     }
                 }
-            }
-        });
-        executor.shutdown();
+            });
+            executor.shutdown();
+        }
         return r;
     }
 
     @Override
     public int update(NoticeDO Notice) {
-        return NoticeDao.update(Notice);
+        return noticeDao.update(Notice);
     }
 
     @Transactional
     @Override
     public int del(String id) {
-        recordDao.delByNotifbyId(id);
-        return NoticeDao.del(id);
+        noticeRecordDao.delByNoticebyId(id);
+        return noticeDao.del(id);
     }
 
     @Transactional
     @Override
     public int batchDel(String[] ids) {
-        recordDao.batchDelByNotifbyId(ids);
-        return NoticeDao.batchDel(ids);
+        noticeRecordDao.batchDelByNoticebyId(ids);
+        return noticeDao.batchDel(ids);
     }
 
 
     @Override
     public PageUtils selfList(Map<String, Object> map) {
-        List<NoticeDTO> rows = NoticeDao.listDTO(map);
+        List<NoticeDTO> rows = noticeDao.listDTO(map);
         for (NoticeDTO NoticeDTO : rows) {
-            NoticeDTO.setBefore(DateUtils.getTimeBefore(NoticeDTO.getUpdateDate()));
-            NoticeDTO.setSender(employeeDao.get(NoticeDTO.getCreateBy()).getRealName());
+            NoticeDTO.setBefore(DateUtils.getTimeBefore(NoticeDTO.getCreateTime()));
+            NoticeDTO.setSender(employeeDao.get(NoticeDTO.getCreateEmployeeId()).getRealName());
         }
-        PageUtils page = new PageUtils(rows, NoticeDao.countDTO(map));
+        PageUtils page = new PageUtils(rows, noticeDao.countDTO(map));
         return page;
     }
 

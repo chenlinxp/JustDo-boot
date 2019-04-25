@@ -9,57 +9,60 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-							<input id="id" name="id" th:value="${notice.id}" type="hidden">
-							<input id="Ttype" name="Ttype" th:value="${notice.type}" type="hidden">
+							<input id="noticeId" name="noticeId" th:value="${notice.noticeId}" type="hidden">
+							<!--<input id="noticeType" name="noticeType" th:value="${notice.noticeType}" type="hidden">-->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">类型：</label>
-								<div class="col-sm-8">
-									<select data-placeholder="--选择类别--" name="type" id="type"
+								<div class="col-sm-9">
+									<select data-placeholder="--选择类别--" name="noticeType" id="noticeType" th:value="${notice.noticeType}"
 										class="form-control chosen-select" tabindex="2">
 										<option value="">-- 选择类别 --</option>
-										<option th:each="noticeType : ${noticeTypes}" th:value="${noticeType.dccode}" th:text="${noticeType.dcvalue}" th:if="${noticeType.dccode ==notice.type}" th:selected="selected"></option>
+										<option th:each="noticeType : ${noticeTypes}" th:value="${noticeType.dccode}" th:text="${noticeType.dcvalue}" th:selected="${noticeType.dccode}==${notice.noticeType}"></option>
 									</select>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">标题：</label>
-								<div class="col-sm-8">
-									<input id="title" name="title" th:value="${notice.title}"
+								<div class="col-sm-9">
+									<input id="noticeTitle" name="noticeTitle" th:value="${notice.noticeTitle}"
 										class="form-control" type="text">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">内容：</label>
-								<div class="col-sm-8">
-									<textarea id="content" name="content"
-										th:text="${notice.content}" class="form-control"></textarea>
+								<div class="col-sm-9">
+									<textarea id="noticeContent" name="noticeContent"
+										th:text="${notice.noticeContent}" class="form-control"></textarea>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">附件：</label>
-								<div class="col-sm-8">
-									<input id="files" name="files" th:value="${notice.files}"
-										class="form-control" type="text">
+								<div class="col-sm-9">
+									<input id="noticeFiles" name="noticeFiles" th:value="${notice.noticeFiles}"
+										class="form-control" type="file">
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">已经发布：</label>
 								<div class="switch  col-sm-1">
 									<div class="onoffswitch">
-										<input id="status" name="status" checked="" type="checkbox"
-											th:value="${notice.status}" class="onoffswitch-checkbox"> <label
-											class="onoffswitch-label" for="status"> <span
+										<input id="noticeStatus" name="noticeStatus" type="checkbox" th:checked="${notice.noticeStatus}==1"
+											th:value="${notice.noticeStatus}" class="onoffswitch-checkbox"> <label
+											class="onoffswitch-label" for="noticeStatus"> <span
 											class="onoffswitch-inner"></span> <span
 											class="onoffswitch-switch"></span>
 										</label>
 									</div>
 								</div>
+								<label class="col-sm-3 control-label">排序：</label>
+								<div class="col-sm-3">
+									<input id="orderNum" name="orderNum" th:value="${notice.orderNum}" class="form-control" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
+								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">备注信息：</label>
-								<div class="col-sm-8">
-									<input id="remarks" name="remarks" th:text="${notice.remarks}"
-										class="form-control" type="text">
+								<div class="col-sm-9">
+									<textarea id="remark" name="remark" class="form-control" th:text="${notice.remark}"></textarea>
 								</div>
 							</div>
 							<div class="form-group">

@@ -4,35 +4,32 @@
 <mapper namespace="com.justdo.system.notice.dao.NoticeDao">
 
 	<select id="get" resultType="com.justdo.system.notice.domain.NoticeDO">
-		select
-		`id`,`type`,`title`,`content`,`files`,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from SYS_NOTICE where id = #{value}
+		select  `NOTICE_ID`, `NOTICE_TYPE`,`NOTICE_TITLE`,`NOTICE_CONTENT`,`ORDER_NUM`,`NOTICE_FILES`,`NOTICE_STATUS`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_EMPLOYEE_ID`,`MODIFY_TIME`,`REMARK`,`DEL_FLAG` from SYS_NOTICE where NOTICE_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.notice.domain.NoticeDO">
-		select
-		`id`,`type`,`title`,`content`,`files`,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from SYS_NOTICE
+		select  `NOTICE_ID`, `NOTICE_TYPE`,`NOTICE_TITLE`,`NOTICE_CONTENT`,`ORDER_NUM`,`NOTICE_FILES`,`NOTICE_STATUS`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_EMPLOYEE_ID`,`MODIFY_TIME`,`REMARK`,`DEL_FLAG` from SYS_NOTICE
 		<where>
-			<if test="id != null and id != ''"> and id = #{id} </if>
-			<if test="type != null and type != ''"> and type = #{type} </if>
-			<if test="title != null and title != ''"> and title = #{title} </if>
-			<if test="content != null and content != ''"> and content = #{content} </if>
-			<if test="files != null and files != ''"> and files = #{files} </if>
-			<if test="status != null and status != ''"> and status = #{status} </if>
-			<if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
-			<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-			<if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
-			<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
-			<if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
-			<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+			<if test="noticeId != null and noticeId != ''"> and NOTICE_ID != #{noticeId} </if>
+			<if test="noticeType != null and noticeType != ''"> and NOTICE_TYPE = #{noticeType} </if>
+			<if test="noticeTitle != null and noticeTitle != ''"> and NOTICE_TITLE = #{noticeTitle} </if>
+			<if test="noticeContent != null and noticeContent != ''"> and NOTICE_CONTENT = #{noticeContent} </if>
+			<if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
+			<if test="noticeFiles != null and noticeFiles != ''"> and NOTICE_FILES = #{noticeFiles} </if>
+			<if test="noticeStatus != null and noticeStatus != ''"> and NOTICE_STATUS = #{noticeStatus} </if>
+			<if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyEmployeeId != null and modifyEmployeeId != ''"> and MODIFY_EMPLOYEE_ID = #{modifyEmployeeId} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+			<if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
 				order by ${sort} ${order}
 			</when>
 			<otherwise>
-				order by id desc
+				order by NOTICE_ID desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
@@ -43,90 +40,71 @@
 	<select id="count" resultType="int">
 		select count(*) from SYS_NOTICE
 		<where>
-			<if test="id != null and id != ''"> and id = #{id} </if>
-			<if test="type != null and type != ''"> and type = #{type} </if>
-			<if test="title != null and title != ''"> and title = #{title} </if>
-			<if test="content != null and content != ''"> and content = #{content} </if>
-			<if test="files != null and files != ''"> and files = #{files} </if>
-			<if test="status != null and status != ''"> and status = #{status} </if>
-			<if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
-			<if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-			<if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
-			<if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
-			<if test="remarks != null and remarks != ''"> and remarks = #{remarks} </if>
-			<if test="delFlag != null and delFlag != ''"> and del_flag = #{delFlag} </if>
+			<if test="noticeType != null and noticeType != ''"> and NOTICE_TYPE = #{noticeType} </if>
+			<if test="noticeTitle != null and noticeTitle != ''"> and NOTICE_TITLE = #{noticeTitle} </if>
+			<if test="noticeContent != null and noticeContent != ''"> and NOTICE_CONTENT = #{noticeContent} </if>
+			<if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
+			<if test="noticeFiles != null and noticeFiles != ''"> and NOTICE_FILES = #{noticeFiles} </if>
+			<if test="noticeStatus != null and noticeStatus != ''"> and NOTICE_STATUS = #{noticeStatus} </if>
+			<if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyEmployeeId != null and modifyEmployeeId != ''"> and MODIFY_EMPLOYEE_ID = #{modifyEmployeeId} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
+			<if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.justdo.system.notice.domain.NoticeDO"
-		useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.justdo.system.notice.domain.NoticeDO">
+		<selectKey keyProperty="noticeId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as noticeId from dual
+		</selectKey>
 		insert into SYS_NOTICE
 		(
-		`type`,
-		`title`,
-		`content`,
-		`files`,
-		`status`,
-		`create_by`,
-		`create_date`,
-		`update_by`,
-		`update_date`,
-		`remarks`,
-		`del_flag`
-		)
+		`NOTICE_ID`,
+		`NOTICE_TYPE`,             `NOTICE_TITLE`,             `NOTICE_CONTENT`,             `ORDER_NUM`,             `NOTICE_FILES`,             `NOTICE_STATUS`,             `CREATE_EMPLOYEE_ID`,             `CREATE_TIME`,             `MODIFY_EMPLOYEE_ID`,             `MODIFY_TIME`,             `REMARK`,             `DEL_FLAG`        )
 		values
 		(
-		#{type},
-		#{title},
-		#{content},
-		#{files},
-		#{status},
-		#{createBy},
-		#{createDate},
-		#{updateBy},
-		#{updateDate},
-		#{remarks},
-		#{delFlag}
-		)
+		#{noticeId},
+		#{noticeType},            #{noticeTitle},            #{noticeContent},            #{orderNum},            #{noticeFiles},            #{noticeStatus},            #{createEmployeeId},            #{createTime},            #{modifyEmployeeId},            #{modifyTime},            #{remark},            #{delFlag}		)
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.notice.domain.NoticeDO">
 		update SYS_NOTICE
 		<set>
-			<if test="type != null">`type` = #{type}, </if>
-			<if test="title != null">`title` = #{title}, </if>
-			<if test="content != null">`content` = #{content}, </if>
-			<if test="files != null">`files` = #{files}, </if>
-			<if test="status != null">`status` = #{status}, </if>
-			<if test="createBy != null">`create_by` = #{createBy}, </if>
-			<if test="createDate != null">`create_date` = #{createDate}, </if>
-			<if test="updateBy != null">`update_by` = #{updateBy}, </if>
-			<if test="updateDate != null">`update_date` = #{updateDate}, </if>
-			<if test="remarks != null">`remarks` = #{remarks}, </if>
-			<if test="delFlag != null">`del_flag` = #{delFlag}</if>
+			<if test="noticeType != null">`NOTICE_TYPE` = #{noticeType}, </if>
+			<if test="noticeTitle != null">`NOTICE_TITLE` = #{noticeTitle}, </if>
+			<if test="noticeContent != null">`NOTICE_CONTENT` = #{noticeContent}, </if>
+			<if test="orderNum != null">`ORDER_NUM` = #{orderNum}, </if>
+			<if test="noticeFiles != null">`NOTICE_FILES` = #{noticeFiles}, </if>
+			<if test="noticeStatus != null">`NOTICE_STATUS` = #{noticeStatus}, </if>
+			<if test="createEmployeeId != null">`CREATE_EMPLOYEE_ID` = #{createEmployeeId}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyEmployeeId != null">`MODIFY_EMPLOYEE_ID` = #{modifyEmployeeId}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}, </if>
+			<if test="remark != null">`REMARK` = #{remark}, </if>
+			<if test="delFlag != null">`DEL_FLAG` = #{delFlag}</if>
 		</set>
-		where id = #{id}
+		where NOTICE_ID = #{noticeId}
 	</update>
 
 	<delete id="del">
-		delete from SYS_NOTICE where id = #{value}
+		delete from SYS_NOTICE where NOTICE_ID = #{value}
 	</delete>
 
 	<delete id="batchDel">
-		delete from SYS_NOTICE where id in
-		<foreach item="id" collection="array" open="(" separator=","
-			close=")">
-			#{id}
+		delete from SYS_NOTICE where NOTICE_ID in
+		<foreach item="noticeIds" collection="array" open="(" separator="," close=")">
+			#{noticeIds}
 		</foreach>
 	</delete>
-
 	<select id="listByIds" resultType="com.justdo.system.notice.domain.NoticeDO">
 		select
-		`id`,`type`,`title`,`content`,`files`,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from SYS_NOTICE where id in
-		<foreach item="id" collection="array" open="(" separator=","
-			close=")">
-			#{id}
+		`NOTICE_ID`, `NOTICE_TYPE`,`NOTICE_TITLE`,`NOTICE_CONTENT`,`ORDER_NUM`,`NOTICE_FILES`,`NOTICE_STATUS`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_EMPLOYEE_ID`,`MODIFY_TIME`,`REMARK`,`DEL_FLAG`
+		from SYS_NOTICE where NOTICE_ID in
+		<foreach item="noticeId" collection="array" open="(" separator=","
+				 close=")">
+			#{noticeId}
 		</foreach>
 	</select>
 
@@ -134,28 +112,27 @@
 	<select id="countDTO" resultType="int">
 		select count(*)
 		from
-		sys_notice_record r right JOIN SYS_NOTICE n on r.notice_id
-		= n.id where
-		r.user_id =#{userId} and
-		r.is_read = #{isRead}
+		SYS_NOTICE_RECORD r right JOIN SYS_NOTICE n on r.NOTICE_ID
+		= n.NOTICE_ID where
+		r.EMPLOYEE_ID =#{employeeId} and
+		r.IS_READ = #{isRead}
 	</select>
 
 	<select id="listDTO" resultType="com.justdo.system.notice.domain.NoticeDTO">
-		select DISTINCT
-		n.id ,`type`,`title`,`content`,`files`,r.is_read,`status`,`create_by`,`create_date`,`update_by`,`update_date`,`remarks`,`del_flag`
-		from sys_notice_record r right JOIN SYS_NOTICE n on r.notice_id = n.id
-		<where>
-			<if test="id != null and id != ''"> and r.id = #{id} </if>
-			<if test="noticeId != null and noticeId != ''"> and r.notice_id = #{noticeId} </if>
-			<if test="isRead != null and isRead != ''"> and r.is_read = #{isRead} </if>
-			<if test="userId != null and userId != ''"> and r.user_id = #{userId} </if>
-			<if test="readDate != null and readDate != ''"> and r.read_date = #{readDate} </if>
-		</where>
-		order by is_read ASC, update_date DESC
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-		
-	</select>
+	select DISTINCT
+	n.NOTICE_ID ,r.IS_READ,`NOTICE_TYPE`,`NOTICE_TITLE`,`NOTICE_CONTENT`,`ORDER_NUM`,`NOTICE_FILES`,`NOTICE_STATUS`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_EMPLOYEE_ID`,`MODIFY_TIME`,`REMARK`,`DEL_FLAG`
+	from SYS_NOTICE_RECORD r right JOIN SYS_NOTICE n on r.NOTICE_ID = n.NOTICE_ID
+	<where>
+		<if test="noticeRecordId != null and noticeRecordId != ''"> and r.NOTICE_RECORD_ID = #{noticeRecordId} </if>
+		<if test="noticeId != null and noticeId != ''"> and r.NOTICE_ID = #{noticeId} </if>
+		<if test="isRead != null and isRead != ''"> and r.IS_READ = #{isRead} </if>
+		<if test="employeeId != null and employeeId != ''"> and r.EMPLOYEE_ID = #{employeeId} </if>
+		<if test="readDate != null and readDate != ''"> and r.READ_DATE = #{readDate} </if>
+	</where>
+	order by IS_READ ASC, MODIFY_TIME DESC
+	<if test="offset != null and limit != null">
+		limit #{offset}, #{limit}
+	</if>
 
+	</select>
 </mapper>

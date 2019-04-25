@@ -1,43 +1,54 @@
 package com.justdo.system.notice.domain;
 
-
-import java.util.Date;
 import com.justdo.common.domain.BaseBean;
+import java.util.Date;
+
 
 
 /**
  * 通知通告发送记录
  *
  * @author chenlin
- * @email 13233669915@qq.com
- * @date 2018-06-26 18:32:20
+ * @email chenlinxp@qq.com
+ * @date 2019-04-25 12:46:32
  */
 public class NoticeRecordDO extends BaseBean {
-    /**
-     *  编号
-     */
-    private String id;
+
+
+    //主键ID
+    private String noticeRecordId;
+
     //通知通告ID
     private String noticeId;
-    //接受人
-    private String userId;
+    //接受人ID
+    private String employeeId;
     //阅读标记
     private Integer isRead;
     //阅读时间
     private Date readDate;
 
     /**
-     * 设置：编号
+     * 构造方法
      */
-    public void setId(String id) {
-        this.id = id;
+    public NoticeRecordDO(){ }
+    public NoticeRecordDO(String noticeRecordId,String noticeId,String employeeId,Integer isRead,Date readDate){
+        super();
+        this.noticeId= noticeId;
+        this.employeeId= employeeId;
+        this.isRead= isRead;
+        this.readDate= readDate;
     }
-
     /**
-     * 获取：编号
+     * 设置：主键ID
      */
-    public String getId() {
-        return id;
+    public void setNoticeRecordId(String noticeRecordId) {
+        this.noticeRecordId = noticeRecordId;
+    }
+    /**
+     * 获取：主键ID
+     */
+    public String getNoticeRecordId() {
+        return noticeRecordId;
     }
 
     /**
@@ -46,49 +57,42 @@ public class NoticeRecordDO extends BaseBean {
     public void setNoticeId(String noticeId) {
         this.noticeId = noticeId;
     }
-
     /**
      * 获取：通知通告ID
      */
     public String getNoticeId() {
         return noticeId;
     }
-
     /**
-     * 设置：接受人
+     * 设置：接受人ID
      */
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
-
     /**
-     * 获取：接受人
+     * 获取：接受人ID
      */
-    public String getUserId() {
-        return userId;
+    public String getEmployeeId() {
+        return employeeId;
     }
-
     /**
      * 设置：阅读标记
      */
     public void setIsRead(Integer isRead) {
         this.isRead = isRead;
     }
-
     /**
      * 获取：阅读标记
      */
     public Integer getIsRead() {
         return isRead;
     }
-
     /**
      * 设置：阅读时间
      */
     public void setReadDate(Date readDate) {
         this.readDate = readDate;
     }
-
     /**
      * 获取：阅读时间
      */
@@ -98,12 +102,13 @@ public class NoticeRecordDO extends BaseBean {
 
     @Override
     public String toString() {
-        return "noticeRecordDO{" +
-                "id=" + id +
-                ", noticeId=" + noticeId +
-                ", userId=" + userId +
-                ", isRead=" + isRead +
-                ", readDate=" + readDate +
+        return "NoticeRecordDO{" +
+                "noticeRecordId=" + noticeRecordId +
+                ", noticeId='" + noticeId + '\'' +
+                ", employeeId='" + employeeId + '\'' +
+                ", isRead='" + isRead + '\'' +
+                ", readDate='" + readDate + '\'' +
                 '}';
     }
+
 }

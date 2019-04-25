@@ -1,7 +1,10 @@
-var preUrl1= "/system/notice"
+var preUrl = "/system/notice"
 $(function() {
-	loadType();
 	validateRule();
+    $('.chosen-select').on('change', function(e) {
+       console.log(e);
+        $("#noticeType").val($(".chosen-select").val());
+    });
 });
 
 $.validator.setDefaults({
@@ -13,7 +16,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : preUrl1+"/save",
+		url : preUrl+"/save",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -38,39 +41,24 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
-			name : {
-				required : true
-			}
+	    noticeType :
+	               {required : true},
+	    noticeTitle :
+	               {required : true},
+	    noticeContent :
+	               {required : true}
+
 		},
 		messages : {
-			name : {
-				required : icon + "请输入姓名"
-			}
-		}
-	})
-}
-
-function loadType(){
-    var html = "";
-    $.ajax({
-        url : '/system/dict/list/noticeCode',
-        success : function(data) {
-            // 加载数据
-            for (var i = 0; i < data.length; i++) {
-                html += '<option value="' + data[i].dccode + '">' + data[i].dcvalue + '</option>'
-            }
-            $(".chosen-select").append(html);
-            $(".chosen-select").chosen({
-                maxHeight : 200
-            });
-            $(".chosen-select").val($("#Ttype").val());
-            $(".chosen-select").trigger("chosen:updated");
-            // 点击事件
-            $('.chosen-select').on('change', function(e, params) {
-
-            });
+	    noticeType :
+	              {required : icon + "请选择类型"},
+	    noticeTitle :
+	              {required : icon + "请输入标题"},
+	    noticeContent :
+	              {required : icon + "请输入内容"}
         }
-    });
+
+	})
 }
 
 var openEmployee= function(){

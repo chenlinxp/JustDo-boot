@@ -1,11 +1,10 @@
 package com.justdo.system.notice.dao;
 
 import com.justdo.system.notice.domain.NoticeRecordDO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 通知通告发送记录
@@ -35,9 +34,9 @@ public interface NoticeRecordDao {
 
 	String[] listNoticeIds(Map<String, Object> map);
 
-	int delByNotifbyId(String NoticeId);
+	int delByNoticebyId(String NoticeId);
 
-	int batchDelByNotifbyId(String[] NoticeIds);
+	int batchDelByNoticebyId(String[] NoticeIds);
 
 	int changeRead(NoticeRecordDO NoticeRecord);
 }

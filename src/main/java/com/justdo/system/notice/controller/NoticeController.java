@@ -1,5 +1,6 @@
 package com.justdo.system.notice.controller;
 
+import com.justdo.common.annotation.Log;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
@@ -22,155 +23,216 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
-
 /**
  * 通知通告
  *
  * @author chenlin
- * @email 13233669915@qq.com
- * @date 2018-06-26 18:32:20
+ * @email chenlinxp@qq.com
+ * @date 2019-04-25 12:46:25
  */
 
 @Controller
 @RequestMapping("/system/notice")
 public class NoticeController extends BaseController {
 	@Autowired
-	private NoticeService NoticeService;
+	private NoticeService noticeService;
 	@Autowired
-	private NoticeRecordService NoticeRecordService;
+	private NoticeRecordService noticeRecordService;
 	@Autowired
 	private DictContentService dictContentService;
 
+
+	 String preUrl = "/system/notice";
+	/**
+	 * 列表页面
+	 * @return 列表页面路径
+	 */
 	@GetMapping()
 	@RequiresPermissions("system:notice:list")
-	String Notice() {
-		return "system/notice/notice";
+	String Notice(){
+		return preUrl + "/notice";
 	}
 
+
+	/**
+	 * 列表数据
+	 * @param params
+	 * @return
+	 */
+	@Log("通知通告列表")
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("system:notice:list")
-	public PageUtils list(@RequestParam Map<String, Object> params) {
-		// 查询列表数据
+	public PageUtils list(@RequestParam Map<String, Object> params){
+		//查询列表数据
 		Query query = new Query(params);
-		List<NoticeDO> NoticeList = NoticeService.list(query);
-		int total = NoticeService.count(query);
-		PageUtils pageUtils = new PageUtils(NoticeList, total);
+		List<NoticeDO> noticeList = noticeService.list(query);
+		int total = noticeService.count(query);
+		PageUtils pageUtils = new PageUtils(noticeList, total);
 		return pageUtils;
 	}
 
-	@GetMapping("/add")
-	@RequiresPermissions("system:notice:add")
-	String add() {
-		return "system/notice/add";
+	/**
+	 * 详情页面
+	 * @param noticeId
+	 * @return 详情页面路径
+	 */
+	@GetMapping("/view/{noticeId}")
+	@RequiresPermissions("system:notice:info")
+	String view(@PathVariable("noticeId") String noticeId,Model model){
+		NoticeDO notice = noticeService.get(noticeId);
+		model.addAttribute("notice", notice);
+		return preUrl + "/view";
 	}
 
-	@GetMapping("/edit/{id}")
-	@RequiresPermissions("system:notice:edit")
-	String edit(@PathVariable("id") String id, Model model) {
-		NoticeDO notice = NoticeService.get(id);
+	/**
+	 * 增加页面
+	 * @return 增加页面路径
+	 */
+	@GetMapping("/add")
+	@RequiresPermissions("system:notice:add")
+	String add(Model model){
 		List<DictContentDO> dictDOS = dictContentService.listDictByCode("noticeCode");
-		String type = notice.getType();
-		for (DictContentDO dictDO:dictDOS){
-			if(type.equals(dictDO.getDcvalue())){
-				//dictDO.setRemarks("checked");
-			}
-		}
 		model.addAttribute("noticeTypes",dictDOS);
-		model.addAttribute("notice", notice);
-		return "system/notice/edit";
+		return preUrl + "/add";
 	}
+
 
 	/**
 	 * 保存
+	 * @param notice
+	 * @return R
 	 */
+	@Log("通知通告保存")
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("system:notice:add")
-	public R save(NoticeDO Notice) {
-		Notice.setCreateBy(getEmployeeId());
-		if (NoticeService.save(Notice) > 0) {
+	public R save( NoticeDO notice){
+		Date date = new Date();
+		notice.setModifyTime(date);
+		notice.setCreateTime(date);
+		notice.setCreateEmployeeId(getEmployeeId());
+		if(notice.getNoticeStatus()!=1){
+			notice.setNoticeStatus(0);
+		}
+		if(noticeService.save(notice)>0){
 			return R.ok();
 		}
-		return R.error();
+		return R.error(1, "保存失败!");
+
 	}
 
 	/**
-	 * 修改
+	 * 编辑页面
+	 * @param noticeId
+	 * @return 编辑页面路径
 	 */
-	@ResponseBody
-	@RequestMapping("/update")
+	@GetMapping("/edit/{noticeId}")
 	@RequiresPermissions("system:notice:edit")
-	public R update(NoticeDO Notice) {
-		NoticeService.update(Notice);
-		return R.ok();
+	String edit(@PathVariable("noticeId") String noticeId,Model model){
+		NoticeDO notice = noticeService.get(noticeId);
+		List<DictContentDO> dictDOS = dictContentService.listDictByCode("noticeCode");
+		model.addAttribute("noticeTypes",dictDOS);
+		model.addAttribute("notice", notice);
+		return preUrl + "/edit";
+	}
+
+
+	/**
+	 * 更新
+	 * @param notice
+	 * @return R
+	 */
+	@Log("通知通告更新")
+	@ResponseBody
+	@PostMapping("/update")
+	@RequiresPermissions("system:notice:edit")
+	public R update( NoticeDO notice){
+		Date date = new Date();
+		notice.setModifyTime(date);
+		notice.setModifyEmployeeId(getEmployeeId());
+		if(noticeService.update(notice)>0){
+			return R.ok();
+		}
+		return R.error(1, "更新失败!");
 	}
 
 	/**
 	 * 删除
+	 * @param noticeId
+	 * @return R
 	 */
-	@PostMapping("/del")
+	@Log("通知通告删除")
+	@PostMapping( "/del")
 	@ResponseBody
 	@RequiresPermissions("system:notice:del")
-	public R remove(String id) {
-		if (NoticeService.del(id) > 0) {
+	public R remove( String noticeId){
+		if(noticeService.del(noticeId)>0){
 			return R.ok();
 		}
-		return R.error();
+		return R.error(1, "删除失败!");
 	}
 
 	/**
-	 * 删除
+	 * 批量删除
+	 * @param ids
+	 * @return R
 	 */
-	@PostMapping("/batchDel")
+	@Log("通知通告批量删除")
+	@PostMapping( "/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:notice:batchDel")
-	public R remove(@RequestParam("ids[]") String[] ids) {
-		NoticeService.batchDel(ids);
-		return R.ok();
+	public R remove(@RequestParam("ids[]") String[] ids){
+		if(noticeService.batchDel(ids)>0){
+			return R.ok();
+		}
+		return R.error(1, "批量删除失败!");
 	}
 
+	/**
+	 * 未读的通知列表
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/message")
-	PageUtils message() {
-		Map<String, Object> params = new HashMap<>(16);
+	PageUtils unread() {
+		Map<String, Object> params = new HashMap<>(3);
 		params.put("offset", 0);
 		params.put("limit", 3);
 		Query query = new Query(params);
-        query.put("userId", getEmployeeId());
-        query.put("isRead", ConstantConfig.Notice_READ_NO);
-		return NoticeService.selfList(query);
+		query.put("employeeId", getEmployeeId());
+		query.put("isRead", ConstantConfig.Notice_READ_NO);
+		return noticeService.selfList(query);
 	}
 
 	@GetMapping("/selfnotice")
 	String selefNotice() {
-		return "system/notice/selfnotice";
+		return preUrl +  "/selfnotice";
 	}
 
+	@Log("个人通知列表")
 	@ResponseBody
 	@GetMapping("/selflist")
 	PageUtils selfList(@RequestParam Map<String, Object> params) {
 		Query query = new Query(params);
-		query.put("userId", getEmployeeId());
-
-		return NoticeService.selfList(query);
+		query.put("employeeId", getEmployeeId());
+		return noticeService.selfList(query);
 	}
 
-	@GetMapping("/read/{id}")
+	@Log("阅读个人通知详情")
+	@GetMapping("/read/{noticeId}")
 	@RequiresPermissions("system:notice:edit")
-	String read(@PathVariable("id") String id, Model model) {
-		NoticeDO notice = NoticeService.get(id);
+	String read(@PathVariable("noticeId") String noticeId, Model model) {
+		NoticeDO notice = noticeService.get(noticeId);
 		//更改阅读状态
 		NoticeRecordDO noticeRecordDO = new NoticeRecordDO();
-		noticeRecordDO.setNoticeId(id);
-		noticeRecordDO.setUserId(getEmployeeId());
+		noticeRecordDO.setNoticeId(noticeId);
+		noticeRecordDO.setEmployeeId(getEmployeeId());
 		noticeRecordDO.setReadDate(new Date());
 		noticeRecordDO.setIsRead(ConstantConfig.Notice_READ_YES);
-		NoticeRecordService.changeRead(noticeRecordDO);
+		noticeRecordService.changeRead(noticeRecordDO);
 		model.addAttribute("notice", notice);
-		return "system/notice/read";
+		return preUrl +  "/read";
 	}
 
 

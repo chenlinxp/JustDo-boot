@@ -4,27 +4,24 @@
 <mapper namespace="com.justdo.system.notice.dao.NoticeRecordDao">
 
 	<select id="get" resultType="com.justdo.system.notice.domain.NoticeRecordDO">
-		select
-		`id`,`notice_id`,`user_id`,`is_read`,`read_date` from SYS_NOTICE_RECORD
-		where id = #{value}
+		select  `NOTICE_RECORD_ID`, `NOTICE_ID`,`EMPLOYEE_ID`,`IS_READ`,`READ_DATE` from SYS_NOTICE_RECORD where NOTICE_RECORD_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.notice.domain.NoticeRecordDO">
-		select `id`,`notice_id`,`user_id`,`is_read`,`read_date` from
-		SYS_NOTICE_RECORD
+		select  `NOTICE_RECORD_ID`, `NOTICE_ID`,`EMPLOYEE_ID`,`IS_READ`,`READ_DATE` from SYS_NOTICE_RECORD
 		<where>
-			<if test="id != null and id != ''"> and id = #{id} </if>
-			<if test="noticeId != null and noticeId != ''"> and notice_id = #{noticeId} </if>
-			<if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-			<if test="isRead != null and isRead != ''"> and is_read = #{isRead} </if>
-			<if test="readDate != null and readDate != ''"> and read_date = #{readDate} </if>
+			<if test="noticeRecordId != null and noticeRecordId != ''"> and NOTICE_RECORD_ID != #{noticeRecordId} </if>
+			<if test="noticeId != null and noticeId != ''"> and NOTICE_ID = #{noticeId} </if>
+			<if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID = #{employeeId} </if>
+			<if test="isRead != null and isRead != ''"> and IS_READ = #{isRead} </if>
+			<if test="readDate != null and readDate != ''"> and READ_DATE = #{readDate} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
-				order by #{sort} #{order}
+				order by ${sort} ${order}
 			</when>
 			<otherwise>
-				order by id desc
+				order by NOTICE_RECORD_ID desc
 			</otherwise>
 		</choose>
 		<if test="offset != null and limit != null">
@@ -35,27 +32,30 @@
 	<select id="count" resultType="int">
 		select count(*) from SYS_NOTICE_RECORD
 		<where>
-			<if test="id != null and id != ''"> and id = #{id} </if>
-			<if test="noticeId != null and noticeId != ''"> and notice_id = #{noticeId} </if>
-			<if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-			<if test="isRead != null and isRead != ''"> and is_read = #{isRead} </if>
-			<if test="readDate != null and readDate != ''"> and read_date = #{readDate} </if>
+			<if test="noticeId != null and noticeId != ''"> and NOTICE_ID = #{noticeId} </if>
+			<if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID = #{employeeId} </if>
+			<if test="isRead != null and isRead != ''"> and IS_READ = #{isRead} </if>
+			<if test="readDate != null and readDate != ''"> and READ_DATE = #{readDate} </if>
 		</where>
 	</select>
 
-	<insert id="save" parameterType="com.justdo.system.notice.domain.NoticeRecordDO"
-		useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.justdo.system.notice.domain.NoticeRecordDO">
+		<selectKey keyProperty="noticeRecordId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as noticeRecordId from dual
+		</selectKey>
 		insert into SYS_NOTICE_RECORD
 		(
-		`notice_id`,
-		`user_id`,
-		`is_read`,
-		`read_date`
+		`NOTICE_RECORD_ID`,
+		`NOTICE_ID`,
+		`EMPLOYEE_ID`,
+		`IS_READ`,
+		`READ_DATE`
 		)
 		values
 		(
+		#{noticeRecordId},
 		#{noticeId},
-		#{userId},
+		#{employeeId},
 		#{isRead},
 		#{readDate}
 		)
@@ -64,81 +64,76 @@
 	<update id="update" parameterType="com.justdo.system.notice.domain.NoticeRecordDO">
 		update SYS_NOTICE_RECORD
 		<set>
-			<if test="noticeId != null">`notice_id` = #{noticeId}, </if>
-			<if test="userId != null">`user_id` = #{userId}, </if>
-			<if test="isRead != null">`is_read` = #{isRead}, </if>
-			<if test="readDate != null">`read_date` = #{readDate}</if>
+			<if test="noticeId != null">`NOTICE_ID` = #{noticeId}, </if>
+			<if test="employeeId != null">`EMPLOYEE_ID` = #{employeeId}, </if>
+			<if test="isRead != null">`IS_READ` = #{isRead}, </if>
+			<if test="readDate != null">`READ_DATE` = #{readDate}</if>
 		</set>
-		where id = #{id}
+		where NOTICE_RECORD_ID = #{noticeRecordId}
 	</update>
 
-	<delete id="remove">
-		delete from SYS_NOTICE_RECORD where id = #{value}
+	<delete id="del">
+		delete from SYS_NOTICE_RECORD where NOTICE_RECORD_ID = #{value}
 	</delete>
 
-	<delete id="batchRemove">
-		delete from SYS_NOTICE_RECORD where id in
-		<foreach item="id" collection="array" open="(" separator=","
-			close=")">
-			#{id}
+	<delete id="batchDel">
+		delete from SYS_NOTICE_RECORD where NOTICE_RECORD_ID in
+		<foreach item="noticeRecordIds" collection="array" open="(" separator="," close=")">
+			#{noticeRecordIds}
 		</foreach>
 	</delete>
 
 
-	<insert id="batchSave" parameterType="com.justdo.system.notice.domain.NoticeRecordDO"
-		useGeneratedKeys="true" keyProperty="id">
+	<insert id="batchSave" parameterType="java.util.ArrayList">
 		insert into SYS_NOTICE_RECORD
 		(
-		`notice_id`,
-		`user_id`,
-		`is_read`,
-		`read_date`
+		`NOTICE_RECORD_ID`,
+		`NOTICE_ID`,
+		`EMPLOYEE_ID`,
+		`IS_READ`,
+		`READ_DATE`
 		)
 		values
-		<foreach item="item" index="index" collection="list"
-			separator=",">
+		<foreach item="item" index="index" collection="list" separator=",">
 			(
+			#{item.noticeRecordId},
 			#{item.noticeId},
-			#{item.userId},
+			#{item.employeeId},
 			#{item.isRead},
 			#{item.readDate}
 			)
 		</foreach>
 	</insert>
-
 	<select id="listNoticeIds" resultType="String">
-		select distinct notice_id from SYS_NOTICE_RECORD
+		select distinct NOTICE_ID from SYS_NOTICE_RECORD
 		<where>
-			<if test="id != null and id != ''"> and id = #{id} </if>
-			<if test="noticeId != null and noticeId != ''"> and notice_id = #{noticeId} </if>
-			<if test="userId != null and userId != ''"> and user_id = #{userId} </if>
-			<if test="isRead != null and isRead != ''"> and is_read = #{isRead} </if>
-			<if test="readDate != null and readDate != ''"> and read_date = #{readDate} </if>
+			<if test="noticeRecordId != null and noticeRecordId != ''"> and NOTICE_RECORD_ID = #{noticeRecordId} </if>
+			<if test="noticeId != null and noticeId != ''"> and NOTICE_ID = #{noticeId} </if>
+			<if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID = #{employeeId} </if>
+			<if test="isRead != null and isRead != ''"> and IS_READ = #{isRead} </if>
+			<if test="readDate != null and readDate != ''"> and READ_DATE = #{readDate} </if>
 		</where>
 	</select>
 
-	<delete id="delByNotifbyId">
-		delete from SYS_NOTICE_RECORD where notice_id =
-		#{value}
+	<delete id="delByNoticebyId">
+		delete from SYS_NOTICE_RECORD where NOTICE_ID = #{value}
 	</delete>
 
-	<delete id="batchDelByNotifbyId">
-		delete from SYS_NOTICE_RECORD where notice_id in
-		<foreach item="id" collection="array" open="(" separator=","
-			close=")">
-			#{id}
+	<delete id="batchDelByNoticebyId">
+		delete from SYS_NOTICE_RECORD where NOTICE_ID in
+		<foreach item="noticeId" collection="array" open="(" separator=","
+				 close=")">
+			#{noticeId}
 		</foreach>
 	</delete>
 
 	<update id="changeRead" parameterType="com.justdo.system.notice.domain.NoticeRecordDO">
 		update SYS_NOTICE_RECORD
 		<set>
-			<if test="isRead != null">`is_read` = #{isRead}, </if>
-			<if test="readDate != null">`read_date` = #{readDate}</if>
+			<if test="isRead != null">`IS_READ` = #{isRead}, </if>
+			<if test="readDate != null">`READ_DATE` = #{readDate}</if>
 		</set>
-		where notice_id = #{noticeId} and user_id = #{userId}
+		where NOTICE_ID = #{noticeId} and EMPLOYEE_ID = #{employeeId}
 	</update>
-
-
 
 </mapper>

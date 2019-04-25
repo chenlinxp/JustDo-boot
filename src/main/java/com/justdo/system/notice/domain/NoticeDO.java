@@ -1,213 +1,250 @@
 package com.justdo.system.notice.domain;
 
-import java.util.Arrays;
+import com.justdo.common.domain.BaseBean;
 import java.util.Date;
 
-import com.justdo.common.domain.BaseBean;
 
 
 /**
  * 通知通告
  *
  * @author chenlin
- * @email 13233669915@qq.com
- * @date 2018-06-26 18:32:20
+ * @email chenlinxp@qq.com
+ * @date 2019-04-25 12:46:25
  */
-public class NoticeDO  extends BaseBean {
-	//编号
-	private String id;
+public class NoticeDO extends BaseBean {
+
+
+	//主键ID
+	private String noticeId;
 	//类型
-	private String type;
+	private String noticeType;
 	//标题
-	private String title;
+	private String noticeTitle;
 	//内容
-	private String content;
+	private String noticeContent;
+	//通知排序
+	private Integer orderNum;
 	//附件
-	private String files;
+	private String noticeFiles;
 	//状态
-	private String status;
+	private Integer noticeStatus;
 	//创建者
-	private String createBy;
+	private String createEmployeeId;
 	//创建时间
-	private Date createDate;
-	//更新者
-	private String updateBy;
+	private Date createTime;
+	//修改时间
+	private String modifyEmployeeId;
 	//更新时间
-	private Date updateDate;
+	private Date modifyTime;
 	//备注信息
-	private String remarks;
+	private String remark;
 	//删除标记
-	private String delFlag;
-	
-	private String[] userIds;
+	private Integer delFlag;
+	//员工IDs
+	private String[] employeeIds;
 
 	/**
-	 * 设置：编号
+	 * 构造方法
 	 */
-	public void setId(String id) {
-		this.id = id;
+	public NoticeDO(){ }
+	public NoticeDO(String noticeId,String noticeType,String noticeTitle,String noticeContent,Integer orderNum,String noticeFiles,Integer noticeStatus,String createEmployeeId,Date createTime,String modifyEmployeeId,Date modifyTime,String remark,Integer delFlag){
+		super();
+		this.noticeType= noticeType;
+		this.noticeTitle= noticeTitle;
+		this.noticeContent= noticeContent;
+		this.orderNum= orderNum;
+		this.noticeFiles= noticeFiles;
+		this.noticeStatus= noticeStatus;
+		this.createEmployeeId= createEmployeeId;
+		this.createTime= createTime;
+		this.modifyEmployeeId= modifyEmployeeId;
+		this.modifyTime= modifyTime;
+		this.remark= remark;
+		this.delFlag= delFlag;
 	}
 	/**
-	 * 获取：编号
+	 * 设置：主键ID
 	 */
-	public String getId() {
-		return id;
+	public void setNoticeId(String noticeId) {
+		this.noticeId = noticeId;
 	}
+	/**
+	 * 获取：主键ID
+	 */
+	public String getNoticeId() {
+		return noticeId;
+	}
+
 	/**
 	 * 设置：类型
 	 */
-	public void setType(String type) {
-		this.type = type;
+	public void setNoticeType(String noticeType) {
+		this.noticeType = noticeType;
 	}
 	/**
 	 * 获取：类型
 	 */
-	public String getType() {
-		return type;
+	public String getNoticeType() {
+		return noticeType;
 	}
 	/**
 	 * 设置：标题
 	 */
-	public void setTitle(String title) {
-		this.title = title;
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
 	}
 	/**
 	 * 获取：标题
 	 */
-	public String getTitle() {
-		return title;
+	public String getNoticeTitle() {
+		return noticeTitle;
 	}
 	/**
 	 * 设置：内容
 	 */
-	public void setContent(String content) {
-		this.content = content;
+	public void setNoticeContent(String noticeContent) {
+		this.noticeContent = noticeContent;
 	}
 	/**
 	 * 获取：内容
 	 */
-	public String getContent() {
-		return content;
+	public String getNoticeContent() {
+		return noticeContent;
+	}
+	/**
+	 * 设置：通知排序
+	 */
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
+	/**
+	 * 获取：通知排序
+	 */
+	public Integer getOrderNum() {
+		return orderNum;
 	}
 	/**
 	 * 设置：附件
 	 */
-	public void setFiles(String files) {
-		this.files = files;
+	public void setNoticeFiles(String noticeFiles) {
+		this.noticeFiles = noticeFiles;
 	}
 	/**
 	 * 获取：附件
 	 */
-	public String getFiles() {
-		return files;
+	public String getNoticeFiles() {
+		return noticeFiles;
 	}
 	/**
 	 * 设置：状态
 	 */
-	public void setStatus(String status) {
-		this.status = status;
+	public void setNoticeStatus(Integer noticeStatus) {
+		this.noticeStatus = noticeStatus;
 	}
 	/**
 	 * 获取：状态
 	 */
-	public String getStatus() {
-		return status;
+	public Integer getNoticeStatus() {
+		return noticeStatus;
 	}
 	/**
 	 * 设置：创建者
 	 */
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
+	public void setCreateEmployeeId(String createEmployeeId) {
+		this.createEmployeeId = createEmployeeId;
 	}
 	/**
 	 * 获取：创建者
 	 */
-	public String getCreateBy() {
-		return createBy;
+	public String getCreateEmployeeId() {
+		return createEmployeeId;
 	}
 	/**
 	 * 设置：创建时间
 	 */
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	/**
 	 * 获取：创建时间
 	 */
-	public Date getCreateDate() {
-		return createDate;
+	public Date getCreateTime() {
+		return createTime;
 	}
 	/**
-	 * 设置：更新者
+	 * 设置：修改时间
 	 */
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
+	public void setModifyEmployeeId(String modifyEmployeeId) {
+		this.modifyEmployeeId = modifyEmployeeId;
 	}
 	/**
-	 * 获取：更新者
+	 * 获取：修改时间
 	 */
-	public String getUpdateBy() {
-		return updateBy;
+	public String getModifyEmployeeId() {
+		return modifyEmployeeId;
 	}
 	/**
 	 * 设置：更新时间
 	 */
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
+	public void setModifyTime(Date modifyTime) {
+		this.modifyTime = modifyTime;
 	}
 	/**
 	 * 获取：更新时间
 	 */
-	public Date getUpdateDate() {
-		return updateDate;
+	public Date getModifyTime() {
+		return modifyTime;
 	}
 	/**
 	 * 设置：备注信息
 	 */
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	/**
 	 * 获取：备注信息
 	 */
-	public String getRemarks() {
-		return remarks;
+	public String getRemark() {
+		return remark;
 	}
 	/**
 	 * 设置：删除标记
 	 */
-	public void setDelFlag(String delFlag) {
+	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
 	}
 	/**
 	 * 获取：删除标记
 	 */
-	public String getDelFlag() {
+	public Integer getDelFlag() {
 		return delFlag;
 	}
-	public String[] getUserIds() {
-		return userIds;
-	}
-	public void setUserIds(String[] userIds) {
-		this.userIds = userIds;
+
+	public String[] getEmployeeIds() {
+		return employeeIds;
 	}
 
+	public void setEmployeeIds(String[] employeeIds) {
+		this.employeeIds = employeeIds;
+	}
 	@Override
 	public String toString() {
 		return "NoticeDO{" +
-				"id=" + id +
-				", type='" + type + '\'' +
-				", title='" + title + '\'' +
-				", content='" + content + '\'' +
-				", files='" + files + '\'' +
-				", status='" + status + '\'' +
-				", createBy=" + createBy +
-				", createDate=" + createDate +
-				", updateBy='" + updateBy + '\'' +
-				", updateDate=" + updateDate +
-				", remarks='" + remarks + '\'' +
+				"noticeId=" + noticeId +
+				", noticeType='" + noticeType + '\'' +
+				", noticeTitle='" + noticeTitle + '\'' +
+				", noticeContent='" + noticeContent + '\'' +
+				", orderNum='" + orderNum + '\'' +
+				", noticeFiles='" + noticeFiles + '\'' +
+				", noticeStatus='" + noticeStatus + '\'' +
+				", createEmployeeId='" + createEmployeeId + '\'' +
+				", createTime='" + createTime + '\'' +
+				", modifyEmployeeId='" + modifyEmployeeId + '\'' +
+				", modifyTime='" + modifyTime + '\'' +
+				", remark='" + remark + '\'' +
 				", delFlag='" + delFlag + '\'' +
-				", userIds=" + Arrays.toString(userIds) +
 				'}';
 	}
+
 }

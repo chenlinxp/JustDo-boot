@@ -1,9 +1,10 @@
 package com.justdo.system.notice.service;
 
-import java.util.List;
-import java.util.Map;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.system.notice.domain.NoticeDO;
+
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -28,8 +29,6 @@ public interface NoticeService {
 	int del(String id);
 
 	int batchDel(String[] ids);
-
-//	Map<String, Object> message(Long userId);
 
 	PageUtils selfList(Map<String, Object> map);
 }

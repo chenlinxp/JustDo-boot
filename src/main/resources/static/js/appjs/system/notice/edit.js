@@ -1,8 +1,8 @@
-
-var preUrl= "/system/notice"
+var preUrl = "/system/notice"
 $(function() {
-	loadType();
 	validateRule();
+	console.log($("#noticeType").val());
+    $(".chosen-select").val($("#noticeType").val());
 });
 
 $.validator.setDefaults({
@@ -38,41 +38,26 @@ function update() {
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入名字"
-			}
-		}
+        rules : {
+            noticeType :
+                {required : true},
+            noticeTitle :
+                {required : true},
+            noticeContent :
+                {required : true}
+
+        },
+        messages : {
+            noticeType :
+                {required : icon + "请选择类型"},
+            noticeTitle :
+                {required : icon + "请输入标题"},
+            noticeContent :
+                {required : icon + "请输入内容"}
+        }
 	})
 }
 
-function loadType(){
-	var html = "";
-	$.ajax({
-		url : '/system/dict/list/noticeCode',
-		success : function(data) {
-			// 加载数据
-			for (var i = 0; i < data.length; i++) {
-				html += '<option value="' + data[i].dccode + '">' + data[i].dcvalue + '</option>'
-			}
-			$(".chosen-select").append(html);
-			$(".chosen-select").chosen({
-				maxHeight : 200
-			});
-			$(".chosen-select").val($("#Ttype").val());
-			$(".chosen-select").trigger("chosen:updated");
-			// 点击事件
-			$('.chosen-select').on('change', function(e, params) {
-
-			});
-		}
-	});
-}
 
 var openEmployee= function(){
     layer.open({

@@ -2,6 +2,7 @@ package com.justdo.system.operationlog.service.impl;
 
 import com.justdo.common.domain.PageDO;
 import com.justdo.common.utils.Query;
+import com.justdo.system.operationlog.dao.OperationLogDao;
 import com.justdo.system.operationlog.domain.OperationLogDO;
 import com.justdo.system.operationlog.service.OperationLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,9 @@ import java.util.Map;
  */
 @Service
 public class OperationLogServiceImpl implements OperationLogService {
+
 	@Autowired
-	com.justdo.system.operationlog.dao.OperationLogDao operationlogdao;
+	OperationLogDao operationlogdao;
 
 	@Override
 	public OperationLogDO get(String operationLogId){

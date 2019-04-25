@@ -92,7 +92,7 @@ public class GeneratorCodeUtils {
             //列的数据类型，转换成Java类型
             String attrType = config.getString(columnDO.getDataType(), "unknowType");
             columnDO.setAttrType(attrType);
-            constructorParams += attrType+" "+attrName+",";
+            constructorParams += attrType+" "+columnDO.getAttrname()+",";
             //是否主键
             if ("PRI".equalsIgnoreCase(column.get("columnKey")) && tableDO.getPk() == null) {
                 tableDO.setPk(columnDO);
@@ -264,7 +264,6 @@ public class GeneratorCodeUtils {
             return "main" + File.separator + "resources" + File.separator + "static" + File.separator + "js" + File.separator
                     + "appjs" + File.separator + packageName + File.separator + classname + File.separator + "view.js";
         }
-
         return null;
     }
 }

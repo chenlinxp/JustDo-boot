@@ -2,11 +2,10 @@ package com.justdo.system.notice.dao;
 
 import com.justdo.system.notice.domain.NoticeDO;
 import com.justdo.system.notice.domain.NoticeDTO;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 通知通告
@@ -28,11 +27,11 @@ public interface NoticeDao {
 
 	int update(NoticeDO notice);
 
-	int del(String id);
+	int del(String noticeId);
 
-	int batchDel(String[] ids);
+	int batchDel(String[] noticeIds);
 
-	List<NoticeDO> listByIds(String[] ids);
+	List<NoticeDO> listByIds(String[] noticeIds);
 
 	int countDTO(Map<String, Object> map);
 
