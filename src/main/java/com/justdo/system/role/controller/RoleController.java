@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -40,7 +41,7 @@ public class RoleController extends BaseController {
 	@GetMapping("/list")
 	@ResponseBody()
 	List<RoleDO> list() {
-		List<RoleDO> roles = roleService.list();
+		List<RoleDO> roles = roleService.list(new HashMap<>(1));
 		return roles;
 	}
 

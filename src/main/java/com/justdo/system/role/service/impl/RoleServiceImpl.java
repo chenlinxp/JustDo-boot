@@ -1,6 +1,5 @@
 package com.justdo.system.role.service.impl;
 
-import com.justdo.common.utils.StringUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.dao.EmployeeRoleDao;
 import com.justdo.system.role.dao.RoleDao;
@@ -12,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 角色
@@ -40,8 +36,8 @@ public class RoleServiceImpl implements RoleService {
     EmployeeRoleDao employeeRoleDao;
 
     @Override
-    public List<RoleDO> list() {
-        List<RoleDO> roles = roleDao.list(new HashMap<>(16));
+    public List<RoleDO> list(Map<String,Object> map) {
+        List<RoleDO> roles = roleDao.list(map);
         return roles;
     }
 
@@ -49,7 +45,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<RoleDO> list(String EmployeeId) {
         List<String> rolesIds = employeeRoleDao.listRoleIds(EmployeeId);
-        List<RoleDO> roles = roleDao.list(new HashMap<>(16));
+        List<RoleDO> roles = roleDao.list(new HashMap<>(1));
         for (RoleDO roleDO : roles) {
             roleDO.setRoleSign("false");
             for (String roleId : rolesIds) {

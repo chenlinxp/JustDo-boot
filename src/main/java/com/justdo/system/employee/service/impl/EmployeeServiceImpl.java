@@ -96,10 +96,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		String employeeId = StringUtils.getUUID();
 		employee.setEmployeeId(employeeId);
 		for (String roleId:employee.getRoleIds()) {
-		EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
-		employeeRoleDO.setEmplpoyeeId(employeeId);
-		employeeRoleDO.setRoleId(roleId);
-		employeeRoleDao.save(employeeRoleDO);
+			EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
+			employeeRoleDO.setEmplpoyeeId(employeeId);
+			employeeRoleDO.setRoleId(roleId);
+			employeeRoleDao.save(employeeRoleDO);
 		}
 		return employeeDao.save(employee);
 	}
@@ -108,12 +108,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(EmployeeDO employee){
 		String employeeId = employee.getEmployeeId();
-		employeeRoleDao.delByEmployeeId(employeeId);
-		for (String roleId:employee.getRoleIds()) {
-			EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
-			employeeRoleDO.setEmplpoyeeId(employeeId);
-			employeeRoleDO.setRoleId(roleId);
-			employeeRoleDao.save(employeeRoleDO);
+		if(employee.getRoleIds().size()>0) {
+			employeeRoleDao.delByEmployeeId(employeeId);
+			for (String roleId : employee.getRoleIds()) {
+				EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
+				employeeRoleDO.setEmplpoyeeId(employeeId);
+				employeeRoleDO.setRoleId(roleId);
+				employeeRoleDao.save(employeeRoleDO);
+			}
 		}
 		return employeeDao.update(employee);
 	}
@@ -184,7 +186,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Tree<DeptDO> getTree() {
 		List<Tree<DeptDO>> trees = new ArrayList<Tree<DeptDO>>();
-		List<DeptDO> depts = deptDao.list(new HashMap<String, Object>(16));
+		List<DeptDO> depts = deptDao.list(new HashMap<String, Object>(1));
 		String[] pDepts = deptDao.listParentDept();
 		String[] uDepts = employeeDao.listAllDept();
 		Long[] allDepts = (Long[]) ArrayUtils.addAll(pDepts, uDepts);

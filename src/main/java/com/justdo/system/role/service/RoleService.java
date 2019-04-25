@@ -4,6 +4,7 @@ import com.justdo.system.role.domain.RoleDO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 员工角色
@@ -14,9 +15,19 @@ import java.util.List;
 @Service
 public interface RoleService {
 
+	/**
+	 * 获取实体角色
+	 * @param roleId
+	 * @return
+	 */
 	RoleDO get(String roleId);
 
-	List<RoleDO> list();
+	/**
+	 * 获取实体角色list
+	 * @param map
+	 * @return
+	 */
+	List<RoleDO> list(Map<String,Object> map);
 
 	int save(RoleDO role);
 

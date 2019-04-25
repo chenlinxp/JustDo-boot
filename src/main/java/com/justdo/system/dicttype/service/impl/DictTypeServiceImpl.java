@@ -25,6 +25,7 @@ import com.justdo.system.dicttype.service.DictTypeService;
  */
 @Service
 public class DictTypeServiceImpl implements DictTypeService {
+
     @Autowired
     private DictTypeDao dicttypeDao;
 
@@ -32,7 +33,6 @@ public class DictTypeServiceImpl implements DictTypeService {
     public DictTypeDO get(String id) {
         return dicttypeDao.get(id);
     }
-
 
     @Override
     public int save(DictTypeDO dict) {
@@ -51,7 +51,6 @@ public class DictTypeServiceImpl implements DictTypeService {
 
 
     @Override
-
     public List<DictTypeDO> list(Map<String, Object> params) {
         return dicttypeDao.list(params);
     }

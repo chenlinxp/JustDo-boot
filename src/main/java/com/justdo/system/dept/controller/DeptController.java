@@ -144,7 +144,7 @@ public class DeptController extends BaseController {
 		if(deptService.count(map)>0) {
 			return R.error(1, "包含下级部门,不允许修改");
 		}
-		if(deptService.checkDeptHasUser(deptId)) {
+		if(deptService.checkDeptHasEmployee(deptId)) {
 			if (deptService.del(deptId) > 0) {
 				return R.ok();
 			}

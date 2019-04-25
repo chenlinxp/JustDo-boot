@@ -65,28 +65,28 @@ public interface RoleResourceDao {
 	int batchDel(Long[] roleResourceIds);
 
 	/**
-	 *
+	 * 通过角色ID获取资源IDs
 	 * @param roleId
 	 * @return
 	 */
 	List<String> listResourceIdByRoleId(String roleId);
 
 	/**
-	 *
+	 * 通过角色ID删除
 	 * @param roleId
 	 * @return
 	 */
 	int delByRoleId(String roleId);
 
 	/**
-	 *
+	 * 通过资源ID删除
 	 * @param resourceId
 	 * @return
 	 */
 	int delByResourceId(String resourceId);
 
 	/**
-	 *
+	 * 批量保存资源角色中间表
 	 * @param list
 	 * @return
 	 */

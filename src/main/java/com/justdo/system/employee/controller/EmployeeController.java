@@ -83,7 +83,7 @@ public class EmployeeController {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{employeeId}")
-	@RequiresPermissions("system:employee:view")
+	@RequiresPermissions("system:employee:info")
 	String view(@PathVariable("employeeId") String employeeId,Model model){
 			EmployeeDO employee = employeeService.get(employeeId);
 		model.addAttribute("employee", employee);
@@ -97,7 +97,7 @@ public class EmployeeController {
 	@GetMapping("/add")
 	@RequiresPermissions("system:employee:add")
 		String add(Model model) {
-			List<RoleDO> roles = roleService.list();
+			List<RoleDO> roles = roleService.list(new HashMap<>(1));
 			model.addAttribute("roles", roles);
 		    model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 			return preUrl + "/add";
@@ -138,10 +138,7 @@ public class EmployeeController {
 		List<String> roleIds = employeeService.listRoleIds(employeeId);
 		employee.setRoleIds(roleIds);
 		model.addAttribute("employee", employee);
-
-//		List<RoleDO> roles = roleService.list(roleIds);
-
-		List<RoleDO> roles = roleService.list();
+		List<RoleDO> roles = roleService.list(new HashMap<>(1));
 		model.addAttribute("roles", roles);
 		model.addAttribute("sexList",dictContentService.listDictByCode("sexCode"));
 	    return preUrl + "/edit";

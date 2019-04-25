@@ -93,9 +93,7 @@ public class DeptServiceImpl implements DeptService {
 	}
 
 	@Override
-	public boolean checkDeptHasUser(String deptId) {
-		// TODO Auto-generated method stub
-		//查询部门以及此部门的下级部门
+	public boolean checkDeptHasEmployee(String deptId) {
 		int result = employeeDao.getDeptEmployeeCount(deptId);
 		return result==0?true:false;
 	}
