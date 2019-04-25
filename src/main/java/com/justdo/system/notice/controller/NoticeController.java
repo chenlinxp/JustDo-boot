@@ -74,13 +74,13 @@ public class NoticeController extends BaseController {
 
 	/**
 	 * 详情页面
-	 * @param noticeId
+	 * @param id
 	 * @return 详情页面路径
 	 */
-	@GetMapping("/view/{noticeId}")
+	@GetMapping("/view/{id}")
 	@RequiresPermissions("system:notice:info")
-	String view(@PathVariable("noticeId") String noticeId,Model model){
-		NoticeDO notice = noticeService.get(noticeId);
+	String view(@PathVariable("id") String id,Model model){
+		NoticeDO notice = noticeService.get(id);
 		model.addAttribute("notice", notice);
 		return preUrl + "/view";
 	}

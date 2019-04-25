@@ -71,13 +71,13 @@ public class ${className}Controller {
 
 	/**
 	* 详情页面
-	* @param ${pk.attrname}
+	* @param id
 	* @return 详情页面路径
 	*/
-	@GetMapping("/view/{${pk.attrname}}")
+	@GetMapping("/view/{id}")
 	@RequiresPermissions("${pathName}:${classname}:view")
-	String view(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
-			${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
+	String view(@PathVariable("id") ${pk.attrType} id,Model model){
+			${className}DO ${classname} = ${classname}Service.get(id);
 		model.addAttribute("${classname}", ${classname});
 		return preUrl + "/view";
 	}
