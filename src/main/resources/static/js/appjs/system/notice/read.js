@@ -1,5 +1,7 @@
-$().ready(function() {
+var preUrl = "/system/notice"
+$(function() {
 	validateRule();
+    $(".chosen-select").val($("#noticeType").val());
 });
 
 $.validator.setDefaults({
@@ -11,7 +13,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/notice/update",
+		url : preUrl+"/update",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {

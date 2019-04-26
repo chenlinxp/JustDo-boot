@@ -15,7 +15,7 @@
         <where>
 		  <if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID != #{employeeId} </if>
 		  <if test="employeeNumber != null and employeeNumber != ''"> and EMPLOYEE_NUMBER = #{employeeNumber} </if>
-		  <if test="loginName != null and loginName != ''"> and LOGIN_NAME = #{loginName} </if>
+		  <if test="loginName != null and loginName != ''"> and LOGIN_NAME like concat('%' ,#{loginName},'%') </if>
 		  <if test="realName != null and realName != ''"> and REAL_NAME = #{realName} </if>
 		  <if test="password != null and password != ''"> and PASSWORD = #{password} </if>
 		  <if test="passwordSalt != null and passwordSalt != ''"> and PASSWORD_SALT = #{passwordSalt} </if>

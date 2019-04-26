@@ -206,6 +206,7 @@ public class NoticeController extends BaseController {
 	}
 
 	@GetMapping("/selfnotice")
+	@RequiresPermissions("system:notice:selflist")
 	String selefNotice() {
 		return preUrl +  "/selfnotice";
 	}
@@ -213,6 +214,7 @@ public class NoticeController extends BaseController {
 	@Log("个人通知列表")
 	@ResponseBody
 	@GetMapping("/selflist")
+	@RequiresPermissions("system:notice:selflist")
 	PageUtils selfList(@RequestParam Map<String, Object> params) {
 		Query query = new Query(params);
 		query.put("employeeId", getEmployeeId());
@@ -221,8 +223,10 @@ public class NoticeController extends BaseController {
 
 	@Log("阅读个人通知详情")
 	@GetMapping("/read/{noticeId}")
-	@RequiresPermissions("system:notice:edit")
+	@RequiresPermissions("system:notice:read")
 	String read(@PathVariable("noticeId") String noticeId, Model model) {
+		List<DictContentDO> dictDOS = dictContentService.listDictByCode("noticeCode");
+		model.addAttribute("noticeTypes",dictDOS);
 		NoticeDO notice = noticeService.get(noticeId);
 		//更改阅读状态
 		NoticeRecordDO noticeRecordDO = new NoticeRecordDO();

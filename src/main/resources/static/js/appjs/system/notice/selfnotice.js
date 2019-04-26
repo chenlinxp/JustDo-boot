@@ -1,5 +1,5 @@
 
-var prefix = "/system/notice"
+var preUrl = "/system/notice"
 $(function() {
 	load();
 });
@@ -9,7 +9,7 @@ function load() {
 		.bootstrapTable(
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
-				url : prefix + "/selfList", // 服务器数据的加载地址
+				url : preUrl + "/selflist", // 服务器数据的加载地址
 				//	showRefresh : true,
 				//	showToggle : true,
 				//	showColumns : true,
@@ -32,11 +32,23 @@ function load() {
 					return {
 						//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
 						limit : params.limit,
-						offset : params.offset
-					// name:$('#searchName').val(),
-					// username:$('#searchName').val()
+						offset : params.offset,
+                        sort: 'CREATE_TIME',
+                        order: 'desc',
+                        noticeTitle : $('#searchName').val()
 					};
 				},
+                onClickRow: function (row, element) {
+                    $('.success').removeClass('success');//去除之前选中的行的，选中样式
+                    $(element).addClass('success');//添加当前选中的 success样式用于区别
+                    $("#bTable").bootstrapTable("uncheckAll");
+                    var rowindex=$(element).attr("data-index");
+                    $("#bTable").bootstrapTable('check',rowindex);
+                    // $.each($("#bTable  input[type='checkbox']"), function(index, value) {
+                    //     $(value).prop("checked",false);
+                    // });
+                    // $(element).find("input[type='checkbox']").prop("checked","checked");
+                },
 				// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
 				// queryParamsType = 'limit' ,返回参数必须包含
 				// limit, offset, search, sort, order 否则, 需要包含:
@@ -49,36 +61,45 @@ function load() {
 					},
 					{
 						visible : false,
-						field : 'id',
+						field : 'noticeId',
 						title : '编号'
 					},
+                    {
+                        field : 'noticeId',
+                        title : '主键ID',
+                        visible :false
+                    },
+                    {
+                        field : 'SerialNumber',
+                        title : '序号',
+                        align : 'center',
+                        width : '30px',
+                        formatter: function (value ,row ,index){
+                            var pageNumber=$('#bTable').bootstrapTable("getOptions").pageNumber;
+                            var pageSize=$('#bTable').bootstrapTable("getOptions").pageSize;
+                            return (pageNumber-1)*pageSize+index+1;
+                        }
+                    },
 					{
 						visible :false,
-						field : 'type',
+						field : 'noticeType',
 						title : '类型'
 					},
 					{
-						field : 'title',
+						field : 'noticeTitle',
 						width: '20%',
-						title : '标题',
-						formatter:function (value,row,index) {
-                            return '<a href="#" onclick="read(\''+ row.id+ '\')">'+row.title+'</a>';
-                        }
+						title : '标题'
 					},
 					{
-						field : 'content',
+						field : 'noticeContent',
 						width: '30%',
 						title : '内容'
-					},
-					{
-						visible : false,
-						field : 'files',
-						title : '附件'
 					},
 					{
 						field : 'isRead',
 						title : '状态',
 						align :'center',
+                        width : '40px',
 						formatter : function(value, row, index){
 							if(value==0){
 								return '<span class="label label-warning">未读</span>';
@@ -88,99 +109,37 @@ function load() {
 						}
 					},
 					{
-						visible : false,
-						field : 'createBy',
-						title : '创建者'
-					},
-					{
-						visible : false,
-						field : 'createDate',
-						title : '创建时间'
-					},
-					{
-						visible : false,
-						field : 'updateBy',
-						title : '更新者'
-					},
-					{
-						visible : false,
-						field : 'updateDate',
-						title : '更新时间'
-					},
-					{
-						field : 'remarks',
+						field : 'remark',
 						title : '备注信息'
 					},
-					{
-						visible : false,
-						field : 'delFlag',
-						title : '删除标记'
-					},
-					{
-						title : '操作',
-						field : 'opera',
-						align : 'center',
-						formatter : function(value, row, index) {
-							var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="打开" onclick="read(\''
-								+ row.id
-								+ '\')"><i class="fa fa-book"></i></a> ';
-							var d = '<a class="btn btn-warning btn-sm ' + s_delete_h + '" href="#" title="删除"  mce_href="#" onclick="remove(\''
-								+ row.id
-								+ '\')"><i class="fa fa-remove"></i></a> ';
-							var f = '<a class="btn btn-success btn-sm" href="#" title="备用"  mce_href="#" onclick="resetPwd(\''
-								+ row.id
-								+ '\')"><i class="fa fa-key"></i></a> ';
-							return e ;
-						}
-					} ]
+                    {
+                        field : 'createTime',
+                        title : '创建时间',
+                        width : '150px',
+                    }]
 			});
 }
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
-function add() {
-	layer.open({
-		type : 2,
-		title : '增加',
-		maxmin : true,
-		shadeClose : false, // 点击遮罩关闭层
-		area : [ '800px', '520px' ],
-		content : prefix + '/add' // iframe的url
-	});
-}
-function read(id) {
+function read() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['noticeId'];
+    }
 	layer.open({
 		type : 2,
 		title : '查看',
 		maxmin : true,
 		shadeClose : false, // 点击遮罩关闭层
 		area : [ '800px', '520px' ],
-		content : prefix + '/read/' + id // iframe的url
+		content : preUrl + '/read/' + id // iframe的url
 	});
-}
-function remove(id) {
-	layer.confirm('确定要删除选中的记录？', {
-		btn : [ '确定', '取消' ]
-	}, function() {
-		$.ajax({
-			url : prefix + "/del",
-			type : "post",
-			data : {
-				'id' : id
-			},
-			success : function(r) {
-				if (r.code == 0) {
-					layer.msg(r.msg);
-					reLoad();
-				} else {
-					layer.msg(r.msg);
-				}
-			}
-		});
-	})
-}
-
-function resetPwd(id) {
 }
 function batchDel() {
 	var rows = $('#bTable').bootstrapTable('getSelections'); // 返回所有选择的行，当没有选择的记录时，返回一个空数组
@@ -202,7 +161,7 @@ function batchDel() {
 			data : {
 				"ids" : ids
 			},
-			url : prefix + '/batchDel',
+			url : preUrl + '/batchDel',
 			success : function(r) {
 				if (r.code == 0) {
 					layer.msg(r.msg);

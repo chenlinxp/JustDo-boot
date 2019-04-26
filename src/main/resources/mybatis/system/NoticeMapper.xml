@@ -12,7 +12,7 @@
 		<where>
 			<if test="noticeId != null and noticeId != ''"> and NOTICE_ID != #{noticeId} </if>
 			<if test="noticeType != null and noticeType != ''"> and NOTICE_TYPE = #{noticeType} </if>
-			<if test="noticeTitle != null and noticeTitle != ''"> and NOTICE_TITLE = #{noticeTitle} </if>
+			<if test="noticeTitle != null and noticeTitle != ''"> and NOTICE_TITLE  like concat('%' ,#{noticeTitle},'%') </if>
 			<if test="noticeContent != null and noticeContent != ''"> and NOTICE_CONTENT = #{noticeContent} </if>
 			<if test="orderNum != null and orderNum != ''"> and ORDER_NUM = #{orderNum} </if>
 			<if test="noticeFiles != null and noticeFiles != ''"> and NOTICE_FILES = #{noticeFiles} </if>
@@ -62,11 +62,35 @@
 		insert into SYS_NOTICE
 		(
 		`NOTICE_ID`,
-		`NOTICE_TYPE`,             `NOTICE_TITLE`,             `NOTICE_CONTENT`,             `ORDER_NUM`,             `NOTICE_FILES`,             `NOTICE_STATUS`,             `CREATE_EMPLOYEE_ID`,             `CREATE_TIME`,             `MODIFY_EMPLOYEE_ID`,             `MODIFY_TIME`,             `REMARK`,             `DEL_FLAG`        )
+		`NOTICE_TYPE`,
+		`NOTICE_TITLE`,
+		`NOTICE_CONTENT`,
+		`ORDER_NUM`,
+		`NOTICE_FILES`,
+		`NOTICE_STATUS`,
+		`CREATE_EMPLOYEE_ID`,
+		`CREATE_TIME`,
+		`MODIFY_EMPLOYEE_ID`,
+		`MODIFY_TIME`,
+		`REMARK`,
+		`DEL_FLAG`
+		)
 		values
 		(
 		#{noticeId},
-		#{noticeType},            #{noticeTitle},            #{noticeContent},            #{orderNum},            #{noticeFiles},            #{noticeStatus},            #{createEmployeeId},            #{createTime},            #{modifyEmployeeId},            #{modifyTime},            #{remark},            #{delFlag}		)
+		#{noticeType},
+		#{noticeTitle},
+		#{noticeContent},
+		#{orderNum},
+		#{noticeFiles},
+		#{noticeStatus},
+		#{createEmployeeId},
+		#{createTime},
+		#{modifyEmployeeId},
+		#{modifyTime},
+		#{remark},
+		#{delFlag}
+		)
 	</insert>
 
 	<update id="update" parameterType="com.justdo.system.notice.domain.NoticeDO">

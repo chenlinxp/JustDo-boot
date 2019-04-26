@@ -10,7 +10,7 @@
 	<select id="list" resultType="com.justdo.system.role.domain.RoleDO">
 		select  `ROLE_ID`,`ROLE_NAME`,`ROLE_SIGN`,`ROLE_STATE`,`REMARK`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME` from sys_role
 		<where>
-			<if test="roleName != null and roleName != ''"> and ROLE_NAME = #{roleName} </if>
+			<if test="roleName != null and roleName != ''"> and ROLE_NAME like concat('%' ,#{roleName},'%') </if>
 			<if test="roleSign != null and roleSign != ''"> and ROLE_SIGN = #{roleSign} </if>
 			<if test="roleState != null and roleState != ''"> and ROLE_STATE = #{roleState} </if>
 			<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
