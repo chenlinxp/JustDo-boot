@@ -12,7 +12,7 @@
                <where>
 		  		  <if test="dcid != null and dcid != ''"> and DCID != #{dcid} </if>
 		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
-		  		  <if test="dcvalue != null and dcvalue != ''"> and DCVALUE = #{dcvalue} </if>
+		  		  <if test="dcvalue != null and dcvalue != ''"> and DCVALUE like concat('%',#{dcvalue},'%') </if>
 		  		  <if test="dccode != null and dccode != ''"> and DCCODE = #{dccode} </if>
 		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		  		  <if test="orderno != null and orderno != ''"> and ORDERNO = #{orderno} </if>

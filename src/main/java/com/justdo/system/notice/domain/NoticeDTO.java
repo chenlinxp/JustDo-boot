@@ -1,7 +1,7 @@
 package com.justdo.system.notice.domain;
 
 /**
- * 通知通告
+ * 发送通知通告
  *
  * @author chenlin
  * @email 13233669915@qq.com
