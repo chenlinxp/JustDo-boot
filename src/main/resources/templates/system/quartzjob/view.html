@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<input id="schedulerTaskId" name="schedulerTaskId" th:value="${quartzJobTaskDO.schedulerTaskId}"  type="hidden">
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务名:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.taskName}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务状态:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.taskStatus}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务分组:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.taskGroup}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">cron表达式:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.cronExpression}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务调用的方法名:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.methodName}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">Spring bean:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.springBean}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务是否有状态:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.isCurrent}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务执行时调用哪个类的方法 包名+类名:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.beanClass}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">任务描述:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.description}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">创建时间:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.createTime}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">更新时间:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.modifyTime}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">创建者:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.careatEmployeeId}"></span>
+								</div>
+							</div>
+	                        <div class="form-group">
+								<label class="col-sm-3 control-label">更新者:</label>
+								<div class="col-sm-8">
+                                    <span th:text="${quartzJobTaskDO.modifyEmployeeId}"></span>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/schedulertask/view.js">
+	</script>
+</body>
+</html>
