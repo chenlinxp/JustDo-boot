@@ -62,7 +62,7 @@ public class QuartzJobController extends BaseController {
 	/**
 	 * 详情
 	 */
-	@RequestMapping("/info/{id}")
+	@RequestMapping("/view/{id}")
 	public R info(@PathVariable("id") Long id) {
 		QuartzJobTaskDO quartzJobTaskDO = quartzJobService.get(id);
 		return R.ok().put("quartzJobTaskDO", quartzJobTaskDO);

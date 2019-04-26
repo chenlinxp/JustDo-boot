@@ -83,7 +83,7 @@ public class EmployeeController {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{employeeId}")
-	@RequiresPermissions("system:employee:info")
+	@RequiresPermissions("system:employee:view")
 	String view(@PathVariable("employeeId") String employeeId,Model model){
 			EmployeeDO employee = employeeService.get(employeeId);
 		model.addAttribute("employee", employee);

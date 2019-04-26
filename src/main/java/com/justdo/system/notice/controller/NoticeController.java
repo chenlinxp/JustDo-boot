@@ -78,7 +78,7 @@ public class NoticeController extends BaseController {
 	 * @return 详情页面路径
 	 */
 	@GetMapping("/view/{id}")
-	@RequiresPermissions("system:notice:info")
+	@RequiresPermissions("system:notice:view")
 	String view(@PathVariable("id") String id,Model model){
 		NoticeDO notice = noticeService.get(id);
 		model.addAttribute("notice", notice);

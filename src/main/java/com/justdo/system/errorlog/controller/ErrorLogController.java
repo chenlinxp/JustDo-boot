@@ -64,7 +64,7 @@ public class ErrorLogController {
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{errorlogId}")
-	@RequiresPermissions("system:errorlog:info")
+	@RequiresPermissions("system:errorlog:view")
 	String view(@PathVariable("errorlogId") String errorlogId,Model model){
 			ErrorLogDO errorLog = errorLogService.get(errorlogId);
 		model.addAttribute("errorLog", errorLog);

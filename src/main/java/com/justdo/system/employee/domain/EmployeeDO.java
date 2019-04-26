@@ -1,5 +1,6 @@
 package com.justdo.system.employee.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.justdo.common.domain.BaseBean;
 
@@ -74,8 +75,10 @@ public class EmployeeDO extends BaseBean {
 	//备注
 	private String remark;
 	//创建时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 	//修改时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifyTime;
 
 	/**

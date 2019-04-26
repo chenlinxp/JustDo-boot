@@ -104,7 +104,7 @@ public class GeneratorCodeUtils {
 
         }
         if(constructorParams.endsWith(",")){
-            constructorParams = constructorParams.substring(0,constructorParams.length()-2);
+            constructorParams = constructorParams.substring(0,constructorParams.length()-1);
         }
         tableDO.setConstructorParams(constructorParams);
 

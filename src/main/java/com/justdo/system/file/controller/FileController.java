@@ -71,8 +71,8 @@ public class FileController extends BaseController {
 	/**
 	 * 信息
 	 */
-	@RequestMapping("/info/{id}")
-	@RequiresPermissions("system:file:info")
+	@RequestMapping("/view/{id}")
+	@RequiresPermissions("system:file:view")
 	public R info(@PathVariable("id") String id) {
 		FileDO file = fileService.get(id);
 		return R.ok().put("file", file);

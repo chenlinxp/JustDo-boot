@@ -102,7 +102,7 @@ public class DictController extends BaseController {
 	}
 
 	@GetMapping("/view/{id}")
-	@RequiresPermissions("system:dict:info")
+	@RequiresPermissions("system:dict:view")
 	String view(@PathVariable("id") String id, Model model) {
 		DictContentDO dictContent = dictContentService.get(id);
 		model.addAttribute("dictContent", dictContent);
