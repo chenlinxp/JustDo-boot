@@ -1,4 +1,5 @@
-$().ready(function() {
+var preUrl = "/system/quartzjob"
+$(function() {
 	validateRule();
 });
 
@@ -11,7 +12,7 @@ function save() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url :"/system/quartzjob/save",
+		url : preUrl+"/save",
 		data : $('#signupForm').serialize(),
 		async : false,
 		error : function(request) {
@@ -31,17 +32,57 @@ function save() {
 	});
 }
 function validateRule() {
-	var icon = "<i class='fa fa-times-circle'></i> ";
-	$("#signupForm").validate({
-		rules : {
-			name : {
-				required : true
-			}
-		},
-		messages : {
-			name : {
-				required : icon + "请输入姓名"
-			}
-		}
-	})
+    var icon = "<i class='fa fa-times-circle'></i> ";
+    $("#signupForm").validate({
+        rules : {
+            taskName :
+                {required : true}
+            ,
+            taskStatus :
+                {required : true}
+            ,
+            taskGroup :
+                {required : true}
+            ,
+            cronExpression :
+                {required : true}
+            ,
+            methodName :
+                {required : true}
+            ,
+            springBean :
+                {required : true}
+            ,
+            isCurrent :
+                {required : true}
+            ,
+            beanClass :
+                {required : true}
+        },
+        messages : {
+            taskName :
+                {required : icon + "任务名"}
+            ,
+            taskStatus :
+                {required : icon + "任务状态"}
+            ,
+            taskGroup :
+                {required : icon + "任务分组"}
+            ,
+            cronExpression :
+                {required : icon + "cron表达式"}
+            ,
+            methodName :
+                {required : icon + "任务调用的方法名"}
+            ,
+            springBean :
+                {required : icon + "Spring bean"}
+            ,
+            isCurrent :
+                {required : icon + "任务是否有状态"}
+            ,
+            beanClass :
+                {required : icon + "任务执行时调用哪个类的方法 包名+类名"}
+        }
+    })
 }

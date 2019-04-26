@@ -38,7 +38,7 @@ import static com.justdo.common.utils.ShiroUtils.getEmployeeId;
 @RequestMapping("/system/employee")
 public class EmployeeController {
 
-	private String preUrl="system/employee"  ;
+	private String preUrl="system/employee";
 	@Autowired
 	private EmployeeService employeeService;
 	@Autowired

@@ -2,12 +2,11 @@ package com.justdo.system.quartzjob.dao;
 
 
 
-import java.util.List;
-import java.util.Map;
-
+import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -19,17 +18,53 @@ import com.justdo.system.quartzjob.domain.QuartzJobTaskDO;
 @Mapper
 public interface QuartzJobDao {
 
-	QuartzJobTaskDO get(Long id);
-	
+
+	/**
+	 * 返回实体
+	 * @param schedulerTaskId
+	 * @return SchedulerTaskDO
+	 */
+	QuartzJobTaskDO get(String schedulerTaskId);
+
+	/**
+	 * 返回实体list
+	 * @param map
+	 * @return list
+	 */
 	List<QuartzJobTaskDO> list(Map<String,Object> map);
-	
+
+	/**
+	 * 返回数量
+	 * @param map
+	 * @return
+	 */
 	int count(Map<String,Object> map);
-	
-	int save(QuartzJobTaskDO task);
-	
-	int update(QuartzJobTaskDO task);
-	
-	int remove(Long id);
-	
-	int batchDel(Long[] ids);
+
+	/**
+	 * 保存实体
+	 * @param schedulerTask
+	 * @return
+	 */
+	int save(QuartzJobTaskDO schedulerTask);
+
+	/**
+	 * 更新实体
+	 * @param schedulerTask
+	 * @return list
+	 */
+	int update(QuartzJobTaskDO schedulerTask);
+
+	/**
+	 * 删除实体
+	 * @param schedulerTaskId
+	 * @return list
+	 */
+	int del(String schedulerTaskId);
+
+	/**
+	 * 批量删除实体
+	 * @param schedulerTaskIds
+	 * @return list
+	 */
+	int batchDel(String[] schedulerTaskIds);
 }

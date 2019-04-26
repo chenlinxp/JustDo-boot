@@ -9,10 +9,10 @@ public class ScheduleJobUtils {
 		scheduleJob.setBeanClass(scheduleJobEntity.getBeanClass());
 		scheduleJob.setCronExpression(scheduleJobEntity.getCronExpression());
 		scheduleJob.setDescription(scheduleJobEntity.getDescription());
-		scheduleJob.setIsConcurrent(scheduleJobEntity.getIsConcurrent());
-		scheduleJob.setJobName(scheduleJobEntity.getJobName());
-		scheduleJob.setJobGroup(scheduleJobEntity.getJobGroup());
-		scheduleJob.setJobStatus(scheduleJobEntity.getJobStatus());
+		scheduleJob.setIsCurrent(scheduleJobEntity.getIsCurrent());
+		scheduleJob.setJobName(scheduleJobEntity.getTaskName());
+		scheduleJob.setJobGroup(scheduleJobEntity.getTaskGroup());
+		scheduleJob.setJobStatus(scheduleJobEntity.getTaskStatus());
 		scheduleJob.setMethodName(scheduleJobEntity.getMethodName());
 		scheduleJob.setSpringBean(scheduleJobEntity.getSpringBean());
 		return scheduleJob;

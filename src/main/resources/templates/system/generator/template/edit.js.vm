@@ -1,5 +1,5 @@
 var preUrl = "/${pathName}/${classnametolower}"
-$().ready(function() {
+$(function() {
 	validateRule();
 });
 
@@ -45,7 +45,7 @@ function validateRule() {
        },
     messages : {
 #foreach ($column in $columns)
-	              $column.attrname : {required : icon + "$column.comments"}
+	              $column.attrname : {required : icon + "请输入$column.comments"}
 #if($velocityCount != $columns.size()),
 #end
 #end

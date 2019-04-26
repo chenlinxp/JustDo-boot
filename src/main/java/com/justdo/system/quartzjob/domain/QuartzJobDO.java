@@ -45,9 +45,9 @@ public class QuartzJobDO extends BaseBean  implements Job {
 	 */
 	private String beanClass;
 	/**
-	 * 任务是否有状态
+	 * 是否同步
 	 */
-	private String isConcurrent;
+	private Integer isCurrent;
 
 	/**
 	 * Spring bean
@@ -107,12 +107,12 @@ public class QuartzJobDO extends BaseBean  implements Job {
 		this.beanClass = beanClass;
 	}
 
-	public String getIsConcurrent() {
-		return isConcurrent;
+	public Integer getIsCurrent() {
+		return isCurrent;
 	}
 
-	public void setIsConcurrent(String isConcurrent) {
-		this.isConcurrent = isConcurrent;
+	public void setIsCurrent(Integer isCurrent) {
+		this.isCurrent = isCurrent;
 	}
 
 	public String getMethodName() {

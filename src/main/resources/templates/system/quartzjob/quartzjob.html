@@ -9,20 +9,22 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button type="button" class="btn  btn-success" onclick="add()">
+							<button shiro:hasPermission="system:quartzjob:add" type="button" class="btn  btn-success" onclick="add()">
 								<i class="fa fa-plus" aria-hidden="true"></i>添加
 							</button>
-							<button type="button" class="btn  btn-success"
-								onclick="batchDel()">
+							<button shiro:hasPermission="system:quartzjob:edit" type="button" class="btn  btn-success" onclick="edit()">
+								<i class="fa fa-edit" aria-hidden="true"></i>编辑
+							</button>
+							<button shiro:hasPermission="system:quartzjob:batchDel" type="button" class="btn  btn-success" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
 						<div class="columns pull-right">
 							<button class="btn btn-success" onclick="reLoad()">查询</button>
 						</div>
-						<div class="columns pull-right">
+						<div class="columns pull-right col-md-2 nopadding">
 							<input id="searchName" type="text" class="form-control"
-								placeholder="">
+								   placeholder="任务名称">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
@@ -33,6 +35,6 @@
 	</div>
 	<div th:include="include :: footer"></div>
 	<script type="text/javascript"
-		src="/js/appjs/system/quartzjob/job.js"></script>
+		src="/js/appjs/system/quartzjob/quartzjob.js"></script>
 </body>
 </html>

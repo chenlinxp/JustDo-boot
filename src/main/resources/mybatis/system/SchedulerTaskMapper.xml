@@ -4,124 +4,128 @@
 <mapper namespace="com.justdo.system.quartzjob.dao.QuartzJobDao">
 
 	<select id="get" resultType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
-		select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from SYS_SCHEDULER_TASK where id = #{value}
+		select `SCHEDULER_TASK_ID`, `TASK_NAME`,`TASK_STATUS`,`TASK_GROUP`,`CRON_EXPRESSION`,`METHOD_NAME`,`SPRING_BEAN`,`IS_CURRENT`,`BEAN_CLASS`,`DESCRIPTION`,`CREATE_TIME`,`MODIFY_TIME`,`CAREAT_EMPLOYEE_ID`,`MODIFY_EMPLOYEE_ID` from sys_scheduler_task where SCHEDULER_TASK_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
-		select `id`,`cron_expression`,`method_name`,`is_concurrent`,`description`,`update_by`,`bean_class`,`create_date`,`job_status`,`job_group`,`update_date`,`create_by`,`spring_bean`,`job_name` from SYS_SCHEDULER_TASK
-        <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="cronExpression != null and cronExpression != ''"> and cron_expression = #{cronExpression} </if>
-		  		  <if test="methodName != null and methodName != ''"> and method_name = #{methodName} </if>
-		  		  <if test="isConcurrent != null and isConcurrent != ''"> and is_concurrent = #{isConcurrent} </if>
-		  		  <if test="description != null and description != ''"> and description = #{description} </if>
-		  		  <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
-		  		  <if test="beanClass != null and beanClass != ''"> and bean_class = #{beanClass} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		  <if test="jobStatus != null and jobStatus != ''"> and job_status = #{jobStatus} </if>
-		  		  <if test="jobGroup != null and jobGroup != ''"> and job_group = #{jobGroup} </if>
-		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
-		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
-		  		  <if test="springBean != null and springBean != ''"> and spring_bean = #{springBean} </if>
-		  		  <if test="jobName != null and jobName != ''"> and job_name = #{jobName} </if>
-		  		</where>
-        <choose>
-            <when test="sort != null and sort.trim() != ''">
-                order by ${sort} ${order}
-            </when>
-			<otherwise>
-                order by id desc
-			</otherwise>
-        </choose>
-		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
-		</if>
-	</select>
-	
- 	<select id="count" resultType="int">
-		select count(*) from SYS_SCHEDULER_TASK
-		 <where>  
-		  		  <if test="id != null and id != ''"> and id = #{id} </if>
-		  		  <if test="cronExpression != null and cronExpression != ''"> and cron_expression = #{cronExpression} </if>
-		  		  <if test="methodName != null and methodName != ''"> and method_name = #{methodName} </if>
-		  		  <if test="isConcurrent != null and isConcurrent != ''"> and is_concurrent = #{isConcurrent} </if>
-		  		  <if test="description != null and description != ''"> and description = #{description} </if>
-		  		  <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
-		  		  <if test="beanClass != null and beanClass != ''"> and bean_class = #{beanClass} </if>
-		  		  <if test="createDate != null and createDate != ''"> and create_date = #{createDate} </if>
-		  		  <if test="jobStatus != null and jobStatus != ''"> and job_status = #{jobStatus} </if>
-		  		  <if test="jobGroup != null and jobGroup != ''"> and job_group = #{jobGroup} </if>
-		  		  <if test="updateDate != null and updateDate != ''"> and update_date = #{updateDate} </if>
-		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
-		  		  <if test="springBean != null and springBean != ''"> and spring_bean = #{springBean} </if>
-		  		  <if test="jobName != null and jobName != ''"> and job_name = #{jobName} </if>
-		  		</where>
-	</select>
-	 
-	<insert id="save" parameterType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO" useGeneratedKeys="true" keyProperty="id">
-		insert into SYS_SCHEDULER_TASK
-		(
-			`cron_expression`, 
-			`method_name`, 
-			`is_concurrent`, 
-			`description`, 
-			`update_by`, 
-			`bean_class`, 
-			`create_date`, 
-			`job_status`, 
-			`job_group`, 
-			`update_date`, 
-			`create_by`, 
-			`spring_bean`, 
-			`job_name`
-		)
-		values
-		(
-			#{cronExpression}, 
-			#{methodName}, 
-			#{isConcurrent}, 
-			#{description}, 
-			#{updateBy}, 
-			#{beanClass}, 
-			#{createDate}, 
-			#{jobStatus}, 
-			#{jobGroup}, 
-			#{updateDate}, 
-			#{createBy}, 
-			#{springBean}, 
-			#{jobName}
-		)
-	</insert>
-	 
-	<update id="update" parameterType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
-		update SYS_SCHEDULER_TASK 
-		<set>
-			<if test="cronExpression != null">`cron_expression` = #{cronExpression}, </if>
-			<if test="methodName != null">`method_name` = #{methodName}, </if>
-			<if test="isConcurrent != null">`is_concurrent` = #{isConcurrent}, </if>
-			<if test="description != null">`description` = #{description}, </if>
-			<if test="updateBy != null">`update_by` = #{updateBy}, </if>
-			<if test="beanClass != null">`bean_class` = #{beanClass}, </if>
-			<if test="createDate != null">`create_date` = #{createDate}, </if>
-			<if test="jobStatus != null">`job_status` = #{jobStatus}, </if>
-			<if test="jobGroup != null">`job_group` = #{jobGroup}, </if>
-			<if test="updateDate != null">`update_date` = #{updateDate}, </if>
-			<if test="createBy != null">`create_by` = #{createBy}, </if>
-			<if test="springBean != null">`spring_bean` = #{springBean}, </if>
-			<if test="jobName != null">`job_name` = #{jobName}</if>
-		</set>
-		where id = #{id}
-	</update>
-	
-	<delete id="del">
-		delete from SYS_SCHEDULER_TASK where id = #{value}
-	</delete>
-	
-	<delete id="batchDel">
-		delete from SYS_SCHEDULER_TASK where id in 
-		<foreach item="id" collection="array" open="(" separator="," close=")">
-			#{id}
-		</foreach>
-	</delete>
+		select `SCHEDULER_TASK_ID`, `TASK_NAME`,`TASK_STATUS`,`TASK_GROUP`,`CRON_EXPRESSION`,`METHOD_NAME`,`SPRING_BEAN`,`IS_CURRENT`,`BEAN_CLASS`,`DESCRIPTION`,`CREATE_TIME`,`MODIFY_TIME`,`CAREAT_EMPLOYEE_ID`,`MODIFY_EMPLOYEE_ID` from sys_scheduler_task
+			<where>
+				<if test="schedulerTaskId != null and schedulerTaskId != ''"> and SCHEDULER_TASK_ID != #{schedulerTaskId} </if>
+				<if test="taskName != null and taskName != ''"> and TASK_NAME = #{taskName} </if>
+				<if test="taskStatus != null and taskStatus != ''"> and TASK_STATUS = #{taskStatus} </if>
+				<if test="taskGroup != null and taskGroup != ''"> and TASK_GROUP = #{taskGroup} </if>
+				<if test="cronExpression != null and cronExpression != ''"> and CRON_EXPRESSION = #{cronExpression} </if>
+				<if test="methodName != null and methodName != ''"> and METHOD_NAME = #{methodName} </if>
+				<if test="springBean != null and springBean != ''"> and SPRING_BEAN = #{springBean} </if>
+				<if test="isCurrent != null and isCurrent != ''"> and IS_CURRENT = #{isCurrent} </if>
+				<if test="beanClass != null and beanClass != ''"> and BEAN_CLASS = #{beanClass} </if>
+				<if test="description != null and description != ''"> and DESCRIPTION = #{description} </if>
+				<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+				<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+				<if test="careatEmployeeId != null and careatEmployeeId != ''"> and CAREAT_EMPLOYEE_ID = #{careatEmployeeId} </if>
+				<if test="modifyEmployeeId != null and modifyEmployeeId != ''"> and MODIFY_EMPLOYEE_ID = #{modifyEmployeeId} </if>
+			</where>
+			<choose>
+				<when test="sort != null and sort.trim() != ''">
+					order by ${sort} ${order}
+				</when>
+				<otherwise>
+					order by SCHEDULER_TASK_ID desc
+				</otherwise>
+			</choose>
+			<if test="offset != null and limit != null">
+				limit #{offset}, #{limit}
+			</if>
+		</select>
 
-</mapper>
+		<select id="count" resultType="int">
+			select count(*) from sys_scheduler_task
+			<where>
+				<if test="taskName != null and taskName != ''"> and TASK_NAME = #{taskName} </if>
+				<if test="taskStatus != null and taskStatus != ''"> and TASK_STATUS = #{taskStatus} </if>
+				<if test="taskGroup != null and taskGroup != ''"> and TASK_GROUP = #{taskGroup} </if>
+				<if test="cronExpression != null and cronExpression != ''"> and CRON_EXPRESSION = #{cronExpression} </if>
+				<if test="methodName != null and methodName != ''"> and METHOD_NAME = #{methodName} </if>
+				<if test="springBean != null and springBean != ''"> and SPRING_BEAN = #{springBean} </if>
+				<if test="isCurrent != null and isCurrent != ''"> and IS_CURRENT = #{isCurrent} </if>
+				<if test="beanClass != null and beanClass != ''"> and BEAN_CLASS = #{beanClass} </if>
+				<if test="description != null and description != ''"> and DESCRIPTION = #{description} </if>
+				<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+				<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+				<if test="careatEmployeeId != null and careatEmployeeId != ''"> and CAREAT_EMPLOYEE_ID = #{careatEmployeeId} </if>
+				<if test="modifyEmployeeId != null and modifyEmployeeId != ''"> and MODIFY_EMPLOYEE_ID = #{modifyEmployeeId} </if>
+			</where>
+		</select>
+
+		<insert id="save" parameterType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
+			<selectKey keyProperty="schedulerTaskId" resultType="string" order="BEFORE">
+				select replace(uuid(), '-', '') as schedulerTaskId from dual
+			</selectKey>
+			insert into sys_scheduler_task
+			(
+			`SCHEDULER_TASK_ID`,
+			`TASK_NAME`,
+			`TASK_STATUS`,
+			`TASK_GROUP`,
+			`CRON_EXPRESSION`,
+			`METHOD_NAME`,
+			`SPRING_BEAN`,
+			`IS_CURRENT`,
+			`BEAN_CLASS`,
+			`DESCRIPTION`,
+			`CREATE_TIME`,
+			`MODIFY_TIME`,
+			`CAREAT_EMPLOYEE_ID`,
+			`MODIFY_EMPLOYEE_ID`
+			)
+			values
+			(
+			#{schedulerTaskId},
+			#{taskName},
+			#{taskStatus},
+			#{taskGroup},
+			#{cronExpression},
+			#{methodName},
+			#{springBean},
+			#{isCurrent},
+			#{beanClass},
+			#{description},
+			#{createTime},
+			#{modifyTime},
+			#{careatEmployeeId},
+			#{modifyEmployeeId}
+			)
+		</insert>
+
+		<update id="update" parameterType="com.justdo.system.quartzjob.domain.QuartzJobTaskDO">
+			update sys_scheduler_task
+			<set>
+				<if test="taskName != null">`TASK_NAME` = #{taskName}, </if>
+				<if test="taskStatus != null">`TASK_STATUS` = #{taskStatus}, </if>
+				<if test="taskGroup != null">`TASK_GROUP` = #{taskGroup}, </if>
+				<if test="cronExpression != null">`CRON_EXPRESSION` = #{cronExpression}, </if>
+				<if test="methodName != null">`METHOD_NAME` = #{methodName}, </if>
+				<if test="springBean != null">`SPRING_BEAN` = #{springBean}, </if>
+				<if test="isCurrent != null">`IS_CURRENT` = #{isCurrent}, </if>
+				<if test="beanClass != null">`BEAN_CLASS` = #{beanClass}, </if>
+				<if test="description != null">`DESCRIPTION` = #{description}, </if>
+				<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+				<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}, </if>
+				<if test="careatEmployeeId != null">`CAREAT_EMPLOYEE_ID` = #{careatEmployeeId}, </if>
+				<if test="modifyEmployeeId != null">`MODIFY_EMPLOYEE_ID` = #{modifyEmployeeId}</if>
+			</set>
+			where SCHEDULER_TASK_ID = #{schedulerTaskId}
+		</update>
+
+		<delete id="del">
+			delete from sys_scheduler_task where SCHEDULER_TASK_ID = #{value}
+		</delete>
+
+		<delete id="batchDel">
+			delete from sys_scheduler_task where SCHEDULER_TASK_ID in
+			<foreach item="schedulerTaskIds" collection="array" open="(" separator="," close=")">
+				#{schedulerTaskIds}
+			</foreach>
+		</delete>
+
+	</mapper>

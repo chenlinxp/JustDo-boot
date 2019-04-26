@@ -39,7 +39,7 @@ function load() {
 							};
 						},
                         onDblClickRow: function (row, element) {
-                            view(row["id"]);
+                            view(row["${pk.attrname}"]);
                         },
                         onClickRow: function (row, element) {
                             $('.success').removeClass('success');//去除之前选中的行的，选中样式

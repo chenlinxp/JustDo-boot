@@ -35,7 +35,7 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 	QuartzManager quartzManager;
 
 	@Override
-	public QuartzJobTaskDO get(Long id) {
+	public QuartzJobTaskDO get(String id) {
 		return taskScheduleJobMapper.get(id);
 	}
 
@@ -60,11 +60,11 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 	}
 
 	@Override
-	public int remove(Long id) {
+	public int del(String id) {
 		try {
 			QuartzJobTaskDO scheduleJob = get(id);
 			quartzManager.deleteJob(ScheduleJobUtils.entityToData(scheduleJob));
-			return taskScheduleJobMapper.remove(id);
+			return taskScheduleJobMapper.del(id);
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 			return 0;
@@ -73,8 +73,8 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 	}
 
 	@Override
-	public int batchDel(Long[] ids) {
-		for (Long id : ids) {
+	public int batchDel(String[] ids) {
+		for (String id : ids) {
 			try {
 				QuartzJobTaskDO scheduleJob = get(id);
 				quartzManager.deleteJob(ScheduleJobUtils.entityToData(scheduleJob));
@@ -91,7 +91,7 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 		// 这里获取任务信息数据
 		List<QuartzJobTaskDO> jobList = taskScheduleJobMapper.list(new HashMap<String, Object>(16));
 		for (QuartzJobTaskDO scheduleJob : jobList) {
-			if ("1".equals(scheduleJob.getJobStatus())) {
+			if ("1".equals(scheduleJob.getTaskStatus())) {
 				QuartzJobDO job = ScheduleJobUtils.entityToData(scheduleJob);
 				quartzManager.addJob(job);
 			}
@@ -100,18 +100,18 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 	}
 
 	@Override
-	public void changeStatus(Long jobId, String cmd) throws SchedulerException {
+	public void changeStatus(String jobId, String cmd) throws SchedulerException {
 		QuartzJobTaskDO scheduleJob = get(jobId);
 		if (scheduleJob == null) {
 			return;
 		}
 		if (ConstantConfig.STATUS_RUNNING_STOP.equals(cmd)) {
 			quartzManager.deleteJob(ScheduleJobUtils.entityToData(scheduleJob));
-			scheduleJob.setJobStatus(QuartzJobDO.STATUS_NOT_RUNNING);
+			scheduleJob.setTaskStatus(QuartzJobDO.STATUS_NOT_RUNNING);
 		} else {
 			if (!ConstantConfig.STATUS_RUNNING_START.equals(cmd)) {
 			} else {
-                scheduleJob.setJobStatus(QuartzJobDO.STATUS_RUNNING);
+                scheduleJob.setTaskStatus(QuartzJobDO.STATUS_RUNNING);
                 quartzManager.addJob(ScheduleJobUtils.entityToData(scheduleJob));
             }
 		}
@@ -119,12 +119,12 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 	}
 
 	@Override
-	public void updateCron(Long jobId) throws SchedulerException {
+	public void updateCron(String jobId) throws SchedulerException {
 		QuartzJobTaskDO scheduleJob = get(jobId);
 		if (scheduleJob == null) {
 			return;
 		}
-		if (QuartzJobDO.STATUS_RUNNING.equals(scheduleJob.getJobStatus())) {
+		if (QuartzJobDO.STATUS_RUNNING.equals(scheduleJob.getTaskStatus())) {
 			quartzManager.updateJobCron(ScheduleJobUtils.entityToData(scheduleJob));
 		}
 		update(scheduleJob);
