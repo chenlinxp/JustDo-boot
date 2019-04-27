@@ -201,8 +201,9 @@ public class NoticeController extends BaseController {
 		params.put("limit", 3);
 		Query query = new Query(params);
 		query.put("employeeId", getEmployeeId());
-		query.put("isRead", ConstantConfig.Notice_READ_NO);
-		return noticeService.selfList(query);
+		query.put("isRead", "0");
+		PageUtils pageUtils = noticeService.selfList(query);
+		return pageUtils;
 	}
 
 	@GetMapping("/selfnotice")

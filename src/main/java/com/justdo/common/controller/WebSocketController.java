@@ -2,6 +2,7 @@ package com.justdo.common.controller;
 
 
 import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.employee.service.ESessionService;
 import com.justdo.system.notice.domain.Message;
 import com.justdo.system.notice.domain.Response;
@@ -53,8 +54,8 @@ public class WebSocketController {
 	@ResponseBody
 	public Message sendBroadcast(Message message){
 
-		for (EmployeeDO employeeDO : esessionService.listOnlineEmployee()) {
-			String employeeId = employeeDO.getEmployeeId();
+		for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
+			String employeeId = simpleEmployeeDO.getEmployeeId();
 			template.convertAndSendToUser(employeeId,"/topic/getResponse",message);
 		}
 		return message;

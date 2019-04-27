@@ -193,7 +193,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<DeptDO> depts = deptDao.list(new HashMap<String, Object>(1));
 		String[] pDepts = deptDao.listParentDept();
 		String[] uDepts = employeeDao.listAllDept();
-		Long[] allDepts = (Long[]) ArrayUtils.addAll(pDepts, uDepts);
+		String[] allDepts = (String[]) ArrayUtils.addAll(pDepts, uDepts);
 		for (DeptDO dept : depts) {
 			if (!ArrayUtils.contains(allDepts, dept.getDeptid())) {
 				continue;

@@ -1,7 +1,6 @@
 package com.justdo.system.employee.service.impl;
 
 
-import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.EmployeeOnline;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.employee.service.ESessionService;
@@ -59,9 +58,9 @@ public class ESessionServiceImpl implements ESessionService {
 	}
 
 	@Override
-	public List<EmployeeDO> listOnlineEmployee() {
-		List<EmployeeDO> list = new ArrayList<>();
-		EmployeeDO employeeDO;
+	public List<SimpleEmployeeDO> listOnlineEmployee() {
+		List<SimpleEmployeeDO> list = new ArrayList<>();
+		SimpleEmployeeDO simpleEmployeeDO;
 		Collection<Session> sessions = sessionList();
 		for (Session session : sessions) {
 			if (session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY) == null) {
@@ -69,8 +68,8 @@ public class ESessionServiceImpl implements ESessionService {
 			} else {
 				SimplePrincipalCollection  principalCollection = (SimplePrincipalCollection) session
 						.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
-				employeeDO = (EmployeeDO) principalCollection.getPrimaryPrincipal();
-				list.add(employeeDO);
+				simpleEmployeeDO = (SimpleEmployeeDO) principalCollection.getPrimaryPrincipal();
+				list.add(simpleEmployeeDO);
 			}
 		}
 		return list;

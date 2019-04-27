@@ -36,7 +36,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
         //配置消息代理(message broker)
         //点对点式增加一个/queue 消息代理
         registry.enableSimpleBroker("/queue", "/topic");
-        registry.setApplicationDestinationPrefixes("/app");
+        registry.setApplicationDestinationPrefixes("/app/");
         //设置前缀  默认是user 可以修改  点对点时使用
         registry.setUserDestinationPrefix("/justdo/");
 

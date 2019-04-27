@@ -1,7 +1,7 @@
 package com.justdo.system.employee.service;
 
-import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.EmployeeOnline;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public interface ESessionService {
 	 * 在线员工信息（实体）
 	 * @return
 	 */
-	List<EmployeeDO> listOnlineEmployee();
+	List<SimpleEmployeeDO> listOnlineEmployee();
 
 	/**
 	 *在线员工session的集合

@@ -29,7 +29,10 @@ spring:
 mybatis: 
   configuration:
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: mybatis/**/*Mapper.xml
   typeAliasesPackage: com.justdo.**.domain
 #配置缓存和session存储方式，默认ehcache,可选redis
 cacheType: redis
+
+

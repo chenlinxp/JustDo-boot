@@ -6,7 +6,7 @@ import com.justdo.common.utils.StringUtils;
 import com.justdo.system.dict.domain.DictContentDO;
 import com.justdo.system.dict.service.DictContentService;
 import com.justdo.system.employee.dao.EmployeeDao;
-import com.justdo.system.employee.domain.EmployeeDO;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.employee.service.ESessionService;
 import com.justdo.system.notice.dao.NoticeDao;
 import com.justdo.system.notice.dao.NoticeRecordDao;
@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -96,9 +95,9 @@ public class NoticeServiceImpl implements NoticeService {
             executor.execute(new Runnable() {
                 @Override
                 public void run() {
-                    for (EmployeeDO employeeDO : esessionService.listOnlineEmployee()) {
+                    for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
                         for (String employeeId : employeeIds) {
-                            if (employeeId.equals(employeeDO.getEmployeeId())) {
+                            if (employeeId.equals(simpleEmployeeDO.getEmployeeId())) {
                                 template.convertAndSendToUser(employeeId, "/queue/notifications", "新消息：" + notice.getNoticeTitle());
                             }
                         }

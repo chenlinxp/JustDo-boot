@@ -2,8 +2,8 @@ justdo:
   uploadPath: var/uploaded_files/
 logging:
   level:
-    root: info
-    com.justdo: debug
+    root: INFO
+    com.justdo: DEBUG
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

@@ -101,23 +101,22 @@
                     </form>
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="hidden-xs"><a href="/blog" target="_Blank"
-                                             class=""><i class="fa fa-rss-square"></i>博客</a></li>
-                    <li class="dropdown"><a class="dropdown-toggle count-info"
-                                            data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i>
+                    <li class="hidden-xs">
+                        <a href="/blog" target="_Blank" class=""><i class="fa fa-rss-square"></i>博客</a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i>
                         <span class="label label-warning">{{total}}</span>通知
                     </a>
                         <ul class="dropdown-menu dropdown-messages">
                             <li v-for="row in rows" class="m-t-xs">
                                 <div class="dropdown-messages-box">
-                                    <a class="pull-left"> <i
-                                            class="fa fa-server"></i>
-                                    </a>
+                                    <a class="pull-left"> <i class="fa fa-server"></i>  </a>
                                     <div class="media-body">
                                         <small class="pull-right">{{row.before}}</small>
                                         <strong>{{row.sender}}</strong>
-                                        {{row.title}} <br>
-                                        <small class="text-muted">{{row.updateDate}}</small>
+                                        {{row.noticeTitle}} <br>
+                                        <small class="text-muted">{{row.createTime}}</small>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
@@ -307,7 +306,10 @@
             /**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
              *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
              *  */
-            stomp.subscribe("/justdo/queue/notifications", handleNotification);
+            stomp.subscribe("/justdo/queue/notifications", function handleNotification(message) {
+                wrapper.notice();
+                toastr.info(message.body);
+            });
             //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
             stomp.subscribe('/topic/getResponse', function (response) {
                 toastr.options = {
@@ -328,10 +330,6 @@
                 toastr.info(JSON.parse(response.body).responseMessage);
             });
         });
-        function handleNotification(message) {
-            wrapper.notify();
-            toastr.info(message.body);
-        }
     }
     var wrapper = new Vue({
         el: '#wrapper',
@@ -340,7 +338,7 @@
             rows: '',
         },
         methods: {
-            notify: function () {
+            notice: function () {
                 $.getJSON('/system/notice/message', function (r) {
                     wrapper.total = r.total;
                     wrapper.rows = r.rows;
@@ -358,7 +356,7 @@
             }
         },
         created: function () {
-            this.notify()
+            this.notice()
         }
     })
 </script>
