@@ -24,7 +24,7 @@
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
 							<input id="searchName" type="text" class="form-control"
-								placeholder="用户名">
+								placeholder="关键字">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
@@ -35,19 +35,7 @@
 	</div>
 		<div>
 			<script type="text/javascript">
-                var s_add_h = 'hidden';
-				var s_edit_h = 'hidden';
 				var s_delete_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="system:dept:add">
-			<script type="text/javascript">
-				s_add_h = '';
-			</script>
-		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:edit">
-			<script type="text/javascript">
-				s_edit_h = '';
 			</script>
 		</div>
 		<div shiro:hasPermission="${pathName}:${classname}:del">
