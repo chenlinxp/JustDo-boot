@@ -112,8 +112,10 @@ public class NoticeController extends BaseController {
 		notice.setModifyTime(date);
 		notice.setCreateTime(date);
 		notice.setCreateEmployeeId(getEmployeeId());
-		if(notice.getNoticeStatus()!=1){
+		if(notice.getNoticeStatus()==null){
 			notice.setNoticeStatus(0);
+		}else{
+			notice.setNoticeStatus(1);
 		}
 		if(noticeService.save(notice)>0){
 			return R.ok();

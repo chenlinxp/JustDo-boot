@@ -56,6 +56,7 @@ public class ELoginController extends BaseController {
 		List<Tree<ResourceDO>> resourceDOs = resourceService.listEmployeeResourceTree(getEmployeeId());
 		model.addAttribute("menus", resourceDOs);
 		model.addAttribute("name", getSimpleEmployee().getLoginName());
+		model.addAttribute("userid", getSimpleEmployee().getEmployeeId());
 		FileDO fileDO = fileService.get(getSimpleEmployee().getPhotoId());
 		if(fileDO!=null&&fileDO.getFileUrl()!=null){
 			if(fileService.isExist(fileDO.getFileUrl())){

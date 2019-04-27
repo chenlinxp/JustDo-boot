@@ -35,11 +35,11 @@
                         </h3>
                     </div>
                     <div class="dropdown profile-element hidden">
-
+                        <input id="userid" name="userid" th:value="${userid}"  type="hidden">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
-                            <span class="block m-t-xs"><strong class="font-bold"
-                                                               th:text="${username}">admin</strong></span>
+                            <span class="block m-t-xs">
+                                <strong class="font-bold"th:text="${username}">admin</strong></span>
                             <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
                              </span>
                         </a>
@@ -107,7 +107,7 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i>
                         <span class="label label-warning">{{total}}</span>通知
-                    </a>
+                        </a>
                         <ul class="dropdown-menu dropdown-messages">
                             <li v-for="row in rows" class="m-t-xs">
                                 <div class="dropdown-messages-box">
@@ -302,16 +302,16 @@
     function connect() {
         var sock = new SockJS("/justdo-websocket");
         var stomp = Stomp.over(sock);
-        stomp.connect('guest', 'guest', function(frame) {
+        stomp.connect( { name:$("#userid").val()}, function(frame) {
             /**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
              *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
              *  */
-            stomp.subscribe("/justdo/queue/notifications", function handleNotification(message) {
+            stomp.subscribe('/justdo/queue/message', function handleNotification(message) {
                 wrapper.notice();
                 toastr.info(message.body);
             });
             //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
-            stomp.subscribe('/topic/getResponse', function (response) {
+            stomp.subscribe('/topic/greetings', function (response) {
                 toastr.options = {
                     "closeButton": true,
                     "debug": false,
@@ -328,8 +328,10 @@
                     "hideMethod": "fadeOut"
                 }
                 toastr.info(JSON.parse(response.body).responseMessage);
+
             });
         });
+
     }
     var wrapper = new Vue({
         el: '#wrapper',
