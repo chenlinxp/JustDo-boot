@@ -34,17 +34,25 @@ function update() {
 
 }
 function validateRule() {
-	var icon = "<i class='fa fa-times-circle'></i> ";
-	$("#signupForm").validate({
+    var icon = "<i class='fa fa-times-circle'></i> ";
+	var a = $("input[name='resourceType'][checked]").val();
+
+    $("#signupForm").validate({
         rules : {
             resourceName : {
                 required : true
+            },
+            resourceType : {
+                required : a ==0?false:true
             }
         },
         messages : {
             resourceName : {
                 required : icon + "请输入资源名称"
+            },
+            resourceType : {
+                required : icon + "请输入资源URL地址"
             }
         }
-	})
+    })
 }
