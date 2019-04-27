@@ -76,42 +76,20 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public int save(NoticeDO notice) {
         int r = noticeDao.save(notice);
-        // 保存到接受者列表中
-        String[] employeeIds = notice.getEmployeeIds();
-        if(employeeIds.length>0) {
-            String NoticeId = notice.getNoticeId();
-            List<NoticeRecordDO> records = new ArrayList<>();
-            for (String employeeId : employeeIds) {
-                NoticeRecordDO record = new NoticeRecordDO();
-                record.setNoticeRecordId(StringUtils.getUUID());
-                record.setNoticeId(NoticeId);
-                record.setEmployeeId(employeeId);
-                record.setIsRead(0);
-                records.add(record);
-            }
-            noticeRecordDao.batchSave(records);
-            //给在线用户发送通知
-            ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
-            executor.execute(new Runnable() {
-                @Override
-                public void run() {
-                    for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
-                        for (String employeeId : employeeIds) {
-                            if (employeeId.equals(simpleEmployeeDO.getEmployeeId())) {
-                                template.convertAndSendToUser(employeeId, "/queue/message", "新消息：" + notice.getNoticeTitle());
-                            }
-                        }
-                    }
-                }
-            });
-            executor.shutdown();
+        if(notice.getNoticeStatus()==1) {
+            sendMessge(notice);
         }
         return r;
     }
 
     @Override
-    public int update(NoticeDO Notice) {
-        return noticeDao.update(Notice);
+    public int update(NoticeDO notice) {
+
+        NoticeDO notice2 = noticeDao.get(notice.getNoticeId());
+        if(notice.getNoticeStatus() == 1 && notice2.getNoticeStatus() == 0 ) {
+            sendMessge(notice);
+        }
+        return noticeDao.update(notice);
     }
 
     @Transactional
@@ -140,4 +118,37 @@ public class NoticeServiceImpl implements NoticeService {
         return page;
     }
 
+    @Override
+    public  void sendMessge(NoticeDO notice){
+        // 保存到接受者列表中
+        String[] employeeIds = notice.getEmployeeIds();
+        if (employeeIds.length > 0) {
+            String NoticeId = notice.getNoticeId();
+            List<NoticeRecordDO> records = new ArrayList<>();
+            for (String employeeId : employeeIds) {
+                NoticeRecordDO record = new NoticeRecordDO();
+                record.setNoticeRecordId(StringUtils.getUUID());
+                record.setNoticeId(NoticeId);
+                record.setEmployeeId(employeeId);
+                record.setIsRead(0);
+                records.add(record);
+            }
+            noticeRecordDao.batchSave(records);
+            //给在线用户发送通知
+            ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0, TimeUnit.MILLISECONDS, new LinkedBlockingDeque<>());
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
+                        for (String employeeId : employeeIds) {
+                            if (employeeId.equals(simpleEmployeeDO.getEmployeeId())) {
+                                template.convertAndSendToUser(employeeId, "/queue/message", "新消息：" + notice.getNoticeTitle());
+                            }
+                        }
+                    }
+                }
+            });
+            executor.shutdown();
+        }
+    }
 }

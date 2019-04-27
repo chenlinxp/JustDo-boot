@@ -71,4 +71,9 @@ public interface NoticeService {
 	 * @return
 	 */
 	PageUtils selfList(Map<String, Object> map);
+
+	/**
+	 * 发送消息
+	 */
+	void sendMessge(NoticeDO notice);
 }
