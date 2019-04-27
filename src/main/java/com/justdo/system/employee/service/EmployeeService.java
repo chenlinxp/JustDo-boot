@@ -89,6 +89,13 @@ public interface EmployeeService {
 
 	/**
 	 *
+	 * @param employeeId
+	 * @return
+	 */
+	String getRoleId (String employeeId);
+
+	/**
+	 *
 	 * @param employeeVO
 	 * @return
 	 * @throws Exception

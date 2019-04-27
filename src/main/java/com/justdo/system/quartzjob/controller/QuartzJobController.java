@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -84,6 +85,10 @@ public class QuartzJobController extends BaseController {
 	@RequiresPermissions("system:quartzjob:add")
 	@PostMapping("/save")
 	public R save(QuartzJobTaskDO taskScheduleJob) {
+		Date date = new Date();
+		taskScheduleJob.setCreateTime(date);
+		taskScheduleJob.setModifyTime(date);
+		taskScheduleJob.setCareatEmployeeId(getEmployeeId());
 		if (quartzJobService.save(taskScheduleJob) > 0) {
 			return R.ok();
 		}
@@ -98,6 +103,9 @@ public class QuartzJobController extends BaseController {
 	@RequiresPermissions("system:quartzjob:edit")
 	@PostMapping("/update")
 	public R update(QuartzJobTaskDO taskScheduleJob) {
+		Date date = new Date();
+		taskScheduleJob.setModifyTime(date);
+		taskScheduleJob.setModifyEmployeeId(getEmployeeId());
 		if (quartzJobService.update(taskScheduleJob) > 0) {
 			return R.ok();
 		}

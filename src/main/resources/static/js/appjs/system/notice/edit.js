@@ -3,6 +3,9 @@ $(function() {
 	validateRule();
 	console.log($("#noticeType").val());
     $(".chosen-select").val($("#noticeType").val());
+    $('.chosen-select').on('change', function(e) {
+        $("#noticeType").val($(".chosen-select").val());
+    });
 });
 
 $.validator.setDefaults({

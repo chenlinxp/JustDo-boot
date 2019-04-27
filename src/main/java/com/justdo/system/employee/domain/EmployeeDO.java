@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.justdo.common.domain.BaseBean;
 
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -29,7 +28,7 @@ public class EmployeeDO extends BaseBean {
 	private String realName;
 	//角色
     @JsonIgnore
-	private List<String> roleIds;
+	private String roleId;
 	//密码
 	@JsonIgnore
 	private String password;
@@ -164,12 +163,12 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：角色
 	 */
-	public List<String> getRoleIds() {
-		return roleIds;
+	public String getRoleId() {
+		return roleId;
 	}
 
-	public void setRoleIds(List<String> roleIds) {
-		this.roleIds = roleIds;
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 	/**
 	 * 设置：密码

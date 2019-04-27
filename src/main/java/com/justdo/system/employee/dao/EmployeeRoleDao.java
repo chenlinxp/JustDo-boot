@@ -32,6 +32,8 @@ public interface EmployeeRoleDao {
 
 	List<String> listRoleIds(String employeeId);
 
+	String getRoleId(String employeeId);
+
 	int delByEmployeeId(String employeeId);
 
 	int delByRoleId(String roleId);

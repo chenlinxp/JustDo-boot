@@ -45,11 +45,11 @@
 		<selectKey keyProperty="employeeRoleId" resultType="string" order="BEFORE">
 			select replace(uuid(), '-', '') as employeeRoleId from dual
 		</selectKey>
-		insert into sys_employee_role
+		insert into SYS_EMPLOYEE_ROLE
 		(
-		`employee_role_id`
-		`employee_id`,
-		`role_id`
+		`EMPLOYEE_ROLE_ID`,
+		`EMPLOYEE_ID`,
+		`ROLE_ID`
 		)
 		values
 		(
@@ -80,6 +80,13 @@
 	</delete>
 
 	<select id="listRoleIds" resultType="String">
+		select role_id
+		from sys_employee_role
+		where employee_id = #{employeeId}
+	</select>
+
+
+	<select id="getRoleId" resultType="String">
 		select role_id
 		from sys_employee_role
 		where employee_id = #{employeeId}

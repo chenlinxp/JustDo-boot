@@ -14,10 +14,10 @@ public class EmployeeRoleDO extends BaseBean {
 
 
     //主键ID
-    private String emplpoyeeRoleId;
+    private String employeeRoleId;
 
     //员工ID
-    private String emplpoyeeId;
+    private String employeeId;
     //角色ID
     private String roleId;
 
@@ -25,35 +25,35 @@ public class EmployeeRoleDO extends BaseBean {
      * 构造方法
      */
     public EmployeeRoleDO(){ }
-    public EmployeeRoleDO(String emplpoyeeRoleId,String emplpoyeeId,String RoleI){
+    public EmployeeRoleDO(String employeeRoleId,String employeeId,String RoleI){
         super();
-        this.emplpoyeeId= emplpoyeeId;
+        this.employeeId= employeeId;
         this.roleId= roleId;
     }
     /**
      * 设置：
      */
-    public void setEmplpoyeeRoleId(String emplpoyeeRoleId) {
-        this.emplpoyeeRoleId = emplpoyeeRoleId;
+    public void setEmployeeRoleId(String employeeRoleId) {
+        this.employeeRoleId = employeeRoleId;
     }
     /**
      * 获取：
      */
-    public String getEmplpoyeeRoleId() {
-        return emplpoyeeRoleId;
+    public String getEmployeeRoleId() {
+        return employeeRoleId;
     }
 
     /**
      * 设置：用户ID
      */
-    public void setEmplpoyeeId(String emplpoyeeId) {
-        this.emplpoyeeId = emplpoyeeId;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
     /**
      * 获取：用户ID
      */
-    public String getEmplpoyeeId() {
-        return emplpoyeeId;
+    public String getEmployeeId() {
+        return employeeId;
     }
     /**
      * 设置：角色ID
@@ -70,8 +70,8 @@ public class EmployeeRoleDO extends BaseBean {
     @Override
     public String toString() {
         return "EmplpoyeeRoleDO{" +
-                "emplpoyeeRoleId=" + emplpoyeeRoleId +
-                ", emplpoyeeId=" + emplpoyeeId +
+                "employeeRoleId=" + employeeRoleId +
+                ", employeeId=" + employeeId +
                 ", roleId=" + roleId +
                 '}';
     }

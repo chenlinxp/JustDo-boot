@@ -52,9 +52,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public EmployeeDO get(String  employeeId){
-		List<String> roleIds = employeeRoleDao.listRoleIds(employeeId);
+		String roleId = employeeRoleDao.getRoleId(employeeId);
 		EmployeeDO employeeDO = employeeDao.get(employeeId);
-		employeeDO.setRoleIds(roleIds);
+		employeeDO.setRoleId(roleId);
 
 		if(StringUtils.isNotEmpty(employeeDO.getOrganId())){
 			OrganDO organDO = organDao.get(employeeDO.getOrganId());
@@ -95,10 +95,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public int save(EmployeeDO employee){
 		String employeeId = StringUtils.getUUID();
 		employee.setEmployeeId(employeeId);
-		for (String roleId:employee.getRoleIds()) {
+
+		if (StringUtils.isNotEmpty(employee.getRoleId())) {
 			EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
-			employeeRoleDO.setEmplpoyeeId(employeeId);
-			employeeRoleDO.setRoleId(roleId);
+			employeeRoleDO.setEmployeeId(employeeId);
+			employeeRoleDO.setRoleId(employee.getRoleId());
 			employeeRoleDao.save(employeeRoleDO);
 		}
 		return employeeDao.save(employee);
@@ -108,14 +109,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(EmployeeDO employee){
 		String employeeId = employee.getEmployeeId();
-		if(employee.getRoleIds().size()>0) {
+		if(StringUtils.isNotEmpty(employee.getRoleId())){
 			employeeRoleDao.delByEmployeeId(employeeId);
-			for (String roleId : employee.getRoleIds()) {
 				EmployeeRoleDO employeeRoleDO = new EmployeeRoleDO();
-				employeeRoleDO.setEmplpoyeeId(employeeId);
-				employeeRoleDO.setRoleId(roleId);
+				employeeRoleDO.setEmployeeId(employeeId);
+				employeeRoleDO.setRoleId(employee.getRoleId());
 				employeeRoleDao.save(employeeRoleDO);
-			}
 		}
 		return employeeDao.update(employee);
 	}
@@ -142,6 +141,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<String> listRoleIds(String employeeId) {
 		return employeeRoleDao.listRoleIds(employeeId);
+	}
+
+	@Override
+	public String getRoleId(String employeeId) {
+		return employeeRoleDao.getRoleId(employeeId);
 	}
 
 	@Override

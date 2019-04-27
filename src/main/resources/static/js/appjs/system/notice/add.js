@@ -2,7 +2,6 @@ var preUrl = "/system/notice"
 $(function() {
 	validateRule();
     $('.chosen-select').on('change', function(e) {
-       console.log(e);
         $("#noticeType").val($(".chosen-select").val());
     });
 });

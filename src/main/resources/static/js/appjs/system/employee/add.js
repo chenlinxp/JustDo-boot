@@ -3,6 +3,9 @@ var preUrl2 = "/system/organ";
 var preUrl3 = "/system/dept";
 $(document).ready(function() {
 	validateRule();
+    $('.chosen-select').on('change', function(e) {
+        $("#roleId").val($(".chosen-select").val());
+    });
     laydate({
         elem : '#birthday'
     });
