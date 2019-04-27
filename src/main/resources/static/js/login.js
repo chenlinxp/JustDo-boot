@@ -9,7 +9,12 @@ $.validator.setDefaults({
         login();
     }
 });
-
+function keyLogin(){
+    //回车键的键值为13
+    if (event.keyCode==13)
+    //调用登录按钮的登录事件
+        $("#login").click();
+}
 function login() {
     $.ajax({
         type: "POST",

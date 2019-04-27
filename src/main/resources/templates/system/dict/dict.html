@@ -11,8 +11,8 @@
 							<h5>数据字典类型</h5>
 						</div>
 						<div class="ibox-title">
-							<h5>过滤：</h5><input id="searchDName" type="text" class="form-control"
-											   placeholder="请输入关键字">
+							<h5>过滤：</h5>
+							<input id="searchDName" type="text" class="form-control" placeholder="请输入关键字">
 						</div>
 						<div class="ibox-title">
 							<button type="button" class="btn  btn-success" onclick="addDict()" id="addDict">
@@ -22,12 +22,11 @@
 								<i class="fa fa-edit "  aria-hidden="true"></i>修改
 							</button>
 							<button type="button" class="btn btn-success" onclick="delDict()" id="delDict">
-								<i class="fa fa-remove " aria-hidden="true"></i>删除
+								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
 						<div class="ibox-content">
 							<div id="dicttype">
-
 							</div>
 						</div>
 					</div>
@@ -50,15 +49,10 @@
 							</button>
 						</div>
 						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
+							<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
-							<!--<select data-placeholder="请选择类别" class="form-control chosen-select"-->
-								<!--tabindex="2" style="width: 100%">-->
-								<!--<option value="">全部类别</option>-->
-							<!--</select>-->
-							<input id="searchName" type="text" class="form-control"
-								   placeholder="关键字">
+							<input id="searchName" type="text" class="form-control" placeholder="关键字">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">

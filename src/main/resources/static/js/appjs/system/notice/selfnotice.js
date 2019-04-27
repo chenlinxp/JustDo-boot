@@ -10,7 +10,7 @@ function load() {
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
 				url : preUrl + "/selflist", // 服务器数据的加载地址
-				//	showRefresh : true,
+				showRefresh : true,
 				//	showToggle : true,
 				//	showColumns : true,
 				iconSize : 'outline',

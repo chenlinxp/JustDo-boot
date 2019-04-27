@@ -43,7 +43,6 @@
 										<input type="radio" th:field="*{resource.deskDisplay}"  name="deskDisplay" value="1" /> 是</label>
 								</div>
 							</div>
-
 	                        <div class="form-group">
 								<label class="col-sm-2 control-label">菜单URL：</label>
 								<div class="col-sm-4">
@@ -54,9 +53,7 @@
 									<input id="resourcePermission" name="resourcePermission" th:value="${resource.resourcePermission}" class="form-control" type="text">
 								</div>
 							</div>
-
 	                        <div class="form-group">
-
 								<label class="col-sm-2 control-label">排序：</label>
 								<div class="col-sm-4">
 									<input id="orderNum" name="orderNum" th:value="${resource.orderNum}" class="form-control" type="text" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')">
@@ -70,7 +67,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
-									<button type="submit" class="btn btn-success">保存</button>
+									<button type="submit" class="btn btn-success"><i class="fa fa-ok" aria-hidden="true"></i>保存</button>
 								</div>
 							</div>
 						</form>

@@ -10,14 +10,14 @@
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
 							<button shiro:hasPermission="system:notice:read" type="button" class="btn  btn-success" onclick="read()">
-								<i class="fa fa-plus" aria-hidden="true"></i>设为已读
+								<i class="fa fa-folder-open" aria-hidden="true"></i>设为已读
 							</button>
 							<button shiro:hasPermission="system:notice:batchDel" type="button"	class="btn  btn-success " onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
 						<div class="columns pull-right">
-							<button class="btn btn-success" onclick="reLoad()">查询</button>
+							<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
 							<input id="searchName" type="text" class="form-control"
