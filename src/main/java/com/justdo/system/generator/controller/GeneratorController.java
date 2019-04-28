@@ -64,7 +64,7 @@ public class GeneratorController {
 	 * @param tableName
 	 * 生成单表代码
 	 */
-	@RequiresPermissions("system:generator:list")
+	@RequiresPermissions("system:generator:code")
 	@GetMapping("/code/{tableName}")
 	public void code(HttpServletRequest request, HttpServletResponse response,
 			@PathVariable("tableName") String tableName) throws IOException {
@@ -77,12 +77,11 @@ public class GeneratorController {
 
 		IOUtils.write(data, response.getOutputStream());
 	}
-
 	/**
 	 * @param tables　
 	 * 生成多表代码
 	 */
-	@RequiresPermissions("system:generator:list")
+	@RequiresPermissions("system:generator:batchCode")
 	@GetMapping("/batchCode")
 	public void batchCode(HttpServletRequest request, HttpServletResponse response, String tables) throws IOException {
 		String[] tableNames = new String[] {};
@@ -105,12 +104,19 @@ public class GeneratorController {
 	public String edit(Model model) {
 		Configuration conf = GeneratorCodeUtils.getConfig();
 
-		Map<String, Object> property = new HashMap<>(16);
+		Map<String, Object> property = new HashMap<>(10);
+		property.put("projectName", conf.getProperty("projectName"));
 		property.put("author", conf.getProperty("author"));
+
+		property.put("phone", conf.getProperty("phone"));
 		property.put("email", conf.getProperty("email"));
+
 		property.put("package", conf.getProperty("package"));
+		property.put("versionCode", conf.getProperty("versionCode"));
+
 		property.put("autoRemovePre", conf.getProperty("autoRemovePre"));
 		property.put("tablePrefix", conf.getProperty("tablePrefix"));
+
 		model.addAttribute("property", property);
 		return preUrl + "/edit";
 	}
@@ -125,9 +131,15 @@ public class GeneratorController {
 	R update(@RequestParam Map<String, Object> map) {
 		try {
 			PropertiesConfiguration conf = new PropertiesConfiguration("generator.properties");
+			conf.setProperty("projectName", map.get("projectName"));
 			conf.setProperty("author", map.get("author"));
+
 			conf.setProperty("email", map.get("email"));
+			conf.setProperty("phone", map.get("phone"));
+
 			conf.setProperty("package", map.get("package"));
+			conf.setProperty("versionCode", map.get("versionCode"));
+
 			conf.setProperty("autoRemovePre", map.get("autoRemovePre"));
 			conf.setProperty("tablePrefix", map.get("tablePrefix"));
 			conf.save();

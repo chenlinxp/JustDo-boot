@@ -85,7 +85,7 @@ function validateRule() {
             },
 			password : {
 				required : true,
-				minlength : 6
+                rangelength:[6,12]
 			},
 			confirm_password : {
 				required : true,
@@ -93,10 +93,12 @@ function validateRule() {
 				equalTo : "#password"
 			},
 			email : {
-				required : true
+				required : true,
+                email:true
 			},
             mobile : {
                 required : true,
+                phone:true,
                 minlength : 11
 			}
 		},
@@ -127,8 +129,12 @@ function validateRule() {
 				minlength : icon + "密码必须6个字符以上",
 				equalTo : icon + "两次输入的密码不一致"
 			},
-			email : icon + "请输入您的E-mail",
-            mobile : icon + "请输入您的手机号"
+            email : {
+                required: icon + "请输入您的E-mail"
+            },
+            mobile : {
+                requried:icon + "请输入您的手机号"
+            }
 		}
 	})
 }

@@ -1,6 +1,22 @@
 var preUrl = "/system/resource"
 $(function() {
 	validateRule();
+    var a = $("input[name='resourceType']:checked").val();
+    if(a == "0"){
+        $('#resourceUrl').rules('remove','required');
+    }else{
+        $('#resourceUrl').rules('add',{required:true,messages:{required : icon + "请输入资源URL地址"}});
+    }
+    $("input[name='resourceType']").click(function(){
+        var icon = "<i class='fa fa-times-circle'></i> ";
+        //获取选中的radio的值
+        var value = $(this).val();
+        if(value == "0"){
+            $('#resourceUrl').rules('remove','required');
+        }else{
+            $('#resourceUrl').rules('add',{required:true,messages:{required : icon + "请输入资源URL地址"}});
+        }
+    });
 });
 
 $.validator.setDefaults({
@@ -41,7 +57,7 @@ function validateRule() {
                 resourceName : {
                     required : true
                 },
-                resourceType : {
+                resourceUrl : {
                     required : a ==0?false:true
                 }
             },
@@ -49,7 +65,7 @@ function validateRule() {
                 resourceName : {
                     required : icon + "请输入资源名称"
                 },
-                resourceType : {
+                resourceUrl : {
                     required : icon + "请输入资源URL地址"
                 }
             }

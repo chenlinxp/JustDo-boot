@@ -22,7 +22,8 @@ function load() {
 						singleSelect : false, // 设置为true将禁止多选
 						// contentType : "application/x-www-form-urlencoded",
 						// //发送到服务器的数据编码类型
-						pageSize : 25, // 如果设置了分页，每页数据条数
+						pageSize : 20, // 如果设置了分页，每页数据条数
+                        pageList: [10,20,50,100],
 						pageNumber : 1, // 如果设置了分布，首页页码
 						search : true, // 是否显示搜索框
 						showColumns : true, // 是否显示内容下拉框（选择显示的列）
@@ -47,8 +48,8 @@ function load() {
                             toggle: 'glyphicon-list-alt',
                             columns: 'glyphicon-list'
                         },
-						columns : [
-								{
+						columns :[
+							    {
 									checkbox : true
 								},
 								{
@@ -76,18 +77,8 @@ function load() {
 								},
 								{
 									field : 'createTime',
-									title : '创建时间'
-								},
-								{
-									title : '操作',
-									field : 'id',
-									align : 'center',
-									formatter : function(value, row, index) {
-										var e = '<a class="btn btn-primary btn-sm" href="#" mce_href="#" title="生成代码" onclick="generateCode(\''
-												+ row.tableName
-												+ '\')"><i class="fa fa-code"></i></a> ';
-										return e;
-									}
+									title : '创建时间',
+                                    width : '150px'
 								} ]
 					});
 }
@@ -113,12 +104,32 @@ function batchCode() {
 }
 
 function edit(){
-	layer.open({
+    layer.open({
 		type : 2,
-		title : '增加',
+		title : '编辑策略',
 		maxmin : true,
 		shadeClose : false, 
-		area : [ '800px', '520px' ],
+		area : [ '900px', '520px' ],
 		content : preUrl + '/edit'
 	});
+}
+function code(){
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var tablename;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        tablename=rows[0]['tableName'];
+    }
+    var addPage =layer.open({
+        type : 2,
+        title : '编辑策略',
+        maxmin : true,
+        shadeClose : false,
+        area : [ '800px', '520px' ],
+        content : preUrl + '/edit/'+tablename
+    });
+    layer.full(addPage);
 }

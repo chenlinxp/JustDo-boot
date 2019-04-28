@@ -1,6 +1,5 @@
 
 var preUrl = "/system/dept";
-
 $(function() {
 	load();
 });

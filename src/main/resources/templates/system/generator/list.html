@@ -8,13 +8,19 @@
 			<div class="ibox">
 				<div class="ibox-body">
 					<div  id="bToolbar" role="group" class="columns pull-left" >
-						<button type="button" class="btn  btn-success"
-							onclick="batchCode()">
-							<i class="fa fa-retweet" aria-hidden="true"></i>批量生成
-						</button>
-						<button type="button" class="btn  btn-success"
-							onclick="edit()">
+						<button type="button" shiro:hasPermission="system:generator:edit" class="btn  btn-success"
+								onclick="edit()">
 							<i class="fa fa-cog" aria-hidden="true"></i>生成策略
+						</button>
+
+						<button type="button" shiro:hasPermission="system:generator:batchCode" class="btn  btn-success"
+							onclick="batchCode()">
+							<i class="fa fa-download" aria-hidden="true"></i>批量生成
+						</button>
+
+						<button type="button" shiro:hasPermission="system:generator:code" class="btn  btn-success"
+								onclick="code()">
+							<i class="fa fa-download" aria-hidden="true"></i>单表生成
 						</button>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">

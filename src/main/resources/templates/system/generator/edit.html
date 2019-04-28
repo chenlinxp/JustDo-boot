@@ -9,38 +9,51 @@
 				<div class="ibox-content">
 					<form class="form-horizontal m-t" id="signupForm">
 						<div class="form-group">
-							<label class="col-sm-3 control-label">作者：</label>
-							<div class="col-sm-8">
+							<label class="col-sm-2 control-label">项目名称：</label>
+							<div class="col-sm-4">
+								<input id="projectName" name="projectName" class="form-control"
+									   type="text" th:value="${property.projectName}">
+							</div>
+							<label class="col-sm-2 control-label">作者姓名：</label>
+							<div class="col-sm-4">
 								<input id="author" name="author" class="form-control"
 									type="text" th:value="${property.author}">
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">邮箱：</label>
-							<div class="col-sm-8">
-								<input id="email" name="email" class="form-control" type="text"
-									th:value="${property.email}" readonly>
+						<label class="col-sm-2 control-label">作者邮箱：</label>
+						<div class="col-sm-4">
+							<input id="email" name="email" class="form-control" type="text"
+								   th:value="${property.email}" >
+						</div>
+							<label class="col-sm-2 control-label">作者电话：</label>
+							<div class="col-sm-4">
+								<input id="phone" name="phone" class="form-control" type="text"
+									   th:value="${property.phone}" >
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">包名：</label>
-							<div class="col-sm-8">
+							<label class="col-sm-2 control-label">项目包名：</label>
+							<div class="col-sm-4">
 								<input id="package" name="package" class="form-control"
 									type="text" th:value="${property.package}">
 							</div>
+							<label class="col-sm-2 control-label">项目版本号：</label>
+							<div class="col-sm-4">
+								<input id="versionCode" name="versionCode" class="form-control"
+									   type="text" th:value="${property.versionCode}">
+							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-3 control-label">自动去掉表前缀：</label>
-							<div class="col-sm-2  i-checks icheckbox_square-green checked">
+							<label class="col-sm-2 control-label">自动去掉表前缀：</label>
+							<div class="col-sm-4  i-checks icheckbox_square-green checked">
 								<input id="autoRemovePre" name="autoRemovePre"
 									class="form-control" type="checkbox"
 									value="true"
 									th:checked="${property.autoRemovePre}">
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-3 control-label">去掉指定表前缀：</label>
-							<div class="col-sm-8">
+							<label class="col-sm-2 control-label">去掉指定表前缀：</label>
+							<div class="col-sm-4">
 								<input id="tablePrefix" name="tablePrefix" class="form-control"
 									type="text" th:value="${property.tablePrefix}">
 							</div>

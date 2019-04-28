@@ -1,11 +1,9 @@
-// 以下为官方示例
-$().ready(function() {
+var preUrl = "/system/generator"
+$(function() {
 	validateRule();
 });
-
 $.validator.setDefaults({
 	submitHandler : function() {
-		console.log('提交修改');
 		update();
 	}
 });
@@ -13,7 +11,7 @@ function update() {
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/system/generator/update",
+		url : preUrl+"/update",
 		data : $('#signupForm').serialize(),// 你的formid
 		async : false,
 		error : function(request) {
@@ -38,28 +36,51 @@ function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
 		rules : {
+            projectName : {
+                required : true
+            },
 			author : {
 				required : true
 			},
-			email : {
-				required : true,
-			},
+            email : {
+                required : true,
+                email:true
+            },
+            phone : {
+                required : true,
+                phone:true,
+                minlength : 11
+            },
 			package : {
 				required : true,
+                package: true
 			},
+            versionCode : {
+                required : true,
+                version:true
+            }
 			
 		},
 		messages : {
-
+            projectName : {
+                required : icon + "请输入项目名"
+            },
 			author : {
-				required : icon + "请输入作者"
+				required : icon + "请输入作者名"
 			},
-			email : {
-				required : icon + "请输入email",
+            phone : {
+				required : icon + "请输入手机号",
+                phone:"请填写正确的11位手机号"
 			},
+            email : {
+                required : icon + "请输入email",
+            },
 			package : {
 				required : icon + "请输入包名",
 			},
+            versionCode : {
+                required : icon + "请输入版本号",
+            }
 		}
 	})
 }

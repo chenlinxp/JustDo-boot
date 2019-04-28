@@ -117,7 +117,7 @@ public class ResourceController {
 	String edit(@PathVariable("resourceId") String resourceId,Model model){
 		ResourceDO resource = resourceService.get(resourceId);
 		String pId = resource.getParentId();
-		if (StringUtils.isNotEmpty(pId)) {
+		if (StringUtils.isNotEmpty(pId) && !pId.equals("0")) {
 			model.addAttribute("pName", resourceService.get(pId).getResourceName());
 		} else {
 			model.addAttribute("pName", "根目录");
