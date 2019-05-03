@@ -1,10 +1,12 @@
 package com.justdo.common.utils;
 
 
-import com.justdo.config.ConstantConfig;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.justdo.common.domain.ColumnDO;
 import com.justdo.common.domain.TableDO;
 import com.justdo.common.exception.BDException;
+import com.justdo.config.ConstantConfig;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -55,7 +57,7 @@ public class GeneratorCodeUtils {
 
 
     public static void generatorCode(Map<String, String> table,
-                                     List<Map<String, String>> columns, ZipOutputStream zip) {
+                                     List<Map<String, String>> columns, ZipOutputStream zip, JSONArray tabledatajson) {
         //配置信息
         Configuration config = getConfig();
         //表信息
@@ -74,8 +76,19 @@ public class GeneratorCodeUtils {
         String constructorParams = "";
         //列信息
         List<ColumnDO> columsList = new ArrayList<>();
+        ColumnDO columnDO = new ColumnDO();
         for (Map<String, String> column : columns) {
-            ColumnDO columnDO = new ColumnDO();
+            if(tabledatajson.size()!=0){
+                for(Object json :  tabledatajson){
+                    JSONObject obj = (JSONObject)json;
+                    if(obj.containsKey(column.get("columnName").toString())){
+                        columnDO.setDisplayType(obj.getString("displayType"));
+                        columnDO.setSearchType(obj.getString("searchType"));
+                        columnDO.setOrderNum(Integer.parseInt(obj.getString("orderNum")));
+                        columnDO.setComments(obj.getString("columnComment"));
+                    }
+                }
+            }
             String columnName = column.get("columnName").toString();
             String columnnametolower = columnName.toLowerCase();
             columnDO.setColumnName(columnName);

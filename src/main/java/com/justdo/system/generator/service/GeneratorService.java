@@ -1,10 +1,10 @@
 
 package com.justdo.system.generator.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.stereotype.Service;
 
 /**
  * 代码生成
@@ -14,7 +14,17 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface GeneratorService {
+
 	List<Map<String, Object>> list();
 
 	byte[] generatorCode(String[] tableNames);
+
+	byte[] generatorCode(String[] tableNames,String allTableData);
+
+	/**
+	 * 获取表的列List<Map>
+	 * @param tablename
+	 * @return
+	 */
+	List<Map<String, String>> getGeneratorColumns(String tablename);
 }

@@ -1,7 +1,6 @@
 package com.justdo.system.generator.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.justdo.common.utils.GeneratorCodeUtils;
 import com.justdo.common.utils.R;
 import com.justdo.system.generator.service.GeneratorService;
 import org.apache.commons.configuration.Configuration;
@@ -17,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.justdo.common.utils.GeneratorCodeUtils.getConfig;
 
 
 /**
@@ -65,18 +66,62 @@ public class GeneratorController {
 	 * 生成单表代码
 	 */
 	@RequiresPermissions("system:generator:code")
-	@GetMapping("/code/{tableName}")
+	@GetMapping("/settingCode/{tableName}")
+	String settingCode(@PathVariable("tableName") String tableName ,Model model)  {
+		model.addAttribute("tablename", tableName);
+		return preUrl + "/settingcode";
+	}
+
+	/**
+	 * @param tableName
+	 * 生成单表代码
+	 */
+	//@RequiresPermissions("system:generator:code")
+	@GetMapping("/getGeneratorColumns/{tableName}")
+	@ResponseBody
+	List<Map<String, String>> getGeneratorColumns(@PathVariable("tableName") String tableName)  {
+	List<Map<String, String>> columnsMap = null;
+	List<Map<String, String>> list =  new ArrayList<Map<String, String>>();
+		//配置信息
+		Configuration config = getConfig();
+		try{
+			columnsMap = generatorService.getGeneratorColumns(tableName);
+			if(columnsMap == null) {
+				return list;
+			}else {
+				for(Map<String,String> a : columnsMap){
+					//列的数据类型，转换成Java类型
+					String attrType = config.getString(a.get("dataType"), "unknowType");
+					a.put("dataType",attrType);
+				    a.put("displayType","001");
+					a.put("searchType","001");
+					a.put("orderNum","0");
+					list.add(a);
+					}
+				}
+		}catch(Exception e){
+			e.printStackTrace();
+			return  list;
+		}
+		return list;
+	}
+	/**
+	 * @param tableName
+	 * 生成单表代码
+	 */
+	@RequiresPermissions("system:generator:code")
+	@PostMapping("/code")
 	public void code(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable("tableName") String tableName) throws IOException {
+	                 @RequestParam("alltabledata") String alltabledata,@RequestParam("tableName") String tableName ) throws IOException {
 		String[] tableNames = new String[] { tableName };
-		byte[] data = generatorService.generatorCode(tableNames);
+		byte[] tabledata = generatorService.generatorCode(tableNames,alltabledata);
 		response.reset();
 		response.setHeader("Content-Disposition", "attachment; filename=\"justdo.zip\"");
-		response.addHeader("Content-Length", "" + data.length);
+		response.addHeader("Content-Length", "" + tabledata.length);
 		response.setContentType("application/octet-stream; charset=UTF-8");
-
-		IOUtils.write(data, response.getOutputStream());
+		IOUtils.write(tabledata, response.getOutputStream());
 	}
+
 	/**
 	 * @param tables　
 	 * 生成多表代码
@@ -102,7 +147,7 @@ public class GeneratorController {
 	@RequiresPermissions("system:generator:edit")
 	@GetMapping("/edit")
 	public String edit(Model model) {
-		Configuration conf = GeneratorCodeUtils.getConfig();
+		Configuration conf = getConfig();
 
 		Map<String, Object> property = new HashMap<>(10);
 		property.put("projectName", conf.getProperty("projectName"));

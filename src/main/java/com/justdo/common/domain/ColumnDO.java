@@ -29,10 +29,12 @@ public class ColumnDO {
 	private String attrType;
 	// auto_increment
 	private String extra;
-	//在界面的展示类型 0：隐藏域，1：文本框，2：单选，3：下拉框，4：多行文本框
+	//在界面的展示类型
 	private String displayType;
-	//在界面的查询类型 0：不查询，1：文本框，2：下拉框，3：时间文本
+	//在界面的查询类型
 	private String searchType;
+	//显示顺序
+	private Integer orderNum;
 	public String getColumnName() {
 		return columnName;
 	}
@@ -112,6 +114,21 @@ public class ColumnDO {
 		this.displayType = displayType;
 	}
 
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public Integer getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(Integer orderNum) {
+		this.orderNum = orderNum;
+	}
 
 	@Override
 	public String toString() {

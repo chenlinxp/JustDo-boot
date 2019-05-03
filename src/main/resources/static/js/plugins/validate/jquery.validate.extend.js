@@ -99,7 +99,7 @@ $(document).ready(function(){
 
     // 项目版本号的验证 ^(.+?\s+)(((\d+(\.\d+)*)|(BN\d+)).*?)$
     jQuery.validator.addMethod("version", function(value, element) {
-        var p = / ^((\d+)+[.]+(\d+)+[.]+(\d+))$/;
+        var p = /^(\d+)[.](\d+)[.](\d+)$/;
         return this.optional(element) || (p.test(value));
     }, "请输入正确的版本号");
 

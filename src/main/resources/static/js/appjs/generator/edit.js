@@ -18,13 +18,11 @@ function update() {
 			parent.layer.alert("网络连接超时");
 		},
 		success : function(data) {
-
             if (data.code == 0) {
                 parent.layer.msg("操作成功");
                 parent.reLoad();
                 var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
                 parent.layer.close(index);
-
             } else {
                 parent.layer.alert(data.msg)
             }
@@ -57,7 +55,7 @@ function validateRule() {
 			},
             versionCode : {
                 required : true,
-                version:true
+                version: true
             }
 			
 		},

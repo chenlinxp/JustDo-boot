@@ -125,11 +125,11 @@ function code(){
     }
     var addPage =layer.open({
         type : 2,
-        title : '编辑策略',
+        title : '单表生成设置',
         maxmin : true,
         shadeClose : false,
         area : [ '800px', '520px' ],
-        content : preUrl + '/edit/'+tablename
+        content : preUrl + '/settingCode/'+tablename
     });
     layer.full(addPage);
 }

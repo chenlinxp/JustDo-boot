@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipOutputStream;
 
+import com.alibaba.fastjson.JSONArray;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,10 +41,36 @@ public class GeneratorServiceImpl implements GeneratorService {
 			//查询列信息
 			List<Map<String, String>> columns = generatorMapper.listColumns(tableName);
 			//生成代码
-			GeneratorCodeUtils.generatorCode(table, columns, zip);
+			GeneratorCodeUtils.generatorCode(table, columns, zip,null);
 		}
 		IOUtils.closeQuietly(zip);
 		return outputStream.toByteArray();
 	}
 
+	@Override
+	public byte[] generatorCode(String[] tableNames,String allTableData) {
+
+		JSONArray tabledatajson  = JSONArray.parseArray(allTableData);
+
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		ZipOutputStream zip = new ZipOutputStream(outputStream);
+		for(String tableName : tableNames){
+			//查询表信息
+			Map<String, String> table = generatorMapper.get(tableName);
+			//查询列信息
+			List<Map<String, String>> columns = generatorMapper.listColumns(tableName);
+			//生成代码
+			GeneratorCodeUtils.generatorCode(table, columns, zip,tabledatajson);
+		}
+		IOUtils.closeQuietly(zip);
+		return outputStream.toByteArray();
+	}
+
+	@Override
+	public List<Map<String, String>> getGeneratorColumns(String tablename){
+
+		List<Map<String, String>> columns  = generatorMapper.listColumns(tablename);
+
+		return columns;
+	}
 }
