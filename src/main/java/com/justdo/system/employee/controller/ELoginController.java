@@ -54,7 +54,7 @@ public class ELoginController extends BaseController {
 	@GetMapping({ "/index" })
 	String index(Model model) {
 		List<Tree<ResourceDO>> resourceDOs = resourceService.listEmployeeResourceTree(getEmployeeId());
-		model.addAttribute("menus", resourceDOs);
+		model.addAttribute("resources", resourceDOs);
 		model.addAttribute("name", getSimpleEmployee().getLoginName());
 		model.addAttribute("userid", getSimpleEmployee().getEmployeeId());
 		FileDO fileDO = fileService.get(getSimpleEmployee().getPhotoId());

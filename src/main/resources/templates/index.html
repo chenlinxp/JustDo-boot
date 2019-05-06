@@ -59,24 +59,22 @@
                         <div class="logo-element">JustDo</div>
                     </div>
                 </li>
-                <li><a href="#"> <i class="fa fa-home"></i> <span
-                        class="nav-label">主页</span> <span class="fa arrow"></span>
-                </a>
+                <li><a href="#"> <i class="fa fa-home"></i>
+                    <span class="nav-label">主页</span> <span class="fa arrow"></span>
+                    </a>
                     <ul class="nav nav-second-level">
-                        <li><a id="index001" class="J_menuItem" href="index.html"
-                               data-index="0" th:href="@{/main}">了解JustDo</a></li>
+                        <li><a id="index001" class="J_menuItem" href="index.html" data-index="0" th:href="@{/main}">了解JustDo</a></li>
                     </ul>
                 </li>
-                <li th:each="menu : ${menus}"><a href="#"> <i
-                        class="fa fa fa-bar-chart-o" th:class="${menu.attributes.icon}"></i>
-                    <span class="nav-label" th:text="${menu.text}">基础信息</span> <span
-                            class="fa arrow"></span>
-                </a>
+                <li th:each="resource : ${resources}"><a href="#"> <i class="fa fa fa-bar-chart-o" th:class="${resource.attributes.icon}"></i>
+                    <span class="nav-label" th:text="${resource.text}">基础信息</span>
+                    <span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li th:each="cmenu : ${menu.children}">
+                        <li th:each="cresource: ${resource.children}">
                             <a class="J_menuItem" href="graph_echarts.html"
-                                                                  th:text="${cmenu.text}"
-                                                                  th:href="${cmenu.attributes.url}">系统管理</a></li>
+                                                                  th:text="${cresource.text}"
+                                                                  th:href="${cresource.attributes.url}">系统管理</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -89,7 +87,6 @@
             <nav class="navbar navbar-static-top" role="navigation"
                  style="margin-bottom: 0">
                 <div class="navbar-header">
-
                     <a class="navbar-minimalize minimalize-styl-2 btn btn-default "
                        href="#" title="收起菜单"><i class="fa fa-bars"></i> </a>
                     <form role="search" class="navbar-form-custom"
@@ -123,17 +120,17 @@
                             </li>
                             <li>
                                 <div class="text-center link-block">
-                                    <a class="J_menuItem" href="/system/notice/selfnotice"> <i
-                                            class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                                    <a class="J_menuItem" href="/system/notice/selfnotice">
+                                        <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
                                     </a>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <li class="hidden-xs"><a @click="personal" href="#" ><i class="fa fa-id-card"></i> 个人</a></li>
-                    <li class="dropdown hidden-xs"><a
-                            class="right-sidebar-toggle" aria-expanded="false"> <i
-                            class="fa fa-tasks"></i> 主题
+                    <li class="dropdown hidden-xs">
+                        <a class="right-sidebar-toggle" aria-expanded="false">
+                        <i class="fa fa-tasks"></i> 主题
                     </a></li>
                 </ul>
             </nav>
@@ -162,13 +159,13 @@
                     <li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
                 </ul>
             </div>
-            <a href="/logout" class="roll-nav roll-right J_tabExit"><i
-                    class="fa fa fa-sign-out"></i> 退出</a>
+            <a href="/logout" class="roll-nav roll-right J_tabExit">
+                <i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-                    src="" th:src="@{/main}" frameborder="0" data-id="index.html"
-                    seamless></iframe>
+                    src="" th:src="@{/main}" frameborder="0" data-id="index.html" seamless>
+            </iframe>
         </div>
         <div class="footer">
             <div class="pull-right">Spring-Boot开源框架</div>
@@ -242,7 +239,7 @@
 								</span>
                         </div>
                         <div class="setings-item blue-skin nb">
-								<span class="skin-name "> <a href="#" class="s-skin-0">
+								<span class="skin-name "> <a href="#" class="s-skin-2">
 										蓝色主题 </a>
 								</span>
                         </div>
@@ -277,23 +274,23 @@
     </div>
 </div>
 <!-- 全局js -->
-<script src="/js/jquery.min.js?v=2.1.4"></script>
-<script src="/js/bootstrap.min.js?v=3.3.6"></script>
-<script src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-<script src="/js/plugins/layer/layer.min.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js?v=2.1.4"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js?v=3.3.6"></script>
+<script type="text/javascript" src="/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script type="text/javascript" src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="/js/plugins/layer/layer.min.js"></script>
 <!-- 自定义js -->
-<script src="/js/app.js?v=4.1.0"></script>
+<script type="text/javascript" src="/js/app.js?v=4.1.0"></script>
 <script type="text/javascript" src="/js/contabs.js"></script>
 <!-- 第三方插件 -->
-<script src="/js/plugins/pace/pace.min.js"></script>
+<script type="text/javascript" src="/js/plugins/pace/pace.min.js"></script>
 <!-- vue -->
 <script type="text/javascript" src="/js/vue.min.js">
 </script>
-<script src="/js/appjs/webSocket/sockjs.min.js"></script>
-<script src="/js/appjs/webSocket/stomp.min.js"></script>
+<script type="text/javascript" src="/js/appjs/webSocket/sockjs.min.js"></script>
+<script type="text/javascript" src="/js/appjs/webSocket/stomp.min.js"></script>
 <!-- Toastr script -->
-<script src="/js/plugins/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="/js/plugins/toastr/toastr.min.js"></script>
 <script type="text/javascript">
     var stompClient = null;
     $(function () {

@@ -81,7 +81,7 @@ public class GeneratorCodeUtils {
             if(tabledatajson.size()!=0){
                 for(Object json :  tabledatajson){
                     JSONObject obj = (JSONObject)json;
-                    if(obj.containsKey(column.get("columnName").toString())){
+                    if(obj.containsValue(column.get("columnName").toString())){
                         columnDO.setDisplayType(obj.getString("displayType"));
                         columnDO.setSearchType(obj.getString("searchType"));
                         columnDO.setOrderNum(Integer.parseInt(obj.getString("orderNum")));
