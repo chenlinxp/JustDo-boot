@@ -204,7 +204,7 @@ $(function () {
     });
 
     // 默认主题
-    $('.s-skin-1').click(function () {
+    $('.setings-item.default-skin').click(function () {
         $("body").removeClass("skin-1");
         $("body").removeClass("skin-2");
         $("body").removeClass("skin-3");
@@ -212,7 +212,7 @@ $(function () {
     });
 
     // 蓝色主题
-    $('.s-skin-2').click(function () {
+    $('.setings-item.blue-skin').click(function () {
         $("body").removeClass("skin-2");
         $("body").removeClass("skin-3");
         $("body").addClass("skin-1");
@@ -220,7 +220,7 @@ $(function () {
     });
 
     // 黄色主题
-    $('.s-skin-3').click(function () {
+    $('.setings-item.yellow-skin').click(function () {
         $("body").removeClass("skin-1");
         $("body").removeClass("skin-2");
         $("body").addClass("skin-3");

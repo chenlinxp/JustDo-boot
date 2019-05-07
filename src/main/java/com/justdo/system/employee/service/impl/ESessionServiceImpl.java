@@ -87,4 +87,15 @@ public class ESessionServiceImpl implements ESessionService {
 		session.setTimeout(0);
 		return true;
 	}
+
+	@Override
+	public boolean  forceLogout(String[] Ids) {
+
+		for(String sessionId : Ids) {
+			Session session = sessionDAO.readSession(sessionId);
+			sessionDAO.delete(session);
+			session.setTimeout(0);
+		}
+		return true;
+	}
 }

@@ -41,4 +41,12 @@ public interface ESessionService {
 	 * @return
 	 */
 	boolean forceLogout(String sessionId);
+
+
+	/**
+	 *批量注销员工session
+	 * @param Ids
+	 * @return
+	 */
+	boolean forceLogout(String[] Ids);
 }

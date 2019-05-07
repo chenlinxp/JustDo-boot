@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
-					<div class="ibox-content">
+					<div class="ibox-content form-group">
 						<input id="employeeId" name="employeeId" th:value="${employee.employeeId}"  type="hidden">
 	                        <div class="col-sm-12" >
 								<label class="col-sm-2 control-label">员工编号：</label>
@@ -26,7 +26,8 @@
 								</div>
 								<label class="col-sm-2 control-label">状态：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.employeeState}"></span>
+									<span th:if="${employee.employeeState}=='0'" th:text="无效">有效</span>
+									<span th:if="${employee.employeeState}=='1'" th:text="有效">有效</span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
@@ -47,7 +48,7 @@
 
 								<label class="col-sm-2 control-label">角色：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.roleId}"></span>
+									<span th:each="role:${roles}"  th:text="${role.roleName}" th:value="${role.roleId}" th:if="${role.roleId}==${employee.roleId}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
