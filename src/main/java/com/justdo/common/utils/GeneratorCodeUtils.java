@@ -76,8 +76,8 @@ public class GeneratorCodeUtils {
         String constructorParams = "";
         //列信息
         List<ColumnDO> columsList = new ArrayList<>();
-        ColumnDO columnDO = new ColumnDO();
         for (Map<String, String> column : columns) {
+            ColumnDO columnDO = new ColumnDO();
             if(tabledatajson.size()!=0){
                 for(Object json :  tabledatajson){
                     JSONObject obj = (JSONObject)json;

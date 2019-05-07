@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.justdo.common.domain.BaseBean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -16,6 +17,7 @@ import java.util.Date;
  */
 public class EmployeeDO extends BaseBean {
 
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	//主键ID
 	private String employeeId;
@@ -79,6 +81,10 @@ public class EmployeeDO extends BaseBean {
 	//修改时间
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifyTime;
+
+	private String createTimeStr;
+
+	private String modifyTimeStr;
 
 	/**
 	 * 构造方法
@@ -446,6 +452,27 @@ public class EmployeeDO extends BaseBean {
 	public Date getModifyTime() {
 		return modifyTime;
 	}
+
+	/**
+	 * 获取：创建时间字符串
+	 * @return
+	 */
+	public String getCreateTimeStr() {
+
+		this.createTimeStr = sdf.format(this.getCreateTime());
+		return createTimeStr;
+	}
+
+	/**
+	 * 获取：修改时间字符串
+	 * @return
+	 */
+	public String getModifyTimeStr() {
+
+		this.modifyTimeStr = sdf.format(this.getModifyTime());
+		return modifyTimeStr;
+	}
+
 	@Override
 	public String toString() {
 		return "EmployeeDO{" +

@@ -72,12 +72,12 @@ $("#basicInfoForm").validate({
     errorElement:'span',
     errorClass:'help-block error-mes',
     rules:{
-        name:{
+        realName:{
             required:true,
             realName:true
         },
-        sex:"required",
-        birth:"required",
+        employeeSex:"required",
+        birthday:"required",
         mobile:{
             required:true,
             phone:true
@@ -88,14 +88,14 @@ $("#basicInfoForm").validate({
         }
     },
     messages:{
-        name:{
+        realName:{
             required:"请输入中文姓名",
             realName:"姓名只能为汉字"
         },
-        sex:{
+        employeeSex:{
             required:"请输入性别"
         },
-        birth:{
+        birthday:{
             required:"请输入出生年月"
         },
         mobile:{
@@ -110,16 +110,16 @@ $("#basicInfoForm").validate({
 
     errorPlacement:function(error,element){
         element.next().remove();
-        element.closest('.gg-formGroup').append(error);
+        element.closest('.form-group').append(error);
     },
 
     highlight:function(element){
-        $(element).closest('.gg-formGroup').addClass('has-error has-feedback');
+        $(element).closest('.form-group').addClass('has-error has-feedback');
     },
     success:function(label){
-        var el = label.closest('.gg-formGroup').find("input");
+        var el = label.closest('.form-group').find("input");
         el.next().remove();
-        label.closest('.gg-formGroup').removeClass('has-error').addClass("has-feedback has-success");
+        label.closest('.form-group').removeClass('has-error').addClass("has-feedback has-success");
         label.remove();
     },
     submitHandler:function(form){
@@ -129,9 +129,6 @@ $("#basicInfoForm").validate({
 
 //校验修改密码表单
 $("#modifyPwd").validate({
-    onfocusout: function(element) { $(element).valid()},
-    debug:false, //表示校验通过后是否直接提交表单
-    onkeyup:false, //表示按键松开时候监听验证
     rules:{
         pwdOld:{
             required:true,
@@ -166,13 +163,5 @@ $("#modifyPwd").validate({
             minlength:$.validator.format('密码长度要大于6'),
             issame:'新密码要与确认新密码一致',
         }
-
-    },
-    errorElement:"mes",
-    errorClass:"gg-star",
-    errorPlacement: function(error, element)
-    {
-        element.closest('.gg-formGroup').append(error);
-
     }
 });

@@ -9,7 +9,7 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<input id="employeeId" name="employeeId" th:value="${employee.employeeId}"  type="hidden">
-	                        <div class="col-sm-12">
+	                        <div class="col-sm-12" >
 								<label class="col-sm-2 control-label">员工编号：</label>
 								<div class="col-sm-4">
                                     <span th:text="${employee.employeeNumber}"></span>
@@ -47,7 +47,7 @@
 
 								<label class="col-sm-2 control-label">角色：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.roleIds}"></span>
+									<span th:text="${employee.roleId}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
@@ -85,11 +85,11 @@
 							<div class="col-sm-12">
 								<label class="col-sm-2 control-label">创建时间：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.createTime}"></span>
+									<span th:text="${employee.createTimeStr}"></span>
 								</div>
 								<label class="col-sm-2 control-label">修改时间：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.modifyTime}"></span>
+									<span th:text="${employee.modifyTimeStr}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">

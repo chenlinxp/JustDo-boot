@@ -157,21 +157,10 @@ function code() {
         btn : [ '确定', '取消' ]
         // 按钮
     }, function() {
-        $.ajax({
-            type : 'POST',
-            data : {
-                "tableName" :tablename ,
-                "alltabledata" : JSON.stringify(allTableData)
-            },
-            url : preUrl + '/code',
-            success : function(r) {
-                if (r.code == 0) {
-                    layer.msg(r.msg);
-                    reLoad();
-                } else {
-                    layer.msg(r.msg);
-                }
-            }
-        });
+        document.write("<form action='/system/generator/code' method='post' name='form1' style='display:none'>");
+        document.write("<input type='hidden' name='tableName' value="+tablename+">");
+        document.write("<input type='hidden' name='alltabledata' value="+JSON.stringify(allTableData)+">");
+        document.write("</form>");
+        document.form1.submit();
     }, function() {});
 }

@@ -21,111 +21,86 @@
                 <div class="tab-content">
                     <!--basic info-->
                     <div class="ibox-content tab-pane fade in active"  id="basic_info">
-                        <form class="gg-form" role="form" id="basicInfoForm">
+                        <form class="form-horizontal m-t" role="form" id="basicInfoForm">
                             <input name="employeeId" type="hidden" th:value="${employee.employeeId}"/>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>用户名:</span>
-                                </div>
-                                <div class="gg-formDetail">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">用户名:</label>
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" id="loginName" name="loginName" th:value="${employee.loginName}"  readonly="true" />
                                 </div>
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>姓名:</span>
-                                </div>
-                                <div class="gg-formDetail">
-                                    <input type="text" class="form-control" id="realName" name="realName" th:value="${employee.realName}"  placeholder="请输入姓名" />
+                            <div class="form-group">
+                            </div>
+                                <label class="col-sm-4 control-label">姓名:</label>
+                                <div class="col-sm-6">
+                                    <input id="realName" name="realName" class="form-control" type="text" th:value="${employee.realName}"  placeholder="请输入姓名">
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>性别:</span>
-                                </div>
-                                <div class="gg-formDetail">
-                                    <div class="radio i-checks">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">性别:</label>
+                                <div class="col-sm-6">
                                         <label class="radio-inline" th:each="sex:${sexList}">
-                                            <input  th:field="*{employee.employeeSex}" type="radio" name="sex" th:value="${sex.id}" th:text="${sex.name}"/>
+                                            <input th:field="*{employee.employeeSex}" type="radio" name="employeeSex" th:value="${sex.dccode}" th:text="${sex.dcvalue}"/>
                                         </label>
-                                    </div>
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>出生年月:</span>
-                                </div>
-                                <div class="gg-formDetail">
-                                    <input type="text" class="laydate-icon layer-date form-control" id="birthday" name="birthday" th:value="${employee.birthday}" placeholder="请选择出生年月"
-                                           onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" readonly="readonly"/>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">出生年月:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="laydate-icon layer-date form-control" id="birthday" name="birthday"  class="form-control" th:value="${employee.birthday}" placeholder="请选择出生年月"
+                                           onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" readonly="readonly"/>
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>手机:</span>
-                                </div>
-                                <div class="gg-formDetail">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">手机:</label>
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" id="mobile" name="mobile"  th:value="${employee.mobile}" placeholder="请输入手机号" />
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>邮箱:</span>
-                                </div>
-                                <div class="gg-formDetail">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">邮箱:</label>
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" id="email" name="email" th:value="${employee.email}" placeholder="请输入邮箱" />
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>居住地:</span>
-                                </div>
-                                <div class="gg-formDetail gg-font0" data-toggle="distpicker"  th:attr="data-province=${employee.province},data-city=${employee.city},data-district=${employee.district}">
-                                    <div class="gg-area">
-                                        <select class="form-control" id="province" name="province">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">居住地:</label>
+                                <div class="col-sm-8" data-toggle="distpicker"  th:attr="data-province=${employee.province},data-city=${employee.city},data-district=${employee.district}">
+                                    <div class="col-sm-3" style="padding-left:0px">
+                                        <select class="form-control"  id="province" name="province">
                                         </select>
                                     </div>
-                                    <div class="gg-area">
+                                    <div class="col-sm-3" style="padding-left:0px">
                                         <select class="form-control" id="city" name="city">
                                         </select>
                                     </div>
-                                    <div class="gg-area">
-                                        <select class="form-control" id="district" name="district">
+                                    <div class="col-sm-3" style="padding-left:0px">
+                                        <select class="form-control"  id="district" name="district">
                                         </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>联系地址:</span>
-                                </div>
-                                <div class="gg-formDetail">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">联系地址:</label>
+                                <div class="col-sm-6">
                                     <input type="text" class="form-control" id="address" name="liveAddress" th:value="${employee.liveAddress}" placeholder="请输入居住地址" />
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>爱好:</span>
-                                </div>
-                                <div class="gg-formDetail">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">爱好:</label>
+                                <div class="col-sm-6">
                                     <div class="checxbox i-checks" >
                                         <input type="hidden" name="employeehobby" id="employeeHobby"/>
                                         <label th:each="hobby : ${hobbyList}">
-                                            <input type="checkbox" class="hobby"  th:value="${hobby.id}" th:text="${hobby.name}" th:checked="${hobby.remarks}=='true'"/>
+                                            <input type="checkbox" class="form-control" th:value="${hobby.dccode}" th:text="${hobby.dcvalue}" th:checked="true"/>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </form>
-                        <div class="gg-btnGroup">
+                        <div class="formGroup">
+                            <div class="col-sm-6 col-sm-offset-6">
                             <button type="button" class="btn btn-sm btn-success" id="base_save"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
+                            </div>
                         </div>
                     </div>
                     <!--photo_info-->
@@ -143,7 +118,6 @@
                                         <div class="col-md-3">
                                             <div class="avatar-wrapper"></div>
                                         </div>
-
                                         <div class="col-md-9">
                                             <div class="btn-group">
                                                 <button class="btn btn-success" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees">左旋转</button>
@@ -172,47 +146,35 @@
                     </div>
                     <!--pwd_info-->
                     <div class="ibox-content tab-pane fade" id="pwd_info">
-                        <form class="gg-form" role="form" id="modifyPwd">
+                        <form class="form-horizontal m-t" role="form" id="modifyPwd">
                             <a id="logout" class="hidden" href="/logout"></a>
                             <input type="hidden" name ="employeeDO.employeeId" th:value="${employee.employeeId}"/>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>旧密码:</span>
-                                </div>
-                                <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="pwdOld" name="pwdOld" placeholder="请输入旧密码" />
-                                    <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"><span>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">旧密码:</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="pwdOld" name="pwdOld" placeholder="请输入旧密码" />
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>新密码:</span>
-                                </div>
-                                <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="pwdNew" name="pwdNew" placeholder="请输入新密码" />
-                                    <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">新密码:</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="pwdNew" name="pwdNew" placeholder="请输入新密码" />
                                 </div>
                             </div>
-                            <div class="gg-formGroup">
-                                <div class="gg-formTitle">
-                                    <em class="gg-star">*</em>
-                                    <span>确认密码:</span>
-                                </div>
-                                <div class="gg-formDetail gg-dashed">
-                                    <input type="password" class="form-control gg-border0" id="confirm_password" name="confirm_password" placeholder="请确认密码" />
-                                    <span class="fa fa-eye gg-faeye" title="鼠标移入显示内容"></span>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">确认密码:</label>
+                                <div class="col-sm-6">
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="请确认密码" />
                                 </div>
                             </div>
                         </form>
-                        <div class="gg-btnGroup">
-                            <button type="button" class="btn btn-sm btn-success" id="pwd_save"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
+                        <div class="form-group">
+                            <div class="col-sm-6 col-sm-offset-6">
+                                <button type="button" class="btn btn-sm btn-success" id="pwd_save"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
