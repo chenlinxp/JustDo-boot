@@ -121,31 +121,6 @@ var load = function () {
                         field : 'modifyTime',
                         title : '修改时间',
                         width : '150px'
-                    },
-                    {
-                        title: '操作',
-                        field: 'resourceId',
-                        align: 'center',
-                        valign: 'center',
-                        width : '150px',
-                        formatter: function (item, index) {
-                            var e = '<a class="btn btn-success btn-sm '
-                                + s_edit_h
-                                + '" href="#" mce_href="#" title="编辑" onclick="edit(\''
-                                + item.resourceId
-                                + '\')"><i class="fa fa-edit"></i></a> ';
-                            var p = '<a class="btn btn-success btn-sm '
-                                + s_add_h
-                                + '" href="#" mce_href="#" title="添加下级" onclick="add(\''
-                                + item.resourceId
-                                + '\')"><i class="fa fa-plus"></i></a> ';
-                            var d = '<a class="btn btn-success btn-sm '
-                                + s_delete_h
-                                + '" href="#" title="删除"  mce_href="#" onclick="del(\''
-                                + item.resourceId
-                                + '\')"><i class="fa fa-remove"></i></a> ';
-                            return e + d + p;
-                        }
                     }]
             });
 }
@@ -154,46 +129,55 @@ function reLoad() {
     load();
 }
 
-function add(pId) {
+function add() {
     layer.open({
         type: 2,
         title: '增加菜单',
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: preUrl + '/add/' + pId // iframe的url
+        content: preUrl + '/add'
     });
 }
 
-function del(id) {
-    layer.confirm('确定要删除选中的记录？', {
-        btn: ['确定', '取消']
-    }, function () {
-        $.ajax({
-            url: preUrl + "/del",
-            type: "post",
-            data: {
-                'resourceId': id
-            },
-            success: function (data) {
-                if (data.code == 0) {
-                    layer.msg("删除成功");
-                    reLoad();
-                } else {
-                    layer.msg(data.msg);
-                }
-            }
-        });
-    })
-}
-
-function edit(id) {
+function edit() {
+    var id = $('#bTable').bootstrapTreeTable('getSelection');
+    if (id == undefined) {
+        layer.msg("请选择一条要修改的数据");
+        return;
+    }
     layer.open({
         type: 2,
         title: '菜单修改',
         maxmin: true,
         shadeClose: false, // 点击遮罩关闭层
         area: ['800px', '520px'],
-        content: preUrl + '/edit/' + id // iframe的url
+        content: preUrl + '/edit/' + id
     });
+}
+function del() {
+    layer.confirm('确定要删除选中的记录？', {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        var id = $('#bTable').bootstrapTreeTable('getSelection');
+        if (id == undefined) {
+            layer.msg("请选择一条要删除的数据");
+            return;
+        }
+        $.ajax({
+            url : preUrl+"/del",
+            type : "post",
+            data : {
+                'resourceId' : id
+            },
+            success : function(r) {
+                if (r.code==0) {
+                    layer.msg(r.msg);
+                    reLoad();
+                }else{
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    })
 }

@@ -6,6 +6,7 @@ import com.justdo.common.utils.R;
 import com.justdo.common.utils.StringUtils;
 import com.justdo.system.resource.domain.ResourceDO;
 import com.justdo.system.resource.service.ResourceService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,15 +76,9 @@ public class ResourceController {
 	* 增加页面
 	* @return 增加页面路径
 	*/
-	@GetMapping("/add/{pId}")
+	@GetMapping("/add")
 	@RequiresPermissions("system:resource:add")
-	String add(Model model, @PathVariable("pId") String pId){
-		model.addAttribute("parentId", pId);
-		if (StringUtils.isNotEmpty(pId)&&!pId.endsWith("0")) {
-			model.addAttribute("pName", resourceService.get(pId).getResourceName());
-		} else {
-			model.addAttribute("pName", "根目录");
-		}
+	String add(){
 		return preUrl + "/add";
 	}
 
@@ -192,10 +187,21 @@ public class ResourceController {
 	 */
 	@GetMapping("/tree")
 	@ResponseBody
+	@ApiOperation(value="获取资源树接口", notes="获取资源树接口")
 	Tree<ResourceDO> tree() {
 		Tree<ResourceDO> tree = new Tree<ResourceDO>();
 		tree = resourceService.getTree();
 		return tree;
+	}
+
+	/**
+	 * 资源树页面
+	 * @return
+	 */
+	@GetMapping("/treeView")
+	@ApiOperation(value="获取资源树界面", notes="获取资源树界面")
+	String treeView() {
+		return  preUrl + "/resourceTree";
 	}
 
 	/**

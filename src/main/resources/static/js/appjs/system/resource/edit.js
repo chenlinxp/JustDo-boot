@@ -69,3 +69,19 @@ function validateRule() {
         }
     })
 }
+var openResource = function(){
+    layer.open({
+        type:2,
+        title:"选择上级资源",
+        area : [ '300px', '450px' ],
+        content:preUrl+"/treeView"
+    })
+}
+function loadResource( ResourceId,ResourceName){
+    if(ResourceId==$("#parentId").val()){
+        parent.layer.alert("上级资源不能选自己");
+        return;
+    }
+    $("#parentId").val(ResourceId);
+    $("#pName").val(ResourceName);
+}
