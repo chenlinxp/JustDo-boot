@@ -76,7 +76,7 @@ public class RegexpController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:regexp:edit")
 	public R update( RegexpDO regexp){
 		regexpService.update(regexp);

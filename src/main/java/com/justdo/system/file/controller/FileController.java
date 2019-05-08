@@ -71,7 +71,7 @@ public class FileController extends BaseController {
 	/**
 	 * 信息
 	 */
-	@RequestMapping("/view/{id}")
+	@GetMapping("/view/{id}")
 	@RequiresPermissions("system:file:view")
 	public R info(@PathVariable("id") String id) {
 		FileDO file = fileService.get(id);
@@ -94,7 +94,7 @@ public class FileController extends BaseController {
 	/**
 	 * 修改
 	 */
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:file:update")
 	public R update(@RequestBody FileDO file) {
 		fileService.update(file);

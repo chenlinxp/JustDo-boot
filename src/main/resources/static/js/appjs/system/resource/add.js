@@ -1,6 +1,7 @@
 var preUrl = "/system/resource"
 $(function() {
 	validateRule();
+	var icon = "<i class='fa fa-times-circle'></i> ";
     var a = $("input[name='resourceType']:checked").val();
     if(a == "0"){
         $('#resourceUrl').rules('remove','required');
@@ -8,7 +9,6 @@ $(function() {
         $('#resourceUrl').rules('add',{required:true,messages:{required : icon + "请输入资源URL地址"}});
     }
     $("input[name='resourceType']").click(function(){
-        var icon = "<i class='fa fa-times-circle'></i> ";
         //获取选中的radio的值
         var value = $(this).val();
         if(value == "0"){

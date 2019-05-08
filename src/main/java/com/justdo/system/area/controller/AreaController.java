@@ -76,7 +76,7 @@ public class AreaController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:area:edit")
 	public R update( AreaDO area){
 		areaService.update(area);

@@ -114,7 +114,7 @@ public class DictController extends BaseController {
 	 */
 	@Log("编辑字典内容")
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:dict:edit")
 	public R update(DictContentDO dictContent) {
 		Map<String, Object> map = new HashMap<>(16);

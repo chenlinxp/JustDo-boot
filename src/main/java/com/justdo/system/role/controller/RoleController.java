@@ -45,6 +45,19 @@ public class RoleController extends BaseController {
 		return roles;
 	}
 
+	/**
+	 * 详情页面
+	 * @param roleId
+	 * @return 详情页面路径
+	 */
+	@GetMapping("/view/{roleId}")
+	@RequiresPermissions("system:role:view")
+	String view(@PathVariable("roleId") String roleId,Model model){
+		RoleDO role = roleService.get(roleId);
+		model.addAttribute("role", role);
+		return preUrl + "/view";
+	}
+
 	@Log("添加角色")
 	@RequiresPermissions("system:role:add")
 	@GetMapping("/add")

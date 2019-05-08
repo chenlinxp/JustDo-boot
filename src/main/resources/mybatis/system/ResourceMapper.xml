@@ -11,7 +11,7 @@
 		select  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM`,`CREATE_TIME`,`MODIFY_TIME` from sys_resource
         <where>  
 		  <if test="parentId != null and parentId != ''"> and PARENT_ID = #{parentId} </if>
-		  <if test="resourceName != null and resourceName != ''"> and RESOURCE_NAME = #{resourceName} </if>
+		  <if test="resourceName != null and resourceName != ''"> and RESOURCE_NAME like concat('%',#{resourceName},'%') </if>
 		  <if test="resourceUrl != null and resourceUrl != ''"> and RESOURCE_URL = #{resourceUrl} </if>
 		  <if test="resourcePermission != null and resourcePermission != ''"> and RESOURCE_PERMISSION = #{resourcePermission} </if>
 		  <if test="resourceType != null and resourceType != ''"> and RESOURCE_TYPE = #{resourceType} </if>

@@ -41,18 +41,19 @@ public class ${className}Controller {
 
 
 	/**
-	* 列表页面
+	* ${comments}列表页面
 	* @return 列表页面路径
 	*/
 	@GetMapping()
 	@RequiresPermissions("${pathName}:${classnametolower}:list")
+	@ApiOperation(value="返回${comments}列表界面", notes="返回${comments}列表界面")
 	String ${className}(){
 	    return preUrl + "/${classnametolower}";
 	}
 
 
 	/**
-	* 列表数据
+	* ${comments}列表数据
 	* @param params
 	* @return
 	*/
@@ -60,6 +61,7 @@ public class ${className}Controller {
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("${pathName}:${classnametolower}:list")
+	@ApiOperation(value="获取${comments}列表接口", notes="获取${comments}列表接口")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -70,12 +72,13 @@ public class ${className}Controller {
 	}
 
 	/**
-	* 详情页面
+	* ${comments}详情页面
 	* @param id
 	* @return 详情页面路径
 	*/
 	@GetMapping("/view/{id}")
 	@RequiresPermissions("${pathName}:${classname}:view")
+	@ApiOperation(value="返回${comments}详情页面", notes="返回${comments}详情页面")
 	String view(@PathVariable("id") ${pk.attrType} id,Model model){
 			${className}DO ${classname} = ${classname}Service.get(id);
 		model.addAttribute("${classname}", ${classname});
@@ -83,18 +86,19 @@ public class ${className}Controller {
 	}
 
 	/**
-	* 增加页面
+	* ${comments}增加页面
 	* @return 增加页面路径
 	*/
 	@GetMapping("/add")
 	@RequiresPermissions("${pathName}:${classnametolower}:add")
+	@ApiOperation(value="返回${comments}增加页面", notes="返回${comments}增加页面")
 	String add(){
 	    return preUrl + "/add";
 	}
 
 
 	/**
-	 * 保存
+	 * 保存${comments}
 	 * @param ${classname}
      * @return R
 	 */
@@ -102,6 +106,7 @@ public class ${className}Controller {
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("${pathName}:${classnametolower}:add")
+	@ApiOperation(value="保存${comments}接口", notes="保存${comments}接口")
 	public R save( ${className}DO ${classname}){
 		if(${classname}Service.save(${classname})>0){
 			return R.ok();
@@ -111,12 +116,13 @@ public class ${className}Controller {
 	}
 
 	/**
-	* 编辑页面
+	* 编辑${comments}页面
     * @param ${pk.attrname}
     * @return 编辑页面路径
     */
 	@GetMapping("/edit/{${pk.attrname}}")
 	@RequiresPermissions("${pathName}:${classname}:edit")
+	@ApiOperation(value="返回${comments}编辑页面", notes="返回${comments}编辑页面")
 	String edit(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
 		${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
 		model.addAttribute("${classname}", ${classname});
@@ -125,7 +131,7 @@ public class ${className}Controller {
 	
 
 	/**
-	 * 更新
+	 * 更新${comments}
 	 * @param ${classname}
 	 * @return R
 	 */
@@ -133,6 +139,7 @@ public class ${className}Controller {
 	@ResponseBody
 	@PostMapping("/update")
 	@RequiresPermissions("${pathName}:${classnametolower}:edit")
+	@ApiOperation(value="更新${comments}接口", notes="更新${comments}接口")
 	public R update( ${className}DO ${classname}){
 		if(${classname}Service.update(${classname})>0){
 			return R.ok();
@@ -141,7 +148,7 @@ public class ${className}Controller {
 	}
 	
 	/**
-	 * 删除
+	 * 删除${comments}
 	 * @param ${pk.attrname}
 	 * @return R
 	 */
@@ -149,6 +156,7 @@ public class ${className}Controller {
 	@PostMapping( "/del")
 	@ResponseBody
 	@RequiresPermissions("${pathName}:${classnametolower}:del")
+	@ApiOperation(value="删除${comments}接口", notes="删除${comments}接口")
 	public R remove( ${pk.attrType} ${pk.attrname}){
 		if(${classname}Service.del(${pk.attrname})>0){
 		return R.ok();
@@ -157,7 +165,7 @@ public class ${className}Controller {
 	}
 	
 	/**
-	 * 批量删除
+	 * 批量删除${comments}
 	 * @param ${pk.attrname}s
 	 * @return R
 	 */
@@ -165,6 +173,7 @@ public class ${className}Controller {
 	@PostMapping( "/batchDel")
 	@ResponseBody
 	@RequiresPermissions("${pathName}:${classnametolower}:batchDel")
+	@ApiOperation(value="批量删除${comments}接口", notes="批量删除${comments}接口")
 	public R remove(@RequestParam("ids[]") ${pk.attrType}[] ${pk.attrname}s){
 		if(${classname}Service.batchDel(${pk.attrname}s)>0){
 			return R.ok();

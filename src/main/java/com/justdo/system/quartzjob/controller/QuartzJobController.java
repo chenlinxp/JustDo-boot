@@ -69,7 +69,7 @@ public class QuartzJobController extends BaseController {
 	/**
 	 * 详情
 	 */
-	@RequestMapping("/view/{id}")
+	@GetMapping("/view/{id}")
 	@RequiresPermissions("system:quartzjob:view")
 	String view(@PathVariable("id") String id, Model model) {
 		QuartzJobTaskDO quartzJobTaskDO = quartzJobService.get(id);

@@ -10,45 +10,31 @@
 					<div class="ibox-content">
 						<input id="roleId" name="roleId" th:value="${role.roleId}"  type="hidden">
 	                        <div class="form-group">
-								<label class="col-sm-3 control-label">角色名称：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">角色名称：</label>
+								<div class="col-sm-4">
                                     <span th:text="${role.roleName}"></span>
 								</div>
-							</div>
-	                        <div class="form-group">
-								<label class="col-sm-3 control-label">角色标识：</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">角色标识：</label>
+								<div class="col-sm-4">
                                     <span th:text="${role.roleSign}"></span>
 								</div>
 							</div>
 	                        <div class="form-group">
-								<label class="col-sm-3 control-label">角色状态：</label>
-								<div class="col-sm-8">
-                                    <span th:text="${role.roleState}"></span>
+								<label class="col-sm-2 control-label">角色状态：</label>
+									<div class="col-sm-4">
+										<span th:if="${role.roleState}=='0'" th:text="无效">无效</span>
+										<span th:if="${role.roleState}=='1'" th:text="有效">有效</span>
+									</div>
+								</div>
+								<label class="col-sm-2 control-label">创建时间：</label>
+								<div class="col-sm-4">
+									<span th:text="${role.createTime}"></span>
 								</div>
 							</div>
 	                        <div class="form-group">
-								<label class="col-sm-3 control-label">备注：</label>
+								<label class="col-sm-2 control-label">备注：</label>
 								<div class="col-sm-8">
                                     <span th:text="${role.remark}"></span>
-								</div>
-							</div>
-	                        <div class="form-group">
-								<label class="col-sm-3 control-label">创建用户id：</label>
-								<div class="col-sm-8">
-                                    <span th:text="${role.createUserId}"></span>
-								</div>
-							</div>
-	                        <div class="form-group">
-								<label class="col-sm-3 control-label">创建时间：</label>
-								<div class="col-sm-8">
-                                    <span th:text="${role.createTime}"></span>
-								</div>
-							</div>
-	                        <div class="form-group">
-								<label class="col-sm-3 control-label">创建时间：</label>
-								<div class="col-sm-8">
-                                    <span th:text="${role.modifyTime}"></span>
 								</div>
 							</div>
 					</div>

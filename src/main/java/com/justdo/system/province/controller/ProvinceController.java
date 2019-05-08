@@ -76,7 +76,7 @@ public class ProvinceController {
 	 * 修改
 	 */
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:province:edit")
 	public R update( ProvinceDO province){
 		provinceService.update(province);

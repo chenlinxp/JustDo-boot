@@ -14,6 +14,7 @@ function load() {
                 pagination: true,
                 showRefresh: true,
                 search: false,
+                striped : true,
                 clickToSelect: true,
                 pageSize : 20, // 如果设置了分页，每页数据条数
                 pageList: [20,50,100],

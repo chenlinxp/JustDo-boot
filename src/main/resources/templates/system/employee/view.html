@@ -24,7 +24,7 @@
 								<div class="col-sm-4">
 									<span th:text="${employee.loginName}"></span>
 								</div>
-								<label class="col-sm-2 control-label">状态：</label>
+								<label class="col-sm-2 control-label">账号状态：</label>
 								<div class="col-sm-4">
 									<span th:if="${employee.employeeState}=='0'" th:text="无效">有效</span>
 									<span th:if="${employee.employeeState}=='1'" th:text="有效">有效</span>

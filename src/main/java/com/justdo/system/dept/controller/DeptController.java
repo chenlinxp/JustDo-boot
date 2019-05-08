@@ -20,10 +20,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-
-
 /**
  * 部门管理
  * @author chenlin
@@ -44,23 +40,25 @@ public class DeptController extends BaseController {
 
 	@GetMapping()
 	@RequiresPermissions("system:dept:list")
+	@ApiOperation(value="获取部门列表界面", notes="获取部门列表界面")
 	String dept() {
 		return preUrl + "/dept";
 	}
 
-	@ApiOperation(value="获取部门列表", notes="")
+
 	@Log("部门列表")
 	@ResponseBody
 	@GetMapping("/list")
 	@RequiresPermissions("system:dept:list")
-	public List<DeptDO> list() {
-		Map<String, Object> query = new HashMap<>(16);
-		List<DeptDO> deptList = deptService.list(query);
+	@ApiOperation(value="获取部门列表接口", notes="获取部门列表接口")
+	public List<DeptDO> list(@RequestParam Map<String, Object> params) {
+		List<DeptDO> deptList = deptService.list(params);
 		return deptList;
 	}
 
 	@GetMapping("/add/{pId}")
 	@RequiresPermissions("system:dept:add")
+	@ApiOperation(value="新增部门界面", notes="新增部门界面")
 	String add(@PathVariable("pId") String pId, Model model) {
 		model.addAttribute("deptpid", pId);
 		if (!StringUtils.isNotEmpty(pId)) {
@@ -73,12 +71,14 @@ public class DeptController extends BaseController {
 
 	@GetMapping("/add")
 	@RequiresPermissions("system:dept:add")
+	@ApiOperation(value="新增部门界面", notes="新增部门界面")
 	String add(Model model) {
 		return  preUrl + "/add";
 	}
 
 	@GetMapping("/edit/{deptId}")
 	@RequiresPermissions("system:dept:edit")
+	@ApiOperation(value="编辑部门界面", notes="编辑部门界面")
 	String edit(@PathVariable("deptId") String deptId, Model model) {
 		DeptDO dept = deptService.get(deptId);
 
@@ -106,6 +106,7 @@ public class DeptController extends BaseController {
 	@ResponseBody
 	@PostMapping("/save")
 	@RequiresPermissions("system:dept:add")
+	@ApiOperation(value="新增部门接口", notes="新增部门接口")
 	public R save(DeptDO dept) {
 		Date nowdate =	new Date();
 		dept.setCreateTime(nowdate);
@@ -121,8 +122,9 @@ public class DeptController extends BaseController {
 	 */
 	@Log("编辑部门")
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:dept:edit")
+	@ApiOperation(value="编辑部门接口", notes="编辑部门接口")
 	public R update(DeptDO dept) {
 		dept.setModifyTime(new Date());
 		if (deptService.update(dept) > 0) {
@@ -138,6 +140,7 @@ public class DeptController extends BaseController {
 	@PostMapping("/del")
 	@ResponseBody
 	@RequiresPermissions("system:dept:del")
+	@ApiOperation(value="删除部门接口", notes="删除部门接口")
 	public R remove(String deptId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("deptpid", deptId);
@@ -161,6 +164,7 @@ public class DeptController extends BaseController {
 	@PostMapping("/batchDel")
 	@ResponseBody
 	@RequiresPermissions("system:dept:batchDel")
+	@ApiOperation(value="批量删除部门接口", notes="批量删除部门接口")
 	public R remove(@RequestParam("ids[]") String[] deptIds) {
 		if (deptService.batchDel(deptIds)>0) {
 			return R.ok();
@@ -170,6 +174,7 @@ public class DeptController extends BaseController {
 
 	@GetMapping("/tree/{organId}")
 	@ResponseBody
+	@ApiOperation(value="根据organId获取部门树接口", notes="根据organId获取部门树接口")
 	public Tree<DeptDO> tree(@PathVariable("organId") String organId) {
 		Tree<DeptDO> tree = new Tree<DeptDO>();
 		Map<String,Object> map = new HashMap<String,Object>(1);
@@ -179,6 +184,7 @@ public class DeptController extends BaseController {
 		return tree;
 	}
 	@GetMapping("/treeView/{organId}")
+	@ApiOperation(value="根据organId获取部门树界面", notes="根据organId获取部门树界面")
 	String treeView(@PathVariable("organId") String organId, Model model) {
 		model.addAttribute("organId", organId);
 		return  preUrl + "/deptTree";

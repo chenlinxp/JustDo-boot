@@ -87,7 +87,7 @@ public class OrganController {
 	 */
 	@Log("编辑机构")
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	@RequiresPermissions("system:organ:edit")
 	public R update( OrganDO organ) {
 		if (organ.getOrganpid() == organ.getOrganid()) {
