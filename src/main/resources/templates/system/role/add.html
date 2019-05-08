@@ -26,8 +26,19 @@
 								<div class="col-sm-4">
 									<div id="resourceTree"></div>
 								</div>
-								<label class="col-sm-2 control-label">备注：</label>
+								<label class="col-sm-2 control-label">是否正常：</label>
 								<div class="col-sm-4">
+									<label class="radio-inline">
+										<input type="radio" name="roleState" value="1" checked="checked" /> 正常
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="roleState" value="0" /> 禁用
+									</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">备注：</label>
+								<div class="col-sm-9">
 									<textarea id="remark" name="remark" class="form-control"></textarea>
 								</div>
 							</div>

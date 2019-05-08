@@ -1,3 +1,10 @@
+
+
+$.extend($.fn.treegrid.defaults, {
+    expanderExpandedClass: 'glyphicon glyphicon-chevron-down',
+    expanderCollapsedClass: 'glyphicon glyphicon-chevron-right'
+});
+
 (function($) {
     "use strict";
 
@@ -12,10 +19,12 @@
         // 是否有radio或checkbox
         var hasSelectItem = false;
         var target = $(this);
+        console.log(target);
+
         // 在外层包装一下div，样式用的bootstrap-table的
         var _main_div = $("<div class='fixed-table-container'></div>");
         target.before(_main_div);
-        _main_div.append(target);
+        // _main_div.append(target);
         target.addClass("table table-hover treegrid-table table-bordered");
         if (options.striped) {
             target.addClass('table-striped');
@@ -26,7 +35,7 @@
             var _tool_left_div = $("<div class='bs-bars pull-left'></div>");
             _tool_left_div.append($(options.toolbar));
             _tool_div.append(_tool_left_div);
-            _main_div.before(_tool_div);
+            // _main_div.before(_tool_div);
         }
         // 得到根节点
         target.getRootNodes = function(data) {
@@ -108,7 +117,7 @@
                     }
                     tr.append(td);
                     if(options.id==column.field){
-                      $(tr).attr("id",item[column.field])
+                        $(tr).attr("id",item[column.field])
                     }
                 }
             });
@@ -124,7 +133,7 @@
                 // 判断有没有选择列
                 if(i==0&&item.field=='selectItem'){
                     hasSelectItem = true;
-                        th = $('<th style="text-align:' + item.valign + ';width:36px"></th>');
+                    th = $('<th style="text-align:' + item.valign + ';width:36px"></th>');
                 }else{
                     if(item.visible==false){
                         th = $('<th style="display:none"></th>');
@@ -165,7 +174,7 @@
                     $.each(rootNode, function(i, item) {
                         var tr = $('<tr></tr>');
                         tr.addClass('treegrid-' + (j + "_" + i));
-                         var rowalias=i + 1;
+                        var rowalias=i + 1;
                         if(options.columns[0].field=='rowalias') {
                             var td = $('<td style="text-align:' + options.columns[0].align + ';' + ((options.columns[0].width) ? ('width:' + options.columns[0].width) : '') + '"></td>');
                             td.text(rowalias);
@@ -273,7 +282,7 @@
         },
         // 重置表格视图
         resetHeight : function(target, height) {
-        	target.find("tbody").css("height", height + 'px');
+            target.find("tbody").css("height", height + 'px');
         }
         // 组件的其他方法也可以进行类似封装........
 
