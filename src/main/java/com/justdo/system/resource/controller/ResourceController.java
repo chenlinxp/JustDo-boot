@@ -174,6 +174,12 @@ public class ResourceController {
 	@ResponseBody
 	@RequiresPermissions("system:resource:batchDel")
 	public R remove(@RequestParam("ids[]") String[] resourceIds){
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("parentId", resourceIds[0]);
+		if(resourceService.count(map)>0) {
+			return R.error(1, "包含下级菜单,不允许删除");
+		}
 		if(resourceService.batchDel(resourceIds)>0){
 			return R.ok();
 		}else {

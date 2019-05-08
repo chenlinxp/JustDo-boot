@@ -32,7 +32,7 @@ public class ESessionController {
 
 	@Log("在线员工列表")
 	@ResponseBody
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	@RequiresPermissions("system:online:list")
 	public List<EmployeeOnline> list() {
 		return esessionService.list();
@@ -40,7 +40,7 @@ public class ESessionController {
 
 	@Log("强制员工退出")
 	@ResponseBody
-	@RequestMapping("/forceLogout")
+	@PostMapping("/forceLogout")
 	@RequiresPermissions("system:online:forceLogout")
 	public R forceLogout(@RequestParam("ids[]") String[] ids, RedirectAttributes redirectAttributes) {
 		try {
@@ -54,7 +54,7 @@ public class ESessionController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/sessionList")
+	@GetMapping("/sessionList")
 	@RequiresPermissions("system:online:list")
 	public Collection<Session> sessionList() {
 		return esessionService.sessionList();

@@ -95,7 +95,7 @@ public class ContentController extends BaseController {
 	 */
 	@RequiresPermissions("blog:bContent:edit")
 	@ResponseBody
-	@RequestMapping("/update")
+	@PostMapping("/update")
 	public R update( ContentDO bContent) {
 		bContent.setGtmCreate(new Date());
 		bContentService.update(bContent);
