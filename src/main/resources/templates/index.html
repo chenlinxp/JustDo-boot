@@ -30,17 +30,14 @@
                 <li class="nav-header">
                     <div>
                         <span><img alt="image" class="img-circle" height="60" width="60" th:src="${picUrl}"/></span>
-                        <h3 class="" style="color: #ffffff">
-                            </i>JustDo管理系统
-                        </h3>
                     </div>
-                    <div class="dropdown profile-element hidden">
+                    <div class="dropdown profile-element">
                         <input id="userid" name="userid" th:value="${userid}"  type="hidden">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
                             <span class="block m-t-xs">
-                                <strong class="font-bold"th:text="${username}">admin</strong></span>
-                            <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                <strong class="font-bold" th:text="${username}">admin</strong><b class="caret"></b></span>
+                            <span class="text-muted text-xs block" th:text="${rolename}">超级管理员</span>
                              </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">

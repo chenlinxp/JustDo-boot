@@ -27,6 +27,7 @@ import java.util.List;
 @Controller
 public class RoleController extends BaseController {
 	String preUrl = "system/role";
+
 	@Autowired
 	RoleService roleService;
 

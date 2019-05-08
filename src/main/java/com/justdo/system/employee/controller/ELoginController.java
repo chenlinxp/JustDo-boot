@@ -12,6 +12,8 @@ import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;
 import com.justdo.system.resource.domain.ResourceDO;
 import com.justdo.system.resource.service.ResourceService;
+import com.justdo.system.role.domain.RoleDO;
+import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -43,6 +45,8 @@ public class ELoginController extends BaseController {
 	EmployeeService employeeService;
 	@Autowired
 	FileService fileService;
+	@Autowired
+	RoleService roleService;
 	@GetMapping({ "/", "" })
 	String welcome(Model model) {
 		model.addAttribute("title", "登录");
@@ -57,6 +61,14 @@ public class ELoginController extends BaseController {
 		model.addAttribute("resources", resourceDOs);
 		model.addAttribute("name", getSimpleEmployee().getLoginName());
 		model.addAttribute("userid", getSimpleEmployee().getEmployeeId());
+
+		//EmployeeDO employee = employeeService.get(getEmployeeId());
+		String roleId = employeeService.getRoleId(getEmployeeId());
+		RoleDO roleDO = roleService.get(roleId);
+		String roleName = "";
+		if(roleDO!=null) {
+			roleName = roleDO.getRoleName();
+		}
 		FileDO fileDO = fileService.get(getSimpleEmployee().getPhotoId());
 		if(fileDO!=null&&fileDO.getFileUrl()!=null){
 			if(fileService.isExist(fileDO.getFileUrl())){
@@ -66,9 +78,10 @@ public class ELoginController extends BaseController {
 			}
 		}else {
 
-			model.addAttribute("picUrl","/img/photo_s.jpg");
+			model.addAttribute("picUrl","/img/a9.jpg");
 		}
 		model.addAttribute("username", getSimpleEmployee().getLoginName());
+		model.addAttribute("rolename", roleName);
 		return "index";
 	}
 
