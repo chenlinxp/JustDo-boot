@@ -36,9 +36,11 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
                             <span class="block m-t-xs">
-                                <strong class="font-bold" th:text="${username}">admin</strong><b class="caret"></b></span>
-                            <span class="text-muted text-xs block" th:text="${rolename}">超级管理员</span>
-                             </span>
+                                <strong class="font-bold" th:text="${username}">admin</strong></span>
+                            <span class="block m-t-xs">
+                                <strong class="text-muted text-xs" th:text="${rolename}">超级管理员</strong><b class="caret"></b>
+                            </span>
+                            </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a @click="personal" href="#">修改头像</a>
