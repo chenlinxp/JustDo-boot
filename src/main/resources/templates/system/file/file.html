@@ -59,16 +59,15 @@
                             <a href="#">
                                 <span class="corner"></span>
                                 <div class="image">
-                                    <img alt="image" class="img-responsive" :src="row.url">
+                                    <img alt="image" class="img-responsive" :src="row.fileUrl">
                                 </div>
                                 <div class="file-name">
-                                    <br/>
-                                    <small>{{row.createDate}}</small>
+                                    <small>{{row.createTime}}</small>
                                 </div>
                                 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<button
-                                    class="btn btn-success btn-xs copy" :url="row.url">复制
+                                    class="btn btn-success btn-xs copy" :url="row.fileUrl">复制
                             </button>&nbsp; &nbsp; &nbsp; &nbsp;<button class="btn btn-success btn-xs"
-                                                                        @click="remove(row.id)">删除
+                                                                        @click="remove(row.fileId)">删除
                             </button>
                             </a>
                         </div>

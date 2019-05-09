@@ -1,5 +1,5 @@
 justdo:
-  uploadPath: var/uploaded_files/
+  uploadPath: resource/uploaded_files/
 logging:
   level:
     root: INFO

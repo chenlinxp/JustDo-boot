@@ -55,7 +55,6 @@ public class GeneratorCodeUtils {
      * 生成代码
      */
 
-
     public static void generatorCode(Map<String, String> table,
                                      List<Map<String, String>> columns, ZipOutputStream zip, JSONArray tabledatajson) {
         //配置信息
@@ -114,7 +113,14 @@ public class GeneratorCodeUtils {
             {
                 columsList.add(columnDO);
             }
-
+            //根据orderNum进行asc排序
+            Collections.sort(columsList, new Comparator<ColumnDO>() {
+                @Override
+                public int compare(ColumnDO o1, ColumnDO o2) {
+                    int i = o1.getOrderNum()- o2.getOrderNum();
+                    return i;
+                }
+            });
         }
         if(constructorParams.endsWith(",")){
             constructorParams = constructorParams.substring(0,constructorParams.length()-1);

@@ -38,7 +38,7 @@
 		 </where>
 	</select>
 	 
-	<insert id="save" parameterType="com.justdo.system.file.domain.FileDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.justdo.system.file.domain.FileDO" useGeneratedKeys="true" keyProperty="fileId">
 		insert into sys_file
 		(
 			`file_type`,`file_url`,`create_time`

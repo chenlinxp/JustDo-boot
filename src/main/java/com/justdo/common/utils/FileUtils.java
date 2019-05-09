@@ -6,13 +6,12 @@ import java.util.UUID;
 
 public class FileUtils {
 
-	public static void uploadFile(byte[] file, String filePath, String fileName) throws Exception {
-		File targetFile = new File(filePath);
+	public static void uploadFile(byte[] bfile, File targetFile, String fileName) throws Exception {
 		if (!targetFile.exists()) {
 			targetFile.mkdirs();
 		}
-		FileOutputStream out = new FileOutputStream(filePath + fileName);
-		out.write(file);
+		FileOutputStream out = new FileOutputStream(targetFile.getPath()+"/"+fileName);
+		out.write(bfile);
 		out.flush();
 		out.close();
 	}

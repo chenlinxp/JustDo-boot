@@ -20,11 +20,13 @@ import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.*;
 
 
@@ -236,7 +238,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, String employeeId) throws Exception {
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtils.renameToUUID(fileName);
-		FileDO sysFile = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
+		FileDO fileDO = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
 		//获取图片后缀
 		String prefix = fileName.substring((fileName.lastIndexOf(".")+1));
 		String[] str=avatar_data.split(",");
@@ -257,17 +259,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 			boolean flag = ImageIO.write(rotateImage, prefix, out);
 			//转换后存入数据库
 			byte[] b = out.toByteArray();
-			FileUtils.uploadFile(b, justdoConfig.getUploadPath(), fileName);
+
+			File filePath=new File(ResourceUtils.getURL("classpath:").getPath());
+			if(!filePath.exists()){
+				filePath=new File("");
+			}
+			File upload=new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
+			FileUtils.uploadFile(b,upload, fileName);
 		} catch (Exception e) {
 			throw  new Exception("图片裁剪错误！！");
 		}
 		Map<String, Object> result = new HashMap<>();
-		if(fileService.save(sysFile)>0){
+		if(fileService.save(fileDO)>0){
 			EmployeeDO employeeDO = new EmployeeDO();
 			employeeDO.setEmployeeId(employeeId);
-			employeeDO.setPhotoId(sysFile.getFileId());
+			employeeDO.setPhotoId(fileDO.getFileId());
 			if(employeeDao.update(employeeDO)>0){
-				result.put("url",sysFile.getFileUrl());
+				result.put("url",fileDO.getFileUrl());
 			}
 		}
 		return result;

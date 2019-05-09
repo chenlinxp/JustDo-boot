@@ -9,10 +9,13 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -136,16 +139,30 @@ public class FileController extends BaseController {
 
 	@ResponseBody
 	@PostMapping("/upload")
-	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
+	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws FileNotFoundException {
 
-		//request.getSession().getServletContext().getRealPath("/")+ path;
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtils.renameToUUID(fileName);
-		String path = StringUtils.defaultIfEmpty(justdoConfig.getUploadPath(), "/upload/");
-		String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
+
+		//String path = StringUtils.defaultIfEmpty(justdoConfig.getUploadPath(), "/upload/");
+
+		File filePath=new File(ResourceUtils.getURL("classpath:").getPath());
+		if(!filePath.exists()){
+			filePath=new File("");
+		}
+		File upload=new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
+		if(!upload.exists()){
+			upload.mkdirs();
+			System.out.println(upload.getAbsolutePath());
+			System.out.println(upload.getPath());
+			//在开发测试模式时，得到地址为：{项目跟目录}/target/static/images/upload/
+			//在打成jar正式发布时，得到的地址为:{发布jar包目录}/static/images/upload/
+		}
+		//String realPath = request.getSession().getServletContext().getRealPath("/")+"WEB-INF/classes/"+ path;
+		//String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
 		FileDO _file = new FileDO(FileType.fileType(fileName), "/files/"+ fileName, new Date());
 		try {
-			FileUtils.uploadFile(file.getBytes(), path, fileName);
+			FileUtils.uploadFile(file.getBytes(), upload, fileName);
 		} catch (Exception e) {
 			return R.error();
 		}
