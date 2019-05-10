@@ -7,8 +7,8 @@ import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.MD5Utils;
 import com.justdo.common.utils.R;
 import com.justdo.common.utils.ShiroUtils;
+import com.justdo.common.utils.StringUtils;
 import com.justdo.system.employee.service.EmployeeService;
-import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;
 import com.justdo.system.resource.domain.ResourceDO;
 import com.justdo.system.resource.service.ResourceService;
@@ -69,13 +69,10 @@ public class ELoginController extends BaseController {
 		if(roleDO!=null) {
 			roleName = roleDO.getRoleName();
 		}
-		FileDO fileDO = fileService.get(getSimpleEmployee().getPhotoId());
-		if(fileDO!=null&&fileDO.getFileUrl()!=null){
-			if(fileService.isExist(fileDO.getFileUrl())){
-				model.addAttribute("picUrl",fileDO.getFileUrl());
-			}else {
-				model.addAttribute("picUrl","/img/photo_s.jpg");
-			}
+		//FileDO fileDO = fileService.get(getSimpleEmployee().getPhotoId());
+		String photoUrl = getSimpleEmployee().getPhotoUrl();
+		if(StringUtils.isNotEmpty(photoUrl)){
+			model.addAttribute("picUrl",photoUrl);
 		}else {
 
 			model.addAttribute("picUrl","/img/a9.jpg");

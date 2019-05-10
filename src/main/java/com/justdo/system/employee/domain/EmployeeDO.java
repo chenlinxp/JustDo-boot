@@ -62,7 +62,7 @@ public class EmployeeDO extends BaseBean {
 	//出身日期
 	private String birthday;
 	//照片ID
-	private String photoId;
+	private String photoUrl;
 	//现居住地
 	private String liveAddress;
 	//爱好
@@ -90,7 +90,7 @@ public class EmployeeDO extends BaseBean {
 	 * 构造方法
 	 */
 	public EmployeeDO(){ }
-	public EmployeeDO(String employeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,String CreateEmployeeId,Date CreateTime,Date ModifyTime,Integer EmployeeSex,String Birthday,Long PhotoId,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
+	public EmployeeDO(String employeeId,String employeeNumber,String LoginName,String RealName,String Password,String PasswordSalt,String DeptmentId,String OrganId,String PositionId,String Email,String Mobile,Integer EmployeeState,String CreateEmployeeId,Date CreateTime,Date ModifyTime,Integer EmployeeSex,String Birthday,String  photoUrl,String LiveAddress,String EmployeeHobby,String Province,String City,String District,String Remar){
 		super();
 		this.employeeId = employeeId;
 		this.employeeNumber= employeeNumber;
@@ -109,7 +109,7 @@ public class EmployeeDO extends BaseBean {
 		this.modifyTime= modifyTime;
 		this.employeeSex= employeeSex;
 		this.birthday= birthday;
-		this.photoId= photoId;
+		this.photoUrl= photoUrl;
 		this.liveAddress= liveAddress;
 		this.employeeHobby= employeeHobby;
 		this.province= province;
@@ -347,14 +347,14 @@ public class EmployeeDO extends BaseBean {
 	/**
 	 * 设置：照片ID
 	 */
-	public void setPhotoId(String photoId) {
-		this.photoId = photoId;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 	/**
 	 * 获取：照片ID
 	 */
-	public String getPhotoId() {
-		return photoId;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 	/**
 	 * 设置：现居住地
@@ -493,7 +493,7 @@ public class EmployeeDO extends BaseBean {
 				", modifyTime='" + modifyTime + '\'' +
 				", employeeSex='" + employeeSex + '\'' +
 				", birthday='" + birthday + '\'' +
-				", photoId='" + photoId + '\'' +
+				", photoUrl='" + photoUrl + '\'' +
 				", liveAddress='" + liveAddress + '\'' +
 				", employeeHobby='" + employeeHobby + '\'' +
 				", province='" + province + '\'' +

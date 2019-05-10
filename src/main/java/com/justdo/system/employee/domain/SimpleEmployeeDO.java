@@ -26,12 +26,12 @@ public class SimpleEmployeeDO extends BaseBean {
 	//岗位ID
 	private String positionId;
 	//照片ID
-	private String photoId;
+	private String photoUrl;
 	/**
 	 * 构造方法
 	 */
 	public SimpleEmployeeDO(){ }
-	public SimpleEmployeeDO(String employeeId, String employeeNumber, String LoginName, String DeptmentId, String OrganId, String PositionId,String photoId){
+	public SimpleEmployeeDO(String employeeId, String employeeNumber, String LoginName, String DeptmentId, String OrganId, String PositionId,String photoUrl){
 		super();
 		this.employeeId = employeeId;
 		this.employeeNumber= employeeNumber;
@@ -39,7 +39,7 @@ public class SimpleEmployeeDO extends BaseBean {
 		this.deptmentId= deptmentId;
 		this.organId= organId;
 		this.positionId= positionId;
-		this.photoId=photoId;
+		this.photoUrl=photoUrl;
 	}
 	/**
 	 * 设置：主键ID
@@ -117,14 +117,14 @@ public class SimpleEmployeeDO extends BaseBean {
 	/**
 	 * 设置：照片ID
 	 */
-	public void setPhotoId(String photoId) {
-		this.photoId = photoId;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 	/**
 	 * 获取：照片ID
 	 */
-	public String getPhotoId() {
-		return photoId;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 	@Override
 	public String toString() {
@@ -135,7 +135,7 @@ public class SimpleEmployeeDO extends BaseBean {
 				", deptmentId='" + deptmentId + '\'' +
 				", organId='" + organId + '\'' +
 				", positionId='" + positionId + '\'' +
-				", photoId='" + photoId + '\'' +
+				", photoUrl='" + photoUrl + '\'' +
 				'}';
 	}
 

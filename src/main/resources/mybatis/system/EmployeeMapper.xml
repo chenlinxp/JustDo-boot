@@ -4,14 +4,14 @@
 <mapper namespace="com.justdo.system.employee.dao.EmployeeDao">
 
 	<select id="get" resultType="com.justdo.system.employee.domain.EmployeeDO">
-		select `EMPLOYEE_ID`, `EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_ID`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee where EMPLOYEE_ID = #{value}
+		select `EMPLOYEE_ID`, `EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_URL`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee where EMPLOYEE_ID = #{value}
 	</select>
 
 	<select id="getPasswordSalt" resultType="String">
 		select `PASSWORD_SALT`from sys_employee where LOGIN_NAME = #{value}
 	</select>
 	<select id="list" resultType="com.justdo.system.employee.domain.EmployeeDO">
-		select  `EMPLOYEE_ID`,`EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_ID`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee
+		select  `EMPLOYEE_ID`,`EMPLOYEE_NUMBER`,`LOGIN_NAME`,`REAL_NAME`,`PASSWORD`,`PASSWORD_SALT`,`DEPTMENT_ID`,`ORGAN_ID`,`POSITION_ID`,`EMAIL`,`MOBILE`,`EMPLOYEE_STATE`,`CREATE_EMPLOYEE_ID`,`CREATE_TIME`,`MODIFY_TIME`,`EMPLOYEE_SEX`,`BIRTHDAY`,`PHOTO_URL`,`LIVE_ADDRESS`,`EMPLOYEE_HOBBY`,`PROVINCE`,`CITY`,`DISTRICT`,`REMARK` from sys_employee
         <where>
 		  <if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID != #{employeeId} </if>
 		  <if test="employeeNumber != null and employeeNumber != ''"> and EMPLOYEE_NUMBER = #{employeeNumber} </if>
@@ -30,7 +30,7 @@
 		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		  <if test="employeeSex != null and employeeSex != ''"> and EMPLOYEE_SEX = #{employeeSex} </if>
 		  <if test="birthday != null and birthday != ''"> and BIRTHDAY = #{birthday} </if>
-		  <if test="photoId != null and photoId != ''"> and PHOTO_ID = #{photoId} </if>
+		  <if test="photoUrl != null and photoUrl != ''"> and PHOTO_URL = #{photoUrl} </if>
 		  <if test="liveAddress != null and liveAddress != ''"> and LIVE_ADDRESS = #{liveAddress} </if>
 		  <if test="employeeHobby != null and employeeHobby != ''"> and EMPLOYEE_HOBBY = #{employeeHobby} </if>
 		  <if test="province != null and province != ''"> and PROVINCE = #{province} </if>
@@ -70,7 +70,7 @@
 		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		  <if test="employeeSex != null and employeeSex != ''"> and EMPLOYEE_SEX = #{employeeSex} </if>
 		  <if test="birthday != null and birthday != ''"> and BIRTHDAY = #{birthday} </if>
-		  <if test="photoId != null and photoId != ''"> and PHOTO_ID = #{photoId} </if>
+		  <if test="photoUrl != null and photoUrl != ''"> and PHOTO_URL = #{photoUrl} </if>
 		  <if test="liveAddress != null and liveAddress != ''"> and LIVE_ADDRESS = #{liveAddress} </if>
 		  <if test="employeeHobby != null and employeeHobby != ''"> and EMPLOYEE_HOBBY = #{employeeHobby} </if>
 		  <if test="province != null and province != ''"> and PROVINCE = #{province} </if>
@@ -100,7 +100,7 @@
             `MODIFY_TIME`,
             `EMPLOYEE_SEX`,
             `BIRTHDAY`,
-            `PHOTO_ID`,
+            `PHOTO_URL`,
             `LIVE_ADDRESS`,
             `EMPLOYEE_HOBBY`,
             `PROVINCE`,
@@ -127,7 +127,7 @@
            #{modifyTime},
            #{employeeSex},
            #{birthday},
-           #{photoId},
+           #{photoUrl},
            #{liveAddress},
            #{employeeHobby},
            #{province},
@@ -156,7 +156,7 @@
 			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}, </if>
 			<if test="employeeSex != null">`EMPLOYEE_SEX` = #{employeeSex}, </if>
 			<if test="birthday != null">`BIRTHDAY` = #{birthday}, </if>
-			<if test="photoId != null">`PHOTO_ID` = #{photoId}, </if>
+			<if test="photoUrl != null">`PHOTO_Url` = #{photoUrl}, </if>
 			<if test="liveAddress != null">`LIVE_ADDRESS` = #{liveAddress}, </if>
 			<if test="employeeHobby != null">`EMPLOYEE_HOBBY` = #{employeeHobby}, </if>
 			<if test="province != null">`PROVINCE` = #{province}, </if>

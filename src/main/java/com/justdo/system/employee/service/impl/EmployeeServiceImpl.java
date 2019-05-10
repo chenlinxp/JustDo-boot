@@ -238,7 +238,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Map<String, Object> updatePersonalImg(MultipartFile file, String avatar_data, String employeeId) throws Exception {
 		String fileName = file.getOriginalFilename();
 		fileName = FileUtils.renameToUUID(fileName);
-		FileDO fileDO = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
+		//FileDO fileDO = new FileDO(FileType.fileType(fileName), "/files/" + fileName, new Date());
 		//获取图片后缀
 		String prefix = fileName.substring((fileName.lastIndexOf(".")+1));
 		String[] str=avatar_data.split(",");
@@ -259,25 +259,30 @@ public class EmployeeServiceImpl implements EmployeeService {
 			boolean flag = ImageIO.write(rotateImage, prefix, out);
 			//转换后存入数据库
 			byte[] b = out.toByteArray();
-
 			File filePath=new File(ResourceUtils.getURL("classpath:").getPath());
 			if(!filePath.exists()){
 				filePath=new File("");
 			}
-			File upload=new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
+			File upload = new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
 			FileUtils.uploadFile(b,upload, fileName);
 		} catch (Exception e) {
 			throw  new Exception("图片裁剪错误！！");
 		}
 		Map<String, Object> result = new HashMap<>();
-		if(fileService.save(fileDO)>0){
-			EmployeeDO employeeDO = new EmployeeDO();
-			employeeDO.setEmployeeId(employeeId);
-			employeeDO.setPhotoId(fileDO.getFileId());
-			if(employeeDao.update(employeeDO)>0){
-				result.put("url",fileDO.getFileUrl());
-			}
+		EmployeeDO employeeDO = new EmployeeDO();
+		employeeDO.setEmployeeId(employeeId);
+		employeeDO.setPhotoUrl("/files/" + fileName);
+		if(employeeDao.update(employeeDO)>0){
+				result.put("url",employeeDO.getPhotoUrl());
 		}
+//		if(fileService.save(fileDO)>0){
+//			EmployeeDO employeeDO = new EmployeeDO();
+//			employeeDO.setEmployeeId(employeeId);
+//			employeeDO.setPhotoId(fileDO.getFileId());
+//			if(employeeDao.update(employeeDO)>0){
+//				result.put("url",fileDO.getFileUrl());
+//			}
+//		}
 		return result;
 	}
 	

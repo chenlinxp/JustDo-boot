@@ -65,6 +65,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 		simpleEmployeeDO.setDeptmentId(employee.getDeptmentId());
 		simpleEmployeeDO.setOrganId(employee.getOrganId());
 		simpleEmployeeDO.setPositionId(employee.getPositionId());
+		simpleEmployeeDO.setPhotoUrl(employee.getPhotoUrl());
 		// 账号不存在
 		if (employee == null) {
 			throw new UnknownAccountException("账号或密码不正确");
@@ -78,6 +79,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 		if (employee.getEmployeeState() == 0) {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
+		employee = null;
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(simpleEmployeeDO, password, getName());
 		return info;
 	}

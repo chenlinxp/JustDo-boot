@@ -29,7 +29,7 @@ public class RedisManager {
 
     //timeout for jedis try to connect to redis server, not expire time! In milliseconds
     @Value("${spring.redis.timeout}")
-    private int timeout = 10000;
+    private int timeout = 0;
 
     @Value("${spring.redis.password}")
     private String password = "oxhide";
