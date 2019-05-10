@@ -56,6 +56,8 @@ public class RedisManager {
     @Value("${spring.redis.pool.testWhileIdle}")
     private boolean testWhileIdle = true;
 
+    @Value("${spring.redis.pool.timeBetweenEvictionRunsMillis}")
+    private int timeBetweenEvictionRunsMillis = 6000;
 
     private static JedisPool jedisPool = null;
 
@@ -78,7 +80,7 @@ public class RedisManager {
         poolConfig.setTestOnBorrow(testOnBorrow);
         poolConfig.setTestOnReturn(testOnReturn);
         poolConfig.setTestWhileIdle(testWhileIdle);
-
+        poolConfig.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
         if (jedisPool == null) {
             if (password != null && !"".equals(password)) {
                 jedisPool = new JedisPool(poolConfig, host, port, timeout, password);
