@@ -1,6 +1,13 @@
 var preUrl = "/${pathName}/${classnametolower}"
 $(function() {
 	validateRule();
+#foreach($column in $columns)
+#if($column.displayType == "006")
+            laydate({
+                elem : '#$column.attrname'
+            });
+#end
+#end
 });
 
 $.validator.setDefaults({
@@ -43,7 +50,7 @@ function validateRule() {
 #end
 #end
        },
-    messages : {
+        messages : {
 #foreach ($column in $columns)
 	              $column.attrname : {required : icon + "请输入$column.comments"}
 #if($velocityCount != $columns.size()),

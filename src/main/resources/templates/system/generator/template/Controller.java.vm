@@ -92,8 +92,13 @@ public class ${className}Controller {
 	@GetMapping("/add")
 	@RequiresPermissions("${pathName}:${classnametolower}:add")
 	@ApiOperation(value="返回${comments}增加页面", notes="返回${comments}增加页面")
-	String add(){
-	    return preUrl + "/add";
+	String add(Model model){
+#foreach($column in $columns)
+#if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
+				model.addAttribute("${column.dictCode}",dictContentService.listDictByCode("${column.dictCode}"));
+#end
+#end
+		return preUrl + "/add";
 	}
 
 
@@ -126,6 +131,11 @@ public class ${className}Controller {
 	String edit(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname},Model model){
 		${className}DO ${classname} = ${classname}Service.get(${pk.attrname});
 		model.addAttribute("${classname}", ${classname});
+#foreach($column in $columns)
+#if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
+				model.addAttribute("${column.dictCode}",dictContentService.listDictByCode("${column.dictCode}"));
+#end
+#end
 	    return preUrl + "/edit";
 	}
 	
