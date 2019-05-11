@@ -108,6 +108,29 @@ function load() {
                         }
                     },
                     {
+                        field: 'dictCode',
+                        title: '字典编码',
+                        editable: {
+                            type: 'select',
+                            title: '字典索引编码',
+                            source: function () {
+                                var result = [];
+                                $.ajax({
+                                    url: '/system/dict/dicttype',
+                                    async: false,
+                                    type: "get",
+                                    data: {},
+                                    success: function (data, status) {
+                                        $.each(data, function (key, value) {
+                                            result.push({ value: value.dcode, text: value.dname });
+                                        });
+                                    }
+                                });
+                                return result;
+                            }
+                        }
+                    },
+                    {
                         field: 'orderNum',
                         title: '显示序号',
                         editable: {
@@ -143,13 +166,13 @@ function code() {
    var allTableData2 = [];
     for(var i = 0; i < allTableData.length; i++) {
         var a = allTableData[i];
-        console.log(a);
+        //console.log(a);
         delete a["0"];
         allTableData2.push(a);
     }
 
     var tablename = $("#tablename").val()
-    console.log(allTableData);
+    //console.log(allTableData);
     if (allTableData.length == 0) {
         layer.msg("请在数据库增加列");
         return;

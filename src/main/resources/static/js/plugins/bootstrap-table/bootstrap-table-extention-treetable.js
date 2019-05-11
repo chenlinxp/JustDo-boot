@@ -19,7 +19,7 @@ $.extend($.fn.treegrid.defaults, {
         // 是否有radio或checkbox
         var hasSelectItem = false;
         var target = $(this);
-        console.log(target);
+       // console.log(target);
 
         // 在外层包装一下div，样式用的bootstrap-table的 有问题注释掉了
         //var _main_div = $("<div class='fixed-table-container'></div>");

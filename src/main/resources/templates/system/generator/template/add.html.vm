@@ -11,17 +11,81 @@
 						<form class="form-horizontal m-t" id="signupForm">
 #foreach($column in $columns)
 #if($column.columnName != $pk.columnName)
+#if($column.displayType == "001")
 		                    <div class="form-group">
-								<label class="col-sm-3 control-label">${column.comments}:</label>
-								<div class="col-sm-8">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
 									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text">
 								</div>
 							</div>
 #end
+#if($column.displayType == "002")
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-10">
+									<textarea id="${column.attrname}" name="${column.attrname}" class="form-control"></textarea>
+								</div>
+							</div>
+#end
+#if($column.displayType == "003")
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
+										<select data-placeholder="--选择${column.comments}--" id="${column.attrname}" name="${column.attrname}"
+										class="form-control chosen-select" tabindex="2" required>
+										<option value="" selected="selected">--选择类别--</option>
+										<option th:each="${column.attrname}:${ ${column.dictCode}}" th:value="${ ${column.attrname}.dccode}" th:text="${ ${column.attrname}.dcvalue}"></option>
+										</select>
+    							</div>
+							</div>
+#end
+#if($column.displayType == "004")
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
+									<label th:each="${column.attrname}:${ ${column.dictCode}}" class="checkbox-inline">
+										<input name="${column.attrname}" type="checkbox" th:value="${ ${column.attrname}.dccode}" th:text="$ {${column.attrname}.dcvalue}"
+									</label>
+									</div>
+							</div>
+#end
+#if($column.displayType == "005")
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
+									<label th:each="${column.attrname}:${ ${column.dictCode}}" class="radio-inline">
+										<input name="${column.attrname}" type="radio" th:value="${ ${column.attrname}.dccode}" th:text="${ ${column.attrname}.dcvalue}"
+									</label>
+								</div>
+							</div>
+#end
+#if($column.displayType == "006")
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
+									<input type="text" class="laydate-icon layer-date form-control" id="${column.attrname}" name="${column.attrname}"  placeholder="${column.comments}"
+										   onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" />
+								</div>
+							</div>
+#end
+#if($column.displayType == "008")
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
+									<input id="${column.attrname}" name="${column.attrname}" type="hidden" value="0">
+                                    <input id="deptpname" name="deptpname" class="form-control" type="text"
+                                           style="cursor: pointer;" onclick="openDept()" readonly="readonly" placeholder="请选择部门">
+								</div>
+							</div>
+#end
+#if($column.displayType == "010")
+                <input id="${column.attrname}" name="${column.attrname}" type="hidden">
+#end
+#end
 #end
 							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
-									<button type="submit" class="btn btn-success"><i class="fa fa-ok" aria-hidden="true"></i>保存</button>
+									<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
 								</div>
 							</div>
 						</form>

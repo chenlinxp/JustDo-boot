@@ -85,6 +85,7 @@ public class GeneratorCodeUtils {
                         columnDO.setSearchType(obj.getString("searchType"));
                         columnDO.setOrderNum(Integer.parseInt(obj.getString("orderNum")));
                         columnDO.setComments(obj.getString("columnComment"));
+                        columnDO.setDictCode(obj.getString("columnComment"));
                     }
                 }
             }

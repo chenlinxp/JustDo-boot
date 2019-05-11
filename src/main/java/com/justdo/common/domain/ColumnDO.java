@@ -35,6 +35,8 @@ public class ColumnDO {
 	private String searchType;
 	//显示顺序
 	private Integer orderNum;
+	//字典编码
+	private String dictCode;
 	public String getColumnName() {
 		return columnName;
 	}
@@ -128,6 +130,14 @@ public class ColumnDO {
 
 	public void setOrderNum(Integer orderNum) {
 		this.orderNum = orderNum;
+	}
+
+	public String getDictCode() {
+		return dictCode;
+	}
+
+	public void setDictCode(String dictCode) {
+		this.dictCode = dictCode;
 	}
 
 	@Override

@@ -97,7 +97,7 @@
 		                    <div class="form-group">
 								<label class="col-sm-2 control-label">性别:</label>
 									<div class="col-sm-4">
-										<label class="radio-inline" th:each="sex:${sexList}">
+										<label class="radio-inline" th:each="sex:${ sexList}">
 											<input  type="radio" name="employeeSex" th:value="${sex.dccode}" th:text="${sex.dcvalue}"/>
 										</label>
 									</div>

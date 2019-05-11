@@ -28,23 +28,23 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="file-manager">
-                        <button type="button" class="btn  btn-success" id="test1">
+                        <button type="button" class="btn  btn-success" id="uploadbtn">
                             <i class="fa fa-cloud"></i>上传文件
                         </button>
                         <div class="hr-line-dashed"></div>
                         <ul class="folder-list" style="padding: 0">
-                            <li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':type === ''}"
+                            <li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':fileType === ''}"
                                    v-on:click="changeType('')"><i class="fa fa-folder"></i>所有文件</a></li>
-                            <li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':type === 0}"
+                            <li><a href="javascript:void(0)" class="file-control hactive" :class="{'aactive':fileType === 0}"
                                    v-on:click="changeType(0)"><i class="fa fa-folder"></i>图片</a></li>
-                            <li><a href="javascript:void(0)" :class="{'aactive':type === 1}"
+                            <li><a href="javascript:void(0)" :class="{'aactive':fileType === 1}"
                                    v-on:click="changeType(1)" class="file-control hactive"><i class="fa fa-folder"></i>文档</a>
                             </li>
-                            <li><a href="javascript:void(0)" v-on:click="changeType(2)" :class="{'aactive':type === 2}"
+                            <li><a href="javascript:void(0)" v-on:click="changeType(2)" :class="{'aactive':fileType === 2}"
                                    class="file-control hactive"><i class="fa fa-folder"></i>视频</a></li>
-                            <li><a href="javascript:void(0)" v-on:click="changeType(3)" :class="{'aactive':type === 3}"
+                            <li><a href="javascript:void(0)" v-on:click="changeType(3)" :class="{'aactive':fileType === 3}"
                                    class="file-control hactive"><i class="fa fa-folder"></i>音乐</a></li>
-                            <li><a href="javascript:void(0)" v-on:click="changeType(99)" :class="{'aactive':type === 99}"
+                            <li><a href="javascript:void(0)" v-on:click="changeType(99)" :class="{'aactive':fileType === 99}"
                                    class="file-control hactive"><i class="fa fa-folder"></i>其他</a></li>
                         </ul>
                     </div>
@@ -114,7 +114,7 @@
             offset: 0,
             total: 0,
             file: '',
-            type: '',
+            fileType: '',
             rows: '',
         },
         methods: {
@@ -122,7 +122,7 @@
                 $.getJSON("/system/file/list", {
                     limit: this.limit,
                     offset: this.offset,
-                    type: this.type
+                    fileType: this.fileType
                 }, function (r) {
                     app.total = r.total;
                     app.rows = r.rows;
@@ -138,8 +138,8 @@
                     alignment: 'center',
                     size: 'large',
                     shouldShowPage: true,
-                    itemTexts: function (type, page, current) { //修改显示文字
-                        switch (type) {
+                    itemTexts: function (fileType, page, current) { //修改显示文字
+                        switch (fileType) {
                             case "first":
                                 return "首页";
                             case "prev":
@@ -152,7 +152,7 @@
                                 return page;
                         }
                     },
-                    onPageClicked: function (event, originalEvent, type, page) {
+                    onPageClicked: function (event, originalEvent, fileType, page) {
                         app.offset = (page - 1) * 12;
                         app.getData();
                     }
@@ -182,7 +182,7 @@
                 })
             },
             changeType: function (i) {
-                this.type = i;
+                this.fileType = i;
                 this.offset = 0;
                 this.getData();
             }
@@ -203,7 +203,7 @@
         var upload = layui.upload;
         //执行实例
         var uploadInst = upload.render({
-            elem: '#test1', //绑定元素
+            elem: '#uploadbtn', //绑定元素
             url: '/system/file/upload', //上传接口
             size: 1000,
             accept: 'file',
@@ -218,7 +218,7 @@
     });
 
     // function changeType(i) {
-    //     app.type = i;
+    //     app.fileType = i;
     //     app.offset = 0;
     //     app.getData();
     // }
