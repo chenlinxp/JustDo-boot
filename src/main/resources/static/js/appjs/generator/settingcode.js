@@ -59,14 +59,33 @@ function load() {
                     },
                     {
                         field: 'dataType',
-                        title: '数据类型'
+                        title: '数据类型',
+                        editable: {
+                            type: 'select',
+                            title: '数据类型',
+                            source: function () {
+                                var result = [];
+                                $.ajax({
+                                    url: '/system/dict/list/dataTypeCode',
+                                    async: false,
+                                    type: "get",
+                                    data: {},
+                                    success: function (data, status) {
+                                        $.each(data, function (key, value) {
+                                            result.push({ value: value.dccode, text: value.dcvalue });
+                                        });
+                                    }
+                                });
+                                return result;
+                            }
+                        }
                     },
                     {
                         field: 'displayType',
                         title: '显示方式',
                         editable: {
                             type: 'select',
-                            title: '数据类型',
+                            title: '显示方式',
                             source: function () {
                                 var result = [];
                                 $.ajax({
@@ -89,7 +108,7 @@ function load() {
                         title: '查询类型',
                         editable: {
                             type: 'select',
-                            title: '数据类型',
+                            title: '查询类型',
                             source: function () {
                                 var result = [];
                                 $.ajax({

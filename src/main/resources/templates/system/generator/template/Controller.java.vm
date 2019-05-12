@@ -95,7 +95,7 @@ public class ${className}Controller {
 	String add(Model model){
 #foreach($column in $columns)
 #if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
-				model.addAttribute("${column.dictCode}",dictContentService.listDictByCode("${column.dictCode}"));
+		model.addAttribute("${column.dictCode}",dictContentService.listDictByCode("${column.dictCode}"));
 #end
 #end
 		return preUrl + "/add";
@@ -133,7 +133,7 @@ public class ${className}Controller {
 		model.addAttribute("${classname}", ${classname});
 #foreach($column in $columns)
 #if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
-				model.addAttribute("${column.dictCode}",dictContentService.listDictByCode("${column.dictCode}"));
+		model.addAttribute("${column.dictCode}",dictContentService.listDictByCode("${column.dictCode}"));
 #end
 #end
 	    return preUrl + "/edit";

@@ -18,16 +18,14 @@
 									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text">
 								</div>
 							</div>
-#end
-#if($column.displayType == "002")
+#elseif($column.displayType == "002")
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-10">
 									<textarea id="${column.attrname}" name="${column.attrname}" class="form-control"></textarea>
 								</div>
 							</div>
-#end
-#if($column.displayType == "003")
+#elseif($column.displayType == "003")
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
@@ -38,8 +36,7 @@
 										</select>
     							</div>
 							</div>
-#end
-#if($column.displayType == "004")
+#elseif($column.displayType == "004")
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
@@ -48,8 +45,7 @@
 									</label>
 									</div>
 							</div>
-#end
-#if($column.displayType == "005")
+#elseif($column.displayType == "005")
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
@@ -58,8 +54,7 @@
 									</label>
 								</div>
 							</div>
-#end
-#if($column.displayType == "006")
+#elseif($column.displayType == "006")
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
@@ -67,8 +62,7 @@
 										   onclick="laydate({istime: true, format: 'YYYY-MM-DD'})" style="background-color: #fff;" />
 								</div>
 							</div>
-#end
-#if($column.displayType == "008")
+#elseif($column.displayType == "008")
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
@@ -77,9 +71,15 @@
                                            style="cursor: pointer;" onclick="openDept()" readonly="readonly" placeholder="请选择部门">
 								</div>
 							</div>
-#end
-#if($column.displayType == "010")
-                <input id="${column.attrname}" name="${column.attrname}" type="hidden">
+#elseif($column.displayType == "010")
+                            <input id="${column.attrname}" name="${column.attrname}" type="hidden">
+#else
+							<div class="form-group">
+								<label class="col-sm-2 control-label">${column.comments}:</label>
+								<div class="col-sm-4">
+									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text">
+								</div>
+							</div>
 #end
 #end
 #end

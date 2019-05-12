@@ -85,16 +85,19 @@ public class GeneratorCodeUtils {
                         columnDO.setSearchType(obj.getString("searchType"));
                         columnDO.setOrderNum(Integer.parseInt(obj.getString("orderNum")));
                         columnDO.setComments(obj.getString("columnComment"));
-                        columnDO.setDictCode(obj.getString("columnComment"));
+                        if(StringUtils.isNotEmpty(obj.getString("dictCode"))) {
+                            columnDO.setDictCode(obj.getString("dictCode"));
+                        }
                     }
                 }
             }
+           
             String columnName = column.get("columnName").toString();
             String columnnametolower = columnName.toLowerCase();
             columnDO.setColumnName(columnName);
             columnDO.setColumnnametolower(columnnametolower);
             columnDO.setDataType(column.get("dataType"));
-            columnDO.setComments(column.get("columnComment"));
+            //columnDO.setComments(column.get("columnComment"));
             columnDO.setExtra(column.get("extra"));//'auto_increment'
 
             //列名转换成Java属性名

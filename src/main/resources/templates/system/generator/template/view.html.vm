@@ -11,12 +11,16 @@
 						<input id="${pk.attrname}" name="${pk.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden">
 #foreach($column in $columns)
 #if($column.columnName != $pk.columnName)
+#if($column.displayType != "010")
+                       <input id="${column.attrname}" name="${column.attrname}" type="hidden">
+#else
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">${column.comments}:</label>
 								<div class="col-sm-9">
                                     <span th:text="${${classname}.${column.attrname}}"></span>
 								</div>
 							</div>
+#end
 #end
 #end
 					</div>
