@@ -4,10 +4,10 @@
 <mapper namespace="com.justdo.system.regexp.dao.RegexpDao">
 
 	<select id="get" resultType="com.justdo.system.regexp.domain.RegexpDO">
-		select `RID`,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID` from sys_regexp where RID = #{value}
+		select `RID`,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID`,`CREATE_TIME`,`MODIFY_TIME` from sys_regexp where RID = #{value}
 	</select>
 	<select id="list" resultType="com.justdo.system.regexp.domain.RegexpDO">
-		select RID,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID` from SYS_REGEXP
+		select RID,`RNAME`,`RCODE`,`RCONTENT`,`REMARK`,`RVALID`,`CREATE_TIME`,`MODIFY_TIME` from SYS_REGEXP
 		<where>
 		<if test="rid != null and rid != ''"> and RID = #{rid} </if>
 		<if test="rname != null and rname != ''"> and RNAME like concat('%',#{rname},'%') </if>
@@ -15,6 +15,8 @@
 		<if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
 		<if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		<if test="rvalid != null and rvalid != ''"> and RVALID = #{rvalid} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 	    </where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
@@ -37,6 +39,8 @@
 		  		  <if test="rcontent != null and rcontent != ''"> and RCONTENT = #{rcontent} </if>
 		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		  		  <if test="rvalid != null and rvalid != ''"> and RVALID = #{rvalid} </if>
+			 <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			 <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		  		</where>
 	</select>
 	 
@@ -51,7 +55,9 @@
 			`RCODE`, 
 			`RCONTENT`, 
 			`REMARK`,
-			`RVALID`
+			`RVALID`,
+		    `CREATE_TIME`,
+		    `MODIFY_TIME`
 		)
 		values
 		(
@@ -60,7 +66,9 @@
 			#{rcode}, 
 			#{rcontent}, 
 			#{remark},
-			#{rvalid}
+			#{rvalid},
+			#{createTime},
+			#{modifyTime}
 		)
 	</insert>
 	 
@@ -71,7 +79,9 @@
 			<if test="rcode != null">`RCODE` = #{rcode}, </if>
 			<if test="rcontent != null">`RCONTENT` = #{rcontent}, </if>
 			<if test="remark != null">`REMARK` = #{remark}, </if>
-			<if test="rvalid != null">`RVALID` = #{rvalid}</if>
+			<if test="rvalid != null">`RVALID` = #{rvalid},</if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime} </if>
 		</set>
 		where RID = #{rid}
 	</update>

@@ -1,5 +1,6 @@
 package com.justdo.system.dicttype.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
 
 /**
@@ -19,6 +20,13 @@ public class DictTypeDO extends BaseBean {
 	private String dcode;
 
 	private String remark;
+
+	//创建时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private String createTime;
+	//修改时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private String modifyTime;
 
 	public String getDid() {
 		return did;
@@ -52,7 +60,24 @@ public class DictTypeDO extends BaseBean {
 		this.remark = remark;
 	}
 
+	public String getModifyTime() {
+		return modifyTime;
+	}
 
-
+	public void setModifyTime(String modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
+	}
 
 }

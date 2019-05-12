@@ -1,5 +1,6 @@
 package com.justdo.system.regexp.controller;
 
+import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
@@ -67,6 +68,9 @@ public class RegexpController {
 	@PostMapping("/save")
 	@RequiresPermissions("system:regexp:add")
 	public R save( RegexpDO regexp){
+		String nowDateString = DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss");
+		regexp.setCreateTime(nowDateString);
+		regexp.setModifyTime(nowDateString);
 		if(regexpService.save(regexp)>0){
 			return R.ok();
 		}
@@ -79,6 +83,8 @@ public class RegexpController {
 	@PostMapping("/update")
 	@RequiresPermissions("system:regexp:edit")
 	public R update( RegexpDO regexp){
+		String nowDateString = DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss");
+		regexp.setModifyTime(nowDateString);
 		regexpService.update(regexp);
 		return R.ok();
 	}

@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.system.dict.dao.DictContentDao">
 
 	<select id="get" resultType="com.justdo.system.dict.domain.DictContentDO">
-		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from SYS_DICTIONARY_CONTENT where DCID = #{value}
+		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID`,`CREATE_TIME`,`MODIFY_TIME` from SYS_DICTIONARY_CONTENT where DCID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.dict.domain.DictContentDO">
-		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID` from SYS_DICTIONARY_CONTENT
+		select `DCID`,`DID`,`DCVALUE`,`DCCODE`,`REMARK`,`ORDERNO`,`DCVALID`,`CREATE_TIME`,`MODIFY_TIME` from SYS_DICTIONARY_CONTENT
                <where>
 		  		  <if test="dcid != null and dcid != ''"> and DCID != #{dcid} </if>
 		  		  <if test="did != null and did != ''"> and DID = #{did} </if>
@@ -17,6 +17,8 @@
 		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		  		  <if test="orderno != null and orderno != ''"> and ORDERNO = #{orderno} </if>
 		  		  <if test="dcvalid != null and dcvalid != ''"> and DCVALID = #{dcvalid} </if>
+				   <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+				   <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
@@ -41,6 +43,8 @@
 		  		  <if test="remark != null and remark != ''"> and REMARK = #{remark} </if>
 		  		  <if test="orderno != null and orderno != ''"> and ORDERNO = #{orderno} </if>
 		  		  <if test="dcvalid != null and dcvalid != ''"> and DCVALID = #{dcvalid} </if>
+			 <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			 <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
 		  		</where>
 	</select>
 	 
@@ -56,7 +60,9 @@
 			`DCCODE`, 
 			`REMARK`, 
 			`ORDERNO`, 
-			`DCVALID`
+			`DCVALID`,
+		    `CREATE_TIME`,
+		    `MODIFY_TIME`
 		)
 		values
 		(
@@ -66,7 +72,9 @@
 			#{dccode}, 
 			#{remark}, 
 			#{orderno}, 
-			#{dcvalid}
+			#{dcvalid},
+			#{createTime},
+			#{modifyTime}
 		)
 	</insert>
 	 
@@ -78,7 +86,9 @@
 			<if test="dccode != null">`DCCODE` = #{dccode}, </if>
 			<if test="remark != null">`REMARK` = #{remark}, </if>
 			<if test="orderno != null">`ORDERNO` = #{orderno}, </if>
-			<if test="dcvalid != null">`DCVALID` = #{dcvalid}</if>
+			<if test="dcvalid != null">`DCVALID` = #{dcvalid},</if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime} </if>
 		</set>
 		where DCID = #{dcid}
 	</update>

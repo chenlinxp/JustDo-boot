@@ -3,8 +3,6 @@ package com.justdo.system.operationlog.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
 
-import java.util.Date;
-
 
 /**
  * 操作日志
@@ -31,7 +29,7 @@ public class OperationLogDO extends BaseBean {
 
 	private String ip;
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date createTime;
+	private String createTime;
 
 	public String getOperationLogId() {
 		return operationLogId;
@@ -97,11 +95,11 @@ public class OperationLogDO extends BaseBean {
 		this.ip = ip == null ? null : ip.trim();
 	}
 
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 

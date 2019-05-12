@@ -1,5 +1,6 @@
 package com.justdo.system.regexp.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
 
 
@@ -26,7 +27,12 @@ public class RegexpDO extends BaseBean {
 	private String remark;
 	//是否有效
 	private Integer rvalid;
-
+	//创建时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private String createTime;
+	//修改时间
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private String modifyTime;
 	/**
 	 * 设置：主键
 	 */
@@ -98,5 +104,27 @@ public class RegexpDO extends BaseBean {
 	 */
 	public Integer getRvalid() {
 		return rvalid;
+	}
+
+
+	public String getModifyTime() {
+		return modifyTime;
+	}
+
+	public void setModifyTime(String modifyTime) {
+		this.modifyTime = modifyTime;
+	}
+
+	/**
+	 * 设置：创建时间
+	 */
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	/**
+	 * 获取：创建时间
+	 */
+	public String getCreateTime() {
+		return createTime;
 	}
 }

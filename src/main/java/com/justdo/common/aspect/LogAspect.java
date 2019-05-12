@@ -1,6 +1,7 @@
 package com.justdo.common.aspect;
 
 import com.justdo.common.annotation.Log;
+import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.HttpContextUtils;
 import com.justdo.common.utils.IPUtils;
 import com.justdo.common.utils.ShiroUtils;
@@ -20,7 +21,6 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Date;
 
 /**
  * 记录自定义@Log注解的日志
@@ -101,8 +101,7 @@ public class LogAspect {
         logger.info("当前用户名: " + operationLog.getUserName());
         operationLog.setTime((int) time);
         // 系统当前时间
-        Date date = new Date();
-        operationLog.setCreateTime(date);
+        operationLog.setCreateTime(DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss"));
         // 保存系统日志
         operationLogService.save(operationLog);
     }

@@ -98,6 +98,16 @@ function load() {
 								{
 									field : 'remark',
 									title : '备注信息' 
+								},
+								{
+									field : 'createTime',
+									title : '创建时间',
+									width : '150px'
+								},
+								{
+									field : 'modifyTime',
+									title : '修改时间',
+									width : '150px'
 								}]
 					});
 }

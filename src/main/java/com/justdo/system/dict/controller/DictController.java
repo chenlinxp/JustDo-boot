@@ -3,6 +3,7 @@ package com.justdo.system.dict.controller;
 
 import com.justdo.common.annotation.Log;
 import com.justdo.common.controller.BaseController;
+import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
@@ -83,6 +84,9 @@ public class DictController extends BaseController {
 			map.put("did",dictContent.getDid());
 			List<DictContentDO> dictContentList = dictContentService.list(map);
 	    if(dictContentList.size()==0){
+		    String nowDateString = DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss");
+		    dictContent.setCreateTime(nowDateString);
+		    dictContent.setModifyTime(nowDateString);
 			if (dictContentService.save(dictContent) > 0) {
 				return R.ok();
 			}else {
@@ -122,10 +126,13 @@ public class DictController extends BaseController {
 		map.put("dccode",dictContent.getDccode());
 		map.put("did",dictContent.getDid());
 
+
 		List<DictContentDO> dictContentList = dictContentService.list(map);
 		if(dictContentList.size()>=1){
 			return R.error("此字典编码重复，请重新输入！");
 		}else {
+			String nowDateString = DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss");
+			dictContent.setModifyTime(nowDateString);
 			if (dictContentService.update(dictContent) > 0) {
 				return R.ok();
 			}else {
@@ -206,6 +213,9 @@ public class DictController extends BaseController {
 		map.put("dcode",dicttype.getDcode());
 		List<DictTypeDO> dictTypeDOList = dictTypeService.list(map);
 		if(dictTypeDOList.size()==0){
+			String nowDateString = DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss");
+			dicttype.setCreateTime(nowDateString);
+			dicttype.setModifyTime(nowDateString);
 		if (dictTypeService.save(dicttype) > 0) {
 			return R.ok();
 			}else{
@@ -243,6 +253,8 @@ public class DictController extends BaseController {
 			return R.error("此字典数据值已存在，请重新输入！");
 		}
 		else{
+			String nowDateString = DateUtils.formatTimeNow("yyyy-MM-dd HH:mm:ss");
+			dicttype.setModifyTime(nowDateString);
 			if (dictTypeService.update(dicttype) > 0) {
 				return R.ok();
 			}else{
