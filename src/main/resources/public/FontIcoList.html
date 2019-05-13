@@ -929,7 +929,7 @@
     var index = parent.layer.getFrameIndex(window.name);
     //给父页面传值
     $('.ico-list i').on('click', function(){
-        parent.$('#icon').val($(this).attr('class'));
+        parent.$('#resourceIcon').val($(this).attr('class'));
         //parent.layer.tips('Look here', '#parentIframe', {time: 5000});
         parent.layer.close(index);
     });

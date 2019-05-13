@@ -1,6 +1,18 @@
 var preUrl = "/system/resource"
 $(function() {
 	validateRule();
+    //打开图标列表
+    $("#ico-btn").click(function(){
+        layer.open({
+            type: 2,
+            title:'图标列表',
+            content: '/FontIcoList.html',
+            area: ['480px', '90%'],
+            success: function(layero, index){
+                //var body = layer.getChildFrame('.ico-list', index);
+            }
+        });
+    });
 	var icon = "<i class='fa fa-times-circle'></i> ";
     var a = $("input[name='resourceType']:checked").val();
     if(a == "0"){
