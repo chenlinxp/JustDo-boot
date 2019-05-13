@@ -1,5 +1,6 @@
 justdo:
   uploadPath: resource/uploaded_files/
+  logfilesPath: applog/
 logging:
   level:
     root: INFO

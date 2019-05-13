@@ -1,0 +1,5 @@
+
+
+function DownLoad() {
+    $('#signupForm').submit();
+}
