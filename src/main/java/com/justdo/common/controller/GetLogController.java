@@ -47,32 +47,44 @@ public class GetLogController {
 
 	/**
 	 * 下载日志文件
-	 * @param filename
+	 * @param fileName
 	 * @return
 	 * @throws IOException
 	 */
 	@Log("下载日志文件")
 	@PostMapping("/getlog")
 	@RequiresPermissions("system:logfiles")
-	ResponseEntity<byte[]> getlogfiles(String filename) throws IOException {
+	ResponseEntity<byte[]> getlogfiles(String fileName) throws IOException {
 
 		String 	downloadFilePath = justdoConfig.getLogfilesPath();
 
-			if(StringUtils.isEmpty(filename)) {
-				filename = DateUtils.formatTimeNow("yyyy-MM-dd")+".log";
+			if(StringUtils.isEmpty(fileName)) {
+				fileName = DateUtils.formatTimeNow("yyyy-MM-dd")+".log";
 			}
 
-		File file = new File(downloadFilePath+File.separator+DateUtils.formatTimeNow("yyyy-MM-dd")+File.separator+filename);
+		File file = new File(downloadFilePath+File.separator+DateUtils.formatTimeNow("yyyy-MM-dd")+File.separator+fileName);
 
-		HttpHeaders headers = new HttpHeaders();//http澶翠俊鎭�
-
-		String downloadFileName = new String(filename.getBytes("UTF-8"),"iso-8859-1");
-
+		HttpHeaders headers = new HttpHeaders();
+		String downloadFileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");
 		headers.setContentDispositionFormData("attachment", downloadFileName);
-
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 
-		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),headers, HttpStatus.CREATED);
+			if(file.exists()) {
+
+				headers.setContentDispositionFormData("attachment", downloadFileName);
+
+				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+
+				return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
+			}
+			else{
+
+				fileName = DateUtils.formatTimeNow("yyyy-MM-dd")+".log";
+
+				File file2 = new File(downloadFilePath+File.separator+DateUtils.formatTimeNow("yyyy-MM-dd")+File.separator+fileName);
+
+				return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file2),headers,HttpStatus.CREATED);
+			}
 	}
 }
 
