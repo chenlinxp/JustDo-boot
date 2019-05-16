@@ -1,7 +1,7 @@
 # JustDo-boot
 是高效率，低封装，面向学习型，面向微服的**开源**Java EE开发框架。
 
-是在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis为数据访问层，ApacheShiro为权限授权层，Ehcahe对常用数据进行缓存。
+是在SpringBoot基础上搭建的一个Java基础开发平台，MyBatis为数据访问层，Apache Shiro为权限授权层，redis对常用数据进行缓存。
 
 主要定位于后台管理系统，内置后台管理系统的基础功能和高效的**代码生成**工具，
 包括：系统权限组件、数据权限组件、数据字典组件、核心工具组件、视图操作组件、工作流组件、代码生成等。
@@ -27,7 +27,7 @@
 6.	角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。
 7.	字典管理：对系统中经常使用的一些较为固定的数据进行维护，如：是否、男女、类别、级别等。
 8.	操作日志：系统正常操作日志记录和查询。
-9.      异常日志：系统异常操作日志记录和查询，记录修复状态。
+9.  异常日志：系统异常操作日志记录和查询，记录修复状态。
 10.	连接池监视：监视当期系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
 11.	工作流引擎：实现业务工单流转、在线流程设计器。
 
@@ -36,14 +36,16 @@
 
 1、后端
 
-* 核心框架：Spring Boot
-* 安全框架：Apache Shiro 
-* 模板引擎：Thymeleaf
-* 持久层框架：MyBatis
-* 数据库连接池：Alibaba Druid 
-* 缓存框架：Redis
+* 核心框架：Spring Boot 1.5.9
+* 安全框架：Apache Shiro 1.3.2
+* 模板引擎：Thymeleaf 1.2.1
+* 持久层框架：MyBatis 3.4.4
+* 数据库连接池：Alibaba Druid  1.0.28
+* 缓存框架：Redis 2.9.0
 * 日志管理：SLF4J 
-* 工具类：Apache Commons、Jackson 
+* 公共工具类：Apache Commons
+* JSON工具类：Fastjson 1.2.31
+* REST API管理： swagger2  2.6.1
 
 2、前端
 
@@ -58,7 +60,7 @@
 
 * 服务器中间件：SpringBoot内置
 * 数据库支持：目前仅提供MySql数据库的支持，但不限于数据库
-* 开发环境：Java、Eclipse Java EE 、Maven 、Git
+* 开发环境：Java1.8、Eclipse(IDEA 2017) Java EE 、Maven 、Git
 
 ## 安全考虑
 
