@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.freestyle.common.db.mybatis.CommonMapper">
+	<sql id="inqOrder">
+		${orderLimit1}
+	</sql>
+	<sql id="inqWhere">
+		<where>
+			<foreach item="value" index="key" collection="conditions.entrySet()" separator=" and ">
+				<choose>
+					<when test="value.compare.toLowerCase() == 'between'">
+						${key} ${value.compare} #{value.vFrom} and #{value.vTo}
+					</when>
+					<when test="value.compare.toLowerCase() == 'like'">
+						${key} ${value.compare} '%${value.vFrom}%'
+					</when>
+					<when test="value.compare.toLowerCase() == 'in'">
+						${key} =
+						<foreach item="item" collection="value.toList()" open="any(array["  separator=","  close="])">
+							#{item}
+						</foreach>
+					</when>
+					<otherwise>
+						${key} ${value.compare} #{value.vFrom}
+					</otherwise>
+				</choose>
+			</foreach>
+		</where>
+
+	</sql>
+	<select id="getTableRecordTotal" resultType="long">
+		select count(*) as cc from ${extObj}
+		<include refid="inqWhere" />
+	</select>
+</mapper>
+

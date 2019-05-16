@@ -1,18 +1,14 @@
 package com.justdo.common.utils;
 
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
 import com.justdo.common.exception.BaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -32,14 +28,31 @@ public class DateUtils {
      */
     public final static String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
+//    public static String format(Date date) {
+//
+//        return format(date, DATE_PATTERN);
+//    }
+
+    private static ThreadLocal<DateFormat> threadLocal = new ThreadLocal<DateFormat>() {
+        @Override
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat(DATE_TIME_PATTERN);
+        }
+    };
+
+    public static Date parse(String dateStr) throws ParseException {
+        return threadLocal.get().parse(dateStr);
+    }
+
     public static String format(Date date) {
-        return format(date, DATE_PATTERN);
+        return threadLocal.get().format(date);
     }
 
     public static String format(Date date, String pattern) {
         if (date != null) {
             SimpleDateFormat df = new SimpleDateFormat(pattern);
             return df.format(date);
+
         }
         return null;
     }
@@ -137,7 +150,7 @@ public class DateUtils {
      * @author lijiaji
      * @create time: 2007-3-2 下午04:04:15
      * @version 1.0
-     * @param Date 被加的时间对象
+     * @param date 被加的时间对象
      * @param size 增加的天数
      * @modified records:
      */
@@ -233,7 +246,7 @@ public class DateUtils {
      * @author lijiaji
      * @create time: 2007-3-2 下午04:04:15
      * @version 1.0
-     * @param Date 被加的时间对象
+     * @param date 被加的时间对象
      * @param size 加上的月数
      * @modified records:
      */
@@ -543,7 +556,7 @@ public class DateUtils {
      * Description 将传入的日期减一天
      * @create time: 2007-3-2 下午04:36:40
      * @version 1.0
-     * @param Date 被减的时间对象
+     * @param date 被减的时间对象
      * @modified records:
      */
     public static Date forwardDay(Date date) {
@@ -1208,7 +1221,7 @@ public class DateUtils {
      * Description 将传入的日期加一天
      * @create time: 2007-3-2 下午03:38:49
      * @version 1.0
-     * @param Date 被加的时间对象
+     * @param date 被加的时间对象
      * @modified records:
      */
     public static Date nextDay(Date date) {
@@ -1307,7 +1320,7 @@ public class DateUtils {
      * Description 将传入的日期加指定的天数
      * @create time: 2007-3-2 下午04:33:58
      * @version 1.0
-     * @param Date 被减的时间对象
+     * @param date 被减的时间对象
      * @param size 减去的天数
      * @modified records:
      */
@@ -1323,7 +1336,7 @@ public class DateUtils {
      * Description 将传入的字符串格式的日期减去指定的天，返回减后的字符串格式的日期 字符串日期格式必需为:yyyy-MM-dd
      * @create time: 2007-3-2 下午04:36:40
      * @version 1.0
-     * @param Date 被减的时间对象
+     * @param date 被减的时间对象
      * @modified records:
      */
     public static String reduceDay(String date, int size) {
@@ -1355,7 +1368,7 @@ public class DateUtils {
      * Description 将传入的日期减去指定的月数
      * @create time: 2007-3-2 下午04:39:56
      * @version 1.0
-     * @param Date 被减的时间对象
+     * @param date 被减的时间对象
      * @param size 减去的月数
      * @modified records:
      */
@@ -1371,7 +1384,7 @@ public class DateUtils {
      * Description 将传入的字符串日期格式减去指定的月数
      * @create time: 2007-3-2 下午04:39:56
      * @version 1.0
-     * @param Date 被减的时间对象
+     * @param date 被减的时间对象
      * @param size 减去的月数
      * @modified records:
      */
