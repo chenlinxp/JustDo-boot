@@ -2,7 +2,7 @@ package ${package}.${classnametolower}.controller;
 
 import java.util.List;
 import java.util.Map;
-
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 import ${package}.${classnametolower}.domain.${className}DO;
 import ${package}.${classnametolower}.service.${className}Service;
+import com.justdo.system.dict.service.DictContentService;
 import com.justdo.common.annotation.Log;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
@@ -38,7 +40,8 @@ public class ${className}Controller {
 	@Autowired
 	private ${className}Service ${classname}Service;
 
-
+	@Autowired
+	DictContentService dictContentService;
 
 	/**
 	* ${comments}列表页面
@@ -83,6 +86,19 @@ public class ${className}Controller {
 			${className}DO ${classname} = ${classname}Service.get(id);
 		model.addAttribute("${classname}", ${classname});
 		return preUrl + "/view";
+	}
+
+	/**
+	 * ${comments}详情接口
+	 * @param id
+	 * @return 详情页面路径
+	 */
+	@GetMapping("/view/{id}")
+	@RequiresPermissions("${pathName}:${classname}:view")
+	@ApiOperation(value="返回${comments}详情", notes="返回${comments}详情")
+	String info(@PathVariable("id") ${pk.attrType} id){
+			${className}DO ${classname} = ${classname}Service.get(id);
+		return ${classname};
 	}
 
 	/**

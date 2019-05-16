@@ -47,17 +47,23 @@ function validateRule() {
 #foreach ($column in $columns)
 #if($column.displayType != "010")
     $column.attrname :{required : true}
-#end
 #if($velocityCount != $columns.size()),
+#end
 #end
 #end
 		},
 		messages : {
 #foreach ($column in $columns)
 #if($column.displayType != "010")
-        $column.attrname :{required : icon + "请输入$column.comments"}
+
+#if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
+        $column.attrname :{required : icon + "请选择$column.comments"}
+#else
+	    $column.attrname :{required : icon + "请输入$column.comments"}
 #end
+
 #if($velocityCount != $columns.size()),
+#end
 #end
 #end
 		}

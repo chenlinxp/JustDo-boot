@@ -81,6 +81,10 @@ var openDept = function(){
     }
 }
 function loadDept( deptpid,deptpname){
+    if(deptpid==$("#deptid").val()){
+        parent.layer.alert("上级部门不能选自己");
+        return;
+    }
     $("#deptpid").val(deptpid);
     $("#deptpname").val(deptpname);
 }

@@ -92,11 +92,12 @@ var openResource = function(){
         content:preUrl+"/treeView"
     })
 }
-function loadResource( ResourceId,ResourceName){
-    if(ResourceId==$("#parentId").val()){
+function loadResource( parentId,ResourceName){
+
+    if(parentId==$("#resourceId").val()){
         parent.layer.alert("上级资源不能选自己");
         return;
     }
-    $("#parentId").val(ResourceId);
+    $("#parentId").val(parentId);
     $("#pName").val(ResourceName);
 }

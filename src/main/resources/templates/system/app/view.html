@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<input id="appId" name="appId" th:value="${app.appId}"  type="hidden">
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">下载地址:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.loadUrl}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">合并的APP_ID:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.combineAppId}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">合并的时间:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.combineTime}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">LOGO:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.iconUrl}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">二维码图片路径A(8cm):</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.codeQrA}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">二维码图片路径B(12cm):</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.codeQrB}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">二维码图片路径C(15cm):</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.codeQrC}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">创建时间:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.createTime}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">修改时间:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.modifyTime}"></span>
+								</div>
+							</div>
+                       <input id="appName" name="appName" type="hidden">
+                       <input id="appKey" name="appKey" type="hidden">
+                       <input id="bundleName" name="bundleName" type="hidden">
+                       <input id="bundleId" name="bundleId" type="hidden">
+                       <input id="shortUrl" name="shortUrl" type="hidden">
+                       <input id="expirerTime" name="expirerTime" type="hidden">
+                       <input id="appType" name="appType" type="hidden">
+                       <input id="isCombine" name="isCombine" type="hidden">
+                       <input id="description" name="description" type="hidden">
+					</div>
+				</div>
+			</div>
+	     </div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/app/view.js">
+	</script>
+</body>
+</html>

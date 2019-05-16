@@ -1,32 +1,32 @@
 
---主键ID
+-- 主键ID
 set @RESOURCE_ID = replace(uuid(), '-', '');
 
 -- 资源菜单SQL
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(@RESOURCE_ID,'100000','${comments}','${pathName}','${pathName}:${classname}:list',1,'fa fa-file-code-o',0,6,now(),now());
+VALUES(@RESOURCE_ID,'','${comments}','${pathName}/${classnametolower}','${pathName}:${classname}:list',1,'fa fa-file-code-o',0,6,'2019-05-16',null);
 
 
 -- 资源菜单对应按钮SQL
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'查看','${pathName}/view','${pathName}:${classname}:view',1,'fa fa-file-code-o',0,1,now(),now());
+VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'查看','${pathName}/${classnametolower}/view','${pathName}:${classname}:view',2,'fa fa-file-code-o',0,1,'2019-05-16',null);
 
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'新增','${pathName}/add','${pathName}:${classname}:add',1,'fa fa-file-code-o',0,2,now(),now());
+VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'新增','${pathName}/${classnametolower}/add','${pathName}:${classname}:add',2,'fa fa-file-code-o',0,2,'2019-05-16',null);
 
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'新增','${pathName}/edit','${pathName}:${classname}:edit',1,'fa fa-file-code-o',0,3,now(),now());
+VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'新增','${pathName}/${classnametolower}/edit','${pathName}:${classname}:edit',2,'fa fa-file-code-o',0,3,'2019-05-16',null);
 
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'删除',NULL,'${pathName}:${classname}:del',1,'fa fa-file-code-o',0,4,now(),now());
+VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'删除','${pathName}/${classnametolower}/del','${pathName}:${classname}:del',2,'fa fa-file-code-o',0,4,'2019-05-16',null);
 
 INSERT INTO `sys_resource` (
  `RESOURCE_ID`,`PARENT_ID`,`RESOURCE_NAME`,`RESOURCE_URL`,`RESOURCE_PERMISSION`,`RESOURCE_TYPE`,`RESOURCE_ICON`,`DESK_DISPLAY`,`ORDER_NUM` ,`CREATE_TIME`,`MODIFY_TIME`)
-VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'批量删除',NULL,'${pathName}:${classname}:batchDel',1,'fa fa-file-code-o',0,5,now(),now());
+VALUES(replace(uuid(), '-', ''),@RESOURCE_ID,'批量删除','${pathName}/${classnametolower}/batchDel','${pathName}:${classname}:batchDel',2,'fa fa-file-code-o',0,5,'2019-05-16',null);
 
 
