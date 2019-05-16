@@ -58,14 +58,17 @@ function validateRule() {
 	$("#signupForm").validate({
 		rules : {
             realName : {
-				required : true
+				required : true,
+                realName:true
 			},
             employeeNumber : {
-                required : true
+                required : true,
+                userName:true,
             },
             loginName : {
 				required : true,
 				minlength : 2,
+                userName:true,
 				remote : {
 					url : preUrl+"/exist", // 后台处理程序
 					type : "post", // 数据发送方式

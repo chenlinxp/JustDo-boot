@@ -24,7 +24,8 @@ function load(organId,deptId) {
 				// //设置为limit则会发送符合RESTFull格式的参数
 				singleSelect : false, // 设置为true将禁止多选
 				// contentType : "application/x-www-form-urlencoded",
-				// //发送到服务器的数据编码类型
+				// 发送到服务器的数据编码类型
+                sortable: true,
 				pageSize : 10, // 如果设置了分页，每页数据条数
                 pageList: [10,20,50,100],
 				pageNumber : 1, // 如果设置了分布，首页页码
@@ -71,7 +72,7 @@ function load(organId,deptId) {
 					{
                         visible : false,
 						field : 'employeeId', // 列字段名
-						title : '序号' // 列标题
+						title : 'ID' // 列标题
 					},
                     {
                         field : 'SerialNumber',
@@ -86,24 +87,29 @@ function load(organId,deptId) {
                     },
                     {
                         field : 'loginName',
-                        title : '账号名称'
+                        title : '账号名称',
+                        sortable: true
                     },
                     {
                         field : 'realName',
-                        title : '员工姓名'
+                        title : '员工姓名',
+                        sortable: true
                     },
                     {
                         field : 'employeeNumber',
-                        title : '员工编号'
+                        title : '员工编号',
+                        sortable: true
                     },
 					{
 						field : 'email',
-						title : '邮箱'
+						title : '邮箱',
+                        sortable: true
 					},
 					{
 						field : 'employeeState',
 						title : '账号状态',
 						align : 'center',
+                        sortable: true,
 						formatter : function(value, row, index) {
 							if (value == '0') {
 								return '<span class="label label-danger">禁用</span>';
@@ -115,16 +121,18 @@ function load(organId,deptId) {
                     {
                         field : 'createTime',
                         title : '创建时间',
-                        width : '150px'
+                        width : '150px',
+                        sortable: true
                     },
                     {
                         field : 'modifyTime',
                         title : '修改时间',
-                        width : '150px'
+                        width : '150px',
+                        sortable: true
                     },
 					{
 						title : '操作',
-						field : 'employeeId',
+						field : 'employeeNumber',
 						align : 'center',
 						formatter : function(value, row, index) {
 							var f = '<a class="btn btn-success btn-sm ' + s_resetPwd_h + '" href="#" title="重置密码"  mce_href="#" onclick="resetPwd(\''
@@ -264,7 +272,7 @@ $('#jstree').on("changed.jstree", function(e, data) {
         }
     }
     if(data.selected != -1){
-        if(data.node["icon"]=="D"){
+        if(data.node["icon"]=="fa fa-institution"){
             opt.query.deptmentId = data.node["id"];
         }else{
             opt.query.organId = data.node["id"];

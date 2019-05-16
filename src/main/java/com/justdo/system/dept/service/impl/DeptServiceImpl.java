@@ -131,7 +131,7 @@ public class DeptServiceImpl implements DeptService {
 				treeNode2.setId(treeNode.getId());
 				treeNode2.setText(treeNode.getText());
 				treeNode2.setParentid(treeNode.getParentid());
-				treeNode2.setIcon("D");
+				treeNode2.setIcon("fa fa-institution");
 				Map<String, Object> treeMap = new HashMap<>(1);
 				treeMap.put("type","dept");
 				treeMap.put("organid",organid);
@@ -162,7 +162,7 @@ public class DeptServiceImpl implements DeptService {
 				treeNode2.setText(treeNode.getText());
 				//organid
 				treeNode2.setParentid(treeNode.getParentid());
-				treeNode2.setIcon("D");
+				treeNode2.setIcon("fa fa-institution");
 				Map<String, Object> treeMap = new HashMap<>(1);
 				treeMap.put("type","dept");
 				treeMap.put("organid",treeNode2.getParentid());

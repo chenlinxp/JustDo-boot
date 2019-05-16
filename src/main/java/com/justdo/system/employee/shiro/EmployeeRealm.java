@@ -48,6 +48,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+
 		String loginName = (String) token.getPrincipal();
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
@@ -70,7 +71,6 @@ public class EmployeeRealm extends AuthorizingRealm {
 		if (employee == null) {
 			throw new UnknownAccountException("账号或密码不正确");
 		}
-
 		// 密码错误
 		if (!password.equals(employee.getPassword())) {
 			throw new IncorrectCredentialsException("账号或密码不正确");

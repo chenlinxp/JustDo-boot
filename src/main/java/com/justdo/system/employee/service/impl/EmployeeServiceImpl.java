@@ -173,7 +173,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if("admin".equals(employeeDO.getLoginName())){
 			throw new Exception("超级管理员的账号不允许直接重置！");
 		}
-		employeeDO.setPasswordSalt(StringUtils.getUUID());
+		String passwordSaltStr = StringUtils.getUUID();
+		employeeDO.setPasswordSalt(passwordSaltStr);
 		employeeDO.setPassword(MD5Utils.encrypt(employeeDO.getPasswordSalt(), employeeVO.getPwdNew()));
 		return employeeDao.update(employeeDO);
 

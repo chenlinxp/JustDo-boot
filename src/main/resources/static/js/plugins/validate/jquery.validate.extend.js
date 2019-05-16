@@ -41,7 +41,7 @@ $(document).ready(function(){
 	jQuery.validator.addMethod("realName",function(value,element){
 		var name=/^[\u4e00-\u9fa5]{2,6}$/;
 		return this.optional(element) || (name.test(value));
-	},"姓名只能用汉字,长度2-4位");
+	},"姓名只能用汉字,长度2-6位");
 
 	//校验用户名
 	jQuery.validator.addMethod("userName",function(value,element){

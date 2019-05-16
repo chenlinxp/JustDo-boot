@@ -141,13 +141,13 @@ public class OrganServiceImpl implements OrganService {
 				treeNode2.setId(treeNode.getId());
 				treeNode2.setText(treeNode.getText());
 				treeNode2.setParentid(treeNode.getParentid());
-				treeNode2.setIcon("O");
+				treeNode2.setIcon("fa fa-building");
 				Map<String, Object> treeMap = new HashMap<>(1);
 				treeMap.put("type","organ");
 				treeMap.put("organid",treeNode2.getParentid());
 				treeNode2.setAttributes(treeMap);
 				Map<String, Object> state = new HashMap<>(1);
-				state.put("opened", true);
+				state.put("opened", false);
 				treeNode2.setState(state);
 				Map<String, Object> dataMap = new HashMap<>(1);
 				dataMap.put("organpid", treeNode.getId());

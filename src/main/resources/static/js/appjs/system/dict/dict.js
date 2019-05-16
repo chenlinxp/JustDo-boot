@@ -45,7 +45,7 @@ function dictTypeLoad() {
             html ='<ul class="folder-list" style="padding: 0">';
             html +='<li value=""><a href="javascript:void(0)"><i class="fa fa-folder"></i>全部类型</a></li>';
             for (var i = 0; i < data.length; i++) {
-                html += '<li value="' + data[i].did + '"><a href="javascript:void(0)"><i class="fa fa-folder"></i>'+ data[i].dname+ '</a></li>'
+                html += '<li value="' + data[i].did + '"><a href="javascript:void(0)"><i class="fa fa-folder"></i>'+ data[i].dname+' '+data[i].dcode+'</a></li>'
             }
             html += '</ul>';
             $("#dicttype").empty();
