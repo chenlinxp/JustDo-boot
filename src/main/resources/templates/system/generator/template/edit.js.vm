@@ -50,13 +50,11 @@ function validateRule() {
 #if($velocityCount != $columns.size()),
 #end
 #end
-
 #end
 },
-    messages : {
+        messages : {
 #foreach ($column in $columns)
 #if($column.displayType != "010")
-
 #if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
 			$column.attrname :{required : icon + "请选择$column.comments"}
 #else

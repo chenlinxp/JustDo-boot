@@ -34,38 +34,19 @@ function update() {
 
 }
 function validateRule() {
-	var icon = "<i class='fa fa-times-circle'></i> ";
-	$("#signupForm").validate({
+    var icon = "<i class='fa fa-times-circle'></i> ";
+    $("#signupForm").validate({
         rules : {
-
-
-
-
-
-			postname :{required : true}
-,
-
-			postcode :{required : true}
-,
-
-			isvalidation :{required : true}
-,
-
-			remark :{required : true}
-
-},
-    messages : {
-
-			postname :{required : icon + "请输入岗位名称"}
-,
-
-			postcode :{required : icon + "请输入岗位编号"}
-,
-
-			isvalidation :{required : icon + "请选择是否有效"}
-,
-
-			remark :{required : icon + "请输入备注"}
+            postname :{required : true},
+            postcode :{required : true},
+            isvalidation :{required : true},
+            remark :{required : true}
+        },
+        messages : {
+            postname :{required : icon + "请输入岗位名称"},
+            postcode :{required : icon + "请输入岗位编号"},
+            isvalidation :{required : icon + "请选择是否有效"},
+            remark :{required : icon + "请输入备注"}
         }
-	})
+    })
 }
