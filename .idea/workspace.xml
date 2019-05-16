@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ce3f1745-5d68-4251-976e-ef60ba149be0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1376,14 +1375,7 @@
       <workItem from="1556279255164" duration="2811000" />
       <workItem from="1556283203504" duration="123583000" />
       <workItem from="1557231171899" duration="81581000" />
-      <workItem from="1557576696376" duration="47154000" />
-    </task>
-    <task id="LOCAL-00055" summary="修改完善资源管理、异常信息管理、员工管理">
-      <created>1555730152323</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1555730152323</updated>
+      <workItem from="1557576696376" duration="47370000" />
     </task>
     <task id="LOCAL-00056" summary="修改完善员工管理、操作日志管理">
       <created>1555738083379</created>
@@ -1721,11 +1713,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557987390845</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="工程文件、pom修改">
+      <created>1557987474093</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1557987474094</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="861709000" />
+    <option name="totallyTimeSpent" value="861925000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1864,7 +1863,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="页面按钮的统一" />
     <MESSAGE value="代码生成模版修改" />
     <MESSAGE value="完善我的通知管理功能" />
     <MESSAGE value="完善代码生成管理功能" />
@@ -1889,7 +1887,8 @@
     <MESSAGE value="优化日志文件下载功能" />
     <MESSAGE value="组织机构树的图标、资源添加图标选择、员工管理添加的验证" />
     <MESSAGE value="按钮修改、日期工具类的优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="按钮修改、日期工具类的优化" />
+    <MESSAGE value="工程文件、pom修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="工程文件、pom修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
