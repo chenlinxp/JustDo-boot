@@ -9,7 +9,6 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-                            <input id="postpid" name="postpid" type="hidden">
                             <input id="deptid" name="deptid" type="hidden">
                             <input id="organid" name="organid" type="hidden">
                             <input id="createTime" name="createTime" type="hidden">
@@ -19,14 +18,19 @@
 								<div class="col-sm-4">
 									<input id="postname" name="postname" class="form-control" type="text">
 								</div>
+								<label class="col-sm-2 control-label">上级岗位：</label>
+								<div class="col-sm-4">
+									<input id="postpid" name="postpid" type="hidden">
+									<input id="postpname" name="postpname" class="form-control" type="text"
+										   style="cursor: pointer;" onclick="openPost()"
+										   readonly="readonly" placeholder="请选择上级岗位">
+								</div>
 							</div>
-		                    <div class="form-group">
+							<div class="form-group">
 								<label class="col-sm-2 control-label">岗位编号:</label>
 								<div class="col-sm-4">
 									<input id="postcode" name="postcode" class="form-control" type="text">
 								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-sm-2 control-label">是否有效:</label>
 								<div class="col-sm-4">
 									<label th:each="isvalidation:${ validCode}" class="radio-inline">
