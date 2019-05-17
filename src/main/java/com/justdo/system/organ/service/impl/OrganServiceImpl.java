@@ -88,6 +88,7 @@ public class OrganServiceImpl implements OrganService {
 			tree.setId(ogans.getOrganid().toString());
 			tree.setParentId(ogans.getOrganpid().toString());
 			tree.setText(ogans.getOrganname());
+			tree.setIcon("fa fa-building");
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
 			tree.setState(state);

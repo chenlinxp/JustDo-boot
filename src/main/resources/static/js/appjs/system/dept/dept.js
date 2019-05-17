@@ -1,12 +1,15 @@
 
 var preUrl = "/system/dept";
 $(function() {
-	load();
+    var organId = '';
+    getTreeData();
+    load(organId);
 });
 
-function load() {
+function load(organId) {
     var query = {
-        deptname : $('#searchName').val()
+        deptname : $('#searchName').val(),
+        organid: organId
     }
 	$('#bTable')
 		.bootstrapTreeTable(
@@ -148,4 +151,37 @@ function del() {
         });
     })
 }
+
+function getTreeData() {
+    $.ajax({
+        type : "GET",
+        url : "/system/organ/tree",
+        data : {
+            "organid" : ''
+        },
+        success : function(tree) {
+            loadTree(tree);
+        }
+    });
+}
+function loadTree(tree) {
+    $('#jstree').jstree({
+        'core' : {
+            'data' : tree,
+            "multiple" : false, // no multiselection
+            "themes" : {
+                "dots" : false // no connecting dots between dots
+            }
+        }
+    });
+    $('#jstree').jstree().open_all();
+}
+$('#jstree').on("changed.jstree", function(e, data) {
+    var organId = '';
+    if(data.selected != -1){
+        organId = data.node["id"];
+        load(organId);
+    }
+});
+
 

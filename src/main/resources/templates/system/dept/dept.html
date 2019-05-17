@@ -4,30 +4,44 @@
 <head th:include="include :: header"></head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content ">
-    <div class="col-sm-12">
-        <div class="ibox">
-            <div class="ibox-body">
-                <div class="fixed-table-toolbar">
-                    <div class="columns pull-left">
-                        <button shiro:hasPermission="system:dept:add" type="button" class="btn  btn-success" onclick="add()">
-                            <i class="fa fa-plus" aria-hidden="true"></i>添加
-                        </button>
-                        <button shiro:hasPermission="system:dept:edit" type="button" class="btn  btn-success" onclick="edit()">
-                            <i class="fa fa-edit" aria-hidden="true"></i>编辑
-                        </button>
-                        <button shiro:hasPermission="system:dept:batchDel" type="button" class="btn  btn-success" onclick="del()">
-                            <i class="fa fa-trash" aria-hidden="true"></i>删除
-                        </button>
-                    </div>
-                    <div class="columns pull-right">
-                        <button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
-                    </div>
-                    <div class="columns pull-right col-md-2 nopadding">
-                        <input id="searchName" type="text" class="form-control"  placeholder="部门名称">
+    <div class="row">
+        <div class="col-sm-3" style="min-height: 600px;">
+            <div class="ibox" style="min-height: 600px;">
+                <div class="ibox-body">
+                    <div class="ibox-title">
+                        <h5>请选择机构</h5>
                     </div>
                 </div>
-                <table id="bTable" data-mobile-responsive="true">
-                </table>
+                <div class="ibox-content" style="min-height: 500px;">
+                    <div id="jstree"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="ibox">
+                <div class="ibox-body">
+                    <div class="fixed-table-toolbar">
+                        <div class="columns pull-left">
+                            <button shiro:hasPermission="system:dept:add" type="button" class="btn  btn-success" onclick="add()">
+                                <i class="fa fa-plus" aria-hidden="true"></i>添加
+                            </button>
+                            <button shiro:hasPermission="system:dept:edit" type="button" class="btn  btn-success" onclick="edit()">
+                                <i class="fa fa-edit" aria-hidden="true"></i>编辑
+                            </button>
+                            <button shiro:hasPermission="system:dept:batchDel" type="button" class="btn  btn-success" onclick="del()">
+                                <i class="fa fa-trash" aria-hidden="true"></i>删除
+                            </button>
+                        </div>
+                        <div class="columns pull-right">
+                            <button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
+                        </div>
+                        <div class="columns pull-right col-md-2 nopadding">
+                            <input id="searchName" type="text" class="form-control"  placeholder="部门名称">
+                        </div>
+                    </div>
+                    <table id="bTable" data-mobile-responsive="true">
+                    </table>
+                </div>
             </div>
         </div>
     </div>
