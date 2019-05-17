@@ -4,17 +4,17 @@
 <mapper namespace="com.justdo.system.position.dao.PositionDao">
 
 	<select id="get" resultType="com.justdo.system.position.domain.PositionDO">
-		select  `POSTID`, `POSTPID`,`DEPTID`,`ORGANID`,`CREATE_TIME`,`MODIFYTIME`,`POSTNAME`,`POSTCODE`,`ISVALIDATION`,`REMARK` from sys_position where POSTID = #{value}
+		select  `POSTID`, `POSTPID`,`DEPTID`,`ORGANID`,`CREATETIME`,`MODIFYTIME`,`POSTNAME`,`POSTCODE`,`ISVALIDATION`,`REMARK` from sys_position where POSTID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.system.position.domain.PositionDO">
-		select  `POSTID`, `POSTPID`,`DEPTID`,`ORGANID`,`CREATE_TIME`,`MODIFYTIME`,`POSTNAME`,`POSTCODE`,`ISVALIDATION`,`REMARK` from sys_position
+		select  `POSTID`, `POSTPID`,`DEPTID`,`ORGANID`,`CREATETIME`,`MODIFYTIME`,`POSTNAME`,`POSTCODE`,`ISVALIDATION`,`REMARK` from sys_position
         <where>
 			<if test="postid != null and postid != ''"> and POSTID != #{postid} </if>
 		  <if test="postpid != null and postpid != ''"> and POSTPID = #{postpid} </if>
 		  <if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 		  <if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
-		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="createtime != null and createtime != ''"> and CREATETIME = #{createtime} </if>
 		  <if test="modifytime != null and modifytime != ''"> and MODIFYTIME = #{modifytime} </if>
 		  <if test="postname != null and postname != ''"> and POSTNAME = #{postname} </if>
 		  <if test="postcode != null and postcode != ''"> and POSTCODE = #{postcode} </if>
@@ -40,7 +40,7 @@
 		  <if test="postpid != null and postpid != ''"> and POSTPID = #{postpid} </if>
 		  <if test="deptid != null and deptid != ''"> and DEPTID = #{deptid} </if>
 		  <if test="organid != null and organid != ''"> and ORGANID = #{organid} </if>
-		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="createtime != null and createtime != ''"> and CREATETIME = #{createtime} </if>
 		  <if test="modifytime != null and modifytime != ''"> and MODIFYTIME = #{modifytime} </if>
 		  <if test="postname != null and postname != ''"> and POSTNAME = #{postname} </if>
 		  <if test="postcode != null and postcode != ''"> and POSTCODE = #{postcode} </if>
@@ -56,11 +56,29 @@
         insert into sys_position
 		(
 		    `POSTID`,
-            `POSTPID`,             `DEPTID`,             `ORGANID`,             `CREATE_TIME`,             `MODIFYTIME`,             `POSTNAME`,             `POSTCODE`,             `ISVALIDATION`,             `REMARK`        )
+            `POSTPID`,
+			`DEPTID`,
+			`ORGANID`,
+			`CREATETIME`,
+			`MODIFYTIME`,
+			`POSTNAME`,
+			`POSTCODE`,
+			`ISVALIDATION`,
+			`REMARK`
+		)
 		values
 		(
            #{postid},
-           #{postpid},            #{deptid},            #{organid},            #{createTime},            #{modifytime},            #{postname},            #{postcode},            #{isvalidation},            #{remark}		)
+           #{postpid},
+			#{deptid},
+			#{organid},
+			#{createtime},
+			#{modifytime},
+			#{postname},
+			#{postcode},
+			#{isvalidation},
+			#{remark}
+		)
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.system.position.domain.PositionDO">
@@ -69,7 +87,7 @@
 			<if test="postpid != null">`POSTPID` = #{postpid}, </if>
 			<if test="deptid != null">`DEPTID` = #{deptid}, </if>
 			<if test="organid != null">`ORGANID` = #{organid}, </if>
-			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="createtime != null">`CREATETIME` = #{createtime}, </if>
 			<if test="modifytime != null">`MODIFYTIME` = #{modifytime}, </if>
 			<if test="postname != null">`POSTNAME` = #{postname}, </if>
 			<if test="postcode != null">`POSTCODE` = #{postcode}, </if>

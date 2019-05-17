@@ -9,10 +9,20 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-                            <input id="deptid" name="deptid" type="hidden">
-                            <input id="organid" name="organid" type="hidden">
-                            <input id="createTime" name="createTime" type="hidden">
-                            <input id="modifytime" name="modifytime" type="hidden">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">机构名称：</label>
+								<div class="col-sm-4">
+									<input id="organid" name="organid" type="hidden" value="0">
+									<input id="organname" name="organname" class="form-control" type="text"
+										   style="cursor: pointer;" onclick="openOrgan()" readonly="readonly" placeholder="请选择机构">
+								</div>
+								<label class="col-sm-2 control-label">部门名称：</label>
+								<div class="col-sm-4">
+									<input id="deptid" name="deptid" type="hidden" value="0">
+									<input id="deptname" name="deptname" class="form-control" type="text"
+										   style="cursor: pointer;" onclick="openDept()" readonly="readonly" placeholder="请选择部门">
+								</div>
+							</div>
 		                    <div class="form-group">
 								<label class="col-sm-2 control-label">岗位名称:</label>
 								<div class="col-sm-4">

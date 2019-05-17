@@ -1,10 +1,14 @@
 package com.justdo.system.position.controller;
 
 import com.justdo.common.annotation.Log;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
+import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.R;
+import com.justdo.common.utils.StringUtils;
+import com.justdo.system.dept.domain.DeptDO;
+import com.justdo.system.dept.service.DeptService;
 import com.justdo.system.dict.service.DictContentService;
+import com.justdo.system.organ.domain.OrganDO;
+import com.justdo.system.organ.service.OrganService;
 import com.justdo.system.position.domain.PositionDO;
 import com.justdo.system.position.service.PositionService;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +38,12 @@ public class PositionController {
 	private String preUrl="system/position"  ;
 	@Autowired
 	private PositionService positionService;
+
+	@Autowired
+	private DeptService deptService;
+
+	@Autowired
+	private OrganService organService;
 
 	@Autowired
 	DictContentService dictContentService;
@@ -58,13 +70,10 @@ public class PositionController {
 	@GetMapping("/list")
 	@RequiresPermissions("system:position:list")
 	@ApiOperation(value="获取岗位管理列表接口", notes="获取岗位管理列表接口")
-	public PageUtils list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-		List<PositionDO> positionList = positionService.list(query);
-		int total = positionService.count(query);
-		PageUtils pageUtils = new PageUtils(positionList, total);
-		return pageUtils;
+	public List<PositionDO>  list(@RequestParam Map<String, Object> params){
+
+		List<PositionDO> positionList = positionService.list(params);
+		return positionList;
 	}
 
 	/**
@@ -119,6 +128,9 @@ public class PositionController {
 	@RequiresPermissions("system:position:add")
 	@ApiOperation(value="保存岗位管理接口", notes="保存岗位管理接口")
 	public R save( PositionDO position){
+		Date nowdate =	new Date();
+		position.setCreatetime(nowdate);
+		position.setModifytime(nowdate);
 		if(positionService.save(position)>0){
 			return R.ok();
 		}
@@ -136,6 +148,27 @@ public class PositionController {
 	@ApiOperation(value="返回岗位管理编辑页面", notes="返回岗位管理编辑页面")
 	String edit(@PathVariable("postid") String postid,Model model){
 		PositionDO position = positionService.get(postid);
+
+		if(StringUtils.isNotEmpty(position.getPostpid())) {
+			PositionDO parPosition = positionService.get(position.getPostpid());
+			if(parPosition!=null){
+				position.setPostpname(parPosition.getPostname());
+			}
+		}
+		if(StringUtils.isNotEmpty(position.getPostpid())) {
+			DeptDO parDept = deptService.get(position.getDeptid());
+			if(parDept!=null){
+				position.setDeptname(parDept.getDeptname());
+			}
+		}
+
+		if(StringUtils.isNotEmpty(position.getOrganid())){
+			OrganDO organDO = organService.get(position.getOrganid());
+			if(organDO!=null){
+				position.setOrganname(organDO.getOrganname());
+			}
+		}
+
 		model.addAttribute("position", position);
 		model.addAttribute("validCode",dictContentService.listDictByCode("validCode"));
 	    return preUrl + "/edit";
@@ -153,6 +186,8 @@ public class PositionController {
 	@RequiresPermissions("system:position:edit")
 	@ApiOperation(value="更新岗位管理接口", notes="更新岗位管理接口")
 	public R update( PositionDO position){
+		Date nowdate =	new Date();
+		position.setModifytime(nowdate);
 		if(positionService.update(position)>0){
 			return R.ok();
 		}
@@ -192,4 +227,24 @@ public class PositionController {
 		}
 		return R.error(1, "批量删除失败!");
 	}
+
+
+	@GetMapping("/tree/{deptId}")
+	@ResponseBody
+	@ApiOperation(value="根据deptId获取岗位树接口", notes="根据deptId获取岗位树接口")
+	public Tree<PositionDO> tree(@PathVariable("deptId") String deptId) {
+		Tree<PositionDO> tree = new Tree<PositionDO>();
+		Map<String,Object> map = new HashMap<String,Object>(1);
+		if(StringUtils.isNotEmpty(deptId)&&!deptId.equals("0")){
+			map.put("deptid",deptId);}
+		tree = positionService.getTree(map);
+		return tree;
+	}
+	@GetMapping("/treeView/{deptId}")
+	@ApiOperation(value="根据deptId获取岗位树界面", notes="根据deptId获取岗位树界面")
+	String treeView(@PathVariable("deptId") String deptId, Model model) {
+		model.addAttribute("deptid", deptId);
+		return  preUrl + "/positionTree";
+	}
+
 }

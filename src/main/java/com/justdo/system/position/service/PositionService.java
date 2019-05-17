@@ -1,5 +1,6 @@
 package com.justdo.system.position.service;
 
+import com.justdo.common.domain.Tree;
 import com.justdo.system.position.domain.PositionDO;
 
 import java.util.List;
@@ -63,4 +64,10 @@ public interface PositionService {
 	 */
 	int batchDel(String[] postids);
 
+	/**
+	 * 获取岗位树
+	 * @param map
+	 * @return
+	 */
+	Tree<PositionDO> getTree(Map<String,Object> map);
 }

@@ -17,15 +17,20 @@ public class PositionDO extends BaseBean {
 
     //主键ID
     private String postid;
-
 	//上级岗位ID
 	private String postpid;
+	//上级岗位名称
+	private String postpname;
 	//部门ID
 	private String deptid;
 	//机构ID
 	private String organid;
+	//部门名称
+	private String deptname;
+	//所属机构名称
+	private String organname;
 	//创建时间
-	private Date createTime;
+	private Date createtime;
 	//修改时间
 	private Date modifytime;
 	//岗位名称
@@ -41,12 +46,13 @@ public class PositionDO extends BaseBean {
     * 构造方法
     */
     public PositionDO(){ }
-    public PositionDO(String postid,String postpid,String deptid,String organid,String postname,String postcode,Integer isvalidation,String remark,Date createTime,Date modifytime){
+    public PositionDO(String postid,String postpid,String deptid,String organid,String postname,String postcode,Integer isvalidation,String remark,Date createtime,Date modifytime){
 		super();
+	        this.postid= postid;
 			this.postpid= postpid;
 			this.deptid= deptid;
 			this.organid= organid;
-			this.createTime= createTime;
+			this.createtime= createtime;
 			this.modifytime= modifytime;
 			this.postname= postname;
 			this.postcode= postcode;
@@ -79,6 +85,18 @@ public class PositionDO extends BaseBean {
 		return postpid;
 	}
 	/**
+	 * 设置：上级岗位名称
+	 */
+	public void setPostpname(String postpname) {
+		this.postpname = postpname;
+	}
+	/**
+	 * 获取：上级岗位名称
+	 */
+	public String getPostpname() {
+		return postpname;
+	}
+	/**
 	 * 设置：部门ID
 	 */
 	public void setDeptid(String deptid) {
@@ -103,16 +121,40 @@ public class PositionDO extends BaseBean {
 		return organid;
 	}
 	/**
+	 * 设置：部门名称
+	 */
+	public void setDeptname(String deptname) {
+		this.deptname = deptname;
+	}
+	/**
+	 * 获取：部门名称
+	 */
+	public String getDeptname() {
+		return deptname;
+	}
+	/**
+	 * 设置：机构名称
+	 */
+	public void setOrganname(String organname) {
+		this.organname = organname;
+	}
+	/**
+	 * 获取：机构名称
+	 */
+	public String getOrganname() {
+		return organname;
+	}
+	/**
 	 * 设置：创建时间
 	 */
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 	/**
 	 * 获取：创建时间
 	 */
-	public Date getCreateTime() {
-		return createTime;
+	public Date getCreatetime() {
+		return createtime;
 	}
 	/**
 	 * 设置：修改时间
@@ -182,7 +224,7 @@ public class PositionDO extends BaseBean {
 		        ", postpid='" + postpid + '\'' +
 		        ", deptid='" + deptid + '\'' +
 		        ", organid='" + organid + '\'' +
-		        ", createTime='" + createTime + '\'' +
+		        ", createtime='" + createtime + '\'' +
 		        ", modifytime='" + modifytime + '\'' +
 		        ", postname='" + postname + '\'' +
 		        ", postcode='" + postcode + '\'' +
