@@ -45,7 +45,7 @@ function validateRule() {
 	$("#signupForm").validate({
 		rules : {
 #foreach ($column in $columns)
-#if($column.displayType != "010")
+#if($column.displayType != "010" && $column.displayType != "002")
            $column.attrname :{required : true}
 #if($velocityCount != $columns.size()),
 #end
@@ -54,7 +54,7 @@ function validateRule() {
 		},
 		messages : {
 #foreach ($column in $columns)
-#if($column.displayType != "010")
+#if($column.displayType != "010"  && $column.displayType != "002")
 #if($column.displayType == "003"||$column.displayType == "004"||$column.displayType == "005")
            $column.attrname :{required : icon + "请选择$column.comments"}
 #else

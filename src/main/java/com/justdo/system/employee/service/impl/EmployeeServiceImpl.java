@@ -15,8 +15,8 @@ import com.justdo.system.employee.service.EmployeeService;
 import com.justdo.system.file.service.FileService;
 import com.justdo.system.organ.dao.OrganDao;
 import com.justdo.system.organ.domain.OrganDO;
+import com.justdo.system.position.dao.PositionDao;
 import com.justdo.system.position.domain.PositionDO;
-import com.justdo.system.position.service.PositionService;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private OrganDao organDao;
 
 	@Autowired
-	private PositionService positionService;
+	private PositionDao positionDao;
 
 	@Autowired
 	private JustdoConfig justdoConfig;
@@ -79,9 +79,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		if(StringUtils.isNotEmpty(employeeDO.getPositionId())){
-			PositionDO positionDO = positionService.get(employeeDO.getPositionId());
+			PositionDO positionDO = positionDao.get(employeeDO.getPositionId());
 			if(positionDO!=null){
-				employeeDO.setPositionName(positionDO.getPostpname());
+				employeeDO.setPositionName(positionDO.getPostname());
 				positionDO = null;
 			}
 		}
