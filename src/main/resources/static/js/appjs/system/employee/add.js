@@ -1,6 +1,7 @@
 var preUrl = "/system/employee";
 var preUrl2 = "/system/organ";
 var preUrl3 = "/system/dept";
+var preUrl4 = "/system/position"
 $(document).ready(function() {
 	validateRule();
     $('.chosen-select').on('change', function(e) {
@@ -80,10 +81,13 @@ function validateRule() {
 					}
 				}
 			},
-            deptName : {
+            organName : {
                 required : true
             },
-            organName : {
+            deptmentName : {
+                required : true
+            },
+            positionName: {
                 required : true
             },
 			password : {
@@ -122,6 +126,9 @@ function validateRule() {
             },
             deptmentName : {
                 required : icon + "请选择部门"
+            },
+            positionName : {
+                required : icon + "请选择岗位"
             },
 			password : {
 				required : icon + "请输入您的密码",
@@ -170,4 +177,23 @@ var openDept = function() {
 function loadDept( deptId,deptName){
 	$("#deptmentId").val(deptId);
 	$("#deptmentName").val(deptName);
+}
+
+
+var openPost = function(){
+    var deptid =  $("#deptmentId").val();
+    if(deptid=="0"){
+        parent.layer.alert("请先选择部门");
+    }else {
+        layer.open({
+            type: 2,
+            title: "选择岗位",
+            area: ['300px', '450px'],
+            content: preUrl4 + "/treeView/" + deptid
+        })
+    }
+}
+function loadPost(postid,postname){
+    $("#positionId").val(postid);
+    $("#positionName").val(postname);
 }

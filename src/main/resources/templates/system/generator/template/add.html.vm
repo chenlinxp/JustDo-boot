@@ -15,7 +15,7 @@
 		                    <div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
-									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text">
+									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text"/>
 								</div>
 							</div>
 #elseif($column.displayType == "002")
@@ -41,7 +41,7 @@
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
 									<label th:each="${column.attrname}:${ ${column.dictCode}}" class="checkbox-inline">
-										<input name="${column.attrname}" type="checkbox" th:value="${ ${column.attrname}.dccode}" th:text="$ {${column.attrname}.dcvalue}"
+										<input name="${column.attrname}" type="checkbox" th:value="${ ${column.attrname}.dccode}" th:text="$ {${column.attrname}.dcvalue}"/>
 									</label>
 									</div>
 							</div>
@@ -50,7 +50,7 @@
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
 									<label th:each="${column.attrname}:${ ${column.dictCode}}" class="radio-inline">
-										<input name="${column.attrname}" type="radio" th:value="${ ${column.attrname}.dccode}" th:text="${ ${column.attrname}.dcvalue}"
+										<input name="${column.attrname}" type="radio" th:value="${ ${column.attrname}.dccode}" th:text="${ ${column.attrname}.dcvalue}"/>
 									</label>
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">${column.comments}:</label>
 								<div class="col-sm-4">
-									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text">
+									<input id="${column.attrname}" name="${column.attrname}" class="form-control" type="text"/>
 								</div>
 							</div>
 #end

@@ -9,7 +9,7 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
-						<input id="${pk.attrname}" name="${pk.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden">
+						<input id="${pk.attrname}" name="${pk.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden"/>
 #foreach($column in $columns)
 #if($column.columnName != $pk.columnName)
 #if($column.displayType == "001")
@@ -42,7 +42,7 @@
 							<label class="col-sm-2 control-label">${column.comments}:</label>
 							<div class="col-sm-4">
 								<label th:each="${column.attrname}:${${column.dictCode}}" class="checkbox-inline">
-									<input name="${column.attrname}" th:field="*{${classname}.${column.attrname}}" type="checkbox" th:value="${${column.attrname}.dccode}" th:text="${${column.attrname}.dcvalue}"
+									<input name="${column.attrname}" th:field="*{${classname}.${column.attrname}}" type="checkbox" th:value="${${column.attrname}.dccode}" th:text="${${column.attrname}.dcvalue}"/>
 								</label>
 							</div>
 						</div>
@@ -51,7 +51,7 @@
 							<label class="col-sm-2 control-label">${column.comments}:</label>
 							<div class="col-sm-4">
 								<label th:each="${column.attrname}:${${column.dictCode}}" class="radio-inline">
-									<input name="${column.attrname}" th:field="*{${classname}.${column.attrname}}" type="radio" th:value="${${column.attrname}.dccode}" th:text="${${column.attrname}.dcvalue}"
+									<input name="${column.attrname}" th:field="*{${classname}.${column.attrname}}" type="radio" th:value="${${column.attrname}.dccode}" th:text="${${column.attrname}.dcvalue}"/>
 								</label>
 							</div>
 						</div>
@@ -73,12 +73,12 @@
 							</div>
 						</div>
 #elseif($column.displayType == "010")
-       					 <input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden">
+       					 <input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden"/>
 #else
 						<div class="form-group">
 							<label class="col-sm-2 control-label">${column.comments}:</label>
 							<div class="col-sm-4">
-								<input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${column.attrname}}" class="form-control" type="text">
+								<input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${column.attrname}}" class="form-control" type="text"/>
 							</div>
 						</div>
 #end
