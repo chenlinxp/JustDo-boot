@@ -39,12 +39,16 @@ function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
         rules : {
+            organname :{required : true},
+            deptname :{required : true},
             postname :{required : true},
             postcode :{required : true},
             isvalidation :{required : true},
             remark :{required : true}
         },
         messages : {
+            organname :{required : icon + "请选择机构"},
+            deptname :{required : icon + "请选择部门"},
             postname :{required : icon + "请输入岗位名称"},
             postcode :{required : icon + "请输入岗位编号"},
             isvalidation :{required : icon + "请选择是否有效"},
@@ -92,7 +96,7 @@ var openPost = function(){
     }else {
         layer.open({
             type: 2,
-            title: "选择部门",
+            title: "选择岗位",
             area: ['300px', '450px'],
             content: preUrl + "/treeView/" + deptid
         })
