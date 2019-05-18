@@ -157,8 +157,18 @@ var openOrgan = function(){
     })
 }
 function loadOrgan( organid,organname){
-    $("#organId").val(organid);
-    $("#organName").val(organname);
+	if(organid!=$("#organId").val()){
+
+        $("#organId").val(organid);
+        $("#organName").val(organname);
+
+        $("#deptmentId").val("0");
+        $("#deptmentName").val("");
+
+        $("#positionId").val("0");
+        $("#positionName").val("");
+	}
+
 }
 
 var openDept = function() {
@@ -175,8 +185,15 @@ var openDept = function() {
     }
 }
 function loadDept( deptId,deptName){
-	$("#deptmentId").val(deptId);
-	$("#deptmentName").val(deptName);
+
+    if(deptId!=$("#deptmentId").val()){
+
+        $("#deptmentId").val(deptId);
+        $("#deptmentName").val(deptName);
+
+        $("#positionId").val("0");
+        $("#positionName").val("");
+    }
 }
 
 

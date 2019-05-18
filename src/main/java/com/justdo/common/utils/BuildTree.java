@@ -41,12 +41,13 @@ public class BuildTree {
 			root.setChildren(true);
 			root.setChecked(true);
 			root.setChildren(topNodes);
-			root.setText("顶级节点");
+			//root.setText("顶级节点");
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
-			//root.setIcon("fa fa-institution");
+			root.setIcon("");
 			root.setState(state);
 		}
+
 
 		return root;
 	}

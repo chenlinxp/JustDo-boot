@@ -63,8 +63,16 @@ var openOrgan = function(){
     })
 }
 function loadOrgan( organid,organname){
-    $("#organid").val(organid);
-    $("#organname").val(organname);
+
+
+    if(organid!=$("#organid").val()){
+
+        $("#organid").val(organid);
+        $("#organname").val(organname);
+
+        $("#deptpid").val("0");
+        $("#deptpname").val("");
+    }
 }
 
 var openDept = function(){
