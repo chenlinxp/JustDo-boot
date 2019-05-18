@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<input id="appVersionId" name="appVersionId" th:value="${appVersion.appVersionId}"  type="hidden">
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">APP-ID:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${appVersion.appId}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">删除标识:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${appVersion.delFlag}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">创建时间:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${appVersion.createTime}"></span>
+								</div>
+							</div>
+                       <input id="versionCode" name="versionCode" type="hidden">
+                       <input id="buildCode" name="buildCode" type="hidden">
+                       <input id="appSizes" name="appSizes" type="hidden">
+                       <input id="totalLoadNumber" name="totalLoadNumber" type="hidden">
+                       <input id="displayState" name="displayState" type="hidden">
+                       <input id="todayLoadNumber" name="todayLoadNumber" type="hidden">
+                       <input id="versionDescription" name="versionDescription" type="hidden">
+                       <input id="updateDescription" name="updateDescription" type="hidden">
+					</div>
+				</div>
+			</div>
+	     </div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/appmanage/appversion/view.js">
+	</script>
+</body>
+</html>

@@ -73,6 +73,7 @@ public class PositionServiceImpl implements PositionService {
 			tree.setId(position.getPostid().toString());
 			tree.setParentId(position.getPostpid().toString());
 			tree.setText(position.getPostname());
+			tree.setIcon("fa fa-users");
 			Map<String, Object> state = new HashMap<>(1);
 			state.put("opened", true);
 			tree.setState(state);

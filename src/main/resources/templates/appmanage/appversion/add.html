@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+		                    <div class="form-group">
+								<label class="col-sm-2 control-label">版本号:</label>
+								<div class="col-sm-4">
+									<input id="versionCode" name="versionCode" class="form-control" type="text">
+								</div>
+							</div>
+		                    <div class="form-group">
+								<label class="col-sm-2 control-label">构建号:</label>
+								<div class="col-sm-4">
+									<input id="buildCode" name="buildCode" class="form-control" type="text">
+								</div>
+							</div>
+		                    <div class="form-group">
+								<label class="col-sm-2 control-label">APP大小:</label>
+								<div class="col-sm-4">
+									<input id="appSizes" name="appSizes" class="form-control" type="text">
+								</div>
+							</div>
+		                    <div class="form-group">
+								<label class="col-sm-2 control-label">总有下载次数:</label>
+								<div class="col-sm-4">
+									<input id="totalLoadNumber" name="totalLoadNumber" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">显示状态:</label>
+								<div class="col-sm-4">
+									<label th:each="displayState:${ displayCode}" class="radio-inline">
+										<input name="displayState" type="radio" th:value="${ displayState.dccode}" th:text="${ displayState.dcvalue}"
+									</label>
+								</div>
+							</div>
+		                    <div class="form-group">
+								<label class="col-sm-2 control-label">今天下载次数:</label>
+								<div class="col-sm-4">
+									<input id="todayLoadNumber" name="todayLoadNumber" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">版本描述:</label>
+								<div class="col-sm-10">
+									<textarea id="versionDescription" name="versionDescription" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">更新描述:</label>
+								<div class="col-sm-10">
+									<textarea id="updateDescription" name="updateDescription" class="form-control"></textarea>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/appmanage/appversion/add.js">
+	</script>
+</body>
+</html>
