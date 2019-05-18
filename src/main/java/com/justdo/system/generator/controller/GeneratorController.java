@@ -74,7 +74,7 @@ public class GeneratorController {
 
 	/**
 	 * @param tableName
-	 * 生成单表代码
+	 * 单表的列展示
 	 */
 	//@RequiresPermissions("system:generator:code")
 	@GetMapping("/getGeneratorColumns/{tableName}")

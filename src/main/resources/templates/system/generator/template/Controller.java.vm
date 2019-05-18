@@ -96,7 +96,7 @@ public class ${className}Controller {
 	@GetMapping("/info/{id}")
 	@RequiresPermissions("${pathName}:${classname}:view")
 	@ApiOperation(value="返回${comments}详情", notes="返回${comments}详情")
-	${classname} info(@PathVariable("id") ${pk.attrType} id){
+	${className}DO info(@PathVariable("id") ${pk.attrType} id){
 			${className}DO ${classname} = ${classname}Service.get(id);
 		return ${classname};
 	}

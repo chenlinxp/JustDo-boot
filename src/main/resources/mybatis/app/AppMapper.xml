@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.justdo.system.app.dao.AppDao">
+<mapper namespace="com.justdo.appmanage.app.dao.AppDao">
 
-	<select id="get" resultType="com.justdo.system.app.domain.AppDO">
+	<select id="get" resultType="com.justdo.appmanage.app.domain.AppDO">
 		select  `APP_ID`, `LOAD_URL`,`COMBINE_APP_ID`,`COMBINE_TIME`,`ICON_URL`,`CODE_QR_A`,`CODE_QR_B`,`CODE_QR_C`,`CREATE_TIME`,`MODIFY_TIME`,`APP_NAME`,`APP_KEY`,`BUNDLE_NAME`,`BUNDLE_ID`,`SHORT_URL`,`EXPIRER_TIME`,`APP_TYPE`,`IS_COMBINE`,`DESCRIPTION` from d_app where APP_ID = #{value}
 	</select>
 
-	<select id="list" resultType="com.justdo.system.app.domain.AppDO">
+	<select id="list" resultType="com.justdo.appmanage.app.domain.AppDO">
 		select  `APP_ID`, `LOAD_URL`,`COMBINE_APP_ID`,`COMBINE_TIME`,`ICON_URL`,`CODE_QR_A`,`CODE_QR_B`,`CODE_QR_C`,`CREATE_TIME`,`MODIFY_TIME`,`APP_NAME`,`APP_KEY`,`BUNDLE_NAME`,`BUNDLE_ID`,`SHORT_URL`,`EXPIRER_TIME`,`APP_TYPE`,`IS_COMBINE`,`DESCRIPTION` from d_app
         <where>
 			<if test="appId != null and appId != ''"> and APP_ID != #{appId} </if>
@@ -67,7 +67,7 @@
 		</where>
 	</select>
 	 
-	<insert id="save" parameterType="com.justdo.system.app.domain.AppDO">
+	<insert id="save" parameterType="com.justdo.appmanage.app.domain.AppDO">
         <selectKey keyProperty="appId" resultType="string" order="BEFORE">
         select replace(uuid(), '-', '') as appId from dual
 		</selectKey>
@@ -117,7 +117,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="com.justdo.system.app.domain.AppDO">
+	<update id="update" parameterType="com.justdo.appmanage.app.domain.AppDO">
 		update d_app 
 		<set>
 			<if test="loadUrl != null">`LOAD_URL` = #{loadUrl}, </if>

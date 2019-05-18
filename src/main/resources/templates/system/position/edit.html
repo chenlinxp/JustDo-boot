@@ -10,31 +10,31 @@
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
 						<input id="postid" name="postid" th:value="${ position.postid}"  type="hidden">
-       					 <input id="createtime" name="createtime" type="hidden" th:value="${ position.createtime}">
-       					 <input id="modifytime" name="modifytime" type="hidden" th:value="${ position.modifytime}">
+       					 <input id="createtime" name="createtime" type="hidden" th:value="${position.createtime}">
+       					 <input id="modifytime" name="modifytime" type="hidden" th:value="${position.modifytime}">
 						<div class="form-group">
 								<label class="col-sm-2 control-label">机构名称：</label>
 								<div class="col-sm-4">
-									<input id="organid" name="organid" type="hidden" th:value="${ position.organid}">
-									<input id="organname" name="organname" class="form-control" type="text" th:value="${ position.organname}"
+									<input id="organid" name="organid" type="hidden" th:value="${position.organid}">
+									<input id="organname" name="organname" class="form-control" type="text" th:value="${position.organname}"
 										   style="cursor: pointer;" onclick="openOrgan()" readonly="readonly" placeholder="请选择机构">
 								</div>
 								<label class="col-sm-2 control-label">部门名称：</label>
 								<div class="col-sm-4">
-									<input id="deptid" name="deptid" type="hidden" th:value="${ position.deptid}">
-									<input id="deptname" name="deptname" class="form-control" type="text"  th:value="${ position.deptname}"
+									<input id="deptid" name="deptid" type="hidden" th:value="${position.deptid}">
+									<input id="deptname" name="deptname" class="form-control" type="text"  th:value="${position.deptname}"
 										   style="cursor: pointer;" onclick="openDept()" readonly="readonly" placeholder="请选择部门">
 								</div>
 							</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">岗位名称:</label>
 							<div class="col-sm-4">
-								<input id="postname" name="postname" th:value="${ position.postname}" class="form-control" type="text">
+								<input id="postname" name="postname" th:value="${position.postname}" class="form-control" type="text">
 							</div>
 							<label class="col-sm-2 control-label">上级岗位：</label>
 							<div class="col-sm-4">
-								<input id="postpid" name="postpid" th:value="${ position.postpid}" type="hidden">
-								<input id="postpname" name="postpname" class="form-control" type="text" th:value="${ position.postpname}"
+								<input id="postpid" name="postpid" th:value="${position.postpid}" type="hidden">
+								<input id="postpname" name="postpname" class="form-control" type="text" th:value="${position.postpname}"
 									   style="cursor: pointer;" onclick="openPost()"
 									   readonly="readonly" placeholder="请选择上级岗位">
 							</div>
@@ -42,24 +42,24 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">岗位编号:</label>
 							<div class="col-sm-4">
-								<input id="postcode" name="postcode" th:value="${ position.postcode}" class="form-control" type="text">
+								<input id="postcode" name="postcode" th:value="${position.postcode}" class="form-control" type="text">
 							</div>
 							<label class="col-sm-2 control-label">是否有效:</label>
 							<div class="col-sm-4">
-								<label th:each="isvalidation:${ validCode}" class="radio-inline">
-									<input name="isvalidation" th:field="*{ position.isvalidation}" type="radio" th:value="${ isvalidation.dccode}" th:text="${ isvalidation.dcvalue}"
+								<label th:each="isvalidation:${validCode}" class="radio-inline">
+									<input name="isvalidation" th:field="*{position.isvalidation}" type="radio" th:value="${isvalidation.dccode}" th:text="${isvalidation.dcvalue}"
 								</label>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">备注:</label>
 							<div class="col-sm-10">
-								<textarea id="remark" name="remark" th:text="${ position.remark}" class="form-control"></textarea>
+								<textarea id="remark" name="remark" th:text="${position.remark}" class="form-control"></textarea>
 							</div>
 						</div>
 							<div class="form-group">
 								<div class="col-sm-8 col-sm-offset-3">
-									<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>w保存</button>
+									<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
 								</div>
 							</div>
 						</form>

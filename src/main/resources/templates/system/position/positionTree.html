@@ -17,15 +17,18 @@
 			</div>
 		</div>
 	</div>
+	<input id="deptid" name="deptid" th:value="${deptid}"  type="hidden">
 	<div th:include="include :: footer"></div>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			getTreeData()
 		});
 		function getTreeData() {
+            var deptid = $('#deptid').val();
+            console.log(deptid);
 			$.ajax({
 				type : "GET",
-				url : "/system/position/tree",
+				url : "/system/position/tree"+deptid,
 				success : function(tree) {
 					loadTree(tree);
 				}

@@ -155,7 +155,7 @@ public class PositionController {
 				position.setPostpname(parPosition.getPostname());
 			}
 		}
-		if(StringUtils.isNotEmpty(position.getPostpid())) {
+		if(StringUtils.isNotEmpty(position.getDeptid())) {
 			DeptDO parDept = deptService.get(position.getDeptid());
 			if(parDept!=null){
 				position.setDeptname(parDept.getDeptname());

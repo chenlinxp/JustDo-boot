@@ -189,7 +189,7 @@ function code() {
         delete a["0"];
         allTableData2.push(a);
     }
-
+    console.log(allTableData);
     var tablename = $("#tablename").val()
     //console.log(allTableData);
     if (allTableData.length == 0) {

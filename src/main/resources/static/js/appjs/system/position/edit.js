@@ -1,4 +1,6 @@
 var preUrl = "/system/position"
+var preUrl2 = "/system/organ";
+var preUrl3 = "/system/dept";
 $(function() {
 	validateRule();
 });
