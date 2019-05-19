@@ -24,7 +24,7 @@
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">合并的时间:</label>
 								<div class="col-sm-9">
-                                    <span th:text="${app.combineTime}"></span>
+									<span th:text="${#dates.format(app.combineTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
@@ -54,13 +54,14 @@
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">创建时间:</label>
 								<div class="col-sm-9">
-                                    <span th:text="${app.createTime}"></span>
+                                    <span th:text="${#dates.format(app.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">修改时间:</label>
 								<div class="col-sm-9">
-                                    <span th:text="${app.modifyTime}"></span>
+
+                                    <span th:text="${#dates.format(app.modifyTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
                        <input id="appName" name="appName" type="hidden">

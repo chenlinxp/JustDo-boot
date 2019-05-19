@@ -49,7 +49,7 @@
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">创建时间：</label>
 								<div class="col-sm-8">
-                                    <span th:text="${operationLog.createTime}"></span>
+									<span th:text="${#dates.format(operationLog.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 					</div>

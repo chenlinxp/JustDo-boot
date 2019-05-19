@@ -1,6 +1,9 @@
 package com.justdo.appmanage.app.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
@@ -33,8 +36,12 @@ public class AppDO extends BaseBean {
 	//二维码图片路径C(15cm)
 	private String codeQrC;
 	//创建时间
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
 	//修改时间
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifyTime;
 	//app显示名称
 	private String appName;
@@ -47,6 +54,9 @@ public class AppDO extends BaseBean {
 	//短链接
 	private String shortUrl;
 	//过期时间
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	//@JsonDeserialize(using = DateJacksonConverter.class )
 	private Date expirerTime;
 	//app类型
 	private Integer appType;

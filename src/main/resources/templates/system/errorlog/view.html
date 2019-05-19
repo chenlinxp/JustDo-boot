@@ -50,7 +50,7 @@
 								</div>
 								<label class="col-sm-2 control-label">创建时间：</label>
 								<div class="col-sm-4">
-                                    <span th:text="${errorLog.createTime}"></span>
+									<span th:text="${#dates.format(errorLog.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 					</div>

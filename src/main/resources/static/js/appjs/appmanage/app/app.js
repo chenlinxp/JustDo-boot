@@ -222,7 +222,7 @@ function edit() {
 		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
-function del(id) {
+function del() {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
 	}, function() {

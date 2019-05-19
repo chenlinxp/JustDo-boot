@@ -1,6 +1,11 @@
 package com.justdo.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.justdo.common.domain.DateJacksonConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -35,12 +40,51 @@ class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 
-
-
 	// 这个方法用来注册拦截器，我们自己写好的拦截器需要通过这里添加注册才能生效
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 
 
+	}
+//
+//	@Bean
+//	public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {
+//		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+//		//设置日期格式
+//		ObjectMapper objectMapper = new ObjectMapper();
+//		objectMapper.setDateFormat(CustomDateFormat.instance);
+//		objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+//		mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+//		//设置中文编码格式
+//		List<MediaType> list = new ArrayList<MediaType>();
+//		list.add(MediaType.APPLICATION_JSON_UTF8);
+//		mappingJackson2HttpMessageConverter.setSupportedMediaTypes(list);
+//		return mappingJackson2HttpMessageConverter;
+//	}
+
+
+	@Bean
+	public DateJacksonConverter dateJacksonConverter() {
+		return new DateJacksonConverter();
+	}
+
+	@Bean
+	public Jackson2ObjectMapperFactoryBean jackson2ObjectMapperFactoryBean(
+			@Autowired
+					DateJacksonConverter dateJacksonConverter) {
+		Jackson2ObjectMapperFactoryBean jackson2ObjectMapperFactoryBean = new Jackson2ObjectMapperFactoryBean();
+
+		jackson2ObjectMapperFactoryBean.setDeserializers(dateJacksonConverter);
+		return jackson2ObjectMapperFactoryBean;
+	}
+
+	@Bean
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(
+			@Autowired
+					ObjectMapper objectMapper) {
+		MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter =
+				new MappingJackson2HttpMessageConverter();
+		mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
+		return mappingJackson2HttpMessageConverter;
 	}
 }

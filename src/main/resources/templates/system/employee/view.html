@@ -86,11 +86,11 @@
 							<div class="col-sm-12">
 								<label class="col-sm-2 control-label">创建时间：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.createTimeStr}"></span>
+									<span th:text="${#dates.format(employee.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 								<label class="col-sm-2 control-label">修改时间：</label>
 								<div class="col-sm-4">
-									<span th:text="${employee.modifyTimeStr}"></span>
+									<span th:text="${#dates.format(employee.modifyTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">

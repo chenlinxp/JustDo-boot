@@ -88,7 +88,7 @@ function load() {
                     },
                     {
                         field: 'taskStatus',
-                        title: '停起操作',
+                        title: '起停操作',
                         width : '80px',
                         formatter: function (value, row, index) {
                             var e = '<a class="btn btn-success btn-xs" href="#" mce_href="#" title="点击开启" onclick="changeStatus(\''
@@ -106,7 +106,7 @@ function load() {
                     },
                     {
                         field : 'methodName',
-                        title : '任务调用的方法名'
+                        title : '方法名'
                     },
                     {
                         field : 'springBean',
@@ -118,7 +118,7 @@ function load() {
                     },
                     {
                         field : 'beanClass',
-                        title : '调用的方法（包名+类名）'
+                        title : '包名+类名'
                     },
                     {
                         field : 'description',

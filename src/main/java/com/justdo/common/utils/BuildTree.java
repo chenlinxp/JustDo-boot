@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * 构建树list
+ */
 public class BuildTree {
 
 	public static <T> Tree<T> build(List<Tree<T>> nodes) {
@@ -41,7 +45,7 @@ public class BuildTree {
 			root.setChildren(true);
 			root.setChecked(true);
 			root.setChildren(topNodes);
-			//root.setText("顶级节点");
+			root.setText("顶级节点");
 			Map<String, Object> state = new HashMap<>(16);
 			state.put("opened", true);
 			root.setIcon("");
@@ -65,14 +69,12 @@ public class BuildTree {
 				topNodes.add(children);
 				continue;
 			}
-
 			for (Tree<T> parent : nodes) {
 				String id = parent.getId();
 				if (StringUtils.isNotEmpty(id) && id.equals(pid)) {
 					parent.getChildren().add(children);
 					children.setHasParent(true);
 					parent.setChildren(true);
-
 					continue;
 				}
 			}
