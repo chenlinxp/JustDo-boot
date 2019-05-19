@@ -127,7 +127,7 @@
 			<if test="codeQrA != null">`CODE_QR_A` = #{codeQrA}, </if>
 			<if test="codeQrB != null">`CODE_QR_B` = #{codeQrB}, </if>
 			<if test="codeQrC != null">`CODE_QR_C` = #{codeQrC}, </if>
-			<if test="createTime != null ">`CREATE_TIME` = #{createTime}, </if>
+			<if test="createTime != null and createTime != ''">`CREATE_TIME` = #{createTime}, </if>
 			<if test="modifyTime != null and modifyTime != ''">`MODIFY_TIME` = #{modifyTime}, </if>
 			<if test="appName != null">`APP_NAME` = #{appName}, </if>
 			<if test="appKey != null">`APP_KEY` = #{appKey}, </if>

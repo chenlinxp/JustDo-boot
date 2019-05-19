@@ -56,7 +56,6 @@ public class AppDO extends BaseBean {
 	//过期时间
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
-	//@JsonDeserialize(using = DateJacksonConverter.class )
 	private Date expirerTime;
 	//app类型
 	private Integer appType;

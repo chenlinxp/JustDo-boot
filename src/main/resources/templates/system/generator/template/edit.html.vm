@@ -73,7 +73,7 @@
 							</div>
 						</div>
 #elseif($column.displayType == "010")
-       					 <input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden"/>
+       					 <input id="${column.attrname}" name="${column.attrname}" th:value="${${classname}.${column.attrname}}"  type="hidden"/>
 #else
 						<div class="form-group">
 							<label class="col-sm-2 control-label">${column.comments}:</label>
@@ -93,7 +93,7 @@
 					</div>
 				</div>
 			</div>
-	</div>
+	    </div>
 	</div>
 	<div th:include="include::footer"></div>
 	<script type="text/javascript" src="/js/appjs/${pathName}/${classnametolower}/edit.js">

@@ -39,8 +39,8 @@
 			</div>
 	     </div>
 	</div>
-	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/${pathName}/${classnametolower}/view.js">
-	</script>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/${pathName}/${classnametolower}/view.js">
+</script>
 </body>
 </html>
