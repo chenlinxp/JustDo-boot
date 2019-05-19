@@ -8,6 +8,39 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
+						<input id="appId" name="appId" th:value="${app.appId}"  type="hidden"/>
+                       <input id="createTime" name="createTime"  th:value="${app.createTime}"  type="hidden"/>
+                       <input id="modifyTime" name="modifyTime"  th:value="${app.modifyTime}"  type="hidden"/>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">显示名称:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.appName}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">APP-KEY:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.appKey}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">项目名称:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.bundleName}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">包名ID:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.bundleId}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">短链接:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.shortUrl}"></span>
+								</div>
+							</div>
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">下载地址:</label>
 								<div class="col-sm-9">
@@ -15,69 +48,42 @@
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">合并的APP_ID:</label>
+								<label class="col-sm-3 control-label">过期时间:</label>
 								<div class="col-sm-9">
-                                    <span th:text="${app.combineAppId}"></span>
+                                    <span th:text="${#dates.format(app.expirerTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">合并的时间:</label>
+								<label class="col-sm-3 control-label">app类型:</label>
 								<div class="col-sm-9">
-									<span th:text="${#dates.format(app.combineTime,'yyyy-MM-dd HH:mm:ss')}"></span>
+                                    <span th:text="${app.appType}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">LOGO:</label>
+								<label class="col-sm-3 control-label">是否合并:</label>
+								<div class="col-sm-9">
+                                    <span th:text="${app.isCombine}"></span>
+								</div>
+							</div>
+	                        <div class="col-sm-12">
+								<label class="col-sm-3 control-label">APP-LOGO:</label>
 								<div class="col-sm-9">
                                     <span th:text="${app.iconUrl}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">二维码图片路径A(8cm):</label>
+								<label class="col-sm-3 control-label">APP介绍:</label>
 								<div class="col-sm-9">
-                                    <span th:text="${app.codeQrA}"></span>
+                                    <span th:text="${app.description}"></span>
 								</div>
 							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">二维码图片路径B(12cm):</label>
-								<div class="col-sm-9">
-                                    <span th:text="${app.codeQrB}"></span>
-								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">二维码图片路径C(15cm):</label>
-								<div class="col-sm-9">
-                                    <span th:text="${app.codeQrC}"></span>
-								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">创建时间:</label>
-								<div class="col-sm-9">
-                                    <span th:text="${#dates.format(app.createTime,'yyyy-MM-dd HH:mm:ss')}"></span>
-								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">修改时间:</label>
-								<div class="col-sm-9">
-                                    <span th:text="${#dates.format(app.modifyTime,'yyyy-MM-dd HH:mm:ss')}"></span>
-								</div>
-							</div>
-                       <input id="appName" name="appName" type="hidden">
-                       <input id="appKey" name="appKey" type="hidden">
-                       <input id="bundleName" name="bundleName" type="hidden">
-                       <input id="bundleId" name="bundleId" type="hidden">
-                       <input id="shortUrl" name="shortUrl" type="hidden">
-                       <input id="expirerTime" name="expirerTime" type="hidden">
-                       <input id="appType" name="appType" type="hidden">
-                       <input id="isCombine" name="isCombine" type="hidden">
-                       <input id="description" name="description" type="hidden">
 					</div>
 				</div>
 			</div>
 	     </div>
 	</div>
 	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/appjs/appmanage/app/view.js">
+	<script type="text/javascript" src="/js/appjs/system/app/view.js">
 	</script>
 </body>
 </html>
