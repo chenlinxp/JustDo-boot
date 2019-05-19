@@ -1,6 +1,5 @@
 package com.justdo.system.errorlog.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
 
 
@@ -33,10 +32,8 @@ public class ErrorLogDO extends BaseBean {
 	//解决人姓名
 	private String solveMan;
 	//解决时间
-	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private String solveTime;
 	//创建时间
-	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private String createTime;
 
 	public ErrorLogDO(){}

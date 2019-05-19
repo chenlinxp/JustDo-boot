@@ -1,6 +1,5 @@
 package com.justdo.system.operationlog.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
 
 
@@ -28,7 +27,7 @@ public class OperationLogDO extends BaseBean {
 	private String params;
 
 	private String ip;
-	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+
 	private String createTime;
 
 	public String getOperationLogId() {
