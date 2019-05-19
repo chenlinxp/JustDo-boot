@@ -8,16 +8,20 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
-						<input id="${pk.attrname}" name="${pk.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden">
+						<input id="${pk.attrname}" name="${pk.attrname}" th:value="${${classname}.${pk.attrname}}"  type="hidden"/>
 #foreach($column in $columns)
 #if($column.columnName != $pk.columnName)
-#if($column.displayType != "010")
-                       <input id="${column.attrname}" name="${column.attrname}" type="hidden">
+#if($column.displayType == "010")
+                       <input id="${column.attrname}" name="${column.attrname}"  th:value="${${classname}.${pk.attrname}}"  type="hidden"/>
 #else
 	                        <div class="col-sm-12">
 								<label class="col-sm-3 control-label">${column.comments}:</label>
 								<div class="col-sm-9">
+#if($column.attrType=="Date"||$column.attrType=="DateTime")
+                                    <span th:text="${#dates.format(${classname}.${column.attrname},'yyyy-MM-dd HH:mm:ss')}"></span>
+#else
                                     <span th:text="${${classname}.${column.attrname}}"></span>
+#end
 								</div>
 							</div>
 #end
