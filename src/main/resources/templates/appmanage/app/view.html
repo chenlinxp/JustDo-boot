@@ -12,68 +12,58 @@
                        <input id="createTime" name="createTime"  th:value="${app.createTime}"  type="hidden"/>
                        <input id="modifyTime" name="modifyTime"  th:value="${app.modifyTime}"  type="hidden"/>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">显示名称:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">显示名称:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.appName}"></span>
 								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">APP-KEY:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">APP-KEY:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.appKey}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">项目名称:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">项目名称:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.bundleName}"></span>
 								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">包名ID:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">包名ID:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.bundleId}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">短链接:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">短链接:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.shortUrl}"></span>
 								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">下载地址:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">下载地址:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.loadUrl}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">过期时间:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">过期时间:</label>
+								<div class="col-sm-4">
                                     <span th:text="${#dates.format(app.expirerTime,'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">app类型:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">app类型:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.appType}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">是否合并:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">是否合并:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.isCombine}"></span>
 								</div>
-							</div>
-	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">APP-LOGO:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">LOGO:</label>
+								<div class="col-sm-4">
                                     <span th:text="${app.iconUrl}"></span>
 								</div>
 							</div>
 	                        <div class="col-sm-12">
-								<label class="col-sm-3 control-label">APP介绍:</label>
-								<div class="col-sm-9">
+								<label class="col-sm-2 control-label">APP介绍:</label>
+								<div class="col-sm-10">
                                     <span th:text="${app.description}"></span>
 								</div>
 							</div>

@@ -55,7 +55,7 @@
 		  <if test="codeQrC != null and codeQrC != ''"> and CODE_QR_C = #{codeQrC} </if>
 		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
 		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
-		  <if test="appName != null and appName != ''"> and APP_NAME = #{appName} </if>
+		  <if test="appName != null and appName != ''"> and APP_NAME  like concat('%' ,#{appName},'%') </if>
 		  <if test="appKey != null and appKey != ''"> and APP_KEY = #{appKey} </if>
 		  <if test="bundleName != null and bundleName != ''"> and BUNDLE_NAME = #{bundleName} </if>
 		  <if test="bundleId != null and bundleId != ''"> and BUNDLE_ID = #{bundleId} </if>
@@ -122,13 +122,13 @@
 		<set>
 			<if test="loadUrl != null">`LOAD_URL` = #{loadUrl}, </if>
 			<if test="combineAppId != null">`COMBINE_APP_ID` = #{combineAppId}, </if>
-			<if test="combineTime != null and combineTime != ''" >`COMBINE_TIME` = #{combineTime}, </if>
+			<if test="combineTime != null" >`COMBINE_TIME` = #{combineTime}, </if>
 			<if test="iconUrl != null">`ICON_URL` = #{iconUrl}, </if>
 			<if test="codeQrA != null">`CODE_QR_A` = #{codeQrA}, </if>
 			<if test="codeQrB != null">`CODE_QR_B` = #{codeQrB}, </if>
 			<if test="codeQrC != null">`CODE_QR_C` = #{codeQrC}, </if>
-			<if test="createTime != null and createTime != ''">`CREATE_TIME` = #{createTime}, </if>
-			<if test="modifyTime != null and modifyTime != ''">`MODIFY_TIME` = #{modifyTime}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}, </if>
 			<if test="appName != null">`APP_NAME` = #{appName}, </if>
 			<if test="appKey != null">`APP_KEY` = #{appKey}, </if>
 			<if test="bundleName != null">`BUNDLE_NAME` = #{bundleName}, </if>
