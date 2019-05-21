@@ -113,8 +113,7 @@ function load() {
                                  {
                                 field : 'kongbai',
                                 title : ''
-                                 }
-								],
+                                 }],
                         onExpandRow : function (index, row, $detail) {
                             console.log(index);
                             console.log(row);

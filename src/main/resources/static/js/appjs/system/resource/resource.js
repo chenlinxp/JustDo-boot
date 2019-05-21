@@ -37,6 +37,7 @@ var load = function () {
                     {
                         field : 'resourceName',
                         title : '资源名称',
+                        width : '200px'
                     },
                     {
                         field : 'resourceIcon',

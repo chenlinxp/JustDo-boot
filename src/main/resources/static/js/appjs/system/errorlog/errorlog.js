@@ -90,7 +90,20 @@ function load() {
 								},
 								{
 									field : 'exceptionContent', 
-									title : '异常信息' 
+									title : '异常信息',
+									align : 'left',
+                                    cellStyle: {
+                                        css: {
+                                            "overflow": "hidden",
+                                            "text-overflow": "ellipsis"
+                                        }
+                                    },
+                                    formatter : function(value, row, index) {
+                                    var values = row.exceptionContent;
+									var span=document.createElement('span');
+									span.setAttribute('title',values);
+									span.innerHTML = row.exceptionContent;
+									return span.outerHTML;}
 								},
 								{
 									field : 'exceptionState', 
