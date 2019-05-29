@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<head th:include="blog/index/include_blog::header"></head>
+<head th:include="portal/index/include::header"></head>
 <body>
-	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+	<nav th:include="portal/index/include::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
 	<header class="intro-header"
 		style="background-image: url('/img/blog/home-bg.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="site-heading">
-						<h1>JustDo Blog</h1>
-						<span class="subheading">justdo 博客</span>
+						<h1>JustDo</h1>
+						<span class="subheading">justdo </span>
 					</div>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 		</div>
 	</div>
 	</body>
-	<div th:include="blog/index/include_blog::footer"></div>
+	<div th:include="portal/index/include::footer"></div>
 	<script type="text/javascript">
 		var limit = 10;
 		var currentPage = 0;
@@ -48,7 +48,7 @@
 		function bindList(offset) {
 			$
 				.ajax({
-					url : 'blog/open/list?type=article&limit=10&offset=' + offset,
+					url : 'portal/open/list?type=article&limit=10&offset=' + offset,
 					method : 'get',
 					dataType : 'json',
 					success : function(data) {
@@ -57,15 +57,15 @@
 						var htmlText = "";
 						for (i = 0; i < rows.length; i++) {
 							htmlText += '<div class="post-preview">';
-							htmlText += '<a href="/blog/open/post/' + rows[i].cid + '">';
+							htmlText += '<a href="/portal/open/post/' + rows[i].articleId + '">';
 							htmlText += '<h2 class="post-title">';
-							htmlText += rows[i].title;
+							htmlText += rows[i].articleTitle;
 							htmlText += '</h2>';
 							htmlText += '</a>';
 							htmlText += '<p class="post-meta">作者：<a href="#">'
-								+ rows[i].author
+								+ rows[i].articleAuthor
 								+ '</a> &nbsp;&nbsp; '
-								+ rows[i].gtmModified + '</p>';
+								+ rows[i].modifyTime+ '</p>';
 							htmlText += '</div>';
 							htmlText += '<hr>';
 						}

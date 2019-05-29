@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<head th:include="blog/index/include_blog::header"></head>
+<head th:include="portal/index/include::header"></head>
 <body>
-	<nav th:include="blog/index/include_blog::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
+	<nav th:include="portal/index/include::nav"  class="navbar navbar-default navbar-custom navbar-fixed-top" ></nav>
 	<!-- Page Header -->
 	<header class="intro-header"
 		style="background-image: url('/img/blog/post-bg.jpg')">
@@ -11,10 +11,10 @@
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 					<div class="post-heading">
-						<h1 th:text="${bContent.title}"></h1>
-						<span class="meta">作者 <a href="#"
-							th:text="${bContent.author}"></a>&nbsp;&nbsp;<a href="#"
-							th:text="${gtmModified}"></a>
+						<h1 th:text="${article.articleTitle}"></h1>
+						<span class="meta">作者
+							<a href="#" th:text="${article.articleAuthor}"></a>&nbsp;&nbsp;
+							<a href="#" th:text="${modifytime}"></a>
 						</span>
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 		</div>
 	</article>
 	<hr>
-	<div th:include="blog/index/include_blog::footer"></div>
+	<div th:include="portal/index/include::footer"></div>
 	<script type="text/javascript" th:inline="javascript">
 		$(function() {
 			$('.summernote').summernote({
