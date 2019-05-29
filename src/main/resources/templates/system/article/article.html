@@ -9,13 +9,13 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="${pathName}:${classname}:add" type="button" class="btn  btn-success" onclick="add()">
+							<button shiro:hasPermission="system:article:add" type="button" class="btn  btn-success" onclick="add()">
                             <i class="fa fa-plus" aria-hidden="true"></i>添加
                         </button>
-							<button shiro:hasPermission="${pathName}:${classname}:edit" type="button" class="btn  btn-success" onclick="edit()">
+							<button shiro:hasPermission="system:article:edit" type="button" class="btn  btn-success" onclick="edit()">
                                 <i class="fa fa-edit" aria-hidden="true"></i>编辑
                             </button>
-							<button shiro:hasPermission="${pathName}:${classname}:batchDel" type="button" class="btn  btn-success" onclick="batchDel()">
+							<button shiro:hasPermission="system:article:batchDel" type="button" class="btn  btn-success" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
 						</div>
@@ -23,8 +23,7 @@
 							<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="关键字">
+							<input id="searchName" type="text" class="form-control" placeholder="文章名称">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
@@ -33,17 +32,7 @@
 			</div>
 		</div>
 	</div>
-		<div>
-			<script type="text/javascript">
-				var s_delete_h = 'hidden';
-			</script>
-		</div>
-		<div shiro:hasPermission="${pathName}:${classname}:del">
-			<script type="text/javascript">
-				var s_delete_h = '';
-			</script>
-		</div>
 <div th:include="include :: footer"></div>
-<script type="text/javascript" src="/js/appjs/${pathName}/${classnametolower}/${classnametolower}.js"></script>
+<script type="text/javascript" src="/js/appjs/system/article/article.js"></script>
 </body>
 </html>

@@ -20,7 +20,14 @@
 
 </head>
 <div th:fragment="footer">
-	<script src="/js/jquery.min.js?v=2.1.4" ></script>
+
+
+	<script type="text/javascript" language="Javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js "></script>
+	<script type='text/javascript'>//<![CDATA[
+    if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='/js/jquery.min.js?v=2.1.4' type='text/javascript' %3E%3C/script%3E"));
+    }//]]>
+	</script>
 	<script src="/js/bootstrap.min.js?v=3.3.6" ></script>
 	<script src="/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
 	<script src="/js/plugins/bootstrap-table/bootstrap-editable.min.js"></script>

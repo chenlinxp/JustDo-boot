@@ -90,7 +90,7 @@ public class OrganServiceImpl implements OrganService {
 			tree.setText(ogans.getOrganname());
 			tree.setIcon("fa fa-building");
 			Map<String, Object> state = new HashMap<>(16);
-			state.put("opened", true);
+			state.put("opened", false);
 			tree.setState(state);
 			trees.add(tree);
 		}

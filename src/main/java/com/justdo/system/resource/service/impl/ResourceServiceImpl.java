@@ -67,7 +67,6 @@ public class ResourceServiceImpl implements ResourceService {
 			tree.setText(resourceDO.getResourceName());
 			trees.add(tree);
 		}
-		// 默认顶级菜单为０，根据数据库实际情况调整
 		Tree<ResourceDO> t = BuildTree.build(trees);
 		return t;
 	}

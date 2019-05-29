@@ -346,7 +346,7 @@
         return target;
     };
 //（285行到347行） extend：JQuery的继承方法 -------end
-    jQuery.extend({
+    jQuery.extend({//（349到817行）jQuery.extend() :扩展一些工具方法------start
         // Unique for each copy of jQuery on the page
         expando: "jQuery" + ( core_version + Math.random() ).replace( /\D/g, "" ),
 

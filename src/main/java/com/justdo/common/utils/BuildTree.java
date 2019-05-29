@@ -51,8 +51,6 @@ public class BuildTree {
 			root.setIcon("");
 			root.setState(state);
 		}
-
-
 		return root;
 	}
 

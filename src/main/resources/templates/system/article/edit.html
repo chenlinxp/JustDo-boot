@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<div class="col-sm-12">
+							<h4>发布文章</h4>
+						</div>
+						<form class="form-horizontal m-t" id="signupForm">
+						 <input id="articleId" name="articleId" th:value="${article.articleId}"  type="hidden"/>
+       					 <input id="createEmployeeId" name="createEmployeeId" th:value="${article.createEmployeeId}"  type="hidden"/>
+       					 <input id="modifyEmployeeId" name="modifyEmployeeId" th:value="${article.modifyEmployeeId}"  type="hidden"/>
+       					 <input id="articleHits" name="articleHits" th:value="${article.articleHits}"  type="hidden"/>
+       					 <input id="commentsNum" name="commentsNum" th:value="${article.commentsNum}"  type="hidden"/>
+       					 <input id="delFlag" name="delFlag" th:value="${article.delFlag}"  type="hidden"/>
+       					 <input id="articleStatus" name="articleStatus" th:value="${article.articleStatus}"  type="hidden"/>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">标题:</label>
+							<div class="col-sm-4">
+								<input id="articleTitle" name="articleTitle" th:value="${article.articleTitle}" class="form-control" type="text">
+							</div>
+
+							<label class="col-sm-1 control-label">作者:</label>
+							<div class="col-sm-4">
+								<input id="articleAuthor" name="articleAuthor" th:value="${article.articleAuthor}" class="form-control" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">内容:</label>
+							<div class="col-sm-9">
+								<input id="articleContent" name="articleContent" th:value="${article.articleContent}" type="hidden">
+								<div class="col-sm-12">
+									<div class="ibox-content no-padding">
+										<div id="content_sn" class="summernote"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-1 control-label">类型:</label>
+							<div class="col-sm-4">
+								<input id="articleType" name="articleType" th:value="${article.articleType}" class="form-control" type="text">
+							</div>
+
+							<label class="col-sm-1 control-label">分类:</label>
+							<div class="col-sm-4">
+								<input id="articleCategories" name="articleCategories" th:value="${article.articleCategories}" class="form-control" type="text">
+							</div>
+						</div>
+							<!--<div class="form-group">-->
+								<!--<label class="col-sm-2 control-label">标签:</label>-->
+								<!--<div class="col-sm-4">-->
+									<!--<input id="articleTags" name="articleTags" th:value="${article.articleTags}" class="form-control" type="text">-->
+								<!--</div>-->
+							<!--</div>-->
+						<div class="form-group">
+							<label class="col-sm-1 control-label">开启评论:</label>
+							<div class="switch onoffswitch col-sm-1">
+								<div class="onoffswitch">
+									<input id="allowComment" name="allowComment" checked="" type="checkbox" value="1" class="onoffswitch-checkbox" th:checked=${article.allowComment==1}>
+									<label class="onoffswitch-label" for="allowComment">
+										<span class="onoffswitch-inner"></span>
+										<span class="onoffswitch-switch"></span>
+									</label>
+								</div>
+							</div>
+							<label class="col-sm-1 control-label">允许反馈:</label>
+							<div class="switch onoffswitch col-sm-1">
+								<div class="onoffswitch">
+									<input id="allowFeed" name="allowFeed" checked="" type="checkbox" value="1" class="onoffswitch-checkbox" th:checked=${article.allowFeed==1}>
+									<label class="onoffswitch-label" for="allowFeed">
+										<span class="onoffswitch-inner"></span>
+										<span class="onoffswitch-switch"></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="text-right form-group">
+								<a class="btn btn-default waves-effect waves-light"  onclick="returnList()">返回列表</a>
+								<button type="button" class="btn btn-primary waves-effect waves-light" onclick="update(1)">保存文章</button>
+								<button type="button" class="btn btn-warning waves-effect waves-light" onclick="update(0)">存为草稿</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/article/edit.js">
+	</script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.article.dao.ArticleDao">
+
+	<select id="get" resultType="com.justdo.system.article.domain.ArticleDO">
+		select  `ARTICLE_ID`, `CREATE_EMPLOYEE_ID`,`MODIFY_EMPLOYEE_ID`,`ARTICLE_HITS`,`COMMENTS_NUM`,`DEL_FLAG`,`ARTICLE_STATUS`,`CREATE_TIME`,`MODIFY_TIME`,`ARTICLE_TITLE`,`ARTICLE_CONTENT`,`ARTICLE_TYPE`,`ARTICLE_TAGS`,`ARTICLE_CATEGORIES`,`ALLOW_COMMENT`,`ALLOW_FEED`,`ARTICLE_AUTHOR` from sys_article where ARTICLE_ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.article.domain.ArticleDO">
+		select  `ARTICLE_ID`, `CREATE_EMPLOYEE_ID`,`MODIFY_EMPLOYEE_ID`,`ARTICLE_HITS`,`COMMENTS_NUM`,`DEL_FLAG`,`ARTICLE_STATUS`,`CREATE_TIME`,`MODIFY_TIME`,`ARTICLE_TITLE`,`ARTICLE_CONTENT`,`ARTICLE_TYPE`,`ARTICLE_TAGS`,`ARTICLE_CATEGORIES`,`ALLOW_COMMENT`,`ALLOW_FEED`,`ARTICLE_AUTHOR` from sys_article
+        <where>
+			<if test="articleId != null and articleId != ''"> and ARTICLE_ID != #{articleId} </if>
+		  <if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+		  <if test="modifyEmployeeId != null and modifyEmployeeId != ''"> and MODIFY_EMPLOYEE_ID = #{modifyEmployeeId} </if>
+		  <if test="articleHits != null and articleHits != ''"> and ARTICLE_HITS = #{articleHits} </if>
+		  <if test="commentsNum != null and commentsNum != ''"> and COMMENTS_NUM = #{commentsNum} </if>
+		  <if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
+		  <if test="articleStatus != null and articleStatus != ''"> and ARTICLE_STATUS = #{articleStatus} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+		  <if test="articleTitle != null and articleTitle != ''"> and ARTICLE_TITLE like concat('%' ,#{articleTitle},'%') </if>
+		  <if test="articleContent != null and articleContent != ''"> and ARTICLE_CONTENT = #{articleContent} </if>
+		  <if test="articleType != null and articleType != ''"> and ARTICLE_TYPE = #{articleType} </if>
+		  <if test="articleTags != null and articleTags != ''"> and ARTICLE_TAGS = #{articleTags} </if>
+		  <if test="articleCategories != null and articleCategories != ''"> and ARTICLE_CATEGORIES = #{articleCategories} </if>
+		  <if test="allowComment != null and allowComment != ''"> and ALLOW_COMMENT = #{allowComment} </if>
+		  <if test="allowFeed != null and allowFeed != ''"> and ALLOW_FEED = #{allowFeed} </if>
+		  <if test="articleAuthor != null and articleAuthor != ''"> and ARTICLE_AUTHOR = #{articleAuthor} </if>
+		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ARTICLE_ID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_article
+		 <where>  
+		  <if test="createEmployeeId != null and createEmployeeId != ''"> and CREATE_EMPLOYEE_ID = #{createEmployeeId} </if>
+		  <if test="modifyEmployeeId != null and modifyEmployeeId != ''"> and MODIFY_EMPLOYEE_ID = #{modifyEmployeeId} </if>
+		  <if test="articleHits != null and articleHits != ''"> and ARTICLE_HITS = #{articleHits} </if>
+		  <if test="commentsNum != null and commentsNum != ''"> and COMMENTS_NUM = #{commentsNum} </if>
+		  <if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
+		  <if test="articleStatus != null and articleStatus != ''"> and ARTICLE_STATUS = #{articleStatus} </if>
+		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+		  <if test="modifyTime != null and modifyTime != ''"> and MODIFY_TIME = #{modifyTime} </if>
+		  <if test="articleTitle != null and articleTitle != ''"> and ARTICLE_TITLE = #{articleTitle} </if>
+		  <if test="articleContent != null and articleContent != ''"> and ARTICLE_CONTENT = #{articleContent} </if>
+		  <if test="articleType != null and articleType != ''"> and ARTICLE_TYPE = #{articleType} </if>
+		  <if test="articleTags != null and articleTags != ''"> and ARTICLE_TAGS = #{articleTags} </if>
+		  <if test="articleCategories != null and articleCategories != ''"> and ARTICLE_CATEGORIES = #{articleCategories} </if>
+		  <if test="allowComment != null and allowComment != ''"> and ALLOW_COMMENT = #{allowComment} </if>
+		  <if test="allowFeed != null and allowFeed != ''"> and ALLOW_FEED = #{allowFeed} </if>
+		  <if test="articleAuthor != null and articleAuthor != ''"> and ARTICLE_AUTHOR = #{articleAuthor} </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.article.domain.ArticleDO">
+        <selectKey keyProperty="articleId" resultType="string" order="BEFORE">
+        select replace(uuid(), '-', '') as articleId from dual
+		</selectKey>
+        insert into sys_article
+		(
+		    `ARTICLE_ID`,
+            `CREATE_EMPLOYEE_ID`,
+			`MODIFY_EMPLOYEE_ID`,
+			`ARTICLE_HITS`,
+			`COMMENTS_NUM`,
+			`DEL_FLAG`,
+			`ARTICLE_STATUS`,
+			`CREATE_TIME`,
+			`MODIFY_TIME`,
+			`ARTICLE_TITLE`,
+			`ARTICLE_CONTENT`,
+			`ARTICLE_TYPE`,
+			`ARTICLE_TAGS`,
+			`ARTICLE_CATEGORIES`,
+			`ALLOW_COMMENT`,
+			`ALLOW_FEED`,
+			`ARTICLE_AUTHOR`
+		)
+		values
+		(
+           #{articleId},
+           #{createEmployeeId},
+		   #{modifyEmployeeId},
+		   #{articleHits},
+			#{commentsNum},
+			#{delFlag},
+			#{articleStatus},
+			#{createTime},
+			#{modifyTime},
+			#{articleTitle},
+			#{articleContent},
+			#{articleType},
+			#{articleTags},
+			#{articleCategories},
+			#{allowComment},
+			#{allowFeed},
+			#{articleAuthor}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.article.domain.ArticleDO">
+		update sys_article 
+		<set>
+			<if test="createEmployeeId != null">`CREATE_EMPLOYEE_ID` = #{createEmployeeId}, </if>
+			<if test="modifyEmployeeId != null">`MODIFY_EMPLOYEE_ID` = #{modifyEmployeeId}, </if>
+			<if test="articleHits != null">`ARTICLE_HITS` = #{articleHits}, </if>
+			<if test="commentsNum != null">`COMMENTS_NUM` = #{commentsNum}, </if>
+			<if test="delFlag != null">`DEL_FLAG` = #{delFlag}, </if>
+			<if test="articleStatus != null">`ARTICLE_STATUS` = #{articleStatus}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="modifyTime != null">`MODIFY_TIME` = #{modifyTime}, </if>
+			<if test="articleTitle != null">`ARTICLE_TITLE` = #{articleTitle}, </if>
+			<if test="articleContent != null">`ARTICLE_CONTENT` = #{articleContent}, </if>
+			<if test="articleType != null">`ARTICLE_TYPE` = #{articleType}, </if>
+			<if test="articleTags != null">`ARTICLE_TAGS` = #{articleTags}, </if>
+			<if test="articleCategories != null">`ARTICLE_CATEGORIES` = #{articleCategories}, </if>
+			<if test="allowComment != null">`ALLOW_COMMENT` = #{allowComment}, </if>
+			<if test="allowFeed != null">`ALLOW_FEED` = #{allowFeed}, </if>
+			<if test="articleAuthor != null">`ARTICLE_AUTHOR` = #{articleAuthor}</if>
+		</set>
+		where ARTICLE_ID = #{articleId}
+	</update>
+	
+	<delete id="del">
+		delete from sys_article where ARTICLE_ID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_article where ARTICLE_ID in 
+		<foreach item="articleIds" collection="array" open="(" separator="," close=")">
+			#{articleIds}
+		</foreach>
+	</delete>
+
+</mapper>

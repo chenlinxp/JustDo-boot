@@ -260,7 +260,7 @@ function loadTree(tree) {
 		},
 		"plugins" : [ "search" ]
 	});
-	$('#jstree').jstree().open_all();
+	//$('#jstree').jstree().open_all();
 }
 $('#jstree').on("changed.jstree", function(e, data) {
 	var organId = '';
@@ -277,14 +277,50 @@ $('#jstree').on("changed.jstree", function(e, data) {
         }else{
             opt.query.organId = data.node["id"];
         }
-        console.log(opt);
         $('#bTable').bootstrapTable('refresh', opt);
 	}
 });
-
+// $('#jstree').bind("create_node.jstree",function(e,data){
+//     var curreatnode = data.node;
+// }
 $('#jstree').on("open_node.jstree", function(e, data){
-	var curreatnode = data.node;
+    if(data.selected != -1){
+        var inst = data.instance;
+        var selectedNode = inst.get_node(data.selected);
+
+        if(data.node["icon"]=="fa fa-institution"){
+            var deptmentId = data.node["id"];
+
+            loadConfig(inst, selectedNode,deptmentId);
+
+        }
+    }
 });
+function loadConfig(inst, selectedNode,deptmentId) {
+    $.ajax({
+        url: "/system/position/tree/"+deptmentId,
+        dataType: "json",
+        type: "get",
+        success: function (data) {
+            if (data) {
+                // selectedNode.children = [];
+                // $.each(data, function (i, item) {
+                //     var obj = {text: item};
+                //     $('#jstree').jstree('create_node', selectedNode, obj, 'last');
+                //     //inst.create_node(selectedNode, item, "last");
+                // });
+                // inst.open_node(selectedNode);
+                selectedNode.children = [];
+                // $.each(data, function (i, item) {
+                //     var obj = {text: item};
+                    $('#jstree').jstree('create_node', selectedNode, data, 'last');
+                    //inst.create_node(selectedNode, item, "last");
+                // });
+                // inst.open_node(selectedNode);
+            }
+        }
+    });
+}
 $("#treeForm").submit(function(e) {
     e.preventDefault();
     $("#jstree").jstree(true).search($("#selectDept").val());

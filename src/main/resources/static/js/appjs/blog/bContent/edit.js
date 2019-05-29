@@ -1,4 +1,4 @@
-$().ready(function() {
+$(function() {
 	$('.summernote').summernote({
 		height : '220px',
 		lang : 'zh-CN',
@@ -17,7 +17,7 @@ $().ready(function() {
 
 $.validator.setDefaults({
 	submitHandler : function() {
-		save();
+		save(1);
 	}
 });
 function save(status) {

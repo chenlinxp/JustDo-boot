@@ -1,5 +1,4 @@
-$().ready(function() {
-
+$(function() {
 	$('.summernote').summernote({
 		height : '220px',
 		lang : 'zh-CN',

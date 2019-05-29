@@ -80,7 +80,12 @@ public class LogAspect {
         Object[] args = joinPoint.getArgs();
         try {
             String params =  Arrays.toString(args);
+            if(params.length()<=5000){
             operationLog.setParams(params);
+            }
+            else{
+                operationLog.setParams("参数太大");
+            }
         } catch (Exception e) {
 
         }
