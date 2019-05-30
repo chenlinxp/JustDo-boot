@@ -47,6 +47,7 @@
 * JSON工具类：Fastjson 1.2.31
 * REST API管理： swagger2  2.6.1
 * 代码生成类：velocity 1.7
+* 工作流引擎框架：activiti 5.22.0
 
 2、前端
 
