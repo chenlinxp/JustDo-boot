@@ -26,7 +26,7 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/act/salary")
+@RequestMapping("/activiti/salary")
 public class SalaryController extends BaseController{
     @Autowired
     private SalaryService salaryService;
@@ -50,7 +50,7 @@ public class SalaryController extends BaseController{
 
     @GetMapping("/form")
     String add() {
-        return "act/salary/add";
+        return "activiti/salary/add";
     }
 
     @GetMapping("/form/{taskId}")
@@ -58,7 +58,7 @@ public class SalaryController extends BaseController{
         SalaryDO salary = salaryService.get(activitiUtils.getBusinessKeyByTaskId(taskId));
         salary.setTaskId(taskId);
         model.addAttribute("salary", salary);
-        return "act/salary/edit";
+        return "activiti/salary/edit";
     }
 
     /**

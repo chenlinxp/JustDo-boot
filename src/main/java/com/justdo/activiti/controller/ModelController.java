@@ -20,6 +20,7 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ import static org.activiti.editor.constants.ModelDataJsonConstants.*;
 /**
  * @author justdo
  */
-@RequestMapping("/activiti")
+@RequestMapping("/activiti/model")
 @RestController
 public class ModelController extends BaseController{
     protected static final Logger LOGGER = LoggerFactory.getLogger(ModelEditorJsonRestResource.class);
@@ -47,21 +48,23 @@ public class ModelController extends BaseController{
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping("/model")
+    @GetMapping()
+    @RequiresPermissions("activiti:model:list")
     ModelAndView model() {
-        return new ModelAndView("act/model/model");
+        return new ModelAndView("activiti/model/model");
     }
 
-    @GetMapping("/model/list")
+    @GetMapping("/list")
+    @RequiresPermissions("activiti:model:list")
     PageUtils list(int offset, int limit) {
-        List<Model> list = repositoryService.createModelQuery().listPage(offset
-                , limit);
+        List<Model> list = repositoryService.createModelQuery().listPage(offset , limit);
         int total = (int) repositoryService.createModelQuery().count();
         PageUtils pageUtil = new PageUtils(list, total);
         return pageUtil;
     }
 
-    @RequestMapping("/model/add")
+    @RequestMapping("/add")
+    @RequiresPermissions("activiti:model:add")
     public void newModel(HttpServletResponse response) throws UnsupportedEncodingException {
 
         //初始化一个空模型
@@ -99,42 +102,8 @@ public class ModelController extends BaseController{
         }
     }
 
-    @GetMapping(value = "/model/{modelId}/json")
-    public ObjectNode getEditorJson(@PathVariable String modelId) {
-        ObjectNode modelNode = null;
-        Model model = repositoryService.getModel(modelId);
-        if (model != null) {
-            try {
-                if (StringUtils.isNotEmpty(model.getMetaInfo())) {
-                    modelNode = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
-                } else {
-                    modelNode = objectMapper.createObjectNode();
-                    modelNode.put(MODEL_NAME, model.getName());
-                }
-                modelNode.put(MODEL_ID, model.getId());
-                ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
-                        new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
-                modelNode.put("model", editorJsonNode);
-
-            } catch (Exception e) {
-                LOGGER.error("Error creating model JSON", e);
-                throw new ActivitiException("Error creating model JSON", e);
-            }
-        }
-        return modelNode;
-    }
-
-    @RequestMapping(value = "/editor/stencilset", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    public String getStencilset() {
-        InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
-        try {
-            return IOUtils.toString(stencilsetStream, "utf-8");
-        } catch (Exception e) {
-            throw new ActivitiException("Error while loading stencil set", e);
-        }
-    }
-
-    @GetMapping("/model/edit/{id}")
+    @GetMapping("/edit/{id}")
+    @RequiresPermissions("activiti:model:edit")
     public void edit(HttpServletResponse response, @PathVariable("id") String id) {
         try {
             response.sendRedirect("/modeler.html?modelId=" + id);
@@ -142,15 +111,8 @@ public class ModelController extends BaseController{
             e.printStackTrace();
         }
     }
-
-    @DeleteMapping("/model/{id}")
-    public R remove(@PathVariable("id") String id) {
-
-        repositoryService.deleteModel(id);
-        return R.ok();
-    }
-
-    @PostMapping("/model/deploy/{id}")
+    @PostMapping("/deploy/{id}")
+    @RequiresPermissions("activiti:model:deploy")
     public R deploy(@PathVariable("id") String id) throws Exception {
 
         //获取模型
@@ -181,7 +143,8 @@ public class ModelController extends BaseController{
         return R.ok();
     }
 
-    @PostMapping("/model/batchDel")
+    @PostMapping("/batchDel")
+    @RequiresPermissions("activiti:model:batchDel")
     public R batchDel(@RequestParam("ids[]") String[] ids) {
 
         for (String id : ids) {
@@ -190,11 +153,66 @@ public class ModelController extends BaseController{
         return R.ok();
     }
 
-    @RequestMapping(value = "/model/{modelId}/save", method = RequestMethod.PUT)
+    @GetMapping("/export/{id}")
+    @RequiresPermissions("activiti:model:export")
+    public void exportToXml(@PathVariable("id") String id, HttpServletResponse response) {
+        try {
+            org.activiti.engine.repository.Model modelData = repositoryService.getModel(id);
+            BpmnJsonConverter jsonConverter = new BpmnJsonConverter();
+            JsonNode editorNode = new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
+            BpmnModel bpmnModel = jsonConverter.convertToBpmnModel(editorNode);
+            BpmnXMLConverter xmlConverter = new BpmnXMLConverter();
+            byte[] bpmnBytes = xmlConverter.convertToXML(bpmnModel);
+
+            ByteArrayInputStream in = new ByteArrayInputStream(bpmnBytes);
+            IOUtils.copy(in, response.getOutputStream());
+            String filename = bpmnModel.getMainProcess().getId() + ".bpmn20.xml";
+            response.setHeader("Content-Disposition", "attachment; filename=" + filename);
+            response.flushBuffer();
+        } catch (Exception e) {
+            throw new ActivitiException("导出model的xml文件失败，模型ID=" + id, e);
+        }
+    }
+
+    @GetMapping(value = "/{modelId}/json")
+    public ObjectNode getEditorJson(@PathVariable String modelId) {
+        ObjectNode modelNode = null;
+        Model model = repositoryService.getModel(modelId);
+        if (model != null) {
+            try {
+                if (StringUtils.isNotEmpty(model.getMetaInfo())) {
+                    modelNode = (ObjectNode) objectMapper.readTree(model.getMetaInfo());
+                } else {
+                    modelNode = objectMapper.createObjectNode();
+                    modelNode.put(MODEL_NAME, model.getName());
+                }
+                modelNode.put(MODEL_ID, model.getId());
+                ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
+                        new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
+                modelNode.put("model", editorJsonNode);
+
+            } catch (Exception e) {
+                LOGGER.error("Error creating model JSON", e);
+                throw new ActivitiException("Error creating model JSON", e);
+            }
+        }
+        return modelNode;
+    }
+
+    @GetMapping(value = "/editor/stencilset", produces = "application/json;charset=utf-8")
+    public String getStencilset() {
+        InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
+        try {
+            return IOUtils.toString(stencilsetStream, "utf-8");
+        } catch (Exception e) {
+            throw new ActivitiException("Error while loading stencil set", e);
+        }
+    }
+
+
+    @RequestMapping(value = "/{modelId}/save", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
-    public void saveModel(@PathVariable String modelId
-            , String name, String description
-            , String json_xml, String svg_xml) {
+    public void saveModel(@PathVariable String modelId , String name, String description , String json_xml, String svg_xml) {
         try {
 
             Model model = repositoryService.getModel(modelId);
@@ -230,23 +248,4 @@ public class ModelController extends BaseController{
         }
     }
 
-    @GetMapping("/model/export/{id}")
-    public void exportToXml(@PathVariable("id") String id, HttpServletResponse response) {
-        try {
-            org.activiti.engine.repository.Model modelData = repositoryService.getModel(id);
-            BpmnJsonConverter jsonConverter = new BpmnJsonConverter();
-            JsonNode editorNode = new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
-            BpmnModel bpmnModel = jsonConverter.convertToBpmnModel(editorNode);
-            BpmnXMLConverter xmlConverter = new BpmnXMLConverter();
-            byte[] bpmnBytes = xmlConverter.convertToXML(bpmnModel);
-
-            ByteArrayInputStream in = new ByteArrayInputStream(bpmnBytes);
-            IOUtils.copy(in, response.getOutputStream());
-            String filename = bpmnModel.getMainProcess().getId() + ".bpmn20.xml";
-            response.setHeader("Content-Disposition", "attachment; filename=" + filename);
-            response.flushBuffer();
-        } catch (Exception e) {
-            throw new ActivitiException("导出model的xml文件失败，模型ID=" + id, e);
-        }
-    }
 }

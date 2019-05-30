@@ -11,6 +11,7 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipInputStream;
 
-@RequestMapping("activiti/process")
+@RequestMapping("/activiti/process")
 @RestController
 public class ProcessController extends BaseController{
 
@@ -39,12 +40,14 @@ public class ProcessController extends BaseController{
     @Autowired
     private RuntimeService runtimeService;
 
-    @GetMapping
+    @GetMapping()
+    @RequiresPermissions("activiti:process:list")
     ModelAndView process() {
-        return new ModelAndView("act/process/process");
+        return new ModelAndView("activiti/process/process");
     }
 
-    @GetMapping("list")
+    @GetMapping("/list")
+    @RequiresPermissions("activiti:process:list")
     PageUtils list(int offset, int limit) {
         List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
                 .listPage(offset, limit);
@@ -58,11 +61,13 @@ public class ProcessController extends BaseController{
     }
 
     @GetMapping("/add")
+    @RequiresPermissions("activiti:process:add")
     public ModelAndView add() {
-        return new ModelAndView("act/process/add");
+        return new ModelAndView("activiti/process/add");
     }
 
     @PostMapping("/save")
+    @RequiresPermissions("activiti:process:add")
     @Transactional(readOnly = false)
     public R deploy(String exportDir, String category, MultipartFile file) {
 
@@ -114,7 +119,8 @@ public class ProcessController extends BaseController{
      * @throws UnsupportedEncodingException
      * @throws XMLStreamException
      */
-    @RequestMapping(value = "/convertToModel/{procDefId}")
+    @GetMapping(value = "/convertToModel/{procDefId}")
+    @RequiresPermissions("activiti:process:convertToModel")
     public R convertToModel(@PathVariable("procDefId") String procDefId, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException, XMLStreamException {
 
         org.activiti.engine.repository.Model modelData = null;
@@ -128,7 +134,7 @@ public class ProcessController extends BaseController{
 
     }
 
-    @RequestMapping(value = "/resource/read/{xml}/{id}")
+    @GetMapping(value = "/resource/read/{xml}/{id}")
     public void resourceRead(@PathVariable("xml") String resType, @PathVariable("id") String id, HttpServletResponse response) throws Exception {
         InputStream resourceAsStream = processService.resourceRead(id,resType);
         byte[] b = new byte[1024];
@@ -139,12 +145,15 @@ public class ProcessController extends BaseController{
     }
 
     @PostMapping("/del")
+    @RequiresPermissions("activiti:process:del")
     public R remove(String id){
 
         repositoryService.deleteDeployment(id,true);
         return R.ok();
     }
+
     @PostMapping("/batchDel")
+    @RequiresPermissions("activiti:process:batchDel")
     public R batchDel(@RequestParam("ids[]") String[] ids) {
 
         for (String id : ids) {

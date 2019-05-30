@@ -36,9 +36,9 @@ public class TaskController {
     TaskService taskService;
     @Autowired
     ActTaskService actTaskService;
-    @GetMapping("goto")
+    @GetMapping("/goto")
     public ModelAndView gotoTask(){
-        return new ModelAndView("act/task/gotoTask");
+        return new ModelAndView("activiti/task/gotoTask");
     }
 
     @GetMapping("/gotoList")
@@ -73,7 +73,7 @@ public class TaskController {
 
     @GetMapping("/todo")
     ModelAndView todo(){
-        return new ModelAndView("act/task/todoTask");
+        return new ModelAndView("activiti/task/todoTask");
     }
 
     @GetMapping("/todoList")
