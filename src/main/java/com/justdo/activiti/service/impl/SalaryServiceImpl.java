@@ -46,6 +46,7 @@ public class SalaryServiceImpl implements SalaryService {
 			actTaskService.startProcess(ActivitiConstant.ACTIVITI_SALARY[0],ActivitiConstant.ACTIVITI_SALARY[1],salary.getId(),salary.getContent(),new HashMap<>());
 			return salaryDao.save(salary);
 	}
+
 	@Transactional(rollbackFor=Exception.class)
 	@Override
 	public int update(SalaryDO salary){

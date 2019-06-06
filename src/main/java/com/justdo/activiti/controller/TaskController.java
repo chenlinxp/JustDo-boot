@@ -3,12 +3,14 @@ package com.justdo.activiti.controller;
 import com.justdo.activiti.service.ActTaskService;
 import com.justdo.activiti.vo.ProcessVO;
 import com.justdo.activiti.vo.TaskVO;
+import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import org.activiti.engine.FormService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +29,7 @@ import java.util.List;
  */
 @RequestMapping("activiti/task")
 @RestController
-public class TaskController {
+public class TaskController  extends BaseController {
     @Autowired
     RepositoryService repositoryService;
     @Autowired
@@ -36,12 +38,27 @@ public class TaskController {
     TaskService taskService;
     @Autowired
     ActTaskService actTaskService;
+
+    /**
+     * 可以发起的流程任务列表页面
+     * @return
+     */
     @GetMapping("/goto")
+    @RequiresPermissions("activiti:task:goto")
     public ModelAndView gotoTask(){
         return new ModelAndView("activiti/task/gotoTask");
     }
 
+
+
+    /**
+     * 可以发起的流程任务列表
+     * @param offset
+     * @param limit
+     * @return
+     */
     @GetMapping("/gotoList")
+    @RequiresPermissions("activiti:task:goto")
     PageUtils list(int offset, int limit) {
         List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
                 .listPage(offset, limit);
@@ -55,14 +72,31 @@ public class TaskController {
         return pageUtils;
     }
 
-    @GetMapping("/form/{procDefId}")
+    /**
+     *
+     * 发起任务
+     * @param procDefId
+     * @param response
+     * @throws IOException
+     */
+    @GetMapping("/start/{procDefId}")
+    @RequiresPermissions("activiti:task:startTask")
     public void startForm(@PathVariable("procDefId") String procDefId  ,HttpServletResponse response) throws IOException {
         String formKey = actTaskService.getFormKey(procDefId, null);
         response.sendRedirect(formKey);
     }
 
-    @GetMapping("/form/{procDefId}/{taskId}")
+    /**
+     * 审批任务
+     * @param procDefId
+     * @param taskId
+     * @param response
+     * @throws IOException
+     */
+    @GetMapping("/handle/{procDefId}/{taskId}")
+    @RequiresPermissions("activiti:task:handleTask")
     public void form(@PathVariable("procDefId") String procDefId,@PathVariable("taskId") String taskId ,HttpServletResponse response) throws IOException {
+
         // 获取流程XML上的表单KEY
 
         String formKey = actTaskService.getFormKey(procDefId, taskId);
@@ -71,14 +105,25 @@ public class TaskController {
         response.sendRedirect(formKey+"/"+taskId);
     }
 
+    /**
+     * 待办的任务列表页面
+     * @return
+     */
     @GetMapping("/todo")
+    @RequiresPermissions("activiti:task:todo")
     ModelAndView todo(){
         return new ModelAndView("activiti/task/todoTask");
     }
 
+    /**
+     * 待办的任务列表
+     * @return
+     */
     @GetMapping("/todoList")
+    @RequiresPermissions("activiti:task:todo")
     List<TaskVO> todoList(){
-        List<Task> tasks = taskService.createTaskQuery().taskAssignee("admin").list();
+        String employeename = getEmployeename();
+        List<Task> tasks = taskService.createTaskQuery().taskAssignee(employeename).list();
         List<TaskVO> taskVOS =  new ArrayList<>();
         for(Task task : tasks){
             TaskVO taskVO = new TaskVO(task);
@@ -87,11 +132,43 @@ public class TaskController {
         return taskVOS;
     }
 
+    /**
+     * 已办的任务列表页面
+     * @return
+     */
+    @GetMapping("/done")
+    @RequiresPermissions("activiti:task:done")
+    ModelAndView done(){
+        return new ModelAndView("activiti/task/todoTask");
+    }
 
     /**
-     * 读取带跟踪的图片
+     * 已办的任务列表
+     * @return
+     */
+    @GetMapping("/doneList")
+    @RequiresPermissions("activiti:task:done")
+    List<TaskVO> doneList(){
+        String employeename = getEmployeename();
+        List<Task> tasks = taskService.createTaskQuery().taskCandidateOrAssigned(employeename).list();
+        List<TaskVO> taskVOS =  new ArrayList<>();
+        for(Task task : tasks){
+            TaskVO taskVO = new TaskVO(task);
+            taskVOS.add(taskVO);
+        }
+        return taskVOS;
+
+    }
+
+    /**
+     * 跟踪的图片
+     * @param procDefId
+     * @param execId
+     * @param response
+     * @throws Exception
      */
     @RequestMapping(value = "/trace/photo/{procDefId}/{execId}")
+    @RequiresPermissions("activiti:task:trace")
     public void tracePhoto(@PathVariable("procDefId") String procDefId, @PathVariable("execId") String execId, HttpServletResponse response) throws Exception {
         InputStream imageStream = actTaskService.tracePhoto(procDefId, execId);
 

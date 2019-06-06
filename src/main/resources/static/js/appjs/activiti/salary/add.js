@@ -1,4 +1,4 @@
-$().ready(function () {
+$(function () {
     validateRule();
 
 });
@@ -14,12 +14,11 @@ $("#userName").click(function () {
         type: 2,
         title: '选择人员',
         area: ['300px', '450px'],
-        content: "/system/user/treeView"
+        content: "/system/employee/treeView"
     })
 });
 
-function loadUser(id,name){
-    console.log(id+name);
+function loadEmployee(id,name){
     $("#userId").val(id);
     $("#userName").val(name);
 }

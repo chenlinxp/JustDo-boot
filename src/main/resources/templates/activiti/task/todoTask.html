@@ -34,6 +34,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div>
 		<script type="text/javascript">
             var s_startTask_h = 'hidden';
@@ -42,6 +43,17 @@
 	<div shiro:hasPermission="activiti:task:startTask">
 		<script type="text/javascript">
             s_startTask_h = '';
+		</script>
+	</div>
+
+	<div>
+		<script type="text/javascript">
+            var s_handleTask_h = 'hidden';
+		</script>
+	</div>
+	<div shiro:hasPermission="activiti:task:handleTask">
+		<script type="text/javascript">
+            s_handleTask_h = '';
 		</script>
 	</div>
 	<div th:include="include :: footer"></div>

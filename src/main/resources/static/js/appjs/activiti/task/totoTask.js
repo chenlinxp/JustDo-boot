@@ -1,4 +1,4 @@
-var prefix = "/activiti/task"
+var preUrl = "/activiti/task"
 $(function() {
 	load();
 });
@@ -8,7 +8,7 @@ function load() {
 		.bootstrapTable(
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
-				url : prefix + "/todoList", // 服务器数据的加载地址
+				url : preUrl + "/todoList", // 服务器数据的加载地址
 				// showRefresh : true,
 				// showToggle : true,
 				// showColumns : true,
@@ -36,6 +36,17 @@ function load() {
 						name : $('#searchName').val(),
 					};
 				},
+                onClickRow: function (row, element) {
+                    $('.success').removeClass('success');//去除之前选中的行的，选中样式
+                    $(element).addClass('success');//添加当前选中的 success样式用于区别
+                    $("#bTable").bootstrapTable("uncheckAll");
+                    var rowindex=$(element).attr("data-index");
+                    $("#bTable").bootstrapTable('check',rowindex);
+                    // $.each($("#bTable  input[type='checkbox']"), function(index, value) {
+                    //     $(value).prop("checked",false);
+                    // });
+                    // $(element).find("input[type='checkbox']").prop("checked","checked");
+                },
 				// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
 				// queryParamsType = 'limit' ,返回参数必须包含
 				// limit, offset, search, sort, order 否则, 需要包含:
@@ -90,7 +101,7 @@ function load() {
 						align : 'center',
 						formatter : function(value, row, index) {
 
-							var f = '<a class="btn btn-primary btn-sm " href="#" title="签收任务"  mce_href="#" onclick="form(\''
+							var f = '<a class="btn btn-success btn-sm ' + s_handleTask_h + '" href="#" title="签收任务"  mce_href="#" onclick="handle(\''
 								+ row.processDefinitionId+'\',\''+row.id
 								+ '\')">审批<i class="fa fa-key"></i></a> ';
 							return f;
@@ -101,13 +112,13 @@ function load() {
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
-function form(proId,id) {
+function handle(proId,id) {
     layer.open({
         type : 2,
         title : '发起流程',
         maxmin : true,
         shadeClose : false,
         area : [ '100%', '100%' ],
-        content : prefix + '/form/'+ proId+'/'+id
+        content : preUrl + '/handle/'+ proId+'/'+id
     })
 }

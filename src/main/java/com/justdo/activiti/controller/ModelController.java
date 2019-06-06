@@ -37,7 +37,7 @@ import static org.activiti.editor.constants.ModelDataJsonConstants.*;
 /**
  * @author justdo
  */
-@RequestMapping("/activiti/model")
+@RequestMapping("/activiti")
 @RestController
 public class ModelController extends BaseController{
     protected static final Logger LOGGER = LoggerFactory.getLogger(ModelEditorJsonRestResource.class);
@@ -48,13 +48,23 @@ public class ModelController extends BaseController{
     @Autowired
     private ObjectMapper objectMapper;
 
-    @GetMapping()
+    /**
+     * 流程模型列表
+     * @return
+     */
+    @GetMapping("/model")
     @RequiresPermissions("activiti:model:list")
     ModelAndView model() {
         return new ModelAndView("activiti/model/model");
     }
 
-    @GetMapping("/list")
+    /**
+     * 流程模型列表
+     * @param offset
+     * @param limit
+     * @return
+     */
+    @GetMapping("/model/list")
     @RequiresPermissions("activiti:model:list")
     PageUtils list(int offset, int limit) {
         List<Model> list = repositoryService.createModelQuery().listPage(offset , limit);
@@ -63,7 +73,12 @@ public class ModelController extends BaseController{
         return pageUtil;
     }
 
-    @RequestMapping("/add")
+    /**
+     * 新建流程模型
+     * @param response
+     * @throws UnsupportedEncodingException
+     */
+    @RequestMapping("/model/add")
     @RequiresPermissions("activiti:model:add")
     public void newModel(HttpServletResponse response) throws UnsupportedEncodingException {
 
@@ -102,7 +117,12 @@ public class ModelController extends BaseController{
         }
     }
 
-    @GetMapping("/edit/{id}")
+    /**
+     * 进入编辑模型的界面
+     * @param response
+     * @param id
+     */
+    @GetMapping("/model/edit/{id}")
     @RequiresPermissions("activiti:model:edit")
     public void edit(HttpServletResponse response, @PathVariable("id") String id) {
         try {
@@ -111,7 +131,14 @@ public class ModelController extends BaseController{
             e.printStackTrace();
         }
     }
-    @PostMapping("/deploy/{id}")
+
+    /**
+     * 部署流程模型
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/model/deploy/{id}")
     @RequiresPermissions("activiti:model:deploy")
     public R deploy(@PathVariable("id") String id) throws Exception {
 
@@ -143,7 +170,12 @@ public class ModelController extends BaseController{
         return R.ok();
     }
 
-    @PostMapping("/batchDel")
+    /**
+     * 批量删除流程模型
+     * @param ids
+     * @return
+     */
+    @PostMapping("/model/batchDel")
     @RequiresPermissions("activiti:model:batchDel")
     public R batchDel(@RequestParam("ids[]") String[] ids) {
 
@@ -153,7 +185,12 @@ public class ModelController extends BaseController{
         return R.ok();
     }
 
-    @GetMapping("/export/{id}")
+    /**
+     * 导出流程模型bpmn20.xml文件
+     * @param id
+     * @param response
+     */
+    @GetMapping("/model/export/{id}")
     @RequiresPermissions("activiti:model:export")
     public void exportToXml(@PathVariable("id") String id, HttpServletResponse response) {
         try {
@@ -174,7 +211,7 @@ public class ModelController extends BaseController{
         }
     }
 
-    @GetMapping(value = "/{modelId}/json")
+    @GetMapping(value = "/model/{modelId}/json")
     public ObjectNode getEditorJson(@PathVariable String modelId) {
         ObjectNode modelNode = null;
         Model model = repositoryService.getModel(modelId);
@@ -209,8 +246,15 @@ public class ModelController extends BaseController{
         }
     }
 
-
-    @RequestMapping(value = "/{modelId}/save", method = RequestMethod.PUT)
+    /**
+     * 保存模型
+     * @param modelId
+     * @param name
+     * @param description
+     * @param json_xml
+     * @param svg_xml
+     */
+    @RequestMapping(value = "/model/{modelId}/save", method = RequestMethod.PUT)
     @ResponseStatus(value = HttpStatus.OK)
     public void saveModel(@PathVariable String modelId , String name, String description , String json_xml, String svg_xml) {
         try {

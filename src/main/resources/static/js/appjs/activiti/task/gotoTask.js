@@ -1,4 +1,4 @@
-var preUrl= "/activiti/task"
+var preUrl3= "/activiti/task"
 $(function() {
 	load3();
 });
@@ -8,7 +8,7 @@ function load3() {
 		.bootstrapTable(
 			{
 				method : 'get', // 服务器数据的请求方式 get or post
-				url : preUrl + "/gotoList", // 服务器数据的加载地址
+				url : preUrl3 + "/gotoList", // 服务器数据的加载地址
 				// showRefresh : true,
 				// showToggle : true,
 				// showColumns : true,
@@ -36,6 +36,17 @@ function load3() {
 						name : $('#searchName').val(),
 					};
 				},
+                onClickRow: function (row, element) {
+                    $('.success').removeClass('success');//去除之前选中的行的，选中样式
+                    $(element).addClass('success');//添加当前选中的 success样式用于区别
+                    $("#bTable").bootstrapTable("uncheckAll");
+                    var rowindex=$(element).attr("data-index");
+                    $("#bTable").bootstrapTable('check',rowindex);
+                    // $.each($("#bTable  input[type='checkbox']"), function(index, value) {
+                    //     $(value).prop("checked",false);
+                    // });
+                    // $(element).find("input[type='checkbox']").prop("checked","checked");
+                },
 				// //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
 				// queryParamsType = 'limit' ,返回参数必须包含
 				// limit, offset, search, sort, order 否则, 需要包含:
@@ -95,7 +106,7 @@ function startTask(id) {
         maxmin : true,
         shadeClose : false,
         area : [ '100%', '100%' ],
-        content : preUrl +'/form/'+id
+        content : preUrl3 +'/start/'+id
     })
 }
 
