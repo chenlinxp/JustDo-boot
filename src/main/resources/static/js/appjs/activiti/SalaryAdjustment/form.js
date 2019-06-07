@@ -1,4 +1,4 @@
-$().ready(function() {
+$(function() {
 	validateRule();
 });
 

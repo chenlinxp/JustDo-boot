@@ -10,26 +10,15 @@
 				<div class="ibox">
 					<div class="ibox-body">
 						<div class="fixed-table-toolbar">
-							<div class="columns pull-left">
-								<button shiro:hasPermission="activiti:model:add" type="button"
-									class="btn  btn-primary" onclick="add()">
-									<i class="fa fa-plus " aria-hidden="true"></i>添加
-								</button>
-								<button shiro:hasPermission="activiti:model:batchDel" type="button"
-									class="btn  btn-danger" onclick="batchDel()">
-									<i class="fa fa-trash " aria-hidden="true"></i>删除
-								</button>
-							</div>
 							<div class="columns pull-right">
 								<button class="btn btn-success" onclick="reLoad()">查询</button>
 							</div>
-
 							<div class="columns pull-right col-md-2 nopadding">
 								<input id="searchName" type="text" class="form-control"
 									placeholder="姓名">
 							</div>
 						</div>
-						<table id="bTable" data-mobile-responsive="true">
+						<table id="bTable2" data-mobile-responsive="true">
 						</table>
 					</div>
 				</div>
@@ -37,6 +26,6 @@
 		</div>
 	</div>
 	<div th:include="include :: footer"></div>
-	<script type="text/javascript" src="/js/appjs/activiti/model/model.js"></script>
+	<script type="text/javascript" src="/js/appjs/activiti/task/doneTask.js"></script>
 </body>
 </html>

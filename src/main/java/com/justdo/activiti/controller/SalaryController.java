@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 审批流程测试表
+ * 审批流程测
  *
  * @author chenlin
  * @email
@@ -96,6 +96,7 @@ public class SalaryController extends BaseController{
         } else if("apply_end".equals(salary.getTaskComment())){
             //流程完成，兑现
         }
+
         salaryService.update(salary);
         return R.ok();
     }

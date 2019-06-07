@@ -13,10 +13,10 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.zip.ZipInputStream;
 
 @RequestMapping("/activiti/process")
-@RestController
+@Controller
 public class ProcessController extends BaseController{
 
     @Autowired
@@ -42,11 +42,12 @@ public class ProcessController extends BaseController{
 
     @GetMapping()
     @RequiresPermissions("activiti:process:list")
-    ModelAndView process() {
-        return new ModelAndView("activiti/process/process");
+    String process() {
+        return "activiti/process/process";
     }
 
     @GetMapping("/list")
+    @ResponseBody
     @RequiresPermissions("activiti:process:list")
     PageUtils list(int offset, int limit) {
         List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
@@ -62,11 +63,12 @@ public class ProcessController extends BaseController{
 
     @GetMapping("/add")
     @RequiresPermissions("activiti:process:add")
-    public ModelAndView add() {
-        return new ModelAndView("activiti/process/add");
+    public String add() {
+        return "activiti/process/add";
     }
 
     @PostMapping("/save")
+    @ResponseBody
     @RequiresPermissions("activiti:process:add")
     @Transactional(readOnly = false)
     public R deploy(String exportDir, String category, MultipartFile file) {
@@ -120,6 +122,7 @@ public class ProcessController extends BaseController{
      * @throws XMLStreamException
      */
     @GetMapping(value = "/convertToModel/{procDefId}")
+    @ResponseBody
     @RequiresPermissions("activiti:process:convertToModel")
     public R convertToModel(@PathVariable("procDefId") String procDefId, RedirectAttributes redirectAttributes) throws UnsupportedEncodingException, XMLStreamException {
 
@@ -145,6 +148,7 @@ public class ProcessController extends BaseController{
     }
 
     @PostMapping("/del")
+    @ResponseBody
     @RequiresPermissions("activiti:process:del")
     public R remove(String id){
 
@@ -153,6 +157,7 @@ public class ProcessController extends BaseController{
     }
 
     @PostMapping("/batchDel")
+    @ResponseBody
     @RequiresPermissions("activiti:process:batchDel")
     public R batchDel(@RequestParam("ids[]") String[] ids) {
 

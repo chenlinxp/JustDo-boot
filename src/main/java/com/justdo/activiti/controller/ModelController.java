@@ -25,8 +25,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -38,7 +38,7 @@ import static org.activiti.editor.constants.ModelDataJsonConstants.*;
  * @author justdo
  */
 @RequestMapping("/activiti")
-@RestController
+@Controller
 public class ModelController extends BaseController{
     protected static final Logger LOGGER = LoggerFactory.getLogger(ModelEditorJsonRestResource.class);
 
@@ -54,8 +54,8 @@ public class ModelController extends BaseController{
      */
     @GetMapping("/model")
     @RequiresPermissions("activiti:model:list")
-    ModelAndView model() {
-        return new ModelAndView("activiti/model/model");
+    String  model() {
+        return "activiti/model/model";
     }
 
     /**
@@ -65,6 +65,7 @@ public class ModelController extends BaseController{
      * @return
      */
     @GetMapping("/model/list")
+    @ResponseBody
     @RequiresPermissions("activiti:model:list")
     PageUtils list(int offset, int limit) {
         List<Model> list = repositoryService.createModelQuery().listPage(offset , limit);
@@ -139,6 +140,7 @@ public class ModelController extends BaseController{
      * @throws Exception
      */
     @PostMapping("/model/deploy/{id}")
+    @ResponseBody
     @RequiresPermissions("activiti:model:deploy")
     public R deploy(@PathVariable("id") String id) throws Exception {
 
@@ -176,6 +178,7 @@ public class ModelController extends BaseController{
      * @return
      */
     @PostMapping("/model/batchDel")
+    @ResponseBody
     @RequiresPermissions("activiti:model:batchDel")
     public R batchDel(@RequestParam("ids[]") String[] ids) {
 
@@ -212,6 +215,7 @@ public class ModelController extends BaseController{
     }
 
     @GetMapping(value = "/model/{modelId}/json")
+    @ResponseBody
     public ObjectNode getEditorJson(@PathVariable String modelId) {
         ObjectNode modelNode = null;
         Model model = repositoryService.getModel(modelId);
@@ -237,6 +241,7 @@ public class ModelController extends BaseController{
     }
 
     @GetMapping(value = "/editor/stencilset", produces = "application/json;charset=utf-8")
+    @ResponseBody
     public String getStencilset() {
         InputStream stencilsetStream = this.getClass().getClassLoader().getResourceAsStream("stencilset.json");
         try {

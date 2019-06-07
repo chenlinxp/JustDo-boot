@@ -12,11 +12,11 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import java.util.List;
 
  */
 @RequestMapping("activiti/task")
-@RestController
+@Controller
 public class TaskController  extends BaseController {
     @Autowired
     RepositoryService repositoryService;
@@ -45,8 +45,8 @@ public class TaskController  extends BaseController {
      */
     @GetMapping("/goto")
     @RequiresPermissions("activiti:task:goto")
-    public ModelAndView gotoTask(){
-        return new ModelAndView("activiti/task/gotoTask");
+    public String gotoTask(){
+        return "activiti/task/gotoTask";
     }
 
 
@@ -58,6 +58,7 @@ public class TaskController  extends BaseController {
      * @return
      */
     @GetMapping("/gotoList")
+    @ResponseBody
     @RequiresPermissions("activiti:task:goto")
     PageUtils list(int offset, int limit) {
         List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
@@ -111,8 +112,8 @@ public class TaskController  extends BaseController {
      */
     @GetMapping("/todo")
     @RequiresPermissions("activiti:task:todo")
-    ModelAndView todo(){
-        return new ModelAndView("activiti/task/todoTask");
+    String todo(){
+        return "activiti/task/todoTask";
     }
 
     /**
@@ -120,6 +121,7 @@ public class TaskController  extends BaseController {
      * @return
      */
     @GetMapping("/todoList")
+    @ResponseBody
     @RequiresPermissions("activiti:task:todo")
     List<TaskVO> todoList(){
         String employeename = getEmployeename();
@@ -138,8 +140,8 @@ public class TaskController  extends BaseController {
      */
     @GetMapping("/done")
     @RequiresPermissions("activiti:task:done")
-    ModelAndView done(){
-        return new ModelAndView("activiti/task/todoTask");
+    String done(){
+        return "activiti/task/doneTask";
     }
 
     /**
@@ -147,6 +149,7 @@ public class TaskController  extends BaseController {
      * @return
      */
     @GetMapping("/doneList")
+    @ResponseBody
     @RequiresPermissions("activiti:task:done")
     List<TaskVO> doneList(){
         String employeename = getEmployeename();

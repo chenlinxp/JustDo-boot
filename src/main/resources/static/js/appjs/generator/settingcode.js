@@ -153,7 +153,7 @@ function load() {
                         field: 'orderNum',
                         title: '显示序号',
                         editable: {
-                            type: 'text',
+                            type: 'number',
                             title: '显示序号',
                             validate: function (v) {
                                 if (!v) return '显示序号不能为空';

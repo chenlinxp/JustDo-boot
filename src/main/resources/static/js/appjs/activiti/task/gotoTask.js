@@ -39,9 +39,9 @@ function load3() {
                 onClickRow: function (row, element) {
                     $('.success').removeClass('success');//去除之前选中的行的，选中样式
                     $(element).addClass('success');//添加当前选中的 success样式用于区别
-                    $("#bTable").bootstrapTable("uncheckAll");
+                    $("#bTable3").bootstrapTable("uncheckAll");
                     var rowindex=$(element).attr("data-index");
-                    $("#bTable").bootstrapTable('check',rowindex);
+                    $("#bTable3").bootstrapTable('check',rowindex);
                     // $.each($("#bTable  input[type='checkbox']"), function(index, value) {
                     //     $(value).prop("checked",false);
                     // });
@@ -63,8 +63,8 @@ function load3() {
                         align : 'center',
                         width : '30px',
                         formatter: function (value ,row ,index){
-                            var pageNumber=$('#bTable').bootstrapTable("getOptions").pageNumber;
-                            var pageSize=$('#bTable').bootstrapTable("getOptions").pageSize;
+                            var pageNumber=$('#bTable3').bootstrapTable("getOptions").pageNumber;
+                            var pageSize=$('#bTable3').bootstrapTable("getOptions").pageSize;
                             return (pageNumber-1)*pageSize+index+1;
                         }
                     },
@@ -92,7 +92,7 @@ function load3() {
 						formatter : function(value, row, index) {
 							var f = '<a class="btn btn-success btn-sm ' + s_startTask_h + '" href="#" title="发起任务"  mce_href="#" onclick="startTask(\''
 								+ row.id
-								+ '\')"><i class="fa  fa-paper-plane"></i></a> ';
+								+ '\')">发起<i class="fa  fa-paper-plane"></i></a> ';
 							return f;
 						}
 					} ]
