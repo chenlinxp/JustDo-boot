@@ -7,15 +7,15 @@ import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.resource.service.ResourceService;
+import com.justdo.system.role.domain.RoleDO;
+import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -25,19 +25,44 @@ import java.util.Set;
 public class EmployeeRealm extends AuthorizingRealm {
 
 
-	/**
+//	@Autowired
+//	private ShiroService shiroService;
+
+//	@Override
+//	public boolean supports(AuthenticationToken token) {
+//		return token instanceof OAuth2Token;
+//	}
+
+	/**AuthorizingRealm
 	 * 授权：即权限验证，验证某个已认证的用户是否拥有某个权限；即判断用户是否能做事情，常见的如：验证某个用户是否拥有某个角色。或者细粒度的验证某个用户对某个资源是否具有某个权限
-	 * @param arg0
+	 * @param principalCollection
 	 * @return
 	 */
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection arg0) {
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+
 		String employeeId = ShiroUtils.getEmployeeId();
+		//String username = (String)principalCollection.getPrimaryPrincipal();
+		//权限获取
 		ResourceService resourceService = ApplicationContextRegister.getBean(ResourceService.class);
 		Set<String> perms = resourceService.listEmployeePermissions(employeeId);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		info.setStringPermissions(perms);
+
+
+		//角色获取
+		RoleService roleService = ApplicationContextRegister.getBean(RoleService.class);
+		List<RoleDO> roles = roleService.list(employeeId);
+		Set<String> rolenames = new HashSet<>();
+
+		for (RoleDO role:roles) {
+			rolenames.add(role.getRoleName());
+		}
+		info.addRoles(rolenames);
+
 		return info;
+
+
 	}
 
 	/**
@@ -49,6 +74,9 @@ public class EmployeeRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
+//		UsernamePasswordToken atoken = (UsernamePasswordToken)token;
+//		String username = atoken.getUsername();
+
 		String loginName = (String) token.getPrincipal();
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
@@ -58,6 +86,8 @@ public class EmployeeRealm extends AuthorizingRealm {
 		EmployeeDao employeeDao = ApplicationContextRegister.getBean(EmployeeDao.class);
 		// 查询用户信息
 		EmployeeDO employee = employeeDao.list(map).get(0);
+
+		//String password = employee.getPassword();
 
 		SimpleEmployeeDO simpleEmployeeDO = new SimpleEmployeeDO();
 		simpleEmployeeDO.setEmployeeId(employee.getEmployeeId());
@@ -80,7 +110,23 @@ public class EmployeeRealm extends AuthorizingRealm {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
 		employee = null;
+		//ByteSource.Util.bytes(employee.getPasswordSalt())，简单讲解一下这里，
+		//对于第一次接触shiro的人来说应该是最难理解的地方，这个SimpleAuthenticationInfo会将你Token中的账号密码通过getName（）
+		//这个方法获取，与你传入的username及password进行对比，byteSource是盐值，
+		//是为了加密时使用的。这里我采用了盐值存储在用户信息中的方式，而盐值的设置是在
+		//我注册用户时设置的，我采用的是随机字符串形式，当然你也可以采用随机数格式。
+		//而这个解密的方式在哪配置的，请看后面。
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(simpleEmployeeDO, password, getName());
+
+		//以下信息是从数据库中获取的
+		//1)principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
+//		Object principal = loginName;
+//		//2)credentials：密码
+//		Object credentials = password;
+//		//3)realmName：当前realm对象的name，调用父类的getName()方法即可
+//		String realmName = getName();
+//		//4)credentialsSalt盐值
+//        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, ByteSource.Util.bytes(employee.getPasswordSalt()), realmName);
 		return info;
 	}
 

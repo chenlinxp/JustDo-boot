@@ -99,7 +99,10 @@ public class ELoginController extends BaseController {
 		params.put("loginName",loginName);
 		if(employeeService.exist(params)) {
 			String salt = employeeService.getPasswordSalt(loginName);
-			password = MD5Utils.encrypt(salt, password);
+
+//			SimpleHash password2 = new SimpleHash("md5",password, ByteSource.Util.bytes(salt),2);
+//			String a = password2.toString();//4d9573ec9f4cf8978543486c9e9eb681
+			password = MD5Utils.encrypt(salt, password);  //fe02dde7415743a285fc5cefa6942ffc
 			Subject currentUser = SecurityUtils.getSubject();
 			if (currentUser.isAuthenticated() && currentUser.isRemembered()) {
 				return R.ok();
@@ -112,6 +115,7 @@ public class ELoginController extends BaseController {
 					currentUser.login(token);
 					return R.ok();
 				} catch (AuthenticationException e) {
+					System.out.println(e.toString());
 					return R.error("用户名或密码错误");
 				}
 			}

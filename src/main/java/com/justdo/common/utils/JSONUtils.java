@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class JSONUtils {
 	/**
@@ -82,5 +83,39 @@ public class JSONUtils {
 			return null;
 		}
 		return JSON.parseObject(json, Map.class);
+	}
+
+
+	/**
+	 * 将Map递归转换为Json字符串
+	 *
+	 * @param map
+	 * @return
+	 */
+	public static String map2Json(Map map) {
+		StringBuilder sb = new StringBuilder("{");
+		Set keys = map.keySet();
+		for (Object k : keys) {
+			sb.append("\"");
+			sb.append(k.toString());
+			sb.append("\"");
+			sb.append(":");
+
+			Object v = map.get(k);
+			if (v instanceof Map) {
+				sb.append(map2Json((Map) v));
+			} else if (v instanceof Number) {
+				sb.append(v.toString());
+			} else {
+				sb.append("\"");
+				sb.append(v.toString());
+				sb.append("\"");
+			}
+			sb.append(",");
+		}
+		if (sb.length() > 1) {
+			return sb.substring(0, sb.length() - 1) + "}";
+		}
+		return sb.append("}").toString();
 	}
 }

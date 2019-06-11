@@ -9,7 +9,7 @@ function load2() {
             {
                 method : 'get', // 服务器数据的请求方式 get or post
                 url : preUrl2 + "/doneList", // 服务器数据的加载地址
-                // showRefresh : true,
+                showRefresh : true,
                 // showToggle : true,
                 // showColumns : true,
                 iconSize : 'outline',
@@ -26,7 +26,7 @@ function load2() {
                 pageNumber : 1, // 如果设置了分布，首页页码
                 // search : true, // 是否显示搜索框
                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
-                sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者
+                sidePagination : "client", // 设置在哪里进行分页，可选值为"client" 或者
                 // "server"
                 queryParams : function(params) {
                     return {
@@ -63,8 +63,8 @@ function load2() {
                         align : 'center',
                         width : '30px',
                         formatter: function (value ,row ,index){
-                            var pageNumber=$('#bTable3').bootstrapTable("getOptions").pageNumber;
-                            var pageSize=$('#bTable3').bootstrapTable("getOptions").pageSize;
+                            var pageNumber=$('#bTable2').bootstrapTable("getOptions").pageNumber;
+                            var pageSize=$('#bTable2').bootstrapTable("getOptions").pageSize;
                             return (pageNumber-1)*pageSize+index+1;
                         }
                     },

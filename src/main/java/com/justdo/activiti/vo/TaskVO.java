@@ -1,5 +1,6 @@
 package com.justdo.activiti.vo;
 
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.task.Task;
 
 /**
@@ -8,6 +9,19 @@ import org.activiti.engine.task.Task;
 public class TaskVO  {
 
     public TaskVO(Task task){
+
+        this.setId(task.getId());
+        this.setKey(task.getTaskDefinitionKey());
+        this.setName(task.getName());
+        this.setDescription(task.getDescription());
+        this.setAssignee(task.getAssignee());
+        this.setFormKey(task.getFormKey());
+        this.setProcessId(task.getProcessInstanceId());
+        this.setProcessDefinitionId(task.getProcessDefinitionId());
+        this.setExecutionId(task.getExecutionId());
+    }
+
+    public TaskVO(HistoricTaskInstance task){
 
         this.setId(task.getId());
         this.setKey(task.getTaskDefinitionKey());

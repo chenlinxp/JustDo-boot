@@ -6,8 +6,10 @@ import com.justdo.activiti.vo.TaskVO;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.utils.PageUtils;
 import org.activiti.engine.FormService;
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -38,6 +40,8 @@ public class TaskController  extends BaseController {
     TaskService taskService;
     @Autowired
     ActTaskService actTaskService;
+    @Autowired
+    HistoryService processEngine;
 
     /**
      * 可以发起的流程任务列表页面
@@ -68,7 +72,6 @@ public class TaskController  extends BaseController {
         for(ProcessDefinition processDefinition: processDefinitions){
             list.add(new ProcessVO(processDefinition));
         }
-
         PageUtils pageUtils = new PageUtils(list, count);
         return pageUtils;
     }
@@ -151,18 +154,28 @@ public class TaskController  extends BaseController {
     @GetMapping("/doneList")
     @ResponseBody
     @RequiresPermissions("activiti:task:done")
-    List<TaskVO> doneList(){
+    List<TaskVO> doneList() {
         String employeename = getEmployeename();
-        List<Task> tasks = taskService.createTaskQuery().taskCandidateOrAssigned(employeename).list();
-        List<TaskVO> taskVOS =  new ArrayList<>();
-        for(Task task : tasks){
-            TaskVO taskVO = new TaskVO(task);
-            taskVOS.add(taskVO);
+        List<TaskVO> taskVOS = new ArrayList<>();
+        List<HistoricTaskInstance> list = processEngine.createHistoricTaskInstanceQuery().finished().list();
+        for (HistoricTaskInstance hti : list) {
+           if(hti.getAssignee().equals(employeename)){
+               TaskVO taskVO = new TaskVO(hti);
+               taskVOS.add(taskVO);
+           }
         }
         return taskVOS;
 
+//
+//        List<HistoricTaskInstance> list = processEngine.createHistoricTaskInstanceQuery().finished().listPage(offset, limit);
+//        int count = (int) repositoryService.createProcessDefinitionQuery().count();
+//        List<Object> list = new ArrayList<>();
+//        for(ProcessDefinition processDefinition: processDefinitions){
+//            list.add(new ProcessVO(processDefinition));
+//        }
+//        PageUtils pageUtils = new PageUtils(list, count);
+//        return pageUtils;
     }
-
     /**
      * 跟踪的图片
      * @param procDefId

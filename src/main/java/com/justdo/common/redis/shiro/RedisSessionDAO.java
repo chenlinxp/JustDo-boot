@@ -1,14 +1,14 @@
 package com.justdo.common.redis.shiro;
 
-import com.justdo.common.redis.RedisManager;
 import com.justdo.common.utils.SerializeUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.UnknownSessionException;
-import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
+import org.apache.shiro.session.mgt.SimpleSession;
+import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,59 +17,45 @@ import java.util.Set;
  * @author justdo
  * @version V1.0
  */
-public class RedisSessionDAO extends AbstractSessionDAO {
+public class RedisSessionDAO extends EnterpriseCacheSessionDAO {
 
     private static Logger logger = LoggerFactory.getLogger(RedisSessionDAO.class);
-    /**
-     * shiro-redis的session对象前缀
-     */
-    private RedisManager redisManager;
 
-    /**
-     * The Redis key prefix for the sessions
-     */
-    private String keyPrefix = "shiro_redis_session:";
+    private RedisTemplate<byte[],byte[]> redisTemplate;
 
-    @Override
-    public void update(Session session) throws UnknownSessionException {
-        this.saveSession(session);
-    }
+    private String prefix = "shiro_redis:";
 
-    /**
-     * save session
-     * @param session
-     * @throws UnknownSessionException
-     */
-    private void saveSession(Session session) throws UnknownSessionException{
-        if(session == null || session.getId() == null){
-            logger.error("session or session id is null");
-            return;
-        }
-
-        byte[] key = getByteKey(session.getId());
-        byte[] value = SerializeUtils.serialize(session);
-        session.setTimeout(redisManager.getExpire()*1000);
-        this.redisManager.set(key, value, redisManager.getExpire());
+    public RedisSessionDAO(RedisTemplate redisTemplate){
+        this.redisTemplate = redisTemplate;
     }
 
     @Override
-    public void delete(Session session) {
-        if(session == null || session.getId() == null){
-            logger.error("session or session id is null");
-            return;
-        }
-        redisManager.del(this.getByteKey(session.getId()));
+    protected Serializable doCreate(Session session) {
+        Serializable sessionId = super.doCreate(session);
+        redisTemplate.opsForValue().set(sessionId.toString().getBytes(),sessionToByte(session));
+        return sessionId;
+    }
 
+    @Override
+    protected Session doReadSession(Serializable sessionId) {
+        Session session = super.doReadSession(sessionId);
+        if(session == null){
+            byte[] bytes =  redisTemplate.opsForValue().get(sessionId.toString().getBytes());
+            if(bytes != null && bytes.length > 0){
+                session = byteToSession(bytes);
+            }
+        }
+        return session;
     }
 
     @Override
     public Collection<Session> getActiveSessions() {
         Set<Session> sessions = new HashSet<Session>();
 
-        Set<byte[]> keys = redisManager.keys(this.keyPrefix + "*");
+        Set<byte[]> keys = redisTemplate.keys((this.prefix + "*").getBytes());
         if(keys != null && keys.size()>0){
             for(byte[] key:keys){
-                Session s = (Session)SerializeUtils.deserialize(redisManager.get(key));
+                Session s = (Session) SerializeUtils.deserialize(redisTemplate.opsForValue().get(key));
                 sessions.add(s);
             }
         }
@@ -77,65 +63,52 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         return sessions;
     }
 
+
+    //设置session的最后一次访问时间
     @Override
-    protected Serializable doCreate(Session session) {
-        Serializable sessionId = this.generateSessionId(session);
-        this.assignSessionId(session, sessionId);
-        this.saveSession(session);
-        return sessionId;
+    protected void doUpdate(Session session) {
+        super.doUpdate(session);
+        redisTemplate.opsForValue().set(session.getId().toString().getBytes(),sessionToByte(session));
     }
 
+    // 删除session
     @Override
-    protected Session doReadSession(Serializable sessionId) {
-        if(sessionId == null){
-            logger.error("session id is null");
+    protected void doDelete(Session session) {
+        super.doDelete(session);
+        redisTemplate.delete(session.getId().toString().getBytes());
+    }
+
+    private byte[] sessionToByte(Session session){
+        if (null == session){
             return null;
         }
-        byte[] a = redisManager.get(this.getByteKey(sessionId));
-        Session s = (Session)SerializeUtils.deserialize(a);
-        return s;
+        ByteArrayOutputStream bo = new ByteArrayOutputStream();
+        byte[] bytes = null;
+        ObjectOutputStream oo ;
+        try {
+            oo = new ObjectOutputStream(bo);
+            oo.writeObject(session);
+            bytes = bo.toByteArray();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return bytes;
+
     }
-
-    /**
-     * 获得byte[]型的key
-     * @param sessionId
-     * @return
-     */
-    private byte[] getByteKey(Serializable sessionId){
-        String preKey = this.keyPrefix + sessionId;
-        return preKey.getBytes();
+    private Session byteToSession(byte[] bytes){
+        if(0==bytes.length){
+            return null;
+        }
+        ByteArrayInputStream bi = new ByteArrayInputStream(bytes);
+        ObjectInputStream in;
+        SimpleSession session = null;
+        try {
+            in = new ObjectInputStream(bi);
+            session = (SimpleSession) in.readObject();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return session;
     }
-
-    public RedisManager getRedisManager() {
-        return redisManager;
-    }
-
-    public void setRedisManager(RedisManager redisManager) {
-        this.redisManager = redisManager;
-
-        /**
-         * 初始化redisManager
-         */
-        this.redisManager.init();
-    }
-
-    /**
-     * Returns the Redis session keys
-     * prefix.
-     * @return The prefix
-     */
-    public String getKeyPrefix() {
-        return keyPrefix;
-    }
-
-    /**
-     * Sets the Redis sessions key
-     * prefix.
-     * @param keyPrefix The prefix
-     */
-    public void setKeyPrefix(String keyPrefix) {
-        this.keyPrefix = keyPrefix;
-    }
-
 
 }
