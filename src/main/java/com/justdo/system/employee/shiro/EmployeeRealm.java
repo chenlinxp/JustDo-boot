@@ -14,6 +14,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import java.util.*;
 
@@ -81,13 +82,13 @@ public class EmployeeRealm extends AuthorizingRealm {
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
 
-		String password = new String((char[]) token.getCredentials());
+		//String password = new String((char[]) token.getCredentials());
 
 		EmployeeDao employeeDao = ApplicationContextRegister.getBean(EmployeeDao.class);
 		// 查询用户信息
 		EmployeeDO employee = employeeDao.list(map).get(0);
 
-		//String password = employee.getPassword();
+		String password = employee.getPassword();
 
 		SimpleEmployeeDO simpleEmployeeDO = new SimpleEmployeeDO();
 		simpleEmployeeDO.setEmployeeId(employee.getEmployeeId());
@@ -97,37 +98,77 @@ public class EmployeeRealm extends AuthorizingRealm {
 		simpleEmployeeDO.setOrganId(employee.getOrganId());
 		simpleEmployeeDO.setPositionId(employee.getPositionId());
 		simpleEmployeeDO.setPhotoUrl(employee.getPhotoUrl());
+		String salt = employee.getPasswordSalt();
 		// 账号不存在
 		if (employee == null) {
 			throw new UnknownAccountException("账号或密码不正确");
-		}
-		// 密码错误
-		if (!password.equals(employee.getPassword())) {
-			throw new IncorrectCredentialsException("账号或密码不正确");
 		}
 		// 账号锁定
 		if (employee.getEmployeeState() == 0) {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
 		employee = null;
-		//ByteSource.Util.bytes(employee.getPasswordSalt())，简单讲解一下这里，
+		//ByteSource.Util.bytes(salt)，简单讲解一下这里，
 		//对于第一次接触shiro的人来说应该是最难理解的地方，这个SimpleAuthenticationInfo会将你Token中的账号密码通过getName（）
 		//这个方法获取，与你传入的username及password进行对比，byteSource是盐值，
 		//是为了加密时使用的。这里我采用了盐值存储在用户信息中的方式，而盐值的设置是在
 		//我注册用户时设置的，我采用的是随机字符串形式，当然你也可以采用随机数格式。
 		//而这个解密的方式在哪配置的，请看后面。
-		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(simpleEmployeeDO, password, getName());
+        //以下信息是从数据库中获取的
 
-		//以下信息是从数据库中获取的
-		//1)principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
-//		Object principal = loginName;
-//		//2)credentials：密码
-//		Object credentials = password;
-//		//3)realmName：当前realm对象的name，调用父类的getName()方法即可
-//		String realmName = getName();
-//		//4)credentialsSalt盐值
-//        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, ByteSource.Util.bytes(employee.getPasswordSalt()), realmName);
+//		1)principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
+		Object principal = simpleEmployeeDO;
+		//2)credentials：密码
+		Object credentials = password;
+		//3)realmName：当前realm对象的name，调用父类的getName()方法即可
+		String realmName = getName();
+		//4)credentialsSalt盐值
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, ByteSource.Util.bytes(salt), realmName);
 		return info;
 	}
 
+	/**
+	 * 重写方法,清除当前用户的的 授权缓存
+	 * @param principals
+	 */
+	@Override
+	public void clearCachedAuthorizationInfo(PrincipalCollection principals) {
+		super.clearCachedAuthorizationInfo(principals);
+	}
+
+	/**
+	 * 重写方法，清除当前用户的 认证缓存
+	 * @param principals
+	 */
+	@Override
+	public void clearCachedAuthenticationInfo(PrincipalCollection principals) {
+		super.clearCachedAuthenticationInfo(principals);
+	}
+
+	@Override
+	public void clearCache(PrincipalCollection principals) {
+		super.clearCache(principals);
+	}
+
+	/**
+	 * 自定义方法：清除所有 授权缓存
+	 */
+	public void clearAllCachedAuthorizationInfo() {
+		getAuthorizationCache().clear();
+	}
+
+	/**
+	 * 自定义方法：清除所有 认证缓存
+	 */
+	public void clearAllCachedAuthenticationInfo() {
+		getAuthenticationCache().clear();
+	}
+
+	/**
+	 * 自定义方法：清除所有的  认证缓存  和 授权缓存
+	 */
+	public void clearAllCache() {
+		clearAllCachedAuthenticationInfo();
+		clearAllCachedAuthorizationInfo();
+	}
 }

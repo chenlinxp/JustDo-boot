@@ -30,6 +30,12 @@ public interface EmployeeDao {
 	String getPasswordSalt(String loginName);
 
 	/**
+	 * 返回实体
+	 * @param loginName
+	 * @return EmployeeDO
+	 */
+	EmployeeDO findByEmployeeName(String loginName);
+	/**
 	 * 返回实体list
 	 * @param map
 	 * @return list
