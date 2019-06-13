@@ -1,6 +1,7 @@
 package com.justdo.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import com.justdo.authentication.OAuth2Filter;
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
@@ -21,9 +22,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
+import javax.servlet.Filter;
+import java.util.*;
 
 
 /**
@@ -68,9 +68,10 @@ public class ShiroConfig {
 
 
 		//oauth过滤
-//		Map<String, Filter> filters = new HashMap<>();
-//		filters.put("oauth2", new OAuth2Filter());
-//		shiroFilterFactoryBean.setFilters(filters);
+		Map<String, Filter> filters = new HashMap<>();
+		filters.put("oauth2", new OAuth2Filter());
+		shiroFilterFactoryBean.setFilters(filters);
+
 		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/css/**", "anon");
@@ -82,11 +83,11 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/upload/**", "anon");
 		filterChainDefinitionMap.put("/files/**", "anon");
 		filterChainDefinitionMap.put("/", "anon");
-		filterChainDefinitionMap.put("/blog", "anon");
-		filterChainDefinitionMap.put("/blog/open/**", "anon");
+		filterChainDefinitionMap.put("/portal", "anon");
+		filterChainDefinitionMap.put("/portal/open/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
 		filterChainDefinitionMap.put("/**", "authc");
-//		filterChainDefinitionMap.put("/**", "oauth2");
+		filterChainDefinitionMap.put("/app/**", "oauth2");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}

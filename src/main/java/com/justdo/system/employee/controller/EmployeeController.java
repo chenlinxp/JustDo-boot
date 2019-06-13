@@ -9,6 +9,7 @@ import com.justdo.system.dict.service.DictContentService;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.EmployeeVO;
 import com.justdo.system.employee.service.EmployeeService;
+import com.justdo.system.employee.shiro.RetryLimitHashedCredentialsMatcher;
 import com.justdo.system.role.domain.RoleDO;
 import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -45,7 +46,8 @@ public class EmployeeController {
 	RoleService roleService;
 	@Autowired
 	DictContentService dictContentService;
-
+	@Autowired
+	RetryLimitHashedCredentialsMatcher hashedCredentialsMatcher;
 
 
 	/**
@@ -157,9 +159,9 @@ public class EmployeeController {
 	public R update( EmployeeDO employee){
 		employee.setModifyTime(new Date());
 		if(employeeService.update(employee)>0){
-			return R.ok();
+			return R.ok("更新成功");
 		}
-		return R.error("更新成功");
+		return R.error("更新失败");
 	}
 	
 	/**
@@ -173,9 +175,9 @@ public class EmployeeController {
 	@RequiresPermissions("system:employee:del")
 	public R remove( String employeeId){
 		if(employeeService.del(employeeId)>0){
-		return R.ok();
+		return R.ok("删除成功");
 		}
-		return R.error("删除成功");
+		return R.error("删除失败");
 	}
 	
 	/**
@@ -249,6 +251,19 @@ public class EmployeeController {
 			System.out.println(e.getMessage());
 			return R.error(1,e.getMessage());
 		}
+
+	}
+
+	@RequiresPermissions("system:employee:unlock")
+	@Log("账号解锁")
+	@PostMapping("/unlock")
+	@ResponseBody
+	R unlock(String loginname){
+
+		if(hashedCredentialsMatcher.unlockAccount(loginname)){
+			return R.ok("解锁成功");
+		}
+		return R.error("账号解锁失败");
 
 	}
 	@GetMapping("/tree")

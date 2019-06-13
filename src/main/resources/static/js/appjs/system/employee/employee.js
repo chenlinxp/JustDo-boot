@@ -195,6 +195,33 @@ function edit() {
 		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
+
+function unlock(){
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var loginname;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        loginname = rows[0]['loginName'];
+    }
+    $.ajax({
+        type : 'POST',
+        data : {
+            "loginname" : loginname
+        },
+        url : preUrl + '/unlock',
+        success : function(r) {
+            if (r.code == 0) {
+                layer.msg(r.msg);
+                reLoad();
+            } else {
+                layer.msg(r.msg);
+            }
+        }
+    });
+}
 function resetPwd(id) {
 	layer.open({
 		type : 2,
