@@ -77,7 +77,9 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 		boolean matches = super.doCredentialsMatch(token, info);
 		if (matches) {
 			//如果正确,从缓存中将用户登录计数 清除
+			if (a != null) {
 			redisManager.del(getByteKey(username));
+			}
 		}
 		else{
 			retryCount++;
@@ -92,14 +94,22 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 	 * @param username
 	 * @return
 	 */
-	public void unlockAccount(String username) {
+	public boolean unlockAccount(String username) {
+		Boolean flag = false;
 		EmployeeDO employeeDO = employeeDao.findByEmployeeName(username);
 		if (employeeDO != null) {
 			//修改数据库的状态字段为锁定
-			employeeDO.setEmployeeState(0);
-			employeeDao.update(employeeDO);
-			redisManager.del(getByteKey(username));
+			employeeDO.setEmployeeState(1);
+			if(employeeDao.update(employeeDO)>0){
+				byte[] a = redisManager.get(getByteKey(username));
+				if (a != null) {
+					redisManager.del(getByteKey(username));
+				}
+				flag = true;
+			}
+
 		}
+		return flag;
 	}
 
 }

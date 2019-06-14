@@ -18,6 +18,8 @@ import com.justdo.system.organ.domain.OrganDO;
 import com.justdo.system.position.dao.PositionDao;
 import com.justdo.system.position.domain.PositionDO;
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -167,8 +169,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		if(Objects.equals(employeeVO.getEmployeeDO().getEmployeeId(),employeeId)){
 			EmployeeDO currentEmployee =  get(employeeId);
-			if(Objects.equals(MD5Utils.encrypt(currentEmployee.getPasswordSalt(),employeeVO.getPwdOld()),currentEmployee.getPassword())){
-				currentEmployee.setPassword(MD5Utils.encrypt(currentEmployee.getPasswordSalt(),employeeVO.getPwdNew()));
+
+			String password = MD5Utils.encrypt("md5",employeeVO.getPwdOld(),currentEmployee.getPasswordSalt());
+
+			if(Objects.equals(password,currentEmployee.getPassword())){
+
+				String newPassword = MD5Utils.encrypt("md5",employeeVO.getPwdNew(),currentEmployee.getPasswordSalt());
+
+				currentEmployee.setPassword(newPassword);
+
 				return employeeDao.update(currentEmployee);
 			}else{
 				throw new Exception("输入的旧密码有误！");
@@ -186,7 +195,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		String passwordSaltStr = StringUtils.getUUID();
 		employeeDO.setPasswordSalt(passwordSaltStr);
-		employeeDO.setPassword(MD5Utils.encrypt(employeeDO.getPasswordSalt(), employeeVO.getPwdNew()));
+		String password = MD5Utils.encrypt("md5",employeeVO.getPwdNew(),passwordSaltStr);
+		employeeDO.setPassword(password);
 		return employeeDao.update(employeeDO);
 
 

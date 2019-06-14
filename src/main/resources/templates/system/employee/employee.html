@@ -41,6 +41,10 @@
 									class="btn  btn-success" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
+							<button shiro:hasPermission="system:employee:unlock" type="button"
+									class="btn  btn-success" onclick="unlock()">
+								<i class="fa fa-unlock" aria-hidden="true"></i>解锁
+							</button>
 						</div>
 						<div class="columns pull-right">
 							<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
