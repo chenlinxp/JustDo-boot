@@ -259,9 +259,15 @@ public class EmployeeController {
 	@PostMapping("/unlock")
 	@ResponseBody
 	R unlock(String loginname){
-
-		if(hashedCredentialsMatcher.unlockAccount(loginname)){
-			return R.ok("解锁成功");
+		Boolean flag = false;
+		EmployeeDO employeeDO = employeeService.findByEmployeeName(loginname);
+		if (employeeDO != null) {
+			if(employeeDO.getEmployeeState().equals(1)){
+				return R.error("账号已解锁，请勿重复操作");
+			}
+			if (hashedCredentialsMatcher.unlockAccount(employeeDO)) {
+				return R.ok("解锁成功");
+			}
 		}
 		return R.error("账号解锁失败");
 

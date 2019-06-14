@@ -91,15 +91,15 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 	/**
 	 * 根据用户名 解锁用户
 	 *
-	 * @param username
+	 * @param employeeDO
 	 * @return
 	 */
-	public boolean unlockAccount(String username) {
+	public boolean unlockAccount(EmployeeDO employeeDO) {
 		Boolean flag = false;
-		EmployeeDO employeeDO = employeeDao.findByEmployeeName(username);
-		if (employeeDO != null) {
-			//修改数据库的状态字段为锁定
-			employeeDO.setEmployeeState(1);
+			//修改数据库的状态字段为解锁状态
+		employeeDO.setEmployeeState(1);
+	    String username = employeeDO.getLoginName();
+
 			if(employeeDao.update(employeeDO)>0){
 				byte[] a = redisManager.get(getByteKey(username));
 				if (a != null) {
@@ -108,7 +108,6 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 				flag = true;
 			}
 
-		}
 		return flag;
 	}
 

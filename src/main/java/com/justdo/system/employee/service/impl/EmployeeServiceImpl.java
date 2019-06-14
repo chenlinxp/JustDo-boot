@@ -95,6 +95,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public String getPasswordSalt(String loginName){
 		return employeeDao.getPasswordSalt(loginName);
 	}
+
+	@Override
+	public EmployeeDO findByEmployeeName(String loginName){
+		return employeeDao.findByEmployeeName(loginName);
+	}
 	@Override
 	public List<EmployeeDO> list(Map<String, Object> map){
 		return employeeDao.list(map);
