@@ -2,6 +2,7 @@ package com.justdo.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.justdo.authentication.OAuth2Filter;
+import com.justdo.common.filter.KickoutSessionControlFilter;
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
@@ -72,6 +73,12 @@ public class ShiroConfig {
 		filters.put("oauth2", new OAuth2Filter());
 		shiroFilterFactoryBean.setFilters(filters);
 
+		//自定义拦截器
+		Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
+        //限制同一帐号同时在线的个数。
+		filtersMap.put("kickout", kickoutSessionControlFilter());
+		shiroFilterFactoryBean.setFilters(filtersMap);
+
 		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		filterChainDefinitionMap.put("/css/**", "anon");
@@ -86,8 +93,15 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/portal", "anon");
 		filterChainDefinitionMap.put("/portal/open/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
-		filterChainDefinitionMap.put("/**", "authc");
-		filterChainDefinitionMap.put("/app/**", "oauth2");
+		filterChainDefinitionMap.put("/**", "kickout,authc");
+		//filterChainDefinitionMap.put("/app/**", "oauth2");
+		// 配置不会被拦截的链接 顺序判断
+		// 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
+		// 从数据库获取动态的权限
+		// filterChainDefinitionMap.put("/add", "perms[权限添加]");
+		// <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
+		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
+		//logout这个拦截器是shiro已经实现好了的。
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -224,4 +238,24 @@ public class ShiroConfig {
 		return credentialsMatcher;
 	}
 
+	/**
+	 * 限制同一账号登录同时登录人数控制
+	 * @return
+	 */
+	public KickoutSessionControlFilter kickoutSessionControlFilter(){
+		KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
+		//使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户—会话之间的关系的；
+		//这里我们还是用之前shiro使用的redisManager()实现的cacheManager()缓存管理
+		//也可以重新另写一个，重新配置缓存时间之类的自定义缓存属性
+		kickoutSessionControlFilter.setCacheManager(cacheManager());
+		//用于根据会话ID，获取会话进行踢出操作的；
+		kickoutSessionControlFilter.setSessionManager(sessionManager());
+		//是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序。
+		kickoutSessionControlFilter.setKickoutAfter(false);
+		//同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录；
+		kickoutSessionControlFilter.setMaxSession(1);
+		//被踢出后重定向到的地址；
+		kickoutSessionControlFilter.setKickoutUrl("/logout");
+		return kickoutSessionControlFilter;
+	}
 }
