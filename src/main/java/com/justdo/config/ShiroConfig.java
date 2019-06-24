@@ -82,19 +82,23 @@ public class ShiroConfig {
 
 		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-		filterChainDefinitionMap.put("/css/**", "anon");
-		filterChainDefinitionMap.put("/js/**", "anon");
-		filterChainDefinitionMap.put("/fonts/**", "anon");
-		filterChainDefinitionMap.put("/img/**", "anon");
-		filterChainDefinitionMap.put("/docs/**", "anon");
+		//开放登陆接口
+		filterChainDefinitionMap.put("/css/**", "kickout,anon");
+		filterChainDefinitionMap.put("/js/**", "kickout,anon");
+		filterChainDefinitionMap.put("/fonts/**", "kickout,anon");
+		filterChainDefinitionMap.put("/img/**", "kickout,anon");
+		filterChainDefinitionMap.put("/docs/**", "kickout,anon");
 		filterChainDefinitionMap.put("/druid/**", "anon");
-		filterChainDefinitionMap.put("/upload/**", "anon");
-		filterChainDefinitionMap.put("/files/**", "anon");
-		filterChainDefinitionMap.put("/", "anon");
+		filterChainDefinitionMap.put("/upload/**", "kickout,anon");
+		filterChainDefinitionMap.put("/files/**", "kickout,anon");
+		filterChainDefinitionMap.put("/", "kickout,user");
+		filterChainDefinitionMap.put("/index", "kickout,user");
 		filterChainDefinitionMap.put("/portal", "anon");
 		filterChainDefinitionMap.put("/portal/open/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout,kickout");
 		//filterChainDefinitionMap.put("/**", "user");
+		//其余接口一律拦截
+		//主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
 		filterChainDefinitionMap.put("/**", "kickout,user");
 		//filterChainDefinitionMap.put("/app/**", "oauth2");
 		// 配置不会被拦截的链接 顺序判断
@@ -250,7 +254,7 @@ public class ShiroConfig {
 	@Bean
 	public FormAuthenticationFilter formAuthenticationFilter(){
 		FormAuthenticationFilter formAuthenticationFilter = new FormAuthenticationFilter();
-		//对应前端的checkbox的name = rememberMe
+		//对应前端的checkbox的name = rememberme
 		formAuthenticationFilter.setRememberMeParam("rememberMe");
 		return formAuthenticationFilter;
 	}

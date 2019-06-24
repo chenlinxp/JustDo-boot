@@ -48,14 +48,15 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             logger.error("session or session id is null");
             return;
         }
-
         //String loginName = getLoginName(session);
         byte[] key = getByteKey(session.getId());
         byte[] value = SerializeUtils.serialize(session);
-        session.setTimeout(redisManager.getExpire()*1000);
+        session.setTimeout(redisManager.getExpire()*60*30);
+        logger.info("session id is:"+session.getId());
         this.redisManager.set(key, value, redisManager.getExpire());
     }
 
+    // 删除session
     @Override
     public void delete(Session session) {
         if(session == null || session.getId() == null){
@@ -63,14 +64,16 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             return;
         }
         //String loginName = getLoginName(session);
+        logger.info("session id is:"+session.getId());
         redisManager.del(this.getByteKey(session.getId()));
 
     }
 
+    //获取所有的session
     @Override
     public Collection<Session> getActiveSessions() {
-        Set<Session> sessions = new HashSet<Session>();
 
+        Set<Session> sessions = new HashSet<Session>();
         Set<byte[]> keys = redisManager.keys(this.keyPrefix + "*");
         if(keys != null && keys.size()>0){
             for(byte[] key:keys){
@@ -78,7 +81,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
                 sessions.add(s);
             }
         }
-
         return sessions;
     }
 
@@ -92,7 +94,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         return sessionId;
     }
 
-    // 删除session
+    //读取session
     @Override
     protected Session doReadSession(Serializable sessionId) {
         if(sessionId == null){
@@ -153,7 +155,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         SimplePrincipalCollection principalCollection = (SimplePrincipalCollection) session
                 .getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
         SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO) principalCollection.getPrimaryPrincipal();
-
         return simpleEmployeeDO.getLoginName();
     }
 }

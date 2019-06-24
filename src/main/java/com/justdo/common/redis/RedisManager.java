@@ -25,6 +25,7 @@ public class RedisManager {
     private int port = 6379;
 
     // 0 - never expire
+    @Value("${spring.redis.expire}")
     private int expire = 0;
 
     //timeout for jedis try to connect to redis server, not expire time! In milliseconds

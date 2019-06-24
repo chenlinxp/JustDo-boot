@@ -1,9 +1,9 @@
 package com.justdo.common.utils;
 
+import com.justdo.common.redis.shiro.RedisSessionDAO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
@@ -22,7 +22,8 @@ import java.util.List;
  */
 public class ShiroUtils {
     @Autowired
-    private static SessionDAO sessionDAO;
+    private static RedisSessionDAO sessionDAO;
+
 
     public static Subject getSubjct() {
 
@@ -71,6 +72,11 @@ public class ShiroUtils {
     public static void logout() {
 
         getSubjct().logout();
+
+        Session session = getSubjct().getSession();
+
+        sessionDAO.delete(session);
+
     }
 
     public static List<Principal> getPrinciples() {

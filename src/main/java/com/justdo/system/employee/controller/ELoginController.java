@@ -47,6 +47,7 @@ public class ELoginController extends BaseController {
 	FileService fileService;
 	@Autowired
 	RoleService roleService;
+
 	@GetMapping({ "/", "" })
 	String welcome(Model model) {
 		model.addAttribute("title", "登录");
@@ -93,7 +94,7 @@ public class ELoginController extends BaseController {
 	@Log("登录")
 	@PostMapping("/login")
 	@ResponseBody
-	R ajaxLogin(String username, String password, String rememberme) {
+	R ajaxLogin(String username, String password, String rememberMe) {
 		String loginName = username.trim();
 		Map<String ,Object> params = new HashMap<>(1);
 		params.put("loginName",loginName);
@@ -107,7 +108,7 @@ public class ELoginController extends BaseController {
 				return R.ok();
 			} else {
 				UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
-				if (rememberme != null) {
+				if (rememberMe != null) {
 					token.setRememberMe(true);
 				}
 				try {
