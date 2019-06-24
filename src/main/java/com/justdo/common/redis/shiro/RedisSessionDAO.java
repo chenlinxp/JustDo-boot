@@ -2,9 +2,12 @@ package com.justdo.common.redis.shiro;
 
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.utils.SerializeUtils;
+import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +49,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             return;
         }
 
+        //String loginName = getLoginName(session);
         byte[] key = getByteKey(session.getId());
         byte[] value = SerializeUtils.serialize(session);
         session.setTimeout(redisManager.getExpire()*1000);
@@ -58,6 +62,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             logger.error("session or session id is null");
             return;
         }
+        //String loginName = getLoginName(session);
         redisManager.del(this.getByteKey(session.getId()));
 
     }
@@ -94,7 +99,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             logger.error("session id is null");
             return null;
         }
-
         Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
         return s;
     }
@@ -140,5 +144,16 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         this.keyPrefix = keyPrefix;
     }
 
+    /**
+     *
+     * @param session
+     * @return
+     */
+    public String getLoginName(Session session){
+        SimplePrincipalCollection principalCollection = (SimplePrincipalCollection) session
+                .getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+        SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO) principalCollection.getPrimaryPrincipal();
 
+        return simpleEmployeeDO.getLoginName();
+    }
 }

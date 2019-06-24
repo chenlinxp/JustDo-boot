@@ -7,8 +7,6 @@ import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.resource.service.ResourceService;
-import com.justdo.system.role.domain.RoleDO;
-import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -16,7 +14,9 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -52,14 +52,14 @@ public class EmployeeRealm extends AuthorizingRealm {
 
 
 		//角色获取
-		RoleService roleService = ApplicationContextRegister.getBean(RoleService.class);
-		List<RoleDO> roles = roleService.list(employeeId);
-		Set<String> rolenames = new HashSet<>();
-
-		for (RoleDO role:roles) {
-			rolenames.add(role.getRoleName());
-		}
-		info.addRoles(rolenames);
+//		RoleService roleService = ApplicationContextRegister.getBean(RoleService.class);
+//		List<RoleDO> roles = roleService.list(employeeId);
+//		Set<String> rolenames = new HashSet<>();
+//
+//		for (RoleDO role:roles) {
+//			rolenames.add(role.getRoleName());
+//		}
+//		info.addRoles(rolenames);
 
 		return info;
 

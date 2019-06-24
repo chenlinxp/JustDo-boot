@@ -15,6 +15,7 @@ import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
@@ -92,8 +93,9 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/", "anon");
 		filterChainDefinitionMap.put("/portal", "anon");
 		filterChainDefinitionMap.put("/portal/open/**", "anon");
-		filterChainDefinitionMap.put("/logout", "logout");
-		filterChainDefinitionMap.put("/**", "kickout,authc");
+		filterChainDefinitionMap.put("/logout", "logout,kickout");
+		//filterChainDefinitionMap.put("/**", "user");
+		filterChainDefinitionMap.put("/**", "kickout,user");
 		//filterChainDefinitionMap.put("/app/**", "oauth2");
 		// 配置不会被拦截的链接 顺序判断
 		// 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
@@ -102,6 +104,8 @@ public class ShiroConfig {
 		// <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
 		//logout这个拦截器是shiro已经实现好了的。
+		//其他资源都需要认证  authc 表示需要认证才能进行访问 user表示配置记住我或认证通过可以访问的地址
+		//如果开启限制同一账号登录,改为 .put("/**", "kickout,user");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -120,14 +124,29 @@ public class ShiroConfig {
         //cookie管理器
 		securityManager.setRememberMeManager(rememberMeManager());
 
+
 		return securityManager;
 	}
 
 	@Bean
 	EmployeeRealm employeeRealm() {
 		EmployeeRealm employeeRealm = new EmployeeRealm();
+
+		//employeeRealm.setCachingEnabled(true);
+
+		//启用授权缓存，即缓存AuthorizationInfo信息，默认false
+		employeeRealm.setAuthorizationCachingEnabled(false);
+
+		//启用身份验证缓存，即缓存AuthenticationInfo信息，默认false
+		employeeRealm.setAuthenticationCachingEnabled(false);
+
+		//配置自定义密码比较器
 		employeeRealm.setCredentialsMatcher(credentialsMatcher());
+
 		return employeeRealm;
+
+
+
 	}
 
 	/**
@@ -223,6 +242,18 @@ public class ShiroConfig {
 		cookieRememberMeManager.setCipherKey(Base64.decode("3AvVhmFLUs0KTA3Kprsdag=="));
 		return cookieRememberMeManager;
     }
+
+	/**
+	 * FormAuthenticationFilter 过滤器 过滤记住我
+	 * @return
+	 */
+	@Bean
+	public FormAuthenticationFilter formAuthenticationFilter(){
+		FormAuthenticationFilter formAuthenticationFilter = new FormAuthenticationFilter();
+		//对应前端的checkbox的name = rememberMe
+		formAuthenticationFilter.setRememberMeParam("rememberMe");
+		return formAuthenticationFilter;
+	}
 
 	/**
 	 * realm的认证算法

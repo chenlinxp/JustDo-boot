@@ -39,6 +39,8 @@ public class ESessionServiceImpl implements ESessionService {
 		Collection<Session> sessions = sessionList();
 		for (Session session : sessions) {
 			EmployeeOnline employeeOnline = new EmployeeOnline();
+			System.out.println(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+			System.out.println(session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY));
 			if (session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY) == null) {
 				continue;
 			} else {
