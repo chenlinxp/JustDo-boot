@@ -50,6 +50,8 @@ spring:
        password: oxhide
        #连接超时时间（毫秒）
        timeout: 0
+
+       expire: 1000
        pool:
        #连接池最大连接数 设为0表示无限制,如果是jedis 2.4以后用redis.maxTotal
             max-active: 5000
