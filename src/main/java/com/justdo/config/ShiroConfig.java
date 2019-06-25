@@ -1,7 +1,6 @@
 package com.justdo.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
-import com.justdo.authentication.OAuth2Filter;
 import com.justdo.common.filter.KickoutSessionControlFilter;
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.redis.shiro.RedisCacheManager;
@@ -25,7 +24,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 
 /**
@@ -70,13 +72,13 @@ public class ShiroConfig {
 
 
 		//oauth过滤
-		Map<String, Filter> filters = new HashMap<>();
-		filters.put("oauth2", new OAuth2Filter());
-		shiroFilterFactoryBean.setFilters(filters);
+//		Map<String, Filter> filters = new HashMap<>();
+//		filters.put("oauth2", new OAuth2Filter());
+//		shiroFilterFactoryBean.setFilters(filters);
 
 		//自定义拦截器
 		Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
-        //限制同一帐号同时在线的个数。
+		//限制同一帐号同时在线的个数。
 		filtersMap.put("kickout", kickoutSessionControlFilter());
 		shiroFilterFactoryBean.setFilters(filtersMap);
 
@@ -93,6 +95,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/files/**", "kickout,anon");
 		filterChainDefinitionMap.put("/", "kickout,user");
 		filterChainDefinitionMap.put("/index", "kickout,user");
+		filterChainDefinitionMap.put("/verification", "anon");
 		filterChainDefinitionMap.put("/portal", "anon");
 		filterChainDefinitionMap.put("/portal/open/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout,kickout");
@@ -123,9 +126,9 @@ public class ShiroConfig {
 		securityManager.setRealm(employeeRealm());
 		// 自定义缓存实现 使用redis
 		securityManager.setCacheManager(cacheManager());
-        //session 管理
+		//session 管理
 		securityManager.setSessionManager(sessionManager());
-        //cookie管理器
+		//cookie管理器
 		securityManager.setRememberMeManager(rememberMeManager());
 
 
@@ -157,13 +160,12 @@ public class ShiroConfig {
 	 * 开启shiro aop注解支持.
 	 * 使用代理方式;所以需要开启代码支持;
 	 *
-	 * @param securityManager
 	 * @return
 	 */
 	@Bean
-	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
 		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
 		return authorizationAttributeSourceAdvisor;
 	}
 
@@ -187,6 +189,7 @@ public class ShiroConfig {
 	 * 缓存管理器
 	 * @return
 	 */
+	@Bean
 	public RedisCacheManager cacheManager() {
 		RedisCacheManager redisCacheManager = new RedisCacheManager();
 		redisCacheManager.setRedisManager(redisManager());
@@ -227,6 +230,7 @@ public class ShiroConfig {
 	 * 如果权限是authc,则仍会跳转到登陆页面去进行登陆认证.
 	 * @return
 	 */
+	@Bean
 	public SimpleCookie rememberMeCookie(){
 		SimpleCookie rememberMeCookie = new SimpleCookie("rememberMe");
 		rememberMeCookie.setHttpOnly(true);
@@ -239,13 +243,14 @@ public class ShiroConfig {
 	 * cookie管理对象;记住我功能
 	 * @return
 	 */
+	@Bean
 	public CookieRememberMeManager rememberMeManager(){
 		CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
 		cookieRememberMeManager.setCookie(rememberMeCookie());
 		//rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
 		cookieRememberMeManager.setCipherKey(Base64.decode("3AvVhmFLUs0KTA3Kprsdag=="));
 		return cookieRememberMeManager;
-    }
+	}
 
 	/**
 	 * FormAuthenticationFilter 过滤器 过滤记住我
@@ -277,6 +282,7 @@ public class ShiroConfig {
 	 * 限制同一账号登录同时登录人数控制
 	 * @return
 	 */
+	@Bean
 	public KickoutSessionControlFilter kickoutSessionControlFilter(){
 		KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
 		//使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户—会话之间的关系的；

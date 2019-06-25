@@ -15,6 +15,10 @@ function keyLogin(){
     //调用登录按钮的登录事件
         $("#login").click();
 }
+
+function refreshCode(){
+$("#verificationimg").attr("src","/verification")
+}
 function login() {
     $.ajax({
         type: "POST",
@@ -43,6 +47,9 @@ function validateRule() {
             },
             password: {
                 required: true
+            },
+            verificationcode:{
+                required: true
             }
         },
         messages: {
@@ -51,6 +58,9 @@ function validateRule() {
             },
             password: {
                 required: icon + "请输入您的密码",
+            },
+            verificationcode: {
+                required: icon + "请输入验证码",
             }
         }
     })

@@ -1,6 +1,4 @@
 package com.justdo.config;
-
-
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +7,7 @@ import java.util.Properties;
 /**
  * 验证码图片样式配置
  * @author chenlin
- * @date 2019/6/21
+ * @date 2019/6/24
  */
 @Configuration
 public class KaptchaConfig {
