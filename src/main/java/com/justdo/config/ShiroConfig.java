@@ -85,24 +85,24 @@ public class ShiroConfig {
 		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		//开放登陆接口
-		filterChainDefinitionMap.put("/css/**", "kickout,anon");
-		filterChainDefinitionMap.put("/js/**", "kickout,anon");
-		filterChainDefinitionMap.put("/fonts/**", "kickout,anon");
-		filterChainDefinitionMap.put("/img/**", "kickout,anon");
-		filterChainDefinitionMap.put("/docs/**", "kickout,anon");
+		filterChainDefinitionMap.put("/css/**", "anon");
+		filterChainDefinitionMap.put("/js/**", "anon");
+		filterChainDefinitionMap.put("/fonts/**", "anon");
+		filterChainDefinitionMap.put("/img/**", "anon");
+		filterChainDefinitionMap.put("/docs/**", "anon");
 		filterChainDefinitionMap.put("/druid/**", "anon");
-		filterChainDefinitionMap.put("/upload/**", "kickout,anon");
-		filterChainDefinitionMap.put("/files/**", "kickout,anon");
-		filterChainDefinitionMap.put("/", "kickout,user");
-		filterChainDefinitionMap.put("/index", "kickout,user");
+		filterChainDefinitionMap.put("/upload/**", "anon");
+		filterChainDefinitionMap.put("/files/**", "anon");
 		filterChainDefinitionMap.put("/verification", "anon");
 		filterChainDefinitionMap.put("/portal", "anon");
 		filterChainDefinitionMap.put("/portal/open/**", "anon");
-		filterChainDefinitionMap.put("/logout", "logout,kickout");
+		filterChainDefinitionMap.put("/login", "anon");
+		filterChainDefinitionMap.put("/index", "kickout,user");
+		filterChainDefinitionMap.put("/logout", "logout");
 		//filterChainDefinitionMap.put("/**", "user");
 		//其余接口一律拦截
 		//主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
-		filterChainDefinitionMap.put("/**", "kickout,user");
+		filterChainDefinitionMap.put("/**", "user");
 		//filterChainDefinitionMap.put("/app/**", "oauth2");
 		// 配置不会被拦截的链接 顺序判断
 		// 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
@@ -124,7 +124,7 @@ public class ShiroConfig {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		//设置realm.
 		securityManager.setRealm(employeeRealm());
-		// 自定义缓存实现 使用redis
+		//自定义缓存实现 使用redis
 		securityManager.setCacheManager(cacheManager());
 		//session 管理
 		securityManager.setSessionManager(sessionManager());

@@ -2,6 +2,7 @@ package com.justdo.system.employee.controller;
 
 
 import com.justdo.common.annotation.Log;
+import com.justdo.common.controller.BaseController;
 import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.*;
 import com.justdo.system.dept.domain.DeptDO;
@@ -37,7 +38,7 @@ import static com.justdo.common.utils.ShiroUtils.getEmployeeId;
  
 @Controller
 @RequestMapping("/system/employee")
-public class EmployeeController {
+public class EmployeeController extends BaseController {
 
 	private String preUrl="system/employee";
 	@Autowired

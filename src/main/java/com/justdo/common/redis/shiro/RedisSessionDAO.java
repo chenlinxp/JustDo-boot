@@ -35,6 +35,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     public void update(Session session) throws UnknownSessionException {
+        logger.info("update saveSession id is:"+session.getId());
         this.saveSession(session);
     }
 
@@ -52,7 +53,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         byte[] key = getByteKey(session.getId());
         byte[] value = SerializeUtils.serialize(session);
         session.setTimeout(redisManager.getExpire()*60*30);
-        logger.info("session id is:"+session.getId());
         this.redisManager.set(key, value, redisManager.getExpire());
     }
 
@@ -64,7 +64,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             return;
         }
         //String loginName = getLoginName(session);
-        logger.info("session id is:"+session.getId());
+        logger.info("deleteSession id is:"+session.getId());
         redisManager.del(this.getByteKey(session.getId()));
 
     }
@@ -88,7 +88,14 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     //设置session的最后一次访问时间
     @Override
     protected Serializable doCreate(Session session) {
+
+        Serializable oldsessionId = session.getId();
+
+        logger.info("doCreate deleteSession id is:"+oldsessionId);
+        redisManager.del(this.getByteKey(oldsessionId));
+
         Serializable sessionId = this.generateSessionId(session);
+
         this.assignSessionId(session, sessionId);
         this.saveSession(session);
         return sessionId;
@@ -98,10 +105,12 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     @Override
     protected Session doReadSession(Serializable sessionId) {
         if(sessionId == null){
-            logger.error("session id is null");
+            logger.error("doReadSession id is null");
             return null;
         }
+        logger.info("doReadSession id is:"+sessionId);
         Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
+
         return s;
     }
 
@@ -112,6 +121,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
      */
     private byte[] getByteKey(Serializable sessionId){
         String preKey = this.keyPrefix + sessionId;
+
         return preKey.getBytes();
     }
 

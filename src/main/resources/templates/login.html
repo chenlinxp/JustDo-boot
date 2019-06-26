@@ -57,10 +57,15 @@
                 <p class="m-t-md text-center">欢迎登录JustDo后台管理系统</p>
                 <input type="text" name="username" class="form-control uname" placeholder="账号" value=""/>
                 <input type="password" name="password" class="form-control pword m-b"  placeholder="密码" value=""/>
-                <div  class="form-group has-feedback">
-                    <input type="text" name="verificationcode" class="form-control  pword m-b"  placeholder="验证码"/>
-                    <img alt="如果看不清楚，请单击图片刷新！" id="verificationimg" class="pointer" src="/verification" onclick="refreshCode()">
-                    &nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="refreshCode()">换一张</a>
+
+                <div class="input-group" >
+
+                    <input type="text" name="verificationcode" style="margin-top: 0px" class="form-control"  placeholder="验证码"/>
+
+                    <span class="input-group-btn">
+						<img alt="如果看不清楚，请单击图片刷新！" id="verificationimg" class="pointer" src="/verification" onclick="refreshCode()">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button id="ico-btn" style="margin-top: 0px" class="btn" type="button"  onclick="refreshCode()" >换一张</button>
+					</span>
                 </div>
                 <input id="rememberMe" name="rememberMe" type="checkbox" /> 记住我
                 <a id="login" class="btn btn-login btn-block">登录</a>

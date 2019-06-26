@@ -21,6 +21,7 @@ import java.util.List;
  * @date 2018-06-19 16:02:20
  */
 public class ShiroUtils {
+
     @Autowired
     private static RedisSessionDAO sessionDAO;
 

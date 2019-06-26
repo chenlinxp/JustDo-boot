@@ -89,6 +89,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
 
 		Subject subject = getSubject(request, response);
+
 		if (!subject.isAuthenticated() && !subject.isRemembered()) {
 			//如果没有登录，直接进行登录的流程
 			return true;
@@ -137,6 +138,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 				//获取被踢出的sessionId的session对象
 				//kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
 				if (kickoutSession != null) {
+					//sessionManager.getSessionDAO().delete(kickoutSession);
 					//设置会话的kickout属性表示踢出了
 					session.setAttribute("kickout", false);
 				}
@@ -160,6 +162,20 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 //			}
 			return false;
 		}
+
+		//如果被踢出了，直接退出，重定向到踢出后的地址
+//		if ((Boolean)session.getAttribute("kickout")!=null&&(Boolean)session.getAttribute("kickout") == true) {
+//			//会话被踢出了
+//			try {
+//				//退出登录
+//				subject.logout();
+//			} catch (Exception e) { //ignore
+//			}
+//			saveRequest(request);
+//			//重定向
+//			WebUtils.issueRedirect(request, response, kickoutUrl);
+//			return false;
+//		}
 		return true;
 
 	}
@@ -188,7 +204,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 		//重定向
 		WebUtils.issueRedirect(request, response, kickoutUrl);
 
-		return Boolean.FALSE;
+		return false;
 	}
 
 	private void out(ServletResponse hresponse, Map<String, String> resultMap)
