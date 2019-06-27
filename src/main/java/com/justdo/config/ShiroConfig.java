@@ -7,6 +7,8 @@ import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
 import com.justdo.system.employee.shiro.EmployeeRealm;
 import com.justdo.system.employee.shiro.RetryLimitHashedCredentialsMatcher;
+import com.justdo.system.permissioninit.domain.PermissionInitDO;
+import com.justdo.system.permissioninit.service.PermissionInitService;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.SecurityManager;
@@ -19,15 +21,13 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.Filter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -35,6 +35,10 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+	@Autowired(required = false)
+	PermissionInitService permissionInitService;
+
 	@Value("${spring.redis.host}")
 	private String host;
 	@Value("${spring.redis.password}")
@@ -83,26 +87,26 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setFilters(filtersMap);
 
 		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
-		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		//开放登陆接口
-		filterChainDefinitionMap.put("/css/**", "anon,kickout");
-		filterChainDefinitionMap.put("/js/**", "anon,kickout");
-		filterChainDefinitionMap.put("/fonts/**", "anon,kickout");
-		filterChainDefinitionMap.put("/img/**", "anon,kickout");
-		filterChainDefinitionMap.put("/docs/**", "anon,kickout");
-		filterChainDefinitionMap.put("/druid/**", "anon,kickout");
-		filterChainDefinitionMap.put("/upload/**", "anon,kickout");
-		filterChainDefinitionMap.put("/files/**", "anon,kickout");
-		filterChainDefinitionMap.put("/verification", "anon,kickout");
-		filterChainDefinitionMap.put("/portal", "anon");
-		filterChainDefinitionMap.put("/portal/open/**", "anon");
-		filterChainDefinitionMap.put("/login", "anon,kickout");
-		filterChainDefinitionMap.put("/index", "user,kickout");
-		filterChainDefinitionMap.put("/logout", "logout,kickout");
-		//filterChainDefinitionMap.put("/**", "user");
-		//其余接口一律拦截
-		//主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
-		filterChainDefinitionMap.put("/**", "user,kickout");
+//		filterChainDefinitionMap.put("/css/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/js/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/fonts/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/img/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/docs/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/druid/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/upload/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/files/**", "anon,kickout");
+//		filterChainDefinitionMap.put("/verification", "anon,kickout");
+//		filterChainDefinitionMap.put("/portal", "anon");
+//		filterChainDefinitionMap.put("/portal/open/**", "anon");
+//		filterChainDefinitionMap.put("/login", "anon,kickout");
+//		filterChainDefinitionMap.put("/index", "user,kickout");
+//		filterChainDefinitionMap.put("/logout", "logout");
+//		//filterChainDefinitionMap.put("/**", "user");
+//		//其余接口一律拦截
+//		//主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
+//		filterChainDefinitionMap.put("/**", "user,kickout");
 		//filterChainDefinitionMap.put("/app/**", "oauth2");
 		// 配置不会被拦截的链接 顺序判断
 		// 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
@@ -113,6 +117,18 @@ public class ShiroConfig {
 		//logout这个拦截器是shiro已经实现好了的。
 		//其他资源都需要认证  authc 表示需要认证才能进行访问 user表示配置记住我或认证通过可以访问的地址
 		//如果开启限制同一账号登录,改为 .put("/**", "user,kickout");
+
+
+		// 从数据库获取
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sort","PERMISSION_SORT");
+		map.put("ORDER","ASC");
+		List<PermissionInitDO> list = permissionInitService.list(map);
+		for (PermissionInitDO permissionInit : list) {
+			filterChainDefinitionMap.put(permissionInit.getPermissionUrl(),
+					permissionInit.getPermissionInit());
+		}
+//		filterChainDefinitionMap = shiroService.loadFilterChainDefinitions();
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
