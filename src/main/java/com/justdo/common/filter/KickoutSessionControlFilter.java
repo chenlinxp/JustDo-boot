@@ -196,6 +196,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	protected boolean onAccessDenied(ServletRequest request, ServletResponse response) throws Exception {
 		//退出
 		Subject subject = getSubject(request, response);
+
 		subject.logout();
 		//保存访问路径
 		saveRequest(request);

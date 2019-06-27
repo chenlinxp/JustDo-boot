@@ -36,7 +36,7 @@ import java.util.*;
 @Configuration
 public class ShiroConfig {
 
-	@Autowired(required = false)
+	@Autowired
 	PermissionInitService permissionInitService;
 
 	@Value("${spring.redis.host}")
@@ -57,7 +57,6 @@ public class ShiroConfig {
 
 	/**
 	 * ShiroDialect，为了在thymeleaf里使用shiro的标签的bean
-	 *
 	 * @return
 	 */
 	@Bean
@@ -117,8 +116,6 @@ public class ShiroConfig {
 		//logout这个拦截器是shiro已经实现好了的。
 		//其他资源都需要认证  authc 表示需要认证才能进行访问 user表示配置记住我或认证通过可以访问的地址
 		//如果开启限制同一账号登录,改为 .put("/**", "user,kickout");
-
-
 		// 从数据库获取
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sort","PERMISSION_SORT");
@@ -147,7 +144,6 @@ public class ShiroConfig {
 		//cookie管理器
 		securityManager.setRememberMeManager(rememberMeManager());
 
-
 		return securityManager;
 	}
 
@@ -167,8 +163,6 @@ public class ShiroConfig {
 		employeeRealm.setCredentialsMatcher(credentialsMatcher());
 
 		return employeeRealm;
-
-
 
 	}
 

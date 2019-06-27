@@ -80,8 +80,7 @@ public class ShiroService {
 					.getFilterChainDefinitionMap();
 			for (Map.Entry<String, String> entry : chains.entrySet()) {
 				String url = entry.getKey();
-				String chainDefinition = entry.getValue().trim()
-						.replace(" ", "");
+				String chainDefinition = entry.getValue().trim().replace(" ", "");
 				manager.createChain(url, chainDefinition);
 			}
 

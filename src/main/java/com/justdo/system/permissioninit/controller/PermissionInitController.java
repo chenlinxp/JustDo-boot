@@ -1,6 +1,7 @@
 package com.justdo.system.permissioninit.controller;
 
 import com.justdo.common.annotation.Log;
+import com.justdo.common.redis.shiro.ShiroService;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
@@ -36,6 +37,9 @@ public class PermissionInitController {
 
 	@Autowired
 	DictContentService dictContentService;
+
+	@Autowired
+	ShiroService shiroService;
 
 	/**
 	* shiro初始权限列表页面
@@ -194,5 +198,19 @@ public class PermissionInitController {
 			return R.ok();
 		}
 		return R.error(1, "批量删除失败!");
+	}
+
+	/**
+	 * shiro初始权限更新
+	 * @return R
+	 */
+	@Log("shiro初始权限更新")
+	@PostMapping( "/updatePermission")
+	@ResponseBody
+	@RequiresPermissions("system:permissioninit:updatePermission")
+	@ApiOperation(value="shiro初始权限更新接口", notes="shiro初始权限更新接口")
+	public R updatePermission(){
+		shiroService.updatePermission();
+			return R.ok("shiro初始权限更新成功");
 	}
 }
