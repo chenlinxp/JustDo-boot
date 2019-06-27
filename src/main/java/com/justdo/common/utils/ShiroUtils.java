@@ -26,6 +26,7 @@ public class ShiroUtils {
     private static RedisSessionDAO sessionDAO;
 
 
+
     public static Subject getSubjct() {
 
         return SecurityUtils.getSubject();
@@ -77,6 +78,7 @@ public class ShiroUtils {
         Session session = getSubjct().getSession();
 
         sessionDAO.delete(session);
+
 
     }
 

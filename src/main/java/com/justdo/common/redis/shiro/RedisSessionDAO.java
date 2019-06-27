@@ -33,6 +33,13 @@ public class RedisSessionDAO extends AbstractSessionDAO {
      */
     private String keyPrefix = "shiro_redis_session:";
 
+//    @Autowired
+//    private RedisCacheManager cacheManager;
+//
+//    private String keyPrefix2 = "shiro_redis_cache:";
+//
+//    private Cache<String, Deque<Serializable>> cache;
+
     @Override
     public void update(Session session) throws UnknownSessionException {
         logger.info("update saveSession id is:"+session.getId());
@@ -66,6 +73,8 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         //String loginName = getLoginName(session);
         logger.info("deleteSession id is:"+session.getId());
         redisManager.del(this.getByteKey(session.getId()));
+
+
 
     }
 

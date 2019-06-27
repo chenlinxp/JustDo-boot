@@ -85,24 +85,24 @@ public class ShiroConfig {
 		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		//开放登陆接口
-		filterChainDefinitionMap.put("/css/**", "anon");
-		filterChainDefinitionMap.put("/js/**", "anon");
-		filterChainDefinitionMap.put("/fonts/**", "anon");
-		filterChainDefinitionMap.put("/img/**", "anon");
-		filterChainDefinitionMap.put("/docs/**", "anon");
-		filterChainDefinitionMap.put("/druid/**", "anon");
-		filterChainDefinitionMap.put("/upload/**", "anon");
-		filterChainDefinitionMap.put("/files/**", "anon");
-		filterChainDefinitionMap.put("/verification", "anon");
+		filterChainDefinitionMap.put("/css/**", "anon,kickout");
+		filterChainDefinitionMap.put("/js/**", "anon,kickout");
+		filterChainDefinitionMap.put("/fonts/**", "anon,kickout");
+		filterChainDefinitionMap.put("/img/**", "anon,kickout");
+		filterChainDefinitionMap.put("/docs/**", "anon,kickout");
+		filterChainDefinitionMap.put("/druid/**", "anon,kickout");
+		filterChainDefinitionMap.put("/upload/**", "anon,kickout");
+		filterChainDefinitionMap.put("/files/**", "anon,kickout");
+		filterChainDefinitionMap.put("/verification", "anon,kickout");
 		filterChainDefinitionMap.put("/portal", "anon");
 		filterChainDefinitionMap.put("/portal/open/**", "anon");
-		filterChainDefinitionMap.put("/login", "anon");
-		filterChainDefinitionMap.put("/index", "kickout,user");
-		filterChainDefinitionMap.put("/logout", "logout");
+		filterChainDefinitionMap.put("/login", "anon,kickout");
+		filterChainDefinitionMap.put("/index", "user,kickout");
+		filterChainDefinitionMap.put("/logout", "logout,kickout");
 		//filterChainDefinitionMap.put("/**", "user");
 		//其余接口一律拦截
 		//主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
-		filterChainDefinitionMap.put("/**", "user");
+		filterChainDefinitionMap.put("/**", "user,kickout");
 		//filterChainDefinitionMap.put("/app/**", "oauth2");
 		// 配置不会被拦截的链接 顺序判断
 		// 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
@@ -112,7 +112,7 @@ public class ShiroConfig {
 		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
 		//logout这个拦截器是shiro已经实现好了的。
 		//其他资源都需要认证  authc 表示需要认证才能进行访问 user表示配置记住我或认证通过可以访问的地址
-		//如果开启限制同一账号登录,改为 .put("/**", "kickout,user");
+		//如果开启限制同一账号登录,改为 .put("/**", "user,kickout");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -189,7 +189,7 @@ public class ShiroConfig {
 	 * 缓存管理器
 	 * @return
 	 */
-	@Bean
+	@Bean(name = "cacheManager")
 	public RedisCacheManager cacheManager() {
 		RedisCacheManager redisCacheManager = new RedisCacheManager();
 		redisCacheManager.setRedisManager(redisManager());
@@ -284,6 +284,7 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public KickoutSessionControlFilter kickoutSessionControlFilter(){
+
 		KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
 		//使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户—会话之间的关系的；
 		//这里我们还是用之前shiro使用的redisManager()实现的cacheManager()缓存管理

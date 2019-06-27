@@ -117,18 +117,18 @@ public class ELoginController extends BaseController {
 				return R.error("验证码不正确");
 			}
 		}
-		String loginName = username.trim();
+		username = username.trim();
 		Map<String ,Object> params = new HashMap<>(1);
-		params.put("loginName",loginName);
+		params.put("loginName",username);
 		if(employeeService.exist(params)) {
-			String salt = employeeService.getPasswordSalt(loginName);
+			String salt = employeeService.getPasswordSalt(username);
 //			String a = password2.toString();//4d9573ec9f4cf8978543486c9e9eb681
 			//password = MD5Utils.encrypt(salt, password);  //fe02dde7415743a285fc5cefa6942ffc
 			Subject currentUser = SecurityUtils.getSubject();
 			if (currentUser.isAuthenticated() && currentUser.isRemembered()) {
 				return R.ok();
 			} else {
-				UsernamePasswordToken token = new UsernamePasswordToken(loginName, password);
+				UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 				if (rememberme != null) {
 					token.setRememberMe(true);
 				}

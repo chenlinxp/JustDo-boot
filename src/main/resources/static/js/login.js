@@ -1,6 +1,11 @@
 
 $(document).ready(function () {
     $("#login").on('click',function(){$("#signupForm").submit();});
+    // if($.cookie('rememberMe') == "true"){
+    //     $("#rememberMe").attr("checked", true);
+    //     $("#username").val($.cookie('username'));
+    //     $("#password").val($.cookie('password'));
+    // }
     validateRule();
 });
 
@@ -27,6 +32,7 @@ function login() {
         success: function (r) {
             console.log(r);
             if (r.code == 0) {
+               // setcookie();
                 var index = layer.load(1, {
                     shade: [0.1,'#fff'] //0.1透明度的白色背景
                 });
@@ -37,7 +43,19 @@ function login() {
         },
     });
 }
-
+// function setcookie(){
+//
+// if($("#rememberMe").is(":checked")) {
+//     $.cookie('rememberMe', true, { expires: 7 });
+//     $.cookie('username', $("#username").val(), { expires: 7 });
+//     $.cookie('password', $("#password").val(), { expires: 7 });
+//    }else{
+//     $.cookie('rememberMe', false, { expires: -1});
+//     $.cookie('username',null, { expires:-1});
+//     $.cookie('password',null, { expires:-1});
+// }
+//
+// }
 function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({

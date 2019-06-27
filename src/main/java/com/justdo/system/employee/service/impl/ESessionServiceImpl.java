@@ -26,6 +26,7 @@ import java.util.List;
  */
 @Service
 public class ESessionServiceImpl implements ESessionService {
+
 	private final SessionDAO sessionDAO;
 
 	@Autowired
