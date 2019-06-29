@@ -34,7 +34,6 @@ public class RedisController {
 
 	@Log("redis监控页面")
 	@RequiresPermissions("system:redis:Monitor")
-	@ResponseBody
 	@GetMapping("/Monitor")
 	public String redisMonitor(Model model) {
 		//获取redis的info
@@ -46,7 +45,7 @@ public class RedisController {
 		model.addAttribute("infoList", ridList);
 		model.addAttribute("logList", logList);
 		model.addAttribute("logLen", logLen);
-		return "redisMonitor";
+		return preUrl+"/redismonitor";
 	}
 
 
