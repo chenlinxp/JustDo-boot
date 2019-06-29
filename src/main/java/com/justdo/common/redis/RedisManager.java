@@ -1,10 +1,5 @@
 package com.justdo.common.redis;
 
-/**
- * @author justdo
- * @version V1.0
- */
-
 import org.apache.shiro.cache.CacheException;
 import org.springframework.beans.factory.annotation.Value;
 import redis.clients.jedis.Jedis;
@@ -14,7 +9,8 @@ import redis.clients.jedis.JedisPoolConfig;
 import java.util.Set;
 
 /**
- *
+ * @author justdo
+ * @version V1.0
  */
 public class RedisManager {
 
@@ -23,18 +19,15 @@ public class RedisManager {
 
     @Value("${spring.redis.port}")
     private int port = 6379;
-
     // 0 - never expire
     @Value("${spring.redis.expire}")
     private int expire = 0;
-
     //timeout for jedis try to connect to redis server, not expire time! In milliseconds
     @Value("${spring.redis.timeout}")
     private int timeout = 0;
 
     @Value("${spring.redis.password}")
     private String password = "oxhide";
-
 
     @Value("${spring.redis.pool.min-Idle}")
     private int minIdle = 300;
