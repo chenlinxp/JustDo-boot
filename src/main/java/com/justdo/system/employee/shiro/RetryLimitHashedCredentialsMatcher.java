@@ -63,7 +63,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 		if (retryCount > 5) {
 			//如果用户登陆失败次数大于5次 抛出锁定用户异常  并修改数据库字段
 			EmployeeDO employeeDO = employeeDao.findByEmployeeName(username);
-			if (employeeDO != null && "0".equals(employeeDO.getEmployeeState())) {
+			if (employeeDO != null && "1".equals(employeeDO.getEmployeeState().toString())) {
 				//数据库字段 默认为 1  就是正常状态 所以 要改为0
 				//修改数据库的状态字段为锁定
 				employeeDO.setEmployeeState(0);

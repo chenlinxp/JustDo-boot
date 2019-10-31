@@ -76,7 +76,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
 //		UsernamePasswordToken atoken = (UsernamePasswordToken)token;
-//		String username = atoken.getUsername();
+//		String username = atoken.getUsername();4d9573ec9f4cf8978543486c9e9eb681
 //		String password = new String((char[]) token.getCredentials());
 
 		String loginName = (String) token.getPrincipal();

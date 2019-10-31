@@ -42,7 +42,7 @@ function login() {
             }
         },
         error:function(r){
-            console.log(r+"11111");
+            console.log(r);
             layer.msg("服务异常，请您稍后再试");
         }
     });

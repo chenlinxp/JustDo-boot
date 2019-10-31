@@ -112,9 +112,8 @@ public class ShiroConfig {
 		// 从数据库获取动态的权限
 		// filterChainDefinitionMap.put("/add", "perms[权限添加]");
 		// <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
-		// <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
+		// <!-- authc:所有url都必须认证通过才可以访问; user:表示配置记住我或认证通过可以访问; anon:所有url都都可以匿名访问-->
 		//logout这个拦截器是shiro已经实现好了的。
-		//其他资源都需要认证  authc 表示需要认证才能进行访问 user表示配置记住我或认证通过可以访问的地址
 		//如果开启限制同一账号登录,改为 .put("/**", "user,kickout");
 		// 从数据库获取
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -246,6 +245,9 @@ public class ShiroConfig {
 		rememberMeCookie.setHttpOnly(true);
 		//<!-- 记住我cookie生效时间7天 ,单位秒;-->
 		rememberMeCookie.setMaxAge(604800);
+		rememberMeCookie.setPath("/justdo/login");
+		rememberMeCookie.setDomain("");
+		rememberMeCookie.setHttpOnly(true);
 		return rememberMeCookie;
 	}
 

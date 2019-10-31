@@ -16,8 +16,8 @@ import com.justdo.system.resource.service.ResourceService;
 import com.justdo.system.role.domain.RoleDO;
 import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -106,7 +106,7 @@ public class ELoginController extends BaseController {
 	@Log("登录")
 	@PostMapping("/login")
 	@ResponseBody
-	R ajaxLogin(String username, String password, String rememberme, String verificationcode,Model model,HttpSession session) {
+	R ajaxLogin(String username, String password, String rememberMe, String verificationcode,Model model,HttpSession session) {
 
 		//1、检验验证码
 		if (verificationcode != null) {
@@ -129,16 +129,38 @@ public class ELoginController extends BaseController {
 				return R.ok();
 			} else {
 				UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-				if (rememberme != null) {
+				String msg = "系统服务异常，请稍后再试！";
+				if (rememberMe != null) {
 					token.setRememberMe(true);
 				}
 				try {
 					currentUser.login(token);
 					return R.ok();
-				} catch (AuthenticationException e) {
+			    } catch (IncorrectCredentialsException e) {
+					msg = "登录密码错误";
+					System.out.println("登录密码错误!!!" + e);
+			    } catch (ExcessiveAttemptsException e) {
+					msg = "登录失败次数过多，请5分钟后再登录!";
+					System.out.println("登录失败次数过多!!!" + e);
+				} catch (LockedAccountException e) {
+					msg = "帐号已被锁定";
+					System.out.println("帐号已被锁定!!!" + e);
+			    } catch (DisabledAccountException e) {
+					msg = "帐号已被禁用";
+					System.out.println("帐号已被禁用!!!" + e);
+			    } catch (ExpiredCredentialsException e) {
+					msg = "帐号已过期";
+					System.out.println("帐号已过期!!!" + e);
+			    } catch (UnknownAccountException e) {
+					msg = "帐号不存在";
+					System.out.println("帐号不存在!!!" + e);
+			    } catch (UnauthorizedException e) {
+					msg = "您没有得到相应的授权！";
 					System.out.println(e.toString());
-					return R.error("用户名或密码错误");
+				} catch (Exception e) {
+					System.out.println(e.toString());
 				}
+				return R.error(msg);
 			}
 		}
 		else
