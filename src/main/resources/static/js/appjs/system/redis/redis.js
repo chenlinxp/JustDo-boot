@@ -151,9 +151,9 @@ function empty() {
 	function() {
 		$.ajax({
 			type: "POST",
-			url: prefix +"/logEmpty",
+			url:prefix+ "/logEmpty",
 			success: function(result) {
-				if (result == "OK") {
+				if (result.code == 0) {
 					parent.layer.msg('日志清空成功！', {
 						icon: 6,
 						anim: 6,

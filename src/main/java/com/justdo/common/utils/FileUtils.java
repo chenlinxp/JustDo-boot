@@ -1,20 +1,21 @@
 package com.justdo.common.utils;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.UUID;
 
 public class FileUtils {
 
-	public static void uploadFile(byte[] bfile, File targetFile, String fileName) throws Exception {
-		if (!targetFile.exists()) {
-			targetFile.mkdirs();
-		}
-		FileOutputStream out = new FileOutputStream(targetFile.getPath()+"/"+fileName);
-		out.write(bfile);
-		out.flush();
-		out.close();
-	}
+//	public static void uploadFile(byte[] bfile, File targetFile, String fileName) throws Exception {
+//		if (!targetFile.exists()) {
+//			targetFile.mkdirs();
+//		}
+//
+//		FileOutputStream out = new FileOutputStream(targetFile.getPath()+"/"+fileName);
+//		out.write(bfile);
+//		out.flush();
+//		out.close();
+//	}
+
 
 	public static boolean deleteFile(String fileName) {
 		File file = new File(fileName);

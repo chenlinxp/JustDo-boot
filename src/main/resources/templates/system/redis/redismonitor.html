@@ -37,7 +37,7 @@
                            style="word-break: break-all; word-wrap: break-all;">
                         <tbody>
                             <tr th:each="info:${infoList}">
-                                <td th:title="${info.key}" ></td>
+                                <td th:text="${info.key}" ></td>
                                 <td th:text="${info.desctiption}"></td>
                                 <td th:text="${info.value}"></td>
                             </tr>

@@ -42,7 +42,7 @@ public class RedisManager {
     private int maxWait = -1;
 
     @Value("${spring.redis.pool.testOnBorrow}")
-    private boolean testOnBorrow = false;
+    private boolean testOnBorrow = true;
 
     @Value("${spring.redis.pool.testOnReturn}")
     private boolean testOnReturn = true;

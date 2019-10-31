@@ -291,7 +291,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 				filePath=new File("");
 			}
 			File upload = new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
-			FileUtils.uploadFile(b,upload, fileName);
+			File dest = new File(upload.getPath()+"/"+fileName);
+			file.transferTo(dest);
 		} catch (Exception e) {
 			throw  new Exception("图片裁剪错误！！");
 		}

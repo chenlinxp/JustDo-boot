@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix="justdo")
 public class JustdoConfig {
+
 	//上传路径
 	private String uploadPath;
 

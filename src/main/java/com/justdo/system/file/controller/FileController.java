@@ -146,6 +146,8 @@ public class FileController extends BaseController {
 
 		//String path = StringUtils.defaultIfEmpty(justdoConfig.getUploadPath(), "/upload/");
 
+		//file.transferTo();
+
 		File filePath=new File(ResourceUtils.getURL("classpath:").getPath());
 		if(!filePath.exists()){
 			filePath=new File("");
@@ -162,7 +164,10 @@ public class FileController extends BaseController {
 		//String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
 		FileDO _file = new FileDO(FileType.fileType(fileName), "/files/"+ fileName, new Date());
 		try {
-			FileUtils.uploadFile(file.getBytes(), upload, fileName);
+
+			File dest = new File(upload.getPath()+"/"+fileName);
+			file.transferTo(dest);
+
 		} catch (Exception e) {
 			return R.error();
 		}

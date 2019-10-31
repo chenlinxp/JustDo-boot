@@ -21,11 +21,17 @@ spring:
     active: dev
   http:
     multipart:
+    #单个文件的大小
       max-file-size: 30Mb
+    #整体文件的大小
       max-request-size: 30Mb
   devtools:
     restart:
-      enabled: true    
+      enabled: true
+     # exclude:
+     # trigger-file:
+#  banner:
+#    location:
 mybatis: 
   configuration:
     map-underscore-to-camel-case: true

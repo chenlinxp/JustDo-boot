@@ -77,19 +77,15 @@ public class EmployeeRealm extends AuthorizingRealm {
 
 //		UsernamePasswordToken atoken = (UsernamePasswordToken)token;
 //		String username = atoken.getUsername();
+//		String password = new String((char[]) token.getCredentials());
 
 		String loginName = (String) token.getPrincipal();
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
-
-		//String password = new String((char[]) token.getCredentials());
-
 		EmployeeDao employeeDao = ApplicationContextRegister.getBean(EmployeeDao.class);
 		// 查询用户信息
 		EmployeeDO employee = employeeDao.list(map).get(0);
-
 		String password = employee.getPassword();
-
 		SimpleEmployeeDO simpleEmployeeDO = new SimpleEmployeeDO();
 		simpleEmployeeDO.setEmployeeId(employee.getEmployeeId());
 		simpleEmployeeDO.setLoginName(employee.getLoginName());

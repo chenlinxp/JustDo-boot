@@ -9,6 +9,8 @@ $.validator.setDefaults({
 	}
 });
 function update() {
+	console.info(234);
+    console.info($('#signupForm').serialize());
 	$.ajax({
 		cache : true,
 		type : "POST",

@@ -10,8 +10,8 @@
 					<div class="ibox-content">
 						<form class="form-horizontal m-t" id="signupForm">
 						<input id="permissionId" name="permissionId" th:value="${permissionInit.permissionId}"  type="hidden"/>
-       					 <input id="createTime" name="createTime" th:value="${permissionInit.createTime}"  type="hidden"/>
-       					 <input id="modifyTime" name="modifyTime" th:value="${permissionInit.modifyTime}"  type="hidden"/>
+       					 <input id="createTime" name="createTime" th:value="${#dates.format(permissionInit.createTime,'yyyy-MM-dd HH:mm:ss')}"  type="hidden"/>
+       					 <input id="modifyTime" name="modifyTime" th:value="${#dates.format(permissionInit.modifyTime,'yyyy-MM-dd HH:mm:ss')}"  type="hidden"/>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">链接地址:</label>
 							<div class="col-sm-4">

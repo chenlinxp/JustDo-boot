@@ -118,6 +118,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             return null;
         }
         logger.info("doReadSession id is:"+sessionId);
+        logger.info("doReadSession value is:"+redisManager.get(this.getByteKey(sessionId)));
         Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
 
         return s;
