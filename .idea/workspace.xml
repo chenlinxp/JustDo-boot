@@ -8,23 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ce3f1745-5d68-4251-976e-ef60ba149be0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/common/redis/RedisManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/common/redis/RedisManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/common/redis/shiro/RedisSessionDAO.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/common/redis/shiro/RedisSessionDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/common/utils/FileUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/common/utils/FileUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/config/JustdoConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/config/JustdoConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/config/WebConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/config/WebConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/employee/service/impl/EmployeeServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/employee/service/impl/EmployeeServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/employee/shiro/EmployeeRealm.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/employee/shiro/EmployeeRealm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/controller/FileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/justdo/system/file/controller/FileController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/application.yml" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/permissioninit/edit.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/permissioninit/edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/redis/redis.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/appjs/system/redis/redis.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/main.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/permissioninit/edit.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/permissioninit/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/system/redis/redismonitor.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/system/redis/redismonitor.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1202,14 +1185,7 @@
       <workItem from="1561450568281" duration="568000" />
       <workItem from="1561451285902" duration="64451000" />
       <workItem from="1563615203509" duration="1038000" />
-      <workItem from="1566303185993" duration="29609000" />
-    </task>
-    <task id="LOCAL-00065" summary="完善消息通告的功能">
-      <created>1556203748101</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1556203748101</updated>
+      <workItem from="1566303185993" duration="29698000" />
     </task>
     <task id="LOCAL-00066" summary="代码生成的模版">
       <created>1556204220096</created>
@@ -1547,11 +1523,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561819008720</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="优化">
+      <created>1572503808943</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1572503808944</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="969903000" />
+    <option name="totallyTimeSpent" value="969992000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -1692,7 +1675,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="资源管理功能的修改" />
     <MESSAGE value="完善部分controller的请求方式" />
     <MESSAGE value="完善首页用户信息显示功能" />
     <MESSAGE value="样式图片" />
@@ -1717,7 +1699,8 @@
     <MESSAGE value="shiroFilterFactoryBean  权限的数据库数据加载 完善" />
     <MESSAGE value="redis 监控的功能" />
     <MESSAGE value="redis 监控的功能的完善" />
-    <option name="LAST_COMMIT_MESSAGE" value="redis 监控的功能的完善" />
+    <MESSAGE value="优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
