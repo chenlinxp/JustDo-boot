@@ -87,7 +87,7 @@
     $.ajaxSetup({
         complete: function (xhr, status,dataType) {
             if('text/html;charset=UTF-8'==xhr.getResponseHeader('Content-Type')){
-                top.location.href = '/login';
+                top.location.href = '/justdo/login';
             }
         }
     });

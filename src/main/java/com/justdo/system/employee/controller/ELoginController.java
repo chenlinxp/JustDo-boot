@@ -65,7 +65,7 @@ public class ELoginController extends BaseController {
 		model.addAttribute("title", "登录");
 		model.addAttribute("keywords", "JutsDo");
 		model.addAttribute("description", "JutsDo登录");
-		return "redirect:/login";
+		return "redirect:/justdo/login";
 	}
 
 	@GetMapping({ "/index" })
@@ -95,7 +95,7 @@ public class ELoginController extends BaseController {
 		return "index";
 	}
 
-	@GetMapping("/login")
+	@GetMapping("/justdo/login")
 	String login(Model model) {
 		model.addAttribute("title", "登录");
 		model.addAttribute("keywords", "JutsDo");
@@ -206,7 +206,7 @@ public class ELoginController extends BaseController {
 	@GetMapping("/logout")
 	String logout() {
 		ShiroUtils.logout();
-		return "redirect:/login";
+		return "redirect:/justdo/login";
 	}
 
 	@GetMapping("/main")

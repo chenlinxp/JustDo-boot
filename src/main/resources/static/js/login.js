@@ -38,9 +38,13 @@ function login() {
                 });
                 parent.location.href = '/index';
             } else {
-                layer.msg(r.msg);
+                layer.msg(r.msg+"eee");
             }
         },
+        error:function(r){
+            console.log(r+"11111");
+            layer.msg("服务异常，请您稍后再试");
+        }
     });
 }
 // function setcookie(){

@@ -158,6 +158,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 			}
 			saveRequest(request);
 //			Map<String, String> resultMap = new HashMap<String, String>();
+            String a = ((HttpServletRequest) request).getHeader("X-Requested-With");
 			//判断是不是Ajax请求
 			if ("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {
 //				resultMap.put("user_status", "300");
