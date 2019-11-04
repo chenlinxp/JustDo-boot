@@ -40,10 +40,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	private boolean kickoutAfter = false;
 	//同一个帐号最大会话数 默认1
 	private int maxSession = 1;
-
-	/**
-	 * The Redis key prefix for caches
-	 */
+	//The Redis key prefix for caches
 	private String keyPrefix = "shiro_redis_cache:";
 
 	private DefaultWebSessionManager sessionManager;
@@ -68,7 +65,9 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 		this.sessionManager = sessionManager;
 	}
 
-	//设置Cache的key的前缀
+	/**
+	 * 设置Cache的key的前缀
+	 */
 	public void setCacheManager(RedisCacheManager cacheManager) {
 		redisCacheManager = cacheManager;
 		redisCacheManager.setKeyPrefix(keyPrefix);
@@ -163,17 +162,13 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 //				resultMap.put("user_status", "300");
 //				resultMap.put("message", "您已经在其他地方登录，请重新登录！");
 				//输出json串
-				out(response,  R.error("您已经在其他地方登录，请重新登录！"));
+				out(response,  R.error(-11,"您已经在其他地方登录，请重新登录！"));
 			}else{
 				//重定向
 				WebUtils.issueRedirect(request, response, kickoutUrl);
 			}
 			return false;
 		}
-		//如果被踢出了，直接退出，重定向到踢出后的地址
-//		if ((Boolean)session.getAttribute("kickout")!=null&&(Boolean)session.getAttribute("kickout") == true) {
-//			return false;
-//		}
 		return true;
 
 	}

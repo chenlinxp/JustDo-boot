@@ -25,7 +25,7 @@ public class XssConfig{
 		filterRegistrationBean.setEnabled(false);
 		filterRegistrationBean.addUrlPatterns("/*");
 		Map<String, String> initParameters = Maps.newHashMap();
-		initParameters.put("excludes", "/favicon.ico,/img/*,/js/*,/css/*，/fonts/*");
+		initParameters.put("excludes", "/favicon.ico,/img/*,/js/*,/css/*,/fonts/*,/editor-app/*");
 		initParameters.put("isIncludeRichText", "true");
 		filterRegistrationBean.setInitParameters(initParameters);
 		return filterRegistrationBean;

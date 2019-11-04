@@ -2,11 +2,13 @@ package com.justdo.system.employee.shiro;
 
 
 import com.justdo.common.utils.ShiroUtils;
-import com.justdo.config.ApplicationContextRegister;
+import com.justdo.common.utils.ApplicationContextUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.resource.service.ResourceService;
+import com.justdo.system.role.domain.RoleDO;
+import com.justdo.system.role.service.RoleService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -15,6 +17,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -46,26 +49,26 @@ public class EmployeeRealm extends AuthorizingRealm {
 
 		String employeeId = ShiroUtils.getEmployeeId();
 		//String username = (String)principalCollection.getPrimaryPrincipal();
-		//权限获取
-		ResourceService resourceService = ApplicationContextRegister.getBean(ResourceService.class);
-		Set<String> perms = resourceService.listEmployeePermissions(employeeId);
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.setStringPermissions(perms);
+		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
+//		Set<String> perms = resourceService.listEmployeePermissions(employeeId);
+//		authorizationInfo.setStringPermissions(perms);
 
 		//角色获取
-//		RoleService roleService = ApplicationContextRegister.getBean(RoleService.class);
-//		List<RoleDO> roles = roleService.list(employeeId);
-//		Set<String> rolenames = new HashSet<>();
-//
-//		for (RoleDO role:roles) {
-//			rolenames.add(role.getRoleName());
-//		}
-//		info.addRoles(rolenames);
+		RoleService roleService = ApplicationContextUtils.getBean(RoleService.class);
+		List<RoleDO> roles = roleService.list(employeeId);
 
-		return info;
+		for (RoleDO role : roles) {
+			authorizationInfo.addRole(role.getRoleName());
+			//权限获取
+			ResourceService resourceService = ApplicationContextUtils.getBean(ResourceService.class);
+			Set<String> perms = resourceService.listEmployeePermissions(role.getRoleId());
 
-
+			for (String perm : perms) {
+				authorizationInfo.addStringPermission(perm);
+			}
+		}
+		return authorizationInfo;
 	}
 
 	/**
@@ -84,7 +87,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 		String loginName = (String) token.getPrincipal();
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
-		EmployeeDao employeeDao = ApplicationContextRegister.getBean(EmployeeDao.class);
+		EmployeeDao employeeDao = ApplicationContextUtils.getBean(EmployeeDao.class);
 		// 查询用户信息
 		EmployeeDO employee = employeeDao.list(map).get(0);
 		String password = employee.getPassword();

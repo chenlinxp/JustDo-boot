@@ -57,6 +57,12 @@ public interface ResourceService {
 	 */
 	Set<String> listEmployeePermissions(String employeeId);
 
+	/**
+	 * 根据员工ID获取权限列表
+	 * @param roleId
+	 * @return
+	 */
+	Set<String> listEmployeePermissions2(String roleId);
 
 	/**
 	 * 根据员工ID获取资源树列

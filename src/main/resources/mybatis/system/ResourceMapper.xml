@@ -135,10 +135,18 @@
 		from sys_resource r left join
 		sys_role_resource rr on r.RESOURCE_ID = rr.RESOURCE_ID
 		left join sys_employee_role er
-		on rr.role_id = er.role_id where er.employee_id
-		= #{employeeId}
+		on rr.role_id = er.role_id
+		where er.employee_id = #{employeeId}
 	</select>
 
+	<select id="listEmployeePermissions2" resultType="string">
+		select distinct r.RESOURCE_PERMISSION
+		from sys_resource r
+		left join sys_role_resource rr
+		on r.RESOURCE_ID = rr.RESOURCE_ID
+		where rr.role_id
+		= #{roleId}
+	</select>
 
 
 </mapper>

@@ -14,10 +14,10 @@ import java.util.Vector;
  * @date 2019-03-30 15:36:21
  */
 
-public class ModifyParasHttpServletRequestWrapper extends HttpServletRequestWrapper {
+public class ModifyParamHttpServletRequestWrapper extends HttpServletRequestWrapper {
 	private Map<String, String[]> parameterMap; // 所有参数的Map集合
 
-	public ModifyParasHttpServletRequestWrapper(HttpServletRequest request) {
+	public ModifyParamHttpServletRequestWrapper(HttpServletRequest request) {
 		super(request);
 		parameterMap = request.getParameterMap();
 	}
@@ -45,7 +45,7 @@ public class ModifyParasHttpServletRequestWrapper extends HttpServletRequestWrap
 	public String getParameter(String name) {
 		String[] results = parameterMap.get(name);
 		if (results == null || results.length <= 0)
-			return null;
+			return "";
 		else {
 			System.out.println("修改之前： " + results[0]);
 			return modify(results[0]);

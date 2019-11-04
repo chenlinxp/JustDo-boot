@@ -1,4 +1,4 @@
-package com.justdo.config;
+package com.justdo.common.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,14 +8,15 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- *
+ * ApplicationContext 上下文工具类
  * @author chen
  * @date 2017/9/4
- * Describe:
+ *
  */
 @Component
-public class ApplicationContextRegister implements ApplicationContextAware {
-    private static Logger logger = LoggerFactory.getLogger(ApplicationContextRegister.class);
+public class ApplicationContextUtils implements ApplicationContextAware {
+
+    private static Logger logger = LoggerFactory.getLogger(ApplicationContextUtils.class);
     private static ApplicationContext APPLICATION_CONTEXT;
     /**
      * 设置spring上下文

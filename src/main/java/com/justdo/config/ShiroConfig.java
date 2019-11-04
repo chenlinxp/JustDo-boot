@@ -224,13 +224,29 @@ public class ShiroConfig {
 	 */
 	@Bean
 	public DefaultWebSessionManager sessionManager() {
+
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+		Collection<SessionListener> listeners = new ArrayList<SessionListener>();
+        //配置监听
+		listeners.add(new ShiroSessionListener());
+
+		//全局会话超时时间（单位毫秒），默认30分钟
 		sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
 		sessionManager.setSessionDAO(redisSessionDAO());
-		Collection<SessionListener> listeners = new ArrayList<SessionListener>();
-		listeners.add(new BDSessionListener());
 		sessionManager.setSessionListeners(listeners);
+//		sessionManager.setCacheManager(ehCacheManager());
+//		sessionManager.setSessionIdCookie(sessionIdCookie());
+		//是否开启删除无效的session对象  默认为true
+		sessionManager.setDeleteInvalidSessions(true);
+		//是否开启定时调度器进行检测过期session 默认为true
+		sessionManager.setSessionValidationSchedulerEnabled(true);
+		//设置session失效的扫描时间, 清理用户直接关闭浏览器造成的孤立会话 默认为 1个小时
+		//设置该属性 就不需要设置 ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
+		sessionManager.setSessionValidationInterval(3600000);
+		//取消url 后面的 JSESSIONID
+		sessionManager.setSessionIdUrlRewritingEnabled(false);
 		return sessionManager;
+
 	}
 
 
@@ -246,14 +262,20 @@ public class ShiroConfig {
 	@Bean
 	public SimpleCookie rememberMeCookie(){
 		SimpleCookie rememberMeCookie = new SimpleCookie("rememberMe");
+		//设为true后，只能通过http访问，javascript无法访问
+		//防止xss读取cookie
+		/*保证该系统不会受到跨域的脚本操作供给*/
 		rememberMeCookie.setHttpOnly(true);
 		//<!-- 记住我cookie生效时间7天 ,单位秒;-->
+		//maxAge=-1表示浏览器关闭时失效此Cookie
 		rememberMeCookie.setMaxAge(604800);
 		rememberMeCookie.setPath("/justdo/login");
 		rememberMeCookie.setDomain("");
-		/*保证该系统不会受到跨域的脚本操作供给*/
-		rememberMeCookie.setHttpOnly(true);
+
+
 		return rememberMeCookie;
+
+
 	}
 
 	/**

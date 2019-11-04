@@ -16,12 +16,12 @@ import java.io.IOException;
  * @email chenlinxp@qq.com
  * @date 2019-03-30 15:36:21
  */
-public class ModifyParametersFilter extends OncePerRequestFilter {
+public class ModifyParamFilter extends OncePerRequestFilter {
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		ModifyParasHttpServletRequestWrapper mParametersWrapper = new ModifyParasHttpServletRequestWrapper(request);
+		ModifyParamHttpServletRequestWrapper mParametersWrapper = new ModifyParamHttpServletRequestWrapper(request);
 		filterChain.doFilter(mParametersWrapper, response);
 	}
 

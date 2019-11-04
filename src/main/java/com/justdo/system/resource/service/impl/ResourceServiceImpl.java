@@ -117,6 +117,17 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
+	public Set<String> listEmployeePermissions2(String roleId){
+
+		List<String> perms = resourceDao.listEmployeePermissions2(roleId);
+		Set<String> permsSet = new HashSet<>();
+		for (String perm : perms) {
+				permsSet.add(perm);
+		}
+		return permsSet;
+	}
+
+	@Override
 	public List<Tree<ResourceDO>> listEmployeeResourceTree(String employeeId) {
 		List<Tree<ResourceDO>> trees = new ArrayList<Tree<ResourceDO>>();
 		List<ResourceDO> menuDOs = resourceDao.listResourceByEmployeeId(employeeId);

@@ -51,25 +51,6 @@ public class ShiroUtils {
         return getSimpleEmployee().getEmployeeId();
     }
 
-    /**
-     * 用户对象
-     * @return
-     */
-//    public static UserDO getUser() {
-//
-//        Object object = getSubjct().getPrincipal();
-//        return (UserDO)object;
-//    }
-
-    /**
-     * 用户ID
-     * @return
-     */
-//    public static String getUserId() {
-//
-//        return getUser().getUserId();
-//    }
-
 
     public static void logout() {
 
