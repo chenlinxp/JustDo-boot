@@ -85,9 +85,6 @@ public class EmployeeDO extends BaseBean {
 	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date modifyTime;
 
-	private String createTimeStr;
-
-	private String modifyTimeStr;
 
 	/**
 	 * 构造方法
@@ -456,25 +453,6 @@ public class EmployeeDO extends BaseBean {
 		return modifyTime;
 	}
 
-	/**
-	 * 获取：创建时间字符串
-	 * @return
-	 */
-	public String getCreateTimeStr() {
-
-		this.createTimeStr = sdf.format(this.getCreateTime());
-		return createTimeStr;
-	}
-
-	/**
-	 * 获取：修改时间字符串
-	 * @return
-	 */
-	public String getModifyTimeStr() {
-
-		this.modifyTimeStr = sdf.format(this.getModifyTime());
-		return modifyTimeStr;
-	}
 
 	@Override
 	public String toString() {

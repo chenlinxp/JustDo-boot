@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 
-/** 
- * <code>{@link XssHttpServletRequestWrapper}</code>
- * @author win7
- */  
+/**
+ * Xss  HttpServletRequestWrapper装饰类
+ * 继承HttpServletRequestWrapper，创建装饰类，以达到修改HttpServletRequest参数的目的
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
+ */
+
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     HttpServletRequest orgRequest = null;  

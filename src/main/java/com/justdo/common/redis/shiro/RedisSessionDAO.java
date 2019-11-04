@@ -42,7 +42,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     public void update(Session session) throws UnknownSessionException {
-        logger.info("update saveSession id is:"+session.getId());
+        logger.debug("update saveSession id is:"+session.getId());
         this.saveSession(session);
     }
 
@@ -71,7 +71,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             return;
         }
         //String loginName = getLoginName(session);
-        logger.info("deleteSession id is:"+session.getId());
+        logger.debug("deleteSession id is:"+session.getId());
         redisManager.del(this.getByteKey(session.getId()));
 
 
@@ -117,8 +117,8 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             logger.error("doReadSession id is null");
             return null;
         }
-        logger.info("doReadSession id is:"+sessionId);
-        logger.info("doReadSession value is:"+redisManager.get(this.getByteKey(sessionId)));
+        logger.debug("doReadSession id is:"+sessionId);
+        logger.debug("doReadSession value is:"+redisManager.get(this.getByteKey(sessionId)));
         Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
 
         return s;

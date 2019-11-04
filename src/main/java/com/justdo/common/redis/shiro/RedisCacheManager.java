@@ -51,6 +51,7 @@ public class RedisCacheManager implements CacheManager {
 
     @Override
     public <K, V> Cache<K, V> getCache(String name) throws CacheException {
+
         logger.debug("获取名称为: " + name + " 的RedisCache实例");
 
         Cache c = caches.get(name);

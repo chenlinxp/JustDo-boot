@@ -19,9 +19,15 @@ import java.util.Date;
 
 /**
  * 异常处理器
+ * <p>可对全局异常进行捕获，包括自定义异常
+ * 需要清楚的是，其是应用于对springmvc中的控制器抛出的异常进行处理，
+ * 而对于404这样不会进入控制器处理的异常不起作用，所以此时还是要依靠ErrorController来处理</p>
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
  */
 @RestControllerAdvice
-public class BDExceptionHandler {
+public class CatchExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     ErrorLogService errorLogService;

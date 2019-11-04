@@ -55,6 +55,7 @@ public class AjaxRequestBean {
 		)+" limit "+
 				String.valueOf(pagesize)+" offset "+String.valueOf(((pagenum-1) * pagesize));
 	}
+
 	public String genOrder(){
 		String w_sortfield = sortdatafield;
 		if (w_sortfield.equals("")&&defaultsortdatafield!=null){
@@ -68,6 +69,7 @@ public class AjaxRequestBean {
 		lvT[0]=lvT[0] +" "+sortorder;
 		return "ORDER BY "+ lvT[0] ;//Util.toString(",", lvT);
 	}
+
 	/***返回不带order by **/
 	public String genOrder1(){
 		String w_sortfield = sortdatafield;
