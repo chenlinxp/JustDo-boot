@@ -1,4 +1,4 @@
-package com.justdo.authentication;
+package com.justdo.common.domain;
 
 
 import org.apache.shiro.authc.AuthenticationToken;
@@ -7,6 +7,7 @@ import org.apache.shiro.authc.AuthenticationToken;
  * token
  */
 public class OAuth2Token implements AuthenticationToken {
+
     private String token;
 
     public OAuth2Token(String token){

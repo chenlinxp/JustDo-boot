@@ -1,4 +1,4 @@
-package com.justdo.authentication;
+package com.justdo.common.utils;
 
 
 import com.justdo.common.exception.BaseException;
@@ -7,10 +7,13 @@ import java.security.MessageDigest;
 import java.util.UUID;
 
 /**
- * 生成token
+ * 生成token工具
  *
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
  */
-public class TokenGenerator {
+public class GeneratorTokenUtils {
 
     public static String generateValue() {
         return generateValue(UUID.randomUUID().toString());

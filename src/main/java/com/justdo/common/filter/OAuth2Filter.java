@@ -1,6 +1,7 @@
-package com.justdo.authentication;
+package com.justdo.common.filter;
 
 import com.alibaba.fastjson.JSONObject;
+import com.justdo.common.domain.OAuth2Token;
 import com.justdo.common.utils.R;
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -17,6 +18,9 @@ import java.io.IOException;
 /**
  * oauth2过滤器
  *
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
  */
 public class OAuth2Filter extends AuthenticatingFilter {
 

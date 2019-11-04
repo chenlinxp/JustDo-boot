@@ -19,9 +19,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * 员工账号认证、权限授权
  *
- *员工认证、授权
- *
+ * @author: chenlin
+ * @date:2019-06-12
+ * @description: 登陆次数限制
  */
 public class EmployeeRealm extends AuthorizingRealm {
 
