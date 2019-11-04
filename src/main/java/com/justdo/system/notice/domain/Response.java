@@ -8,17 +8,18 @@ package com.justdo.system.notice.domain;
  * @date 2018-06-26 18:32:20
  */
 public class Response {
-	public void setResponseMessage(String responseMessage) {
+	public void setResponseMessage(Message responseMessage) {
 		this.responseMessage = responseMessage;
 	}
 
-	private String responseMessage;
+	private Message responseMessage;
 
-	public Response(String responseMessage) {
+	public Response(Message responseMessage) {
+
 		this.responseMessage = responseMessage;
 	}
 
-	public String getResponseMessage() {
+	public Message getResponseMessage() {
 		return responseMessage;
 	}
 }

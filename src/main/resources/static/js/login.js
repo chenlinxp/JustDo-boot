@@ -38,7 +38,7 @@ function login() {
                 });
                 parent.location.href = '/index';
             } else {
-                layer.msg(r.msg+"eee");
+                layer.msg(r.msg);
             }
         },
         error:function(r){

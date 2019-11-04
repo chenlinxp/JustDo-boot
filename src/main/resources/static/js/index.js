@@ -11,13 +11,13 @@ function connect() {
     stompClient.connect( { name:$("#userid").val()},
         function connectCallback(frame) {
             // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
-            alert("success");
+            console.info("success");
             subscribe1();
             subscribe2();
         },
         function errorCallBack(error) {
             // 连接失败时（服务器响应 ERROR 帧）的回调方法
-            alert("error");
+            console.error("error");
         });
 }
 
@@ -78,6 +78,7 @@ function send0() {
  * 发送JSON数据体
  * */
 function send() {
+    send3();
     stompClient.send("/app/welcome", {},
         JSON.stringify({
             "messageId":"www",
@@ -98,8 +99,12 @@ function send2() {
  * 发送header参数
  * */
 function send3() {
-    stompClient.send("/app/header", {"one":"lalala", "two":"中国"},
-        {});
+    stompClient.send("/app/msg/sendPointToPoint", {"one":"lalala", "two":"中国"},
+        JSON.stringify({
+            "messageId":"www",
+            "messageTitle":"rrrrr",
+            "messageContent":"eergg"
+        }));
 }
 
 /**

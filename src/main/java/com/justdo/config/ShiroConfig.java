@@ -31,7 +31,11 @@ import java.util.*;
 
 
 /**
- * @author justdo
+ * Shiro配置管理
+ *
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
  */
 @Configuration
 public class ShiroConfig {
@@ -247,6 +251,7 @@ public class ShiroConfig {
 		rememberMeCookie.setMaxAge(604800);
 		rememberMeCookie.setPath("/justdo/login");
 		rememberMeCookie.setDomain("");
+		/*保证该系统不会受到跨域的脚本操作供给*/
 		rememberMeCookie.setHttpOnly(true);
 		return rememberMeCookie;
 	}

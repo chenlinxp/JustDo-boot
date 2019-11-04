@@ -1,38 +1,38 @@
 package com.justdo.common.filter;
 
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-  
-/** 
- * 拦截防止xss注入
+/**
+ * 拦截防止xss注入过滤器
  * 通过Jsoup过滤请求参数内的特定字符
- * @author yangwk 
- */  
-public class XssFilter implements Filter {  
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
+ */
+public class XssFilter implements Filter {
+
 	private static Logger logger = LoggerFactory.getLogger(XssFilter.class);
 
 	/**
 	 * 是否过滤富文本内容
 	 */
 	private static boolean IS_INCLUDE_RICH_TEXT = false;
-	
+
+	/**
+	 * 排除不过虑的地址
+	 */
 	public List<String> excludes = new ArrayList<>();
   
     @Override

@@ -1,4 +1,4 @@
-package com.justdo.common.filter;
+package com.justdo.common.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
@@ -10,10 +10,14 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 /**
- * Created by chenlin on 2019/4/27.
+ * 自定义拦截器
+ *
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
  */
 public class MyInterceptor implements HandlerInterceptor {
-	//在请求处理之前进行调用（Controller方法调用之前
+	//在请求处理之前进行调用（Controller方法调用之前)
 	@Override
 	public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
 		System.out.println("preHandle被调用");

@@ -17,14 +17,18 @@ import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * WebSocket控制器
+ *
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
+ */
 @Controller
 public class WebSocketController {
 	@Autowired
@@ -36,34 +40,14 @@ public class WebSocketController {
 	@Autowired
 	ESessionService esessionService;
 
-//	@Autowired
-//	WelcomeTask welcomeTask;
 
 
-	@MessageMapping("/welcome") // 浏览器发送请求通过@messageMapping 映射/welcome 这个地址。
-	@SendTo("/topic/getResponse") // 服务器端有消息时,会订阅@SendTo 中的路径的浏览器发送消息。
-	public Response say(Message message) throws Exception {
-		Thread.sleep(1000);
-		return new Response("Welcome, " + message.getMessageTitle()+ "!");
+	@MessageMapping(value = "/welcome") // 浏览器发送请求通过@messageMapping 映射/welcome 这个地址。
+	@SendTo("/topic/greetings") // 服务器端有消息时,会订阅@SendTo 中的路径的浏览器发送消息。
+	public Response say(@RequestBody Message message) throws Exception {
+		//Thread.sleep(1000);
+		return new Response(message);
 	}
-
-	/**
-	 * 用户广播
-	 * 发送消息广播  用于内部发送使用
-	 * @param message
-	 * @return
-	 */
-	@GetMapping("/msg/sendBroadcast")
-	@ResponseBody
-	public Message sendBroadcast(Message message){
-
-		for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
-			String employeeId = simpleEmployeeDO.getEmployeeId();
-			template.convertAndSendToUser(employeeId,"/topic/getResponse",message);
-		}
-		return message;
-	}
-
 
 	/**
 	 * 同样的发送消息   只不过是ws版本  http请求不能访问
@@ -72,14 +56,17 @@ public class WebSocketController {
 	 * @return
 	 * @throws Exception
 	 */
-	@MessageMapping("/msg/sendPointToPoint")
+	@MessageMapping(value = "/msg/sendPointToPoint")
 	public void sendPointToPoint(Message message) throws Exception {
+
 		Map<String,String> params = new HashMap();
 		params.put("test","test");
 		//这里没做校验
 		String sessionId="";
 		template.convertAndSendToUser(sessionId,"/topic/greetings",message,createHeaders(sessionId));
 	}
+
+
 	private MessageHeaders createHeaders(String sessionId) {
 		SimpMessageHeaderAccessor headerAccessor = SimpMessageHeaderAccessor.create(SimpMessageType.MESSAGE);
 		headerAccessor.setSessionId(sessionId);
@@ -106,10 +93,30 @@ public class WebSocketController {
 	 * @return
 	 */
 	@MessageMapping("/message")
-	@SendToUser("/message")
+	@SendToUser("/queue/message")
 	public Message handleSubscribe() {
 		System.out.println("this is the @SubscribeMapping('/marco')");
-		return new Message("","","I am a msg from SubscribeMapping('/macro').");
+
+		return new Message("","new message","I am a msg from SubscribeMapping('/macro').");
+	}
+
+	/**
+	 * 用户广播
+	 * 发送消息广播  用于内部发送使用
+	 * @param message
+	 * @return
+	 */
+	@GetMapping("/msg/sendBroadcast")
+	@ResponseBody
+	public Message sendBroadcast(@RequestBody Message message){
+
+		for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
+			String employeeId = simpleEmployeeDO.getEmployeeId();
+			template.convertAndSendToUser(employeeId,"/queue/message",message);
+		}
+
+		template.convertAndSend("/topic/greetings",new Response(message));
+		return message;
 	}
 
 	/**
@@ -118,8 +125,8 @@ public class WebSocketController {
 	 */
 	@RequestMapping(path = "/send", method = RequestMethod.GET)
 	public Message send() {
-		simpMessageSendingOperations.convertAndSendToUser("1", "/message", new Message("","","I am a msg from SubscribeMapping('/macro')."));
-		return new Message("","","I am a msg from SubscribeMapping('/macro').");
+		simpMessageSendingOperations.convertAndSendToUser("1", "/queue/message", new Message("","new message","I am a msg from SubscribeMapping('/macro')."));
+		return new Message("ww","new message","I am a msg from SubscribeMapping('/macro').");
 	}
 
 }

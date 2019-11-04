@@ -1,17 +1,18 @@
 package com.justdo.common.filter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-
 import com.justdo.common.utils.JsoupUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
 
 /** 
  * <code>{@link XssHttpServletRequestWrapper}</code>
  * @author win7
  */  
-public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {  
+public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
+
     HttpServletRequest orgRequest = null;  
     private boolean isIncludeRichText = false;
   
