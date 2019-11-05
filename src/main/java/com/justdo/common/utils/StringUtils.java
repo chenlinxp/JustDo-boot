@@ -1,20 +1,21 @@
 package com.justdo.common.utils;
 
+ import java.io.IOException;
+ import java.io.InputStream;
+ import java.util.ArrayList;
+ import java.util.Enumeration;
+ import java.util.HashMap;
+ import java.util.List;
+ import java.util.Map;
+ import java.util.Properties;
+ import java.util.UUID;
+ import java.util.regex.Matcher;
+ import java.util.regex.Pattern;
+
 /**
  * @author justdo
  */
 
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.util.ArrayList;
-        import java.util.Enumeration;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
-        import java.util.Properties;
-        import java.util.UUID;
-        import java.util.regex.Matcher;
-        import java.util.regex.Pattern;
 
 public class StringUtils extends org.apache.commons.lang.StringUtils {
     private final static Map<String, String> regexs = new HashMap<String, String>();
@@ -63,6 +64,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         if(src == null) return false;
         return regex(type,src.toString());
     }
+
     /**
      * 替换正则表达式
      * @param src
@@ -317,5 +319,15 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
             }
         }
         return false;
+    }
+
+
+    /**
+     * 获得byte[]型的str
+     * @param str
+     * @return
+     */
+    public static byte[] getByteString(String str){
+            return str.getBytes();
     }
 }

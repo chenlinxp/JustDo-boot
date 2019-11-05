@@ -6,9 +6,8 @@ import com.google.code.kaptcha.Producer;
 import com.justdo.common.annotation.Log;
 import com.justdo.common.controller.BaseController;
 import com.justdo.common.domain.Tree;
-import com.justdo.common.utils.R;
-import com.justdo.common.utils.ShiroUtils;
-import com.justdo.common.utils.StringUtils;
+import com.justdo.common.utils.*;
+import com.justdo.config.ShiroSessionListener;
 import com.justdo.system.employee.service.EmployeeService;
 import com.justdo.system.file.service.FileService;
 import com.justdo.system.resource.domain.ResourceDO;
@@ -19,10 +18,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,6 +50,8 @@ import java.util.Objects;
 @Controller
 public class ELoginController extends BaseController {
 
+	private static Logger logger = LoggerFactory.getLogger(ELoginController.class);
+
 	@Autowired
 	ResourceService resourceService;
 	@Autowired
@@ -58,6 +62,9 @@ public class ELoginController extends BaseController {
 	RoleService roleService;
 	@Autowired
 	private Producer captchaProducer;
+
+	@Autowired
+	RedisUtils redisUtils;
 
 
 	@GetMapping({ "/", "" })
@@ -120,12 +127,18 @@ public class ELoginController extends BaseController {
 		username = username.trim();
 		Map<String ,Object> params = new HashMap<>(1);
 		params.put("loginName",username);
+		int logincount = 0 ;
 		if(employeeService.exist(params)) {
 			String salt = employeeService.getPasswordSalt(username);
 //			String a = password2.toString();//4d9573ec9f4cf8978543486c9e9eb681
 			//password = MD5Utils.encrypt(salt, password);  //fe02dde7415743a285fc5cefa6942ffc
 			Subject currentUser = SecurityUtils.getSubject();
 			if (currentUser.isAuthenticated() && currentUser.isRemembered()) {
+
+				logincount = ApplicationContextUtils.getBean(ShiroSessionListener.class).getSessionCount().intValue();
+
+				logger.info("当前在线的用户数是："+ logincount);
+
 				return R.ok();
 			} else {
 				UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -135,6 +148,9 @@ public class ELoginController extends BaseController {
 				}
 				try {
 					currentUser.login(token);
+					logincount = ApplicationContextUtils.getBean(ShiroSessionListener.class).getSessionCount().intValue();
+
+					logger.info("当前在线的用户数是："+ logincount);
 					return R.ok();
 			    } catch (IncorrectCredentialsException e) {
 					msg = "登录密码错误";
@@ -205,29 +221,39 @@ public class ELoginController extends BaseController {
 	/**
 	 * 短信验证码
 	 */
-//	@ResponseBody
-//	@RequestMapping("/mobile/code/{number}")
-//	public Map<String, Object> mobile(@PathVariable("number") String number){
-//
-//
-//		//账号不存在
-////		if(employeeDO == null) {
-////			return R.error("手机号码未注册");
-////		}
-//
-//		//生成4位验证码
-//		String code = "123456";
-//		//redis 60秒
-//		redisUtils.set(number,code,60);
-//		//调用短信服务去发送
-//
-//		return R.ok("验证码发送成功");
-//	}
+	@ResponseBody
+	@GetMapping("/mobile/code/{number}")
+	public Map<String, Object> mobile(@PathVariable("number") String number){
+
+
+		//账号不存在
+//		if(employeeDO == null) {
+//			return R.error("手机号码未注册");
+//		}
+		//生成4位验证码
+		String code = "123456";
+		//redis 60秒
+		byte[] numberByte = StringUtils.getByteString(number);
+		byte[] codeByte = StringUtils.getByteString(code);
+		redisUtils.set(numberByte, codeByte,60);
+
+		//调用短信服务去发送
+
+		return R.ok("验证码发送成功");
+	}
 
 	@Log("退出")
 	@GetMapping("/logout")
 	String logout() {
+
 		ShiroUtils.logout();
+
+		int  logincount = 0;
+
+		logincount = ApplicationContextUtils.getBean(ShiroSessionListener.class).getSessionCount().intValue();
+
+		logger.info("当前在线的用户数是："+ logincount);
+
 		return "redirect:/justdo/login";
 	}
 

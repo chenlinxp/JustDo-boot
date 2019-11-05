@@ -26,7 +26,6 @@ import java.util.Set;
  *
  * @author: chenlin
  * @date:2019-06-12
- * @description: 登陆次数限制
  */
 public class EmployeeRealm extends AuthorizingRealm {
 

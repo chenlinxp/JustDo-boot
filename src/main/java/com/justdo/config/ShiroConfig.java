@@ -105,7 +105,7 @@ public class ShiroConfig {
 //		filterChainDefinitionMap.put("/portal/open/**", "anon");
 //		filterChainDefinitionMap.put("/login", "anon,kickout");
 //		filterChainDefinitionMap.put("/index", "user,kickout");
-//		filterChainDefinitionMap.put("/logout", "logout");
+//		filterChainDefinitionMap.put("/logout", "anon");
 //		//filterChainDefinitionMap.put("/**", "user");
 //		//其余接口一律拦截
 //		//主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
@@ -128,10 +128,11 @@ public class ShiroConfig {
 			filterChainDefinitionMap.put(permissionInit.getPermissionUrl(),
 					permissionInit.getPermissionInit());
 		}
-//		filterChainDefinitionMap = shiroService.loadFilterChainDefinitions();
+		//filterChainDefinitionMap = shiroService.loadFilterChainDefinitions();
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
+
 	/*
 	安全管理器
 	 */
@@ -220,6 +221,16 @@ public class ShiroConfig {
 	}
 
 	/**
+	 * 配置session监听
+	 * @return
+	 */
+	@Bean(name = "sessionListener")
+	public ShiroSessionListener sessionListener(){
+		ShiroSessionListener sessionListener = new ShiroSessionListener();
+		return sessionListener;
+	}
+
+	/**
 	 *  session的管理
 	 */
 	@Bean
@@ -228,7 +239,7 @@ public class ShiroConfig {
 		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
 		Collection<SessionListener> listeners = new ArrayList<SessionListener>();
         //配置监听
-		listeners.add(new ShiroSessionListener());
+		listeners.add(sessionListener());
 
 		//全局会话超时时间（单位毫秒），默认30分钟
 		sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
@@ -259,7 +270,7 @@ public class ShiroConfig {
 	 * 如果权限是authc,则仍会跳转到登陆页面去进行登陆认证.
 	 * @return
 	 */
-	@Bean
+	@Bean(name = "rememberMeCookie")
 	public SimpleCookie rememberMeCookie(){
 		SimpleCookie rememberMeCookie = new SimpleCookie("rememberMe");
 		//设为true后，只能通过http访问，javascript无法访问
@@ -272,7 +283,6 @@ public class ShiroConfig {
 		rememberMeCookie.setPath("/justdo/login");
 		rememberMeCookie.setDomain("");
 
-
 		return rememberMeCookie;
 
 
@@ -282,12 +292,15 @@ public class ShiroConfig {
 	 * cookie管理对象;记住我功能
 	 * @return
 	 */
-	@Bean
+	@Bean(name = "rememberMeManager")
 	public CookieRememberMeManager rememberMeManager(){
+
 		CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+
 		cookieRememberMeManager.setCookie(rememberMeCookie());
 		//rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度(128 256 512 位)
 		cookieRememberMeManager.setCipherKey(Base64.decode("3AvVhmFLUs0KTA3Kprsdag=="));
+
 		return cookieRememberMeManager;
 	}
 

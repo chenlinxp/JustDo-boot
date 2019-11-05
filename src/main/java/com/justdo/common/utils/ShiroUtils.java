@@ -52,14 +52,19 @@ public class ShiroUtils {
     }
 
 
+    /**
+     * 推出登录
+     */
     public static void logout() {
 
-        getSubjct().logout();
 
         Session session = getSubjct().getSession();
 
         sessionDAO.delete(session);
 
+        CookieUtils.set();
+
+        getSubjct().logout();
 
     }
 
