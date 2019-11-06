@@ -10,6 +10,12 @@ import redis.clients.util.Slowlog;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * jedis工具类
+ * @author chenlin
+ * @email 13233669915@qq.com
+ * @date 2018-06-19 16:02:20
+ */
 @Component
 public class RedisUtils {
 

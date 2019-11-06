@@ -2,8 +2,13 @@
 
 //公共配置
 
+var preUrl = "/system/desksettings";
+var settingsItem = "default-skin";
+var fixedNavBar = 0;
+var collapsMenu = 0;
+var boxedLayout = 0;
 
-$(document).ready(function () {
+$(function () {
 
     // MetsiMenu
     $('#side-menu').metisMenu();
@@ -102,6 +107,26 @@ $(document).ready(function () {
         $('#content-main').css('overflow-y', 'auto');
     }
 
+    $.ajax({
+        cache : true,
+        type : "get",
+        url : preUrl+"/info",
+        data : "",// 你的formid
+        async : false,
+        error : function(request) {
+           console.error(request);
+        },
+        success : function(data) {
+            console.error(JSON.stringify(data));
+            if (data.code == 0 && data.data !=null) {
+                settingsItem = data.data.settingsItem;
+                 fixedNavBar = data.data.fixedNavBar;
+                 collapsMenu = data.data.collapsMenu;
+                 boxedLayout = data.data.boxedLayout;
+            }
+        }
+    });
+
 });
 
 $(window).bind("load resize", function () {
@@ -136,138 +161,152 @@ function SmoothlyMenu() {
 
 //主题设置
 $(function () {
-
+    var body = $('body');
     // 顶部菜单固定
     $('#fixednavbar').click(function () {
         if ($('#fixednavbar').is(':checked')) {
             $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
-            $("body").removeClass('boxed-layout');
-            $("body").addClass('fixed-nav');
+            body.removeClass('boxed-layout');
+            body.addClass('fixed-nav');
             $('#boxedlayout').prop('checked', false);
-            if (localStorageSupport) {
-                localStorage.setItem("boxedlayout", 'off');
-            }
-            if (localStorageSupport) {
-                localStorage.setItem("fixednavbar", 'on');
-            }
+            boxedLayout = 0;
+            fixedNavBar = 1;
         } else {
             $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
-            $("body").removeClass('fixed-nav');
-
-            if (localStorageSupport) {
-                localStorage.setItem("fixednavbar", 'off');
-            }
+            body.removeClass('fixed-nav');
+            fixedNavBar = 0;
         }
+        save();
     });
-
 
     // 收起左侧菜单
     $('#collapsemenu').click(function () {
         if ($('#collapsemenu').is(':checked')) {
-            $("body").addClass('mini-navbar');
+            body.addClass('mini-navbar');
             SmoothlyMenu();
-
-            if (localStorageSupport) {
-                localStorage.setItem("collapse_menu", 'on');
-            }
-
+            collapsMenu = 1;
         } else {
-            $("body").removeClass('mini-navbar');
+            body.removeClass('mini-navbar');
             SmoothlyMenu();
-
-            if (localStorageSupport) {
-                localStorage.setItem("collapse_menu", 'off');
-            }
+            collapsMenu = 0;
         }
+        save();
     });
 
     // 固定宽度
     $('#boxedlayout').click(function () {
         if ($('#boxedlayout').is(':checked')) {
-            $("body").addClass('boxed-layout');
+            body.addClass('boxed-layout');
             $('#fixednavbar').prop('checked', false);
             $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
-            $("body").removeClass('fixed-nav');
-            if (localStorageSupport) {
-                localStorage.setItem("fixednavbar", 'off');
-            }
-            if (localStorageSupport) {
-                localStorage.setItem("boxedlayout", 'on');
-            }
+            body.removeClass('fixed-nav');
+            fixedNavBar = 0;
+            boxedLayout = 1;
             } else {
-            $("body").removeClass('boxed-layout');
-
-            if (localStorageSupport) {
-                localStorage.setItem("boxedlayout", 'off');
-            }
+            body.removeClass('boxed-layout');
+            boxedLayout = 0;
         }
+        save();
     });
 
     // 默认主题
     $('.setings-item.default-skin').click(function () {
-        $("body").removeClass("skin-1");
-        $("body").removeClass("skin-2");
-        $("body").removeClass("skin-3");
+        body.removeClass("skin-1");
+        body.removeClass("skin-2");
+        body.removeClass("skin-3");
+        settingsItem = "default-skin";
+        save();
+
         return false;
     });
 
     // 蓝色主题
     $('.setings-item.blue-skin').click(function () {
-        $("body").removeClass("skin-2");
-        $("body").removeClass("skin-3");
-        $("body").addClass("skin-1");
+        body.removeClass("skin-2");
+        body.removeClass("skin-3");
+        body.addClass("skin-1");
+        settingsItem = "blue-skin";
+        save();
+
         return false;
     });
 
     // 黄色主题
     $('.setings-item.yellow-skin').click(function () {
-        $("body").removeClass("skin-1");
-        $("body").removeClass("skin-2");
-        $("body").addClass("skin-3");
+        body.removeClass("skin-1");
+        body.removeClass("skin-2");
+        body.addClass("skin-3");
+        settingsItem = "yellow-skin";
+        save();
         return false;
     });
 
-    if (localStorageSupport) {
-        var collapse = localStorage.getItem("collapse_menu");
-        var fixednavbar = localStorage.getItem("fixednavbar");
-        var boxedlayout = localStorage.getItem("boxedlayout");
-
-        if (collapse == 'on') {
+        if (collapsMenu == 1) {
             $('#collapsemenu').prop('checked', 'checked')
         }
-        if (fixednavbar == 'on') {
+        if (fixedNavBar == 1) {
             $('#fixednavbar').prop('checked', 'checked')
         }
-        if (boxedlayout == 'on') {
+        if (boxedLayout == 1) {
             $('#boxedlayout').prop('checked', 'checked')
         }
-    }
-
-    if (localStorageSupport) {
-        var collapse = localStorage.getItem("collapse_menu");
-        var fixednavbar = localStorage.getItem("fixednavbar");
-        var boxedlayout = localStorage.getItem("boxedlayout");
-
-        var body = $('body');
-
-        if (collapse == 'on') {
+        if (collapsMenu == 1) {
             if (!body.hasClass('body-small')) {
                 body.addClass('mini-navbar');
             }
         }
-
-        if (fixednavbar == 'on') {
+        if (fixedNavBar == 1) {
             $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
             body.addClass('fixed-nav');
         }
 
-        if (boxedlayout == 'on') {
+        if (boxedLayout == 1) {
             body.addClass('boxed-layout');
         }
-    }
+
+        if(settingsItem == "default-skin"){
+            body.removeClass("skin-1");
+            body.removeClass("skin-2");
+            body.removeClass("skin-3");
+        }
+
+        if(settingsItem == "blue-skin"){
+            body.removeClass("skin-2");
+            body.removeClass("skin-3");
+            body.addClass("skin-1");
+        }
+
+        if(settingsItem == "yellow-skin"){
+            body.removeClass("skin-1");
+            body.removeClass("skin-2");
+            body.addClass("skin-3");
+        }
 });
 
-//判断浏览器是否支持html5本地存储
-function localStorageSupport() {
-    return (('localStorage' in window) && window['localStorage'] !== null)
+// //判断浏览器是否支持html5本地存储
+// function localStorageSupport() {
+//     return (('localStorage' in window) && window['localStorage'] !== null)
+// }
+// var collapse = localStorage.getItem("collapse_menu");
+// var fixednavbar = localStorage.getItem("fixedNavBar");
+// var boxedlayout = localStorage.getItem("boxedlayout");
+// localStorage.setItem("boxedlayout", 'off');
+// localStorage.setItem("fixedNavBar", 'off');
+// localStorage.setItem("collapse_menu", 'off');
+
+function save() {
+    $.ajax({
+        cache : true,
+        type : "POST",
+        url : preUrl+"/update",
+        data : {"settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout},
+        async : false,
+        error : function(request) {
+            console.error(request);
+        },
+        success : function(data) {
+            console.error(data);
+        }
+    });
+
 }

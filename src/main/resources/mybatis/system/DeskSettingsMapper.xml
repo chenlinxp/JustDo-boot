@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.justdo.system.desksettings.dao.DeskSettingsDao">
+
+	<select id="get" resultType="com.justdo.system.desksettings.domain.DeskSettingsDO">
+		select  `SETTINGS_ID`, `EMPLOYEE_ID`,`SETTINGS_ITEM`,`FIXED_NAV_BAR`,`COLLAPS_MENU`,`BOXED_LAYOUT` from sys_desk_settings where SETTINGS_ID = #{value}
+	</select>
+
+	<select id="getByEmployeeId" resultType="com.justdo.system.desksettings.domain.DeskSettingsDO">
+		select  `SETTINGS_ID`, `EMPLOYEE_ID`,`SETTINGS_ITEM`,`FIXED_NAV_BAR`,`COLLAPS_MENU`,`BOXED_LAYOUT` from sys_desk_settings where EMPLOYEE_ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.justdo.system.desksettings.domain.DeskSettingsDO">
+		select  `SETTINGS_ID`, `EMPLOYEE_ID`,`SETTINGS_ITEM`,`FIXED_NAV_BAR`,`COLLAPS_MENU`,`BOXED_LAYOUT` from sys_desk_settings
+        <where>
+			<if test="settingsId != null and settingsId != ''"> and SETTINGS_ID != #{settingsId} </if>
+		  <if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID = #{employeeId} </if>
+		  <if test="settingsItem != null and settingsItem != ''"> and SETTINGS_ITEM = #{settingsItem} </if>
+		  <if test="fixedNavBar != null and fixedNavBar != ''"> and FIXED_NAV_BAR = #{fixedNavBar} </if>
+		  <if test="collapsMenu != null and collapsMenu != ''"> and COLLAPS_MENU = #{collapsMenu} </if>
+		  <if test="boxedLayout != null and boxedLayout != ''"> and BOXED_LAYOUT = #{boxedLayout} </if>
+		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by SETTINGS_ID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from sys_desk_settings
+		 <where>  
+		  <if test="employeeId != null and employeeId != ''"> and EMPLOYEE_ID = #{employeeId} </if>
+		  <if test="settingsItem != null and settingsItem != ''"> and SETTINGS_ITEM = #{settingsItem} </if>
+		  <if test="fixedNavBar != null and fixedNavBar != ''"> and FIXED_NAV_BAR = #{fixedNavBar} </if>
+		  <if test="collapsMenu != null and collapsMenu != ''"> and COLLAPS_MENU = #{collapsMenu} </if>
+		  <if test="boxedLayout != null and boxedLayout != ''"> and BOXED_LAYOUT = #{boxedLayout} </if>
+		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.justdo.system.desksettings.domain.DeskSettingsDO">
+        <selectKey keyProperty="settingsId" resultType="string" order="BEFORE">
+        select replace(uuid(), '-', '') as settingsId from dual
+		</selectKey>
+        insert into sys_desk_settings
+		(
+		    `SETTINGS_ID`,
+            `EMPLOYEE_ID`,
+		    `SETTINGS_ITEM`,
+		    `FIXED_NAV_BAR`,
+		    `COLLAPS_MENU`,
+		    `BOXED_LAYOUT`
+		)
+		values
+		(
+           #{settingsId},
+           #{employeeId},
+		   #{settingsItem},
+		   #{fixedNavBar},
+		   #{collapsMenu},
+		   #{boxedLayout}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.justdo.system.desksettings.domain.DeskSettingsDO">
+		update sys_desk_settings 
+		<set>
+			<if test="employeeId != null">`EMPLOYEE_ID` = #{employeeId}, </if>
+			<if test="settingsItem != null">`SETTINGS_ITEM` = #{settingsItem}, </if>
+			<if test="fixedNavBar != null">`FIXED_NAV_BAR` = #{fixedNavBar}, </if>
+			<if test="collapsMenu != null">`COLLAPS_MENU` = #{collapsMenu}, </if>
+			<if test="boxedLayout != null">`BOXED_LAYOUT` = #{boxedLayout}</if>
+		</set>
+		where SETTINGS_ID = #{settingsId}
+	</update>
+	
+	<delete id="del">
+		delete from sys_desk_settings where SETTINGS_ID = #{value}
+	</delete>
+	
+	<delete id="batchDel">
+		delete from sys_desk_settings where SETTINGS_ID in 
+		<foreach item="settingsIds" collection="array" open="(" separator="," close=")">
+			#{settingsIds}
+		</foreach>
+	</delete>
+
+</mapper>
