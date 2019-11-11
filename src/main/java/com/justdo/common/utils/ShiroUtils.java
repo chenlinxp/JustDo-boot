@@ -60,12 +60,17 @@ public class ShiroUtils {
 
         Session session = getSubjct().getSession();
 
-        sessionDAO.delete(session);
+        getSubjct().logout();
 
         CookieUtils.set();
 
-        getSubjct().logout();
-
+//        try {
+//            sessionDAO.delete(session);
+//
+//        }
+//        catch(Exception e){
+//
+//        }
     }
 
     public static List<Principal> getPrinciples() {

@@ -90,6 +90,14 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
 
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+		String url = httpRequest.getRequestURI();
+
+		if(url.contains("justdo/login")||url.contains("logout")||url.contains("verification")){
+			return true;
+		}
+
 		Subject subject = getSubject(request, response);
 
 		if (!subject.isAuthenticated() && !subject.isRemembered()) {
@@ -212,6 +220,8 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 			System.err.println("KickoutSessionFilter.class 输出JSON异常，可以忽略。");
 		}
 	}
+
+
 
 }
 

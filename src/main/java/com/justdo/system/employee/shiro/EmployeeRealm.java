@@ -1,25 +1,28 @@
 package com.justdo.system.employee.shiro;
 
 
-import com.justdo.common.utils.ShiroUtils;
 import com.justdo.common.utils.ApplicationContextUtils;
+import com.justdo.common.utils.ShiroUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import com.justdo.system.resource.service.ResourceService;
 import com.justdo.system.role.domain.RoleDO;
 import com.justdo.system.role.service.RoleService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.SimplePrincipalCollection;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 员工账号认证、权限授权
@@ -108,6 +111,25 @@ public class EmployeeRealm extends AuthorizingRealm {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
 		employee = null;
+
+		//单用户登录
+		//处理session
+		DefaultWebSecurityManager securityManager = (DefaultWebSecurityManager) SecurityUtils.getSecurityManager();
+		DefaultWebSessionManager sessionManager = (DefaultWebSessionManager) securityManager.getSessionManager();
+		//获取当前已登录的用户session列表
+		Collection<Session> sessions = sessionManager.getSessionDAO().getActiveSessions();
+		SimpleEmployeeDO temp;
+		for(Session session : sessions) {
+			//清除该用户以前登录时保存的session，强制退出
+			Object attribute = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+			if (attribute == null) {
+				continue;
+			}
+			temp = (SimpleEmployeeDO) ((SimplePrincipalCollection) attribute).getPrimaryPrincipal();
+			if (loginName.equals(temp.getLoginName())) {
+				sessionManager.getSessionDAO().delete(session);
+			}
+		}
 		//ByteSource.Util.bytes(salt)，简单讲解一下这里，
 		//对于第一次接触shiro的人来说应该是最难理解的地方，这个SimpleAuthenticationInfo会将你Token中的账号密码通过getName（）
 		//这个方法获取，与你传入的username及password进行对比，byteSource是盐值，

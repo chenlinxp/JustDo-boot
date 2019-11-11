@@ -5,6 +5,7 @@ import com.justdo.common.utils.SerializeUtils;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
+import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
@@ -42,8 +43,27 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
     @Override
     public void update(Session session) throws UnknownSessionException {
-        logger.debug("update saveSession id is:"+session.getId());
-        this.saveSession(session);
+
+        //如果会话过期/停止 没必要再更新了
+        try {
+            if (session instanceof ValidatingSession && !((ValidatingSession) session).isValid()) {
+                return;
+            }
+            if (session instanceof ShiroSession) {
+                // 如果没有主要字段(除lastAccessTime以外其他字段)发生改变
+                ShiroSession ss = (ShiroSession) session;
+                if (!ss.isChanged()) {
+                    return;
+                }
+                //如果没有返回 证明有调用 setAttribute往redis 放的时候永远设置为false
+                ss.setChanged(false);
+            }
+            logger.debug("update saveSession id is:" + session.getId());
+            this.saveSession(session);
+        }
+        catch (Exception e){
+            logger.warn("update Session is failed", e);
+        }
     }
 
     /**
@@ -73,8 +93,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         //String loginName = getLoginName(session);
         logger.debug("deleteSession id is:"+session.getId());
         redisManager.del(this.getByteKey(session.getId()));
-
-
+        session.setTimeout(0);
 
     }
 
@@ -99,14 +118,23 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     protected Serializable doCreate(Session session) {
 
         Serializable oldsessionId = session.getId();
-
         logger.info("doCreate deleteSession id is:"+oldsessionId);
-        redisManager.del(this.getByteKey(oldsessionId));
+        Serializable sessionId;
+//        if(oldsessionId !=null) {
 
-        Serializable sessionId = this.generateSessionId(session);
+            redisManager.del(this.getByteKey(oldsessionId));
 
-        this.assignSessionId(session, sessionId);
-        this.saveSession(session);
+             sessionId = this.generateSessionId(session);
+
+            this.assignSessionId(session, sessionId);
+            this.saveSession(session);
+//        }else{
+//            throw new UnknownSessionException("session or session id is null");
+//
+//             sessionId = this.generateSessionId(session);
+//
+//            this.assignSessionId(session, sessionId);
+//        }
         return sessionId;
     }
 

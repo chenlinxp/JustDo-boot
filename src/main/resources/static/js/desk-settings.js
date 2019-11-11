@@ -9,7 +9,7 @@ var collapsMenu = 0;
 var boxedLayout = 0;
 
 $(function () {
-
+    var body = $('body');
     // MetsiMenu
     $('#side-menu').metisMenu();
 
@@ -58,7 +58,7 @@ $(function () {
 
     // 菜单切换
     $('.navbar-minimalize').click(function () {
-        $("body").toggleClass("mini-navbar");
+        body.toggleClass("mini-navbar");
         SmoothlyMenu();
     });
 
@@ -71,14 +71,14 @@ $(function () {
     fix_height();
 
     $(window).bind("load resize click scroll", function () {
-        if (!$("body").hasClass('body-small')) {
+        if (!body.hasClass('body-small')) {
             fix_height();
         }
     });
 
     //侧边栏滚动
     $(window).scroll(function () {
-        if ($(window).scrollTop() > 0 && !$('body').hasClass('fixed-nav')) {
+        if ($(window).scrollTop() > 0 && !body.hasClass('fixed-nav')) {
             $('#right-sidebar').addClass('sidebar-top');
         } else {
             $('#right-sidebar').removeClass('sidebar-top');
@@ -90,7 +90,7 @@ $(function () {
     });
 
     $('#side-menu>li').click(function () {
-        if ($('body').hasClass('mini-navbar')) {
+        if (body.hasClass('mini-navbar')) {
             NavToggle();
         }
     });
@@ -117,7 +117,7 @@ $(function () {
            console.error(request);
         },
         success : function(data) {
-            console.error(JSON.stringify(data));
+
             if (data.code == 0 && data.data !=null) {
                 settingsItem = data.data.settingsItem;
                  fixedNavBar = data.data.fixedNavBar;
@@ -126,7 +126,43 @@ $(function () {
             }
         }
     });
+    if (collapsMenu == 1) {
+        $('#collapsemenu').prop('checked', 'checked')
+        if (!body.hasClass('body-small')) {
+            body.addClass('mini-navbar');
+        }
+    }
+    if (fixedNavBar == 1) {
+        $('#fixednavbar').prop('checked', 'checked')
+        $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+        body.addClass('fixed-nav');
+    }
+    if (boxedLayout == 1) {
+        $('#boxedlayout').prop('checked', 'checked')
+        body.addClass('boxed-layout');
+    }
 
+    if(settingsItem == "default-skin"){
+        body.removeClass("skin-1");
+        body.removeClass("skin-2");
+        body.removeClass("skin-3");
+    }
+
+    if(settingsItem == "blue-skin"){
+        body.removeClass("skin-2");
+        body.removeClass("skin-3");
+        body.addClass("skin-1");
+    }
+
+    if(settingsItem == "yellow-skin"){
+        body.removeClass("skin-1");
+        body.removeClass("skin-2");
+        body.addClass("skin-3");
+    }
+
+    function NavToggle() {
+        $('.navbar-minimalize').trigger('click');
+    }
 });
 
 $(window).bind("load resize", function () {
@@ -136,9 +172,7 @@ $(window).bind("load resize", function () {
     }
 });
 
-function NavToggle() {
-    $('.navbar-minimalize').trigger('click');
-}
+
 
 function SmoothlyMenu() {
     if (!$('body').hasClass('mini-navbar')) {
@@ -169,13 +203,15 @@ $(function () {
             body.removeClass('boxed-layout');
             body.addClass('fixed-nav');
             $('#boxedlayout').prop('checked', false);
-            boxedLayout = 0;
             fixedNavBar = 1;
         } else {
             $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
             body.removeClass('fixed-nav');
             fixedNavBar = 0;
         }
+        console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
+
+
         save();
     });
 
@@ -190,6 +226,7 @@ $(function () {
             SmoothlyMenu();
             collapsMenu = 0;
         }
+        console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
         save();
     });
 
@@ -200,12 +237,12 @@ $(function () {
             $('#fixednavbar').prop('checked', false);
             $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
             body.removeClass('fixed-nav');
-            fixedNavBar = 0;
             boxedLayout = 1;
             } else {
             body.removeClass('boxed-layout');
             boxedLayout = 0;
         }
+        console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
         save();
     });
 
@@ -215,6 +252,7 @@ $(function () {
         body.removeClass("skin-2");
         body.removeClass("skin-3");
         settingsItem = "default-skin";
+        console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
         save();
 
         return false;
@@ -226,6 +264,7 @@ $(function () {
         body.removeClass("skin-3");
         body.addClass("skin-1");
         settingsItem = "blue-skin";
+        console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
         save();
 
         return false;
@@ -237,50 +276,28 @@ $(function () {
         body.removeClass("skin-2");
         body.addClass("skin-3");
         settingsItem = "yellow-skin";
+        console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
         save();
         return false;
     });
 
-        if (collapsMenu == 1) {
-            $('#collapsemenu').prop('checked', 'checked')
-        }
-        if (fixedNavBar == 1) {
-            $('#fixednavbar').prop('checked', 'checked')
-        }
-        if (boxedLayout == 1) {
-            $('#boxedlayout').prop('checked', 'checked')
-        }
-        if (collapsMenu == 1) {
-            if (!body.hasClass('body-small')) {
-                body.addClass('mini-navbar');
+    function save() {
+        $.ajax({
+            cache : true,
+            type : "POST",
+            url : preUrl+"/update",
+            data : {"settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout},
+            async : false,
+            error : function(request) {
+                console.error(request);
+            },
+            success : function(data) {
+                console.info({"+settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout});
+                console.error(data);
             }
-        }
-        if (fixedNavBar == 1) {
-            $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
-            body.addClass('fixed-nav');
-        }
+        });
 
-        if (boxedLayout == 1) {
-            body.addClass('boxed-layout');
-        }
-
-        if(settingsItem == "default-skin"){
-            body.removeClass("skin-1");
-            body.removeClass("skin-2");
-            body.removeClass("skin-3");
-        }
-
-        if(settingsItem == "blue-skin"){
-            body.removeClass("skin-2");
-            body.removeClass("skin-3");
-            body.addClass("skin-1");
-        }
-
-        if(settingsItem == "yellow-skin"){
-            body.removeClass("skin-1");
-            body.removeClass("skin-2");
-            body.addClass("skin-3");
-        }
+    }
 });
 
 // //判断浏览器是否支持html5本地存储
@@ -294,19 +311,3 @@ $(function () {
 // localStorage.setItem("fixedNavBar", 'off');
 // localStorage.setItem("collapse_menu", 'off');
 
-function save() {
-    $.ajax({
-        cache : true,
-        type : "POST",
-        url : preUrl+"/update",
-        data : {"settingsItem":settingsItem,"fixedNavBar":fixedNavBar,"collapsMenu":collapsMenu,"boxedLayout":boxedLayout},
-        async : false,
-        error : function(request) {
-            console.error(request);
-        },
-        success : function(data) {
-            console.error(data);
-        }
-    });
-
-}

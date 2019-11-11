@@ -1,5 +1,5 @@
 
-package com.justdo.system.employee.controller;
+package com.justdo.system.login;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
@@ -203,8 +203,11 @@ public class ELoginController extends BaseController {
         response.setContentType("image/jpeg");
 	// create the text for the image
 	String capText = captchaProducer.createText();
+
 	//将验证码存到session
-	request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+	HttpSession session = request.getSession();
+	session.removeAttribute(Constants.KAPTCHA_SESSION_KEY);
+	session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
 	// create the image with the text
 	BufferedImage bi = captchaProducer.createImage(capText);
 	ServletOutputStream out = response.getOutputStream();
@@ -262,4 +265,65 @@ public class ELoginController extends BaseController {
 		return "main";
 	}
 
+
+	@GetMapping("/api/login")
+	@ResponseBody
+	R login(String username, String password) {
+		username = username.trim();
+		Map<String ,Object> params = new HashMap<>(1);
+		params.put("loginName",username);
+		int logincount = 0 ;
+		if(employeeService.exist(params)) {
+			Subject currentUser = SecurityUtils.getSubject();
+			if (currentUser.isAuthenticated() && currentUser.isRemembered()) {
+
+				logincount = ApplicationContextUtils.getBean(ShiroSessionListener.class).getSessionCount().intValue();
+
+				logger.info("当前在线的用户数是："+ logincount);
+
+				return R.ok();
+			} else {
+				UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+
+				String msg = "系统服务异常，请稍后再试！";
+
+				try {
+
+					currentUser.login(token);
+					logincount = ApplicationContextUtils.getBean(ShiroSessionListener.class).getSessionCount().intValue();
+					logger.info("当前在线的用户数是："+ logincount);
+					return R.ok();
+
+				} catch (IncorrectCredentialsException e) {
+					msg = "登录密码错误";
+					System.out.println("登录密码错误!!!" + e);
+				} catch (ExcessiveAttemptsException e) {
+					msg = "登录失败次数过多，请5分钟后再登录!";
+					System.out.println("登录失败次数过多!!!" + e);
+				} catch (LockedAccountException e) {
+					msg = "帐号已被锁定";
+					System.out.println("帐号已被锁定!!!" + e);
+				} catch (DisabledAccountException e) {
+					msg = "帐号已被禁用";
+					System.out.println("帐号已被禁用!!!" + e);
+				} catch (ExpiredCredentialsException e) {
+					msg = "帐号已过期";
+					System.out.println("帐号已过期!!!" + e);
+				} catch (UnknownAccountException e) {
+					msg = "帐号不存在";
+					System.out.println("帐号不存在!!!" + e);
+				} catch (UnauthorizedException e) {
+					msg = "您没有得到相应的授权！";
+					System.out.println(e.toString());
+				} catch (Exception e) {
+					System.out.println(e.toString());
+				}
+				return R.error(msg);
+			}
+		}
+		else
+		{
+			return R.error("用户名或密码错误");
+		}
+	}
 }

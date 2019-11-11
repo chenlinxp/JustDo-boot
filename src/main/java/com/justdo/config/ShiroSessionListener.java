@@ -2,6 +2,7 @@ package com.justdo.config;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.subject.support.DefaultSubjectContext;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -28,7 +29,11 @@ public class ShiroSessionListener implements SessionListener {
 	@Override
 	public void onStart(Session session) {
 		//会话创建，在线人数加一
-		sessionCount.incrementAndGet();
+		Object attribute = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+		if (attribute != null) {
+			sessionCount.incrementAndGet();
+		}
+
 	}
 
 	/**
@@ -38,7 +43,10 @@ public class ShiroSessionListener implements SessionListener {
 	@Override
 	public void onStop(Session session) {
 		//会话退出,在线人数减一
-		sessionCount.decrementAndGet();
+		Object attribute = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+		if (attribute != null) {
+			sessionCount.decrementAndGet();
+		}
 	}
 
 	/**
@@ -48,7 +56,10 @@ public class ShiroSessionListener implements SessionListener {
 	@Override
 	public void onExpiration(Session session) {
 		//会话过期,在线人数减一
-		sessionCount.decrementAndGet();
+		Object attribute = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+		if (attribute != null) {
+			sessionCount.decrementAndGet();
+		}
 	}
 	/**
 	 * 获取在线人数使用

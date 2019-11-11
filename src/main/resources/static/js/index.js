@@ -70,7 +70,7 @@ function subscribe2() {
  * 发送用户信息
  * */
 function send0() {
-    stompClient.send("/app/welcome", {},
+    stompClient.send("/app/msg.welcome", {},
         {});
 }
 
@@ -79,7 +79,7 @@ function send0() {
  * */
 function send() {
     send3();
-    stompClient.send("/app/welcome", {},
+    stompClient.send("/app/msg.welcome", {"name":"1"},
         JSON.stringify({
             "messageId":"www",
             "messageTitle":"rrrrr",
@@ -99,7 +99,7 @@ function send2() {
  * 发送header参数
  * */
 function send3() {
-    stompClient.send("/app/msg/sendPointToPoint", {"one":"lalala", "two":"中国"},
+    stompClient.send("/app/msg.sendPointToPoint", {"name":"1", "two":"中国"},
         JSON.stringify({
             "messageId":"www",
             "messageTitle":"rrrrr",

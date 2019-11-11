@@ -2,6 +2,7 @@ package com.justdo.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.justdo.common.filter.KickoutSessionControlFilter;
+import com.justdo.common.filter.OAuth2Filter;
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
@@ -78,18 +79,17 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 
 
-		//oauth过滤
-//		Map<String, Filter> filters = new HashMap<>();
-//		filters.put("oauth2", new OAuth2Filter());
-//		shiroFilterFactoryBean.setFilters(filters);
-
 		//自定义拦截器
 		Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
 		//限制同一帐号同时在线的个数。
 		filtersMap.put("kickout", kickoutSessionControlFilter());
+
+		//oauth过滤
+		filtersMap.put("oauth2", new OAuth2Filter());
+
 		shiroFilterFactoryBean.setFilters(filtersMap);
 
-		//配置过滤器anon(匿名不被拦截)，authcBasic，auchc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
+		//配置过滤器anon(匿名不被拦截)，authcBasic，authc，user是认证过滤器，perms，roles，ssl，rest，port是授权过滤器
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		//开放登陆接口
 //		filterChainDefinitionMap.put("/css/**", "anon,kickout");
@@ -145,6 +145,7 @@ public class ShiroConfig {
 		securityManager.setCacheManager(cacheManager());
 		//session 管理
 		securityManager.setSessionManager(sessionManager());
+
 		//cookie管理器
 		securityManager.setRememberMeManager(rememberMeManager());
 
@@ -246,7 +247,8 @@ public class ShiroConfig {
 		sessionManager.setSessionDAO(redisSessionDAO());
 		sessionManager.setSessionListeners(listeners);
 //		sessionManager.setCacheManager(ehCacheManager());
-//		sessionManager.setSessionIdCookie(sessionIdCookie());
+//		sessionManager.setSessionIdCookieEnabled(true);
+// 		sessionManager.setSessionIdCookie(rememberMeCookie());
 		//是否开启删除无效的session对象  默认为true
 		sessionManager.setDeleteInvalidSessions(true);
 		//是否开启定时调度器进行检测过期session 默认为true

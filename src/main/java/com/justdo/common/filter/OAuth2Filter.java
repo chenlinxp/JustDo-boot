@@ -56,8 +56,7 @@ public class OAuth2Filter extends AuthenticatingFilter {
             httpResponse.getWriter().print(json);
             return false;
         }
-
-        return executeLogin(request, response);
+      return executeLogin(request, response);
     }
 
     @Override

@@ -1,7 +1,8 @@
 package com.justdo.config;
 
+import com.justdo.common.interceptor.MyInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -12,8 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author justdo
  * @create 2017-01-02 23:53
  */
-@Component
-class WebConfig extends WebMvcConfigurerAdapter {
+@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	JustdoConfig justdoConfig;
 	@Override
@@ -30,7 +31,8 @@ class WebConfig extends WebMvcConfigurerAdapter {
 		} else {  //linux 和mac
 			registry.addResourceHandler("/files/**")
 					.addResourceLocations("file:/"+uploadPath)
-					.addResourceLocations("classpath:/"+uploadPath);
+					.addResourceLocations("classpath:/"+uploadPath)
+					.addResourceLocations("classpath:/templates/");
 		}
 	}
 
@@ -39,6 +41,7 @@ class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 
+		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/api/*/**");
 
 	}
 //
@@ -81,5 +84,13 @@ class WebConfig extends WebMvcConfigurerAdapter {
 //				new MappingJackson2HttpMessageConverter();
 //		mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
 //		return mappingJackson2HttpMessageConverter;
-//	}
+//	}@Target(ElementType.TYPE)
+//	@Retention(RetentionPolicy.RUNTIME)
+//	@Documented
+
+
+//	@Target(ElementType.TYPE)
+//	@Retention(RetentionPolicy.RUNTIME)
+//	@Documented
+//	@Component
 }

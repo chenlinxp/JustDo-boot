@@ -29,6 +29,8 @@ import java.util.Map;
  * @email chenlinxp@qq.com
  * @date 2019-03-30 15:36:21
  */
+@MessageMapping("/msg")
+@RequestMapping("/msg")
 @Controller
 public class WebSocketController {
 	@Autowired
@@ -44,7 +46,7 @@ public class WebSocketController {
 
 	@MessageMapping(value = "/welcome") // 浏览器发送请求通过@messageMapping 映射/welcome 这个地址。
 	@SendTo("/topic/greetings") // 服务器端有消息时,会订阅@SendTo 中的路径的浏览器发送消息。
-	public Response say(@RequestBody Message message) throws Exception {
+	public Response welcome(@RequestBody Message message) throws Exception {
 		//Thread.sleep(1000);
 		return new Response(message);
 	}
@@ -56,7 +58,7 @@ public class WebSocketController {
 	 * @return
 	 * @throws Exception
 	 */
-	@MessageMapping(value = "/msg/sendPointToPoint")
+	@MessageMapping(value = "/sendPointToPoint")
 	public void sendPointToPoint(Message message) throws Exception {
 
 		Map<String,String> params = new HashMap();
@@ -79,7 +81,7 @@ public class WebSocketController {
 	 * @param topic
 	 * @param headers
 	 */
-	@MessageMapping("/hello") //"/hello"为WebSocketConfig类中registerStompEndpoints()方法配置的
+	@MessageMapping("/greeting")
 	@SendTo("/topic/greetings")
 	public void greeting(@Header("atytopic") String topic, @Headers Map<String, Object> headers) {
 		System.out.println("connected successfully....");
@@ -94,7 +96,7 @@ public class WebSocketController {
 	 */
 	@MessageMapping("/message")
 	@SendToUser("/queue/message")
-	public Message handleSubscribe() {
+	public Message message() {
 		System.out.println("this is the @SubscribeMapping('/marco')");
 
 		return new Message("","new message","I am a msg from SubscribeMapping('/macro').");
@@ -106,7 +108,7 @@ public class WebSocketController {
 	 * @param message
 	 * @return
 	 */
-	@GetMapping("/msg/sendBroadcast")
+	@GetMapping("/sendBroadcast")
 	@ResponseBody
 	public Message sendBroadcast(@RequestBody Message message){
 
