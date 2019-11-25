@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import ${package}.${classnametolower}.domain.${className}DO;
 
 /**
- * ${comments}
+ * 功能描述  ${comments}
  * @author ${author}
  * @email ${email}
  * @date ${datetime}

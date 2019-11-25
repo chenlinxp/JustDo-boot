@@ -41,7 +41,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 
-		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/api/*/**");
+		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/api/**");
 
 	}
 //
@@ -84,13 +84,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 //				new MappingJackson2HttpMessageConverter();
 //		mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
 //		return mappingJackson2HttpMessageConverter;
-//	}@Target(ElementType.TYPE)
-//	@Retention(RetentionPolicy.RUNTIME)
-//	@Documented
+//	}
 
-
-//	@Target(ElementType.TYPE)
-//	@Retention(RetentionPolicy.RUNTIME)
-//	@Documented
-//	@Component
 }
