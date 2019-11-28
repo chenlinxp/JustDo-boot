@@ -13,9 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author justdo
@@ -24,23 +22,36 @@ import java.util.Set;
 public class RedisSessionDAO extends AbstractSessionDAO {
 
     private static Logger logger = LoggerFactory.getLogger(RedisSessionDAO.class);
+
+    private static final String DEFAULT_SESSION_KEY_PREFIX = "shiro_redis_session:";
+
+    private String keyPrefix = DEFAULT_SESSION_KEY_PREFIX;
+
+    private static final long DEFAULT_SESSION_IN_MEMORY_TIMEOUT = 1000L;
     /**
-     * shiro-redis的session对象前缀
+     * doReadSession be called about 10 times when login.
+     * Save Session in ThreadLocal to resolve this problem. sessionInMemoryTimeout is expiration of Session in ThreadLocal.
+     * The default value is 1000 milliseconds (1s).
+     * Most of time, you don't need to change it.
      */
+    private long sessionInMemoryTimeout = DEFAULT_SESSION_IN_MEMORY_TIMEOUT;
+
+    /**
+     * expire time in seconds
+     */
+    private static final int DEFAULT_EXPIRE = -2;
+    private static final int NO_EXPIRE = -1;
+
+    /**
+     * Please make sure expire is longer than sesion.getTimeout()
+     */
+    private int expire = DEFAULT_EXPIRE;
+
+    private static final int MILLISECONDS_IN_A_SECOND = 1000;
+
     private RedisManager redisManager;
 
-    /**
-     * The Redis key prefix for the sessions
-     */
-    private String keyPrefix = "shiro_redis_session:";
-
-//    @Autowired
-//    private RedisCacheManager cacheManager;
-//
-//    private String keyPrefix2 = "shiro_redis_cache:";
-//
-//    private Cache<String, Deque<Serializable>> cache;
-
+    private static ThreadLocal sessionsInThread = new ThreadLocal();
     @Override
     public void update(Session session) throws UnknownSessionException {
 
@@ -72,15 +83,36 @@ public class RedisSessionDAO extends AbstractSessionDAO {
      * @throws UnknownSessionException
      */
     private void saveSession(Session session) throws UnknownSessionException{
-        if(session == null || session.getId() == null){
+//        if(session == null || session.getId() == null){
+//            logger.error("session or session id is null");
+//            return;
+//        }
+//        //String loginName = getLoginName(session);
+//        byte[] key = getByteKey(session.getId());
+//        byte[] value = SerializeUtils.serialize(session);
+//        session.setTimeout(redisManager.getExpire()*60*30);
+//        this.redisManager.set(key, value, redisManager.getExpire());
+//
+
+
+        if (session == null || session.getId() == null) {
             logger.error("session or session id is null");
-            return;
+            throw new UnknownSessionException("session or session id is null");
         }
-        //String loginName = getLoginName(session);
         byte[] key = getByteKey(session.getId());
         byte[] value = SerializeUtils.serialize(session);
-        session.setTimeout(redisManager.getExpire()*60*30);
-        this.redisManager.set(key, value, redisManager.getExpire());
+        if (expire == DEFAULT_EXPIRE) {
+            this.redisManager.set(key, value, (int) (session.getTimeout() / MILLISECONDS_IN_A_SECOND));
+            return;
+        }
+        if (expire != NO_EXPIRE && expire * MILLISECONDS_IN_A_SECOND < session.getTimeout()) {
+            logger.warn("Redis session expire time: "
+                    + (expire * MILLISECONDS_IN_A_SECOND)
+                    + " is less than Session timeout: "
+                    + session.getTimeout()
+                    + " . It may cause some problems.");
+        }
+        this.redisManager.set(key, value, expire);
     }
 
     // 删除session
@@ -120,7 +152,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         Serializable oldsessionId = session.getId();
         logger.info("doCreate deleteSession id is:"+oldsessionId);
         Serializable sessionId;
-//        if(oldsessionId !=null) {
+        if(oldsessionId !=null) {
 
             redisManager.del(this.getByteKey(oldsessionId));
 
@@ -128,30 +160,86 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
             this.assignSessionId(session, sessionId);
             this.saveSession(session);
-//        }else{
-//            throw new UnknownSessionException("session or session id is null");
-//
-//             sessionId = this.generateSessionId(session);
-//
-//            this.assignSessionId(session, sessionId);
-//        }
+        }else{
+            //throw new UnknownSessionException("session or session id is null");
+             sessionId = this.generateSessionId(session);
+            this.assignSessionId(session, sessionId);
+        }
         return sessionId;
+
+
+
+
     }
 
     //读取session
     @Override
     protected Session doReadSession(Serializable sessionId) {
-        if(sessionId == null){
-            logger.error("doReadSession id is null");
+//        if(sessionId == null){
+//            logger.error("doReadSession id is null");
+//            return null;
+//        }
+//
+//        logger.debug("doReadSession value is:"+redisManager.get(this.getByteKey(sessionId)));
+//        Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
+//
+//        return s;
+        if (sessionId == null) {
+            logger.warn("session id is null");
             return null;
         }
+
+        Session s = getSessionFromThreadLocal(sessionId);
         logger.debug("doReadSession id is:"+sessionId);
-        logger.debug("doReadSession value is:"+redisManager.get(this.getByteKey(sessionId)));
-        Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
+        if (s != null) {
+            return s;
+        }
+
+        logger.debug("read session from redis");
+        try {
+             s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
+           // s = (Session) redisManager.get(this.getByteKey(sessionId));
+            setSessionToThreadLocal(sessionId, s);
+        } catch (Exception e) {
+            logger.error("read session error. settionId= {}",sessionId);
+        }
+        return s;
+    }
+    private void setSessionToThreadLocal(Serializable sessionId, Session s) {
+        Map<Serializable, SessionInMemory> sessionMap = (Map<Serializable, SessionInMemory>) sessionsInThread.get();
+        if (sessionMap == null) {
+            sessionMap = new HashMap<Serializable, SessionInMemory>();
+            sessionsInThread.set(sessionMap);
+        }
+        SessionInMemory sessionInMemory = new SessionInMemory();
+        sessionInMemory.setCreateTime(new Date());
+        sessionInMemory.setSession(s);
+        sessionMap.put(sessionId, sessionInMemory);
+    }
+
+    private Session getSessionFromThreadLocal(Serializable sessionId) {
+        Session s = null;
+
+        if (sessionsInThread.get() == null) {
+            return null;
+        }
+
+        Map<Serializable, SessionInMemory> sessionMap = (Map<Serializable, SessionInMemory>) sessionsInThread.get();
+        SessionInMemory sessionInMemory = sessionMap.get(sessionId);
+        if (sessionInMemory == null) {
+            return null;
+        }
+        Date now = new Date();
+        long duration = now.getTime() - sessionInMemory.getCreateTime().getTime();
+        if (duration < sessionInMemoryTimeout) {
+            s = sessionInMemory.getSession();
+            logger.debug("read session from memory");
+        } else {
+            sessionMap.remove(sessionId);
+        }
 
         return s;
     }
-
     /**
      * 获得byte[]型的key
      * @param sessionId
@@ -204,5 +292,21 @@ public class RedisSessionDAO extends AbstractSessionDAO {
                 .getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
         SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO) principalCollection.getPrimaryPrincipal();
         return simpleEmployeeDO.getLoginName();
+    }
+
+    public long getSessionInMemoryTimeout() {
+        return sessionInMemoryTimeout;
+    }
+
+    public void setSessionInMemoryTimeout(long sessionInMemoryTimeout) {
+        this.sessionInMemoryTimeout = sessionInMemoryTimeout;
+    }
+
+    public int getExpire() {
+        return expire;
+    }
+
+    public void setExpire(int expire) {
+        this.expire = expire;
     }
 }

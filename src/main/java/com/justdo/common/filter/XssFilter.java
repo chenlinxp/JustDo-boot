@@ -43,7 +43,7 @@ public class XssFilter implements Filter {
   		
   		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
-  		if(handleExcludeURL(req, resp)){
+  		if(handleExcludeUrl(req, resp)){
   			filterChain.doFilter(request, response);
 			return;
 		}
@@ -52,7 +52,7 @@ public class XssFilter implements Filter {
   		filterChain.doFilter(xssRequest, response);
     }
     
-    private boolean handleExcludeURL(HttpServletRequest request, HttpServletResponse response) {
+    private boolean handleExcludeUrl(HttpServletRequest request, HttpServletResponse response) {
 
 		if (excludes == null || excludes.isEmpty()) {
 			return false;

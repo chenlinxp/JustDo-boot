@@ -52,8 +52,14 @@ public class ShiroConfig {
 	private int port;
 	@Value("${spring.redis.timeout}")
 	private int timeout;
+
+	@Value("${spring.redis.expire}")
+	private int expire;
+
 	@Value("${server.session-timeout}")
 	private int tomcatTimeout;
+
+	private static final int MILLISECONDS_IN_A_SECOND = 1000;
 
 	@Bean
 	public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
@@ -193,8 +199,8 @@ public class ShiroConfig {
 		RedisManager redisManager = new RedisManager();
 		redisManager.setHost(host);
 		redisManager.setPort(port);
-		redisManager.setExpire(1800);// 配置缓存过期时间
-		redisManager.setTimeout(60000);
+		redisManager.setExpire(expire*MILLISECONDS_IN_A_SECOND);// 配置缓存过期时间
+		redisManager.setTimeout(timeout*MILLISECONDS_IN_A_SECOND);
 		redisManager.setPassword(password);
 		return redisManager;
 	}
@@ -218,6 +224,8 @@ public class ShiroConfig {
 	public RedisSessionDAO redisSessionDAO() {
 		RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
 		redisSessionDAO.setRedisManager(redisManager());
+		//session在redis中的保存时间,最好大于session会话超时时间
+		redisSessionDAO.setExpire(expire*MILLISECONDS_IN_A_SECOND);
 		return redisSessionDAO;
 	}
 
@@ -242,8 +250,8 @@ public class ShiroConfig {
         //配置监听
 		listeners.add(sessionListener());
 
-		//全局会话超时时间（单位毫秒），默认30分钟
-		sessionManager.setGlobalSessionTimeout(tomcatTimeout * 1000);
+		//全局会话超时时间（单位毫秒），默认30分钟 //session在redis中的保存时间,最好大于session会话超时时间
+		sessionManager.setGlobalSessionTimeout(tomcatTimeout * MILLISECONDS_IN_A_SECOND);
 		sessionManager.setSessionDAO(redisSessionDAO());
 		sessionManager.setSessionListeners(listeners);
 //		sessionManager.setCacheManager(ehCacheManager());
@@ -255,7 +263,7 @@ public class ShiroConfig {
 		sessionManager.setSessionValidationSchedulerEnabled(true);
 		//设置session失效的扫描时间, 清理用户直接关闭浏览器造成的孤立会话 默认为 1个小时
 		//设置该属性 就不需要设置 ExecutorServiceSessionValidationScheduler 底层也是默认自动调用ExecutorServiceSessionValidationScheduler
-		sessionManager.setSessionValidationInterval(3600000);
+		sessionManager.setSessionValidationInterval(3600*MILLISECONDS_IN_A_SECOND);
 		//取消url 后面的 JSESSIONID
 		sessionManager.setSessionIdUrlRewritingEnabled(false);
 		return sessionManager;
