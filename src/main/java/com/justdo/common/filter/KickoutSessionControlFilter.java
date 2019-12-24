@@ -104,7 +104,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 			//如果没有登录，直接进行登录的流程
 			return true;
 		}
-
+		//DefaultFilter
 		Session session = subject.getSession();
 
 		SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO) subject.getPrincipal();

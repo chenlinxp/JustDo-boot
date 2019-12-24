@@ -64,13 +64,13 @@ public class ShiroUtils {
 
         CookieUtils.set();
 
-//        try {
-//            sessionDAO.delete(session);
-//
-//        }
-//        catch(Exception e){
-//
-//        }
+        try {
+            sessionDAO.delete(session);
+
+        }
+        catch(Exception e){
+
+        }
     }
 
     public static List<Principal> getPrinciples() {

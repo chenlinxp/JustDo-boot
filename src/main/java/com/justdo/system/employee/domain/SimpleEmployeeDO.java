@@ -27,20 +27,7 @@ public class SimpleEmployeeDO extends BaseBean {
 	private String positionId;
 	//照片ID
 	private String photoUrl;
-	/**
-	 * 构造方法
-	 */
-	public SimpleEmployeeDO(){ }
-	public SimpleEmployeeDO(String employeeId, String employeeNumber, String LoginName, String DeptmentId, String OrganId, String PositionId,String photoUrl){
-		super();
-		this.employeeId = employeeId;
-		this.employeeNumber= employeeNumber;
-		this.loginName= loginName;
-		this.deptmentId= deptmentId;
-		this.organId= organId;
-		this.positionId= positionId;
-		this.photoUrl=photoUrl;
-	}
+
 	/**
 	 * 设置：主键ID
 	 */

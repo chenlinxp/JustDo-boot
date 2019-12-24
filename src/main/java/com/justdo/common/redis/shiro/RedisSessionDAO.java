@@ -83,16 +83,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
      * @throws UnknownSessionException
      */
     private void saveSession(Session session) throws UnknownSessionException{
-//        if(session == null || session.getId() == null){
-//            logger.error("session or session id is null");
-//            return;
-//        }
-//        //String loginName = getLoginName(session);
-//        byte[] key = getByteKey(session.getId());
-//        byte[] value = SerializeUtils.serialize(session);
-//        session.setTimeout(redisManager.getExpire()*60*30);
-//        this.redisManager.set(key, value, redisManager.getExpire());
-//
 
 
         if (session == null || session.getId() == null) {
@@ -175,15 +165,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     //读取session
     @Override
     protected Session doReadSession(Serializable sessionId) {
-//        if(sessionId == null){
-//            logger.error("doReadSession id is null");
-//            return null;
-//        }
-//
-//        logger.debug("doReadSession value is:"+redisManager.get(this.getByteKey(sessionId)));
-//        Session s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
-//
-//        return s;
+
         if (sessionId == null) {
             logger.warn("session id is null");
             return null;
@@ -198,7 +180,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         logger.debug("read session from redis");
         try {
              s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
-           // s = (Session) redisManager.get(this.getByteKey(sessionId));
+
             setSessionToThreadLocal(sessionId, s);
         } catch (Exception e) {
             logger.error("read session error. settionId= {}",sessionId);

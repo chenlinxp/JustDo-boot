@@ -58,7 +58,6 @@ public class RedisManager {
     public RedisManager() {
 
 
-
     }
 
     /**

@@ -6,6 +6,7 @@ import com.justdo.common.filter.OAuth2Filter;
 import com.justdo.common.redis.RedisManager;
 import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
+import com.justdo.common.redis.shiro.ShiroSessionFactory;
 import com.justdo.system.employee.shiro.EmployeeRealm;
 import com.justdo.system.employee.shiro.RetryLimitHashedCredentialsMatcher;
 import com.justdo.system.permissioninit.domain.PermissionInitDO;
@@ -61,6 +62,11 @@ public class ShiroConfig {
 
 	private static final int MILLISECONDS_IN_A_SECOND = 1000;
 
+	/**
+	 * 将Initializable和Destroyable的实现类统一在其内部自动分别调用了Initializable.init()和Destroyable.destroy()方法，
+	 * 从而达到管理shiro bean生命周期的目的
+	 * @return  
+	 */
 	@Bean
 	public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
@@ -82,8 +88,7 @@ public class ShiroConfig {
 
 		shiroFilterFactoryBean.setLoginUrl("/justdo/login");
 		shiroFilterFactoryBean.setSuccessUrl("/index");
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-
+		shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");
 
 		//自定义拦截器
 		Map<String, Filter> filtersMap = new LinkedHashMap<String, Filter>();
@@ -91,7 +96,7 @@ public class ShiroConfig {
 		filtersMap.put("kickout", kickoutSessionControlFilter());
 
 		//oauth过滤
-		filtersMap.put("oauth2", new OAuth2Filter());
+		//filtersMap.put("oauth2", new OAuth2Filter());
 
 		shiroFilterFactoryBean.setFilters(filtersMap);
 
@@ -125,7 +130,7 @@ public class ShiroConfig {
 		// <!-- authc:所有url都必须认证通过才可以访问; user:表示配置记住我或认证通过可以访问; anon:所有url都都可以匿名访问-->
 		//logout这个拦截器是shiro已经实现好了的。
 		//如果开启限制同一账号登录,改为 .put("/**", "user,kickout");
-		// 从数据库获取
+		//从数据库获取
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sort","PERMISSION_SORT");
 		map.put("ORDER","ASC");
@@ -154,6 +159,7 @@ public class ShiroConfig {
 
 		//cookie管理器
 		securityManager.setRememberMeManager(rememberMeManager());
+
 
 		return securityManager;
 	}
@@ -199,7 +205,8 @@ public class ShiroConfig {
 		RedisManager redisManager = new RedisManager();
 		redisManager.setHost(host);
 		redisManager.setPort(port);
-		redisManager.setExpire(expire*MILLISECONDS_IN_A_SECOND);// 配置缓存过期时间
+		//配置缓存过期时间
+		redisManager.setExpire(expire*MILLISECONDS_IN_A_SECOND);
 		redisManager.setTimeout(timeout*MILLISECONDS_IN_A_SECOND);
 		redisManager.setPassword(password);
 		return redisManager;
@@ -257,6 +264,9 @@ public class ShiroConfig {
 //		sessionManager.setCacheManager(ehCacheManager());
 //		sessionManager.setSessionIdCookieEnabled(true);
 // 		sessionManager.setSessionIdCookie(rememberMeCookie());
+
+		sessionManager.setSessionFactory(sessionFactory());
+
 		//是否开启删除无效的session对象  默认为true
 		sessionManager.setDeleteInvalidSessions(true);
 		//是否开启定时调度器进行检测过期session 默认为true
@@ -270,7 +280,11 @@ public class ShiroConfig {
 
 	}
 
-
+	@Bean("sessionFactory")
+	public ShiroSessionFactory sessionFactory(){
+		ShiroSessionFactory sessionFactory = new ShiroSessionFactory();
+		return sessionFactory;
+	}
 	/**
 	 * 手动指定cookie
 	 * 这个参数是RememberMecookie的名称，随便起。
