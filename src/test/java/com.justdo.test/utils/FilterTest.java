@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 功能描述
+ * 功能描述 shiro 初始化权限测试
  *
  * @author chenlin
  * @email chenlinxp@qq.com
