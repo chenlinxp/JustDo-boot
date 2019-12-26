@@ -134,7 +134,7 @@ public abstract class BaseRedisManager implements IRedisManager {
 		return keys;
 	}
 
-	@Override
+
 	public void flushDB() {
 		Jedis jedis = getJedis();
 		try {
@@ -149,7 +149,7 @@ public abstract class BaseRedisManager implements IRedisManager {
 	/**
 	 * size
 	 */
-	@Override
+
 	public Long dbSize() {
 		Long dbSize = 0L;
 		Jedis jedis = getJedis();
@@ -176,6 +176,7 @@ public abstract class BaseRedisManager implements IRedisManager {
 		}
 		return keys;
 	}
+
 	public int getCount() {
 		return this.count;
 	}

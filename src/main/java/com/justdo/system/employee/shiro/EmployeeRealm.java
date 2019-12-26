@@ -49,9 +49,6 @@ public class EmployeeRealm extends AuthorizingRealm {
 		//String username = (String)principalCollection.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
-//		Set<String> perms = resourceService.listEmployeePermissions(employeeId);
-//		authorizationInfo.setStringPermissions(perms);
-
 		//角色获取
 		RoleService roleService = ApplicationContextUtils.getBean(RoleService.class);
 		List<RoleDO> roles = roleService.list(simpleEmployeeDO.getId());

@@ -14,7 +14,7 @@ import java.util.Set;
  * @email chenlinxp@qq.com
  * @date 2019/12/25 下午3:06
  */
-public class RedisClusterManager implements org.crazycake.shiro.IRedisManager {
+public class RedisClusterManager implements IRedisManager {
 	private static final int DEFAULT_COUNT = 100;
 	private static final int DEFAULT_MAX_ATTEMPTS = 3;
 	private static final String DEFAULT_HOST = "127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002";
@@ -167,6 +167,15 @@ public class RedisClusterManager implements org.crazycake.shiro.IRedisManager {
 		}
 
 		return dbSize;
+	}
+
+	@Override
+	public Set<byte[]> keys(String pattern) {
+		Set<byte[]> keys = null;
+
+			keys = this.getJedisCluster().hkeys(pattern.getBytes());
+
+		return keys;
 	}
 
 	public int getMaxAttempts() {

@@ -29,25 +29,17 @@ public interface IRedisManager {
 
 	/**
 	 * keys
-	 * @param var1
+	 * @param patter
 	 * @return
 	 */
-	Set<byte[]> keys(byte[] var1);
+	Set<byte[]> keys(byte[] patter);
 
 	/**
 	 * keys
-	 * @param var1
+	 * @param patter
 	 * @return
 	 */
-	Set<byte[]> keys(String var1);
+	Set<byte[]> keys(String patter);
 
-	/**
-	 * flush
-	 */
-	void flushDB();
 
-	/**
-	 * size
-	 */
-	Long dbSize();
 }

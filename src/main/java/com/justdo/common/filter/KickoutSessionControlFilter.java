@@ -39,7 +39,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	//踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
 	private boolean kickoutAfter = false;
 	//同一个帐号最大会话数 默认1
-	private int maxSession = 2;
+	private int maxSession = 1;
 	//The Redis key prefix for caches
 	private String keyPrefix = "shiro:cache:loginlimit:";
 

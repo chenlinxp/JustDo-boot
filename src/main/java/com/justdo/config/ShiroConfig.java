@@ -2,8 +2,8 @@ package com.justdo.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.justdo.common.filter.KickoutSessionControlFilter;
-import com.justdo.common.filter.OAuth2Filter;
 import com.justdo.common.redis.RedisManager;
+import com.justdo.common.redis.shiro.CustomSessionIdGenerator;
 import com.justdo.common.redis.shiro.RedisCacheManager;
 import com.justdo.common.redis.shiro.RedisSessionDAO;
 import com.justdo.common.redis.shiro.ShiroSessionFactory;
@@ -23,10 +23,12 @@ import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.*;
@@ -64,12 +66,40 @@ public class ShiroConfig {
 
 	/**
 	 * 将Initializable和Destroyable的实现类统一在其内部自动分别调用了Initializable.init()和Destroyable.destroy()方法，
+	 * 管理shiro一些bean的生命周期 即bean初始化 与销毁
 	 * 从而达到管理shiro bean生命周期的目的
 	 * @return  
 	 */
-	@Bean
+	@Bean(name="lifecycleBeanPostProcessor")
 	public static LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
 		return new LifecycleBeanPostProcessor();
+	}
+
+
+	/**
+	 * 用来扫描上下文寻找所有的Advistor(通知器), 将符合条件的Advisor应用到切入点的Bean中，
+	 * 需要在LifecycleBeanPostProcessor创建后才可以创建
+	 * @return
+	 */
+	@Bean
+	@DependsOn("lifecycleBeanPostProcessor")
+	public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator(){
+		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator=new DefaultAdvisorAutoProxyCreator();
+		defaultAdvisorAutoProxyCreator.setUsePrefix(true);
+		return defaultAdvisorAutoProxyCreator;
+	}
+
+	/**
+	 * 开启shiro aop注解支持.
+	 * 使用代理方式;所以需要开启代码支持;
+	 * 加入注解的使用，不加入这个AOP注解不生效(shiro的注解 例如 @RequiresGuest\@RequiresPermissions("system:employee:list"))
+	 * @return
+	 */
+	@Bean
+	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
+		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
+		return authorizationAttributeSourceAdvisor;
 	}
 
 	/**
@@ -144,8 +174,8 @@ public class ShiroConfig {
 		return shiroFilterFactoryBean;
 	}
 
-	/*
-	安全管理器
+	/**
+	 * 安全管理器
 	 */
 	@Bean
 	public SecurityManager securityManager() {
@@ -174,26 +204,13 @@ public class ShiroConfig {
 		employeeRealm.setAuthorizationCachingEnabled(true);
 
 		//启用身份验证缓存，即缓存AuthenticationInfo信息，默认false
-		employeeRealm.setAuthenticationCachingEnabled(true);
+		employeeRealm.setAuthenticationCachingEnabled(false);
 
 		//配置自定义密码比较器
 		employeeRealm.setCredentialsMatcher(credentialsMatcher());
 
 		return employeeRealm;
 
-	}
-
-	/**
-	 * 开启shiro aop注解支持.
-	 * 使用代理方式;所以需要开启代码支持;
-	 *
-	 * @return
-	 */
-	@Bean
-	public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
-		AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
-		authorizationAttributeSourceAdvisor.setSecurityManager(securityManager());
-		return authorizationAttributeSourceAdvisor;
 	}
 
 	/**
@@ -231,6 +248,7 @@ public class ShiroConfig {
 	public RedisSessionDAO redisSessionDAO() {
 		RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
 		redisSessionDAO.setRedisManager(redisManager());
+		redisSessionDAO.setSessionIdGenerator(new CustomSessionIdGenerator());
 		//session在redis中的保存时间,最好大于session会话超时时间
 		redisSessionDAO.setExpire(expire);
 		return redisSessionDAO;
@@ -285,6 +303,7 @@ public class ShiroConfig {
 		ShiroSessionFactory sessionFactory = new ShiroSessionFactory();
 		return sessionFactory;
 	}
+
 	/**
 	 * 手动指定cookie
 	 * 这个参数是RememberMecookie的名称，随便起。
@@ -306,10 +325,7 @@ public class ShiroConfig {
 		rememberMeCookie.setMaxAge(604800);
 		rememberMeCookie.setPath("/justdo/login");
 		rememberMeCookie.setDomain("");
-
 		return rememberMeCookie;
-
-
 	}
 
 	/**

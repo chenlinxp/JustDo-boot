@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @version V1.0
  */
 public class ShiroSessionFactory implements SessionFactory {
+
     private static final Logger logger = LoggerFactory.getLogger(ShiroSessionFactory.class);
 
     @Override
@@ -27,7 +28,12 @@ public class ShiroSessionFactory implements SessionFactory {
 
     public static String getIpAddress(HttpServletRequest request) {
         String localIP = "127.0.0.1";
+        String localIP2 = "0:0:0:0:0:0:0:1";
         String ip = request.getHeader("x-forwarded-for");
+
+        String ip2 = request.getHeader("Proxy-Client-IP");
+
+        String ip3 = request.getHeader("WL-Proxy-Client-IP");
         if (StringUtils.isBlank(ip) || (ip.equalsIgnoreCase(localIP)) || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
@@ -36,6 +42,9 @@ public class ShiroSessionFactory implements SessionFactory {
         }
         if (StringUtils.isBlank(ip) || (ip.equalsIgnoreCase(localIP)) || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
+        }
+        if(ip.equalsIgnoreCase(localIP2)){
+            ip = localIP;
         }
         return ip;
     }

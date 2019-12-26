@@ -1,6 +1,5 @@
 package com.justdo.common.redis.shiro;
 
-import org.crazycake.shiro.IRedisManager;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisSentinelPool;
 
@@ -15,7 +14,7 @@ import java.util.Set;
  * @email chenlinxp@qq.com
  * @date 2019/12/25 下午3:13
  */
-public class RedisSentinelManager extends org.crazycake.shiro.BaseRedisManager implements IRedisManager {
+public class RedisSentinelManager extends BaseRedisManager implements IRedisManager {
 	private static final String DEFAULT_HOST = "127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381";
 	private String host = "127.0.0.1:26379,127.0.0.1:26380,127.0.0.1:26381";
 	private static final String DEFAULT_MASTER_NAME = "mymaster";
