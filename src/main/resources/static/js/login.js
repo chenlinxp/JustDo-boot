@@ -39,6 +39,7 @@ function login() {
                 parent.location.href = '/index';
             } else {
                 layer.msg(r.msg);
+                refreshCode();
             }
         },
         error:function(r){
