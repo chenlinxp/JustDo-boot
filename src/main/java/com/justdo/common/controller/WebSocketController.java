@@ -113,7 +113,7 @@ public class WebSocketController {
 	public Message sendBroadcast(@RequestBody Message message){
 
 		for (SimpleEmployeeDO simpleEmployeeDO : esessionService.listOnlineEmployee()) {
-			String employeeId = simpleEmployeeDO.getEmployeeId();
+			String employeeId = simpleEmployeeDO.getId();
 			template.convertAndSendToUser(employeeId,"/queue/message",message);
 		}
 

@@ -171,10 +171,10 @@ public class ShiroConfig {
 		//employeeRealm.setCachingEnabled(true);
 
 		//启用授权缓存，即缓存AuthorizationInfo信息，默认false
-		employeeRealm.setAuthorizationCachingEnabled(false);
+		employeeRealm.setAuthorizationCachingEnabled(true);
 
 		//启用身份验证缓存，即缓存AuthenticationInfo信息，默认false
-		employeeRealm.setAuthenticationCachingEnabled(false);
+		employeeRealm.setAuthenticationCachingEnabled(true);
 
 		//配置自定义密码比较器
 		employeeRealm.setCredentialsMatcher(credentialsMatcher());
@@ -205,8 +205,6 @@ public class ShiroConfig {
 		RedisManager redisManager = new RedisManager();
 		redisManager.setHost(host);
 		redisManager.setPort(port);
-		//配置缓存过期时间
-		redisManager.setExpire(expire*MILLISECONDS_IN_A_SECOND);
 		redisManager.setTimeout(timeout*MILLISECONDS_IN_A_SECOND);
 		redisManager.setPassword(password);
 		return redisManager;
@@ -221,6 +219,8 @@ public class ShiroConfig {
 	public RedisCacheManager cacheManager() {
 		RedisCacheManager redisCacheManager = new RedisCacheManager();
 		redisCacheManager.setRedisManager(redisManager());
+		//配置缓存过期时间
+		redisCacheManager.setExpire(expire);
 		return redisCacheManager;
 	}
 
@@ -232,7 +232,7 @@ public class ShiroConfig {
 		RedisSessionDAO redisSessionDAO = new RedisSessionDAO();
 		redisSessionDAO.setRedisManager(redisManager());
 		//session在redis中的保存时间,最好大于session会话超时时间
-		redisSessionDAO.setExpire(expire*MILLISECONDS_IN_A_SECOND);
+		redisSessionDAO.setExpire(expire);
 		return redisSessionDAO;
 	}
 

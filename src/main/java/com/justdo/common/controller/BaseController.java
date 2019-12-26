@@ -39,7 +39,7 @@ public class BaseController {
 	 * @return
 	 */
 	public String getEmployeeId() {
-		return getSimpleEmployee().getEmployeeId();
+		return getSimpleEmployee().getId();
 	}
 
 	/**

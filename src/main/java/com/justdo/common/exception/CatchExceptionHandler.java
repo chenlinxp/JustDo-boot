@@ -72,7 +72,7 @@ public class CatchExceptionHandler {
         errorLogDO.setCreateTime(nowtimeStr);
         SimpleEmployeeDO current = ShiroUtils.getSimpleEmployee();
         if(null!=current) {
-            errorLogDO.setUserId(current.getEmployeeId());
+            errorLogDO.setUserId(current.getId());
             errorLogDO.setUserName(current.getLoginName());
         }else {
             errorLogDO.setUserId("-1");

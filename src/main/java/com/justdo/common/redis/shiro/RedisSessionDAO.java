@@ -1,7 +1,6 @@
 package com.justdo.common.redis.shiro;
 
-import com.justdo.common.redis.RedisManager;
-import com.justdo.common.utils.SerializeUtils;
+import com.justdo.common.utils.SerializerUtils;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
@@ -9,6 +8,9 @@ import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
+import org.crazycake.shiro.serializer.ObjectSerializer;
+import org.crazycake.shiro.serializer.RedisSerializer;
+import org.crazycake.shiro.serializer.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +25,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
     private static Logger logger = LoggerFactory.getLogger(RedisSessionDAO.class);
 
-    private static final String DEFAULT_SESSION_KEY_PREFIX = "shiro_redis_session:";
+    private static final String DEFAULT_SESSION_KEY_PREFIX = "shiro:session:";
 
     private String keyPrefix = DEFAULT_SESSION_KEY_PREFIX;
 
@@ -49,9 +51,13 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
     private static final int MILLISECONDS_IN_A_SECOND = 1000;
 
-    private RedisManager redisManager;
+    private IRedisManager redisManager;
+
+    private RedisSerializer keySerializer = new StringSerializer();
+    private RedisSerializer valueSerializer = new ObjectSerializer();
 
     private static ThreadLocal sessionsInThread = new ThreadLocal();
+
     @Override
     public void update(Session session) throws UnknownSessionException {
 
@@ -90,7 +96,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
             throw new UnknownSessionException("session or session id is null");
         }
         byte[] key = getByteKey(session.getId());
-        byte[] value = SerializeUtils.serialize(session);
+        byte[] value = SerializerUtils.serialize(session);
         if (expire == DEFAULT_EXPIRE) {
             this.redisManager.set(key, value, (int) (session.getTimeout() / MILLISECONDS_IN_A_SECOND));
             return;
@@ -127,7 +133,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         Set<byte[]> keys = redisManager.keys(this.keyPrefix + "*");
         if(keys != null && keys.size()>0){
             for(byte[] key:keys){
-                Session s = (Session)SerializeUtils.deserialize(redisManager.get(key));
+                Session s = (Session) SerializerUtils.deserialize(redisManager.get(key));
                 sessions.add(s);
             }
         }
@@ -179,7 +185,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
 
         logger.debug("read session from redis");
         try {
-             s = (Session)SerializeUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
+             s = (Session) SerializerUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
 
             setSessionToThreadLocal(sessionId, s);
         } catch (Exception e) {
@@ -233,17 +239,12 @@ public class RedisSessionDAO extends AbstractSessionDAO {
         return preKey.getBytes();
     }
 
-    public RedisManager getRedisManager() {
-        return redisManager;
+    public IRedisManager getRedisManager() {
+        return this.redisManager;
     }
 
-    public void setRedisManager(RedisManager redisManager) {
+    public void setRedisManager(IRedisManager redisManager) {
         this.redisManager = redisManager;
-
-        /**
-         * 初始化redisManager
-         */
-        this.redisManager.init();
     }
 
     /**
@@ -265,7 +266,6 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     }
 
     /**
-     *
      * @param session
      * @return
      */

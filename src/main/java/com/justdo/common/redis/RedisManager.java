@@ -1,18 +1,18 @@
 package com.justdo.common.redis;
 
+import com.justdo.common.redis.shiro.BaseRedisManager;
+import com.justdo.common.redis.shiro.IRedisManager;
 import org.apache.shiro.cache.CacheException;
 import org.springframework.beans.factory.annotation.Value;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.util.Set;
-
 /**
  * @author justdo
  * @version V1.0
  */
-public class RedisManager {
+public class RedisManager extends BaseRedisManager implements IRedisManager{
 
     @Value("${spring.redis.host}")
     private String host = "127.0.0.1";
@@ -53,6 +53,8 @@ public class RedisManager {
     @Value("${spring.redis.pool.timeBetweenEvictionRunsMillis}")
     private int timeBetweenEvictionRunsMillis = 6000;
 
+    private int database = 0;
+
     private static JedisPool jedisPool = null;
 
     public RedisManager() {
@@ -90,7 +92,8 @@ public class RedisManager {
      * 获取连接池中的redis实例
      * @return obj
      */
-    private  Jedis getJedis() {
+    @Override
+     protected   Jedis getJedis() {
         if (jedisPool == null) {
             try {
                 init();
@@ -101,134 +104,7 @@ public class RedisManager {
         Jedis jedis = jedisPool.getResource();
         return jedis;
     }
-    /**
-     * get value from redis
-     *
-     * @param key
-     * @return
-     */
-    public byte[] get(byte[] key) {
-        byte[] value = null;
-        Jedis jedis = getJedis();
-        try {
-            value = jedis.get(key);
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return value;
-    }
 
-    /**
-     * set
-     *
-     * @param key
-     * @param value
-     * @return
-     */
-    public byte[] set(byte[] key, byte[] value) {
-        Jedis jedis = getJedis();
-        try {
-            jedis.set(key, value);
-            if (this.expire != 0) {
-                jedis.expire(key, this.expire);
-            }
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return value;
-    }
-
-    /**
-     * set
-     *
-     * @param key
-     * @param value
-     * @param expire
-     * @return
-     */
-    public byte[] set(byte[] key, byte[] value, int expire) {
-        Jedis jedis = getJedis();
-        try {
-            jedis.set(key, value);
-            if (expire != 0) {
-                jedis.expire(key, expire);
-            }
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return value;
-    }
-
-    /**
-     * del
-     *
-     * @param key
-     */
-    public void del(byte[] key) {
-        Jedis jedis = getJedis();
-        try {
-            jedis.del(key);
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-    }
-
-    /**
-     * flush
-     */
-    public void flushDB() {
-        Jedis jedis = getJedis();
-        try {
-            jedis.flushDB();
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-    }
-
-    /**
-     * size
-     */
-    public Long dbSize() {
-        Long dbSize = 0L;
-        Jedis jedis = getJedis();
-        try {
-            dbSize = jedis.dbSize();
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return dbSize;
-    }
-
-    /**
-     * keys
-     *
-     * @param pattern
-     * @return
-     */
-    public Set<byte[]> keys(String pattern) {
-        Set<byte[]> keys = null;
-        Jedis jedis = getJedis();
-        try {
-            keys = jedis.keys(pattern.getBytes());
-        } finally {
-            if (jedis != null) {
-                jedis.close();
-            }
-        }
-        return keys;
-    }
 
     public String getHost() {
         return host;

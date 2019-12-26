@@ -5,34 +5,40 @@ package com.justdo.common.redis.shiro;
  * @version V1.0
  */
 
-import com.justdo.common.redis.RedisManager;
-import com.justdo.common.utils.SerializeUtils;
+import com.justdo.common.exception.PrincipalIdNullException;
+import com.justdo.common.exception.PrincipalInstanceException;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class RedisCache<K, V> implements Cache<K, V> {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
+    private RedisSerializer keySerializer = new StringSerializer();
+    private RedisSerializer valueSerializer = new ObjectSerializer();
     /**
      * The wrapped Jedis instance.
      */
-    private RedisManager cache;
-
+    private IRedisManager redisManager;
     /**
      * The Redis key prefix for the sessions
      */
-    private String keyPrefix = "shiro_redis_session:";
+    private String keyPrefix = "";
 
+    private int expire = 0;
+
+    private String principalIdFieldName = "authCacheKey or id";
 
     /**
      * Returns the Redis session keys
      * prefix.
+     *
      * @return The prefix
      */
     public String getKeyPrefix() {
@@ -42,152 +48,268 @@ public class RedisCache<K, V> implements Cache<K, V> {
     /**
      * Sets the Redis sessions key
      * prefix.
+     *
      * @param keyPrefix The prefix
      */
     public void setKeyPrefix(String keyPrefix) {
         this.keyPrefix = keyPrefix;
     }
 
-    /**
-     * 通过一个JedisManager实例构造RedisCache
-     */
-    public RedisCache(RedisManager cache){
-        if (cache == null) {
-            throw new IllegalArgumentException("Cache argument cannot be null.");
-        }
-        this.cache = cache;
+    public String getPrincipalIdFieldName() {
+        return this.principalIdFieldName;
+    }
+
+    public void setPrincipalIdFieldName(String principalIdFieldName) {
+        this.principalIdFieldName = principalIdFieldName;
     }
 
     /**
      * Constructs a cache instance with the specified
      * Redis manager and using a custom key prefix.
-     * @param cache The cache manager instance
-     * @param prefix The Redis key prefix
+     *
+     * @param redisManager The cache manager instance
+     * @param prefix       The Redis key prefix
      */
-    public RedisCache(RedisManager cache,
-                      String prefix){
+    public RedisCache(IRedisManager redisManager, RedisSerializer keySerializer, RedisSerializer valueSerializer, String prefix, int expire, String principalIdFieldName) {
+        if (redisManager == null) {
+            throw new IllegalArgumentException("redisManager cannot be null.");
+        } else {
+            this.redisManager = redisManager;
+            if (keySerializer == null) {
+                throw new IllegalArgumentException("keySerializer cannot be null.");
+            } else {
+                this.keySerializer = keySerializer;
+                if (valueSerializer == null) {
+                    throw new IllegalArgumentException("valueSerializer cannot be null.");
+                } else {
+                    this.valueSerializer = valueSerializer;
+                    if (prefix != null && !"".equals(prefix)) {
+                        this.keyPrefix = prefix;
+                    }
 
-        this( cache );
+                    if (expire != -1) {
+                        this.expire = expire;
+                    }
 
-        // set the prefix
-        this.keyPrefix = prefix;
-    }
+                    if (principalIdFieldName != null && !"".equals(principalIdFieldName)) {
+                        this.principalIdFieldName = principalIdFieldName;
+                    }
 
-    /**
-     * 获得byte[]型的key
-     * @param key
-     * @return
-     */
-    private byte[] getByteKey(K key){
-        if(key instanceof String){
-            String preKey = this.keyPrefix + key;
-            return preKey.getBytes();
-        }else{
-            return SerializeUtils.serialize(key);
+                }
+            }
         }
     }
+
 
     @Override
     public V get(K key) throws CacheException {
-        logger.debug("根据key从Redis中获取对象 key [" + key + "]");
-        try {
-            if (key == null) {
-                return null;
-            }else{
-                byte[] rawValue = cache.get(getByteKey(key));
-                @SuppressWarnings("unchecked")
-                V value = (V)SerializeUtils.deserialize(rawValue);
-                return value;
+        logger.debug("get key [" + key + "]");
+        if (key == null) {
+            return null;
+        } else {
+            try {
+                Object redisCacheKey = this.getRedisCacheKey(key);
+                byte[] rawValue = this.redisManager.get(this.keySerializer.serialize(redisCacheKey));
+                if (rawValue == null) {
+                    return null;
+                } else {
+                    V value = (V)this.valueSerializer.deserialize(rawValue);
+                    return value;
+                }
+            } catch (SerializationException var5) {
+                throw new CacheException(var5);
             }
-        } catch (Throwable t) {
-            throw new CacheException(t);
         }
-
     }
 
     @Override
     public V put(K key, V value) throws CacheException {
-        logger.debug("根据key从存储 key [" + key + "]");
-        try {
-            cache.set(getByteKey(key), SerializeUtils.serialize(value));
+        logger.debug("put key [" + key + "]");
+        if (key == null) {
+            logger.warn("Saving a null key is meaningless, return value directly without call Redis.");
             return value;
-        } catch (Throwable t) {
-            throw new CacheException(t);
+        } else {
+            try {
+                Object redisCacheKey = this.getRedisCacheKey(key);
+                this.redisManager.set(this.keySerializer.serialize(redisCacheKey), value != null ? this.valueSerializer.serialize(value) : null, this.expire);
+                return value;
+            } catch (SerializationException var4) {
+                throw new CacheException(var4);
+            }
         }
     }
 
     @Override
     public V remove(K key) throws CacheException {
-        logger.debug("从redis中删除 key [" + key + "]");
-        try {
-            V previous = get(key);
-            cache.del(getByteKey(key));
-            return previous;
-        } catch (Throwable t) {
-            throw new CacheException(t);
+        logger.debug("remove key [" + key + "]");
+        if (key == null) {
+            return null;
+        } else {
+            try {
+                Object redisCacheKey = this.getRedisCacheKey(key);
+                byte[] rawValue = this.redisManager.get(this.keySerializer.serialize(redisCacheKey));
+                V previous = (V)this.valueSerializer.deserialize(rawValue);
+                this.redisManager.del(this.keySerializer.serialize(redisCacheKey));
+                return previous;
+            } catch (SerializationException var5) {
+                throw new CacheException(var5);
+            }
+        }
+    }
+
+    private Object getRedisCacheKey(K key) {
+        return key == null ? null : (this.keySerializer instanceof StringSerializer ? this.keyPrefix + this.getStringRedisKey(key) : key);
+    }
+
+    private String getStringRedisKey(K key) {
+        String redisKey;
+        if (key instanceof PrincipalCollection) {
+            redisKey = this.getRedisKeyFromPrincipalIdField((PrincipalCollection) key);
+        } else {
+            redisKey = key.toString();
+        }
+
+        return redisKey;
+    }
+
+    private String getRedisKeyFromPrincipalIdField(PrincipalCollection key) {
+        Object principalObject = key.getPrimaryPrincipal();
+        Method pincipalIdGetter = null;
+        Method[] methods = principalObject.getClass().getDeclaredMethods();
+        Method[] arr$ = methods;
+        int len$ = methods.length;
+
+        for (int i$ = 0; i$ < len$; ++i$) {
+            Method m = arr$[i$];
+            if ("authCacheKey or id".equals(this.principalIdFieldName) && ("getAuthCacheKey".equals(m.getName()) || "getId".equals(m.getName()))) {
+                pincipalIdGetter = m;
+                break;
+            }
+
+            if (m.getName().equals("get" + this.principalIdFieldName.substring(0, 1).toUpperCase() + this.principalIdFieldName.substring(1))) {
+                pincipalIdGetter = m;
+                break;
+            }
+        }
+
+        if (pincipalIdGetter == null) {
+            throw new PrincipalInstanceException(principalObject.getClass(), this.principalIdFieldName);
+        } else {
+            try {
+                Object idObj = pincipalIdGetter.invoke(principalObject, new Object[0]);
+                if (idObj == null) {
+                    throw new PrincipalIdNullException(principalObject.getClass(), this.principalIdFieldName);
+                } else {
+                    String redisKey = idObj.toString();
+                    return redisKey;
+                }
+            } catch (IllegalAccessException var10) {
+                throw new PrincipalInstanceException(principalObject.getClass(), this.principalIdFieldName, var10);
+            } catch (InvocationTargetException var11) {
+                throw new PrincipalInstanceException(principalObject.getClass(), this.principalIdFieldName, var11);
+            }
         }
     }
 
     @Override
     public void clear() throws CacheException {
-        logger.debug("从redis中删除所有元素");
+        logger.debug("clear cache");
+        Set keys = null;
+
         try {
-            cache.flushDB();
-        } catch (Throwable t) {
-            throw new CacheException(t);
+            keys = this.redisManager.keys(this.keySerializer.serialize(this.keyPrefix + "*"));
+        } catch (SerializationException var4) {
+            logger.error("get keys error", var4);
+        }
+
+        if (keys != null && keys.size() != 0) {
+            Iterator i$ = keys.iterator();
+
+            while (i$.hasNext()) {
+                byte[] key = (byte[]) i$.next();
+                this.redisManager.del(key);
+            }
+
         }
     }
 
     @Override
     public int size() {
+        Long longSize = Long.valueOf(0L);
+
         try {
-            Long longSize = new Long(cache.dbSize());
-            return longSize.intValue();
-        } catch (Throwable t) {
-            throw new CacheException(t);
+            longSize = new Long(this.redisManager.dbSize(this.keySerializer.serialize(this.keyPrefix + "*")).longValue());
+        } catch (SerializationException var3) {
+            logger.error("get keys error", var3);
         }
+
+        return longSize.intValue();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Set<K> keys() {
+        Set keys = null;
+
         try {
-            Set<byte[]> keys = cache.keys(this.keyPrefix + "*");
-            if (CollectionUtils.isEmpty(keys)) {
-                return Collections.emptySet();
-            }else{
-                Set<K> newKeys = new HashSet<K>();
-                for(byte[] key:keys){
-                    newKeys.add((K)key);
+            keys = this.redisManager.keys(this.keySerializer.serialize(this.keyPrefix + "*"));
+        } catch (SerializationException var7) {
+            logger.error("get keys error", var7);
+            return Collections.emptySet();
+        }
+
+        if (CollectionUtils.isEmpty(keys)) {
+            return Collections.emptySet();
+        } else {
+            Set<K> convertedKeys = new HashSet();
+            Iterator i$ = keys.iterator();
+
+            while (i$.hasNext()) {
+                byte[] key = (byte[]) i$.next();
+
+                try {
+                    convertedKeys.add((K)this.keySerializer.deserialize(key));
+                } catch (SerializationException var6) {
+                    logger.error("deserialize keys error", var6);
                 }
-                return newKeys;
             }
-        } catch (Throwable t) {
-            throw new CacheException(t);
+
+            return convertedKeys;
         }
     }
 
     @Override
     public Collection<V> values() {
+        Set keys = null;
+
         try {
-            Set<byte[]> keys = cache.keys(this.keyPrefix + "*");
-            if (!CollectionUtils.isEmpty(keys)) {
-                List<V> values = new ArrayList<V>(keys.size());
-                for (byte[] key : keys) {
-                    @SuppressWarnings("unchecked")
-                    V value = get((K)key);
-                    if (value != null) {
-                        values.add(value);
-                    }
+            keys = this.redisManager.keys(this.keySerializer.serialize(this.keyPrefix + "*"));
+        } catch (SerializationException var8) {
+            logger.error("get values error", var8);
+            return Collections.emptySet();
+        }
+
+        if (CollectionUtils.isEmpty(keys)) {
+            return Collections.emptySet();
+        } else {
+            List<V> values = new ArrayList(keys.size());
+            Iterator i$ = keys.iterator();
+
+            while (i$.hasNext()) {
+                byte[] key = (byte[]) i$.next();
+                Object value = null;
+
+                try {
+                    value = this.valueSerializer.deserialize(this.redisManager.get(key));
+                } catch (SerializationException var7) {
+                    logger.error("deserialize values= error", var7);
                 }
-                return Collections.unmodifiableList(values);
-            } else {
-                return Collections.emptyList();
+
+                if (value != null) {
+                    values.add((V)value);
+                }
             }
-        } catch (Throwable t) {
-            throw new CacheException(t);
+
+            return Collections.unmodifiableList(values);
         }
     }
-
 }
-

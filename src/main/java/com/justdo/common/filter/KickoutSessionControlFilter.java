@@ -39,9 +39,9 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	//踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
 	private boolean kickoutAfter = false;
 	//同一个帐号最大会话数 默认1
-	private int maxSession = 1;
+	private int maxSession = 2;
 	//The Redis key prefix for caches
-	private String keyPrefix = "shiro_redis_cache:";
+	private String keyPrefix = "shiro:cache:loginlimit:";
 
 	private DefaultWebSessionManager sessionManager;
 
@@ -71,8 +71,6 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 	public void setCacheManager(RedisCacheManager cacheManager) {
 		redisCacheManager = cacheManager;
 		redisCacheManager.setKeyPrefix(keyPrefix);
-		this.cache = redisCacheManager.getCache(keyPrefix);
-
 	}
 
 	/**
@@ -113,6 +111,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
 		Serializable sessionId = session.getId();
 
+		this.cache = redisCacheManager.getCache(username);
 		//读取缓存   没有就存入
 		Deque<Serializable> deque = cache.get(username);
 

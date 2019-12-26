@@ -80,7 +80,7 @@ public class ELoginController extends BaseController {
 		List<Tree<ResourceDO>> resourceDOs = resourceService.listEmployeeResourceTree(getEmployeeId());
 		model.addAttribute("resources", resourceDOs);
 		model.addAttribute("name", getSimpleEmployee().getLoginName());
-		model.addAttribute("userid", getSimpleEmployee().getEmployeeId());
+		model.addAttribute("userid", getSimpleEmployee().getId());
 
 		//EmployeeDO employee = employeeService.get(getEmployeeId());
 		String roleId = employeeService.getRoleId(getEmployeeId());

@@ -2,7 +2,6 @@ package com.justdo.system.employee.shiro;
 
 
 import com.justdo.common.redis.RedisManager;
-import com.justdo.common.utils.SerializeUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import org.apache.log4j.Logger;
@@ -25,6 +24,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 
 	public static final String DEFAULT_RETRYLIMIT_CACHE_KEY_PREFIX = "shiro:cache:retrylimit:";
 
+
 	private String keyPrefix = DEFAULT_RETRYLIMIT_CACHE_KEY_PREFIX;
 	@Autowired
 	private EmployeeDao employeeDao;
@@ -40,12 +40,8 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 	 * @return
 	 */
 	private byte[] getByteKey(String key){
-		if(key instanceof String){
 			String preKey = this.keyPrefix + key;
 			return preKey.getBytes();
-		}else{
-			return SerializeUtils.serialize(key);
-		}
 	}
 
 	@Override
@@ -84,7 +80,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 		}
 		else{
 			retryCount++;
-			redisManager.set(getByteKey(username),retryCount.toString().getBytes());
+			redisManager.set(getByteKey(username),retryCount.toString().getBytes(),-1);
 		}
 		return matches;
 	}

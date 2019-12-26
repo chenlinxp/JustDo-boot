@@ -14,7 +14,7 @@ public class SimpleEmployeeDO extends BaseBean {
 
 
 	//主键ID
-	private String employeeId;
+	private String id;
 	//员工编号
 	private String employeeNumber;
 	//用户名
@@ -27,18 +27,31 @@ public class SimpleEmployeeDO extends BaseBean {
 	private String positionId;
 	//照片ID
 	private String photoUrl;
-
+//	/**
+//	 * 构造方法
+//	 */
+//	public SimpleEmployeeDO(){ }
+//	public SimpleEmployeeDO(String employeeId, String employeeNumber, String loginName, String deptmentId, String organId, String positionId,String photoUrl){
+//		super();
+//		this.employeeId = employeeId;
+//		this.employeeNumber= employeeNumber;
+//		this.loginName= loginName;
+//		this.deptmentId= deptmentId;
+//		this.organId= organId;
+//		this.positionId= positionId;
+//		this.photoUrl=photoUrl;
+//	}
 	/**
 	 * 设置：主键ID
 	 */
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setId(String id) {
+		this.id =id;
 	}
 	/**
 	 * 获取：主键ID
 	 */
-	public String getEmployeeId() {
-		return employeeId;
+	public String getId() {
+		return id;
 	}
 
 	/**
@@ -113,17 +126,18 @@ public class SimpleEmployeeDO extends BaseBean {
 	public String getPhotoUrl() {
 		return photoUrl;
 	}
-	@Override
-	public String toString() {
-		return "EmployeeDO{" +
-				"employeeId=" + employeeId +
-				", employeeNumber='" + employeeNumber + '\'' +
-				", loginName='" + loginName + '\'' +
-				", deptmentId='" + deptmentId + '\'' +
-				", organId='" + organId + '\'' +
-				", positionId='" + positionId + '\'' +
-				", photoUrl='" + photoUrl + '\'' +
-				'}';
-	}
+
+//	@Override
+//	public String toString() {
+//		return "EmployeeDO{" +
+//				"employeeId=" + employeeId +
+//				", employeeNumber='" + employeeNumber + '\'' +
+//				", loginName='" + loginName + '\'' +
+//				", deptmentId='" + deptmentId + '\'' +
+//				", organId='" + organId + '\'' +
+//				", positionId='" + positionId + '\'' +
+//				", photoUrl='" + photoUrl + '\'' +
+//				'}';
+//	}
 
 }

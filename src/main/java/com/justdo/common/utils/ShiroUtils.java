@@ -48,7 +48,7 @@ public class ShiroUtils {
      */
     public static String getEmployeeId() {
 
-        return getSimpleEmployee().getEmployeeId();
+        return getSimpleEmployee().getId();
     }
 
 

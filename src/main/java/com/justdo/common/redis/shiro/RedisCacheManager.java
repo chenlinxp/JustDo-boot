@@ -5,7 +5,6 @@ package com.justdo.common.redis.shiro;
  * @version V1.0
  */
 
-import com.justdo.common.redis.RedisManager;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
@@ -18,19 +17,23 @@ import java.util.concurrent.ConcurrentMap;
 
 public class RedisCacheManager implements CacheManager {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(RedisCacheManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(RedisCacheManager.class);
 
     // fast lookup by name map
     private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
+    private RedisSerializer keySerializer = new StringSerializer();
+    private RedisSerializer valueSerializer = new ObjectSerializer();
+    private static final int DEFAULT_EXPIRE = 1800;
+    private int expire = 1800;
+    private IRedisManager redisManager;
+    public static final String DEFAULT_CACHE_KEY_PREFIX = "shiro:cache:";
 
-    private RedisManager redisManager;
-
+    public static final String DEFAULT_PRINCIPAL_ID_FIELD_NAME = "authCacheKey or id";
+    private String principalIdFieldName = "authCacheKey or id";
     /**
      * The Redis key prefix for caches
      */
-    private String keyPrefix = "shiro_redis_session:";
-
+    private String keyPrefix = "shiro:cache:";
     /**
      * Returns the Redis session keys
      * prefix.
@@ -49,33 +52,58 @@ public class RedisCacheManager implements CacheManager {
         this.keyPrefix = keyPrefix;
     }
 
+
+    public RedisCacheManager() {
+    }
+
     @Override
     public <K, V> Cache<K, V> getCache(String name) throws CacheException {
-
-        logger.debug("获取名称为: " + name + " 的RedisCache实例");
-
-        Cache c = caches.get(name);
-
-        if (c == null) {
-
-            // initialize the Redis manager instance
-            redisManager.init();
-
-            // create a new cache instance
-            c = new RedisCache<K, V>(redisManager, keyPrefix);
-
-            // add it to the cache collection
-            caches.put(name, c);
+        logger.debug("get cache, name=" + name);
+        Cache cache = (Cache)this.caches.get(name);
+        if(cache == null) {
+            cache = new RedisCache(this.redisManager, this.keySerializer, this.valueSerializer, this.keyPrefix, this.expire, this.principalIdFieldName);
+            this.caches.put(name, cache);
         }
-        return c;
+
+        return (Cache)cache;
+    }
+    public IRedisManager getRedisManager() {
+        return this.redisManager;
     }
 
-    public RedisManager getRedisManager() {
-        return redisManager;
-    }
-
-    public void setRedisManager(RedisManager redisManager) {
+    public void setRedisManager(IRedisManager redisManager) {
         this.redisManager = redisManager;
     }
 
+    public RedisSerializer getKeySerializer() {
+        return this.keySerializer;
+    }
+
+    public void setKeySerializer(RedisSerializer keySerializer) {
+        this.keySerializer = keySerializer;
+    }
+
+    public RedisSerializer getValueSerializer() {
+        return this.valueSerializer;
+    }
+
+    public void setValueSerializer(RedisSerializer valueSerializer) {
+        this.valueSerializer = valueSerializer;
+    }
+
+    public int getExpire() {
+        return this.expire;
+    }
+
+    public void setExpire(int expire) {
+        this.expire = expire;
+    }
+
+    public String getPrincipalIdFieldName() {
+        return this.principalIdFieldName;
+    }
+
+    public void setPrincipalIdFieldName(String principalIdFieldName) {
+        this.principalIdFieldName = principalIdFieldName;
+    }
 }

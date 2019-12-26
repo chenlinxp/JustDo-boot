@@ -2,7 +2,6 @@ package com.justdo.system.employee.shiro;
 
 
 import com.justdo.common.utils.ApplicationContextUtils;
-import com.justdo.common.utils.ShiroUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
@@ -46,7 +45,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
-		String employeeId = ShiroUtils.getEmployeeId();
+		SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO)principalCollection.getPrimaryPrincipal();
 		//String username = (String)principalCollection.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
@@ -55,7 +54,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 
 		//角色获取
 		RoleService roleService = ApplicationContextUtils.getBean(RoleService.class);
-		List<RoleDO> roles = roleService.list(employeeId);
+		List<RoleDO> roles = roleService.list(simpleEmployeeDO.getId());
 
 		for (RoleDO role : roles) {
 			authorizationInfo.addRole(role.getRoleName());
@@ -91,7 +90,7 @@ public class EmployeeRealm extends AuthorizingRealm {
 		EmployeeDO employee = employeeDao.list(map).get(0);
 		String password = employee.getPassword();
 		SimpleEmployeeDO simpleEmployeeDO = new SimpleEmployeeDO();
-		simpleEmployeeDO.setEmployeeId(employee.getEmployeeId());
+		simpleEmployeeDO.setId(employee.getEmployeeId());
 		simpleEmployeeDO.setLoginName(employee.getLoginName());
 		simpleEmployeeDO.setEmployeeNumber(employee.getEmployeeNumber());
 		simpleEmployeeDO.setDeptmentId(employee.getDeptmentId());
@@ -136,13 +135,13 @@ public class EmployeeRealm extends AuthorizingRealm {
         //以下信息是从数据库中获取的
 
 //		1)principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
-		Object principal = simpleEmployeeDO;
+		//Object principal = simpleEmployeeDO;
 		//2)credentials：密码
 		Object credentials = password;
 		//3)realmName：当前realm对象的name，调用父类的getName()方法即可
 		String realmName = getName();
 		//4)credentialsSalt盐值
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, ByteSource.Util.bytes(salt), realmName);
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(simpleEmployeeDO, credentials, ByteSource.Util.bytes(salt), realmName);
 		return info;
 	}
 

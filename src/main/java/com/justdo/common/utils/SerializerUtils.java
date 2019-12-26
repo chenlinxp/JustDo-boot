@@ -1,21 +1,17 @@
 package com.justdo.common.utils;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.*;
 
 /**
  * @author justdo
  * @version V1.0
  */
-public class SerializeUtils {
+public class SerializerUtils {
 
-    private static Logger logger = LoggerFactory.getLogger(SerializeUtils.class);
+    private static Logger logger = LoggerFactory.getLogger(SerializerUtils.class);
 
     /**
      * 反序列化
@@ -70,7 +66,7 @@ public class SerializeUtils {
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream(128);
             try  {
                 if (!(object instanceof Serializable)) {
-                    throw new IllegalArgumentException(SerializeUtils.class.getSimpleName() + " requires a Serializable payload " +
+                    throw new IllegalArgumentException(SerializerUtils.class.getSimpleName() + " requires a Serializable payload " +
                             "but received an object of type [" + object.getClass().getName() + "]");
                 }
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteStream);
@@ -83,6 +79,26 @@ public class SerializeUtils {
             }
         } catch (Exception ex) {
             logger.error("Failed to serialize",ex);
+        }
+        return result;
+    }
+
+    public static byte[] serialize2(String s)  {
+        byte[] result = null;
+        try {
+            return s == null?null:s.getBytes("UTF-8");
+        } catch (UnsupportedEncodingException var3) {
+            logger.error("serialize error, string=" + s,var3);
+        }
+        return result;
+    }
+
+    public static String deserialize2(byte[] bytes)  {
+        String result="";
+        try {
+            return bytes == null?null:new String(bytes, "UTF-8");
+        } catch (UnsupportedEncodingException var3) {
+            logger.error("deserialize error",var3);
         }
         return result;
     }
