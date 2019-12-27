@@ -51,6 +51,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
     private IRedisManager redisManager;
 
     private RedisSerializer keySerializer = new StringSerializer();
+
     private RedisSerializer valueSerializer = new ObjectSerializer();
 
     private static ThreadLocal sessionsInThread = new ThreadLocal();
@@ -67,7 +68,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
                 // 如果没有主要字段(除lastAccessTime以外其他字段)发生改变
                 ShiroSession ss = (ShiroSession) session;
                 if (!ss.isChanged()) {
-                    return;
+                   // return;
                 }
                 //如果没有返回 证明有调用 setAttribute往redis 放的时候永远设置为false
                 ss.setChanged(false);
@@ -185,6 +186,7 @@ public class RedisSessionDAO extends AbstractSessionDAO {
              s = (Session) SerializerUtils.deserialize(redisManager.get(this.getByteKey(sessionId)));
 
             setSessionToThreadLocal(sessionId, s);
+
         } catch (Exception e) {
             logger.error("read session error. settionId= {}",sessionId);
         }

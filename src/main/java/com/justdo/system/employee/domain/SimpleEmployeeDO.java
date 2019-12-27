@@ -27,13 +27,13 @@ public class SimpleEmployeeDO extends BaseBean {
 	private String positionId;
 	//照片ID
 	private String photoUrl;
-//	/**
-//	 * 构造方法
-//	 */
+	/**
+	 * 构造方法
+	 */
 //	public SimpleEmployeeDO(){ }
-//	public SimpleEmployeeDO(String employeeId, String employeeNumber, String loginName, String deptmentId, String organId, String positionId,String photoUrl){
+//	public SimpleEmployeeDO(String id, String employeeNumber, String loginName, String deptmentId, String organId, String positionId,String photoUrl){
 //		super();
-//		this.employeeId = employeeId;
+//		this.id = id;
 //		this.employeeNumber= employeeNumber;
 //		this.loginName= loginName;
 //		this.deptmentId= deptmentId;
@@ -130,7 +130,7 @@ public class SimpleEmployeeDO extends BaseBean {
 //	@Override
 //	public String toString() {
 //		return "EmployeeDO{" +
-//				"employeeId=" + employeeId +
+//				"id=" + id +
 //				", employeeNumber='" + employeeNumber + '\'' +
 //				", loginName='" + loginName + '\'' +
 //				", deptmentId='" + deptmentId + '\'' +

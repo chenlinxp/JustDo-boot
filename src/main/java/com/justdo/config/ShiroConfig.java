@@ -196,6 +196,7 @@ public class ShiroConfig {
 
 	@Bean
 	EmployeeRealm employeeRealm() {
+
 		EmployeeRealm employeeRealm = new EmployeeRealm();
 
 		//employeeRealm.setCachingEnabled(true);

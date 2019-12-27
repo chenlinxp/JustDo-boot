@@ -11,6 +11,8 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.web.util.WebUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -34,6 +36,7 @@ import java.util.LinkedList;
 public class KickoutSessionControlFilter extends AccessControlFilter {
 
 
+	private static final Logger logger = LoggerFactory.getLogger(KickoutSessionControlFilter.class);
 	//踢出后到的地址
 	private String kickoutUrl;
 	//踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
@@ -102,6 +105,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 			//如果没有登录，直接进行登录的流程
 			return true;
 		}
+
 		//DefaultFilter
 		Session session = subject.getSession();
 
@@ -109,8 +113,35 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 
 		String username = simpleEmployeeDO.getLoginName();
 
-		Serializable sessionId = session.getId();
+		//如果被踢出了，直接退出，重定向到踢出后的地址
 
+		if ((Boolean)session.getAttribute("kickout")!=null&&(Boolean)session.getAttribute("kickout") == true){
+			//会话被踢出了
+			try {
+				//退出登录
+				logger.info("被踢出了：sesionId："+ session.getId()+"，username:"+username);
+				subject.logout();
+			} catch (Exception e) { //ignore
+				logger.error("踢出logout异常：sesionId："+ session.getId()+"，username:"+username);
+			}
+			saveRequest(request);
+//			Map<String, String> resultMap = new HashMap<String, String>();
+			String a = ((HttpServletRequest) request).getHeader("X-Requested-With");
+			//判断是不是Ajax请求
+			if ("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {
+//				resultMap.put("user_status", "300");
+//				resultMap.put("message", "您已经在其他地方登录，请重新登录！");
+				//输出json串
+				out(response,  R.error(-11,"您已经在其他地方登录，请重新登录！"));
+			}else{
+				//重定向
+				WebUtils.issueRedirect(request, response, kickoutUrl);
+			}
+			return false;
+		}
+
+		Serializable sessionId = session.getId();
+		redisCacheManager.setPrincipalIdFieldName(simpleEmployeeDO.getId());
 		this.cache = redisCacheManager.getCache(username);
 		//读取缓存   没有就存入
 		Deque<Serializable> deque = cache.get(username);
@@ -146,35 +177,13 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 				Session kickoutSession = sessionManager.getSession(new DefaultSessionKey(kickoutSessionId));
 				if(kickoutSession != null) {
 					//设置会话的kickout属性表示踢出了
+					logger.info("踢出设置属性：sesionId："+ kickoutSession.getId());
 					kickoutSession.setAttribute("kickout", true);
 				}
 			} catch (Exception e) {//ignore exception
-			}
-		}
 
-		//如果被踢出了，直接退出，重定向到踢出后的地址
-//		System.out.println(session.getAttribute("kickout"));
-		if ((Boolean)session.getAttribute("kickout")!=null&&(Boolean)session.getAttribute("kickout") == true){
-		 //会话被踢出了
-			try {
-				//退出登录
-				subject.logout();
-			} catch (Exception e) { //ignore
+				logger.error("踢出设置异常:"+e.getMessage());
 			}
-			saveRequest(request);
-//			Map<String, String> resultMap = new HashMap<String, String>();
-            String a = ((HttpServletRequest) request).getHeader("X-Requested-With");
-			//判断是不是Ajax请求
-			if ("XMLHttpRequest".equalsIgnoreCase(((HttpServletRequest) request).getHeader("X-Requested-With"))) {
-//				resultMap.put("user_status", "300");
-//				resultMap.put("message", "您已经在其他地方登录，请重新登录！");
-				//输出json串
-				out(response,  R.error(-11,"您已经在其他地方登录，请重新登录！"));
-			}else{
-				//重定向
-				WebUtils.issueRedirect(request, response, kickoutUrl);
-			}
-			return false;
 		}
 		return true;
 
@@ -219,7 +228,6 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 			System.err.println("KickoutSessionFilter.class 输出JSON异常，可以忽略。");
 		}
 	}
-
 
 
 }
