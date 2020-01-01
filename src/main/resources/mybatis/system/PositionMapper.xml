@@ -108,4 +108,25 @@
 		</foreach>
 	</delete>
 
+
+	<select id="getTopPosions" resultType="com.justdo.common.domain.TreeNode" parameterType="map" >
+		select postid as id,postname as text,deptid as parentid  from sys_position
+
+		<where>
+			<if test="postpid == null or postpid == ''">and isvalidation = 1 and postpid = '' </if>
+
+			<if test="deptid != null or deptid != ''">and isvalidation = 1 and deptid = #{deptid} </if>
+		</where>
+	</select>
+
+	<select id="getPosions" resultType="com.justdo.common.domain.TreeNode" parameterType="map" >
+		select postid as id,postname as text,postpid as parentid from sys_position
+
+		<where>
+			<if test="deptpid != null and deptpid != ''">and isvalidation = 1 and postpid = #{postpid} </if>
+
+			<if test="deptid != null and deptid != ''"> and deptid = #{deptid} </if>
+		</where>
+	</select>
+
 </mapper>

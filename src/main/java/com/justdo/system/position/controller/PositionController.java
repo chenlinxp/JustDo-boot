@@ -238,7 +238,7 @@ public class PositionController {
 		if(StringUtils.isNotEmpty(deptId)&&!deptId.equals("0")){
 			map.put("deptid",deptId);}
 		tree = positionService.getTree(map);
-		return tree;
+ 		return tree;
 	}
 	@GetMapping("/treeView/{deptId}")
 	@ApiOperation(value="根据deptId获取岗位树界面", notes="根据deptId获取岗位树界面")

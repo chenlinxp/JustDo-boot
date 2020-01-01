@@ -1,5 +1,6 @@
 package com.justdo.system.position.dao;
 
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.position.domain.PositionDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -63,4 +64,18 @@ public interface PositionDao {
 	 * @return list
 	 */
 	int batchDel(String[] postids);
+
+	/**
+	 * 获取某部门下的岗位树节点list
+	 * @param param
+	 * @return
+	 */
+	List<TreeNode> getPositions(Map<String, Object> param);
+
+	/**
+	 * 获取 某部门下的顶级岗位树节点list
+	 * @param param
+	 * @return
+	 */
+	List<TreeNode> getTopPosions(Map<String, Object> param);
 }
