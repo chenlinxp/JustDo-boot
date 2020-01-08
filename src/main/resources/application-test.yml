@@ -9,18 +9,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/justdo?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/justdo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-    jackson:
-           #参数意义：
-           #JsonInclude.Include.ALWAYS              默认
-           #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
-           #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
-           #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
-            default-property-inclusion: ALWAYS
-            time-zone: GMT+8
-            date-format: yyyy-MM-dd HH:mm:ss
     initialSize: 1
     minIdle: 3
     maxActive: 20
@@ -81,12 +72,15 @@ spring:
          #每次释放连接的最大数目,默认3
          numTestsPerEvictionRun: 1024
   jackson:
-      #参数意义：
-      #JsonInclude.Include.ALWAYS              默认
-      #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
-      #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
-      #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
-     default-property-inclusion: ALWAYS
-     time-zone: GMT+8
-     date-format: yyyy-MM-dd HH:mm:ss
-
+    #参数意义：
+    #JsonInclude.Include.ALWAYS              默认
+    #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

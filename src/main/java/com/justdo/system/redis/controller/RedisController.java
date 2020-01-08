@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping(value="/system/redis")
 public class RedisController {
 
-	private String preUrl="/system/redis";
+	private String preUrl="system/redis";
 
 	@Autowired
 	RedisService redisService;

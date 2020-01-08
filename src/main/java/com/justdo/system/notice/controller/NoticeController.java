@@ -42,7 +42,7 @@ public class NoticeController extends BaseController {
 	private DictContentService dictContentService;
 
 
-	 String preUrl = "/system/notice";
+	 String preUrl = "system/notice";
 	/**
 	 * 列表页面
 	 * @return 列表页面路径
