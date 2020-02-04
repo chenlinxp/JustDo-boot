@@ -19,9 +19,19 @@
         <div class="error-desc">
             服务器好像出错了...
             <br/>您可以返回主页看看
-            <br/><a href="/index" class="btn btn-success m-t">主页</a>
+            <br/><a href="#"  onclick="gohome()" class="btn btn-success m-t">主页</a>
         </div>
     </div>
+    <script>
+
+        function gohome() {
+            window.opener=null;
+            window.open('','_self');
+            window.close();
+            window.location.href="index.html";
+        }
+
+    </script>
     <!-- 全局js -->
     <script src="/js/jquery.min.js?v=2.1.4"></script>
     <script src="/js/bootstrap.min.js?v=3.3.6"></script>

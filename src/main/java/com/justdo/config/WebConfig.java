@@ -26,12 +26,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		if (os.toLowerCase().startsWith("win")) {  //如果是Windows系统
 			registry.addResourceHandler("/files/**")
 					//files/**表示在磁盘files目录下的所有资源会被解析为以下的路径
-					.addResourceLocations("file:C:/"+uploadPath)
-					.addResourceLocations("classpath:/"+uploadPath);
+					.addResourceLocations("file:C:"+uploadPath)
+					.addResourceLocations("classpath:"+uploadPath);
 		} else {  //linux 和mac
 			registry.addResourceHandler("/files/**")
-					.addResourceLocations("file:/"+uploadPath)
-					.addResourceLocations("classpath:/"+uploadPath)
+					.addResourceLocations("file:"+uploadPath)
+					.addResourceLocations("classpath:"+uploadPath)
 					.addResourceLocations("classpath:/templates/");
 		}
 	}
