@@ -5,8 +5,7 @@ $(function() {
 });
 
 function load() {
-	$('#bTable')
-			.bootstrapTable(
+	$('#bTable').bootstrapTable(
 					{
 						method : 'get', // 服务器数据的请求方式 get or post
 						url : preUrl + "/list", // 服务器数据的加载地址
@@ -30,6 +29,8 @@ function load() {
                         sortable: true,
 						showColumns : false, // 是否显示内容下拉框（选择显示的列）
 						sidePagination : "server", // 设置在哪里进行分页，可选值为"client" 或者 "server"
+                        editable:true,//开启编辑模式
+                        detailView:true,
 						queryParams : function(params) {
 							return {
 								//说明：传入后台的参数包括offset开始索引，limit步长，sort排序列，order：desc或者,以及所有列的键值对
@@ -64,11 +65,7 @@ function load() {
 								{
 									checkbox : true
 								},
-								{
-									field : 'appId',
-									title : '主键ID',
-									visible :false
-								},
+
 								{
 									field : 'SerialNumber',
 									title : '序号',
@@ -80,9 +77,15 @@ function load() {
 										return (pageNumber-1)*pageSize+index+1;
 									}
 								},
+                                {
+                                    field : 'appId',
+                                    title : '主键ID',
+                                    visible :false
+                                },
 								{
 									field : 'appName',
-									title : '显示名称'
+									title : 'APP名称',
+                                    width : '60px'
 								},
 								{
 									field : 'iconUrl',
@@ -106,7 +109,8 @@ function load() {
 								},
 								{
 									field : 'expirerTime',
-									title : '过期时间'
+									title : '过期时间',
+                                    width : '140px'
 								},
 								{
 									field : 'loadUrl', 
@@ -143,32 +147,188 @@ function load() {
 									title : '类型',
                                     align : 'center',
                                     valign : 'center',
-                                    formatter : function(item, index) {
-                                        if (item.appType == '001') {
-                                            return '<span class="label label-primary">苹果</span>';
-                                        } else if (item.appType == '002') {
+                                    width : '40px',
+                                    formatter : function(value, row, index) {
+                                        if (value == '1') {
+                                            return '<span class="label label-warning">苹果</span>';
+                                        } else if (value == '2') {
                                             return '<span class="label label-primary">安卓</span>';
+                                        }else{
+                                            return '<span class="label label-white">未知</span>';
                                         }
                                     }
 								},
 								{
 									field : 'isCombine', 
-									title : '是否合并' 
+									title : '是否绑定',
+                                    align : 'center',
+                                    valign : 'center',
+                                    width : '40px',
+                                    formatter : function(value, row, index) {
+                                        if (value == '1') {
+                                            return '<span class="label label-primary">是</span>';
+                                        } else  {
+                                            return '<span class="label label-danger">否</span>';
+                                        }
+                                    }
 								},
 								{
 									field : 'description', 
-									title : 'APP介绍' 
+									title : 'APP介绍',
+                                    visible:false
 								},
 								{
 									field : 'createTime',
 									title : '创建时间',
-                                    width : '150px'
+                                    width : '140px'
 								},
 								{
 									field : 'modifyTime',
 									title : '修改时间',
-                                    width : '150px'
-								}]
+                                    width : '140px'
+								}],
+                        onExpandRow : function (index, row, $detail) {
+                            console.log(index);
+                            console.log(row);
+                            onclick = row.appId;
+                            var parentId = row.appId;
+                            var APPVERSIONTable = $detail.html('<table></table>').find('table');
+                            $(APPVERSIONTable).bootstrapTable({
+                                method : 'get', // 服务器数据的请求方式 get or post
+                                url : "/appmanage/appversion/list", // 服务器数据的加载地址
+                                showRefresh : true,
+                                showColumns : true,
+                                iconSize : 'outline',
+                                toolbar : '#cbToolbar',
+                                striped : true, // 设置为true会有隔行变色效果
+                                dataType : "json", // 服务器返回的数据类型
+                                pagination : false, // 设置为true会在底部显示分页条
+                                // queryParamsType : "limit",
+                                // //设置为limit则会发送符合RESTFull格式的参数
+                                singleSelect : false, // 设置为true将禁止多选
+                                // contentType : "application/x-www-form-urlencoded",
+                                // //发送到服务器的数据编码类型
+                                //search : true, // 是否显示搜索框
+                                showColumns : false, // 是否显示内容下拉框（选择显示的列）
+                                queryParams : function(params) {
+                                    return {
+                                        appId:parentId,
+                                    };
+                                },
+                                onDblClickRow: function (row, element) {
+                                    view(row["appVersionId"]);
+                                },
+                                onClickRow: function (row, element) {
+                                    $('.success').removeClass('success');//去除之前选中的行的，选中样式
+                                    $(element).addClass('success');//添加当前选中的 success样式用于区别
+                                    $(APPVERSIONTable).bootstrapTable("uncheckAll");
+                                    var rowindex=$(element).attr("data-index");
+                                    $(APPVERSIONTable).bootstrapTable('check',rowindex);
+                                },
+                                // //请求服务器数据时，你可以通过重写参数的方式添加一些额外的参数，例如 toolbar 中的参数 如果
+                                // queryParamsType = 'limit' ,返回参数必须包含
+                                // limit, offset, search, sort, order 否则, 需要包含:
+                                // pageSize, pageNumber, searchText, sortName,
+                                // sortOrder.
+                                // 返回false将会终止请求
+                                columns : [
+                                    {
+                                        checkbox : true
+                                    },
+                                    {
+                                        field : 'appVersionId',
+                                        title : '主键ID',
+                                        visible :false
+                                    },
+                                    {
+                                        field : 'SerialNumber',
+                                        title : '序号',
+                                        align : 'center',
+                                        width : '30px',
+                                        formatter: function (value ,row ,index){
+                                            var pageNumber=$('#bTable').bootstrapTable("getOptions").pageNumber;
+                                            var pageSize=$('#bTable').bootstrapTable("getOptions").pageSize;
+                                            return (pageNumber-1)*pageSize+index+1;
+                                        }
+                                    },
+                                    {
+                                        field : 'appId',
+                                        title : 'APP-ID',
+                                        visible:false
+                                    },
+                                    {
+                                        field : 'delFlag',
+                                        title : '删除标识',
+										visible:false
+                                    },
+                                    {
+                                        field : 'versionCode',
+                                        title : '版本号',
+                                        width : '40px',
+                                    },
+                                    {
+                                        field : 'buildCode',
+                                        title : '构建号',
+                                        width : '30px',
+                                    },
+                                    {
+                                        field : 'appSizes',
+                                        title : 'APP大小',
+                                        width : '30px',
+                                    },
+                                    {
+                                        field : 'totalLoadNumber',
+                                        title : '总下载次数',
+                                        width : '40px',
+                                    },
+                                    {
+                                        field : 'displayState',
+                                        title : '显示状态',
+                                        align : 'center',
+                                        width : '50px',
+                                        valign : 'center',
+                                        formatter : function(value, row, index) {
+                                            if (value == '1') {
+                                                return '<span class="label label-primary">是</span>';
+                                            } else if (value == '0') {
+                                                return '<span class="label label-danger">否</span>';
+                                            }
+                                        }
+                                    },
+                                    {
+                                        field : 'todayLoadNumber',
+                                        title : '今天下载次数',
+                                        width : '40px',
+                                    },
+                                    {
+                                        field : 'versionDescription',
+                                        title : '版本描述',
+                                        visible:false
+                                    },
+                                    {
+                                        field : 'updateDescription',
+                                        title : '更新描述',
+                                        visible:false
+                                    },
+                                    {
+                                        field : 'createTime',
+                                        title : '创建时间',
+                                        width : '140px'
+                                    },
+                                    {
+                                        title : '操作',
+                                        field : 'operation',
+                                        align : 'center',
+                                        width : '30px',
+                                        formatter : function(value, row, index) {
+                                            var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
+                                                + row.appVersionId
+                                                + '\')"><i class="fa fa-remove"></i></a> ';
+                                            return  d ;
+                                        }
+                                    } ]
+                            });
+                        }
 					});
 }
 function reLoad() {

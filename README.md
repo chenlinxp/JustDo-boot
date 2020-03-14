@@ -72,3 +72,27 @@
 4. 安全编码：用户表单提交所有数据，在服务器端都进行安全编码，防止用户提交非法脚本及SQL注入获取敏感数据等，确保数据安全。
 5. 密码加密：登录用户密码进行加盐的SHA1散列加密，此加密方法是不可逆的。保证密文泄露后的安全问题。
 6. 强制访问：系统对所有管理端链接都进行用户身份权限验证，防止用户直接填写url进行访问。
+
+1.首先，将Springboot（Maven）项目打为jar包形式。命令：
+cd 进入`/project(项目主目录)`
+mvn package
+如果报错如下：
+Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test (default-test) on project demo: There are test failures.
+就执行这条命令：
+mvn package -Dmaven.test.skip=true
+
+jar包部署的启动方式
+nohup java -jar justdo-1.1.0.jar >logName.log 2>&1 &
+
+nohup表示永久运行。&表示后台运行
+
+">" 代表重定向到哪里
+
+1 表示stdout标准输出，系统默认值是1，所以">/dev/null"等同于"1>/dev/null"
+2 表示stderr标准错误
+
+
+tail -f  logName.log
+
+
+*/5 * * * * /etc/init.d/mysqld restart >>/tmp/mysql-server.log 2>&1 

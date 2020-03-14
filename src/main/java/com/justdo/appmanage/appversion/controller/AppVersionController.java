@@ -3,8 +3,6 @@ package com.justdo.appmanage.appversion.controller;
 import com.justdo.appmanage.appversion.domain.AppVersionDO;
 import com.justdo.appmanage.appversion.service.AppVersionService;
 import com.justdo.common.annotation.Log;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
 import com.justdo.system.dict.service.DictContentService;
 import io.swagger.annotations.ApiOperation;
@@ -59,15 +57,17 @@ public class AppVersionController {
 	@GetMapping("/list")
 	@RequiresPermissions("appmanage:appversion:list")
 	@ApiOperation(value="获取APP包版本记录管理列表接口", notes="获取APP包版本记录管理列表接口")
-	public PageUtils list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-		List<AppVersionDO> appVersionList = appVersionService.list(query);
-		int total = appVersionService.count(query);
-		PageUtils pageUtils = new PageUtils(appVersionList, total);
-		return pageUtils;
+//	public PageUtils list(@RequestParam Map<String, Object> params){
+//		//查询列表数据
+//        Query query = new Query(params);
+//		List<AppVersionDO> appVersionList = appVersionService.list(query);
+//		int total = appVersionService.count(query);
+//		PageUtils pageUtils = new PageUtils(appVersionList, total);
+//		return pageUtils;
+//	}
+	public List<AppVersionDO> list(@RequestParam Map<String, Object> params){
+		return appVersionService.list(params);
 	}
-
 	/**
 	* APP包版本记录管理详情页面
 	* @param id
