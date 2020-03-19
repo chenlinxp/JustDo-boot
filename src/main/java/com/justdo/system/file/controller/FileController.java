@@ -104,7 +104,6 @@ public class FileController extends BaseController {
 	@RequiresPermissions("system:file:update")
 	public R update(@RequestBody FileDO file) {
 		fileService.update(file);
-
 		return R.ok();
 	}
 

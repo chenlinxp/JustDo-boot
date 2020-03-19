@@ -1,6 +1,6 @@
 package com.justdo.common.utils;
 
-/* author：zss
+/*
  * 日期：2017年3月31日
  * 功能：根据文件名称判断类型
  * 接受参数类型：String 
@@ -8,6 +8,7 @@ package com.justdo.common.utils;
  * 备注：文件类型不完善，有需要的自行添加
  */
 public class FileType {
+
 	public static int fileType(String fileName) {
 		if (fileName == null) {
 			fileName = "文件名为空！";

@@ -65,7 +65,6 @@ function load() {
 								{
 									checkbox : true
 								},
-
 								{
 									field : 'SerialNumber',
 									title : '序号',
@@ -364,6 +363,16 @@ function add() {
 	});
 }
 
+function upload() {
+    layer.open({
+        type : 2,
+        title : '上传',
+        maxmin : true,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '500px', '520px' ],
+        content : preUrl + '/upload' // iframe的url
+    });
+}
 function edit() {
     // 返回所有选择的行，当没有选择的记录时，返回一个空数组
     var rows = $('#bTable').bootstrapTable('getSelections');

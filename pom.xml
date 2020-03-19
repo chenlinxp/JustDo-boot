@@ -100,6 +100,12 @@
             <artifactId>commons-io</artifactId>
             <version>2.5</version>
         </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
 
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -221,6 +227,40 @@
             <version>2.5.0</version>
         </dependency>
 
+        <!--安卓apk 解析-->
+        <dependency>
+            <groupId>net.dongliu</groupId>
+            <artifactId>apk-parser</artifactId>
+            <version>2.6.5</version>
+        </dependency>
+
+        <!--安卓apk 解析-->
+        <!-- https://mvnrepository.com/artifact/org.apkinfo/AXmlResourceParser -->
+        <!--<dependency>-->
+            <!--<groupId>org.apkinfo</groupId>-->
+            <!--<artifactId>AXmlResourceParser</artifactId>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
+
+        <!--苹果ipa 解析-->
+        <dependency>
+            <groupId>com.googlecode.plist</groupId>
+            <artifactId>dd-plist</artifactId>
+            <version>1.22</version>
+        </dependency>
+
+        <!-- 二维码支持包 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.glxn</groupId>
+            <artifactId>qrgen</artifactId>
+            <version>1.4</version>
+        </dependency>
         <!--war包部署需要-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->

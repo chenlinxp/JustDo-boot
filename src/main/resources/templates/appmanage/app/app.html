@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:shiro="http://www.w3.org/1999/xhtml">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -9,9 +9,12 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="appmanage:app:add" type="button" class="btn  btn-success" onclick="add()">
-                            <i class="fa fa-plus" aria-hidden="true"></i>添加
-                        </button>
+							<button shiro:hasPermission="appmanage:app:add" type="button" class="btn  btn-success" onclick="upload()">
+								<i class="fa fa-paper-plane-o" aria-hidden="true"></i>上传
+							</button>
+							<!--<button shiro:hasPermission="appmanage:app:add" type="button" class="btn  btn-success" onclick="add()">-->
+                            <!--<i class="fa fa-plus" aria-hidden="true"></i>添加-->
+                            <!--</button>-->
 							<button shiro:hasPermission="appmanage:app:edit" type="button" class="btn  btn-success" onclick="edit()">
                                 <i class="fa fa-edit" aria-hidden="true"></i>编辑
                             </button>
@@ -23,8 +26,7 @@
 							<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="关键字">
+							<input id="searchName" type="text" class="form-control" placeholder="关键字">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
