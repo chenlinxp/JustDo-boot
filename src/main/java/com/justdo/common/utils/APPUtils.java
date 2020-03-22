@@ -56,7 +56,7 @@ public class APPUtils {
 			aPPInfoBean.setPackageName(apkInfo.getPackageName());
 			aPPInfoBean.setVersionName(apkInfo.getVersionName());
 			aPPInfoBean.setVersionCode(apkInfo.getVersionCode());
-			aPPInfoBean.setAppType("1");
+			aPPInfoBean.setAppType(1);
 			String iconName = apkInfo.getApplicationIcon();
 
 			iconUrl = iconUrl+apkInfo.getApplicationLable();
@@ -64,7 +64,7 @@ public class APPUtils {
 			if(!icond.exists()){
 				icond.mkdirs();
 			}
-			iconUrl = iconUrl+"icon.png";
+			iconUrl = iconUrl+"/icon.png";
 			aPPInfoBean.setLogoImage(iconUrl);
 			//提取icon图片开始
 			InputStream is = extractFileFromApk(file.getPath(),iconName);
@@ -207,7 +207,7 @@ public class APPUtils {
 			if(!icond.exists()){
 				icond.mkdirs();
 			}
-			iconUrl = iconUrl+"icon.png";
+			iconUrl = iconUrl+"/icon.png";
 
 			//根据图标名称下载图标文件到指定位置
 			while ((ze2 = zipIns2.getNextEntry()) != null) {
@@ -249,7 +249,7 @@ public class APPUtils {
 			aPPInfoBean.setVersionCode(parameters.toString());
 
 			aPPInfoBean.setFileSize(String.valueOf(file.length() / 1024L / 1024L));
-			aPPInfoBean.setAppType("2");
+			aPPInfoBean.setAppType(2);
 			aPPInfoBean.setLogoImage(iconUrl);
 			/////////////////////////////////////////////////
 			infoIs.close();
@@ -287,21 +287,21 @@ public class APPUtils {
 				      +"<key>items</key>\n"
 				      +"<array>\n<dict>\n<key>assets</key>\n<array>\n"
 				      +"<dict>\n<key>kind</key>\n<string>software-package</string>\n<key>url</key>\n"
-				      +"<string>"+ baseAddress  + ipaPath + "</string>\n"
+				      +"<string>"+ baseAddress  + ipaPath.replace("app","files") + "</string>\n"
 				      +"</dict>\n"
 				      +"<dict>\n"
 				      +"<key>kind</key>\n"
 				      +"<string>full-size-image</string>\n"
 				      +"<key>needs-shine</key>\n"
 				      +"<true/>\n" + "<key>url</key>\n"
-				      +"<string>"+ baseAddress + logoImage + "</string>\n"
+				      +"<string>"+ baseAddress + logoImage.replace("app","files") + "</string>\n"
 				      +"</dict>\n"
 				      +"<dict>\n"
 				      +"<key>kind</key>\n"
 				      +"<string>display-image</string>\n"
 				      +"<key>needs-shine</key>\n" + "<true/>\n"
 				      +"<key>url</key>\n"
-				      +"<string>" +baseAddress + logoImage + "</string>\n"
+				      +"<string>" +baseAddress + logoImage.replace("app","files") + "</string>\n"
 				      +"</dict>\n" + "</array>\n"
 				      + "<key>metadata</key>\n"
 				      + "<dict>\n"

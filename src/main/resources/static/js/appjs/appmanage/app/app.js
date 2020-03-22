@@ -86,13 +86,34 @@ function load() {
 									title : 'APP名称',
                                     width : '60px'
 								},
+                                {
+                                    field : 'appType',
+                                    title : 'APP类型',
+                                    align : 'center',
+                                    valign : 'center',
+                                    width : '40px',
+                                    formatter : function(value, row, index) {
+                                        if (value == '1') {
+                                            return '<span class="label label-warning" style="font-size: larger">安卓</span>';
+                                        } else if (value == '2') {
+                                            return '<span class="label label-primary" style="font-size: larger">苹果</span>';
+                                        }else{
+                                            return '<span class="label label-white"  style="font-size: larger">未知</span>';
+                                        }
+                                    }
+                                },
 								{
 									field : 'iconUrl',
-									title : 'LOGO'
+									title : 'LOGO',
+                                    width : '60px',
+                                    formatter : function(value, row, index) {
+                                            return '<img src="'+value+'" height="46px" width="46px"/>';
+                                    }
 								},
 								{
 									field : 'appKey',
-									title : 'APP-KEY'
+									title : 'APP-KEY',
+                                    visible :false
 								},
 								{
 									field : 'bundleName',
@@ -113,7 +134,8 @@ function load() {
 								},
 								{
 									field : 'loadUrl', 
-									title : '下载地址' 
+									title : '下载地址',
+                                    visible :false
 								},
 								{
 									field : 'combineAppId', 
@@ -142,22 +164,6 @@ function load() {
                                     visible :false
 								},
 								{
-									field : 'appType', 
-									title : '类型',
-                                    align : 'center',
-                                    valign : 'center',
-                                    width : '40px',
-                                    formatter : function(value, row, index) {
-                                        if (value == '1') {
-                                            return '<span class="label label-warning">苹果</span>';
-                                        } else if (value == '2') {
-                                            return '<span class="label label-primary">安卓</span>';
-                                        }else{
-                                            return '<span class="label label-white">未知</span>';
-                                        }
-                                    }
-								},
-								{
 									field : 'isCombine', 
 									title : '是否绑定',
                                     align : 'center',
@@ -165,9 +171,9 @@ function load() {
                                     width : '40px',
                                     formatter : function(value, row, index) {
                                         if (value == '1') {
-                                            return '<span class="label label-primary">是</span>';
+                                            return '<span class="label label-primary" style="font-size: larger">是</span>';
                                         } else  {
-                                            return '<span class="label label-danger">否</span>';
+                                            return '<span class="label label-danger" style="font-size: larger">否</span>';
                                         }
                                     }
 								},
@@ -263,22 +269,42 @@ function load() {
                                     {
                                         field : 'versionCode',
                                         title : '版本号',
+                                        align : 'center',
                                         width : '40px',
                                     },
                                     {
                                         field : 'buildCode',
                                         title : '构建号',
+                                        align : 'center',
                                         width : '30px',
                                     },
                                     {
                                         field : 'appSizes',
-                                        title : 'APP大小',
+                                        title : 'APP大小(MB)',
+                                        align : 'center',
                                         width : '30px',
                                     },
                                     {
                                         field : 'totalLoadNumber',
                                         title : '总下载次数',
+                                        align : 'center',
                                         width : '40px',
+                                    },
+                                    {
+                                        field : 'todayLoadNumber',
+                                        title : '今天下载次数',
+                                        align : 'center',
+                                        width : '40px',
+                                    },
+                                    {
+                                        field : 'versionDescription',
+                                        title : '版本描述',
+                                        visible:true
+                                    },
+                                    {
+                                        field : 'updateDescription',
+                                        title : '更新描述',
+                                        visible:true
                                     },
                                     {
                                         field : 'displayState',
@@ -288,26 +314,11 @@ function load() {
                                         valign : 'center',
                                         formatter : function(value, row, index) {
                                             if (value == '1') {
-                                                return '<span class="label label-primary">是</span>';
+                                                return '<span class="label label-primary" style="font-size: larger">是</span>';
                                             } else if (value == '0') {
-                                                return '<span class="label label-danger">否</span>';
+                                                return '<span class="label label-danger" style="font-size: larger">否</span>';
                                             }
                                         }
-                                    },
-                                    {
-                                        field : 'todayLoadNumber',
-                                        title : '今天下载次数',
-                                        width : '40px',
-                                    },
-                                    {
-                                        field : 'versionDescription',
-                                        title : '版本描述',
-                                        visible:false
-                                    },
-                                    {
-                                        field : 'updateDescription',
-                                        title : '更新描述',
-                                        visible:false
                                     },
                                     {
                                         field : 'createTime',

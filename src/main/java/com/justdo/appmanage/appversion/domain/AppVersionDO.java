@@ -47,6 +47,7 @@ public class AppVersionDO extends BaseBean {
     public AppVersionDO(){ }
     public AppVersionDO(String appVersionId,String appId,String versionCode,String buildCode,String appSizes,Integer totalLoadNumber,Integer displayState,Integer delFlag,Integer todayLoadNumber,String versionDescription,String updateDescription,Date createTime){
 		super();
+	        this.appVersionId= appVersionId;
 			this.appId= appId;
 			this.delFlag= delFlag;
 			this.createTime= createTime;

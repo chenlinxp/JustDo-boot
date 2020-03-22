@@ -10,6 +10,7 @@ import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.QRCodeUtils;
 import com.justdo.common.utils.StringUtils;
 import com.justdo.config.JustdoConfig;
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,8 +41,8 @@ public class AppServiceImpl implements AppService {
 
 
 	@Override
-	public AppDO getByBundleId(String bundleId){
-		return appDao.get(bundleId);
+	public AppDO getByBundleId(Map<String, Object> map){
+		return appDao.getByBundleId(map);
 	}
 	
 	@Override
@@ -86,59 +87,79 @@ public class AppServiceImpl implements AppService {
 		String versionName = app.getVersionName();
 		String versionCode = app.getVersionCode();
 		String logoImage = app.getLogoImage();
+		logoImage =	"/"+logoImage.substring(logoImage.lastIndexOf("app"), logoImage.length()).replace("app","files");
 		String bundleName = app.getBundleName();
 		String fileSize = app.getFileSize();
+		String appId = StringUtils.getUUID();
+//		a = a.substring(a.lastIndexOf("app"), a.length()).replace("app","files");
+//		b = b.substring(b.lastIndexOf("app"), b.length()).replace("app","files");
+//		c = c.substring(c.lastIndexOf("app"), c.length()).replace("app","files");
+
 		Date date = new Date();
-		AppDO appDO = this.getByBundleId(app.getPackageName());
+		Map<String, Object> map = new HashedMap();
+		map.put("bundleId",app.getPackageName());
+		map.put("appType",app.getAppType());
+		AppDO appDO = this.getByBundleId(map);
 		if(appDO == null) {
-			appDO.setBundleName(bundleName);
-			appDO.setBundleId(pageName);
-			appDO.setAppKey(StringUtils.getUUID());
-			appDO.setAppId(StringUtils.getUUID());
-			String loadUrl = "/appmanage/app/download/"+appDO.getAppId();
-			appDO.setLoadUrl(loadUrl);
-			appDO.setCodeQrA("暂无");
-			appDO.setCodeQrB("暂无");
-			appDO.setCodeQrC("暂无");
-			appDO.setIsCombine(Integer.valueOf(2));
-			appDO.setCombineAppId("");
-			appDO.setIconUrl(logoImage);
-			appDO.setCreateTime(date);
-			appDO.setModifyTime(date);
-			//一个月的有效期
-			appDO.setExpirerTime(DateUtils.addMonth(date,1));
-			String shortUrl = StringUtils.shortUrl(loadUrl);
-			appDO.setShortUrl(shortUrl);
-			shortUrl = justdoConfig.getBaseAddress() + shortUrl;
+
+
+			String appKey = StringUtils.getUUID();
+			String loadUrl = "/appmanage/app/download/"+appId;
 			String qRCodeUrl = logoImage.substring(0, logoImage.lastIndexOf("/"))+"/";
+			String shortUrl = StringUtils.shortUrl(loadUrl);
+			shortUrl = justdoConfig.getBaseAddress() + shortUrl;
+			String a =	QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,250,app.getLogoImage());
+			String b =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,500,app.getLogoImage());
+			String c =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,800,app.getLogoImage());
+			appDO = new AppDO(appId,appKey, appName, bundleName, pageName, shortUrl, loadUrl, DateUtils.addMonth(date,1), app.getAppType(), 0, "", null, logoImage, a, b, c, "", date, date);
 
-		String a =	QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,250,app.getLogoImage());
-		String b =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,500,app.getLogoImage());
-		String c =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,800,app.getLogoImage());
+//			appDO.setBundleName(bundleName);
+//			appDO.setBundleId(pageName);
+//			appDO.setAppKey(StringUtils.getUUID());
+//			appDO.setAppId(appId);
+//
+//			appDO.setLoadUrl(loadUrl);
+//			appDO.setCodeQrA("暂无");
+//			appDO.setCodeQrB("暂无");
+//			appDO.setCodeQrC("暂无");
+//			appDO.setIsCombine(Integer.valueOf(2));
+//			appDO.setCombineAppId("");
+//			appDO.setIconUrl(logoImage);
+//			appDO.setCreateTime(date);
+//			appDO.setModifyTime(date);
+//			//一个月的有效期
+//			appDO.setExpirerTime(DateUtils.addMonth(date,1));
+//
+//			appDO.setShortUrl(shortUrl);
 
-			appDO.setCodeQrA(a);
-			appDO.setCodeQrB(b);
-			appDO.setCodeQrC(c);
+//			appDO.setCodeQrA(a);
+//			appDO.setCodeQrB(b);
+//			appDO.setCodeQrC(c);
+			appDao.save(appDO);
+
 		}else{
-			appDO.setIconUrl(app.getLogoImage());
+			appId = appDO.getAppId();
+			appDO.setIconUrl(logoImage);
+			appDao.update(appDO);
 		}
 
+        String  appVersionId = StringUtils.getUUID();
+		AppVersionDO appVersionDO = new AppVersionDO(appVersionId,appId, versionName,versionCode, fileSize, 0, 1, 0, 0, "", "", date);
 
-		AppVersionDO appVersionDO = new AppVersionDO();
-		appVersionDO.setAppId(appDO.getAppId());
-		appVersionDO.setVersionCode(versionName);
-		appVersionDO.setBuildCode(versionCode);
-		appVersionDO.setAppSizes(fileSize);
-		appVersionDO.setVersionDescription("首次上传");
-		appVersionDO.setCreateTime(date);
-		appVersionDO.setTotalLoadNumber(Integer.valueOf(0));
-		appVersionDO.setUpdateDescription("无");
-		appVersionDO.setDisplayState(Integer.valueOf(1));
-		appVersionDO.setDelFlag(Integer.valueOf(0));
-		appVersionDO.setTodayLoadNumber(Integer.valueOf(0));
+//		AppVersionDO appVersionDO = new AppVersionDO();
+//		appVersionDO.setAppVersionId(StringUtils.getUUID());
+//		appVersionDO.setAppId(appDO.getAppId());
+//		appVersionDO.setVersionCode(versionName);
+//		appVersionDO.setBuildCode(versionCode);
+//		appVersionDO.setAppSizes(fileSize);
+//		appVersionDO.setVersionDescription("首次上传");
+//		appVersionDO.setCreateTime(date);
+//		appVersionDO.setTotalLoadNumber(Integer.valueOf(0));
+//		appVersionDO.setUpdateDescription("无");
+//		appVersionDO.setDisplayState(Integer.valueOf(1));
+//		appVersionDO.setDelFlag(Integer.valueOf(0));
+//		appVersionDO.setTodayLoadNumber(Integer.valueOf(0));
 
-
-		appDao.save(appDO);
 		return appVersionDao.save(appVersionDO);
 
 	}

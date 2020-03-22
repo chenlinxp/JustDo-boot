@@ -21,7 +21,7 @@ public class APPInfoBean extends BaseBean {
 
 	private String bundleName ;
 
-	private String appType;
+	private Integer appType;
 
 	private String fileSize;
 
@@ -82,11 +82,11 @@ public class APPInfoBean extends BaseBean {
 		this.fileSize = fileSize;
 	}
 
-	public String getAppType() {
+	public Integer getAppType() {
 		return appType;
 	}
 
-	public APPInfoBean setAppType(String appType) {
+	public APPInfoBean setAppType(Integer appType) {
 		this.appType = appType;
 		return this;
 	}

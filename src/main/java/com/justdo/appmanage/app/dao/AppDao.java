@@ -63,4 +63,11 @@ public interface AppDao {
 	 * @return list
 	 */
 	int batchDel(String[] appIds);
+
+	/**
+	 * 返回实体
+	 * @param map  String bundleId ,int appType
+	 * @return AppDO
+	 */
+	AppDO getByBundleId(Map<String, Object> map);
 }

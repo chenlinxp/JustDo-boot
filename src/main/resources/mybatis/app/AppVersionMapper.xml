@@ -59,12 +59,34 @@
 		</selectKey>
         insert into d_app_version
 		(
-		    `APP_VERSION_ID`,
-            `APP_ID`,             `DEL_FLAG`,             `CREATE_TIME`,             `VERSION_CODE`,             `BUILD_CODE`,             `APP_SIZES`,             `TOTAL_LOAD_NUMBER`,             `DISPLAY_STATE`,             `TODAY_LOAD_NUMBER`,             `VERSION_DESCRIPTION`,             `UPDATE_DESCRIPTION`        )
+		 `APP_VERSION_ID`,
+         `APP_ID`,
+		`DEL_FLAG`,
+		`CREATE_TIME`,
+		`VERSION_CODE`,
+		`BUILD_CODE`,
+		`APP_SIZES`,
+		`TOTAL_LOAD_NUMBER`,
+		`DISPLAY_STATE`,
+		`TODAY_LOAD_NUMBER`,
+		`VERSION_DESCRIPTION`,
+		`UPDATE_DESCRIPTION`
+		)
 		values
 		(
-           #{appVersionId},
-           #{appId},            #{delFlag},            #{createTime},            #{versionCode},            #{buildCode},            #{appSizes},            #{totalLoadNumber},            #{displayState},            #{todayLoadNumber},            #{versionDescription},            #{updateDescription}		)
+        #{appVersionId},
+        #{appId},
+		#{delFlag},
+		#{createTime},
+		#{versionCode},
+		#{buildCode},
+		#{appSizes},
+		#{totalLoadNumber},
+		#{displayState},
+		#{todayLoadNumber},
+		#{versionDescription},
+		#{updateDescription}
+		)
 	</insert>
 	 
 	<update id="update" parameterType="com.justdo.appmanage.appversion.domain.AppVersionDO">

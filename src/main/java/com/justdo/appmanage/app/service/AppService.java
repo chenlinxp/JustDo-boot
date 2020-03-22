@@ -24,10 +24,10 @@ public interface AppService {
 
 	/**
 	 * 返回实体
-	 * @param bundleId
+	 * @param map
 	 * @return AppDO
 	 */
-	 AppDO getByBundleId(String bundleId);
+	 AppDO getByBundleId(Map<String, Object> map);
 	/**
 	 * 返回实体list
 	 * @param map

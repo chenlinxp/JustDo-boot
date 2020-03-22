@@ -89,7 +89,7 @@ public class QRCodeUtils {
 				file.mkdirs();
 			}
 			ImageIO.write(image, imageType, file);
-			return filepath;
+			return "/"+filepath;
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "";
