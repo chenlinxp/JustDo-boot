@@ -2,7 +2,12 @@ package com.justdo.config;
 
 import com.justdo.common.interceptor.MyInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -14,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @create 2017-01-02 23:53
  */
 @Configuration
+//@EnableAutoConfiguration(exclude = {MultipartAutoConfiguration.class})
 public class WebConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	JustdoConfig justdoConfig;
@@ -46,6 +52,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/api/**");
 
 	}
+
+
+//	@Bean(name = "multipartResolver")
+//	public MultipartResolver multipartResolver(){
+//		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+//		resolver.setDefaultEncoding("UTF-8");
+//		resolver.setResolveLazily(true); //resolveLazily属性启用是为了推迟文件解析，以在在UploadAction中捕获文件大小异常
+//		resolver.setMaxInMemorySize(200*1024*1024);
+//		resolver.setMaxUploadSize(200*1024*1024);//上传文件大小 5M 5*1024*1024
+//		return resolver;
+//	}
 //
 //	@Bean
 //	public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {

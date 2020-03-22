@@ -231,9 +231,9 @@ function load() {
                                 // sortOrder.
                                 // 返回false将会终止请求
                                 columns : [
-                                    {
-                                        checkbox : true
-                                    },
+                                    // {
+                                    //     checkbox : true
+                                    // },
                                     {
                                         field : 'appVersionId',
                                         title : '主键ID',

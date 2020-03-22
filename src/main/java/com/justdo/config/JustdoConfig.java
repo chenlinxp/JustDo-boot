@@ -19,6 +19,9 @@ public class JustdoConfig {
 	//aapt路径
     private String aaptPath;
 
+	//服务器域名地址
+    private String baseAddress;
+
 	public String getUploadPath() {
 		return uploadPath;
 	}
@@ -51,5 +54,13 @@ public class JustdoConfig {
 		this.aaptPath = aaptPath;
 	}
 
+	public String getBaseAddress() {
+		return baseAddress;
+	}
+
+	public JustdoConfig setBaseAddress(String baseAddress) {
+		this.baseAddress = baseAddress;
+		return this;
+	}
 
 }

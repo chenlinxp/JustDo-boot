@@ -26,9 +26,9 @@ spring:
   http:
     multipart:
     #单个文件的大小
-      max-file-size: 30Mb
+      max-file-size: 100Mb
     #整体文件的大小
-      max-request-size: 30Mb
+      max-request-size: 200Mb
   devtools:
     restart:
       enabled: true

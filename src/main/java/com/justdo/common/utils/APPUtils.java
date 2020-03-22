@@ -6,8 +6,6 @@ import com.dd.plist.NSString;
 import com.dd.plist.PropertyListParser;
 import com.justdo.common.domain.APPInfoBean;
 import com.justdo.common.domain.ApkInfo;
-import net.dongliu.apk.parser.ApkFile;
-import net.dongliu.apk.parser.bean.ApkMeta;
 
 import java.io.*;
 import java.util.zip.ZipEntry;
@@ -35,14 +33,14 @@ public class APPUtils {
 
 		try {
 
-			ApkFile apkFile = new ApkFile(file);
-
-			ApkMeta apkMeta = apkFile.getApkMeta();
+//			ApkFile apkFile = new ApkFile(file);
+//
+//			ApkMeta apkMeta = apkFile.getApkMeta();
 
 //			String xml = apkFile.getManifestXml();
 
 //			System.out.println(xml);
-			aPPInfoBean.setAppName(apkMeta.getLabel());
+
 //			aPPInfoBean.setBundleName(apkMeta.getLabel());
 //			aPPInfoBean.setVersionCode(apkMeta.getVersionCode().toString());
 //			aPPInfoBean.setPackageName(apkMeta.getPackageName());
@@ -53,6 +51,7 @@ public class APPUtils {
 
 
 			ApkInfo apkInfo = (new ApkUtils()).getApkInfo(aaptPath, file.getPath());
+			aPPInfoBean.setAppName(apkInfo.getApplicationLable());
 			aPPInfoBean.setBundleName(apkInfo.getApplicationLable());
 			aPPInfoBean.setPackageName(apkInfo.getPackageName());
 			aPPInfoBean.setVersionName(apkInfo.getVersionName());
@@ -60,12 +59,12 @@ public class APPUtils {
 			aPPInfoBean.setAppType("1");
 			String iconName = apkInfo.getApplicationIcon();
 
-			iconUrl = iconUrl+"/"+apkInfo.getApplicationLable();
+			iconUrl = iconUrl+apkInfo.getApplicationLable();
 			File  icond = new File(iconUrl);
 			if(!icond.exists()){
 				icond.mkdirs();
 			}
-			iconUrl = iconUrl+"/icon.png";
+			iconUrl = iconUrl+"icon.png";
 			aPPInfoBean.setLogoImage(iconUrl);
 			//提取icon图片开始
 			InputStream is = extractFileFromApk(file.getPath(),iconName);
@@ -85,6 +84,7 @@ public class APPUtils {
 			//提取icon图片结束
 
 		} catch (Exception e) {
+			file.delete();
 			System.out.println("读取apk文件失败"+e.getMessage());
 		}
 		return aPPInfoBean;
@@ -147,6 +147,7 @@ public class APPUtils {
 	 * @return APPInfoBean
 	 */
 	public static APPInfoBean readIPA(File file,String iconUrl){
+
 		APPInfoBean aPPInfoBean = new APPInfoBean();
 		try {
 			InputStream is = new FileInputStream(file);
@@ -201,12 +202,12 @@ public class APPUtils {
 			aPPInfoBean.setAppName(parameters.toString());
 
 			aPPInfoBean.setBundleName(parameters.toString());
-			iconUrl = iconUrl+"/"+parameters.toString();
+			iconUrl = iconUrl+parameters.toString();
 			File  icond = new File(iconUrl);
 			if(!icond.exists()){
 				icond.mkdirs();
 			}
-			iconUrl = iconUrl+"/icon.png";
+			iconUrl = iconUrl+"icon.png";
 
 			//根据图标名称下载图标文件到指定位置
 			while ((ze2 = zipIns2.getNextEntry()) != null) {
@@ -257,11 +258,78 @@ public class APPUtils {
 
 
 		} catch (Exception e) {
+			file.delete();
 			System.out.println("读取ipa文件失败"+e.getMessage());
 		}
 		return aPPInfoBean;
 	}
 
+	public static String createPlist(String filePath,APPInfoBean aPPInfoBean,String baseAddress) throws IOException {
+		System.out.println("==========开始创建plist文件");
+		String ipaPath = filePath.substring(filePath.lastIndexOf("app"), filePath.length());
+		String plistPath = filePath.substring(0, filePath.lastIndexOf("."));
+		plistPath = plistPath + ".plist";
+        String logoImage = aPPInfoBean.getLogoImage();
+		logoImage = logoImage.substring(logoImage.lastIndexOf("app"), logoImage.length());
+		File file = new File(plistPath);
+		if(!file.exists()) {
+			try {
+				file.createNewFile();
+			} catch (IOException var12) {
+				var12.printStackTrace();
+			}
+		}
+
+		String plist = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+				      +"<!DOCTYPE plist PUBLIC \"-//Apple//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n"
+				      +"<plist version=\"1.0\">\n"
+				      +"<dict>\n"
+				      +"<key>items</key>\n"
+				      +"<array>\n<dict>\n<key>assets</key>\n<array>\n"
+				      +"<dict>\n<key>kind</key>\n<string>software-package</string>\n<key>url</key>\n"
+				      +"<string>"+ baseAddress  + ipaPath + "</string>\n"
+				      +"</dict>\n"
+				      +"<dict>\n"
+				      +"<key>kind</key>\n"
+				      +"<string>full-size-image</string>\n"
+				      +"<key>needs-shine</key>\n"
+				      +"<true/>\n" + "<key>url</key>\n"
+				      +"<string>"+ baseAddress + logoImage + "</string>\n"
+				      +"</dict>\n"
+				      +"<dict>\n"
+				      +"<key>kind</key>\n"
+				      +"<string>display-image</string>\n"
+				      +"<key>needs-shine</key>\n" + "<true/>\n"
+				      +"<key>url</key>\n"
+				      +"<string>" +baseAddress + logoImage + "</string>\n"
+				      +"</dict>\n" + "</array>\n"
+				      + "<key>metadata</key>\n"
+				      + "<dict>\n"
+				      + "<key>bundle-identifier</key>\n"
+				      + "<string>" + aPPInfoBean.getPackageName() + "</string>\n"
+				      + "<key>bundle-version</key>\n" + "<string>" + aPPInfoBean.getVersionName()+ "</string>\n"
+				      + "<key>kind</key>\n" + "<string>software</string>\n"
+				      + "<key>subtitle</key>\n" + "<string></string>\n"
+				      + "<key>title</key>\n" + "<string>" + aPPInfoBean.getAppName() + "</string>\n"
+				      + "</dict>\n"
+				      + "</dict>\n"
+				      + "</array>\n"
+				      + "</dict>\n"
+				      + "</plist>\n";
+
+		try {
+			FileOutputStream output = new FileOutputStream(file);
+			OutputStreamWriter writer = new OutputStreamWriter(output, "UTF-8");
+			writer.write(plist);
+			writer.close();
+			output.close();
+		} catch (Exception var11) {
+			System.err.println("==========创建plist文件异常：" + var11.getMessage());
+		}
+
+		System.out.println("==========成功创建plist文件");
+		return plistPath;
+	}
 
 	public static void main(String[] args) {
 

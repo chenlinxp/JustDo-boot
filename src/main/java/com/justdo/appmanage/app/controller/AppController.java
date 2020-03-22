@@ -8,7 +8,6 @@ import com.justdo.common.utils.*;
 import com.justdo.config.JustdoConfig;
 import com.justdo.system.dict.service.DictContentService;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -150,11 +148,10 @@ public class AppController {
 
 		String dateStr = DateUtils.formatDate(new Date(), "yyyyMMddHHmmss");
 
-		String serverAndPort = request.getServerName()+request.getServerPort();
 		APPInfoBean aPPInfoBean = null;
-		CommonsMultipartFile cFile = (CommonsMultipartFile)file;
-		DiskFileItem diskFileItem = (DiskFileItem)cFile.getFileItem();
-		File zipfile = diskFileItem.getStoreLocation();
+//		CommonsMultipartFile cFile = (CommonsMultipartFile)file;
+//		DiskFileItem diskFileItem = (DiskFileItem)cFile.getFileItem();
+//		File zipfile = diskFileItem.getStoreLocation();
 		File uploadAppPath = null;
 		if(!upload.exists()){
 			upload.mkdirs();
@@ -173,31 +170,41 @@ public class AppController {
 		AppDO appDo = new AppDO();
 		try {
 			File dest = null;
+			File tmp = null;
 			String appPath = null;
 			String iconPath = null;
-			if(extention.equalsIgnoreCase("apk")){
+			if(extention.equalsIgnoreCase(".apk")){
 
 				 iconPath = upload.getPath()+"/apk/";
-				 aPPInfoBean = APPUtils.readAPK(zipfile,iconPath,justdoConfig.getAaptPath());
-				 appPath = upload.getPath()+"/apk/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionCode()+"/"+dateStr;
+				 tmp = new File(iconPath+fileName);
+				 file.transferTo(tmp);
+
+				 aPPInfoBean = APPUtils.readAPK(tmp,iconPath,justdoConfig.getAaptPath());
+				 appPath = upload.getPath()+"/apk/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionName()+"/"+dateStr;
 				 uploadAppPath = new File(appPath);
 				 if(!uploadAppPath.exists()){
 					 uploadAppPath.mkdirs();
 				 }
 				 dest = new File(appPath+"/"+fileName);
 				 file.transferTo(dest);
+				 tmp.delete();
 
 			}else{
 
 				 iconPath = upload.getPath()+"/ipa/";
-				 aPPInfoBean =  APPUtils.readIPA(zipfile,iconPath);
-				 appPath = upload.getPath()+"/ipa/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionCode()+"/"+dateStr;
+				 tmp = new File(iconPath+fileName);
+				 file.transferTo(tmp);
+				 aPPInfoBean =  APPUtils.readIPA(tmp,iconPath);
+				 appPath = upload.getPath()+"/ipa/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionName()+"/"+dateStr;
 				 uploadAppPath = new File(appPath);
 				 if(!uploadAppPath.exists()){
 					uploadAppPath.mkdirs();
 				 }
 				 dest = new File(appPath+"/"+fileName);
 				 file.transferTo(dest);
+				 APPUtils.createPlist(dest.getPath(), aPPInfoBean,justdoConfig.getBaseAddress());
+				 tmp.delete();
+
 			}
 
 		} catch (Exception e) {

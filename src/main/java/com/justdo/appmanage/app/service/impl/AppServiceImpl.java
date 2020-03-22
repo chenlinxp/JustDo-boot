@@ -6,8 +6,10 @@ import com.justdo.appmanage.app.service.AppService;
 import com.justdo.appmanage.appversion.dao.AppVersionDao;
 import com.justdo.appmanage.appversion.domain.AppVersionDO;
 import com.justdo.common.domain.APPInfoBean;
+import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.QRCodeUtils;
 import com.justdo.common.utils.StringUtils;
+import com.justdo.config.JustdoConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,9 @@ public class AppServiceImpl implements AppService {
 
 	@Autowired
 	private AppVersionDao appVersionDao;
+
+	@Autowired
+	JustdoConfig justdoConfig;
 	
 	@Override
 	public AppDO get(String appId){
@@ -76,11 +81,18 @@ public class AppServiceImpl implements AppService {
 	@Override
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int  save(APPInfoBean app){
-
+		String appName = app.getBundleName();
+		String pageName = app.getPackageName();
+		String versionName = app.getVersionName();
+		String versionCode = app.getVersionCode();
+		String logoImage = app.getLogoImage();
+		String bundleName = app.getBundleName();
+		String fileSize = app.getFileSize();
+		Date date = new Date();
 		AppDO appDO = this.getByBundleId(app.getPackageName());
 		if(appDO == null) {
-			appDO.setBundleName(app.getBundleName());
-			appDO.setBundleId(app.getPackageName());
+			appDO.setBundleName(bundleName);
+			appDO.setBundleId(pageName);
 			appDO.setAppKey(StringUtils.getUUID());
 			appDO.setAppId(StringUtils.getUUID());
 			String loadUrl = "/appmanage/app/download/"+appDO.getAppId();
@@ -90,11 +102,15 @@ public class AppServiceImpl implements AppService {
 			appDO.setCodeQrC("暂无");
 			appDO.setIsCombine(Integer.valueOf(2));
 			appDO.setCombineAppId("");
-			appDO.setIconUrl(app.getLogoImage());
+			appDO.setIconUrl(logoImage);
+			appDO.setCreateTime(date);
+			appDO.setModifyTime(date);
+			//一个月的有效期
+			appDO.setExpirerTime(DateUtils.addMonth(date,1));
 			String shortUrl = StringUtils.shortUrl(loadUrl);
 			appDO.setShortUrl(shortUrl);
-			shortUrl = "http://pre-app.bhaf.com.cn/oxhide/" + shortUrl;
-			String qRCodeUrl = app.getLogoImage().substring(0, app.getLogoImage().lastIndexOf("/"))+"/";
+			shortUrl = justdoConfig.getBaseAddress() + shortUrl;
+			String qRCodeUrl = logoImage.substring(0, logoImage.lastIndexOf("/"))+"/";
 
 		String a =	QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,250,app.getLogoImage());
 		String b =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,500,app.getLogoImage());
@@ -110,16 +126,17 @@ public class AppServiceImpl implements AppService {
 
 		AppVersionDO appVersionDO = new AppVersionDO();
 		appVersionDO.setAppId(appDO.getAppId());
-		appVersionDO.setVersionCode(app.getVersionName());
-		appVersionDO.setBuildCode(app.getVersionCode());
-		appVersionDO.setAppSizes(app.getFileSize());
+		appVersionDO.setVersionCode(versionName);
+		appVersionDO.setBuildCode(versionCode);
+		appVersionDO.setAppSizes(fileSize);
 		appVersionDO.setVersionDescription("首次上传");
-		appVersionDO.setCreateTime(new Date());
+		appVersionDO.setCreateTime(date);
 		appVersionDO.setTotalLoadNumber(Integer.valueOf(0));
 		appVersionDO.setUpdateDescription("无");
 		appVersionDO.setDisplayState(Integer.valueOf(1));
 		appVersionDO.setDelFlag(Integer.valueOf(0));
 		appVersionDO.setTodayLoadNumber(Integer.valueOf(0));
+
 
 		appDao.save(appDO);
 		return appVersionDao.save(appVersionDO);
