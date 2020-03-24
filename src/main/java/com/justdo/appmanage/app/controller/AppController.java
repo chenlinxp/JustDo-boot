@@ -181,6 +181,8 @@ public class AppController {
 
 				 aPPInfoBean = APPUtils.readAPK(tmp,iconPath,justdoConfig.getAaptPath());
 				 appPath = upload.getPath()+"/apk/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionName()+"/"+dateStr;
+
+				 aPPInfoBean.setAppPath(appPath);
 				 uploadAppPath = new File(appPath);
 				 if(!uploadAppPath.exists()){
 					 uploadAppPath.mkdirs();
@@ -196,6 +198,8 @@ public class AppController {
 				 file.transferTo(tmp);
 				 aPPInfoBean =  APPUtils.readIPA(tmp,iconPath);
 				 appPath = upload.getPath()+"/ipa/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionName()+"/"+dateStr;
+
+				aPPInfoBean.setAppPath(appPath);
 				 uploadAppPath = new File(appPath);
 				 if(!uploadAppPath.exists()){
 					uploadAppPath.mkdirs();

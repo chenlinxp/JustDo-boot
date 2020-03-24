@@ -1,10 +1,14 @@
 package com.justdo.portal.controller;
 
-import com.justdo.system.article.domain.ArticleDO;
-import com.justdo.system.article.service.ArticleService;
+import com.justdo.appmanage.app.domain.AppDO;
+import com.justdo.appmanage.app.service.AppService;
+import com.justdo.appmanage.appversion.dao.AppVersionDao;
+import com.justdo.appmanage.appversion.domain.AppVersionDO;
 import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
+import com.justdo.system.article.domain.ArticleDO;
+import com.justdo.system.article.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +26,12 @@ import java.util.Map;
 public class PortalController {
 	@Autowired
 	ArticleService articleService;
+
+	@Autowired
+	private AppService appService;
+
+	@Autowired
+	private AppVersionDao appVersionDao;
 
 	@GetMapping()
 	String portal() {
@@ -55,5 +65,28 @@ public class PortalController {
 		}
 		model.addAttribute("article", articleDO);
 		return "portal/index/post";
+	}
+
+	@GetMapping("/app/{appId}")
+	String appInfo(@PathVariable("appId") String appId,@RequestParam(value="id",defaultValue="") String appVersionId, Model model) {
+
+		AppDO appDO = appService.get(appId);
+		AppVersionDO appVersionDO = null;
+		Map<String, Object> map = new HashMap<>(16);
+		map.put("appId", appId);
+		if(appVersionId==""){
+			List<AppVersionDO> appVersionDOList = appVersionDao.list(map);
+			model.addAttribute("appVersionDOList", appVersionDOList);
+		}
+		else{
+			map.put("appVersionId", appVersionId);
+			if(appVersionDao.list(map).size()>0){
+				appVersionDO = appVersionDao.list(map).get(0);
+			}
+			model.addAttribute("appVersionDO", appVersionDO);
+		}
+		model.addAttribute("appDO", appDO);
+
+		return "portal/app";
 	}
 }

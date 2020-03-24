@@ -1,5 +1,7 @@
 
-var preUrl = "/appmanage/app"
+var preUrl = "/appmanage/app";
+
+var preUrl2 = "/appmanage/appversion"
 $(function() {
 	load();
 });
@@ -149,8 +151,11 @@ function load() {
 								},
 								{
 									field : 'codeQrA', 
-									title : '二维码图片路径A(8cm)' ,
-                                    visible :false
+									title : '二维码' ,
+                                    visible :true,
+                                    formatter : function(value, row, index) {
+                                        return '<img src="'+value+'" height="50px" width="50px"/>';
+                                    }
 								},
 								{
 									field : 'codeQrB', 
@@ -190,7 +195,8 @@ function load() {
 								{
 									field : 'modifyTime',
 									title : '修改时间',
-                                    width : '140px'
+                                    width : '140px',
+                                    visible:false
 								}],
                         onExpandRow : function (index, row, $detail) {
                             console.log(index);
@@ -251,9 +257,10 @@ function load() {
                                         align : 'center',
                                         width : '30px',
                                         formatter: function (value ,row ,index){
-                                            var pageNumber=$('#bTable').bootstrapTable("getOptions").pageNumber;
-                                            var pageSize=$('#bTable').bootstrapTable("getOptions").pageSize;
-                                            return (pageNumber-1)*pageSize+index+1;
+                                            // var pageNumber=$('#bTable').bootstrapTable("getOptions").pageNumber;
+                                            // var pageSize=$('#bTable').bootstrapTable("getOptions").pageSize;
+                                            // return (pageNumber-1)*pageSize+index+1;
+                                            return index+1;
                                         }
                                     },
                                     {
@@ -329,18 +336,32 @@ function load() {
                                         title : '操作',
                                         field : 'operation',
                                         align : 'center',
-                                        width : '30px',
+                                        width : '140px',
                                         formatter : function(value, row, index) {
-                                            var d = '<a class="btn btn-warning btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
+                                            var a = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="下载"  mce_href="#" onclick="download(\''
+                                                + row.appVersionId
+                                                + '\')"><i class="fa fa-download"></i></a> ';
+                                            var b ='';
+                                            if(row.displayState=="1"){
+                                                 b = '<a class="btn  btn-sm '+s_delete_h+'" href="#" title="隐藏"  mce_href="#" onclick="hidden(\''
+                                                    + row.appVersionId
+                                                    + '\')"><i class="fa fa-eye"></i></a> ';
+                                            }else{
+                                                 b = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="显示"  mce_href="#" onclick="hidden(\''
+                                                    + row.appVersionId
+                                                    + '\')"><i class="fa fa-eye"></i></a> ';
+                                            }
+                                            var c = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
                                                 + row.appVersionId
                                                 + '\')"><i class="fa fa-remove"></i></a> ';
-                                            return  d ;
+                                            return  a + b + c ;
                                         }
                                     } ]
                             });
                         }
 					});
 }
+/*fa-low-vision*/
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
@@ -403,15 +424,15 @@ function edit() {
 		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
-function del() {
+function del(id) {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
 	}, function() {
 		$.ajax({
-			url : preUrl+"/del",
+			url : preUrl2+"/del",
 			type : "post",
 			data : {
-				'appId' : id
+				'appVersionId' : id
 			},
 			success : function(r) {
 				if (r.code==0) {

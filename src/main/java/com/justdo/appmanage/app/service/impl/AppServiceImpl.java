@@ -94,7 +94,7 @@ public class AppServiceImpl implements AppService {
 //		a = a.substring(a.lastIndexOf("app"), a.length()).replace("app","files");
 //		b = b.substring(b.lastIndexOf("app"), b.length()).replace("app","files");
 //		c = c.substring(c.lastIndexOf("app"), c.length()).replace("app","files");
-
+		String loadUrl = "/portal/app/"+appId;
 		Date date = new Date();
 		Map<String, Object> map = new HashedMap();
 		map.put("bundleId",app.getPackageName());
@@ -104,7 +104,6 @@ public class AppServiceImpl implements AppService {
 
 
 			String appKey = StringUtils.getUUID();
-			String loadUrl = "/appmanage/app/download/"+appId;
 			String qRCodeUrl = logoImage.substring(0, logoImage.lastIndexOf("/"))+"/";
 			String shortUrl = StringUtils.shortUrl(loadUrl);
 			shortUrl = justdoConfig.getBaseAddress() + shortUrl;
@@ -112,39 +111,25 @@ public class AppServiceImpl implements AppService {
 			String b =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,500,app.getLogoImage());
 			String c =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,800,app.getLogoImage());
 			appDO = new AppDO(appId,appKey, appName, bundleName, pageName, shortUrl, loadUrl, DateUtils.addMonth(date,1), app.getAppType(), 0, "", null, logoImage, a, b, c, "", date, date);
-
-//			appDO.setBundleName(bundleName);
-//			appDO.setBundleId(pageName);
-//			appDO.setAppKey(StringUtils.getUUID());
-//			appDO.setAppId(appId);
-//
-//			appDO.setLoadUrl(loadUrl);
-//			appDO.setCodeQrA("暂无");
-//			appDO.setCodeQrB("暂无");
-//			appDO.setCodeQrC("暂无");
-//			appDO.setIsCombine(Integer.valueOf(2));
-//			appDO.setCombineAppId("");
-//			appDO.setIconUrl(logoImage);
-//			appDO.setCreateTime(date);
-//			appDO.setModifyTime(date);
-//			//一个月的有效期
-//			appDO.setExpirerTime(DateUtils.addMonth(date,1));
-//
-//			appDO.setShortUrl(shortUrl);
-
-//			appDO.setCodeQrA(a);
-//			appDO.setCodeQrB(b);
-//			appDO.setCodeQrC(c);
 			appDao.save(appDO);
 
 		}else{
 			appId = appDO.getAppId();
 			appDO.setIconUrl(logoImage);
+			appDO.setExpirerTime(date);
 			appDao.update(appDO);
 		}
 
         String  appVersionId = StringUtils.getUUID();
-		AppVersionDO appVersionDO = new AppVersionDO(appVersionId,appId, versionName,versionCode, fileSize, 0, 1, 0, 0, "", "", date);
+		String  versionLoadUrl = loadUrl+"?id="+appVersionId;
+		String  versionLoadqRCode =justdoConfig.getBaseAddress()+versionLoadUrl;
+		String  appPath =  app.getAppPath();
+		String  d = QRCodeUtils.encodeZxingCode(versionLoadqRCode,appPath,250,app.getLogoImage());
+		String downLoadUrl = "/"+appPath.substring(appPath.lastIndexOf("app"), appPath.length()).replace("app","files");
+		if(app.getAppType()==2){
+			downLoadUrl.replace("ipa","plist");
+		}
+		AppVersionDO appVersionDO = new AppVersionDO(appVersionId,appId, versionName,versionCode, fileSize, 0, 1, 0, 0, "", "", date,versionLoadUrl,d,downLoadUrl);
 
 //		AppVersionDO appVersionDO = new AppVersionDO();
 //		appVersionDO.setAppVersionId(StringUtils.getUUID());

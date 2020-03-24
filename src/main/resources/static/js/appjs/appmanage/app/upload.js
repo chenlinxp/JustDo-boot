@@ -39,11 +39,15 @@ function save() {
         //contentType: "application/x-www-form-urlencoded; charset=utf-8",
         processData: false,  // jQuery不要去处理发送的数据
         success:function(res){
+            if (data.code == 0) {
             console.log(res);
             parent.layer.msg("操作成功");
             parent.reLoad();
             var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
             parent.layer.close(index);
+            } else {
+               	parent.layer.alert(data.msg)
+              }
         },
         error:function(){
             console.log("后台处理错误");

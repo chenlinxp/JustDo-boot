@@ -25,6 +25,8 @@ public class APPInfoBean extends BaseBean {
 
 	private String fileSize;
 
+	private String appPath;
+
 
 	public String getAppName() {
 		return appName;
@@ -89,5 +91,12 @@ public class APPInfoBean extends BaseBean {
 	public APPInfoBean setAppType(Integer appType) {
 		this.appType = appType;
 		return this;
+	}
+	public String getAppPath() {
+		return appPath;
+	}
+
+	public void setAppPath(String appPath) {
+		this.appPath = appPath;
 	}
 }
