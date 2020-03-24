@@ -27,6 +27,8 @@ public class APPInfoBean extends BaseBean {
 
 	private String appPath;
 
+	private String appRename;
+
 
 	public String getAppName() {
 		return appName;
@@ -98,5 +100,14 @@ public class APPInfoBean extends BaseBean {
 
 	public void setAppPath(String appPath) {
 		this.appPath = appPath;
+	}
+
+	public String getAppRename() {
+		return appRename;
+	}
+
+	public APPInfoBean setAppRename(String appRename) {
+		this.appRename = appRename;
+		return this;
 	}
 }

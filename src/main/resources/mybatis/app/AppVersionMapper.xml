@@ -4,115 +4,130 @@
 <mapper namespace="com.justdo.appmanage.appversion.dao.AppVersionDao">
 
 	<select id="get" resultType="com.justdo.appmanage.appversion.domain.AppVersionDO">
-		select  `APP_VERSION_ID`, `APP_ID`,`DEL_FLAG`,`CREATE_TIME`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION` from d_app_version where APP_VERSION_ID = #{value}
+		select  `APP_VERSION_ID`, `APP_ID`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`DEL_FLAG`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION`,`CREATE_TIME`,`LOAD_URL`,`CODEQR`,`DOWNLOAD_URL` from d_app_version where APP_VERSION_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.appmanage.appversion.domain.AppVersionDO">
-		select  `APP_VERSION_ID`, `APP_ID`,`DEL_FLAG`,`CREATE_TIME`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION` from d_app_version
-        <where>
+		select  `APP_VERSION_ID`, `APP_ID`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`DEL_FLAG`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION`,`CREATE_TIME`,`LOAD_URL`,`CODEQR`,`DOWNLOAD_URL` from d_app_version
+		<where>
 			<if test="appVersionId != null and appVersionId != ''"> and APP_VERSION_ID != #{appVersionId} </if>
-		  <if test="appId != null and appId != ''"> and APP_ID = #{appId} </if>
-		  <if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
-		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
-		  <if test="versionCode != null and versionCode != ''"> and VERSION_CODE = #{versionCode} </if>
-		  <if test="buildCode != null and buildCode != ''"> and BUILD_CODE = #{buildCode} </if>
-		  <if test="appSizes != null and appSizes != ''"> and APP_SIZES = #{appSizes} </if>
-		  <if test="totalLoadNumber != null and totalLoadNumber != ''"> and TOTAL_LOAD_NUMBER = #{totalLoadNumber} </if>
-		  <if test="displayState != null and displayState != ''"> and DISPLAY_STATE = #{displayState} </if>
-		  <if test="todayLoadNumber != null and todayLoadNumber != ''"> and TODAY_LOAD_NUMBER = #{todayLoadNumber} </if>
-		  <if test="versionDescription != null and versionDescription != ''"> and VERSION_DESCRIPTION = #{versionDescription} </if>
-		  <if test="updateDescription != null and updateDescription != ''"> and UPDATE_DESCRIPTION = #{updateDescription} </if>
+			<if test="appId != null and appId != ''"> and APP_ID = #{appId} </if>
+			<if test="versionCode != null and versionCode != ''"> and VERSION_CODE = #{versionCode} </if>
+			<if test="buildCode != null and buildCode != ''"> and BUILD_CODE = #{buildCode} </if>
+			<if test="appSizes != null and appSizes != ''"> and APP_SIZES = #{appSizes} </if>
+			<if test="totalLoadNumber != null and totalLoadNumber != ''"> and TOTAL_LOAD_NUMBER = #{totalLoadNumber} </if>
+			<if test="displayState != null and displayState != ''"> and DISPLAY_STATE = #{displayState} </if>
+			<if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
+			<if test="todayLoadNumber != null and todayLoadNumber != ''"> and TODAY_LOAD_NUMBER = #{todayLoadNumber} </if>
+			<if test="versionDescription != null and versionDescription != ''"> and VERSION_DESCRIPTION = #{versionDescription} </if>
+			<if test="updateDescription != null and updateDescription != ''"> and UPDATE_DESCRIPTION = #{updateDescription} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="loadUrl != null and loadUrl != ''"> and LOAD_URL = #{loadUrl} </if>
+			<if test="codeQr != null and codeQr != ''"> and CODEQR = #{codeQr} </if>
+			<if test="downloadUrl != null and downloadUrl != ''"> and DOWNLOAD_URL = #{downloadUrl} </if>
 		</where>
-        <choose>
-            <when test="sort != null and sort.trim() != ''">
-                order by ${sort} ${order}
-            </when>
+		<choose>
+			<when test="sort != null and sort.trim() != ''">
+				order by ${sort} ${order}
+			</when>
 			<otherwise>
-                order by APP_VERSION_ID desc
+				order by APP_VERSION_ID desc
 			</otherwise>
-        </choose>
+		</choose>
 		<if test="offset != null and limit != null">
 			limit #{offset}, #{limit}
 		</if>
 	</select>
-	
- 	<select id="count" resultType="int">
+
+	<select id="count" resultType="int">
 		select count(*) from d_app_version
-		 <where>  
-		  <if test="appId != null and appId != ''"> and APP_ID = #{appId} </if>
-		  <if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
-		  <if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
-		  <if test="versionCode != null and versionCode != ''"> and VERSION_CODE = #{versionCode} </if>
-		  <if test="buildCode != null and buildCode != ''"> and BUILD_CODE = #{buildCode} </if>
-		  <if test="appSizes != null and appSizes != ''"> and APP_SIZES = #{appSizes} </if>
-		  <if test="totalLoadNumber != null and totalLoadNumber != ''"> and TOTAL_LOAD_NUMBER = #{totalLoadNumber} </if>
-		  <if test="displayState != null and displayState != ''"> and DISPLAY_STATE = #{displayState} </if>
-		  <if test="todayLoadNumber != null and todayLoadNumber != ''"> and TODAY_LOAD_NUMBER = #{todayLoadNumber} </if>
-		  <if test="versionDescription != null and versionDescription != ''"> and VERSION_DESCRIPTION = #{versionDescription} </if>
-		  <if test="updateDescription != null and updateDescription != ''"> and UPDATE_DESCRIPTION = #{updateDescription} </if>
+		<where>
+			<if test="appId != null and appId != ''"> and APP_ID = #{appId} </if>
+			<if test="versionCode != null and versionCode != ''"> and VERSION_CODE = #{versionCode} </if>
+			<if test="buildCode != null and buildCode != ''"> and BUILD_CODE = #{buildCode} </if>
+			<if test="appSizes != null and appSizes != ''"> and APP_SIZES = #{appSizes} </if>
+			<if test="totalLoadNumber != null and totalLoadNumber != ''"> and TOTAL_LOAD_NUMBER = #{totalLoadNumber} </if>
+			<if test="displayState != null and displayState != ''"> and DISPLAY_STATE = #{displayState} </if>
+			<if test="delFlag != null and delFlag != ''"> and DEL_FLAG = #{delFlag} </if>
+			<if test="todayLoadNumber != null and todayLoadNumber != ''"> and TODAY_LOAD_NUMBER = #{todayLoadNumber} </if>
+			<if test="versionDescription != null and versionDescription != ''"> and VERSION_DESCRIPTION = #{versionDescription} </if>
+			<if test="updateDescription != null and updateDescription != ''"> and UPDATE_DESCRIPTION = #{updateDescription} </if>
+			<if test="createTime != null and createTime != ''"> and CREATE_TIME = #{createTime} </if>
+			<if test="loadUrl != null and loadUrl != ''"> and LOAD_URL = #{loadUrl} </if>
+			<if test="codeQr != null and codeQr != ''"> and CODEQR = #{codeQr} </if>
+			<if test="downloadUrl != null and downloadUrl != ''"> and DOWNLOAD_URL = #{downloadUrl} </if>
 		</where>
 	</select>
-	 
+
 	<insert id="save" parameterType="com.justdo.appmanage.appversion.domain.AppVersionDO">
-        <selectKey keyProperty="appVersionId" resultType="string" order="BEFORE">
-        select replace(uuid(), '-', '') as appVersionId from dual
+		<selectKey keyProperty="appVersionId" resultType="string" order="BEFORE">
+			select replace(uuid(), '-', '') as appVersionId from dual
 		</selectKey>
-        insert into d_app_version
+		insert into d_app_version
 		(
-		 `APP_VERSION_ID`,
-         `APP_ID`,
-		`DEL_FLAG`,
-		`CREATE_TIME`,
+		`APP_VERSION_ID`,
+		`APP_ID`,
 		`VERSION_CODE`,
 		`BUILD_CODE`,
 		`APP_SIZES`,
 		`TOTAL_LOAD_NUMBER`,
 		`DISPLAY_STATE`,
+		`DEL_FLAG`,
 		`TODAY_LOAD_NUMBER`,
 		`VERSION_DESCRIPTION`,
-		`UPDATE_DESCRIPTION`
+		`UPDATE_DESCRIPTION`,
+		`CREATE_TIME`,
+		`LOAD_URL`,
+		`CODEQR`,
+		`DOWNLOAD_URL`
 		)
 		values
 		(
-        #{appVersionId},
-        #{appId},
-		#{delFlag},
-		#{createTime},
+		#{appVersionId},
+		#{appId},
 		#{versionCode},
 		#{buildCode},
 		#{appSizes},
 		#{totalLoadNumber},
 		#{displayState},
+		#{delFlag},
 		#{todayLoadNumber},
 		#{versionDescription},
-		#{updateDescription}
+		#{updateDescription},
+		#{createTime},
+		#{loadUrl},
+		#{codeQr},
+		#{downloadUrl}
 		)
 	</insert>
-	 
+
 	<update id="update" parameterType="com.justdo.appmanage.appversion.domain.AppVersionDO">
-		update d_app_version 
+		update d_app_version
 		<set>
 			<if test="appId != null">`APP_ID` = #{appId}, </if>
-			<if test="delFlag != null">`DEL_FLAG` = #{delFlag}, </if>
-			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
 			<if test="versionCode != null">`VERSION_CODE` = #{versionCode}, </if>
 			<if test="buildCode != null">`BUILD_CODE` = #{buildCode}, </if>
 			<if test="appSizes != null">`APP_SIZES` = #{appSizes}, </if>
 			<if test="totalLoadNumber != null">`TOTAL_LOAD_NUMBER` = #{totalLoadNumber}, </if>
 			<if test="displayState != null">`DISPLAY_STATE` = #{displayState}, </if>
+			<if test="delFlag != null">`DEL_FLAG` = #{delFlag}, </if>
 			<if test="todayLoadNumber != null">`TODAY_LOAD_NUMBER` = #{todayLoadNumber}, </if>
 			<if test="versionDescription != null">`VERSION_DESCRIPTION` = #{versionDescription}, </if>
-			<if test="updateDescription != null">`UPDATE_DESCRIPTION` = #{updateDescription}</if>
+			<if test="updateDescription != null">`UPDATE_DESCRIPTION` = #{updateDescription}, </if>
+			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
+			<if test="loadUrl != null">`LOAD_URL` = #{loadUrl}, </if>
+			<if test="codeQr != null">`CODEQR` = #{codeQr}, </if>
+			<if test="downloadUrl != null">`DOWNLOAD_URL` = #{downloadUrl}</if>
 		</set>
 		where APP_VERSION_ID = #{appVersionId}
 	</update>
-	
+
 	<delete id="del">
 		delete from d_app_version where APP_VERSION_ID = #{value}
 	</delete>
-	
+
 	<delete id="batchDel">
-		delete from d_app_version where APP_VERSION_ID in 
+		delete from d_app_version where APP_VERSION_ID in
 		<foreach item="appVersionIds" collection="array" open="(" separator="," close=")">
 			#{appVersionIds}
 		</foreach>

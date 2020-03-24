@@ -124,8 +124,12 @@ public class AppServiceImpl implements AppService {
 		String  versionLoadUrl = loadUrl+"?id="+appVersionId;
 		String  versionLoadqRCode =justdoConfig.getBaseAddress()+versionLoadUrl;
 		String  appPath =  app.getAppPath();
+
 		String  d = QRCodeUtils.encodeZxingCode(versionLoadqRCode,appPath,250,app.getLogoImage());
+		d = "/"+d.substring(d.lastIndexOf("app"), d.length()).replace("app","files");
 		String downLoadUrl = "/"+appPath.substring(appPath.lastIndexOf("app"), appPath.length()).replace("app","files");
+
+		downLoadUrl = downLoadUrl+"/"+app.getAppRename();
 		if(app.getAppType()==2){
 			downLoadUrl.replace("ipa","plist");
 		}

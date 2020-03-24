@@ -45,12 +45,12 @@ public class AppVersionDO extends BaseBean {
     //下载页面
 	private String loadUrl;
 	//下载地址
-	private String downLoadUrl;
+	private String downloadUrl;
     /**
     * 构造方法
     */
     public AppVersionDO(){ }
-    public AppVersionDO(String appVersionId,String appId,String versionCode,String buildCode,String appSizes,Integer totalLoadNumber,Integer displayState,Integer delFlag,Integer todayLoadNumber,String versionDescription,String updateDescription,Date createTime,String loadUrl,String codeQr,String downLoadUrl){
+    public AppVersionDO(String appVersionId,String appId,String versionCode,String buildCode,String appSizes,Integer totalLoadNumber,Integer displayState,Integer delFlag,Integer todayLoadNumber,String versionDescription,String updateDescription,Date createTime,String loadUrl,String codeQr,String downloadUrl){
 
 	        this.appVersionId= appVersionId;
 			this.appId= appId;
@@ -66,7 +66,7 @@ public class AppVersionDO extends BaseBean {
 			this.updateDescription= updateDescription;
 			this.loadUrl = loadUrl;
 			this.codeQr = codeQr;
-			this.downLoadUrl = downLoadUrl;
+			this.downloadUrl = downloadUrl;
 	}
     /**
      * 设置：主键ID
@@ -230,12 +230,12 @@ public class AppVersionDO extends BaseBean {
 	public void setCodeQr(String codeQr) {
 		this.codeQr = codeQr;
 	}
-	public String getDownLoadUrl() {
-		return downLoadUrl;
+	public String getDownloadUrl() {
+		return downloadUrl;
 	}
 
-	public AppVersionDO setDownLoadUrl(String downLoadUrl) {
-		this.downLoadUrl = downLoadUrl;
+	public AppVersionDO setDownloadUrl(String downloadUrl) {
+		this.downloadUrl = downloadUrl;
 		return this;
 	}
 	@Override
