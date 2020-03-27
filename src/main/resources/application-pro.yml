@@ -1,6 +1,9 @@
 justdo:
   uploadPath: /usr/local/resource/uploaded_files/
   logfilesPath: /applog/
+  appUploadPath: /usr/local/app/
+  aaptPath: /usr/local/lib/apktool/aapt
+  baseAddress: http://7ae1fb84.ngrok.io/
 logging:
   level:
     root: error
