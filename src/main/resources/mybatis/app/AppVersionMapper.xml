@@ -122,7 +122,15 @@
 		where APP_VERSION_ID = #{appVersionId}
 	</update>
 
-	<delete id="del">
+	<update id="del">
+		update d_app_version
+		<set>
+			`DEL_FLAG` = 1
+		</set>
+		where APP_VERSION_ID = #{appVersionId}
+	</update>
+
+	<delete id="dell">
 		delete from d_app_version where APP_VERSION_ID = #{value}
 	</delete>
 

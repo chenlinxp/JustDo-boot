@@ -129,9 +129,14 @@ public class AppController {
 		return preUrl + "/upload";
 	}
 
-
+	/**
+	 * 上传APP安装包
+	 * @return R
+	 */
+	@Log("上传APP安装包")
 	@ResponseBody
 	@PostMapping("/upload")
+	@ApiOperation(value="上传APP安装包", notes="上传APP安装包")
 	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws FileNotFoundException {
 
 		String fileName = file.getOriginalFilename();
@@ -145,6 +150,8 @@ public class AppController {
 		System.out.println(filePath.getAbsolutePath());
 
 		File upload=new File(justdoConfig.getAppUploadPath());
+
+		String pythonShellPath = justdoConfig.getPythonShellPath();
 
 		String dateStr = DateUtils.formatDate(new Date(), "yyyyMMddHHmmss");
 
@@ -197,7 +204,7 @@ public class AppController {
 				 iconPath = upload.getPath()+"/ipa/";
 				 tmp = new File(iconPath+fileName);
 				 file.transferTo(tmp);
-				 aPPInfoBean =  APPUtils.readIPA(tmp,iconPath);
+				 aPPInfoBean =  APPUtils.readIPA(tmp,iconPath,pythonShellPath);
 				 appPath = upload.getPath()+"/ipa/"+aPPInfoBean.getAppName()+"/"+aPPInfoBean.getVersionName()+"/"+dateStr;
 
 				aPPInfoBean.setAppPath(appPath);

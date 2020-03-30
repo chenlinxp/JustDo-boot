@@ -66,6 +66,8 @@ public class AppVersionController {
 //		return pageUtils;
 //	}
 	public List<AppVersionDO> list(@RequestParam Map<String, Object> params){
+
+		params.put("delFlag","0");
 		return appVersionService.list(params);
 	}
 	/**
@@ -194,4 +196,31 @@ public class AppVersionController {
 		}
 		return R.error(1, "批量删除失败!");
 	}
+
+	/**
+	 * APP包版本记录的隐藏
+	 * @param appVersionId
+	 * @return R
+	 */
+	@Log("APP包版本记录的隐藏")
+	@PostMapping( "/hidden")
+	@ResponseBody
+	@RequiresPermissions("appmanage:appversion:hidden")
+	@ApiOperation(value="隐藏APP包版本记录管理接口", notes="隐藏APP包版本记录管理接口")
+	public R hidden( String appVersionId){
+		AppVersionDO appVersion = appVersionService.get(appVersionId);
+		if(appVersion!=null){
+			int state = 1;
+			if(appVersion.getDisplayState()==1){
+				state = 0;
+			}
+			appVersion.setDisplayState(state);
+			if(appVersionService.update(appVersion)>0){
+				return R.ok();
+			}
+			return R.ok();
+		}
+		return R.error(1, "处理失败!");
+	}
+
 }

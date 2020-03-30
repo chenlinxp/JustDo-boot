@@ -22,6 +22,9 @@ public class JustdoConfig {
 	//服务器域名地址
     private String baseAddress;
 
+	//ipa包icon图片处理的shell脚本
+    private String pythonShellPath;
+
 	public String getUploadPath() {
 		return uploadPath;
 	}
@@ -62,5 +65,12 @@ public class JustdoConfig {
 		this.baseAddress = baseAddress;
 		return this;
 	}
+	public String getPythonShellPath() {
+		return pythonShellPath;
+	}
 
+	public JustdoConfig setPythonShellPath(String pythonShellPath) {
+		this.pythonShellPath = pythonShellPath;
+		return this;
+	}
 }

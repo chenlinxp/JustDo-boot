@@ -21,7 +21,6 @@ import java.util.zip.ZipInputStream;
  */
 public class APPUtils {
 
-
 	/**
 	 * 读取apk
 	 * @param file
@@ -146,8 +145,9 @@ public class APPUtils {
 	 * @param file
 	 * @return APPInfoBean
 	 */
-	public static APPInfoBean readIPA(File file,String iconUrl){
+	public static APPInfoBean readIPA(File file,String iconUrl,String pythonShellPath){
 
+		String newIconName = "";
 		APPInfoBean aPPInfoBean = new APPInfoBean();
 		try {
 			InputStream is = new FileInputStream(file);
@@ -203,10 +203,12 @@ public class APPUtils {
 
 			aPPInfoBean.setBundleName(parameters.toString());
 			iconUrl = iconUrl+parameters.toString();
-			File  icond = new File(iconUrl);
-			if(!icond.exists()){
-				icond.mkdirs();
+			String tmpIconUrl = iconUrl+"/tmp";
+			File  iconfile = new File(tmpIconUrl);
+			if(!iconfile.exists()){
+				iconfile.mkdirs();
 			}
+			tmpIconUrl =  tmpIconUrl+"/icon.png";
 			iconUrl = iconUrl+"/icon.png";
 
 			//根据图标名称下载图标文件到指定位置
@@ -216,7 +218,7 @@ public class APPUtils {
 					System.out.println(name+"--------");
 					if(name.contains(icon.trim())){
 
-						FileOutputStream fos = new FileOutputStream(new File(iconUrl));
+						FileOutputStream fos = new FileOutputStream(new File(tmpIconUrl));
 						int chunk = 0;
 						byte[] data = new byte[1024];
 						while(-1!=(chunk=zipIns2.read(data))){
@@ -261,6 +263,22 @@ public class APPUtils {
 			file.delete();
 			System.out.println("读取ipa文件失败"+e.getMessage());
 		}
+		System.out.println("================================执行命令获取icon开始=========================");
+		Process process;
+		try {
+			process = Runtime.getRuntime().exec("sh "+pythonShellPath+"ipin.sh"+" "+pythonShellPath+" "+aPPInfoBean.getAppName());
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+			reader.close();
+			process.waitFor();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("================================执行命令获取icon结束=========================");
+		System.out.println("================================图标名称："+newIconName+"=========================");
 		return aPPInfoBean;
 	}
 
@@ -346,8 +364,9 @@ public class APPUtils {
 		System.out.println("======ipa==========");
 		String ipaiconurl = "/Users/chenlin/Documents/GitHub/app/ipa/";
 		String ipaUrl = "/Users/chenlin/Documents/GitHub/BHAF2.6.1.ipa";
+		String pythonShellPath = "/Users/chenlin/Documents/GitHub/app/ipin.sh";
 		File file2 = new File(ipaUrl);
-		aPPInfoBean = readIPA(file2,ipaiconurl);
+		aPPInfoBean = readIPA(file2,ipaiconurl,pythonShellPath);
 		System.out.println(JSONUtils.beanToJson(aPPInfoBean));
 	}
 

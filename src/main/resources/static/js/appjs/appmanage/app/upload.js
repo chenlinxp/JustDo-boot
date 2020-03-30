@@ -36,17 +36,18 @@ function save() {
         url:preUrl+"/upload",
         data : $('#signupForm').serialize(),
         dataType: 'json', //返回值类型 一般设置为json
-        //contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
         processData: false,  // jQuery不要去处理发送的数据
         success:function(res){
-            if (data.code == 0) {
+            if (res.code == 0) {
+             alert(123456);
             console.log(res);
             parent.layer.msg("操作成功");
             parent.reLoad();
             var index = parent.layer.getFrameIndex(window.name); // 获取窗口索引
             parent.layer.close(index);
             } else {
-               	parent.layer.alert(data.msg)
+               	parent.layer.alert(res.msg)
               }
         },
         error:function(){

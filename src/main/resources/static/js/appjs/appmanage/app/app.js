@@ -199,11 +199,11 @@ function load() {
                                     visible:false
 								}],
                         onExpandRow : function (index, row, $detail) {
-                            console.log(index);
-                            console.log(row);
+                            // console.log(index);
+                            // console.log(row);
                             onclick = row.appId;
                             var parentId = row.appId;
-                            var APPVERSIONTable = $detail.html('<table></table>').find('table');
+                            var APPVERSIONTable = $detail.html('<table id="child_table"></table>').find('table');
                             $(APPVERSIONTable).bootstrapTable({
                                 method : 'get', // 服务器数据的请求方式 get or post
                                 url : "/appmanage/appversion/list", // 服务器数据的加载地址
@@ -287,19 +287,22 @@ function load() {
                                     },
                                     {
                                         field : 'appSizes',
-                                        title : 'APP大小(MB)',
+                                        title : 'APP大小',
                                         align : 'center',
                                         width : '30px',
+                                        formatter: function (value ,row ,index){
+                                            return row.appSizes+"MB";
+                                        }
                                     },
                                     {
                                         field : 'totalLoadNumber',
-                                        title : '总下载次数',
+                                        title : '总下载数',
                                         align : 'center',
                                         width : '40px',
                                     },
                                     {
                                         field : 'todayLoadNumber',
-                                        title : '今天下载次数',
+                                        title : '今天下载数',
                                         align : 'center',
                                         width : '40px',
                                     },
@@ -336,35 +339,31 @@ function load() {
                                         title : '操作',
                                         field : 'operation',
                                         align : 'center',
-                                        width : '140px',
+                                        width : '170px',
                                         formatter : function(value, row, index) {
-                                            var a = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="下载"  mce_href="#" onclick="download(\''
-                                                + row.appVersionId
-                                                + '\')"><i class="fa fa-download"></i></a> ';
+
+                                            var a = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="下载"  mce_href="#" onclick="download(\'' + row.appVersionId+'\')"><i class="fa fa-download"></i></a> ';
                                             var b ='';
                                             if(row.displayState=="1"){
-                                                 b = '<a class="btn  btn-sm '+s_delete_h+'" href="#" title="隐藏"  mce_href="#" onclick="hidden(\''
-                                                    + row.appVersionId
-                                                    + '\')"><i class="fa fa-eye"></i></a> ';
+                                                 b = '<a class="btn  btn-sm '+s_delete_h+'" href="#" title="隐藏"  mce_href="#" onclick="hide(\'' + row.appVersionId+'\',1)"><i class="fa fa-eye-slash"></i></a> ';
                                             }else{
-                                                 b = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="显示"  mce_href="#" onclick="hidden(\''
-                                                    + row.appVersionId
-                                                    + '\')"><i class="fa fa-eye"></i></a> ';
+                                                 b = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="显示"  mce_href="#" onclick="hide(\'' + row.appVersionId+'\',0)"><i class="fa fa-eye"></i></a> ';
                                             }
-                                            var c = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\''
-                                                + row.appVersionId
-                                                + '\')"><i class="fa fa-remove"></i></a> ';
-                                            return  a + b + c ;
+                                            var c = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\'' + row.appVersionId+'\')"><i class="fa fa-remove"></i></a> ';
+
+                                            var d = '<a class="btn btn-sm" href="#" title="二维码"  mce_href="#">' +'<i class="fa fa-qrcode"></i></a> ';
+                                            return d + a + b + c ;
                                         }
                                     } ]
                             });
                         }
 					});
 }
-/*fa-low-vision*/
+// /*fa-low-vision*/   '<div class="divclass"> <img src="'+row.codeQr+'"></div>'
 function reLoad() {
 	$('#bTable').bootstrapTable('refresh');
 }
+
 function view() {
     // 返回所有选择的行，当没有选择的记录时，返回一个空数组
     var rows = $('#bTable').bootstrapTable('getSelections');
@@ -437,7 +436,8 @@ function del(id) {
 			success : function(r) {
 				if (r.code==0) {
 					layer.msg(r.msg);
-					reLoad();
+					//reLoad();
+                    $("#child_table").bootstrapTable('refresh');
 				}else{
 					layer.msg(r.msg);
 				}
@@ -445,7 +445,31 @@ function del(id) {
 		});
 	})
 }
-
+function hide(id,state) {
+    var msg = '确定要显示选中的记录？';
+    if(state == 1){
+        msg = '确定要隐藏选中的记录？';
+    }
+    layer.confirm(msg, {
+        btn : [ '确定', '取消' ]
+    }, function() {
+        $.ajax({
+            url : preUrl2+"/hidden",
+            type : "post",
+            data : {
+                'appVersionId' : id
+            },
+            success : function(r) {
+                if (r.code==0) {
+                    layer.msg(r.msg);
+                    $("#child_table").bootstrapTable('refresh');
+                }else{
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    })
+}
 function batchDel() {
     // 返回所有选择的行，当没有选择的记录时，返回一个空数组
 	var rows = $('#bTable').bootstrapTable('getSelections');

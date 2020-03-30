@@ -30,15 +30,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		String os = System.getProperty("os.name");
 		String uploadPath = justdoConfig.getUploadPath();
 		String appUploadPath = justdoConfig.getAppUploadPath();
+		String logfiles = justdoConfig.getLogfilesPath();
 		if (os.toLowerCase().startsWith("win")) {  //如果是Windows系统
 			registry.addResourceHandler("/files/**")
-					//files/**表示在磁盘files目录下的所有资源会被解析为以下的路径
+					//files/**表示在磁盘files目录下的所有资源会被解析为以下的路径 logfiles
 					.addResourceLocations("file:C:"+uploadPath)
 					.addResourceLocations("classpath:"+uploadPath);
 		} else {  //linux 和mac
 			registry.addResourceHandler("/files/**")
 					.addResourceLocations("file:"+uploadPath)
 					.addResourceLocations("file:"+appUploadPath)
+					.addResourceLocations("file:"+logfiles)
 					.addResourceLocations("classpath:"+uploadPath)
 					.addResourceLocations("classpath:/templates/");
 		}
