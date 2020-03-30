@@ -1,11 +1,7 @@
 #---
 # iPIN - iPhone PNG Images Normalizer v1.0
-# Copyright (C) 2007
+# Copyright (C) 2020
 #
-# Author:
-#  Axel E. Brzostowski
-#  http://www.axelbrz.com.ar/
-#  axelbrz@gmail.com
 # 
 # References:
 #  http://iphone.fiveforty.net/wiki/index.php/PNG_Images
