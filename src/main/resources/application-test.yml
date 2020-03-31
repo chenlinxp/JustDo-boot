@@ -1,6 +1,10 @@
 justdo:
   uploadPath: /Users/chenlin/Documents/GitHub/resource/uploaded_files/
   logfilesPath: /applog/
+  appUploadPath: /Users/chenlin/Documents/GitHub/app/
+  aaptPath: /Users/chenlin/Library/Android/sdk/build-tools/26.0.0/aapt
+  pythonShellPath: /Users/chenlin/Documents/GitHub/app/ipa/
+  baseAddress: http://7ae1fb84.ngrok.io/
 logging:
   level:
     root: INFO
