@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Redis 内存实时占用情况：</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="container"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Redis key的实时数量：</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="keysChart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Redis INFO：</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-condensed table-hover"
+                           style="word-break: break-all; word-wrap: break-all;">
+                        <tbody>
+                            <tr th:each="info:${infoList}">
+                                <td th:text="${info.key}" ></td>
+                                <td th:text="${info.desctiption}"></td>
+                                <td th:text="${info.value}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Redis实时日志(共 <span th:text="${logLen}"></span>条)：</h5>
+                    <div class="ibox-tools">
+                        <button type="button" onclick="empty();"
+                                class="btn btn-warning btn-xs">清空日志</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-condensed table-hover">
+                        <tbody>
+                            <tr th:each="log:${logList }">
+                                <td th:text="${log.id }" ></td>
+                                <td th:text="${log.executeTime }" ></td>
+                                <td th:text="${log.usedTime }" ></td>
+                                <td  ><p style="width: 600px; word-wrap: break-word; word-break: normal;" th:text="${log.args }"></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/appjs/system/redis/redis.js"></script>
+<script type="text/javascript" src="/js/appjs/system/redis/highcharts.js"></script>
+</body>
+</html>

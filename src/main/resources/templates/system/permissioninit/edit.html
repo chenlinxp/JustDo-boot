@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+	<div class="animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="permissionId" name="permissionId" th:value="${permissionInit.permissionId}"  type="hidden"/>
+       					 <input id="createTime" name="createTime" th:value="${#dates.format(permissionInit.createTime,'yyyy-MM-dd HH:mm:ss')}"  type="hidden"/>
+       					 <input id="modifyTime" name="modifyTime" th:value="${#dates.format(permissionInit.modifyTime,'yyyy-MM-dd HH:mm:ss')}"  type="hidden"/>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">链接地址:</label>
+							<div class="col-sm-4">
+								<input id="permissionUrl" name="permissionUrl" th:value="${permissionInit.permissionUrl}" class="form-control" type="text">
+							</div>
+							<label class="col-sm-2 control-label">需要具备的权限:</label>
+							<div class="col-sm-4">
+								<input id="permissionInit" name="permissionInit" th:value="${permissionInit.permissionInit}" class="form-control" type="text">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">排序:</label>
+							<div class="col-sm-4">
+								<input id="permissionSort" name="permissionSort" th:value="${permissionInit.permissionSort}" class="form-control" type="text">
+							</div>
+							<label class="col-sm-2 control-label">备注:</label>
+							<div class="col-sm-4">
+								<input id="remark" name="remark" th:value="${permissionInit.remark}" class="form-control" type="text">
+							</div>
+						</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	    </div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/permissioninit/edit.js">
+	</script>
+</body>
+</html>

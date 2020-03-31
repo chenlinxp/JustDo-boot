@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <script type="text/javascript" language="Javascript" src="jquery.js "></script>
+    <script type="text/javascript" language="Javascript" src="jstree.js"></script>
+
+</head>
+<body>
+<div id="treeview1">111</div>
+
+
+</body>
+
+<script>
+
+
+    $("#treeview1").jstree({
+        'core' : {
+            "multiple" : false,
+            'data' : ay_mssys,
+            'dblclick_toggle': false          //禁用tree的双击展开
+        },
+        "plugins" : ["search"]
+    });
+
+    var ay_mssys =
+        [
+            {
+                "id": "1",
+                "text": "民事案由(2008版)",
+                "state": {
+                    "opened": true,          //展示第一个层级下面的node
+                    "disabled": true         //该根节点不可点击
+                },
+                "children":
+                    [
+                        {
+                            "id": "2",
+                            "text": "人格权纠纷",
+                            "children":
+                                [
+                                    {
+                                        "id": "3",
+                                        "text": "人格权纠纷",
+                                        "children": [
+                                            {
+                                                "id": "4",
+                                                "text": "生命权、健康权、身体权纠纷",
+                                                "children":
+                                                    [
+                                                        {
+                                                            "id": "5",
+                                                            "text": "道路交通事故人身损害赔偿纠纷"
+                                                        }
+                                                    ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                        }
+                    ]
+            }
+        ]
+
+    //core：整个jstree显示的核心，里面包括多种项配置：
+    //data： 这里是使用json格式的数据；还可以使用html或者ajax请求等
+    //plugins： 这个jstree引用了哪些插件
+
+
+</script>
+</html>
