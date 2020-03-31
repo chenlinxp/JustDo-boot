@@ -1,20 +1,16 @@
 package com.justdo.common.utils;
 
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author justdo
  */
 
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.util.ArrayList;
-        import java.util.Enumeration;
-        import java.util.HashMap;
-        import java.util.List;
-        import java.util.Map;
-        import java.util.Properties;
-        import java.util.UUID;
-        import java.util.regex.Matcher;
-        import java.util.regex.Pattern;
 
 public class StringUtils extends org.apache.commons.lang.StringUtils {
     private final static Map<String, String> regexs = new HashMap<String, String>();
@@ -22,8 +18,9 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
     static{
         Properties entityReferences = new Properties();
         InputStream is = StringUtils.class.getResourceAsStream("regex.properties");
-        if (is == null)
+        if (is == null){
             throw new IllegalStateException("Cannot find reference definition file [regex.properties] as class path resource");
+        }
         try {
             try {
                 entityReferences.load(is);
@@ -63,6 +60,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         if(src == null) return false;
         return regex(type,src.toString());
     }
+
     /**
      * 替换正则表达式
      * @param src
@@ -71,7 +69,9 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      * @return
      */
     public static String replaceReg(String src,String reg,String with){
-        if(StringUtils.isBlank(src)) return src;
+        if(StringUtils.isBlank(src)) {
+            return src;
+        }
         return src.replaceAll(reg, with);
     }
 
@@ -82,7 +82,7 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      */
     public static List<String> toList(String[] src){
         List<String> list = new ArrayList<String>();
-        for(String s : src) list.add(s);
+        for(String s : src){ list.add(s);}
         return list;
     }
     /**
@@ -93,8 +93,10 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
      * @return
      */
     public static String stringBuild(String src, String... args) {
-        for (int i = 0, j = args.length; i < j; i++)
-            src = src.replaceAll("\\{" + i + "\\}", args[i]+"");
+        for (int i = 0, j = args.length; i < j; i++) {
+
+        src = src.replaceAll("\\{" + i + "\\}", args[i] + "");
+        }
         return src;
     }
     /**
@@ -318,4 +320,56 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         }
         return false;
     }
+
+
+    /**
+     * 获得byte[]型的str
+     * @param str
+     * @return
+     */
+    public static byte[] getByteString(String str){
+            return str.getBytes();
+    }
+
+    /**
+     * 短链接
+     * @param url
+     * @return
+     */
+    public static String shortUrl(String url) {
+        // 可以自定义生成 MD5 加密字符传前的混合 KEY
+        String key = "justdo";
+
+        // 要使用生成 URL 的字符
+        String[] chars = new String[] { "a" , "b" , "c" , "d" , "e" , "f" , "g" , "h" ,
+                "i" , "j" , "k" , "l" , "m" , "n" , "o" , "p" , "q" , "r" , "s" , "t" ,
+                "u" , "v" , "w" , "x" , "y" , "z" , "0" , "1" , "2" , "3" , "4" , "5" ,
+                "6" , "7" , "8" , "9" , "A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" ,
+                "I" , "J" , "K" , "L" , "M" , "N" , "O" , "P" , "Q" , "R" , "S" , "T" ,
+                "U" , "V" , "W" , "X" , "Y" , "Z"
+
+        };
+        String sMD5EncryptResult = MD5Utils.encrypt(key + url);
+        String resUrl = "";
+
+        // 把加密字符按照 8 位一组 16 进制与 0x3FFFFFFF 进行位与运算
+        String sTempSubString = sMD5EncryptResult.substring(2 * 8, 2 * 8 + 8); //固定取第三组
+
+        // 这里需要使用 long 型来转换，因为 Inteper .parseInt() 只能处理 31 位 , 首位为符号位 , 如果不用 long ，则会越界
+        long lHexLong = 1073741823L & Long.parseLong(sTempSubString, 16);
+        String outChars = "";
+
+        for(int j = 0; j < 6; ++j) {
+            // 把得到的值与 0x0000003D 进行位与运算，取得字符数组 chars 索引
+            long index = 61L & lHexLong;
+            // 把取得的字符相加
+            outChars = outChars + chars[(int)index];
+            // 每次循环按位右移 5 位
+            lHexLong >>= 5;
+        }
+
+        return outChars;
+    }
+
+
 }

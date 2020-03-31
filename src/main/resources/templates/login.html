@@ -21,7 +21,6 @@
             window.top.location = window.location;
         }
     </script>
-
 </head>
 
 <body class="signin" onkeydown="keyLogin();">
@@ -55,10 +54,19 @@
             <form id="signupForm">
                 <h3 class="text-center">用户登录</h3>
                 <p class="m-t-md text-center">欢迎登录JustDo后台管理系统</p>
-                <input type="text" name="username" class="form-control uname" value=""/>
-                <input type="password" name="password" class="form-control pword m-b" value=""/>
+                <input type="text" name="username" class="form-control uname" placeholder="账号" value=""/>
+                <input type="password" name="password" class="form-control pword m-b"  placeholder="密码" value=""/>
 
-                <input id="rememberme" name="rememberme" type="checkbox" /> 记住我
+                <div class="input-group" >
+
+                    <input type="text" name="verificationcode" style="margin-top: 0px" class="form-control"   placeholder="验证码"/>
+
+                    <span class="input-group-btn">
+						<img alt="如果看不清楚，请单击图片刷新！" id="verificationimg" class="pointer" src="/verification" onclick="refreshCode()">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button id="ico-btn" style="margin-top: 0px" class="btn" type="button"  onclick="refreshCode()" >换一张</button>
+					</span>
+                </div>
+                <input id="rememberMe" name="rememberMe" type="checkbox" /> 记住我
                 <a id="login" class="btn btn-login btn-block">登录</a>
                 <!--&lt;!&ndash;按钮模块&ndash;&gt;-->
                 <!--<div class="outside-login">-->
@@ -95,8 +103,7 @@
 <!-- 全局js -->
 <script src="/js/jquery.min.js?v=2.1.4" th:src="@{/js/jquery.min.js?v=2.1.4}"></script>
 <script src="/js/bootstrap.min.js?v=3.3.6" th:src="@{/js/bootstrap.min.js?v=3.3.6}"></script>
-
-
+<!--<script src="/js/jqury.cookie.js?v=1.4.1" th:src="@{/js/jqury.cookie.js?v=1.4.1}"></script>-->
 <!-- jQuery Validation plugin javascript-->
 <script src="/js/ajax-util.js"></script>
 <script src="/js/plugins/validate/jquery.validate.min.js" th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>

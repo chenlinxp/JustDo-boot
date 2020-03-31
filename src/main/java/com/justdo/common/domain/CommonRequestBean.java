@@ -33,8 +33,11 @@ public class CommonRequestBean extends AjaxRequestBean {
 		public String getvTo() {
 			return vTo;
 		}
+
 		public String toString(){
+
 			String lvCompare=(compare==null?"=":compare);
+
 			if (lvCompare.equals("between")){
 				return lvCompare+" \""+vFrom+"\" and \""+vTo+"\"";
 			}
@@ -82,7 +85,7 @@ public class CommonRequestBean extends AjaxRequestBean {
 	}
 
 	/***
-	 * 將輸入的關鍵字(多個的話用回車或“，”分隔）轉換成Postgresql的ANY關鍵字
+	 * 将输入的关键字(多个的话换成回车或“，”分隔）转换成Postgresql的ANY关键字
 	 *
 	 * @param pvKeywords
 	 * @return
@@ -155,10 +158,12 @@ public class CommonRequestBean extends AjaxRequestBean {
 		}
 		return lvRet;
 	}
+
 	public static String valuesToArray(String pvVal){
 		String lvRet="array['" + pvVal.split(",")+"']";
 		return lvRet;
 	}
+
 	public static String genReqClauseWithValue(String pvFieldName, ReqObj pvReqObj) {
 		if (pvReqObj == null)
 			return null;
@@ -227,6 +232,7 @@ public class CommonRequestBean extends AjaxRequestBean {
 		}
 		return null;
 	}
+
 	public static String genReqClauseByDate(String pvFieldName, DateBetweenBean pvReqObj) {
 		if (pvReqObj == null)
 			return null;

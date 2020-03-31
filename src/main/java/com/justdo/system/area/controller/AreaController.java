@@ -24,7 +24,7 @@ import java.util.Map;
  
 @Controller
 @RequestMapping("/system/area")
-public class AreaController {
+public class  AreaController {
 	@Autowired
 	private AreaService areaService;
 	

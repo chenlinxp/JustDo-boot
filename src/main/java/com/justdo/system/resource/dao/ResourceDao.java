@@ -30,12 +30,18 @@ public interface ResourceDao {
 	List<ResourceDO> list(Map<String, Object> map);
 
 	/**
-	 * 根据员工ID获取资源树
+	 * 根据员工ID获取资源集合
 	 * @param employeeId
 	 * @return
 	 */
 	List<String> listEmployeePermissions(String employeeId);
 
+	/**
+	 * 根据角色ID获取资源集合
+	 * @param roleId
+	 * @return
+	 */
+	List<String> listEmployeePermissions2(String roleId);
 	/**
 	 * 根据员工ID获取资源列
 	 * @param employeeId

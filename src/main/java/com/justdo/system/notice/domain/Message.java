@@ -1,4 +1,7 @@
 package com.justdo.system.notice.domain;
+
+import com.justdo.common.domain.BaseBean;
+
 /**
  * 消息通知
  *
@@ -6,7 +9,7 @@ package com.justdo.system.notice.domain;
  * @email 13233669915@qq.com
  * @date 2018-06-26 18:32:20
  */
-public class Message {
+public class Message extends BaseBean {
 
 	private String messageId;
 

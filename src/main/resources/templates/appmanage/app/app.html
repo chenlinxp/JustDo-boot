@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:shiro="http://www.w3.org/1999/xhtml">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
+ <style type="text/css">
+	      .divclsss { background-color: pink; text-align: center; line-height: 100px; margin: 100px auto;position: relative;}
+	      .divclsss img { position: absolute;  left: 110px;  top: 0;  display: none;}
+	      .divclsss:hover img {  display: block;}
+
+	      li a:hover span
+	        </style>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content ">
 		<div class="col-sm-12">
@@ -9,22 +16,27 @@
 				<div class="ibox-body">
 					<div class="fixed-table-toolbar">
 						<div class="columns pull-left">
-							<button shiro:hasPermission="appmanage:app:add" type="button" class="btn  btn-success" onclick="add()">
-                            <i class="fa fa-plus" aria-hidden="true"></i>添加
-                        </button>
+							<button shiro:hasPermission="appmanage:app:add" type="button" class="btn  btn-success" onclick="upload()">
+								<i class="fa fa-paper-plane-o" aria-hidden="true"></i>上传
+							</button>
+							<!--<button shiro:hasPermission="appmanage:app:add" type="button" class="btn  btn-success" onclick="add()">-->
+                            <!--<i class="fa fa-plus" aria-hidden="true"></i>添加-->
+                            <!--</button>-->
 							<button shiro:hasPermission="appmanage:app:edit" type="button" class="btn  btn-success" onclick="edit()">
                                 <i class="fa fa-edit" aria-hidden="true"></i>编辑
                             </button>
 							<button shiro:hasPermission="appmanage:app:batchDel" type="button" class="btn  btn-success" onclick="batchDel()">
 								<i class="fa fa-trash" aria-hidden="true"></i>删除
 							</button>
+							<!--<button  type="button" class="btn  btn-success" onclick="showQrcode()">-->
+								<!--<i class="fa fa-qrcode" aria-hidden="true"></i>二维码-->
+							<!--</button>-->
 						</div>
 						<div class="columns pull-right">
 							<button class="btn btn-success" onclick="reLoad()"><i class="fa fa-search" aria-hidden="true"></i>查询</button>
 						</div>
 						<div class="columns pull-right col-md-2 nopadding">
-							<input id="searchName" type="text" class="form-control"
-								placeholder="关键字">
+							<input id="searchName" type="text" class="form-control" placeholder="关键字">
 						</div>
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
@@ -32,6 +44,16 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div>
+		<script type="text/javascript">
+            var s_delete_h = 'hidden';
+		</script>
+	</div>
+	<div shiro:hasPermission="appmanage:appversion:del">
+		<script type="text/javascript">
+            var s_delete_h = '';
+		</script>
 	</div>
 </div>
 <div th:include="include :: footer"></div>

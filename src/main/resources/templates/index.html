@@ -164,6 +164,99 @@
                     src="" th:src="@{/main}" frameborder="0" data-id="index.html" seamless>
             </iframe>
         </div>
+
+        <!--mini聊天窗口开始-->
+        <div class="small-chat-box fadeInRight animated">
+
+            <div class="heading" draggable="true">
+                <small class="chat-date pull-right">
+                    2015.9.1
+                </small> 与 Beau-zihan 聊天中
+            </div>
+
+            <div class="content">
+
+                <div class="left">
+                    <div class="author-name">
+                        Beau-zihan <small class="chat-date">
+                        10:02
+                    </small>
+                    </div>
+                    <div class="chat-message active">
+                        你好
+                    </div>
+
+                </div>
+                <div class="right">
+                    <div class="author-name">
+                        游客
+                        <small class="chat-date">
+                            11:24
+                        </small>
+                    </div>
+                    <div class="chat-message">
+                        你好，请问H+有帮助文档吗？
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="author-name">
+                        Beau-zihan
+                        <small class="chat-date">
+                            08:45
+                        </small>
+                    </div>
+                    <div class="chat-message active">
+                        有，购买的H+源码包中有帮助文档，位于docs文件夹下
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="author-name">
+                        游客
+                        <small class="chat-date">
+                            11:24
+                        </small>
+                    </div>
+                    <div class="chat-message">
+                        那除了帮助文档还提供什么样的服务？
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="author-name">
+                        Beau-zihan
+                        <small class="chat-date">
+                            08:45
+                        </small>
+                    </div>
+                    <div class="chat-message active">
+                        1.所有源码(未压缩、带注释版本)；
+                        <br> 2.说明文档；
+                        <br> 3.终身免费升级服务；
+                        <br> 4.必要的技术支持；
+                        <br> 5.付费二次开发服务；
+                        <br> 6.授权许可；
+                        <br> ……
+                        <br>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="form-chat">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control"> <span class="input-group-btn"> <button
+                        class="btn btn-primary" type="button" onclick="send()">发送
+                </button> </span>
+                </div>
+            </div>
+
+        </div>
+        <div id="small-chat">
+            <span class="badge badge-warning pull-right">5</span>
+            <a class="open-small-chat">
+                <i class="fa fa-comments"></i>
+            </a>
+        </div>
+        <!--mini聊天窗口结束-->
         <div class="footer">
             <div class="pull-right">Spring-Boot开源框架</div>
         </div>
@@ -194,12 +287,11 @@
                             <span>收起左侧菜单</span>
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="collapsemenu"
-                                           class="onoffswitch-checkbox" id="collapsemenu"> <label
-                                        class="onoffswitch-label" for="collapsemenu"> <span
-                                        class="onoffswitch-inner"></span> <span
-                                        class="onoffswitch-switch"></span>
-                                </label>
+                                    <input type="checkbox" name="collapsemenu" id="collapsemenu" class="onoffswitch-checkbox" >
+                                    <label class="onoffswitch-label" for="collapsemenu">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -207,11 +299,10 @@
                             <span>固定顶部</span>
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="fixednavbar"
-                                           class="onoffswitch-checkbox" id="fixednavbar"> <label
-                                        class="onoffswitch-label" for="fixednavbar"> <span
-                                        class="onoffswitch-inner"></span> <span
-                                        class="onoffswitch-switch"></span>
+                                    <input type="checkbox" name="fixednavbar" id="fixednavbar" class="onoffswitch-checkbox">
+                                    <label class="onoffswitch-label" for="fixednavbar">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
                                 </label>
                                 </div>
                             </div>
@@ -220,11 +311,10 @@
                             <span> 固定宽度 </span>
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="boxedlayout"
-                                           class="onoffswitch-checkbox" id="boxedlayout"> <label
-                                        class="onoffswitch-label" for="boxedlayout"> <span
-                                        class="onoffswitch-inner"></span> <span
-                                        class="onoffswitch-switch"></span>
+                                    <input type="checkbox" name="boxedlayout"  id="boxedlayout" class="onoffswitch-checkbox">
+                                    <label class="onoffswitch-label" for="boxedlayout">
+                                        <span class="onoffswitch-inner"></span>
+                                        <span class="onoffswitch-switch"></span>
                                 </label>
                                 </div>
                             </div>
@@ -277,7 +367,7 @@
 <script type="text/javascript" src="/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script type="text/javascript" src="/js/plugins/layer/layer.min.js"></script>
 <!-- 自定义js -->
-<script type="text/javascript" src="/js/app.js?v=4.1.0"></script>
+<script type="text/javascript" src="/js/desk-settings.js?v=4.1.0"></script>
 <script type="text/javascript" src="/js/contabs.js"></script>
 <!-- 第三方插件 -->
 <script type="text/javascript" src="/js/plugins/pace/pace.min.js"></script>
@@ -288,73 +378,8 @@
 <script type="text/javascript" src="/js/appjs/webSocket/stomp.min.js"></script>
 <!-- Toastr script -->
 <script type="text/javascript" src="/js/plugins/toastr/toastr.min.js"></script>
-<script type="text/javascript">
-    var stompClient = null;
-    $(function () {
-        connect();
-    });
-    function connect() {
-        var sock = new SockJS("/justdo-websocket");
-        var stomp = Stomp.over(sock);
-        stomp.connect( { name:$("#userid").val()}, function(frame) {
-            /**  订阅了/user/queue/notifications 发送的消息,这里雨在控制器的 convertAndSendToUser 定义的地址保持一致, 
-             *  这里多用了一个/user,并且这个user 是必须的,使用user 才会发送消息到指定的用户。 
-             *  */
-            stomp.subscribe('/justdo/queue/message', function handleNotification(message) {
-                wrapper.notice();
-                toastr.info(message.body);
-            });
-            //订阅/topic/getResponse 目标发送的消息。这个是在控制器的@SendTo中定义的。
-            stomp.subscribe('/topic/greetings', function (response) {
-                toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "progressBar": true,
-                    "positionClass": "toast-bottom-right",
-                    "onclick": null,
-                    "showDuration": "400",
-                    "hideDuration": "1000",
-                    "timeOut": "7000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                }
-                toastr.info(JSON.parse(response.body).responseMessage);
 
-            });
-        });
 
-    }
-    var wrapper = new Vue({
-        el: '#wrapper',
-        data: {
-            total: '',
-            rows: '',
-        },
-        methods: {
-            notice: function () {
-                $.getJSON('/system/notice/message', function (r) {
-                    wrapper.total = r.total;
-                    wrapper.rows = r.rows;
-                });
-            },
-            personal: function () {
-                layer.open({
-                    type: 2,
-                    title: '个人设置',
-                    maxmin: true,
-                    shadeClose: false,
-                    area: ['800px', '600px'],
-                    content: '/system/employee/personal'
-                });
-            }
-        },
-        created: function () {
-            this.notice()
-        }
-    })
-</script>
+<script type="text/javascript" src="/js/index.js"></script>
 </body>
 </html>

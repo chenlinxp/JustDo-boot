@@ -2,6 +2,7 @@ package com.justdo.system.employee.controller;
 
 
 import com.justdo.common.annotation.Log;
+import com.justdo.common.controller.BaseController;
 import com.justdo.common.domain.Tree;
 import com.justdo.common.utils.*;
 import com.justdo.system.dept.domain.DeptDO;
@@ -37,7 +38,7 @@ import static com.justdo.common.utils.ShiroUtils.getEmployeeId;
  
 @Controller
 @RequestMapping("/system/employee")
-public class EmployeeController {
+public class EmployeeController extends BaseController {
 
 	private String preUrl="system/employee";
 	@Autowired
@@ -259,9 +260,15 @@ public class EmployeeController {
 	@PostMapping("/unlock")
 	@ResponseBody
 	R unlock(String loginname){
-
-		if(hashedCredentialsMatcher.unlockAccount(loginname)){
-			return R.ok("解锁成功");
+		Boolean flag = false;
+		EmployeeDO employeeDO = employeeService.findByEmployeeName(loginname);
+		if (employeeDO != null) {
+			if(employeeDO.getEmployeeState().equals(1)){
+				return R.error("账号已解锁，请勿重复操作");
+			}
+			if (hashedCredentialsMatcher.unlockAccount(employeeDO)) {
+				return R.ok("解锁成功");
+			}
 		}
 		return R.error("账号解锁失败");
 

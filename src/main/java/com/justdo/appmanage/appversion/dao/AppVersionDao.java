@@ -63,4 +63,5 @@ public interface AppVersionDao {
 	 * @return list
 	 */
 	int batchDel(String[] appVersionIds);
+
 }

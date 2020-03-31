@@ -58,6 +58,8 @@ public class GetLogController {
 
 		String 	downloadFilePath = justdoConfig.getLogfilesPath();
 
+		//String downloadFilePath = "/files/";
+
 			if(StringUtils.isEmpty(fileName)) {
 				fileName = DateUtils.formatTimeNow("yyyy-MM-dd")+".log";
 			}

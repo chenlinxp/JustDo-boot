@@ -31,6 +31,14 @@ public interface EmployeeService {
 	 * @return passwordSalt
 	 */
 	String getPasswordSalt(String loginName);
+
+
+	/**
+	 * 根据loginName获取实体
+	 * @param loginName
+	 * @return
+	 */
+	EmployeeDO findByEmployeeName(String loginName);
 	/**
 	 * 返回实体list
 	 * @param map

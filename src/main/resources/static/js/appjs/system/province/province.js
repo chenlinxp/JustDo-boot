@@ -41,7 +41,7 @@ function load() {
 							};
 						},
                         onDblClickRow: function (row, element) {
-                            view(row["id"]);
+                            view(row["provinceid"]);
                         },
                         onClickRow: function (row, element) {
                             $('.success').removeClass('success');//去除之前选中的行的，选中样式
@@ -143,7 +143,7 @@ function load() {
                                     };
                                 },
                                 onDblClickRow: function (row, element) {
-                                    view(row["id"]);
+                                    view(row["cityid"]);
                                 },
                                 onClickRow: function (row, element) {
                                     $('.success').removeClass('success');//去除之前选中的行的，选中样式

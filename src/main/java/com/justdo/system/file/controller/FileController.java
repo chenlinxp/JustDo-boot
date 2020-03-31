@@ -6,6 +6,8 @@ import com.justdo.config.JustdoConfig;
 import com.justdo.system.file.domain.FileDO;
 import com.justdo.system.file.service.FileService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +34,7 @@ import java.util.Map;
 @RequestMapping("/system/file")
 public class FileController extends BaseController {
 
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	@Autowired
 	private FileService fileService;
 
@@ -101,7 +104,6 @@ public class FileController extends BaseController {
 	@RequiresPermissions("system:file:update")
 	public R update(@RequestBody FileDO file) {
 		fileService.update(file);
-
 		return R.ok();
 	}
 
@@ -146,23 +148,34 @@ public class FileController extends BaseController {
 
 		//String path = StringUtils.defaultIfEmpty(justdoConfig.getUploadPath(), "/upload/");
 
+		//file.transferTo();
+
 		File filePath=new File(ResourceUtils.getURL("classpath:").getPath());
-		if(!filePath.exists()){
-			filePath=new File("");
-		}
-		File upload=new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
+		System.out.println(filePath.getAbsolutePath());
+		//File upload=new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
+
+		File upload=new File(justdoConfig.getUploadPath());
 		if(!upload.exists()){
 			upload.mkdirs();
 			System.out.println(upload.getAbsolutePath());
 			System.out.println(upload.getPath());
+			logger.info("-------------1");
+			logger.info(upload.getAbsolutePath());
+			logger.info("-------------2");
+			logger.info(upload.getPath());
+
 			//在开发测试模式时，得到地址为：{项目跟目录}/target/static/images/upload/
 			//在打成jar正式发布时，得到的地址为:{发布jar包目录}/static/images/upload/
 		}
+		logger.info("-------------3");
+		logger.info(upload.getPath());
 		//String realPath = request.getSession().getServletContext().getRealPath("/")+"WEB-INF/classes/"+ path;
 		//String realPath = request.getSession().getServletContext().getRealPath("/")+ path;
 		FileDO _file = new FileDO(FileType.fileType(fileName), "/files/"+ fileName, new Date());
 		try {
-			FileUtils.uploadFile(file.getBytes(), upload, fileName);
+			File dest = new File(upload.getPath()+"/"+fileName);
+			file.transferTo(dest);
+
 		} catch (Exception e) {
 			return R.error();
 		}

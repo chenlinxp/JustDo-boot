@@ -17,7 +17,12 @@ import java.util.Map;
 
 /**
  * 异常错误处理Controller
- * Created by chenlin on 2019/3/13.
+ * ErrorController处理系统中的Error
+ * <p>可对全局错误进行处理，但是其获取不到异常的具体信息，
+ * 同时也无法根据异常类型进行不同的响应，例如对自定义异常的处理</p>
+ * @author chenlin
+ * @email chenlinxp@qq.com
+ * @date 2019-03-30 15:36:21
  */
 @Controller
 public class ExceptionErrorController  extends BasicErrorController {
@@ -65,7 +70,7 @@ public class ExceptionErrorController  extends BasicErrorController {
 		} else if (403 == code) {
 			return new ModelAndView("error/403");
 		} else if (401 == code) {
-			return new ModelAndView("login");
+			return new ModelAndView("justdo/login");
 		} else {
 			return new ModelAndView("error/500");
 		}

@@ -2,7 +2,6 @@ package com.justdo.system.employee.shiro;
 
 
 import com.justdo.common.redis.RedisManager;
-import com.justdo.common.utils.SerializeUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import org.apache.log4j.Logger;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 /**
+ * 登录次数大于5次，锁定账号
  * @author: chenlin
  * @date:2019-06-12
  * @description: 登陆次数限制
@@ -23,6 +23,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 	private static final Logger logger = Logger.getLogger(RetryLimitHashedCredentialsMatcher.class);
 
 	public static final String DEFAULT_RETRYLIMIT_CACHE_KEY_PREFIX = "shiro:cache:retrylimit:";
+
 
 	private String keyPrefix = DEFAULT_RETRYLIMIT_CACHE_KEY_PREFIX;
 	@Autowired
@@ -39,12 +40,8 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 	 * @return
 	 */
 	private byte[] getByteKey(String key){
-		if(key instanceof String){
 			String preKey = this.keyPrefix + key;
 			return preKey.getBytes();
-		}else{
-			return SerializeUtils.serialize(key);
-		}
 	}
 
 	@Override
@@ -63,10 +60,10 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 		if (retryCount > 5) {
 			//如果用户登陆失败次数大于5次 抛出锁定用户异常  并修改数据库字段
 			EmployeeDO employeeDO = employeeDao.findByEmployeeName(username);
-			if (employeeDO != null && "0".equals(employeeDO.getEmployeeState())) {
-				//数据库字段 默认为 0  就是正常状态 所以 要改为1
+			if (employeeDO != null && "1".equals(employeeDO.getEmployeeState().toString())) {
+				//数据库字段 默认为 1  就是正常状态 所以 要改为0
 				//修改数据库的状态字段为锁定
-				employeeDO.setEmployeeState(1);
+				employeeDO.setEmployeeState(0);
 				employeeDao.update(employeeDO);
 			}
 			logger.info("锁定用户" + employeeDO.getLoginName());
@@ -83,7 +80,7 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 		}
 		else{
 			retryCount++;
-			redisManager.set(getByteKey(username),retryCount.toString().getBytes());
+			redisManager.set(getByteKey(username),retryCount.toString().getBytes(),-1);
 		}
 		return matches;
 	}
@@ -91,15 +88,15 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 	/**
 	 * 根据用户名 解锁用户
 	 *
-	 * @param username
+	 * @param employeeDO
 	 * @return
 	 */
-	public boolean unlockAccount(String username) {
+	public boolean unlockAccount(EmployeeDO employeeDO) {
 		Boolean flag = false;
-		EmployeeDO employeeDO = employeeDao.findByEmployeeName(username);
-		if (employeeDO != null) {
-			//修改数据库的状态字段为锁定
-			employeeDO.setEmployeeState(1);
+			//修改数据库的状态字段为解锁状态
+		employeeDO.setEmployeeState(1);
+	    String username = employeeDO.getLoginName();
+
 			if(employeeDao.update(employeeDO)>0){
 				byte[] a = redisManager.get(getByteKey(username));
 				if (a != null) {
@@ -108,7 +105,6 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
 				flag = true;
 			}
 
-		}
 		return flag;
 	}
 

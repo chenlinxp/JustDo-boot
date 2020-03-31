@@ -40,13 +40,19 @@ public class AppVersionDO extends BaseBean {
 	private String versionDescription;
 	//更新描述
 	private String updateDescription;
-
+	//二维码
+	private String codeQr;
+    //下载页面
+	private String loadUrl;
+	//下载地址
+	private String downloadUrl;
     /**
     * 构造方法
     */
     public AppVersionDO(){ }
-    public AppVersionDO(String appVersionId,String appId,String versionCode,String buildCode,String appSizes,Integer totalLoadNumber,Integer displayState,Integer delFlag,Integer todayLoadNumber,String versionDescription,String updateDescription,Date createTime){
-		super();
+    public AppVersionDO(String appVersionId,String appId,String versionCode,String buildCode,String appSizes,Integer totalLoadNumber,Integer displayState,Integer delFlag,Integer todayLoadNumber,String versionDescription,String updateDescription,Date createTime,String loadUrl,String codeQr,String downloadUrl){
+
+	        this.appVersionId= appVersionId;
 			this.appId= appId;
 			this.delFlag= delFlag;
 			this.createTime= createTime;
@@ -58,6 +64,9 @@ public class AppVersionDO extends BaseBean {
 			this.todayLoadNumber= todayLoadNumber;
 			this.versionDescription= versionDescription;
 			this.updateDescription= updateDescription;
+			this.loadUrl = loadUrl;
+			this.codeQr = codeQr;
+			this.downloadUrl = downloadUrl;
 	}
     /**
      * 设置：主键ID
@@ -205,6 +214,30 @@ public class AppVersionDO extends BaseBean {
 		return updateDescription;
 	}
 
+	public String getLoadUrl() {
+		return loadUrl;
+	}
+
+	public void setLoadUrl(String loadUrl) {
+		this.loadUrl = loadUrl;
+	}
+
+
+	public String getCodeQr() {
+		return codeQr;
+	}
+
+	public void setCodeQr(String codeQr) {
+		this.codeQr = codeQr;
+	}
+	public String getDownloadUrl() {
+		return downloadUrl;
+	}
+
+	public AppVersionDO setDownloadUrl(String downloadUrl) {
+		this.downloadUrl = downloadUrl;
+		return this;
+	}
 	@Override
 	public String toString() {
 		return "AppVersionDO{" +

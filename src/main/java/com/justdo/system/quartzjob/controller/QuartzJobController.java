@@ -29,7 +29,7 @@ import java.util.Map;
 @RequestMapping("/system/quartzjob")
 public class QuartzJobController extends BaseController {
 
-	private String preUrl="/system/quartzjob";
+	private String preUrl="system/quartzjob";
 	@Autowired
 	private QuartzJobService quartzJobService;
 

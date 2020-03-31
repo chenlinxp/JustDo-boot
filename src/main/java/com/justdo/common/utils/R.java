@@ -38,6 +38,12 @@ public class R extends HashMap<String, Object> {
 		return r;
 	}
 
+	public static R ok(String key,Object object) {
+		R r = new R();
+		r.put(key,object);
+		return r;
+	}
+
 	public static R ok() {
 		return new R();
 	}

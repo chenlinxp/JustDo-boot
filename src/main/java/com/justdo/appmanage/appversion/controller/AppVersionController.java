@@ -3,8 +3,6 @@ package com.justdo.appmanage.appversion.controller;
 import com.justdo.appmanage.appversion.domain.AppVersionDO;
 import com.justdo.appmanage.appversion.service.AppVersionService;
 import com.justdo.common.annotation.Log;
-import com.justdo.common.utils.PageUtils;
-import com.justdo.common.utils.Query;
 import com.justdo.common.utils.R;
 import com.justdo.system.dict.service.DictContentService;
 import io.swagger.annotations.ApiOperation;
@@ -59,15 +57,19 @@ public class AppVersionController {
 	@GetMapping("/list")
 	@RequiresPermissions("appmanage:appversion:list")
 	@ApiOperation(value="获取APP包版本记录管理列表接口", notes="获取APP包版本记录管理列表接口")
-	public PageUtils list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-		List<AppVersionDO> appVersionList = appVersionService.list(query);
-		int total = appVersionService.count(query);
-		PageUtils pageUtils = new PageUtils(appVersionList, total);
-		return pageUtils;
-	}
+//	public PageUtils list(@RequestParam Map<String, Object> params){
+//		//查询列表数据
+//        Query query = new Query(params);
+//		List<AppVersionDO> appVersionList = appVersionService.list(query);
+//		int total = appVersionService.count(query);
+//		PageUtils pageUtils = new PageUtils(appVersionList, total);
+//		return pageUtils;
+//	}
+	public List<AppVersionDO> list(@RequestParam Map<String, Object> params){
 
+		params.put("delFlag","0");
+		return appVersionService.list(params);
+	}
 	/**
 	* APP包版本记录管理详情页面
 	* @param id
@@ -194,4 +196,31 @@ public class AppVersionController {
 		}
 		return R.error(1, "批量删除失败!");
 	}
+
+	/**
+	 * APP包版本记录的隐藏
+	 * @param appVersionId
+	 * @return R
+	 */
+	@Log("APP包版本记录的隐藏")
+	@PostMapping( "/hidden")
+	@ResponseBody
+	@RequiresPermissions("appmanage:appversion:hidden")
+	@ApiOperation(value="隐藏APP包版本记录管理接口", notes="隐藏APP包版本记录管理接口")
+	public R hidden( String appVersionId){
+		AppVersionDO appVersion = appVersionService.get(appVersionId);
+		if(appVersion!=null){
+			int state = 1;
+			if(appVersion.getDisplayState()==1){
+				state = 0;
+			}
+			appVersion.setDisplayState(state);
+			if(appVersionService.update(appVersion)>0){
+				return R.ok();
+			}
+			return R.ok();
+		}
+		return R.error(1, "处理失败!");
+	}
+
 }

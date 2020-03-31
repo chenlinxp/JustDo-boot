@@ -1,7 +1,13 @@
 package com.justdo.config;
 
+import com.justdo.common.interceptor.MyInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -12,8 +18,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author justdo
  * @create 2017-01-02 23:53
  */
-@Component
-class WebConfig extends WebMvcConfigurerAdapter {
+@Configuration
+//@EnableAutoConfiguration(exclude = {MultipartAutoConfiguration.class})
+public class WebConfig extends WebMvcConfigurerAdapter {
 	@Autowired
 	JustdoConfig justdoConfig;
 	@Override
@@ -22,15 +29,20 @@ class WebConfig extends WebMvcConfigurerAdapter {
 		//默认值为 classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 		String os = System.getProperty("os.name");
 		String uploadPath = justdoConfig.getUploadPath();
+		String appUploadPath = justdoConfig.getAppUploadPath();
+		String logfiles = justdoConfig.getLogfilesPath();
 		if (os.toLowerCase().startsWith("win")) {  //如果是Windows系统
 			registry.addResourceHandler("/files/**")
-					// /files/**表示在磁盘files目录下的所有资源会被解析为以下的路径
-					.addResourceLocations("file:C:/"+uploadPath)
-					.addResourceLocations("classpath:/"+uploadPath);
+					//files/**表示在磁盘files目录下的所有资源会被解析为以下的路径 logfiles
+					.addResourceLocations("file:C:"+uploadPath)
+					.addResourceLocations("classpath:"+uploadPath);
 		} else {  //linux 和mac
 			registry.addResourceHandler("/files/**")
-					.addResourceLocations("file:/"+uploadPath)
-					.addResourceLocations("classpath:/"+uploadPath);
+					.addResourceLocations("file:"+uploadPath)
+					.addResourceLocations("file:"+appUploadPath)
+					.addResourceLocations("file:"+logfiles)
+					.addResourceLocations("classpath:"+uploadPath)
+					.addResourceLocations("classpath:/templates/");
 		}
 	}
 
@@ -39,8 +51,20 @@ class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 
+		registry.addInterceptor(new MyInterceptor()).addPathPatterns("/api/**");
 
 	}
+
+
+//	@Bean(name = "multipartResolver")
+//	public MultipartResolver multipartResolver(){
+//		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+//		resolver.setDefaultEncoding("UTF-8");
+//		resolver.setResolveLazily(true); //resolveLazily属性启用是为了推迟文件解析，以在在UploadAction中捕获文件大小异常
+//		resolver.setMaxInMemorySize(200*1024*1024);
+//		resolver.setMaxUploadSize(200*1024*1024);//上传文件大小 5M 5*1024*1024
+//		return resolver;
+//	}
 //
 //	@Bean
 //	public MappingJackson2HttpMessageConverter getMappingJackson2HttpMessageConverter() {
@@ -82,4 +106,5 @@ class WebConfig extends WebMvcConfigurerAdapter {
 //		mappingJackson2HttpMessageConverter.setObjectMapper(objectMapper);
 //		return mappingJackson2HttpMessageConverter;
 //	}
+
 }

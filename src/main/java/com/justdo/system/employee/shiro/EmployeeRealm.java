@@ -1,8 +1,7 @@
 package com.justdo.system.employee.shiro;
 
 
-import com.justdo.common.utils.ShiroUtils;
-import com.justdo.config.ApplicationContextRegister;
+import com.justdo.common.utils.ApplicationContextUtils;
 import com.justdo.system.employee.dao.EmployeeDao;
 import com.justdo.system.employee.domain.EmployeeDO;
 import com.justdo.system.employee.domain.SimpleEmployeeDO;
@@ -16,12 +15,16 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
+ * 员工账号认证、权限授权
  *
- *员工认证、授权
- *
+ * @author: chenlin
+ * @date:2019-06-12
  */
 public class EmployeeRealm extends AuthorizingRealm {
 
@@ -42,28 +45,25 @@ public class EmployeeRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 
-		String employeeId = ShiroUtils.getEmployeeId();
+		SimpleEmployeeDO simpleEmployeeDO = (SimpleEmployeeDO)principalCollection.getPrimaryPrincipal();
 		//String username = (String)principalCollection.getPrimaryPrincipal();
-		//权限获取
-		ResourceService resourceService = ApplicationContextRegister.getBean(ResourceService.class);
-		Set<String> perms = resourceService.listEmployeePermissions(employeeId);
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		info.setStringPermissions(perms);
-
+		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 
 		//角色获取
-		RoleService roleService = ApplicationContextRegister.getBean(RoleService.class);
-		List<RoleDO> roles = roleService.list(employeeId);
-		Set<String> rolenames = new HashSet<>();
+		RoleService roleService = ApplicationContextUtils.getBean(RoleService.class);
+		List<RoleDO> roles = roleService.list(simpleEmployeeDO.getId());
 
-		for (RoleDO role:roles) {
-			rolenames.add(role.getRoleName());
+		for (RoleDO role : roles) {
+			authorizationInfo.addRole(role.getRoleName());
+			//权限获取
+			ResourceService resourceService = ApplicationContextUtils.getBean(ResourceService.class);
+			Set<String> perms = resourceService.listEmployeePermissions(role.getRoleId());
+
+			for (String perm : perms) {
+				authorizationInfo.addStringPermission(perm);
+			}
 		}
-		info.addRoles(rolenames);
-
-		return info;
-
-
+		return authorizationInfo;
 	}
 
 	/**
@@ -76,22 +76,18 @@ public class EmployeeRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
 //		UsernamePasswordToken atoken = (UsernamePasswordToken)token;
-//		String username = atoken.getUsername();
+//		String username = atoken.getUsername();4d9573ec9f4cf8978543486c9e9eb681
+//		String password = new String((char[]) token.getCredentials());
 
 		String loginName = (String) token.getPrincipal();
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("loginName", loginName);
-
-		//String password = new String((char[]) token.getCredentials());
-
-		EmployeeDao employeeDao = ApplicationContextRegister.getBean(EmployeeDao.class);
+		EmployeeDao employeeDao = ApplicationContextUtils.getBean(EmployeeDao.class);
 		// 查询用户信息
 		EmployeeDO employee = employeeDao.list(map).get(0);
-
 		String password = employee.getPassword();
-
 		SimpleEmployeeDO simpleEmployeeDO = new SimpleEmployeeDO();
-		simpleEmployeeDO.setEmployeeId(employee.getEmployeeId());
+		simpleEmployeeDO.setId(employee.getEmployeeId());
 		simpleEmployeeDO.setLoginName(employee.getLoginName());
 		simpleEmployeeDO.setEmployeeNumber(employee.getEmployeeNumber());
 		simpleEmployeeDO.setDeptmentId(employee.getDeptmentId());
@@ -108,7 +104,26 @@ public class EmployeeRealm extends AuthorizingRealm {
 			throw new LockedAccountException("账号已被锁定,请联系管理员");
 		}
 		employee = null;
-		//ByteSource.Util.bytes(salt)，简单讲解一下这里，
+
+		//单用户登录
+		//处理session
+//		DefaultWebSecurityManager securityManager = (DefaultWebSecurityManager) SecurityUtils.getSecurityManager();
+//		DefaultWebSessionManager sessionManager = (DefaultWebSessionManager) securityManager.getSessionManager();
+//		//获取当前已登录的用户session列表
+//		Collection<Session> sessions = sessionManager.getSessionDAO().getActiveSessions();
+//		SimpleEmployeeDO temp;
+//		for(Session session : sessions) {
+//			//清除该用户以前登录时保存的session，强制退出
+//			Object attribute = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
+//			if (attribute == null) {
+//				continue;
+//			}
+//			temp = (SimpleEmployeeDO) ((SimplePrincipalCollection) attribute).getPrimaryPrincipal();
+//			if (loginName.equals(temp.getLoginName())) {
+//				sessionManager.getSessionDAO().delete(session);
+//			}
+//		}
+//		//ByteSource.Util.bytes(salt)，简单讲解一下这里，
 		//对于第一次接触shiro的人来说应该是最难理解的地方，这个SimpleAuthenticationInfo会将你Token中的账号密码通过getName（）
 		//这个方法获取，与你传入的username及password进行对比，byteSource是盐值，
 		//是为了加密时使用的。这里我采用了盐值存储在用户信息中的方式，而盐值的设置是在
@@ -117,13 +132,13 @@ public class EmployeeRealm extends AuthorizingRealm {
         //以下信息是从数据库中获取的
 
 //		1)principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
-		Object principal = simpleEmployeeDO;
+		//Object principal = simpleEmployeeDO;
 		//2)credentials：密码
 		Object credentials = password;
 		//3)realmName：当前realm对象的name，调用父类的getName()方法即可
 		String realmName = getName();
 		//4)credentialsSalt盐值
-        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials, ByteSource.Util.bytes(salt), realmName);
+        SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(simpleEmployeeDO, credentials, ByteSource.Util.bytes(salt), realmName);
 		return info;
 	}
 

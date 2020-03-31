@@ -1,6 +1,7 @@
 package com.justdo.system.position.service;
 
 import com.justdo.common.domain.Tree;
+import com.justdo.common.domain.TreeNode;
 import com.justdo.system.position.domain.PositionDO;
 
 import java.util.List;
@@ -70,4 +71,18 @@ public interface PositionService {
 	 * @return
 	 */
 	Tree<PositionDO> getTree(Map<String,Object> map);
+
+	/**
+	 * 获取某部门下的岗位树节点list
+	 * @param param
+	 * @return
+	 */
+	List<TreeNode> getPositions(Map<String, Object> param,String deptid);
+
+	/**
+	 * 获取 某部门下的顶级岗位树节点list
+	 * @param param
+	 * @return
+	 */
+	List<TreeNode> getTopPosions(Map<String, Object> param);
 }

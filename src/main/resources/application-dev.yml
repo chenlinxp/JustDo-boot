@@ -1,6 +1,10 @@
 justdo:
-  uploadPath: resource/uploaded_files/
-  logfilesPath: applog/
+  uploadPath: /Users/chenlin/Documents/GitHub/resource/uploaded_files/
+  logfilesPath: /applog/
+  appUploadPath: /Users/chenlin/Documents/GitHub/app/
+  aaptPath: /Users/chenlin/Library/Android/sdk/build-tools/26.0.0/aapt
+  pythonShellPath: /Users/chenlin/Documents/GitHub/app/ipa/
+  baseAddress: http://7ae1fb84.ngrok.io/
 logging:
   level:
     root: INFO
@@ -9,18 +13,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/justdo?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/justdo?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
-    jackson:
-           #参数意义：
-           #JsonInclude.Include.ALWAYS              默认
-           #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
-           #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
-           #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
-            default-property-inclusion: ALWAYS
-            time-zone: GMT+8
-            date-format: yyyy-MM-dd HH:mm:ss
     initialSize: 1
     minIdle: 3
     maxActive: 20
@@ -43,6 +38,19 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     #useGlobalDataSourceStat: true
+    #connectionProperties: druid.stat.slowSqlMillis=200;druid.stat.logSlowSql=true;config.decrypt=true
+    web-stat-filter:
+          enabled: true
+          url-pattern: /*
+          exclusions: /druid/*,*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico
+          session-stat-enable: true
+          session-stat-max-count: 10
+    stat-view-servlet:
+          enabled: true
+          url-pattern: /druid/*
+          reset-enable: true
+          login-username: admin
+          login-password: admin
   redis:
       host: 127.0.0.1
       #端口
@@ -51,6 +59,8 @@ spring:
       password: oxhide
       # 连接超时时间（毫秒）
       timeout: 0
+
+      expire: 1860
       pool:
          #连接池最大连接数 设为0表示无限制,如果是jedis 2.4以后用redis.maxTotal
          max-active: 5000
@@ -61,16 +71,16 @@ spring:
          #连接池最大阻塞等待时间（使用负值表示没有限制）
          max-Wait: 6000
          #连接池的最大数据库连接数。
-         #redis.maxActive=600
+         #maxActive: 600
          #控制一个pool可分配多少个jedis实例,用来替换上面的redis.maxActive,如果是jedis 2.4以后用该属性
          maxTotal: 1000
          #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
          maxWaitMillis: 1000
          #是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
-         testOnBorrow: false
+         testOnBorrow: true
          #
-         testOnReturn: false
-          ##在空闲时检查有效性, 默认false
+         testOnReturn: true
+         #在空闲时检查有效性, 默认false
          testWhileIdle: true
          #逐出扫描的时间间隔(毫秒) 如果为负数,则不运行逐出线程, 默认-1
          timeBetweenEvictionRunsMillis: 6000
@@ -78,4 +88,16 @@ spring:
          minEvictableIdleTimeMillis: 300000
          #每次释放连接的最大数目,默认3
          numTestsPerEvictionRun: 1024
-
+  jackson:
+    #参数意义：
+    #JsonInclude.Include.ALWAYS              默认
+    #JsonInclude.Include.NON_DEFAULT     属性为默认值不序列化
+    #JsonInclude.Include.NON_EMPTY         属性为 空（””） 或者为 NULL 都不序列化
+    #JsonInclude.Include.NON_NULL           属性为NULL   不序列化
+    default-property-inclusion: ALWAYS
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

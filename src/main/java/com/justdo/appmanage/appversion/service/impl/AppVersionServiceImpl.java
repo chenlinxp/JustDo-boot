@@ -1,15 +1,14 @@
 package com.justdo.appmanage.appversion.service.impl;
 
+import com.justdo.appmanage.appversion.dao.AppVersionDao;
+import com.justdo.appmanage.appversion.domain.AppVersionDO;
+import com.justdo.appmanage.appversion.service.AppVersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
-
-import com.justdo.appmanage.appversion.dao.AppVersionDao;
-import com.justdo.appmanage.appversion.domain.AppVersionDO;
-import com.justdo.appmanage.appversion.service.AppVersionService;
 
 
 
@@ -58,5 +57,7 @@ public class AppVersionServiceImpl implements AppVersionService {
 	public int batchDel(String[] appVersionIds){
 		return appVersionDao.batchDel(appVersionIds);
 	}
+
+
 	
 }

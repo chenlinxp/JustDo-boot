@@ -95,6 +95,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public String getPasswordSalt(String loginName){
 		return employeeDao.getPasswordSalt(loginName);
 	}
+
+	@Override
+	public EmployeeDO findByEmployeeName(String loginName){
+		return employeeDao.findByEmployeeName(loginName);
+	}
 	@Override
 	public List<EmployeeDO> list(Map<String, Object> map){
 		return employeeDao.list(map);
@@ -286,7 +291,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 				filePath=new File("");
 			}
 			File upload = new File(filePath.getAbsolutePath(),justdoConfig.getUploadPath());
-			FileUtils.uploadFile(b,upload, fileName);
+			File dest = new File(upload.getPath()+"/"+fileName);
+			file.transferTo(dest);
 		} catch (Exception e) {
 			throw  new Exception("图片裁剪错误！！");
 		}

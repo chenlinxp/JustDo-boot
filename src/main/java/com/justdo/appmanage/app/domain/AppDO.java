@@ -69,8 +69,8 @@ public class AppDO extends BaseBean {
     */
     public AppDO(){ }
     public AppDO(String appId,String appKey,String appName,String bundleName,String bundleId,String shortUrl,String loadUrl,Date expirerTime,Integer appType,Integer isCombine,String combineAppId,Date combineTime,String iconUrl,String codeQrA,String codeQrB,String codeQrC,String description,Date createTime,Date modifyTime){
-		super();
-			this.loadUrl= loadUrl;
+            this.appId = appId;
+    	    this.loadUrl= loadUrl;
 			this.combineAppId= combineAppId;
 			this.combineTime= combineTime;
 			this.iconUrl= iconUrl;

@@ -1,6 +1,7 @@
 package com.justdo.appmanage.app.service;
 
 import com.justdo.appmanage.app.domain.AppDO;
+import com.justdo.common.domain.APPInfoBean;
 
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,14 @@ public interface AppService {
 	 * @param appId
 	 * @return AppDO
 	 */
-		AppDO get(String appId);
+	AppDO get(String appId);
 
+	/**
+	 * 返回实体
+	 * @param map
+	 * @return AppDO
+	 */
+	 AppDO getByBundleId(Map<String, Object> map);
 	/**
 	 * 返回实体list
 	 * @param map
@@ -62,5 +69,21 @@ public interface AppService {
 	 * @return list
 	 */
 	int batchDel(String[] appIds);
+
+   // APPInfoBean
+
+	/**
+	 * 保存实体
+	 * @param app
+	 * @return
+	 */
+	int save(APPInfoBean app);
+
+	/**
+	 * 更新实体
+	 * @param app
+	 * @return list
+	 */
+	int update(APPInfoBean app);
 
 }

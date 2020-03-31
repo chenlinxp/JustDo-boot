@@ -2,11 +2,12 @@ var preUrl = "/system/employee"
 $(function() {
 	var organId = '';
 	var deptmentId = '';
+	var positionId = '';
 	getTreeData();
-	load(organId,deptmentId);
+	load(organId,deptmentId,positionId);
 });
 
-function load(organId,deptId) {
+function load(organId,deptId,postId) {
 	$('#bTable')
 		.bootstrapTable(
 			{
@@ -42,7 +43,8 @@ function load(organId,deptId) {
                         order: 'desc',
                         loginName : $('#searchName').val(),
                         deptmentId : deptId,
-						organId: organId
+						organId: organId,
+                        positionId: postId
 					};
 				},
                 onDblClickRow: function (row, element) {
@@ -283,7 +285,8 @@ function loadTree(tree) {
 			"multiple" : false, // no multiselection
             "themes" : {
                 "dots" : false // no connecting dots between dots
-            }
+            },
+            'check_callback':true
 		},
 		"plugins" : [ "search" ]
 	});
@@ -292,62 +295,76 @@ function loadTree(tree) {
 $('#jstree').on("changed.jstree", function(e, data) {
 	var organId = '';
     var deptmentId = '';
+    var positionId = '';
     var opt = {
         query : {
             deptmentId : deptmentId,
-            organId :organId
+            organId :organId,
+            positionId : positionId
         }
     }
     if(data.selected != -1){
         if(data.node["icon"]=="fa fa-institution"){
             opt.query.deptmentId = data.node["id"];
-        }else{
+        }else if(data.node["icon"]=="fa fa-users"){
+            opt.query.positionId = data.node["id"];
+        }
+        else{
             opt.query.organId = data.node["id"];
         }
         $('#bTable').bootstrapTable('refresh', opt);
 	}
 });
-// $('#jstree').bind("create_node.jstree",function(e,data){
-//     var curreatnode = data.node;
-// }
+
 $('#jstree').on("open_node.jstree", function(e, data){
     if(data.selected != -1){
-        var inst = data.instance;
-        var selectedNode = inst.get_node(data.selected);
-
         if(data.node["icon"]=="fa fa-institution"){
             var deptmentId = data.node["id"];
 
-            loadConfig(inst, selectedNode,deptmentId);
+            var inst = data.instance;
 
+            var selectedNode = inst.get_node(data.selected);
+
+           // console.log(data.node.children.length);
+            for(var j = 0;j<data.node.children.length;j++){
+
+                var childrennode = inst.get_node(data.node.children[j]);
+
+                // console.log(childrennode);
+                if(childrennode["icon"]!="fa fa-institution"){
+
+                    inst.delete_node(childrennode)
+                }
+            }
+            loadPostion(deptmentId);
         }
     }
 });
-function loadConfig(inst, selectedNode,deptmentId) {
+function loadPostion(deptmentId) {
     $.ajax({
         url: "/system/position/tree/"+deptmentId,
         dataType: "json",
         type: "get",
         success: function (data) {
+           console.log(data);
+            //console.log($.parseJSON(data));
+            console.log(JSON.stringify(data));
+
+            console.log(data.hasOwnProperty.length);
             if (data) {
-                // selectedNode.children = [];
-                // $.each(data, function (i, item) {
-                //     var obj = {text: item};
-                //     $('#jstree').jstree('create_node', selectedNode, obj, 'last');
-                //     //inst.create_node(selectedNode, item, "last");
-                // });
-                // inst.open_node(selectedNode);
-                selectedNode.children = [];
-                // $.each(data, function (i, item) {
-                //     var obj = {text: item};
-                    $('#jstree').jstree('create_node', selectedNode, data, 'last');
-                    //inst.create_node(selectedNode, item, "last");
-                // });
-                // inst.open_node(selectedNode);
+                if(data.hasOwnProperty.length==1){
+                    $('#jstree').jstree('create_node', deptmentId, data, 'last');
+                }else{
+                    $.each(data, function (i, item) {
+                        $('#jstree').jstree('create_node', deptmentId, item, 'last');
+                    });
+                }
             }
         }
     });
 }
+
+
 $("#treeForm").submit(function(e) {
     e.preventDefault();
     $("#jstree").jstree(true).search($("#selectDept").val());
