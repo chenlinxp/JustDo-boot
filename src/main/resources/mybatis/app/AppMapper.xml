@@ -68,9 +68,6 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.justdo.appmanage.app.domain.AppDO">
-        <selectKey keyProperty="appId" resultType="string" order="BEFORE">
-        select replace(uuid(), '-', '') as appId from dual
-		</selectKey>
         insert into d_app
 		(
 		    `APP_ID`,

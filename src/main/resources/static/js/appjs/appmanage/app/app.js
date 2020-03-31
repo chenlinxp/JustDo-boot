@@ -223,6 +223,8 @@ function load() {
                                 showColumns : false, // 是否显示内容下拉框（选择显示的列）
                                 queryParams : function(params) {
                                     return {
+                                        sort: 'CREATE_TIME',
+                                        order: 'desc',
                                         appId:parentId,
                                     };
                                 },

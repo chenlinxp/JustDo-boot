@@ -87,7 +87,8 @@ public class AppServiceImpl implements AppService {
 		String versionName = app.getVersionName();
 		String versionCode = app.getVersionCode();
 		String logoImage = app.getLogoImage();
-		logoImage =	"/"+logoImage.substring(logoImage.lastIndexOf("app"), logoImage.length()).replace("app","files");
+		//网站系统logo 访问路径
+		String webLogoUrl = "/"+logoImage.substring(logoImage.lastIndexOf("app"), logoImage.length()).replace("app","files");
 		String bundleName = app.getBundleName();
 		String fileSize = app.getFileSize();
 		String appId = StringUtils.getUUID();
@@ -102,21 +103,25 @@ public class AppServiceImpl implements AppService {
 		AppDO appDO = this.getByBundleId(map);
 		if(appDO == null) {
 
-
 			String appKey = StringUtils.getUUID();
 			String qRCodeUrl = logoImage.substring(0, logoImage.lastIndexOf("/"))+"/";
 			String shortUrl = StringUtils.shortUrl(loadUrl);
 			shortUrl = justdoConfig.getBaseAddress() + shortUrl;
 			String a =	QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,250,app.getLogoImage());
+			a = "/"+a.substring(a.lastIndexOf("app"), a.length()).replace("app","files");
 			String b =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,500,app.getLogoImage());
+			b = "/"+b.substring(b.lastIndexOf("app"), b.length()).replace("app","files");
 			String c =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,800,app.getLogoImage());
-			appDO = new AppDO(appId,appKey, appName, bundleName, pageName, shortUrl, loadUrl, DateUtils.addMonth(date,1), app.getAppType(), 0, "", null, logoImage, a, b, c, "", date, date);
+			c = "/"+c.substring(c.lastIndexOf("app"), c.length()).replace("app","files");
+			appDO = new AppDO(appId,appKey, appName, bundleName, pageName, shortUrl, loadUrl, DateUtils.addMonth(date,1), app.getAppType(), 0, "", null, webLogoUrl, a, b, c, "", date, date);
 			appDao.save(appDO);
 
 		}else{
 			appId = appDO.getAppId();
-			appDO.setIconUrl(logoImage);
+			appDO.setIconUrl(webLogoUrl);
 			appDO.setExpirerTime(date);
+			appDO.setAppName(appName);
+			appDO.setBundleName(bundleName);
 			appDao.update(appDO);
 		}
 
