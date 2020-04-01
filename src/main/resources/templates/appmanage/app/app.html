@@ -2,13 +2,11 @@
 <html xmlns:shiro="http://www.w3.org/1999/xhtml">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
- <style type="text/css">
-	      .divclsss { background-color: pink; text-align: center; line-height: 100px; margin: 100px auto;position: relative;}
-	      .divclsss img { position: absolute;  left: 110px;  top: 0;  display: none;}
-	      .divclsss:hover img {  display: block;}
-
-	      li a:hover span
-	        </style>
+<style>
+	img[src=""],img:not([src]){
+		opacity:0;
+	}
+</style>
 <body class="gray-bg">
 	<div class="wrapper wrapper-content ">
 		<div class="col-sm-12">
@@ -41,6 +39,7 @@
 					</div>
 					<table id="bTable" data-mobile-responsive="true">
 					</table>
+					<img id="codeQr" src="" style="width: 200px; height: 200px;">
 				</div>
 			</div>
 		</div>

@@ -353,7 +353,7 @@ function load() {
                                             }
                                             var c = '<a class="btn btn-sm '+s_delete_h+'" href="#" title="删除"  mce_href="#" onclick="del(\'' + row.appVersionId+'\')"><i class="fa fa-remove"></i></a> ';
 
-                                            var d = '<a class="btn btn-sm" href="#" title="二维码"  mce_href="#">' +'<i class="fa fa-qrcode"></i></a> ';
+                                            var d = '<a class="btn btn-sm" href="#" title="二维码" onmouseover="on(\'' + row.codeQr+'\')" onmouseout="off()"  mce_href="#">' +'<i class="fa fa-qrcode"></i></a> ';
                                             return d + a + b + c ;
                                         }
                                     } ]
@@ -399,10 +399,10 @@ function add() {
 function upload() {
     layer.open({
         type : 2,
-        title : '上传',
-        maxmin : true,
+        title : '上传APP文件',
+        maxmin : false,
         shadeClose : false, // 点击遮罩关闭层
-        area : [ '500px', '520px' ],
+        area : [ '430px', '300px' ],
         content : preUrl + '/upload' // iframe的url
     });
 }
@@ -505,4 +505,28 @@ function batchDel() {
 	}, function() {
 
 	});
+}
+
+/**
+ * 显示图片详情，鼠标移入时执行
+ */
+function on(codeQrImg) {
+    if (codeQrImg == "undefined" || codeQrImg == null || codeQrImg == "") {
+        return;
+    }
+    //给图片容器赋值路径
+    $("#codeQr").attr("src", codeQrImg);
+    $(document).mousemove(function(e) {
+        $("#codeQr").css("position", "absolute").css("left", e.pageX-200+"px").css("top", e.pageY+1+"px");
+    })
+}
+
+/**
+ * 关闭图片，当鼠标移出时执行
+ */
+function off() {
+    $("#codeQr").attr("src", "");
+    $(document).mousemove(function(e) {
+        $("#codeQr").css("position", "absolute").css("left", "-400px").css("top", "-400px");
+    })
 }

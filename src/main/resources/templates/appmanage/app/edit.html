@@ -18,7 +18,7 @@
 							</div>
 							<label class="col-sm-2 control-label">APP-KEY:</label>
 							<div class="col-sm-4">
-								<input id="appKey" name="appKey" th:value="${app.appKey}" class="form-control" type="text">
+								<input id="appKey" name="appKey" th:value="${app.appKey}" class="form-control" type="text" readonly="readonly">
 							</div>
 						</div>
 						<div class="form-group">
@@ -28,31 +28,31 @@
 							</div>
 							<label class="col-sm-2 control-label">包名ID:</label>
 							<div class="col-sm-4">
-								<input id="bundleId" name="bundleId" th:value="${app.bundleId}" class="form-control" type="text">
+								<input id="bundleId" name="bundleId" th:value="${app.bundleId}" class="form-control" type="text" readonly="readonly">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">短链接:</label>
 							<div class="col-sm-4">
-								<input id="shortUrl" name="shortUrl" th:value="${app.shortUrl}" class="form-control" type="text">
+								<input id="shortUrl" name="shortUrl" th:value="${app.shortUrl}" class="form-control" type="text" readonly="readonly">
 							</div>
 							<label class="col-sm-2 control-label">过期时间:</label>
 							<div class="col-sm-4">
-								<input type="text" class="laydate-icon layer-date form-control" id="expirerTime" name="expirerTime" th:value="${#dates.format(app.expirerTime,'yyyy-MM-dd HH:mm:ss')}"  placeholder="过期时间"
-									   onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" style="background-color: #fff;" />
+								<input type="text" class="laydate-icon layer-date form-control" id="expirerTime" name="expirerTime" th:value="${#dates.format(app.expirerTime,'yyyy-MM-dd HH:mm:ss')}"
+									   readonly="readonly"  />
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">app类型:</label>
 							<div class="col-sm-4">
 								<label th:each="appType:${appTypeCode}" class="radio-inline">
-									<input name="appType" th:field="*{app.appType}" type="radio" th:value="${appType.dccode}" th:text="${appType.dcvalue}"/>
+									<input name="appType" th:field="*{app.appType}" type="radio" th:value="${appType.dccode}" th:text="${appType.dcvalue}" disabled="disabled"/>
 								</label>
 							</div>
 							<label class="col-sm-2 control-label">是否合并:</label>
 							<div class="col-sm-4">
 								<label th:each="isCombine:${appCombineCode}" class="radio-inline">
-									<input name="isCombine" th:field="*{app.isCombine}" type="radio" th:value="${isCombine.dccode}" th:text="${isCombine.dcvalue}"/>
+									<input name="isCombine" th:field="*{app.isCombine}" type="radio" th:value="${isCombine.dccode}" th:text="${isCombine.dcvalue}" disabled="disabled"/>
 								</label>
 							</div>
 						</div>

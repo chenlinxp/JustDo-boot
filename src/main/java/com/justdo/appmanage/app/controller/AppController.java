@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
@@ -121,7 +122,7 @@ public class AppController {
 	 * @return 增加页面路径
 	 */
 	@GetMapping("/upload")
-	//@RequiresPermissions("appmanage:app:add")
+	@RequiresPermissions("appmanage:app:add")
 	@ApiOperation(value="返回APP包管理上传页面", notes="返回APP包管理上传页面")
 	String upload(Model model){
 		model.addAttribute("appTypeCode",dictContentService.listDictByCode("appTypeCode"));
@@ -135,9 +136,14 @@ public class AppController {
 	 */
 	@Log("上传APP安装包")
 	@ResponseBody
-	@PostMapping("/upload")
+	@PostMapping(value = "/upload")
+	@RequiresPermissions("appmanage:app:add")
 	@ApiOperation(value="上传APP安装包", notes="上传APP安装包")
-	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws FileNotFoundException {
+	R upload(@RequestParam("file") MultipartFile file, HttpServletRequest request , HttpServletResponse response) throws FileNotFoundException {
+
+		response.setContentType("text/html; charset=UTF-8");
+
+		response.setHeader("Content-Type","text/html; charset=utf-8");   //);
 
 		String fileName = file.getOriginalFilename();
 

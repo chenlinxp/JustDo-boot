@@ -1,9 +1,9 @@
 var preUrl = "/appmanage/app"
 $(function() {
 	validateRule();
-            laydate({
-                elem : '#expirerTime'
-            });
+            // laydate({
+            //     elem : '#expirerTime'
+            // });
 });
 
 $.validator.setDefaults({

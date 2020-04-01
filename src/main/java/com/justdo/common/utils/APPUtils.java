@@ -6,8 +6,6 @@ import com.dd.plist.NSString;
 import com.dd.plist.PropertyListParser;
 import com.justdo.common.domain.APPInfoBean;
 import com.justdo.common.domain.ApkInfo;
-import net.dongliu.apk.parser.ApkFile;
-import net.dongliu.apk.parser.bean.ApkMeta;
 
 import java.io.*;
 import java.util.zip.ZipEntry;
@@ -34,16 +32,16 @@ public class APPUtils {
 
 		try {
 
-			ApkFile apkFile = new ApkFile(file);
-
-			ApkMeta apkMeta = apkFile.getApkMeta();
+//			ApkFile apkFile = new ApkFile(file);
+//
+//			ApkMeta apkMeta = apkFile.getApkMeta();
 
 //			String xml = apkFile.getManifestXml();
 
 //			System.out.println(xml);
 
-			aPPInfoBean.setBundleName(apkMeta.getLabel());
-			aPPInfoBean.setAppName(apkMeta.getLabel());
+//			aPPInfoBean.setBundleName(apkMeta.getLabel());
+//			aPPInfoBean.setAppName(apkMeta.getLabel());
 
 //			aPPInfoBean.setVersionCode(apkMeta.getVersionCode().toString());
 //			aPPInfoBean.setPackageName(apkMeta.getPackageName());
@@ -54,15 +52,15 @@ public class APPUtils {
 
 
 			ApkInfo apkInfo = (new ApkUtils()).getApkInfo(aaptPath, file.getPath());
-//			aPPInfoBean.setAppName(apkInfo.getApplicationLable());
-//			aPPInfoBean.setBundleName(apkInfo.getApplicationLable());
+			aPPInfoBean.setAppName(apkInfo.getApplicationLable());
+			aPPInfoBean.setBundleName(apkInfo.getApplicationLable());
 			aPPInfoBean.setPackageName(apkInfo.getPackageName());
 			aPPInfoBean.setVersionName(apkInfo.getVersionName());
 			aPPInfoBean.setVersionCode(apkInfo.getVersionCode());
 			aPPInfoBean.setAppType(1);
 			String iconName = apkInfo.getApplicationIcon();
 
-			iconUrl = iconUrl+apkInfo.getApplicationLable();
+			iconUrl = iconUrl+aPPInfoBean.getBundleName();
 			File  icond = new File(iconUrl);
 			if(!icond.exists()){
 				icond.mkdirs();
