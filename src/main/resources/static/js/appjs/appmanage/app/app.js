@@ -104,6 +104,20 @@ function load() {
                                         }
                                     }
                                 },
+                                {
+                                    field : 'isCombine',
+                                    title : '是否绑定',
+                                    align : 'center',
+                                    valign : 'center',
+                                    width : '40px',
+                                    formatter : function(value, row, index) {
+                                        if (value == '1') {
+                                            return '<span class="label label-primary" style="font-size: larger">是</span>';
+                                        } else  {
+                                            return '<span class="label label-danger" style="font-size: larger">否</span>';
+                                        }
+                                    }
+                                },
 								{
 									field : 'iconUrl',
 									title : 'LOGO',
@@ -152,9 +166,10 @@ function load() {
 								{
 									field : 'codeQrA', 
 									title : '二维码' ,
+                                    width : '60px',
                                     visible :true,
                                     formatter : function(value, row, index) {
-                                        return '<img src="'+value+'" height="50px" width="50px"/>';
+                                        return '<img src="'+value+'" height="50px" width="50px" onmouseover="on(\'' + row.codeQrB+'\')" onmouseout="off()" />';
                                     }
 								},
 								{
@@ -167,20 +182,6 @@ function load() {
 									field : 'codeQrC', 
 									title : '二维码图片路径C(15cm)' ,
                                     visible :false
-								},
-								{
-									field : 'isCombine', 
-									title : '是否绑定',
-                                    align : 'center',
-                                    valign : 'center',
-                                    width : '40px',
-                                    formatter : function(value, row, index) {
-                                        if (value == '1') {
-                                            return '<span class="label label-primary" style="font-size: larger">是</span>';
-                                        } else  {
-                                            return '<span class="label label-danger" style="font-size: larger">否</span>';
-                                        }
-                                    }
 								},
 								{
 									field : 'description', 
@@ -517,7 +518,10 @@ function on(codeQrImg) {
     //给图片容器赋值路径
     $("#codeQr").attr("src", codeQrImg);
     $(document).mousemove(function(e) {
-        $("#codeQr").css("position", "absolute").css("left", e.pageX-200+"px").css("top", e.pageY+1+"px");
+        console.info(e.pageX-200+"px");
+        console.info("-----");
+        console.info(e.pageY-10+"px");
+        $("#codeQr").css("position", "absolute").css("left", e.pageX-200+"px").css("top", e.pageY-10+"px");
     })
 }
 

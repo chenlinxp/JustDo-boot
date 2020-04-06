@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jsutdo-APP下载</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="BHAF-APP">
+    <meta property="og:type" content="webpage">
+    <meta property="og:title" content="BHAF">
+    <meta name="apple-mobile-web-app-title" content="BHAF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <!--CSS Global Compulsory-->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet"  />
+    <!-- CSS Implementing Plugins -->
+    <link href="/css/line-icons.css" rel="stylesheet">
+    <link href="/css/font-awesome.min.css" rel="stylesheet" >
+    <link href="/css/flexslider.css" rel="stylesheet" >
+    <link href="/css/jquery.bxslider.css" rel="stylesheet" >
+    <link href="/css/horizontal-parallax.css" rel="stylesheet" >
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="/css/default.css" id="style_color">
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/css/custom.css">
+    <link rel="stylesheet" href="/css/menu.css">
+
+</head>
+<body>
+
+<div class="row-fluid breadcrumbs">
+    <div class="container">
+        <div class="span12" style="text-align: center;">
+        <h1> <span th:text="${appName}"></span></h1>
+        </div>
+    </div>
+</div>
+<div class="container content">
+    <div class="view row">
+        <div class="span12" style="text-align: center;">
+            <img th:src="${iconUrl}" class="appicon"  />
+        </div>
+    </div>
+   <hr class="devider devider-dotted">
+    <div  class="view row margin-bottom-30">
+        <div class="span12" style="text-align: center;">
+            版本:<span th:text="${versionCode}">版本号</span>
+            (build<span th:text="${buildCode}">构建号</span>)
+            大小:<span th:text="${appSizes}">版本号</span>MB
+        </div>
+        <div class="span12" style="text-align: center;">
+            更新时间: <span th:text="${#dates.format(modifyTime,'yyyy-MM-dd HH:mm:ss')}" ></span></div>
+    <div class="span12" style="text-align:center;">
+        用手机扫描下面的二维码安装  <br />
+        <br />
+        <img th:src="${codeQrA}"/>
+    </div>
+    </div>
+    <hr class="devider devider-dotted" />
+    <div id="" class="view row margin-bottom-30">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-6" th:if="${appVersionDO2 != null}">
+                <div class="row text-center">
+                    <div class="margin-bottom-20">
+                        <a href="javascript:void(0);"
+                           onclick="javascript:install_merge_loading('2');"
+                           id="down_load_type_2" class="btn btn-primary">
+                            下载苹果版
+                        </a>
+                    </div>
+                    <div class="margin-bottom-20" style="margin-top: 20px">
+                    <p>
+                        <span class="label label-info">适用于苹果设备</span> <span
+                            class="label label-danger">企业版</span>
+                    </p>
+                    <p>
+                        版本：<label id="version_type_2"><span th:text="${appVersionDO2.versionCode}">版本号</span></label>
+                        大小：<label id="size_type_2"><span th:text="${appVersionDO2.appSizes}">版本号</span>MB</label>
+                    </p>
+                    <p>
+                        最近更新时间：<label id="date_type_2"><span th:text="${#dates.format(appVersionDO2.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
+                    </p>
+                       <input type="hidden" id="download-href_2" th:value="${appVersionDO2.downloadUrl}"/>
+                    </div>
+                </div>
+
+                <div><h2 class="content-title">历史版本</h2></div>
+                <!--<div th:if="${appVersionDOList2 != null}" th:each="appVersions2 : ${appVersionDOList2}" >-->
+                    <!--<span th:text="${appVersions2.versionCode}">版本号</span>-->
+                    <!--<span th:text="${appVersions2.buildCode}">构建号</span>-->
+                    <!--<span th:text="${#dates.format(appVersions2.createTime,'yyyy-MM-dd')}" >创建时间</span>-->
+                <!--</div>-->
+
+
+                <table th:if="${appVersionDOList2 != null}" th:each="appVersions2 : ${appVersionDOList2}"  class="table table-striped table-hover app_view_history">
+                    <tbody>
+                    <tr  class="history_row">
+                        <td class="history-item">
+                            <span th:text="${appVersions2.versionCode}">版本号</span>build(
+                            <span th:text="${appVersions2.buildCode}"></span>)
+                        </td>
+                        <td class="text-left " style="min-width:100px;">
+                        </td>
+                        <td nowrap="nowrap" class="text-right pr-50">
+                            <span th:text="${#dates.format(appVersions2.createTime,'yyyy-MM-dd')}" >创建时间</span>                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6" th:if="${appVersionDO1 != null}">
+                <div class="row text-center">
+                    <div class="margin-bottom-20">
+                        <a href="javascript:void(0);"
+                           onclick="javascript:install_merge_loading('1');"
+                           id="down_load_type_1" class="btn btn-primary" > 下载安卓版</a>
+                    </div>
+                    <div class="margin-bottom-20" style="margin-top: 20px">
+                    <p>
+                        <span class="label label-success">适用于安卓设备</span>
+                    </p>
+                    <p>
+                        版本：<label id="version_type_1"><span th:text="${appVersionDO1.versionCode}">版本号</span> </label>
+                        大小：<label id="size_type_1"><span th:text="${appVersionDO1.appSizes}">版本号</span>MB</label>
+                    </p>
+                    <p>
+                        最近更新时间：<label id="date_type_1"><span th:text="${#dates.format(appVersionDO1.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
+                    </p>
+                    <input type="hidden" id="download-href_1" th:value="${appVersionDO1.downloadUrl}"/>
+                    </div>
+                </div>
+                <div><h2 class="content-title">历史版本</h2></div>
+                <!--<div th:if="${appVersionDOList1 != null}" th:each="appVersions1 : ${appVersionDOList1}" >-->
+                    <!--<span th:text="${appVersions1.versionCode}">版本号</span>-->
+                    <!--<span th:text="${appVersions1.buildCode}">构建号</span>-->
+                    <!--<span th:text="${#dates.format(appVersions1.createTime,'yyyy-MM-dd')}" >创建时间</span>-->
+                <!--</div>-->
+
+
+                <table th:if="${appVersionDOList1 != null}" th:each="appVersions1 : ${appVersionDOList1}"  class="table table-striped table-hover app_view_history">
+                    <tbody>
+                    <tr  class="history_row">
+                        <td class="history-item">
+                            <span th:text="${appVersions1.versionCode}">版本号</span>build(
+                            <span th:text="${appVersions1.buildCode}"></span>)
+                            </td>
+                        <td class="text-left " style="min-width:100px;">
+                        </td>
+                        <td nowrap="nowrap" class="text-right pr-50">
+                            <span th:text="${#dates.format(appVersions1.createTime,'yyyy-MM-dd')}" >创建时间</span>                    </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/appjs/portal/app.js"></script>
+<script type="text/javascript" src="/js/appjs/portal/appMerge.js"></script>
+<script type="text/javascript" src="/js/appjs/portal/appView.js"></script>
+<script type="text/javascript">
+    var aType = 'ios', resquestIp = 'http://7ae1fb84.ngrok.io/', resquestContext = '',
+        resquestUrl = resquestIp + resquestContext+ '',
+        submiting = '请稍候...', submitText = '立即进入', isMobileRequest = '', askBrowserAlert = '请在手机上使用浏览器打开本页面', forIosAlert = '您的手机是Android系统，无法安装iOS应用';
+    forAndroidAlert = '您的手机是iOS系统，无法安装Android应用';
+    isWechatRequest = '',
+        reminderWechatContent = '请点击微信右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装',
+        isQQRequest = '',
+        reminderQQContent = '请点击QQ右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装',
+        isUCRequest = '',
+        reminderUCContent = '您当前使用的是 UC 浏览器，该浏览器不支持安装App。请在浏览器中打开，即可安装',
+        isWeiboRequest = '',
+        reminderWeiboContent = '请点击微博右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装',
+        browseType = 'other',
+        appStoreUrl = '',
+        reminderWechatDownloadContent = '请点击微信右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可下载',
+        reminderUCDownloadContent = '您当前使用的是 UC 浏览器，该浏览器不支持安装App。请在浏览器中打开，即可下载',
+        reminderWeiboDownloadContent = '请点击微博右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可下载',
+        reminderQQDownloadContent = '请点击QQ右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可下载',
+        downloadOnlyForCertification = 1, userIsCertification = true,
+        isIOS = 0, unableDownload = '应用提供者未进行实名认证，无法下载';
+    $(document).ready(function() {
+        //getData();
+        isMobileRequest = isMobile();
+        isWechatRequest = isWeiXin();
+    });
+</script>
+</html>

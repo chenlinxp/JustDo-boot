@@ -122,6 +122,7 @@ public class AppServiceImpl implements AppService {
 			appDO.setExpirerTime(date);
 			appDO.setAppName(appName);
 			appDO.setBundleName(bundleName);
+			appDO.setModifyTime(date);
 			appDao.update(appDO);
 		}
 
