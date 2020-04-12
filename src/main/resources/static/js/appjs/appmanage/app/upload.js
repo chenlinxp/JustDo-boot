@@ -54,9 +54,10 @@ function upload() {
             data: formdata,
             type: "POST",
             async: false,
-            cache: false,
+            cache: true,
             contentType: false,
             processData: false,
+            timeout: 180000000,
             success: function(data) {
                 console.log(JSON.stringify(data));
                 if (data.code == 0) {

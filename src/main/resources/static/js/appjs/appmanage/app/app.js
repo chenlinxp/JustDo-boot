@@ -518,10 +518,10 @@ function on(codeQrImg) {
     //给图片容器赋值路径
     $("#codeQr").attr("src", codeQrImg);
     $(document).mousemove(function(e) {
-        console.info(e.pageX-200+"px");
-        console.info("-----");
-        console.info(e.pageY-10+"px");
-        $("#codeQr").css("position", "absolute").css("left", e.pageX-200+"px").css("top", e.pageY-10+"px");
+        // console.info(e.pageX-200+"px");
+        // console.info("-----");
+        // console.info(e.pageY-10+"px");
+        $("#codeQr").css("position", "absolute").css("left", e.pageX-200+"px").css("top", e.pageY-10+"px").css("display","block");
     })
 }
 
@@ -531,6 +531,6 @@ function on(codeQrImg) {
 function off() {
     $("#codeQr").attr("src", "");
     $(document).mousemove(function(e) {
-        $("#codeQr").css("position", "absolute").css("left", "-400px").css("top", "-400px");
+        $("#codeQr").css("position", "absolute").css("left", "-400px").css("top", "-400px").css("display","block");
     })
 }

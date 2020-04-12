@@ -4,7 +4,7 @@ justdo:
   appUploadPath: /Users/chenlin/Documents/GitHub/app/
   aaptPath: /Users/chenlin/Library/Android/sdk/build-tools/26.0.0/aapt
   pythonShellPath: /Users/chenlin/Documents/GitHub/app/ipa/
-  baseAddress: http://7ae1fb84.ngrok.io/
+  baseAddress: https://2m9475x889.zicp.vip/
 logging:
   level:
     root: INFO

@@ -68,43 +68,18 @@ function init(){
         //下载页div
          document.getElementById("main").style.display="block";
     }
+    if(browser.versions.ios || browser.versions.iPhone||browser.versions.iPad){
+        document.getElementById("iosDiv").style.display="block";
+    }
+    if(browser.versions.android){
+        document.getElementById("androidDiv").style.display="block";
+    }
+    if(!browser.versions.mobile){
+        document.getElementById("iosDiv").style.display="block";
+        document.getElementById("androidDiv").style.display="block";
+    }
 }
 
-
-function getData(){
-	var resultObject,resultState,dataList;
-	$.ajax({
-		type: "get",
-		url: resquestUrl,
-		beforeSend: function(XMLHttpRequest){
-			//ShowLoading();
-		},
-		success: function(data, result){
-			resultObject = JSON.parse(data);
-			resultState = resultObject.status;
-			if(resultState==="0"){
-				dataList  = resultObject.data;
-				for(var item in dataList) {
-					console.log(dataList[item]);
-					$("#version_type_"+dataList[item].type).html(dataList[item].version);
-					$("#size_type_"+dataList[item].type).html(dataList[item].app_size+" MB");
-					$("#date_type_"+dataList[item].type).html(dataList[item].edittime);
-					$("#down_load_type_"+dataList[item].type).attr("download-href",resquestIp+resquestContext+dataList[item].file_path);
-					//$("#down_load_type_"+dataList[item].type).attr("download-href",dataList[item].appurl);
-				}
-			}else{
-				alert(resultObject.message);
-			}
-		},
-		complete: function(XMLHttpRequest, textStatus){
-			//HideLoading();
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-			//请求出错处理
-			alert("后台服务异常,请联系管理员！");
-		}
-	});
-}
 
 
 

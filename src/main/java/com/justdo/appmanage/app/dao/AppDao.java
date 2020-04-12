@@ -70,4 +70,11 @@ public interface AppDao {
 	 * @return AppDO
 	 */
 	AppDO getByBundleId(Map<String, Object> map);
+
+	/**
+	 * 返回实体
+	 * @param combineAppId
+	 * @return AppDO
+	 */
+	AppDO getByCombineId(String combineAppId);
 }

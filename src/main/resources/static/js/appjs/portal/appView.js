@@ -11,7 +11,6 @@ function isWeiXin(){
 }
 function install() {
 
-    // 未认证用户不可下载应用
     if (downloadOnlyForCertification && !userIsCertification) {
         alert(unableDownload);
         return false;
@@ -28,8 +27,8 @@ function install() {
         alert(forIosAlert);
         return;
     } else if (aType == 'android' && browseType == 'ios') {
-//        alert(forAndroidAlert);
-//        return;
+       alert(forAndroidAlert);
+       return;
     }
 
 //    if ( isWechatRequest && aType == 'android') {
@@ -54,7 +53,7 @@ function install() {
 
 function install_loading() {
 
-    // 未认证用户不可下载应用
+
     if (downloadOnlyForCertification && !userIsCertification) {
         alert(unableDownload);
         return;
@@ -71,8 +70,8 @@ function install_loading() {
         alert(forIosAlert);
         return;
     } else if (aType == 'android' && browseType == 'ios') {
-//        alert(forAndroidAlert);
-//        return;
+        alert(forAndroidAlert);
+        return;
     }
 
 //    if ( isWechatRequest && aType == 'android') {

@@ -4,10 +4,15 @@
 #将失效，请使用tomcat的端口，tomcat，webapps下项目名进行访问。
 server:
   session-timeout: 1800
+  connection-timeout: 300000
 #    tomcat:
 #        max-threads: 1000
 #        min-spare-threads: 30
   port: 8088
+  #spring boot 项目中，application.properties增加如下配置指定tomcat的基目录，否则spring boot内嵌的tomcat容器会创建一个临时目录，但是此目录有一个定期清除策略，会影响web容器资源的使用，所以指定在项目根目录创建目录
+  tomcat:
+     basedir: ./deployer/tomcat
+#  servlet.context-path: jsutdo
 # uri-encoding: utf-8
 security:
   basic:

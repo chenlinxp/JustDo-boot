@@ -4,7 +4,7 @@ justdo:
   appUploadPath: /usr/local/app/
   aaptPath: /usr/local/lib/apktool/aapt
   pythonShellPath: /usr/local/app/ipa/
-  baseAddress: http://7ae1fb84.ngrok.io/
+  baseAddress: https://2m9475x889.zicp.vip/
 logging:
   level:
     root: error

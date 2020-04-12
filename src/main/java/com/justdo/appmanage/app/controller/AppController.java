@@ -8,6 +8,7 @@ import com.justdo.common.utils.*;
 import com.justdo.config.JustdoConfig;
 import com.justdo.system.dict.service.DictContentService;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -162,6 +163,7 @@ public class AppController {
 		String dateStr = DateUtils.formatDate(new Date(), "yyyyMMddHHmmss");
 
 		APPInfoBean aPPInfoBean = null;
+
 //		CommonsMultipartFile cFile = (CommonsMultipartFile)file;
 //		DiskFileItem diskFileItem = (DiskFileItem)cFile.getFileItem();
 //		File zipfile = diskFileItem.getStoreLocation();
@@ -227,12 +229,12 @@ public class AppController {
 			}
 
 		} catch (Exception e) {
-			return R.error();
+			return R.error(1, e.getMessage());
 		}
 		if (appService.save(aPPInfoBean) > 0) {
 			return R.ok();
 		}
-		return R.error();
+		return R.error(1, "保存失败!");
 	}
 
 
@@ -270,6 +272,18 @@ public class AppController {
 		model.addAttribute("app", app);
 		model.addAttribute("appTypeCode",dictContentService.listDictByCode("appTypeCode"));
 		model.addAttribute("appCombineCode",dictContentService.listDictByCode("appCombineCode"));
+        int appType = app.getAppType();
+        String appPackageName = app.getBundleId();
+		Map<String, Object> map = new HashedMap();
+		map.put("bundleId",appPackageName);
+        if(appType == 1){
+	        map.put("appType","2");
+        }else{
+	        map.put("appType","1");
+        }
+		List<AppDO> appLists = appService.list(map);
+
+		model.addAttribute("appLists", appLists);
 	    return preUrl + "/edit";
 	}
 	

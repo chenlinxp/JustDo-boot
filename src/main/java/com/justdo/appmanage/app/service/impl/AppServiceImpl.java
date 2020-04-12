@@ -64,6 +64,34 @@ public class AppServiceImpl implements AppService {
 	@Override
 	@Transactional(readOnly = false,rollbackFor = Exception.class)
 	public int update(AppDO app){
+		String combineAppId = app.getCombineAppId();
+		int isCombine = app.getIsCombine();
+		Date date = new Date();
+		if(isCombine!=1&&StringUtils.isNotEmpty(combineAppId)){
+
+			app.setCombineTime(date);
+			app.setIsCombine(1);
+			app.setCombineAppId(combineAppId);
+
+			AppDO app2 = appDao.get(combineAppId);
+			if(app2!=null){
+				app2.setCombineAppId(app.getAppId());
+				app2.setCombineTime(date);
+				app2.setIsCombine(1);
+				appDao.update(app2);
+			}
+		}
+		if(isCombine==1&&!StringUtils.isNotEmpty(combineAppId)){
+			app.setIsCombine(0);
+			app.setCombineAppId("");
+
+			AppDO app2 = appDao.getByCombineId(app.getAppId());
+			if(app2!=null){
+				app2.setCombineAppId("");
+				app2.setIsCombine(0);
+				appDao.update(app2);
+			}
+		}
 		return appDao.update(app);
 	}
 	
@@ -136,8 +164,11 @@ public class AppServiceImpl implements AppService {
 		String downLoadUrl = "/"+appPath.substring(appPath.lastIndexOf("app"), appPath.length()).replace("app","files");
 
 		downLoadUrl = downLoadUrl+"/"+app.getAppRename();
-		if(app.getAppType()==2){
-			downLoadUrl.replace("ipa","plist");
+//		if(app.getAppType()==2){
+//			downLoadUrl.replace("ipa","plist");
+//		}
+		if(downLoadUrl.endsWith(".ipa")){
+			downLoadUrl = downLoadUrl.replace(".ipa",".plist");
 		}
 		AppVersionDO appVersionDO = new AppVersionDO(appVersionId,appId, versionName,versionCode, fileSize, 0, 1, 0, 0, "", "", date,versionLoadUrl,d,downLoadUrl);
 

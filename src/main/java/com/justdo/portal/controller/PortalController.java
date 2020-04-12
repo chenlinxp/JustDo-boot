@@ -8,6 +8,7 @@ import com.justdo.common.utils.DateUtils;
 import com.justdo.common.utils.PageUtils;
 import com.justdo.common.utils.Query;
 import com.justdo.common.utils.StringUtils;
+import com.justdo.config.JustdoConfig;
 import com.justdo.system.article.domain.ArticleDO;
 import com.justdo.system.article.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class PortalController {
 
 	@Autowired
 	private AppVersionDao appVersionDao;
+
+	@Autowired
+	private JustdoConfig justdoConfig;
 
 	@GetMapping()
 	String portal() {
@@ -174,7 +178,7 @@ public class PortalController {
 				if(appDO.getAppType()==2&&appDO2==null){
 					appDO2 = appDO;
 					appVersionDOList2 = appVersionDao.list(map);
-					appVersionDO2 = appVersionDOList1.get(0);
+					appVersionDO2 = appVersionDOList2.get(0);
 					appVersionDOList2.remove(0);
 				}
 			}
@@ -199,6 +203,7 @@ public class PortalController {
 		model.addAttribute("appVersionDO2", appVersionDO2);
 		model.addAttribute("appVersionDOList2", appVersionDOList2);
 
+		model.addAttribute("baseAddress",justdoConfig.getBaseAddress());
 		return "portal/index/app";
 	}
 }

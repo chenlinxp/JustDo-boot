@@ -4,6 +4,10 @@ $(function() {
             // laydate({
             //     elem : '#expirerTime'
             // });
+    $(".chosen-select").val($("#combineAppId").val());
+    $('.chosen-select').on('change', function(e) {
+        $("#combineAppId").val($(".chosen-select").val());
+    });
 });
 
 $.validator.setDefaults({

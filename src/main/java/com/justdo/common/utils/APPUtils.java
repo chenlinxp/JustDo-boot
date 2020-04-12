@@ -234,9 +234,9 @@ public class APPUtils {
 
 			////////////////////////////////////////////////////////////////
 			//如果想要查看有哪些key ，可以把下面注释放开
-//            for (String keyName : rootDict.allKeys()) {
-//				System.out.println(keyName + ":" + rootDict.get(keyName).toString());
-//			  }
+            for (String keyName : rootDict.allKeys()) {
+				System.out.println(keyName + ":" + rootDict.get(keyName).toString()+"---------------");
+			  }
 
 
 			// 应用包名
@@ -245,12 +245,20 @@ public class APPUtils {
 
 			// 应用版本名
 			parameters = (NSString) rootDict.objectForKey("CFBundleShortVersionString");
-			aPPInfoBean.setVersionName(parameters.toString());
+			if(parameters!=null){
+			   aPPInfoBean.setVersionName(parameters.toString());
+			}else{
+				aPPInfoBean.setVersionName("1.0");
+			}
 
 			//应用版本号
 			parameters = (NSString) rootDict.get("CFBundleVersion");
 
-			aPPInfoBean.setVersionCode(parameters.toString());
+			if(parameters!=null){
+				aPPInfoBean.setVersionCode(parameters.toString());
+			}else{
+				aPPInfoBean.setVersionCode("1");
+			}
 
 			aPPInfoBean.setFileSize(String.valueOf(file.length() / 1024L / 1024L));
 			aPPInfoBean.setAppType(2);
@@ -264,6 +272,7 @@ public class APPUtils {
 		} catch (Exception e) {
 			file.delete();
 			System.out.println("读取ipa文件失败"+e.getMessage());
+			return aPPInfoBean;
 		}
 		System.out.println("================================执行命令获取icon开始=========================");
 		Process process;
@@ -353,23 +362,33 @@ public class APPUtils {
 
 	public static void main(String[] args) {
 
-		System.out.println("======apk=========");
-		String apkiconurl = "/Users/chenlin/Documents/GitHub/app/apk/";
-		String apkUrl = "/Users/chenlin/Documents/GitHub/BHAF2.6.1.apk";
-		File file = new File(apkUrl);
-        String aaptPath = "/Users/chenlin/Library/Android/sdk/build-tools/26.0.0/aapt";
-		APPInfoBean aPPInfoBean = readAPK(file,apkiconurl,aaptPath);
-		System.out.println(JSONUtils.beanToJson(aPPInfoBean));
-
-
-
+		APPInfoBean aPPInfoBean;
+//		System.out.println("======apk=========");
+//		String apkiconurl = "/Users/chenlin/Documents/GitHub/app/apk/";
+//		String apkUrl = "/Users/chenlin/Documents/GitHub/BHAF2.6.1.apk";
+//		File file = new File(apkUrl);
+//        String aaptPath = "/Users/chenlin/Library/Android/sdk/build-tools/26.0.0/aapt";
+//		APPInfoBean aPPInfoBean = readAPK(file,apkiconurl,aaptPath);
+//		System.out.println(JSONUtils.beanToJson(aPPInfoBean));
+//
+//
+//
 		System.out.println("======ipa==========");
 		String ipaiconurl = "/Users/chenlin/Documents/GitHub/app/ipa/";
-		String ipaUrl = "/Users/chenlin/Documents/GitHub/BHAF2.6.1.ipa";
+		String ipaUrl = "/Users/chenlin/Documents/GitHub/BHAFAppTest.ipa";
 		String pythonShellPath = "/Users/chenlin/Documents/GitHub/app/ipin.sh";
 		File file2 = new File(ipaUrl);
 		aPPInfoBean = readIPA(file2,ipaiconurl,pythonShellPath);
 		System.out.println(JSONUtils.beanToJson(aPPInfoBean));
+
+
+
+//		String  a = "/files/ipa/BHAF/3.2.0/20200331224400/3596b76b-3089-4e82-b364-dbd4750e0a74.ipa";
+//
+//		a = a.substring(a.lastIndexOf(".ipa"), a.length());
+//
+//		System.out.println(a);
+
 	}
 
 }
