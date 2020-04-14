@@ -426,6 +426,25 @@ function edit() {
 		content : preUrl + '/edit/' + id // iframe的url
 	});
 }
+function showAPI() {
+    // 返回所有选择的行，当没有选择的记录时，返回一个空数组
+    var rows = $('#bTable').bootstrapTable('getSelections');
+    var id;
+    if (rows.length == 0||rows.length >1) {
+        layer.msg("请选择一条数据");
+        return;
+    }else{
+        id=rows[0]['appId'];
+    }
+    layer.open({
+        type : 2,
+        title : '下载API',
+        maxmin : false,
+        shadeClose : false, // 点击遮罩关闭层
+        area : [ '600px', '250px' ],
+        content : preUrl + '/showAPI/' + id // iframe的url
+    });
+}
 function del(id) {
 	layer.confirm('确定要删除选中的记录？', {
 		btn : [ '确定', '取消' ]
@@ -448,6 +467,7 @@ function del(id) {
 		});
 	})
 }
+
 function hide(id,state) {
     var msg = '确定要显示选中的记录？';
     if(state == 1){

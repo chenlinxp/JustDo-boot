@@ -23,6 +23,9 @@ public class ShortController {
 	@GetMapping({ "/{shortString}"})
 	String redirectUrl(@PathVariable("shortString") String shortString) {
 
+		if(shortString.equals("justdo")){
+			return "redirect:/justdo/login";
+		}
 		AppDO app = appService.getByShortUrl(shortString);
 
 		if(app!=null){

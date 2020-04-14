@@ -6,7 +6,7 @@ $(function() {
         layer.open({
             type: 2,
             title:'图标列表',
-            content: '/FontIcoList.html',
+            content: '/icon/FontIcoList.html',
             area: ['480px', '90%'],
             success: function(layero, index){
                 //var body = layer.getChildFrame('.ico-list', index);

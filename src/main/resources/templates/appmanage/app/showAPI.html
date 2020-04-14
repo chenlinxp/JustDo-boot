@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body>
+<div class="animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content form-group">
+                    <div class="col-sm-8" style="display: none">
+                        <label class="col-sm-2 control-label">APP名称:</label>
+                        <div class="col-sm-2">
+                            <span th:text="${appName}"></span>
+                        </div>
+                        <label class="col-sm-2 control-label">APP包名:</label>
+                        <div class="col-sm-2">
+                            <span th:text="${appBundleId}"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <!--<label class="col-sm-2 control-label">API信息:</label>-->
+                        <div class="col-sm-8">
+                            <textarea id="description" name="description" rows="5" th:text="${APInfo}" class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+</body>
+</html>

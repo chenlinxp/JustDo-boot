@@ -2,6 +2,8 @@ package com.justdo.appmanage.app.controller;
 
 import com.justdo.appmanage.app.domain.AppDO;
 import com.justdo.appmanage.app.service.AppService;
+import com.justdo.appmanage.appversion.dao.AppVersionDao;
+import com.justdo.appmanage.appversion.domain.AppVersionDO;
 import com.justdo.common.annotation.Log;
 import com.justdo.common.domain.APPInfoBean;
 import com.justdo.common.utils.*;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +47,9 @@ public class AppController {
 	private String preUrl="appmanage/app"  ;
 	@Autowired
 	private AppService appService;
+
+	@Autowired
+	private AppVersionDao appVersionDao;
 
 	@Autowired
 	DictContentService dictContentService;
@@ -352,5 +358,48 @@ public class AppController {
 		AppDO app = appService.get(id);
 		model.addAttribute("app", app);
 		return preUrl + "/download";
+	}
+
+	/**
+	 * APP包安装API
+	 * @param id
+	 * @return 详情页面路径
+	 */
+	@GetMapping("/showAPI/{id}")
+	@ApiOperation(value="返回APP下载页面", notes="返回APP下载页面")
+	String showAPI(@PathVariable("id") String id,Model model){
+
+		String APInfo = "暂无API地址!";
+		String appName = "";
+		String appBundleId = "";
+		AppDO app = appService.get(id);
+		AppVersionDO appVersionDO = null;
+		List<AppVersionDO> appVersionDOList = null;
+		if(app!=null){
+			appName = app.getAppName();
+			appBundleId = app.getBundleId();
+			Map<String, Object> map = new HashMap<>(16);
+			map.put("appId", app.getAppId());
+			map.put("delFlag", "0");
+			map.put("sort", "CREATE_TIME");
+			map.put("order", "desc");
+			appVersionDOList = appVersionDao.list(map);
+			if(appVersionDOList.size()>0){
+				APInfo =  appVersionDOList.get(0).getDownloadUrl();
+			}
+			if(app.getAppType()==2){
+				APInfo = "itms-services://?action=download-manifest&url="+justdoConfig.getBaseAddress()+APInfo;
+			}else{
+				APInfo = justdoConfig.getBaseAddress()+APInfo;
+			}
+		}
+
+		model.addAttribute("appName", appName);
+
+		model.addAttribute("appBundleId", appBundleId);
+
+		model.addAttribute("APInfo", APInfo);
+
+		return preUrl + "/showAPI";
 	}
 }
