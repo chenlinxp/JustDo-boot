@@ -77,4 +77,12 @@ public interface AppDao {
 	 * @return AppDO
 	 */
 	AppDO getByCombineId(String combineAppId);
+
+
+	/**
+	 * 返回实体
+	 * @param shortUrl
+	 * @return AppDO
+	 */
+	AppDO getByShortUrl(String shortUrl);
 }

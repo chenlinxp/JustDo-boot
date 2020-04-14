@@ -160,4 +160,9 @@
 		select  `APP_ID`, `LOAD_URL`,`COMBINE_APP_ID`,`COMBINE_TIME`,`ICON_URL`,`CODE_QR_A`,`CODE_QR_B`,`CODE_QR_C`,`CREATE_TIME`,`MODIFY_TIME`,`APP_NAME`,`APP_KEY`,`BUNDLE_NAME`,`BUNDLE_ID`,`SHORT_URL`,`EXPIRER_TIME`,`APP_TYPE`,`IS_COMBINE`,`DESCRIPTION` from d_app
 		where BUNDLE_ID = #{bundleId} and APP_TYPE =  #{appType}
 	</select>
+
+	<select id="getByShortUrl" resultType="com.justdo.appmanage.app.domain.AppDO">
+		select  `APP_ID`, `LOAD_URL`,`COMBINE_APP_ID`,`COMBINE_TIME`,`ICON_URL`,`CODE_QR_A`,`CODE_QR_B`,`CODE_QR_C`,`CREATE_TIME`,`MODIFY_TIME`,`APP_NAME`,`APP_KEY`,`BUNDLE_NAME`,`BUNDLE_ID`,`SHORT_URL`,`EXPIRER_TIME`,`APP_TYPE`,`IS_COMBINE`,`DESCRIPTION` from d_app
+		where SHORT_URL = #{value}
+	</select>
 </mapper>

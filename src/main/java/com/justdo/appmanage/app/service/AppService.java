@@ -86,4 +86,11 @@ public interface AppService {
 	 */
 	int update(APPInfoBean app);
 
+
+	/**
+	 * 返回实体
+	 * @param shortUrl
+	 * @return AppDO
+	 */
+	AppDO getByShortUrl(String shortUrl);
 }

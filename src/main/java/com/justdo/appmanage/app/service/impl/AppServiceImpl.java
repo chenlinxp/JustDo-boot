@@ -134,12 +134,13 @@ public class AppServiceImpl implements AppService {
 			String appKey = StringUtils.getUUID();
 			String qRCodeUrl = logoImage.substring(0, logoImage.lastIndexOf("/"))+"/";
 			String shortUrl = StringUtils.shortUrl(loadUrl);
-			shortUrl = justdoConfig.getBaseAddress() + shortUrl;
-			String a =	QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,250,app.getLogoImage());
+			String allShortURL = justdoConfig.getBaseAddress() + shortUrl;
+
+			String a =	QRCodeUtils.encodeZxingCode(allShortURL,qRCodeUrl,250,app.getLogoImage());
 			a = "/"+a.substring(a.lastIndexOf("app"), a.length()).replace("app","files");
-			String b =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,500,app.getLogoImage());
+			String b =  QRCodeUtils.encodeZxingCode(allShortURL,qRCodeUrl,500,app.getLogoImage());
 			b = "/"+b.substring(b.lastIndexOf("app"), b.length()).replace("app","files");
-			String c =  QRCodeUtils.encodeZxingCode(shortUrl,qRCodeUrl,800,app.getLogoImage());
+			String c =  QRCodeUtils.encodeZxingCode(allShortURL,qRCodeUrl,800,app.getLogoImage());
 			c = "/"+c.substring(c.lastIndexOf("app"), c.length()).replace("app","files");
 			appDO = new AppDO(appId,appKey, appName, bundleName, pageName, shortUrl, loadUrl, DateUtils.addMonth(date,1), app.getAppType(), 0, "", null, webLogoUrl, a, b, c, "", date, date);
 			appDao.save(appDO);
@@ -164,9 +165,7 @@ public class AppServiceImpl implements AppService {
 		String downLoadUrl = "/"+appPath.substring(appPath.lastIndexOf("app"), appPath.length()).replace("app","files");
 
 		downLoadUrl = downLoadUrl+"/"+app.getAppRename();
-//		if(app.getAppType()==2){
-//			downLoadUrl.replace("ipa","plist");
-//		}
+
 		if(downLoadUrl.endsWith(".ipa")){
 			downLoadUrl = downLoadUrl.replace(".ipa",".plist");
 		}
@@ -198,5 +197,12 @@ public class AppServiceImpl implements AppService {
 		AppVersionDO appVersionDO = new AppVersionDO();
 
 		return appDao.update(appDO);
+	}
+
+	@Override
+	@Transactional(readOnly = false,rollbackFor = Exception.class)
+	public AppDO getByShortUrl(String shortUrl){
+
+		return appDao.getByShortUrl(shortUrl);
 	}
 }
