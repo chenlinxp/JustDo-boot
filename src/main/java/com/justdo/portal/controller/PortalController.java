@@ -212,26 +212,35 @@ public class PortalController {
 	@GetMapping("/app/install/{appId}")
 	String installUrl(@PathVariable("appId") String appId) {
 
-		String versionId = appId;
+		String url = "error/404";
 
-		String url = "/error/404";
-        AppVersionDO appVersionDO = appVersionDao.get(versionId);
+		if(StringUtils.isNotEmpty(appId)){
+
+			String versionId = appId;
+
+	        AppVersionDO appVersionDO = appVersionDao.get(versionId);
 
 
-        if(appVersionDO!=null) {
+	        if(appVersionDO!=null) {
 
-	        url = appVersionDO.getDownloadUrl();
+		        url = appVersionDO.getDownloadUrl();
+                Integer num1  = appVersionDO.getTodayLoadNumber();
+		        Integer num2  = appVersionDO.getTotalLoadNumber();
+		        appVersionDO.setTodayLoadNumber(num1+1);
+		        appVersionDO.setTotalLoadNumber(num2+1);
 
-	        if(url.endsWith(".apk")){
+		        appVersionDao.update(appVersionDO);
+		        if(url.endsWith(".apk")){
 
-		        return "redirect:"+justdoConfig.getBaseAddress()+url;
+			        return "redirect:"+justdoConfig.getBaseAddress()+url;
+		        }
+
+		        if(url.endsWith(".plist")){
+
+		            return "redirect:itms-services://?action=download-manifest&url="+justdoConfig.getBaseAddress()+url;
+		        }
 	        }
-
-	        if(url.endsWith(".plist")){
-
-	        	return "redirect:itms-services://?action=download-manifest&url="+justdoConfig.getBaseAddress()+url;
-	        }
-        }
+		}
 		return "redirect:"+url;
 	}
 }

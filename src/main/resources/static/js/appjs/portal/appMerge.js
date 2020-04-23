@@ -27,14 +27,16 @@ function install_merge_loading(type) {
     if (type == '2'){
 
         $("#down_load_type_2").hide();
-        $(".loading").css("display","inline-block");
         setTimeout('check()',5000);
+        $(".loading").css("display","inline-block");
+
         url = resquestIp+"/portal/app/install/"+$("#download-href_"+type).val();
     }
     if (type == '1'){
         $("#down_load_type_1").hide();
-        $(".loading").css("display","inline-block");
         setTimeout('check()',5000);
+        $(".loading").css("display","inline-block");
+
         url = resquestIp+"/portal/app/install/"+$("#download-href_"+type).val();
     }
     window.location.href = url;
