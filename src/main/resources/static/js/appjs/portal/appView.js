@@ -106,7 +106,8 @@ function install_loading() {
 }
  function check() {
     $(".loading").hide();
-    $("#showtext").show();
+    $("#showtext1").show();
+    $("#showtext2").show();
  }
 
 

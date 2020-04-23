@@ -60,12 +60,13 @@ public class PortalController {
 		model.addAttribute("modifytime", DateUtils.format(articleDO.getModifyTime()));
 		return "portal/index/post";
 	}
+
 	@GetMapping("/open/page/{categories}")
 	String about(@PathVariable("categories") String categories, Model model) {
 		Map<String, Object> map = new HashMap<>(16);
 		map.put("categories", categories);
-		ArticleDO articleDO =null;
-		if(articleService.list(map).size()>0){
+		ArticleDO articleDO = null;
+		if (articleService.list(map).size() > 0) {
 			articleDO = articleService.list(map).get(0);
 		}
 		model.addAttribute("article", articleDO);
@@ -73,10 +74,10 @@ public class PortalController {
 	}
 
 	@GetMapping("/app/{appId}")
-	String appInfo(@PathVariable("appId") String appId,@RequestParam(value="id",defaultValue="") String appVersionId, Model model) {
+	String appInfo(@PathVariable("appId") String appId, @RequestParam(value = "id", defaultValue = "") String appVersionId, Model model) {
 
-		AppDO appDO1 =  null;
-		AppDO appDO2 =  null;
+		AppDO appDO1 = null;
+		AppDO appDO2 = null;
 
 		AppVersionDO appVersionDO1 = null;
 		AppVersionDO appVersionDO2 = null;
@@ -105,22 +106,22 @@ public class PortalController {
 		String modifyTime = "";
 
 		List<AppVersionDO> appVersionDOList = null;
-		if(appDO!=null) {
+		if (appDO != null) {
 
 			appName = appDO.getAppName();
 			iconUrl = appDO.getIconUrl();
 			codeQrA = appDO.getCodeQrA();
-			modifyTime = DateUtils.format(appDO.getModifyTime(),"yyyy-MM-dd HH:mm:ss");
+			modifyTime = DateUtils.format(appDO.getModifyTime(), "yyyy-MM-dd HH:mm:ss");
 			Map<String, Object> map = new HashMap<>(16);
 			map.put("appId", appId);
 			map.put("delFlag", "0");
 			map.put("sort", "CREATE_TIME");
 			map.put("order", "desc");
 			appVersionDOList = appVersionDao.list(map);
-			if(appDO.getAppType()==1){
+			if (appDO.getAppType() == 1) {
 				appDO1 = appDO;
 				if (!StringUtils.isNotEmpty(appVersionId)) {
-					if(appVersionDOList.size()>0) {
+					if (appVersionDOList.size() > 0) {
 						appVersionDO1 = appVersionDOList.get(0);
 						appVersionDOList1 = appVersionDOList;
 						appVersionDOList1.remove(0);
@@ -139,10 +140,10 @@ public class PortalController {
 				buildCode = appVersionDO1.getBuildCode();
 				appSizes = appVersionDO1.getAppSizes();
 
-			}else{
+			} else {
 				appDO2 = appDO;
 				if (!StringUtils.isNotEmpty(appVersionId)) {
-					if(appVersionDOList.size()>0) {
+					if (appVersionDOList.size() > 0) {
 						appVersionDO2 = appVersionDOList.get(0);
 						appVersionDOList2 = appVersionDOList;
 						appVersionDOList2.remove(0);
@@ -162,20 +163,20 @@ public class PortalController {
 			}
 
 			combineAppId = appDO.getCombineAppId();
-			if(appDO.getIsCombine()==1&&StringUtils.isNotEmpty(combineAppId)){
-				appDO =  appService.get(combineAppId);
+			if (appDO.getIsCombine() == 1 && StringUtils.isNotEmpty(combineAppId)) {
+				appDO = appService.get(combineAppId);
 			}
-			if(appDO!=null) {
+			if (appDO != null) {
 				map.remove("appId");
 				map.put("appId", appDO.getAppId());
-				if(appDO.getAppType()==1&&appDO1==null){
+				if (appDO.getAppType() == 1 && appDO1 == null) {
 					appDO1 = appDO;
 					appVersionDOList1 = appVersionDao.list(map);
 					appVersionDO1 = appVersionDOList1.get(0);
 					appVersionDOList1.remove(0);
 				}
 
-				if(appDO.getAppType()==2&&appDO2==null){
+				if (appDO.getAppType() == 2 && appDO2 == null) {
 					appDO2 = appDO;
 					appVersionDOList2 = appVersionDao.list(map);
 					appVersionDO2 = appVersionDOList2.get(0);
@@ -203,7 +204,34 @@ public class PortalController {
 		model.addAttribute("appVersionDO2", appVersionDO2);
 		model.addAttribute("appVersionDOList2", appVersionDOList2);
 
-		model.addAttribute("baseAddress",justdoConfig.getBaseAddress());
+		model.addAttribute("baseAddress", justdoConfig.getBaseAddress());
 		return "portal/index/app";
+	}
+
+
+	@GetMapping("/app/install/{appId}")
+	String installUrl(@PathVariable("appId") String appId) {
+
+		String versionId = appId;
+
+		String url = "/error/404";
+        AppVersionDO appVersionDO = appVersionDao.get(versionId);
+
+
+        if(appVersionDO!=null) {
+
+	        url = appVersionDO.getDownloadUrl();
+
+	        if(url.endsWith(".apk")){
+
+		        return "redirect:"+justdoConfig.getBaseAddress()+url;
+	        }
+
+	        if(url.endsWith(".plist")){
+
+	        	return "redirect:itms-services://?action=download-manifest&url="+justdoConfig.getBaseAddress()+url;
+	        }
+        }
+		return "redirect:"+url;
 	}
 }

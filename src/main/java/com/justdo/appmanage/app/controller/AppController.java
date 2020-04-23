@@ -379,6 +379,7 @@ public class AppController {
 			appName = app.getAppName();
 			appBundleId = app.getBundleId();
 			Map<String, Object> map = new HashMap<>(16);
+
 			map.put("appId", app.getAppId());
 			map.put("delFlag", "0");
 			map.put("sort", "CREATE_TIME");

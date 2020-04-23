@@ -54,11 +54,11 @@
         </div>
         <div class="span12" style="text-align: center;">
             更新时间: <span th:text="${#dates.format(modifyTime,'yyyy-MM-dd HH:mm:ss')}" ></span></div>
-    <div class="span12" style="text-align:center;">
+        <div class="span12" style="text-align:center;">
         用手机扫描下面的二维码安装  <br />
         <br />
         <img th:src="${codeQrA}"/>
-    </div>
+        </div>
     </div>
     <hr class="devider devider-dotted" />
     <div  class="view row margin-bottom-30">
@@ -66,11 +66,12 @@
             <div id="iosDiv" class="col-md-6" th:if="${appVersionDO2 != null}" style="display: none">
                 <div class="row text-center">
                     <div class="margin-bottom-20">
-                        <a href="javascript:void(0);"
-                           onclick="javascript:install_loading('2');"
-                           id="down_load_type_2" class="btn btn-primary">
-                            下载苹果版
-                        </a>
+                        <div class="spinner">
+                            <div id="showtext2">正在下载，请在桌面查看下载进度</div>
+                            <div class="loading"></div>
+                            <a href="javascript:void(0);" onclick="javascript:install_merge_loading('2');" id="down_load_type_2" class="btn btn-primary" style="font-size: 18px;padding: 8px 60px;background-color: #28caad;border-radius: 30px;">
+                                <i class="fa fa-download"></i> 点击安装</a>
+                        </div>
                     </div>
                     <div class="margin-bottom-20" style="margin-top: 20px">
                     <p>
@@ -84,7 +85,7 @@
                     <p>
                         最近更新时间：<label id="date_type_2"><span th:text="${#dates.format(appVersionDO2.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
                     </p>
-                       <input type="hidden" id="download-href_2" th:value="${appVersionDO2.downloadUrl}"/>
+                       <input type="hidden" id="download-href_2" th:value="${appVersionDO2.appVersionId}"/>
                         <input type="hidden" id="baseAddress" th:value="${baseAddress}"/>
                     </div>
                 </div>
@@ -108,9 +109,13 @@
             <div id="androidDiv" class="col-md-6" th:if="${appVersionDO1 != null}" style="display: none">
                 <div class="row text-center">
                     <div class="margin-bottom-20">
-                        <a href="javascript:void(0);"
-                           onclick="javascript:install_loading('1');"
-                           id="down_load_type_1" class="btn btn-primary" > 下载安卓版</a>
+                        <div class="spinner">
+                            <div id="showtext1">正在下载，请在浏览器中查看下载进度</div>
+                            <div class="loading"></div>
+                            <a href="javascript:void(0);" onclick="javascript:install_merge_loading('1');"
+                           id="down_load_type_1" class="btn btn-primary" style="font-size: 18px;padding: 8px 60px;background-color: #28caad;border-radius: 30px;">
+                            <i class="fa fa-download"></i> 点击安装</a>
+                        </div>
                     </div>
                     <div class="margin-bottom-20" style="margin-top: 20px">
                     <p>
@@ -123,7 +128,7 @@
                     <p>
                         最近更新时间：<label id="date_type_1"><span th:text="${#dates.format(appVersionDO1.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
                     </p>
-                    <input type="hidden" id="download-href_1" th:value="${appVersionDO1.downloadUrl}"/>
+                    <input type="hidden" id="download-href_1" th:value="${appVersionDO1.appVersionId}"/>
                     </div>
                 </div>
                 <div th:if="${appVersionDOList1 != null}" ><h2 class="content-title">历史版本</h2></div>
@@ -158,9 +163,11 @@
 <script type="text/javascript">
     var aType = 'ios', resquestIp = $("#baseAddress").val(), resquestContext = '',
         resquestUrl = resquestIp + resquestContext+ '',
-        submiting = '请稍候...', submitText = '立即进入', isMobileRequest = '', askBrowserAlert = '请在手机上使用浏览器打开本页面', forIosAlert = '您的手机是Android系统，无法安装iOS应用';
-    forAndroidAlert = '您的手机是iOS系统，无法安装Android应用';
-    isWechatRequest = '',
+        isMobileRequest = '',
+        askBrowserAlert = '请在手机上使用浏览器打开本页面',
+        forIosAlert = '您的手机是Android系统，无法安装iOS应用';
+         forAndroidAlert = '您的手机是iOS系统，无法安装Android应用';
+        isWechatRequest = '',
         reminderWechatContent = '请点击微信右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装',
         isQQRequest = '',
         reminderQQContent = '请点击QQ右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装',
@@ -179,6 +186,9 @@
     $(document).ready(function() {
         isMobileRequest = isMobile();
         isWechatRequest = isWeiXin();
+
+//        $("#showtext1").hide();
+//        $("#showtext2").hide();
     });
 
     if(browser.versions.ios || browser.versions.iPhone){

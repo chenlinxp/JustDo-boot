@@ -1,24 +1,9 @@
-var browser={
-    versions:function(){
-        var u = navigator.userAgent, app = navigator.appVersion;
-        return {
-            trident: u.indexOf('Trident') > -1,
-            presto: u.indexOf('Presto') > -1,
-            webKit: u.indexOf('AppleWebKit') > -1,
-            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
-            mobile: !!u.match(/AppleWebKit.*Mobile.*/),
-            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
-            iPhone: u.indexOf('iPhone') > -1 ,
-            iPad: u.indexOf('iPad') > -1,
-            webApp: u.indexOf('Safari') == -1
-        }
-    }(),
-    language:(navigator.browserLanguage || navigator.language).toLowerCase()
-};
 
 
-function install_loading(type) {
+
+function install_merge_loading(type) {
+
+
     if (!isMobileRequest) {
         alert(askBrowserAlert);
         return;
@@ -40,14 +25,40 @@ function install_loading(type) {
         return ;
     }
     if (type == '2'){
-        url = "itms-services://?action=download-manifest&url="+resquestIp+resquestContext+$("#download-href_"+type).val();
+
+        $("#down_load_type_2").hide();
+        $(".loading").css("display","inline-block");
+        setTimeout('check()',5000);
+        url = resquestIp+"/portal/app/install/"+$("#download-href_"+type).val();
     }
     if (type == '1'){
-        url = $("#download-href_"+type).val();
+        $("#down_load_type_1").hide();
+        $(".loading").css("display","inline-block");
+        setTimeout('check()',5000);
+        url = resquestIp+"/portal/app/install/"+$("#download-href_"+type).val();
     }
-    
     window.location.href = url;
 }
+
+
+var browser={
+    versions:function(){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return {
+            trident: u.indexOf('Trident') > -1,
+            presto: u.indexOf('Presto') > -1,
+            webKit: u.indexOf('AppleWebKit') > -1,
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/),
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+            iPhone: u.indexOf('iPhone') > -1 ,
+            iPad: u.indexOf('iPad') > -1,
+            webApp: u.indexOf('Safari') == -1
+        }
+    }(),
+    language:(navigator.browserLanguage || navigator.language).toLowerCase()
+};
 function is_weixin(){
     var ua = navigator.userAgent.toLowerCase();
     if(ua.match(/MicroMessenger/i)=="micromessenger") {

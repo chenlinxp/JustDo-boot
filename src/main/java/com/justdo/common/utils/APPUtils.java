@@ -8,6 +8,8 @@ import com.justdo.common.domain.APPInfoBean;
 import com.justdo.common.domain.ApkInfo;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
@@ -373,13 +375,13 @@ public class APPUtils {
 //
 //
 //
-		System.out.println("======ipa==========");
-		String ipaiconurl = "/Users/chenlin/Documents/GitHub/app/ipa/";
-		String ipaUrl = "/Users/chenlin/Documents/GitHub/BHAFAppTest.ipa";
-		String pythonShellPath = "/Users/chenlin/Documents/GitHub/app/ipin.sh";
-		File file2 = new File(ipaUrl);
-		aPPInfoBean = readIPA(file2,ipaiconurl,pythonShellPath);
-		System.out.println(JSONUtils.beanToJson(aPPInfoBean));
+//		System.out.println("======ipa==========");
+//		String ipaiconurl = "/Users/chenlin/Documents/GitHub/app/ipa/";
+//		String ipaUrl = "/Users/chenlin/Documents/GitHub/BHAFAppTest.ipa";
+//		String pythonShellPath = "/Users/chenlin/Documents/GitHub/app/ipin.sh";
+//		File file2 = new File(ipaUrl);
+//		aPPInfoBean = readIPA(file2,ipaiconurl,pythonShellPath);
+//		System.out.println(JSONUtils.beanToJson(aPPInfoBean));
 
 
 
@@ -389,6 +391,39 @@ public class APPUtils {
 //
 //		System.out.println(a);
 
+		Map<String,String > map = new HashMap<>();
+
+		map.put("333","333");
+		map.put("3331","3331");
+		map.put("3332","3332");
+		map.put("3333",null);
+		map.put("3334",null);
+
+		java.util.Iterator<String> itr = map.keySet().iterator();
+		while (itr.hasNext()){
+			String key = itr.next();
+            if(key.equals("333")) {
+	           // map.remove(key);
+
+	            itr.remove();
+            }
+			System.out.println(key);
+		}
+		System.out.println(map);
+
+		String key ="12345";
+
+		int h= key.hashCode();
+
+		System.out.println(h);
+
+		System.out.println(h >>> 16);
+		int hh = h ^ (h >>> 16);
+
+		System.out.println(hh);
+
+		System.out.println(8&hh);
 	}
+
 
 }
