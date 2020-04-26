@@ -31,11 +31,15 @@
 
 </head>
 <body>
-
+<div class="row view-alert" id="tipdiv" style="z-index: 99;width: 100%;background: rgb(52, 52, 52);margin-left: 0px;margin-right: 0px;padding-top: 30px;padding-bottom: 30px;box-shadow: rgba(22, 22, 23, 0.62) 0px -10px 16px inset; display: none">
+    <div class="col-md-12 text-left" style="padding-right:30px;padding-left:30px;">
+        <p style="color:#7f7e7e;margin:0px;" id="tiptext">您当前使用的是 UC 浏览器，该浏览器不支持安装App。请在Safari中打开，即可安装</p>
+    </div>
+</div>
 <div class="row-fluid breadcrumbs">
     <div class="container">
         <div class="span12" style="text-align: center;">
-        <h1> <span th:text="${appName}"></span></h1>
+        <h2> <span th:text="${appName}" style="font-weight: bold"></span></h2>
         </div>
     </div>
 </div>
@@ -48,12 +52,14 @@
    <hr class="devider devider-dotted">
     <div  class="view row margin-bottom-30">
         <div class="span12" style="text-align: center;">
-            版本:<span th:text="${versionCode}">版本号</span>
+            <p> 版本:<span th:text="${versionCode}">版本号</span>
             (build<span th:text="${buildCode}">构建号</span>)
             大小:<span th:text="${appSizes}">版本号</span>MB
+            </p>
         </div>
         <div class="span12" style="text-align: center;">
-            更新时间: <span th:text="${#dates.format(modifyTime,'yyyy-MM-dd HH:mm:ss')}" ></span></div>
+            <p>更新时间: <span th:text="${#dates.format(modifyTime,'yyyy-MM-dd HH:mm:ss')}" ></span></p>
+        </div>
         <div class="span12" style="text-align:center;">
         用手机扫描下面的二维码安装  <br />
         <br />
@@ -65,11 +71,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div id="iosDiv" class="col-md-6" th:if="${appVersionDO2 != null}" style="display: none">
                 <div class="row text-center">
-                    <div class="margin-bottom-20">
+                    <div class="margin-bottom">
                         <div class="spinner">
                             <div id="showtext2">正在下载，请在桌面查看下载进度</div>
                             <div class="loading"></div>
-                            <a href="javascript:void(0);" onclick="javascript:install_merge_loading('2');" id="down_load_type_2" class="btn btn-primary" style="font-size: 18px;padding: 8px 60px;background-color: #28caad;border-radius: 30px;">
+                            <a href="javascript:void(0);" onclick="javascript:install_loading('2');" id="down_load_type_2" class="btn btn-primary" style="font-size: 18px;padding: 8px 60px;background-color: #28caad;border-radius: 30px;">
                                 <i class="fa fa-download"></i> 点击安装</a>
                         </div>
                     </div>
@@ -78,15 +84,17 @@
                         <span class="label label-info">适用于苹果设备</span> <span
                             class="label label-danger">企业版</span>
                     </p>
-                    <p>
-                        版本：<label id="version_type_2"><span th:text="${appVersionDO2.versionCode}">版本号</span></label>
-                        大小：<label id="size_type_2"><span th:text="${appVersionDO2.appSizes}">版本号</span>MB</label>
-                    </p>
-                    <p>
-                        最近更新时间：<label id="date_type_2"><span th:text="${#dates.format(appVersionDO2.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
-                    </p>
-                       <input type="hidden" id="download-href_2" th:value="${appVersionDO2.appVersionId}"/>
-                        <input type="hidden" id="baseAddress" th:value="${baseAddress}"/>
+                        <div id="iosDiv1" class="span12" style="text-align: center;">
+                            <p>
+                                版本：<label id="version_type_2"><span th:text="${appVersionDO2.versionCode}">版本号</span></label>
+                                大小：<label id="size_type_2"><span th:text="${appVersionDO2.appSizes}">版本号</span>MB</label>
+                            </p>
+                            <p>
+                                最近更新时间：<label id="date_type_2"><span th:text="${#dates.format(appVersionDO2.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
+                            </p>
+                            <input type="hidden" id="download-href_2" th:value="${appVersionDO2.appVersionId}"/>
+                            <input type="hidden" id="baseAddress" th:value="${baseAddress}"/>
+                        </div>
                     </div>
                 </div>
 
@@ -112,7 +120,7 @@
                         <div class="spinner">
                             <div id="showtext1">正在下载，请在浏览器中查看下载进度</div>
                             <div class="loading"></div>
-                            <a href="javascript:void(0);" onclick="javascript:install_merge_loading('1');"
+                            <a href="javascript:void(0);" onclick="javascript:install_loading('1');"
                            id="down_load_type_1" class="btn btn-primary" style="font-size: 18px;padding: 8px 60px;background-color: #28caad;border-radius: 30px;">
                             <i class="fa fa-download"></i> 点击安装</a>
                         </div>
@@ -121,14 +129,16 @@
                     <p>
                         <span class="label label-success">适用于安卓设备</span>
                     </p>
-                    <p>
-                        版本：<label id="version_type_1"><span th:text="${appVersionDO1.versionCode}">版本号</span> </label>
-                        大小：<label id="size_type_1"><span th:text="${appVersionDO1.appSizes}">版本号</span>MB</label>
-                    </p>
-                    <p>
-                        最近更新时间：<label id="date_type_1"><span th:text="${#dates.format(appVersionDO1.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
-                    </p>
-                    <input type="hidden" id="download-href_1" th:value="${appVersionDO1.appVersionId}"/>
+                        <div id="androidDiv1" class="span12" style="text-align: center;">
+                            <p>
+                                版本：<label id="version_type_1"><span th:text="${appVersionDO1.versionCode}">版本号</span> </label>
+                                大小：<label id="size_type_1"><span th:text="${appVersionDO1.appSizes}">版本号</span>MB</label>
+                            </p>
+                            <p>
+                                最近更新时间：<label id="date_type_1"><span th:text="${#dates.format(appVersionDO1.createTime,'yyyy-MM-dd HH:mm:ss')}" >创建时间</span></label>
+                            </p>
+                            <input type="hidden" id="download-href_1" th:value="${appVersionDO1.appVersionId}"/>
+                        </div>
                     </div>
                 </div>
                 <div th:if="${appVersionDOList1 != null}" ><h2 class="content-title">历史版本</h2></div>
@@ -159,14 +169,13 @@
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/appjs/portal/app.js"></script>
 <script type="text/javascript" src="/js/appjs/portal/appMerge.js"></script>
-<script type="text/javascript" src="/js/appjs/portal/appView.js"></script>
 <script type="text/javascript">
     var aType = 'ios', resquestIp = $("#baseAddress").val(), resquestContext = '',
         resquestUrl = resquestIp + resquestContext+ '',
         isMobileRequest = '',
         askBrowserAlert = '请在手机上使用浏览器打开本页面',
         forIosAlert = '您的手机是Android系统，无法安装iOS应用';
-         forAndroidAlert = '您的手机是iOS系统，无法安装Android应用';
+        forAndroidAlert = '您的手机是iOS系统，无法安装Android应用';
         isWechatRequest = '',
         reminderWechatContent = '请点击微信右上角按钮，然后在弹出的菜单中，点击在浏览器中打开，即可安装',
         isQQRequest = '',
@@ -186,25 +195,26 @@
     $(document).ready(function() {
         isMobileRequest = isMobile();
         isWechatRequest = isWeiXin();
+        init();
 
-        $("#showtext1").hide();
-        $("#showtext2").hide();
+
+        if (true) {
+            if (isNeedCheckUC()) {
+                if (false) {
+                    return false;
+                } else if (checkIsUc()) {
+                    isUCRequest = false;
+                    needInstallInOutBrowser = false;
+                    remindOpenBrowserText = '';
+                    document.getElementById("tiptext").innerHTML=reminderUCDownloadContent;
+                    setTimeout(function () {
+                        $('.view-alert').slideDown(1000);
+                    }, 200);
+                }
+            }
+        }
     });
 
-    if(browser.versions.ios || browser.versions.iPhone){
-        document.getElementById("iosDiv").style.display="block";
-    }
-    if(browser.versions.android){
-        document.getElementById("androidDiv").style.display="block";
-    }
-    if(!browser.versions.android&&!browser.versions.ios){
-        document.getElementById("iosDiv").style.display="block";
-        document.getElementById("androidDiv").style.display="block";
-    }
 
-  function goDownLoad(t){
-        console.info(t);
-      window.location.href = t.val()+url;
-  }
 </script>
 </html>
