@@ -64,6 +64,7 @@ public class AppDO extends BaseBean {
 	//APP介绍
 	private String description;
 
+
     /**
     * 构造方法
     */

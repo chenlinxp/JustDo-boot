@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -224,10 +225,31 @@ public class PortalController {
 	        if(appVersionDO!=null) {
 
 		        url = appVersionDO.getDownloadUrl();
-                Integer num1  = appVersionDO.getTodayLoadNumber();
-		        Integer num2  = appVersionDO.getTotalLoadNumber();
-		        appVersionDO.setTodayLoadNumber(num1+1);
-		        appVersionDO.setTotalLoadNumber(num2+1);
+		        String dateStr1 = DateUtils.formatDate(new Date(), "yyyyMMdd");
+
+
+		        if(appVersionDO.getRecentDownloadTime()==null){
+	                Integer num1  = appVersionDO.getTodayLoadNumber();
+			        Integer num2  = appVersionDO.getTotalLoadNumber();
+			        appVersionDO.setTodayLoadNumber(num1+1);
+			        appVersionDO.setTotalLoadNumber(num2+1);
+				    appVersionDO.setRecentDownloadTime(new Date());
+			        }else{
+			        String dateStr12 = DateUtils.formatDate(appVersionDO.getRecentDownloadTime(), "yyyyMMdd");
+                    if(dateStr1.equals(dateStr12)){
+	                    Integer num1  = appVersionDO.getTodayLoadNumber();
+	                    Integer num2  = appVersionDO.getTotalLoadNumber();
+	                    appVersionDO.setTodayLoadNumber(num1+1);
+	                    appVersionDO.setTotalLoadNumber(num2+1);
+                       }else{
+
+	                    Integer num1  = appVersionDO.getTodayLoadNumber();
+	                    Integer num2  = appVersionDO.getTotalLoadNumber();
+	                    appVersionDO.setTodayLoadNumber(1);
+	                    appVersionDO.setTotalLoadNumber(num2+1+num1);
+	                    appVersionDO.setRecentDownloadTime(new Date());
+                       }
+			        }
 
 		        appVersionDao.update(appVersionDO);
 		        if(url.endsWith(".apk")){

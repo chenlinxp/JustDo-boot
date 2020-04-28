@@ -31,7 +31,7 @@
 
 </head>
 <body>
-<div class="row view-alert" id="tipdiv" style="z-index: 99;width: 100%;background: rgb(52, 52, 52);margin-left: 0px;margin-right: 0px;padding-top: 30px;padding-bottom: 30px;box-shadow: rgba(22, 22, 23, 0.62) 0px -10px 16px inset; display: none">
+<div class="row view-alert" style="z-index: 99;width: 100%;background: rgb(52, 52, 52);margin-left: 0px;margin-right: 0px;padding-top: 30px;padding-bottom: 30px;box-shadow: rgba(22, 22, 23, 0.62) 0px -10px 16px inset; display: none">
     <div class="col-md-12 text-left" style="padding-right:30px;padding-left:30px;">
         <p style="color:#7f7e7e;margin:0px;" id="tiptext">您当前使用的是 UC 浏览器，该浏览器不支持安装App。请在Safari中打开，即可安装</p>
     </div>
@@ -196,8 +196,6 @@
         isMobileRequest = isMobile();
         isWechatRequest = isWeiXin();
         init();
-
-
         if (true) {
             if (isNeedCheckUC()) {
                 if (false) {

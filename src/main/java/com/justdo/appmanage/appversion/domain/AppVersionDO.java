@@ -1,6 +1,9 @@
 package com.justdo.appmanage.appversion.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.justdo.common.domain.BaseBean;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
@@ -46,6 +49,11 @@ public class AppVersionDO extends BaseBean {
 	private String loadUrl;
 	//下载地址
 	private String downloadUrl;
+
+	//最近下载时间
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date recentDownloadTime;
     /**
     * 构造方法
     */
@@ -236,6 +244,14 @@ public class AppVersionDO extends BaseBean {
 
 	public AppVersionDO setDownloadUrl(String downloadUrl) {
 		this.downloadUrl = downloadUrl;
+		return this;
+	}
+	public Date getRecentDownloadTime() {
+		return recentDownloadTime;
+	}
+
+	public AppVersionDO setRecentDownloadTime(Date recentDownloadTime) {
+		this.recentDownloadTime = recentDownloadTime;
 		return this;
 	}
 	@Override

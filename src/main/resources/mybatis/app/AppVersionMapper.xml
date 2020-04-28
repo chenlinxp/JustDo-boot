@@ -4,11 +4,11 @@
 <mapper namespace="com.justdo.appmanage.appversion.dao.AppVersionDao">
 
 	<select id="get" resultType="com.justdo.appmanage.appversion.domain.AppVersionDO">
-		select  `APP_VERSION_ID`, `APP_ID`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`DEL_FLAG`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION`,`CREATE_TIME`,`LOAD_URL`,`CODEQR`,`DOWNLOAD_URL` from d_app_version where APP_VERSION_ID = #{value}
+		select  `APP_VERSION_ID`, `APP_ID`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`DEL_FLAG`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION`,`CREATE_TIME`,`LOAD_URL`,`CODEQR`,`DOWNLOAD_URL`,`RECENT_DOWNLOAD_TIME` from d_app_version where APP_VERSION_ID = #{value}
 	</select>
 
 	<select id="list" resultType="com.justdo.appmanage.appversion.domain.AppVersionDO">
-		select  `APP_VERSION_ID`, `APP_ID`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`DEL_FLAG`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION`,`CREATE_TIME`,`LOAD_URL`,`CODEQR`,`DOWNLOAD_URL` from d_app_version
+		select  `APP_VERSION_ID`, `APP_ID`,`VERSION_CODE`,`BUILD_CODE`,`APP_SIZES`,`TOTAL_LOAD_NUMBER`,`DISPLAY_STATE`,`DEL_FLAG`,`TODAY_LOAD_NUMBER`,`VERSION_DESCRIPTION`,`UPDATE_DESCRIPTION`,`CREATE_TIME`,`LOAD_URL`,`CODEQR`,`DOWNLOAD_URL`,`RECENT_DOWNLOAD_TIME` from d_app_version
 		<where>
 			<if test="appVersionId != null and appVersionId != ''"> and APP_VERSION_ID != #{appVersionId} </if>
 			<if test="appId != null and appId != ''"> and APP_ID = #{appId} </if>
@@ -25,6 +25,7 @@
 			<if test="loadUrl != null and loadUrl != ''"> and LOAD_URL = #{loadUrl} </if>
 			<if test="codeQr != null and codeQr != ''"> and CODEQR = #{codeQr} </if>
 			<if test="downloadUrl != null and downloadUrl != ''"> and DOWNLOAD_URL = #{downloadUrl} </if>
+			<if test="recentDownloadTime != null and recentDownloadTime != ''"> and RECENT_DOWNLOAD_TIME = #{recentDownloadTime} </if>
 		</where>
 		<choose>
 			<when test="sort != null and sort.trim() != ''">
@@ -79,7 +80,8 @@
 		`CREATE_TIME`,
 		`LOAD_URL`,
 		`CODEQR`,
-		`DOWNLOAD_URL`
+		`DOWNLOAD_URL`,
+		`RECENT_DOWNLOAD_TIME`
 		)
 		values
 		(
@@ -97,7 +99,8 @@
 		#{createTime},
 		#{loadUrl},
 		#{codeQr},
-		#{downloadUrl}
+		#{downloadUrl},
+		#{recentDownloadTime}
 		)
 	</insert>
 
@@ -117,7 +120,8 @@
 			<if test="createTime != null">`CREATE_TIME` = #{createTime}, </if>
 			<if test="loadUrl != null">`LOAD_URL` = #{loadUrl}, </if>
 			<if test="codeQr != null">`CODEQR` = #{codeQr}, </if>
-			<if test="downloadUrl != null">`DOWNLOAD_URL` = #{downloadUrl}</if>
+			<if test="downloadUrl != null">`DOWNLOAD_URL` = #{downloadUrl},</if>
+			<if test="recentDownloadTime != null">`RECENT_DOWNLOAD_TIME` = #{recentDownloadTime} </if>
 		</set>
 		where APP_VERSION_ID = #{appVersionId}
 	</update>
