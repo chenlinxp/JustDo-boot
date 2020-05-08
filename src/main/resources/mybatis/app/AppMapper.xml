@@ -4,7 +4,7 @@
 <mapper namespace="com.justdo.appmanage.app.dao.AppDao">
 
 	<select id="get" resultType="com.justdo.appmanage.app.domain.AppDO">
-		select  `APP_ID`, `LOAD_URL`,`COMBINE_APP_ID`,`COMBINE_TIME`,`ICON_URL`,`CODE_QR_A`,`CODE_QR_B`,`CODE_QR_C`,`CREATE_TIME`,`MODIFY_TIME`,`APP_NAME`,`APP_KEY`,`BUNDLE_NAME`,`BUNDLE_ID`,`SHORT_URL`,`EXPIRER_TIME`,`APP_TYPE`,`IS_COMBINE`,`DESCRIPTION` from d_app where APP_ID = #{value}
+		select  `APP_ID`, `LOAD_URL`,`COMBINE_APP_ID`,`COMBINE_TIME`,`ICON_URL`,`CODE_QR_A`,`CODE_QR_B`,`CODE_QR_C`,`CREATE_TIME`,`MODIFY_TIME`,`APP_NAME`,`APP_KEY`,`BUNDLE_NAME`,`BUNDLE_ID`,`SHORT_URL`,`EXPIRER_TIME`,`APP_TYPE`,`IS_COMBINE`,`DESCRIPTION`,`FOLDER_NAME` from d_app where APP_ID = #{value}
 	</select>
 
 	<select id="getByCombineId" resultType="com.justdo.appmanage.app.domain.AppDO">
@@ -94,7 +94,8 @@
 			`EXPIRER_TIME`,
 			`APP_TYPE`,
 			`IS_COMBINE`,
-			`DESCRIPTION`
+			`DESCRIPTION`,
+			`FOLDER_NAME`
 		)
 		values
 		(
@@ -116,7 +117,8 @@
 		#{expirerTime},
 		#{appType},
 		#{isCombine},
-		#{description}
+		#{description},
+		#{folderName}
 		)
 	</insert>
 	 
@@ -140,7 +142,8 @@
 			<if test="expirerTime != null">`EXPIRER_TIME` = #{expirerTime}, </if>
 			<if test="appType != null">`APP_TYPE` = #{appType}, </if>
 			<if test="isCombine != null">`IS_COMBINE` = #{isCombine}, </if>
-			<if test="description != null">`DESCRIPTION` = #{description}</if>
+			<if test="description != null">`DESCRIPTION` = #{description},</if>
+			<if test="folderName != null">`FOLDER_NAME` = #{folderName}</if>
 		</set>
 		where APP_ID = #{appId}
 	</update>

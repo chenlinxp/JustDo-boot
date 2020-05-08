@@ -143,7 +143,7 @@ public class AppServiceImpl implements AppService {
 			String c =  QRCodeUtils.encodeZxingCode(allShortURL,qRCodeUrl,800,app.getLogoImage());
 			c = "/"+c.substring(c.lastIndexOf("app"), c.length()).replace("app","files");
 			appDO = new AppDO(appId,appKey, appName, bundleName, pageName, shortUrl, loadUrl, DateUtils.addMonth(date,1), app.getAppType(), 0, "", null, webLogoUrl, a, b, c, "", date, date);
-
+			appDO.setFolderName(appName);
 			appDao.save(appDO);
 
 		}else{
@@ -153,6 +153,7 @@ public class AppServiceImpl implements AppService {
 			appDO.setAppName(appName);
 			appDO.setBundleName(bundleName);
 			appDO.setModifyTime(date);
+			appDO.setFolderName(appName);
 			appDao.update(appDO);
 		}
 

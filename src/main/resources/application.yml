@@ -10,6 +10,11 @@ server:
 #        min-spare-threads: 30
   port: 8088
   #spring boot 项目中，application.properties增加如下配置指定tomcat的基目录，否则spring boot内嵌的tomcat容器会创建一个临时目录，但是此目录有一个定期清除策略，会影响web容器资源的使用，所以指定在项目根目录创建目录
+#  ssl:
+#     key-store: classpath:www.qchen.xyz.jks
+#     key-store-type: JKS
+#     #密钥库密码
+#     key-store-password: i63ym1a221oxx
   tomcat:
      basedir: ./deployer/tomcat
 #  servlet.context-path: jsutdo

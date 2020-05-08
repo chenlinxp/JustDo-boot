@@ -19,4 +19,5 @@ public class JustdoApplication {
         SpringApplication.run(JustdoApplication.class, args);
         System.out.println("ヾ(◍°∇°◍)ﾉﾞ   justdo启动成功      ヾ(◍°∇°◍)ﾉﾞ");
     }
+
 }

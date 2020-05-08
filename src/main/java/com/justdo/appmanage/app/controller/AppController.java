@@ -25,10 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * APP包管理
@@ -341,7 +338,40 @@ public class AppController {
 	@RequiresPermissions("appmanage:app:batchDel")
 	@ApiOperation(value="批量删除APP包管理接口", notes="批量删除APP包管理接口")
 	public R remove(@RequestParam("ids[]") String[] appIds){
+
+		List<String> pathNames = new ArrayList<>();
+
+		for(int i = 0;i < appIds.length;i++){
+
+			AppDO app = appService.get(appIds[i]);
+			if(app!=null){
+				String folderName = app.getFolderName();
+				String pathName = justdoConfig.getAppUploadPath();
+				if(app.getAppType()==1){
+					pathName =  pathName+"apk/"+folderName;
+				}else{
+					pathName =  pathName+"ipa/"+folderName;
+				}
+				pathNames.add(pathName);
+			}
+		}
+
 		if(appService.batchDel(appIds)>0){
+
+			Iterator<String> itr = pathNames.iterator();
+			while (itr.hasNext()){
+				String pathName = itr.next();
+				File file = new File(pathName);
+				if(file.exists()&&file.isDirectory()){
+
+					try {
+						FileUtils.deleteFolder(file);
+					} catch (Exception e) {
+						e.printStackTrace();
+						return R.error(1, "批量删除异常!");
+					}
+				}
+			}
 			return R.ok();
 		}
 		return R.error(1, "批量删除失败!");

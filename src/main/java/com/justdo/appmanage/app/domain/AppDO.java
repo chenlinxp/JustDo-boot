@@ -64,6 +64,9 @@ public class AppDO extends BaseBean {
 	//APP介绍
 	private String description;
 
+	//文件夹名称
+	private String folderName;
+
 
     /**
     * 构造方法
@@ -318,6 +321,15 @@ public class AppDO extends BaseBean {
 	 */
 	public String getDescription() {
 		return description;
+	}
+
+	public String getFolderName() {
+		return folderName;
+	}
+
+	public AppDO setFolderName(String folderName) {
+		this.folderName = folderName;
+		return this;
 	}
 
 	@Override

@@ -26,6 +26,9 @@ public class ShortController {
 		if(shortString.equals("justdo")){
 			return "redirect:/justdo/login";
 		}
+		if(shortString.equals("swagger-ui")){
+			return "redirect:/swagger-ui.html";
+		}
 		AppDO app = appService.getByShortUrl(shortString);
 
 		if(app!=null){

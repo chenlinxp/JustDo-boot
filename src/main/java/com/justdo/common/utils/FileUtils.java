@@ -184,6 +184,32 @@ public class FileUtils {
 			}
 			return aPPInfoBean;
 		}
+	/**
+	 * 需要注意的是当删除某一目录时，必须保证该目录下没有其他文件才能正确删除，否则将删除失败。
+	 * @param folder
+	 * @throws Exception
+	 */
+	public static void deleteFolder(File folder) throws Exception {
+		if (!folder.exists()) {
+			throw new Exception("文件不存在");
+		}
+		File[] files = folder.listFiles();
+		if (files != null) {
+			for (File file : files) {
+				if (file.isDirectory()) {
+					//递归直到目录下没有文件
+					deleteFolder(file);
+				} else {
+					//删除
+					file.delete();
+				}
+			}
+		}
+		//删除
+		folder.delete();
+
+	}
+
 
 	public static void main(String[] args) {
 			System.out.println("======apk=========");
